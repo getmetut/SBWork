@@ -1,0 +1,114 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "3c43a66e-590c-4449-8434-be1e761e98e7",
+  "Name": "AccountingDocumentBaseCalculationBaseSberDev",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "AccCalc",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "d69a02b9-80fe-4bda-9f33-5f65605dade7",
+      "Name": "AccountingDocumentBase",
+      "CanBeSearch": false,
+      "Code": "EDoc",
+      "EntityGuid": "2b3f0839-76de-4b49-800c-c1531253a3e7",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "b07f3751-3158-4743-9d0f-d8275f6552e4",
+      "Name": "AggregationCalc",
+      "CanBeSearch": false,
+      "Code": "AggregationCal",
+      "IsEnabled": false,
+      "Length": 50,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "d69a02b9-80fe-4bda-9f33-5f65605dade7",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "75fdf516-8364-4968-b9ca-c127acdcb40b",
+      "Name": "ProductCalc",
+      "CanBeSearch": false,
+      "Code": "ProductCalc",
+      "EntityGuid": "15fd6e99-dd3f-4959-98ff-c800852c6700",
+      "FlatListInStandaloneLookup": true,
+      "HandledEvents": [
+        "ChangedShared",
+        "LookupServer"
+      ],
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "NeedPassEntityToLookupEvent": true,
+      "OnlyRootEntityUsedInChildLookupEvent": true,
+      "PreviousPropertyGuid": "b07f3751-3158-4743-9d0f-d8275f6552e4",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "071cfb66-35c8-4d08-8d2b-f65bef9f1ba4",
+      "Name": "AbsoluteCalc",
+      "CanBeSearch": false,
+      "Code": "AbsoluteCalc",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "75fdf516-8364-4968-b9ca-c127acdcb40b",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "4d3f56a0-81e2-43e4-89cd-892494ddd3b8",
+      "Name": "PercentCalc",
+      "CanBeSearch": false,
+      "Code": "PercentCalc",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "071cfb66-35c8-4d08-8d2b-f65bef9f1ba4",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9c1ad00d-a12a-4acf-bb1d-f853d32b33cb",
+      "Name": "InterestCalc",
+      "CanBeSearch": false,
+      "Code": "InterestCalc",
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "4d3f56a0-81e2-43e4-89cd-892494ddd3b8",
+      "Versions": []
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "b364c7e2-162f-48d2-b450-da6134f781e2",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "adf49364-ae2f-49e8-b641-3212fef29c14",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

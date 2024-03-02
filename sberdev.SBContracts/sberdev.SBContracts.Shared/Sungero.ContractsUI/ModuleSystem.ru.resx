@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CoverGroup_Groupsberdev" xml:space="preserve">
+    <value>Служебные справочники</value>
+  </data>
+  <data name="CoverAction_AccArtSberDev" xml:space="preserve">
+    <value>Статьи управленческого учета</value>
+  </data>
+  <data name="CoverAction_BudgetItemsSberDev" xml:space="preserve">
+    <value>Статьи бух. учета</value>
+  </data>
+  <data name="CoverAction_MVZSberDev" xml:space="preserve">
+    <value>МВЗ</value>
+  </data>
+  <data name="CoverAction_ProductsSberDev" xml:space="preserve">
+    <value>Продукты</value>
+  </data>
+  <data name="CoverGroup_Administration" xml:space="preserve">
+    <value>Администрирование</value>
+  </data>
+  <data name="CoverAction_Import" xml:space="preserve">
+    <value>Импорт историчесих договоров</value>
+  </data>
+  <data name="CoverAction_Delete" xml:space="preserve">
+    <value>Удалить все договоры</value>
+  </data>
+  <data name="CoverAction_AnaticsSetup" xml:space="preserve">
+    <value>Установки видимости аналитик</value>
+  </data>
+  <data name="CoverAction_DevSettings" xml:space="preserve">
+    <value>Настройки разработки</value>
+  </data>
+  <data name="CoverAction_PaidInvoiceReportSberDev" xml:space="preserve">
+    <value>Отчет по оплаченным счетам</value>
+  </data>
+  <data name="CoverDescription_PaidInvoiceReportSberDev" xml:space="preserve">
+    <value>В отчете будут указаны все оплаченные входящие счета за указанную дату.</value>
+  </data>
+  <data name="CoverAction_ProductUnitSberDev" xml:space="preserve">
+    <value>Продукт-юниты</value>
+  </data>
+  <data name="CoverAction_BudgetOwnerReportSberDev" xml:space="preserve">
+    <value>Отчет по согласующим бюджета</value>
+  </data>
+  <data name="CoverDescription_BudgetOwnerReportSberDev" xml:space="preserve">
+    <value>В отчете будут указаны договорные документы за указанный период.</value>
+  </data>
+  <data name="CoverAction_MarketDirectSberDev" xml:space="preserve">
+    <value>Направления маркетинга</value>
+  </data>
+</root>

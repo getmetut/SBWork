@@ -1,0 +1,65 @@
+{
+  "$type": "Sungero.Metadata.SolutionMetadata, Sungero.Metadata",
+  "NameGuid": "ed6fc3e0-0fae-4506-8085-885c8222f982",
+  "Name": "ATS",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "Sungero.ATS.Client",
+  "ClientBaseAssemblyName": "Sungero.ATS.ClientBase",
+  "ClientBaseNamespace": "Sungero.ATS.ClientBase",
+  "ClientNamespace": "Sungero.ATS.Client",
+  "Code": "ATS",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "eb7e59a6-25a9-46b7-91fe-c03aeb65671d",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "504df9a3-ca38-474a-8e43-5ff584926e62",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "f150a184-30a9-4987-8ff5-81c86b66c07c",
+      "BackgroundPosition": "Stretch"
+    },
+    "Tabs": []
+  },
+  "DesktopViews": [],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "c0d4a2e6-8d3d-466f-823a-b4fdb7dd28c7"
+    }
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "Sungero.ATS",
+  "IsolatedAssemblyName": "Sungero.ATS.Isolated",
+  "IsolatedNamespace": "Sungero.ATS.Isolated",
+  "OrderedSpecialFolders": [],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.ATS",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "Sungero.ATS.Server",
+  "ServerNamespace": "Sungero.ATS.Server",
+  "SharedAssemblyName": "Sungero.ATS.Shared",
+  "SharedNamespace": "Sungero.ATS.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.88",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "SolutionMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

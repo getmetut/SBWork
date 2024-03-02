@@ -1,0 +1,207 @@
+{
+  "$type": "Sungero.Metadata.LayerModuleMetadata, Sungero.Metadata",
+  "NameGuid": "a5402e24-e115-4df2-b7c8-43722a3a9503",
+  "Name": "Shell",
+  "AssociatedGuid": "ed6fc3e0-0fae-4506-8085-885c8222f982",
+  "AsyncHandlers": [],
+  "BaseGuid": "fcc573ab-5f4e-4b20-88e8-7b1e11a7a59a",
+  "ClientBaseAssemblyName": "Sungero.ATS.ClientBase",
+  "ClientBaseNamespace": "Sungero.ATS.Module.Shell.ClientBase",
+  "Code": "Shell",
+  "CompanyCode": "Sungero",
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "fa722da7-57f4-4998-88b9-fffe9abb1162",
+      "PreviousItemId": "471e68ad-7f9d-43d7-b4db-93eb660cde7f"
+    }
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Low",
+  "LayeredFromGuid": "fcc573ab-5f4e-4b20-88e8-7b1e11a7a59a",
+  "NeedResetAppliedCache": true,
+  "NeedResetTags": true,
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.ATS.Module.Shell",
+  "ResourcesKeys": [],
+  "SpecialFolders": [
+    {
+      "NameGuid": "1ead1abe-1b7e-4833-9e01-ee7f8404537a",
+      "Name": "OnDocumentProcessing",
+      "DisplayType": "Inbox",
+      "FilterPanel": {
+        "NameGuid": "d3b6d490-0c19-4938-b922-c0e1ba29694d",
+        "Name": "FilterPanel",
+        "Controls": [
+          {
+            "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+            "NameGuid": "fe16ad1d-dd5a-4f04-bb99-3f1fcaa83678",
+            "Name": "StateGroup",
+            "IsAncestorMetadata": true,
+            "Overridden": [
+              "IsVisible"
+            ],
+            "Versions": []
+          }
+        ],
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Controls"
+        ],
+        "Versions": []
+      },
+      "IconPath": "OnDocumentProcessing_1ead1abe1b7e48339e01ee7f8404537a.ico",
+      "IsAncestorMetadata": true,
+      "IsShow": true,
+      "IsViewSettingsByFolder": true,
+      "NeedShowMarkedCount": true,
+      "Overridden": [
+        "FilterPanel"
+      ],
+      "Versions": []
+    },
+    {
+      "NameGuid": "ae3b3ff0-73ac-4590-961c-adf4579d59de",
+      "Name": "Notices",
+      "DisplayType": "Inbox",
+      "FilterPanel": {
+        "NameGuid": "abd727e3-de11-411a-8a15-ca8e0217f9bf",
+        "Name": "FilterPanel",
+        "Controls": [
+          {
+            "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+            "NameGuid": "8172c9a9-bbd7-44d0-ae0f-a304afca546c",
+            "Name": "ShowGroup",
+            "IsAncestorMetadata": true,
+            "Overridden": [
+              "IsVisible"
+            ],
+            "Versions": []
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+            "NameGuid": "9d07a9ef-1f84-4f62-a120-d5e72b2a44a5",
+            "Name": "Show",
+            "IsAncestorMetadata": true,
+            "MasterControlId": "a6875853-2fc6-437e-b6b8-829f5841a9f8",
+            "Overridden": [
+              "MasterControlId"
+            ],
+            "ParentGuid": "8172c9a9-bbd7-44d0-ae0f-a304afca546c",
+            "Versions": []
+          },
+          {
+            "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+            "NameGuid": "b66f12e5-6754-4e88-80b9-77c406bd9bea",
+            "Name": "PeriodGroup",
+            "IsAncestorMetadata": true,
+            "Overridden": [
+              "IsVisible"
+            ],
+            "Versions": []
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+            "NameGuid": "ebd7dd98-602e-4ed1-8b48-f9391acbbc70",
+            "Name": "Period",
+            "IsAncestorMetadata": true,
+            "MasterControlId": "6fb41fdf-af73-4e7e-9cfa-ec413d66863d",
+            "Overridden": [
+              "MasterControlId"
+            ],
+            "ParentGuid": "b66f12e5-6754-4e88-80b9-77c406bd9bea",
+            "Versions": []
+          }
+        ],
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Controls",
+          "IsEnabled"
+        ],
+        "Versions": []
+      },
+      "HandledEvents": [
+        "ValidateFilterPanelClient",
+        "VisibilityHandlerServer"
+      ],
+      "IconPath": "Notices_ae3b3ff073ac4590961cadf4579d59de.ico",
+      "IsAncestorMetadata": true,
+      "IsShow": false,
+      "NeedShowMarkedCount": false,
+      "Overridden": [
+        "HandledEvents",
+        "FilterPanel",
+        "NeedShowMarkedCount",
+        "IsShow"
+      ],
+      "Versions": []
+    },
+    {
+      "NameGuid": "fa722da7-57f4-4998-88b9-fffe9abb1162",
+      "Name": "NoticesSDev",
+      "DefaultContentType": "ef79164b-2ce7-451b-9ba6-eb59dd9a4a74",
+      "DisplayType": "Inbox",
+      "FilterPanel": {
+        "NameGuid": "c13a7710-f771-4427-9068-ae1cf4a68a31",
+        "Name": "FilterPanel",
+        "Controls": [
+          {
+            "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+            "NameGuid": "fc9d5479-41f4-4fef-b1f6-ad298a2e0d36",
+            "Name": "GroupSDev"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+            "NameGuid": "f1ec2762-6480-4527-845b-27314242e142",
+            "Name": "ReadSDev",
+            "ParentGuid": "fc9d5479-41f4-4fef-b1f6-ad298a2e0d36"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "cf6385a3-3709-4a69-871a-98b57e75fe3d",
+            "Name": "AllreadSDev",
+            "ParentGuid": "f1ec2762-6480-4527-845b-27314242e142"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "9ee67461-9ef5-4e36-87df-a040e71daead",
+            "Name": "OnlyReadSDev",
+            "ParentGuid": "f1ec2762-6480-4527-845b-27314242e142",
+            "PreviousGuid": "cf6385a3-3709-4a69-871a-98b57e75fe3d"
+          }
+        ]
+      },
+      "HandledEvents": [
+        "DataQueryServer"
+      ],
+      "IsShow": true,
+      "Kind": "Computable",
+      "NeedShowMarkedCount": true,
+      "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17",
+      "SupportedDescendantsTypes": [
+        "be83f002-c2c0-49da-aff5-b7f3bddaabf7",
+        "7d9816f6-1dea-4718-84a5-1a413df81145",
+        "8484c5ba-5646-4327-9158-cd9fe0eb082b",
+        "dfe429f9-8bbe-4920-b911-fe278031315a",
+        "ab194340-550c-41c7-badd-adc2ee208741",
+        "da4946ab-6876-4bae-b35b-fc63e76974fd",
+        "db855988-d42a-4cc5-a610-afff7ffb9560",
+        "4ca82b63-1b51-4aef-a42b-57b7c97dab64",
+        "75d6c458-7725-4133-8ff4-848e16ec5bd3",
+        "8724ada0-fa56-481d-b3d0-ae3e46ff3e31"
+      ]
+    }
+  ],
+  "Version": "4.8.39.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "LayerModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    }
+  ]
+}

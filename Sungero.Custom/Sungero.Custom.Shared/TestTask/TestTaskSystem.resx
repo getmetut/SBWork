@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Тестовый демонстрационный маршрут согласования</value>
+  </data>
+  <data name="AccusativeDisplayName" xml:space="preserve">
+    <value>Тестовый демонстрационный маршрут согласования</value>
+  </data>
+  <data name="CollectionDisplayName" xml:space="preserve">
+    <value>Тестовый демонстрационный маршрут согласования</value>
+  </data>
+  <data name="Block_4a3c39b1dc32415cbe4059cbaf16d25d" xml:space="preserve">
+    <value>Типовой блок</value>
+  </data>
+  <data name="Block_94fdfe095a4b4801b0a5ca11655bdad5" xml:space="preserve">
+    <value>Блок доработки для инициатора</value>
+  </data>
+  <data name="Block_1f1183f039eb4f03959b4d4e4cc804aa" xml:space="preserve">
+    <value>Запуск и ожидание выполнения подзадачи по Регламенту</value>
+  </data>
+  <data name="Block_1f1183f039eb4f03959b4d4e4cc804aa_Property_3f41fdc551924917b8a9bf776c46411f" xml:space="preserve">
+    <value>Регламент согласования</value>
+  </data>
+  <data name="Block_1f1183f039eb4f03959b4d4e4cc804aa_Property_8f18251e4abe40fcbff0048087016f62" xml:space="preserve">
+    <value>Подзадача по регламенту</value>
+  </data>
+  <data name="AttachmentGroup_ContractOneTitle" xml:space="preserve">
+    <value>Договорной документ</value>
+  </data>
+  <data name="AttachmentGroup_ContractOneInformationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AttachmentGroup_OtherDocsTitle" xml:space="preserve">
+    <value>Сопутствующие документы</value>
+  </data>
+  <data name="AttachmentGroup_OtherDocsInformationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AttachmentGroup_ListSoglTitle" xml:space="preserve">
+    <value>Лист согласования задачи</value>
+  </data>
+  <data name="AttachmentGroup_ListSoglInformationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Block_d1db08adee1f47149fcb3316ca12fb20" xml:space="preserve">
+    <value>Генерация листа согласования</value>
+  </data>
+</root>

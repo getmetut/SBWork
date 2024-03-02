@@ -1,0 +1,62 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "d2c4f678-473b-4004-a00f-7e886c5a7f5d",
+  "Name": "AnaliticsCasheGeneralProdCollectionEx",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "AnaliticsCash4",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "a0ebefdb-ead0-4a77-8339-360d5017fa0a",
+      "Name": "AnaliticsCasheGeneral",
+      "CanBeSearch": false,
+      "Code": "AnalitCashGen",
+      "EntityGuid": "f7f6d1ff-c97c-4ebb-a5cd-4a84e51f35db",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "654f9bed-5b7a-4b89-83e2-a36fcd7fe18f",
+      "Name": "Product",
+      "CanBeSearch": false,
+      "Code": "Product",
+      "EntityGuid": "15fd6e99-dd3f-4959-98ff-c800852c6700",
+      "FlatListInStandaloneLookup": true,
+      "IsShowedInList": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "a0ebefdb-ead0-4a77-8339-360d5017fa0a",
+      "Versions": []
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "92f3104a-ba5e-4796-bfdd-9971d65869d7",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "409078e7-9c07-4d72-8d87-ece1d5f87541",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

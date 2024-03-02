@@ -1,0 +1,84 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "aa8ddd2d-a423-4104-99a6-0e7bc8971a04",
+  "Name": "CalculationTamplateProdCollection",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "CalcTamplCol",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9b9929a2-dc5f-4eae-9c3c-abf0834fc322",
+      "Name": "CalculationTamplate",
+      "CanBeSearch": false,
+      "Code": "CalcTamplates",
+      "EntityGuid": "e4676179-e2c3-46ed-b15c-401c2539d144",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "2dafd870-674b-4b95-bc2e-79564f684b11",
+      "Name": "Product",
+      "CanBeSearch": false,
+      "Code": "Product",
+      "EntityGuid": "15fd6e99-dd3f-4959-98ff-c800852c6700",
+      "FlatListInStandaloneLookup": true,
+      "HandledEvents": [
+        "LookupServer"
+      ],
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "NeedPassEntityToLookupEvent": true,
+      "PreviousPropertyGuid": "9b9929a2-dc5f-4eae-9c3c-abf0834fc322",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "ada3100d-b0c0-4211-932f-148ca326266d",
+      "Name": "Percent",
+      "CanBeSearch": false,
+      "Code": "Percent",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "2dafd870-674b-4b95-bc2e-79564f684b11"
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "5a31ed44-269e-48c7-b627-52c2d0c4095b",
+      "Name": "Absolute",
+      "CanBeSearch": false,
+      "Code": "Absolute",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "ada3100d-b0c0-4211-932f-148ca326266d"
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "a7b230c1-6591-4a97-a450-37a1fdee99db",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "5b8c7fd8-d961-46e1-9c88-21da6951531e",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

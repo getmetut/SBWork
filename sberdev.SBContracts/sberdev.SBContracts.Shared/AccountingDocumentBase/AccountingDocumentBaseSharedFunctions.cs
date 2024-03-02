@@ -1,0 +1,166 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Sungero.Core;
+using Sungero.CoreEntities;
+using sberdev.SBContracts.AccountingDocumentBase;
+
+namespace sberdev.SBContracts.Shared
+{
+  partial class AccountingDocumentBaseFunctions
+  {
+    public virtual void SetPropertiesAccess()
+    {
+      ChangeAnaliticsEnable(_obj.ContrTypeBaseSberDev);
+      
+      bool flagCalc = _obj.MVPBaseSberDev != null ? _obj.MVPBaseSberDev.CalculationIsWorking.Value
+        : (_obj.MVZBaseSberDev != null ? _obj.MVZBaseSberDev.CalculationIsWorking.Value : false);
+      if (_obj.ProdCollectionBaseSberDev.Any())
+      {
+        if ((_obj.ProdCollectionBaseSberDev.Where(p => p.Product.Name == "General").Any()
+             || _obj.ProdCollectionBaseSberDev.Count > 1) && flagCalc)
+          ChangeCalculationAccess(true);
+        else
+          ChangeCalculationAccess(false);
+      }
+      else
+        ChangeCalculationAccess(false);
+      
+      ChangeCalculationPropertiesAccess(_obj.CalculationFlagBaseSberDev);
+      
+      if (_obj.TotalAmount == null || _obj.TotalAmount == 0)
+        ChangeCalculationAccess(false);
+      
+      if (!flagCalc && _obj.CalculationDistributeBaseSberDev != null)
+      {
+        _obj.CalculationDistributeBaseSberDev = null;
+        _obj.CalculationFlagBaseSberDev = null;
+        _obj.CalculationBaseSberDev.Clear();
+      }
+      
+      if (_obj.FrameworkBaseSberDev == true)
+      {
+        _obj.State.Properties.TotalAmount.IsEnabled = false;
+        _obj.State.Properties.Currency.IsEnabled = false;
+        ChangeCalculationAccess(false);
+      }
+      else
+      {
+        _obj.State.Properties.TotalAmount.IsEnabled = true;
+        _obj.State.Properties.Currency.IsEnabled = true;
+      }
+      
+      _obj.State.Properties.ProdCollectionBaseSberDev.IsEnabled = (_obj.MVZBaseSberDev != null || _obj.MVPBaseSberDev != null) ? true : false;
+      _obj.State.Properties.ProdCollectionBaseSberDev.IsRequired = (_obj.MVZBaseSberDev != null || _obj.MVPBaseSberDev != null) ? true : false;
+      
+      bool markFlag = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name.IndexOf("Маркетинг") > 0;
+      _obj.State.Properties.MarketDirectSberDev.IsEnabled = markFlag;
+      _obj.State.Properties.MarketDirectSberDev.IsVisible = markFlag;
+      _obj.State.Properties.MarketDirectSberDev.IsRequired = markFlag;
+      
+      CancelRequiredPropeties();
+    }
+    
+    public void ChangeCalculationAccess(bool flag)
+    {
+      ChangeCalculationEnable(flag);
+      ChangeCalculationVisible(flag);
+    }
+    
+    public void ChangeCalculationEnable(bool flag)
+    {
+      _obj.State.Properties.CalculationBaseSberDev.IsEnabled = flag;
+      _obj.State.Properties.CalculationBaseSberDev.IsRequired = flag;
+      _obj.State.Properties.CalculationFlagBaseSberDev.IsEnabled = flag;
+      _obj.State.Properties.CalculationFlagBaseSberDev.IsRequired = flag;
+      _obj.State.Properties.CalculationDistributeBaseSberDev.IsEnabled = flag;
+    }
+    
+    public void ChangeCalculationVisible(bool flag)
+    {
+      _obj.State.Properties.CalculationBaseSberDev.IsVisible = flag;
+      _obj.State.Properties.CalculationAmountBaseSberDev.IsVisible = flag;
+      _obj.State.Properties.CalculationDistributeBaseSberDev.IsVisible = flag;
+      _obj.State.Properties.CalculationFlagBaseSberDev.IsVisible = flag;
+      _obj.State.Properties.CalculationResidualAmountBaseSberDev.IsVisible = flag;
+    }
+    
+    public void ChangeAnaliticsEnable(Sungero.Core.Enumeration? type)
+    {
+      if (type == ContrTypeBaseSberDev.Profitable)
+      {
+        _obj.State.Properties.MVZBaseSberDev.IsEnabled = false;
+        _obj.State.Properties.MVZBaseSberDev.IsRequired = false;
+        _obj.State.Properties.MVPBaseSberDev.IsEnabled = true;
+        _obj.State.Properties.MVPBaseSberDev.IsRequired = true;
+        _obj.State.Properties.TotalAmount.IsRequired = _obj.FrameworkBaseSberDev.HasValue ? !_obj.FrameworkBaseSberDev.Value : true;
+        _obj.State.Properties.Currency.IsRequired = _obj.FrameworkBaseSberDev.HasValue ? !_obj.FrameworkBaseSberDev.Value : true;
+      }
+      if (type == ContrTypeBaseSberDev.Expendable)
+      {
+        _obj.State.Properties.MVZBaseSberDev.IsEnabled = true;
+        _obj.State.Properties.MVZBaseSberDev.IsRequired = true;
+        _obj.State.Properties.MVPBaseSberDev.IsEnabled = false;
+        _obj.State.Properties.MVPBaseSberDev.IsRequired = false;
+        _obj.State.Properties.TotalAmount.IsRequired = false;
+        _obj.State.Properties.Currency.IsRequired = false;
+      }
+    }
+    
+    public void CancelRequiredPropeties()
+    {
+      if (SBContracts.PublicFunctions.Module.IsSystemUser())
+      {
+        _obj.State.Properties.MVZBaseSberDev.IsRequired = false;
+        _obj.State.Properties.MVPBaseSberDev.IsRequired = false;
+        _obj.State.Properties.TotalAmount.IsRequired = false;
+        _obj.State.Properties.Currency.IsRequired = false;
+        _obj.State.Properties.ProdCollectionBaseSberDev.IsRequired = false;
+        _obj.State.Properties.AccArtBaseSberDev.IsRequired = false;
+        _obj.State.Properties.ContrTypeBaseSberDev.IsRequired = false;
+        _obj.State.Properties.TotalAmount.IsRequired = false;
+        _obj.State.Properties.Currency.IsRequired = false;
+        PublicFunctions.AccountingDocumentBase.Remote.ApplyAnaliticsStabs(_obj);
+      }
+      else
+      {
+        _obj.State.Properties.ContrTypeBaseSberDev.IsRequired = true;
+        _obj.State.Properties.AccArtBaseSberDev.IsRequired = true;
+      }
+    }
+    
+    public void ChangeCalculationPropertiesAccess(Sungero.Core.Enumeration? flag)
+    {
+      if (flag == CalculationFlagBaseSberDev.Absolute)
+      {
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsEnabled = true;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsRequired = true;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsVisible = true;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsEnabled = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsRequired = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsVisible = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.InterestCalc.IsVisible = false;
+      }
+      else if (flag == CalculationFlagBaseSberDev.Percent)
+      {
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsEnabled = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsRequired = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsVisible = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsEnabled = true;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsRequired = true;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsVisible = true;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.InterestCalc.IsVisible = true;
+      }
+      else
+      {
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsEnabled = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsRequired = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsVisible = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsEnabled = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsRequired = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsVisible = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.InterestCalc.IsVisible = false;
+      }
+    }
+  }
+}

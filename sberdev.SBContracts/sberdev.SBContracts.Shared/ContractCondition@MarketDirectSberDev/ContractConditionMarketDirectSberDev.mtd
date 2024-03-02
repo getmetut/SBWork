@@ -1,0 +1,60 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "7e8291c5-cf81-4494-83fa-5860d47360f5",
+  "Name": "ContractConditionMarketDirectSberDev",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "MarketDirCond",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "313aab4d-57be-4873-99bc-7866481044c6",
+      "Name": "ContractCondition",
+      "CanBeSearch": false,
+      "Code": "Condition",
+      "EntityGuid": "44341736-9090-45b2-a82c-60e30e83cd10",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "1413717e-8a83-4add-a7dd-3cfebde97893",
+      "Name": "MarketDirect",
+      "CanBeSearch": false,
+      "Code": "MarketDirect",
+      "EntityGuid": "1893255d-6ee6-4a56-82cb-f6b3dd187ace",
+      "FlatListInStandaloneLookup": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "313aab4d-57be-4873-99bc-7866481044c6"
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "a0363cdf-83e6-4a8a-85a2-5853446c0e03",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "999a8744-1d8c-41db-ba7e-b39e2a4d0aea",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

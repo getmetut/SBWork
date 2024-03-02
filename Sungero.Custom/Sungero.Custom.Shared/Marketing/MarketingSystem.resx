@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Приказ на проведение Маркетинговой акции</value>
+  </data>
+  <data name="AccusativeDisplayName" xml:space="preserve">
+    <value>Приказ на проведение Маркетинговой акции</value>
+  </data>
+  <data name="CollectionDisplayName" xml:space="preserve">
+    <value>Приказы на проведение Маркетинговой акции</value>
+  </data>
+  <data name="AttachmentGroup_BaseattachmentTitle" xml:space="preserve">
+    <value>Основной документ</value>
+  </data>
+  <data name="AttachmentGroup_BaseattachmentInformationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AttachmentGroup_OtherAttachmentsTitle" xml:space="preserve">
+    <value>Приложения к согласованию</value>
+  </data>
+  <data name="AttachmentGroup_OtherAttachmentsInformationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Block_01ac7c1556b8489fb122b72eec14dcfc" xml:space="preserve">
+    <value>Согласование</value>
+  </data>
+  <data name="Block_55c60196eb07496888d5df49635e4c4a" xml:space="preserve">
+    <value>На исполнение</value>
+  </data>
+  <data name="Block_9f48d9ec7814493ca549e0b5820bc3e4_Property_cc459ed15bd343ae9902203b70181cbb" xml:space="preserve">
+    <value>Регламент согласования</value>
+  </data>
+  <data name="Block_9f48d9ec7814493ca549e0b5820bc3e4_Property_9b38dfc3eda9462792f5f2e3cce67cf6" xml:space="preserve">
+    <value>Подзадача по регламенту</value>
+  </data>
+  <data name="Block_9f48d9ec7814493ca549e0b5820bc3e4" xml:space="preserve">
+    <value>Задача по регламенту</value>
+  </data>
+  <data name="Block_f8869a5697724ca0b33c401a1e8ac097" xml:space="preserve">
+    <value>Смена статуса документа</value>
+  </data>
+  <data name="Block_f8869a5697724ca0b33c401a1e8ac097_Property_129443f1d8574011a28716d296d4c677" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Block_f8869a5697724ca0b33c401a1e8ac097_Property_129443f1d8574011a28716d296d4c677_Enum_6ddc58780c26456b922b3bff46d173b7" xml:space="preserve">
+    <value>Черновик</value>
+  </data>
+  <data name="Block_f8869a5697724ca0b33c401a1e8ac097_Property_129443f1d8574011a28716d296d4c677_Enum_66fcadd4a13e4d2bbd7374328369e9af" xml:space="preserve">
+    <value>Новый</value>
+  </data>
+  <data name="Block_f8869a5697724ca0b33c401a1e8ac097_Property_129443f1d8574011a28716d296d4c677_Enum_93dff1556f5f42e5bc56d214902f95b5" xml:space="preserve">
+    <value>На согласовании</value>
+  </data>
+  <data name="Block_f8869a5697724ca0b33c401a1e8ac097_Property_129443f1d8574011a28716d296d4c677_Enum_c6bb5f57524541af86389b646fa431ce" xml:space="preserve">
+    <value>Подтверждено</value>
+  </data>
+  <data name="Block_f8869a5697724ca0b33c401a1e8ac097_Property_129443f1d8574011a28716d296d4c677_Enum_56b74da737784b6796795fe5b0cd9277" xml:space="preserve">
+    <value>В работе</value>
+  </data>
+  <data name="Block_f8869a5697724ca0b33c401a1e8ac097_Property_129443f1d8574011a28716d296d4c677_Enum_a933600e219e4d96b068af50296be334" xml:space="preserve">
+    <value>Подведение итогов</value>
+  </data>
+  <data name="Block_f8869a5697724ca0b33c401a1e8ac097_Property_129443f1d8574011a28716d296d4c677_Enum_08ce807e353f4b809db8572ed7ca692f" xml:space="preserve">
+    <value>Завершено</value>
+  </data>
+  <data name="Block_5b9a6c8eff9942faa50d775248462306" xml:space="preserve">
+    <value>Согласующие по продуктам</value>
+  </data>
+  <data name="Block_f8869a5697724ca0b33c401a1e8ac097_Property_129443f1d8574011a28716d296d4c677_Enum_6ecdc448c0b9408b83bcdb744d2bbe21" xml:space="preserve">
+    <value>Согласовано</value>
+  </data>
+  <data name="Property_BudjetList" xml:space="preserve">
+    <value>Держатели бюджета</value>
+  </data>
+  <data name="Property_ProductCollection" xml:space="preserve">
+    <value>Ответственные за продукт-юнит</value>
+  </data>
+  <data name="Resource_035869ed2baa4573bdfe9e4f5e10c4b3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_035869ed2baa4573bdfe9e4f5e10c4b3_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_74e85eafe5944dc5b4724e791948b781" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_74e85eafe5944dc5b4724e791948b781_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_679cef60166e482cbfa7a1ec861f0263" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_679cef60166e482cbfa7a1ec861f0263_EmptyText" xml:space="preserve">
+    <value>Specify observers…</value>
+  </data>
+</root>

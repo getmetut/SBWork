@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DisplayName" xml:space="preserve">
+    <value>SberContracts</value>
+  </data>
+  <data name="CoverTitle" xml:space="preserve">
+    <value>Сбер.Девайсы</value>
+  </data>
+  <data name="AsyncHandler_Description_36bd9456fc87459fb286365451bdc997" xml:space="preserve">
+    <value>AddStageToTask</value>
+  </data>
+  <data name="sf_be2b4a19_b867_48e9_8724_0a79e289ed0b" xml:space="preserve">
+    <value>Notice</value>
+  </data>
+  <data name="AsyncHandler_Description_04e5249ba2a8480ba3b1ca5f3884d58f" xml:space="preserve">
+    <value>DeleteContractById</value>
+  </data>
+  <data name="sf_0fad7d1c_82f2_4672_bc8d_edd8c9cbfa61" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="JobDisplayName_39fa5665940849c78926648128e396db" xml:space="preserve">
+    <value>Exposing the full names of pseudo-users.</value>
+  </data>
+  <data name="JobDescription_39fa5665940849c78926648128e396db" xml:space="preserve">
+    <value>The process goes through the group "Pseudo-users" and enters their names in the last name field of the persons associated with them. Exceptions are listed in the "Exceptions for the Full Names Process" group.</value>
+  </data>
+  <data name="JobDisplayName_851b3b37aa4b4412a6799e31e2e1c58c" xml:space="preserve">
+    <value>Deleting logs</value>
+  </data>
+  <data name="JobDescription_851b3b37aa4b4412a6799e31e2e1c58c" xml:space="preserve">
+    <value>The process clears the log folder on the server and leaves logs for the last week only.</value>
+  </data>
+  <data name="CoverDescription" xml:space="preserve">
+    <value>Среда разработки и инструментарий администрирования</value>
+  </data>
+  <data name="CoverTab_FirstTab" xml:space="preserve">
+    <value>FirstTab</value>
+  </data>
+  <data name="CoverGroup_AdminsScripts" xml:space="preserve">
+    <value>Средства администрирования</value>
+  </data>
+  <data name="CoverAction_ReSaveCompanies" xml:space="preserve">
+    <value>Пересохранение справочника Компаний</value>
+  </data>
+  <data name="CoverDescription_ReSaveCompanies" xml:space="preserve">
+    <value>Скрипт полного прохождения компаний из справочника с функциоей пересохранения и обновления</value>
+  </data>
+  <data name="JobDisplayName_499c5bcfa84b4b188d549fe14247c3ff" xml:space="preserve">
+    <value>Выгрузка договоров на сервер</value>
+  </data>
+  <data name="JobDescription_499c5bcfa84b4b188d549fe14247c3ff" xml:space="preserve">
+    <value>Процес запускает выгрузку всех договоров из директума (вместе с счетами, если есть связь) в папку на сервере (C://ContractsAndInv)</value>
+  </data>
+  <data name="JobDisplayName_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
+    <value>Clear directory with temp. documents</value>
+  </data>
+  <data name="JobDescription_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
+    <value>Clear directory with temp. documents.</value>
+  </data>
+</root>

@@ -1,0 +1,130 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "32712173-a268-4d19-9d9e-d4863b33b412",
+  "Name": "MarcetingDocDevicesAction",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "DevicesAction",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "dcb1bf05-4863-48c0-906a-f72f61b76cad",
+      "Name": "MarcetingDoc",
+      "CanBeSearch": false,
+      "Code": "EDoc",
+      "EntityGuid": "17b4a41d-2ea8-43d3-b2c2-39dc966189db",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "f77549bc-bd38-4c5b-917c-7174011dd02f",
+      "Name": "KolVoDevices",
+      "CanBeSearch": false,
+      "Code": "KolVoDevices",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "dcb1bf05-4863-48c0-906a-f72f61b76cad"
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "493ee015-48e8-4c16-bf6b-a69d17b2ec2b",
+      "Name": "PriceNoPromo",
+      "CanBeSearch": false,
+      "Code": "PriceNoPromo",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "f77549bc-bd38-4c5b-917c-7174011dd02f"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "26509633-b8e6-4de2-bad4-206fc6e06e9d",
+      "Name": "PromoCurrency",
+      "CanBeSearch": false,
+      "Code": "PromoCurrency",
+      "EntityGuid": "ffc2629f-dc30-4106-a3ce-c402ae7d32b9",
+      "FlatListInStandaloneLookup": true,
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "493ee015-48e8-4c16-bf6b-a69d17b2ec2b"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "c859c30f-007d-4111-b1b4-29e4898785cf",
+      "Name": "PriceNoPrCurrency",
+      "CanBeSearch": false,
+      "Code": "PriceNoPrCurre",
+      "EntityGuid": "ffc2629f-dc30-4106-a3ce-c402ae7d32b9",
+      "FlatListInStandaloneLookup": true,
+      "IsEnabled": false,
+      "IsRequired": true,
+      "IsShowedInList": false,
+      "IsSortingAllowed": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "26509633-b8e6-4de2-bad4-206fc6e06e9d",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e53d3ce8-9067-46b4-a447-6f6277d67ce1",
+      "Name": "PricePromo",
+      "CanBeSearch": false,
+      "Code": "PricePromo",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "c859c30f-007d-4111-b1b4-29e4898785cf"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "0f03e39d-0532-45d9-8839-2390c47d6c8b",
+      "Name": "ProductsAndDevices",
+      "Code": "ProductsAndDev",
+      "EntityGuid": "15fd6e99-dd3f-4959-98ff-c800852c6700",
+      "FlatListInStandaloneLookup": true,
+      "HandledEvents": [
+        "ChangedShared",
+        "LookupServer"
+      ],
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "NeedPassEntityToLookupEvent": true,
+      "PreviousPropertyGuid": "e53d3ce8-9067-46b4-a447-6f6277d67ce1"
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "b2990161-72a7-49fb-ab3e-2726811c5fa6",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "c4702cfb-caa0-4d3a-a32b-ef2bd21fc5e2",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

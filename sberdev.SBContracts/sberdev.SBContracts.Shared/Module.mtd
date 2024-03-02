@@ -1,0 +1,662 @@
+{
+  "$type": "Sungero.Metadata.SolutionMetadata, Sungero.Metadata",
+  "NameGuid": "b33230d7-1513-4f37-9ea0-7d0db0fb6b72",
+  "Name": "SBContracts",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "sberdev.SBContracts.Client",
+  "ClientBaseAssemblyName": "sberdev.SBContracts.ClientBase",
+  "ClientBaseNamespace": "sberdev.SBContracts.ClientBase",
+  "ClientNamespace": "sberdev.SBContracts.Client",
+  "Code": "SBContr",
+  "CompanyCode": "sberdev",
+  "Cover": {
+    "NameGuid": "62d44db3-1736-41e4-946d-4882201bfede",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "10b5ecf6-48b9-4ee7-bb1b-11502c57fee2",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "f2b71f31-d66c-4ce8-82f8-82c9dd283889",
+      "BackgroundPosition": "Stretch"
+    },
+    "Tabs": []
+  },
+  "Dependencies": [
+    {
+      "Id": "fb838405-d1d2-4edc-b1d5-3d9915540871",
+      "MaxVersion": "",
+      "MinVersion": "0.0.1.0"
+    },
+    {
+      "Id": "df83a2ea-8d43-4ec4-a34a-2e61863014df",
+      "MaxVersion": "",
+      "MinVersion": "4.0.38.0"
+    }
+  ],
+  "DesktopViews": [],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "2d60986a-1617-4f94-8d3e-3aeee4e93ee0"
+    },
+    {
+      "ItemId": "32cbd61f-bd12-4ee8-932e-090d4e5ba5dc",
+      "PreviousItemId": "2d60986a-1617-4f94-8d3e-3aeee4e93ee0"
+    },
+    {
+      "ItemId": "44341736-9090-45b2-a82c-60e30e83cd10",
+      "PreviousItemId": "32cbd61f-bd12-4ee8-932e-090d4e5ba5dc"
+    },
+    {
+      "ItemId": "41e9be92-a238-4834-bf66-5c37605155dc",
+      "PreviousItemId": "44341736-9090-45b2-a82c-60e30e83cd10"
+    },
+    {
+      "ItemId": "01058774-127f-42c9-940c-023df2f641e3",
+      "PreviousItemId": "41e9be92-a238-4834-bf66-5c37605155dc"
+    },
+    {
+      "ItemId": "09db1495-5780-40af-8b79-bf2d4d19b89e",
+      "PreviousItemId": "01058774-127f-42c9-940c-023df2f641e3"
+    },
+    {
+      "ItemId": "d7041916-1429-42e2-869b-661edeef70e5",
+      "PreviousItemId": "09db1495-5780-40af-8b79-bf2d4d19b89e"
+    },
+    {
+      "ItemId": "b37a1efb-6646-412e-b687-257fe463dd53",
+      "PreviousItemId": "d7041916-1429-42e2-869b-661edeef70e5"
+    },
+    {
+      "ItemId": "9faec3b6-c3b3-400f-bf39-da3b33318f91",
+      "PreviousItemId": "b37a1efb-6646-412e-b687-257fe463dd53"
+    },
+    {
+      "ItemId": "68345b09-ad38-4fd0-a72b-4efd6c291b5a",
+      "PreviousItemId": "9faec3b6-c3b3-400f-bf39-da3b33318f91"
+    },
+    {
+      "ItemId": "fb7b6fb6-730c-4adb-a619-686cc2c77e6e",
+      "PreviousItemId": "68345b09-ad38-4fd0-a72b-4efd6c291b5a"
+    },
+    {
+      "ItemId": "07997381-c07e-493e-991d-c8ba08fe7444",
+      "PreviousItemId": "fb7b6fb6-730c-4adb-a619-686cc2c77e6e"
+    },
+    {
+      "ItemId": "0997d86c-c4cb-49a9-b3d8-d11efd7e740b",
+      "PreviousItemId": "07997381-c07e-493e-991d-c8ba08fe7444"
+    },
+    {
+      "ItemId": "2b21b85c-1f28-45f9-aff7-9397f52d2765",
+      "PreviousItemId": "0997d86c-c4cb-49a9-b3d8-d11efd7e740b"
+    },
+    {
+      "ItemId": "aa1ee5fd-69cc-428c-8e52-635d9c645fbe",
+      "PreviousItemId": "2b21b85c-1f28-45f9-aff7-9397f52d2765"
+    },
+    {
+      "ItemId": "6200187c-c513-4055-9c48-cd0762fc9826",
+      "PreviousItemId": "aa1ee5fd-69cc-428c-8e52-635d9c645fbe"
+    },
+    {
+      "ItemId": "094d4e19-a773-4926-a33a-9b5ae99fed73",
+      "PreviousItemId": "6200187c-c513-4055-9c48-cd0762fc9826"
+    },
+    {
+      "ItemId": "646a97d2-e946-4969-b640-b73a8d0fd192",
+      "PreviousItemId": "094d4e19-a773-4926-a33a-9b5ae99fed73"
+    },
+    {
+      "ItemId": "2966e540-1524-4ce8-8575-6070d9f84a90",
+      "PreviousItemId": "646a97d2-e946-4969-b640-b73a8d0fd192"
+    },
+    {
+      "ItemId": "872e5f84-aa00-4d4c-8272-acaafe2662b4",
+      "PreviousItemId": "2966e540-1524-4ce8-8575-6070d9f84a90"
+    },
+    {
+      "ItemId": "0197c1e3-6ee5-40a8-88e3-da5a7ceebec8",
+      "PreviousItemId": "872e5f84-aa00-4d4c-8272-acaafe2662b4"
+    },
+    {
+      "ItemId": "440f5d07-fc96-4894-9e40-df83aaf5fd92",
+      "PreviousItemId": "0197c1e3-6ee5-40a8-88e3-da5a7ceebec8"
+    },
+    {
+      "ItemId": "0898ea8a-1517-44b4-9235-2ed224fc1dd3",
+      "PreviousItemId": "440f5d07-fc96-4894-9e40-df83aaf5fd92"
+    },
+    {
+      "ItemId": "0c54c57a-8ad1-4dd3-98e1-5517fc184848",
+      "PreviousItemId": "0898ea8a-1517-44b4-9235-2ed224fc1dd3"
+    },
+    {
+      "ItemId": "8c9c3164-2c9e-4a5c-aaff-caeb6bde3fec",
+      "PreviousItemId": "0c54c57a-8ad1-4dd3-98e1-5517fc184848"
+    },
+    {
+      "ItemId": "11523f66-213c-4e22-8e6c-8baf268a5574",
+      "PreviousItemId": "8c9c3164-2c9e-4a5c-aaff-caeb6bde3fec"
+    },
+    {
+      "ItemId": "721b497d-8878-4c65-b47f-d0725ed4754e",
+      "PreviousItemId": "11523f66-213c-4e22-8e6c-8baf268a5574"
+    },
+    {
+      "ItemId": "f24a241b-a885-4054-9a72-4e5d15bbab2e",
+      "PreviousItemId": "721b497d-8878-4c65-b47f-d0725ed4754e"
+    },
+    {
+      "ItemId": "979baa1f-9f7b-41fb-b354-83c6430387fc",
+      "PreviousItemId": "f24a241b-a885-4054-9a72-4e5d15bbab2e"
+    },
+    {
+      "ItemId": "8b508850-0296-4c75-94cc-5613d03b94b1",
+      "PreviousItemId": "979baa1f-9f7b-41fb-b354-83c6430387fc"
+    },
+    {
+      "ItemId": "baaab0a0-1cc7-4b00-af02-bd1ec83a6f0a",
+      "PreviousItemId": "8b508850-0296-4c75-94cc-5613d03b94b1"
+    },
+    {
+      "ItemId": "4945408e-3242-4590-ac62-04d0cb85b660",
+      "PreviousItemId": "baaab0a0-1cc7-4b00-af02-bd1ec83a6f0a"
+    },
+    {
+      "ItemId": "8f805a0c-8e7f-49ec-b0ca-7dde077c887b",
+      "PreviousItemId": "4945408e-3242-4590-ac62-04d0cb85b660"
+    },
+    {
+      "ItemId": "afef502e-6cc5-4897-a390-266174dd9946",
+      "PreviousItemId": "8f805a0c-8e7f-49ec-b0ca-7dde077c887b"
+    },
+    {
+      "ItemId": "0f065acb-144e-4d92-b9b3-3b3fbe72cb6d",
+      "PreviousItemId": "afef502e-6cc5-4897-a390-266174dd9946"
+    },
+    {
+      "ItemId": "e16f0067-6537-4513-9612-6be5b79811f4",
+      "PreviousItemId": "0f065acb-144e-4d92-b9b3-3b3fbe72cb6d"
+    },
+    {
+      "ItemId": "1c4d926a-141a-4518-b0cc-91efd3ef5df2",
+      "PreviousItemId": "e16f0067-6537-4513-9612-6be5b79811f4"
+    },
+    {
+      "ItemId": "a97203fb-07e3-470d-8618-974c41337288",
+      "PreviousItemId": "1c4d926a-141a-4518-b0cc-91efd3ef5df2"
+    },
+    {
+      "ItemId": "9e4e8987-b8a4-4f29-8367-6e84eb0f0b43",
+      "PreviousItemId": "a97203fb-07e3-470d-8618-974c41337288"
+    },
+    {
+      "ItemId": "509e1035-d2a8-4e56-8f25-452ad1d903b9",
+      "PreviousItemId": "9e4e8987-b8a4-4f29-8367-6e84eb0f0b43"
+    },
+    {
+      "ItemId": "0c6c8db8-2736-4edf-9307-501ded428cb4",
+      "PreviousItemId": "509e1035-d2a8-4e56-8f25-452ad1d903b9"
+    },
+    {
+      "ItemId": "2b3f0839-76de-4b49-800c-c1531253a3e7",
+      "PreviousItemId": "0c6c8db8-2736-4edf-9307-501ded428cb4"
+    },
+    {
+      "ItemId": "00dafe72-5edc-42ed-ae87-51da0b2d482b",
+      "PreviousItemId": "2b3f0839-76de-4b49-800c-c1531253a3e7"
+    },
+    {
+      "ItemId": "9efe8229-d8bb-4f39-8014-ef94c46c37c5",
+      "PreviousItemId": "00dafe72-5edc-42ed-ae87-51da0b2d482b"
+    },
+    {
+      "ItemId": "1d5473f7-1bfe-4c31-a1c0-b73d3f7dad89",
+      "PreviousItemId": "9efe8229-d8bb-4f39-8014-ef94c46c37c5"
+    },
+    {
+      "ItemId": "256edfc2-8e94-419b-b72c-11664160b96f",
+      "PreviousItemId": "1d5473f7-1bfe-4c31-a1c0-b73d3f7dad89"
+    },
+    {
+      "ItemId": "94e8515d-bea0-4b89-94b3-9b98750bfcb3",
+      "PreviousItemId": "256edfc2-8e94-419b-b72c-11664160b96f"
+    },
+    {
+      "ItemId": "d4485252-bac2-41f8-95fd-ea5232f36b25",
+      "PreviousItemId": "94e8515d-bea0-4b89-94b3-9b98750bfcb3"
+    },
+    {
+      "ItemId": "d37f067e-f4a2-4a51-9c69-0c94d5ec9991",
+      "PreviousItemId": "d4485252-bac2-41f8-95fd-ea5232f36b25"
+    }
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "sberdev.SBContracts",
+  "IsolatedAssemblyName": "sberdev.SBContracts.Isolated",
+  "IsolatedNamespace": "sberdev.SBContracts.Isolated",
+  "Libraries": [
+    {
+      "NameGuid": "28504d1e-4231-43f1-a6df-9e0c6b9f84f7",
+      "Name": "CompanyData",
+      "Scope": "Both"
+    },
+    {
+      "NameGuid": "796a610f-7934-42a1-8c8b-f4e269446f56",
+      "Name": "NPOI",
+      "Scope": "Both"
+    },
+    {
+      "NameGuid": "9879878f-2b3b-4cfc-96aa-2e783dae36cb",
+      "Name": "AsposeWords",
+      "Scope": "Both"
+    },
+    {
+      "NameGuid": "fcbf3903-e215-4c8b-a375-aa717952024e",
+      "Name": "ITextSharp",
+      "Scope": "Both"
+    }
+  ],
+  "OrderedSpecialFolders": [
+    {
+      "NameGuid": "be2b4a19-b867-48e9-8724-0a79e289ed0b",
+      "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17"
+    }
+  ],
+  "PublicConstants": [
+    {
+      "Name": "CommonName",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"2.5.4.3\""
+    },
+    {
+      "Name": "Country",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"2.5.4.6\""
+    },
+    {
+      "Name": "Department",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"2.5.4.11\""
+    },
+    {
+      "Name": "Email",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"1.2.840.113549.1.9.1\""
+    },
+    {
+      "Name": "GivenName",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"2.5.4.42\""
+    },
+    {
+      "Name": "JobTitle",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"2.5.4.12\""
+    },
+    {
+      "Name": "Locality",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"2.5.4.7\""
+    },
+    {
+      "Name": "OrganizationName",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"2.5.4.10\""
+    },
+    {
+      "Name": "OrganizationTIN",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"1.2.643.100.4\""
+    },
+    {
+      "Name": "State",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"2.5.4.8\""
+    },
+    {
+      "Name": "Street",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"2.5.4.9\""
+    },
+    {
+      "Name": "Surname",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"2.5.4.4\""
+    },
+    {
+      "Name": "TIN",
+      "ParentClasses": [
+        "Module",
+        "CertificateOid"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"1.2.643.3.131.1.1\""
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "CheckDepartmentApproval",
+      "Parameters": [
+        {
+          "Name": "document",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "depart",
+          "ParameterType": "global::Sungero.CoreEntities.IGroup",
+          "ParameterTypeFullName": "Sungero.CoreEntities.IGroup, Sungero.Domain.Shared"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
+      "Name": "CheckSpecialGroupSignatureContractual",
+      "Parameters": [
+        {
+          "Name": "document",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "isNeedValid",
+          "ParameterType": "global::System.Boolean",
+          "ParameterTypeFullName": "System.Boolean"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
+      "Name": "GetAccountingArticleStab",
+      "Parameters": [
+        {
+          "Name": "type",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::sberdev.SberContracts.IAccountingArticles",
+      "ReturnTypeFullName": "sberdev.SberContracts.IAccountingArticles, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "GetAllBuisnessUnitTINs",
+      "ReturnType": "global::System.Collections.Generic.List<global::System.String>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
+      "Name": "GetDepartment",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.Company.IDepartment",
+      "ReturnTypeFullName": "Sungero.Company.IDepartment, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "GetDevSetting",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::sberdev.SberContracts.IDevSettings",
+      "ReturnTypeFullName": "sberdev.SberContracts.IDevSettings, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "GetGroup",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.CoreEntities.IGroup",
+      "ReturnTypeFullName": "Sungero.CoreEntities.IGroup, Sungero.Domain.Shared"
+    },
+    {
+      "Name": "GetGroup",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "bU",
+          "ParameterType": "global::Sungero.Company.IBusinessUnit",
+          "ParameterTypeFullName": "Sungero.Company.IBusinessUnit, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.CoreEntities.IGroup",
+      "ReturnTypeFullName": "Sungero.CoreEntities.IGroup, Sungero.Domain.Shared"
+    },
+    {
+      "Name": "GetMetadataID",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "doc",
+          "ParameterType": "global::Sungero.Docflow.IOfficialDocument",
+          "ParameterTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "GetMVZStab",
+      "Parameters": [
+        {
+          "Name": "type",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::sberdev.SberContracts.IMVZ",
+      "ReturnTypeFullName": "sberdev.SberContracts.IMVZ, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "GetOrCreateBusinessUnitFilteringCashe",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "user",
+          "ParameterType": "global::Sungero.CoreEntities.IUser",
+          "ParameterTypeFullName": "Sungero.CoreEntities.IUser, Sungero.Domain.Shared"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::sberdev.SberContracts.IBusinessUnitFilteringCashe",
+      "ReturnTypeFullName": "sberdev.SberContracts.IBusinessUnitFilteringCashe, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "GetProductStab",
+      "ReturnType": "global::sberdev.SberContracts.IProductsAndDevices",
+      "ReturnTypeFullName": "sberdev.SberContracts.IProductsAndDevices, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "GetSignatureCertificateInfo",
+      "Parameters": [
+        {
+          "Name": "signatureContent",
+          "ParameterType": "System.Byte[]"
+        }
+      ],
+      "ReturnType": "Sungero.Core.IX509CertificateInfo"
+    },
+    {
+      "Name": "IsExistCounterparty",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "tin",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
+      "Name": "IsSystemUser",
+      "Placement": "Shared",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
+      "Name": "ParseCertificateSubject",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "subjectInfo",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.Docflow.Structures.Module.ICertificateSubject",
+      "ReturnTypeFullName": "Sungero.Docflow.Structures.Module.ICertificateSubject"
+    },
+    {
+      "Name": "ParseCertificateSubjectOnlyOrgTIN",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "subjectInfo",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "SetMetadataID",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "doc",
+          "ParameterType": "global::Sungero.Docflow.IOfficialDocument",
+          "ParameterTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "ShowInfoMessage",
+      "Parameters": [
+        {
+          "Name": "message",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    }
+  ],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "sberdev.SBContracts",
+  "ResourcesKeys": [
+    "IncorrectSignatureFormat",
+    "NotSelectedDistribution"
+  ],
+  "ServerAssemblyName": "sberdev.SBContracts.Server",
+  "ServerNamespace": "sberdev.SBContracts.Server",
+  "SharedAssemblyName": "sberdev.SBContracts.Shared",
+  "SharedNamespace": "sberdev.SBContracts.Shared",
+  "SpecialFolders": [],
+  "Version": "4.5.0.1",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "SolutionMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

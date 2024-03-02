@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Договоры сбердевайс</value>
+  </data>
+  <data name="AsyncHandler_Description_36bd9456fc87459fb286365451bdc997" xml:space="preserve">
+    <value>Добавить стадию в задачу</value>
+  </data>
+  <data name="sf_be2b4a19_b867_48e9_8724_0a79e289ed0b" xml:space="preserve">
+    <value>Уведомления</value>
+  </data>
+  <data name="JobDisplayName_39fa5665940849c78926648128e396db" xml:space="preserve">
+    <value>Раскрытие полных имен псевдо-пользователей.</value>
+  </data>
+  <data name="AsyncHandler_Description_04e5249ba2a8480ba3b1ca5f3884d58f" xml:space="preserve">
+    <value>Удалить договор по ID</value>
+  </data>
+  <data name="JobDescription_39fa5665940849c78926648128e396db" xml:space="preserve">
+    <value>Процес проходит по группе "Псевдо-пользователи" и вносит их имена в поле фамилия у привязанным к ним персон. Исключения заносятся в группу "Исключения для процесса раскрытия полных имен".</value>
+  </data>
+  <data name="JobDisplayName_851b3b37aa4b4412a6799e31e2e1c58c" xml:space="preserve">
+    <value>Удаление логов</value>
+  </data>
+  <data name="JobDescription_851b3b37aa4b4412a6799e31e2e1c58c" xml:space="preserve">
+    <value>Процесс очищает папку с логами на сервере и оставляет логи только за последнюю неделю.</value>
+  </data>
+  <data name="CoverTitle" xml:space="preserve">
+    <value>Сбер.Девайсы</value>
+  </data>
+  <data name="JobDisplayName_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
+    <value>Очистка папки с временными документами</value>
+  </data>
+  <data name="JobDescription_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
+    <value>Чистит папку с временными документами.</value>
+  </data>
+</root>

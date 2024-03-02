@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="KZgroup" xml:space="preserve">
+    <value>Komitet zakupok</value>
+  </data>
+  <data name="KZgroupDesc" xml:space="preserve">
+    <value>KZgroupDesc</value>
+  </data>
+  <data name="NotApprove" xml:space="preserve">
+    <value>Not approve</value>
+  </data>
+  <data name="NoticeBySingGroup" xml:space="preserve">
+    <value>Notice By Sing</value>
+  </data>
+  <data name="NoticeBySingDesc" xml:space="preserve">
+    <value>Notice By Sing</value>
+  </data>
+  <data name="AmountChangedAbsolute" xml:space="preserve">
+    <value>After changing the amount of the document, the cost estimate is posted incorrectly. Please check that the data you entered is correct.</value>
+  </data>
+  <data name="CalculationInstruction" xml:space="preserve">
+    <value>———&gt;Calculation type:
+● "Absolute amounts": When choosing this type of distribution, you will need to manually enter the absolute amounts for each required product in rubles. Important! The total amount for all products must be equal to the amount you entered earlier in the CONDITIONS block of this card, accurate to the penny.
+● "Percentage": When choosing this type of distribution, you will need to manually enter the distribution percentage for each required product. Important! The total percentage for all products must equal 100.
+———&gt;Distribute to:
+● "Distribute to products": If you select this type of distribution, the amount will be evenly distributed among all the company's products (devices and licenses).
+● "Distribute to devices": If you select this type of distribution, the amount will be evenly distributed among all devices of the company (physical devices).
+● "Distribute to licenses": If you select this type of distribution, the amount will be evenly distributed among all licenses for the company's b2b products.
+
+NOTE:
+When choosing the calculation type as a percentage, the "RESIDUAL:" field is indicated as a percentage.</value>
+  </data>
+  <data name="AmountChangedPercent" xml:space="preserve">
+    <value>After changing the amount, the calculation block was recalculated.</value>
+  </data>
+  <data name="CreateProductUnitDialogTittle" xml:space="preserve">
+    <value>Select Product-unit</value>
+  </data>
+  <data name="CreateProductUnitDialogProp" xml:space="preserve">
+    <value>Product-unit</value>
+  </data>
+  <data name="BCRoleName" xml:space="preserve">
+    <value>Business controller</value>
+  </data>
+  <data name="BCRoleDisc" xml:space="preserve">
+    <value>Workers who replace automatic monitoring of document approvals.</value>
+  </data>
+  <data name="PATaskInstr" xml:space="preserve">
+    <value>It is necessary to track the approval of the procurement document by the department of the same name. And complete the task as the document will be successfully approved.</value>
+  </data>
+  <data name="MCTaskInstr" xml:space="preserve">
+    <value>It is necessary to check the signature of our organization and the signature of the counterparty on the agreement (and additional contractual document). If signatures are missing, it is advisable to download the complete document flow from Diadoc and import the necessary .sig files into the document being checked.</value>
+  </data>
+  <data name="ProvidePostalInformationInstruction" xml:space="preserve">
+    <value>Postal information must be provided. Indicate the following in the comment: address, zip code, full name and number of the recipient.</value>
+  </data>
+  <data name="CreateCalcTamplateDialogProp" xml:space="preserve">
+    <value>Calculation tamplate</value>
+  </data>
+</root>

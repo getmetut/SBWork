@@ -1,0 +1,60 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "9fee74b0-e44e-457d-9b06-9d91d12186fe",
+  "Name": "ApprovalTaskDoneStage",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "ApprovalTaskDo",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "6bc35d47-aa6f-4ac9-9f61-bdbababb1e75",
+      "Name": "ApprovalTask",
+      "CanBeSearch": false,
+      "Code": "Task",
+      "EntityGuid": "d7041916-1429-42e2-869b-661edeef70e5",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "86c36e82-6aa7-44f0-957c-3c05151e751a",
+      "Name": "Stage",
+      "CanBeSearch": false,
+      "Code": "Stage",
+      "EntityGuid": "41e9be92-a238-4834-bf66-5c37605155dc",
+      "FlatListInStandaloneLookup": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "6bc35d47-aa6f-4ac9-9f61-bdbababb1e75"
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "da4166c3-3307-43ab-a926-8719808c076f",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "2995a6d1-050e-40ab-a4c7-b75e50ad3379",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}
