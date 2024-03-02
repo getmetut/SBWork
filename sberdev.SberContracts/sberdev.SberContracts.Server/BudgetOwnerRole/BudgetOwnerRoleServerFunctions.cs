@@ -110,8 +110,6 @@ namespace sberdev.SberContracts.Server
             else
               group.Add(contract.ProdCollectionPrBaseSberDev.FirstOrDefault().Product.BudgetOwnerGeneral);
           }
-          
-          return group.Distinct().ToList();
         }
         
         var acc = SBContracts.AccountingDocumentBases.As(document);
@@ -119,17 +117,15 @@ namespace sberdev.SberContracts.Server
         {
           if (acc.ProdCollectionBaseSberDev.FirstOrDefault().Product.Name == "General")
           {
-            if (contract.CalculationBaseSberDev.Count > 0)
+            if (acc.CalculationBaseSberDev.Count > 0)
               foreach (var prod in acc.CalculationBaseSberDev)
                 group.Add(prod.ProductCalc.BudgetOwnerGeneral);
           }
           else
             group.Add(acc.ProdCollectionBaseSberDev.FirstOrDefault().Product.BudgetOwnerGeneral);
-          
-          return group.Distinct().ToList();
         }
         
-        return null;
+        return group.Distinct().ToList();
       }
       
       #endregion

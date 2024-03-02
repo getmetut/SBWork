@@ -339,6 +339,7 @@ namespace sberdev.SberContracts.Server
       CreateApprovalStagePurchseApproval();
       CreateApprovalStageGLStartedContractApproval();
       CreateApprovalStageProvidePostalInformation();
+      CreateAutoSetMetaIDStage();
     }
     
     /// <summary>
@@ -354,6 +355,21 @@ namespace sberdev.SberContracts.Server
       stage.TimeoutInHours = 4;
       stage.Save();
     }
+    
+    /// <summary>
+    /// Создание сценария записи ID из Директума в метаданные документа
+    /// </summary>
+    public void CreateAutoSetMetaIDStage()
+    {
+      InitializationLogger.DebugFormat("Init: Create stage for automatic create meta-property \"DirectumID\" with document card ID.");
+      if (SberContracts.AutoSetMetaIDs.GetAll().Any())
+        return;
+      var stage = SberContracts.AutoSetMetaIDs.Create();
+      stage.Name = "Запись ИД карточки документа в метаданные его версии(тела)";
+      stage.TimeoutInHours = 4;
+      stage.Save();
+    }
+    
     
     /// <summary>
     /// Создании записи сценария "Установка состояния "В реестре платежей" для счета"

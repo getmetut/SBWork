@@ -15,12 +15,6 @@ namespace sberdev.SBContracts
       base.Created(e);
       _obj.ManuallyCheckedSberDev = false;
     }
-
-    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
-    {
-      base.BeforeSave(e);
-      //PublicFunctions.Module.Remote.SetMetadataID(_obj);
-    }
   }
 
 }

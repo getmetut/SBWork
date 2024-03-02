@@ -155,7 +155,6 @@
     }
   ],
   "HandledEvents": [
-    "BeforeSaveServer",
     "CreatedServer"
   ],
   "IconResourcesKeys": [],
