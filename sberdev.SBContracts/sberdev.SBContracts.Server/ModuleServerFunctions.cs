@@ -55,53 +55,107 @@ namespace sberdev.SBContracts.Server
       string guid = Guid.NewGuid().ToString();
       string path = "C:\\TempDocs\\docDirectum" + guid + "." + ext;
       string tempPath = "C:\\TempDocs\\docDirectumTemp" + guid + "." + ext;
-      doc.LastVersion.Export(path);
-      if (ext == "doc" || ext == "docx")
+      doc.LastVersion.Export(path);/*
+      using (Stream strmCommon = doc.LastVersion.Body.Read())
       {
-        Aspose.Words.Document docAsp = new Aspose.Words.Document(path);
-        var props = docAsp.CustomDocumentProperties;
-        var prop = props.FirstOrDefault(p => p.Name == "DirectumID");
-        if (prop == null)
+        if (ext == "doc" || ext == "docx")
         {
-          props.Add("DirectumID", doc.Id.ToString());
-          switch (ext)
+          Aspose.Words.Document docAsp = new Aspose.Words.Document(path);
+          var props = docAsp.CustomDocumentProperties;
+          var prop = props.FirstOrDefault(p => p.Name == "DirectumID");
+          if (prop == null)
           {
-            case ("doc"):
-              docAsp.Save(tempPath, SaveFormat.Doc);
-              break;
-            case ("docx"):
-              docAsp.Save(tempPath, SaveFormat.Docx);
-              break;
-            case ("pdf"):
-              docAsp.Save(tempPath, SaveFormat.Pdf);
-              break;
-            default:
-              return;
+            props.Add("DirectumID", doc.Id.ToString());
+            switch (ext)
+            {
+              case ("doc"):
+                docAsp.Save(tempPath, SaveFormat.Doc);
+                break;
+              case ("docx"):
+                docAsp.Save(tempPath, SaveFormat.Docx);
+                break;
+              case ("pdf"):
+                docAsp.Save(tempPath, SaveFormat.Pdf);
+                break;
+              default:
+                return;
+            }
           }
         }
-      }
-      if (ext == "pdf")
-      {
-        PdfReader reader = new PdfReader(path);
-        PdfReader.unethicalreading = true;
-        if (!reader.Info.ContainsKey("DirectumID"))
+        if (ext == "pdf")
         {
-          iTextSharp.text.Document document = new iTextSharp.text.Document();
-          PdfCopy copy = new PdfCopy(document, new System.IO.FileStream(tempPath, System.IO.FileMode.Create));
-          document.Open();
-          copy.AddDocument(reader);
-          copy.Info.Put(new PdfName("DirectumID"), new PdfString(doc.Id.ToString()));
-          copy.Close();
-          document.Close();
+          PdfReader reader = new PdfReader(path);
+          PdfReader.unethicalreading = true;
+          if (!reader.Info.ContainsKey("DirectumID"))
+          {
+            iTextSharp.text.Document document = new iTextSharp.text.Document();
+            PdfCopy copy = new PdfCopy(document, new System.IO.FileStream(tempPath, System.IO.FileMode.Create));
+            document.Open();
+            copy.AddDocument(reader);
+            copy.Info.Put(new PdfName("DirectumID"), new PdfString(doc.Id.ToString()));
+            copy.Close();
+            document.Close();
+          }
+        }
+        
+        FileInfo fi = new FileInfo(tempPath);
+        if (fi.Exists)
+        {
+          doc.LastVersion.Import(tempPath);
+          doc.Save();
         }
       }
       
-      FileInfo fi = new FileInfo(tempPath);
-      if (fi.Exists)
-      {
-        doc.LastVersion.Import(tempPath);
-        doc.Save();
-      }
+      
+      using (Stream strmCommon = doc.LastVersion.Body.Read())
+      {*/
+        if (ext == "doc" || ext == "docx")
+        {
+          Aspose.Words.Document docAsp = new Aspose.Words.Document(path);
+          var props = docAsp.CustomDocumentProperties;
+          var prop = props.FirstOrDefault(p => p.Name == "DirectumID");
+          if (prop == null)
+          {
+            props.Add("DirectumID", doc.Id.ToString());
+            switch (ext)
+            {
+              case ("doc"):
+                docAsp.Save(tempPath, SaveFormat.Doc);
+                break;
+              case ("docx"):
+                docAsp.Save(tempPath, SaveFormat.Docx);
+                break;
+              case ("pdf"):
+                docAsp.Save(tempPath, SaveFormat.Pdf);
+                break;
+              default:
+                return;
+            }
+          }
+        }
+        if (ext == "pdf")
+        {
+          PdfReader reader = new PdfReader(path);
+          PdfReader.unethicalreading = true;
+          if (!reader.Info.ContainsKey("DirectumID"))
+          {
+            iTextSharp.text.Document document = new iTextSharp.text.Document();
+            PdfCopy copy = new PdfCopy(document, new System.IO.FileStream(tempPath, System.IO.FileMode.Create));
+            document.Open();
+            copy.AddDocument(reader);
+            copy.Info.Put(new PdfName("DirectumID"), new PdfString(doc.Id.ToString()));
+            copy.Close();
+            document.Close();
+          }
+        }
+        
+        FileInfo fi = new FileInfo(tempPath);
+        if (fi.Exists)
+        {
+          doc.LastVersion.Import(tempPath);
+          doc.Save();
+        }
+     // }
     }
     
     /// <summary>

@@ -973,6 +973,19 @@
           "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "dc9290a3-f33e-40cd-97ce-25c30a0ec3ea",
+          "Name": "MarketDirectSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
+          "PropertyGuid": "ddbd8560-adc3-4bc1-ad49-26faf831886f",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -983,9 +996,6 @@
       ],
       "Versions": []
     }
-  ],
-  "HandledEvents": [
-    "CreatedServer"
   ],
   "IconResourcesKeys": [],
   "IntegrationServiceName": "SberContractsGuaranteeLetter",

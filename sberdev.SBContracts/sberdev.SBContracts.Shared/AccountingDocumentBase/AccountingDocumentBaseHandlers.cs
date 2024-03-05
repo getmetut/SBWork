@@ -192,7 +192,10 @@ namespace sberdev.SBContracts
     public virtual void CalculationResidualAmountBaseSberDevChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
     {
       if (e.NewValue == 0 && _obj.TotalAmount != _obj.CalculationAmountBaseSberDev && _obj.CalculationBaseSberDev.Count > 0)
-        _obj.CalculationBaseSberDev.Last().InterestCalc += _obj.TotalAmount - _obj.CalculationAmountBaseSberDev;
+        if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Percent)
+          _obj.CalculationBaseSberDev.Last().InterestCalc += _obj.TotalAmount - _obj.CalculationAmountBaseSberDev;
+        else
+          _obj.CalculationBaseSberDev.Last().AbsoluteCalc += _obj.TotalAmount - _obj.CalculationAmountBaseSberDev;
       if (e.NewValue < 0.01 && e.NewValue != 0)
         _obj.CalculationResidualAmountBaseSberDev = 0;
     }
@@ -230,7 +233,7 @@ namespace sberdev.SBContracts
     public virtual void CalculationAmountBaseSberDevChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
     {
       if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Absolute)
-        _obj.CalculationResidualAmountBaseSberDev = _obj.TotalAmount - _obj.CalculationAmountBaseSberDev;
+        _obj.CalculationResidualAmountBaseSberDev = _obj.TotalAmount - _obj.CalculationBaseSberDev.Sum(s => s.AbsoluteCalc);
       else
         _obj.CalculationResidualAmountBaseSberDev = 100 - _obj.CalculationBaseSberDev.Sum(s => s.PercentCalc);
     }
@@ -286,11 +289,15 @@ namespace sberdev.SBContracts
       if (_obj.CalculationBaseSberDev.Any())
       {
         if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Absolute)
+        {
           foreach (var prop in _obj.CalculationBaseSberDev)
             amount += prop.AbsoluteCalc;
-          else
-            foreach (var prop in _obj.CalculationBaseSberDev)
-              amount += prop.InterestCalc;
+        }
+        else
+        {
+          foreach (var prop in _obj.CalculationBaseSberDev)
+            amount += prop.InterestCalc;
+        }
       }
       if (amount.HasValue)
         _obj.CalculationAmountBaseSberDev = Math.Round(amount.Value, 2);

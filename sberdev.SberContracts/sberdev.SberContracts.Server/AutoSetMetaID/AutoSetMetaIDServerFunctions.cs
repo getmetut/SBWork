@@ -11,7 +11,14 @@ namespace sberdev.SberContracts.Server
   {
     public override Sungero.Docflow.Structures.ApprovalFunctionStageBase.ExecutionResult Execute(Sungero.Docflow.IApprovalTask approvalTask)
     {
+      try
+      {
       SBContracts.PublicFunctions.Module.Remote.SetMetadataID(approvalTask.DocumentGroup.OfficialDocuments.FirstOrDefault());
+      }
+      catch (Exception ex)
+      {
+        Logger.ErrorFormat("Неуспешное заверщение записи ИД карточки в метаданные", approvalTask);
+      }
       return base.Execute(approvalTask);
     }
   }

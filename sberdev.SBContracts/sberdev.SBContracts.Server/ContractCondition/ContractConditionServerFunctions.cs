@@ -55,7 +55,7 @@ namespace sberdev.SBContracts.Server
           {
             text = text + str.ContrCategory.Name + ", ";
           }
-          text = text.TrimEnd(new char[]{','});
+          text = text.Substring(0, text.Length - 1);
           text += "?";
           return text;
         }
@@ -68,7 +68,7 @@ namespace sberdev.SBContracts.Server
           {
             text = text + str.MVP.Name + ", ";
           }
-          text = text.TrimEnd(new char[]{','});
+          text = text.Substring(0, text.Length - 1);
           text += "?";
           return text;
         }
@@ -81,7 +81,7 @@ namespace sberdev.SBContracts.Server
           {
             text = text + str.MVZ.Name + ", ";
           }
-          text = text.TrimEnd(new char[]{','});
+          text = text.Substring(0, text.Length - 1);
           text += "?";
           return text;
         }

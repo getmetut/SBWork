@@ -152,52 +152,38 @@ namespace sberdev.SBContracts.Shared
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
       }
 
-      if (_obj.ConditionType == ConditionType.ContrType )
-
+      if (_obj.ConditionType == ConditionType.ContrType)
       {
         var find = false;
-        var contract = SBContracts.Contracts.As(document);
-        if (contract != null)
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        var accounting = SBContracts.AccountingDocumentBases.As(document);
+        if (contractual != null)
         {
           find = true;
           return
 
             Sungero.Docflow.Structures.ConditionBase.ConditionResult.
 
-            Create(contract.ContrTypeBaseSberDev == sberdev.SBContracts.ContractualDocument.ContrTypeBaseSberDev.Profitable ,
+            Create(contractual.ContrTypeBaseSberDev == sberdev.SBContracts.ContractualDocument.ContrTypeBaseSberDev.Profitable ,
 
                    string.Empty);
 
         }
-        var supAgr = SBContracts.SupAgreements.As(document);
-        if (supAgr != null)
+        if (accounting != null)
         {
           find = true;
           return
 
             Sungero.Docflow.Structures.ConditionBase.ConditionResult.
 
-            Create(supAgr.ContrTypeBaseSberDev == sberdev.SBContracts.ContractualDocument.ContrTypeBaseSberDev.Profitable ,
+            Create(contractual.ContrTypeBaseSberDev == sberdev.SBContracts.ContractualDocument.ContrTypeBaseSberDev.Profitable ,
 
                    string.Empty);
 
         }
-        var incInv = SBContracts.IncomingInvoices.As(document);
-        if (incInv != null)
-        {
-          find = true;
-          return
-
-            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-
-            Create(incInv.ContrTypeBaseSberDev == sberdev.SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable ,
-
-                   string.Empty);
-        }
-        
         if ( find != true )
         {
-          var mainContract = SBContracts.Contracts.GetAll(e=> e.Id == document.LeadingDocument.Id).FirstOrDefault();
+          var mainContract = SBContracts.ContractualDocuments.GetAll(e=> e.Id == document.LeadingDocument.Id).FirstOrDefault();
           if (mainContract != null)
           {
             return
@@ -286,90 +272,51 @@ namespace sberdev.SBContracts.Shared
       if (_obj.ConditionType == ConditionType.MVP )
       {
         var find = false;
-        var contract = SBContracts.Contracts.As(document);
-        if (contract != null)
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        var accounting = SBContracts.AccountingDocumentBases.As(document);
+        if (contractual != null)
         {
-          find = true;
-          var ContrFind = false;
           foreach (var str in _obj.MVP )
           {
-            if (contract.MVPBaseSberDev == str.MVP)
+            if (contractual.MVPBaseSberDev == str.MVP)
             {
-              ContrFind = true;
+              find = true;
             }
           }
           return
             Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
+            Create(find,
                    string.Empty);
         }
-        var supAgr = SBContracts.SupAgreements.As(document);
-        if (supAgr != null)
+        if (accounting != null)
         {
-          find = true;
-          var ContrFind = false;
           foreach (var str in _obj.MVP )
           {
-            if (supAgr.MVPBaseSberDev == str.MVP)
+            if (accounting.MVPBaseSberDev == str.MVP)
             {
-              ContrFind = true;
+              find = true;
             }
           }
           return
             Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
-                   string.Empty);
-        }
-        var incInv = SBContracts.IncomingInvoices.As(document);
-        if (incInv != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.MVP )
-          {
-            if (incInv.MVPBaseSberDev == str.MVP)
-            {
-              ContrFind = true;
-            }
-          }
-          return
-            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
-                   string.Empty);
-        }
-        var contState = SBContracts.ContractStatements.As(document);
-        if (contState != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.MVP )
-          {
-            if (contState.MVPBaseSberDev == str.MVP)
-            {
-              ContrFind = true;
-            }
-          }
-          return
-            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
+            Create(find,
                    string.Empty);
         }
         if ( find != true )
         {
-          var mainContract = SBContracts.Contracts.GetAll(e=> e.Id == document.LeadingDocument.Id).FirstOrDefault();
+          var mainContract = SBContracts.ContractualDocuments.GetAll(e=> e.Id == document.LeadingDocument.Id).FirstOrDefault();
           if (mainContract != null)
           {
-            var ContrFind = false;
             foreach (var str in _obj.MVP )
             {
               if (mainContract.MVPBaseSberDev == str.MVP)
               {
-                ContrFind = true;
+                find = true;
               }
             }
             return
               Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-              Create(ContrFind,
+              Create(find,
                      string.Empty);
           }
           else
@@ -383,96 +330,57 @@ namespace sberdev.SBContracts.Shared
       if (_obj.ConditionType == ConditionType.MVZ )
       {
         var find = false;
-        var contract = SBContracts.Contracts.As(document);
-        if (contract != null)
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        var accounting = SBContracts.AccountingDocumentBases.As(document);
+        if (contractual != null)
         {
-          find = true;
-          var ContrFind = false;
           foreach (var str in _obj.MVZ )
           {
-            if (contract.MVZBaseSberDev == str.MVZ)
+            if (contractual.MVZBaseSberDev == str.MVZ)
             {
-              ContrFind = true;
+              find = true;
             }
           }
           return
             Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
+            Create(find,
                    string.Empty);
         }
-        var supAgr = SBContracts.SupAgreements.As(document);
-        if (supAgr != null)
+        if (accounting != null)
         {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.MVZ )
+          foreach (var str in _obj.MVP )
           {
-            if (supAgr.MVZBaseSberDev == str.MVZ)
+            if (accounting.MVPBaseSberDev == str.MVP)
             {
-              ContrFind = true;
+              find = true;
             }
           }
           return
             Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
-                   string.Empty);
-        }
-        var incInv = SBContracts.IncomingInvoices.As(document);
-        if (incInv != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.MVZ )
-          {
-            if (incInv.MVZBaseSberDev == str.MVZ)
-            {
-              ContrFind = true;
-            }
-          }
-          return
-            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
-                   string.Empty);
-        }
-        var contState = SBContracts.ContractStatements.As(document);
-        if (contState != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.MVZ )
-          {
-            if (contState.MVZBaseSberDev == str.MVZ)
-            {
-              ContrFind = true;
-            }
-          }
-          return
-            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
+            Create(find,
                    string.Empty);
         }
         if ( find != true )
         {
-          var mainContract = SBContracts.Contracts.GetAll(e=> e.Id == document.LeadingDocument.Id).FirstOrDefault();
+          var mainContract = SBContracts.ContractualDocuments.GetAll(e=> e.Id == document.LeadingDocument.Id).FirstOrDefault();
           if (mainContract != null)
           {
-            var ContrFind = false;
-            foreach (var str in _obj.MVZ )
+            foreach (var str in _obj.MVP )
             {
-              if (mainContract.MVZBaseSberDev == str.MVZ)
+              if (mainContract.MVPBaseSberDev == str.MVP)
               {
-                ContrFind = true;
+                find = true;
               }
             }
             return
               Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-              Create(ContrFind,
+              Create(find,
                      string.Empty);
           }
           else
           {
             return Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-              Create(null, "Условие не может быть вычислено. Не заполнено МВЗ договора.");
+              Create(null, "Условие не может быть вычислено. Не заполнено МВП договора.");
           }
         }
       }
@@ -766,14 +674,17 @@ namespace sberdev.SBContracts.Shared
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.ContrCategory); // sup agreement
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.ContrCategory); // Contract statement
       
-      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.MVP);
-      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.MVP);
-      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.MVP);
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.MVZ); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.MVZ); // sup agreement
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.MVZ); // сontract statement
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.MVZ); // universal transfer document
+      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.MVZ); // waybill
       
-      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.MVZ);
-      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.MVZ);
-      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.MVZ);
-      
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.MVP); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.MVP); // sup agreement
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.MVP); // сontract statement
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.MVP); // universal transfer document
+      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.MVP); // waybill
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.InitiatorsDepartment);
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.InitiatorsDepartment);

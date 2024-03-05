@@ -40,7 +40,17 @@ namespace sberdev.SBContracts.Module.Exchange.Server
           {
             bool flag = true;
             var incomingDoc = SBContracts.OfficialDocuments.As(attach);
-            string idStr = PublicFunctions.Module.Remote.GetMetadataID(incomingDoc);
+            string idStr = null;
+            try
+            {
+              idStr = PublicFunctions.Module.Remote.GetMetadataID(incomingDoc);
+            }
+            catch (Exception ex)
+            {
+              Logger.Debug("Exchange. ComeBackBodies. Произошла ошибка при извлечении метаданных (" + ex.ToString() + "). Карточка входящего документа: "
+                           + attach.Id + "; Карточка родного документа: " + idStr + "; Задача на обработку: " + task.Id);
+              continue;
+            }
             if (idStr != null)
             {
               Logger.Debug("Exchange. ComeBackBodies. Копирование тела и подписей карточки." +
@@ -63,7 +73,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
                   catch (Exception ex)
                   {
                     Logger.ErrorFormat("Exchange. ComeBackBodies. Невозможно получить информацию о подписи. Текст ошибки: "
-                                      + ex.Message);
+                                       + ex.Message);
                     continue;
                   }
                   
