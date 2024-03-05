@@ -32,5 +32,11 @@ namespace sberdev.SBContracts.Shared
         _obj.State.Properties.Currency.IsEnabled = true;
       }
     }
+    
+  public override void SetPropertiesAccess()
+  {
+    base.SetPropertiesAccess();
+    base.ChangeCalculationAccess(true);
+  }
   }
 }
