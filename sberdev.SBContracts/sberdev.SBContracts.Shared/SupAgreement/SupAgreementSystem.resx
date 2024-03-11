@@ -406,4 +406,10 @@
   <data name="ControlGroup_5803f78771fd42f08a04e3b8cab8e5b0" xml:space="preserve">
     <value>Specification PAO</value>
   </data>
+  <data name="ControlGroup_6527ab75602845009be5e12e3355d156" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_58ab230f6349409582fee7e9d03dccd1_DisplayValue" xml:space="preserve">
+    <value>Field information</value>
+  </data>
 </root>

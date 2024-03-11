@@ -364,4 +364,7 @@
   <data name="Property_MarketDirectSberDev" xml:space="preserve">
     <value>Направление маркетинга</value>
   </data>
+  <data name="Property_PurchComNumberSberDev" xml:space="preserve">
+    <value>Номер ЗК</value>
+  </data>
 </root>

@@ -400,4 +400,7 @@
   <data name="Control_3a943c68b2a94559958f2a04f715cc6a_DisplayValue" xml:space="preserve">
     <value>Заполнить аналитики из документа</value>
   </data>
+  <data name="Control_e977b25a2831456fa955f685457466a2_DisplayValue" xml:space="preserve">
+    <value>Информация по полю</value>
+  </data>
 </root>

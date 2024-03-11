@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -9,6 +9,11 @@ namespace sberdev.SberContracts
 {
   partial class PurchaseServerHandlers
   {
+
+    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
+    {
+      //удаление базового обработчика
+    }
 
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {

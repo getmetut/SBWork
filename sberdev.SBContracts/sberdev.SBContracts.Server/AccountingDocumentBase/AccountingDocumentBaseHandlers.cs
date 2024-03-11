@@ -157,7 +157,7 @@ namespace sberdev.SBContracts
       var error = Functions.AccountingDocumentBase.BanToSaveForStabs(_obj);
       if (error != "")
         e.AddError(error);
-      if (_obj.CalculationFlagBaseSberDev != null)
+      if (_obj.CalculationBaseSberDev.Count > 0)
       {
         if (_obj.CalculationAmountBaseSberDev == _obj.TotalAmount)
         {

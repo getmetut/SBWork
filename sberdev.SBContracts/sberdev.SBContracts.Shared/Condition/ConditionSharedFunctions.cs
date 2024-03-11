@@ -77,7 +77,7 @@ namespace sberdev.SBContracts.Shared
         var lead = SberContracts.GuaranteeLetters.As(document).LeadingDocument;
         if (lead != null)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-            .Create(PublicFunctions.Module.CheckSpecialGroupSignatureContractual(SBContracts.OfficialDocuments.As(lead), true), string.Empty);
+            .Create(PublicFunctions.Module.CheckSpecialGroupSignature(SBContracts.OfficialDocuments.As(lead), true), string.Empty);
         else
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult
             .Create(false, string.Empty);

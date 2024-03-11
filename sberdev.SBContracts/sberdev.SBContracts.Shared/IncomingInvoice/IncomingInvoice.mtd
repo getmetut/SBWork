@@ -695,14 +695,6 @@
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "9addea7b-cece-4a6c-89c9-222001948a11",
           "Name": "ContractGroupSberDev",
-          "ColumnDefinitions": [
-            {
-              "Percentage": 57.99
-            },
-            {
-              "Percentage": 42.01
-            }
-          ],
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
@@ -715,7 +707,7 @@
           "NameGuid": "dc4b560b-6d1d-45f3-bc97-8d03b6a5b2a8",
           "Name": "Contractsberdev",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "9addea7b-cece-4a6c-89c9-222001948a11",
           "PropertyGuid": "aae1f6ae-d090-4c5a-963e-44c8b79dc92b",
@@ -742,24 +734,11 @@
           "NameGuid": "2e64bb79-9720-4c81-be25-ad7de6e33c14",
           "Name": "Statement",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "9addea7b-cece-4a6c-89c9-222001948a11",
           "PropertyGuid": "300fb42d-f0f9-462d-b881-588745383002",
           "RowNumber": 2,
-          "RowSpan": 1,
-          "Settings": []
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "29060341-a0fd-4860-831c-6adc7b74fed6",
-          "Name": "IsNeedLeadingDocs",
-          "ColumnNumber": 1,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
-          "ParentGuid": "9addea7b-cece-4a6c-89c9-222001948a11",
-          "PropertyGuid": "e4527417-cb2f-48b0-8124-68e75b0723a8",
-          "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
         },
@@ -923,7 +902,7 @@
           "NameGuid": "663e0da9-8eea-4663-bf13-eb5b251af0ff",
           "Name": "Counterpartysberdev",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "9addea7b-cece-4a6c-89c9-222001948a11",
           "PropertyGuid": "cc53a990-5123-4f3a-b5ac-f3899be1f40a",
@@ -1054,6 +1033,19 @@
   "OpenCardByDefaultInCollection": true,
   "OperationsClass": "",
   "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "300fb42d-f0f9-462d-b881-588745383002",
+      "Name": "AccDocSberDev",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
     {
       "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
       "NameGuid": "84a47c44-a3a3-4eb4-a905-f04d5768c5e9",
@@ -1273,9 +1265,6 @@
       "Name": "NoNeedLeadingDocs",
       "CanBeSearch": false,
       "Code": "NoNeedLeadingD",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
       "IsShowedInList": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "59e8b53f-9ba9-4c1b-b77b-3f61967ff018"

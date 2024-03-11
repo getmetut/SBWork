@@ -31,12 +31,8 @@ namespace sberdev.SBContracts.Shared
         _obj.State.Properties.TotalAmount.IsEnabled = true;
         _obj.State.Properties.Currency.IsEnabled = true;
       }
+      _obj.State.Properties.EstPaymentDateSberDev.IsRequired = false;
+      _obj.State.Properties.PayTypeBaseSberDev.IsRequired = false;
     }
-    
-  public override void SetPropertiesAccess()
-  {
-    base.SetPropertiesAccess();
-    base.ChangeCalculationAccess(true);
-  }
   }
 }

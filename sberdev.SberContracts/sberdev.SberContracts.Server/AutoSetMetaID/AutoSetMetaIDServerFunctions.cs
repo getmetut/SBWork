@@ -13,11 +13,11 @@ namespace sberdev.SberContracts.Server
     {
       try
       {
-      SBContracts.PublicFunctions.Module.Remote.SetMetadataID(approvalTask.DocumentGroup.OfficialDocuments.FirstOrDefault());
+        SBContracts.PublicFunctions.Module.Remote.SetMetadataID(approvalTask.DocumentGroup.OfficialDocuments.FirstOrDefault());
       }
       catch (Exception ex)
       {
-        Logger.ErrorFormat("Неуспешное заверщение записи ИД карточки в метаданные", approvalTask);
+        Logger.ErrorFormat("Этап сценария. Неуспешное завершение записи ИД карточки в метаданные. Причина: " +  ex.ToString(), approvalTask);
       }
       return base.Execute(approvalTask);
     }

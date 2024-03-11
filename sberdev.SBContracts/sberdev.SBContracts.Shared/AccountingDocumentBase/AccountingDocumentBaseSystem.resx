@@ -296,7 +296,7 @@
     <value>Contracts information</value>
   </data>
   <data name="Property_AccDocSberDev" xml:space="preserve">
-    <value>Additional financial document</value>
+    <value>Final closing document</value>
   </data>
   <data name="Property_NoticeSendBaseSberDev" xml:space="preserve">
     <value>NoticeSend</value>
@@ -348,5 +348,23 @@
   </data>
   <data name="Property_CalcListSDev" xml:space="preserve">
     <value>Список калькуляций</value>
+  </data>
+  <data name="Property_InvoiceSberDev" xml:space="preserve">
+    <value>Incoming invoice</value>
+  </data>
+  <data name="Property_PayTypeBaseSberDev" xml:space="preserve">
+    <value>Pay type</value>
+  </data>
+  <data name="Enum_PayTypeBaseSberDev_Prepayment" xml:space="preserve">
+    <value>Prepayment</value>
+  </data>
+  <data name="Enum_PayTypeBaseSberDev_Postpay" xml:space="preserve">
+    <value>Postpay</value>
+  </data>
+  <data name="Property_EstPaymentDateSberDev" xml:space="preserve">
+    <value>Estimated payment date</value>
+  </data>
+  <data name="ControlGroup_8c86dbc620b94c438ca45561cdff0138" xml:space="preserve">
+    <value />
   </data>
 </root>

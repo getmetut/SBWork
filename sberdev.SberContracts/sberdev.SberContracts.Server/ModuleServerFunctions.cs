@@ -1115,7 +1115,7 @@ namespace sberdev.SberContracts.Server
       doc.Currency = docSelected.Currency;
       doc.TotalAmount = docSelected.TotalAmount;
       doc.DeliveryMethod = docSelected.DeliveryMethod;
-      doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
+    //  doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
       doc.Counterparty = docSelected.Counterparty;
     }
     
@@ -1210,7 +1210,7 @@ namespace sberdev.SberContracts.Server
       doc.Currency = docSelected.Currency;
       doc.TotalAmount = docSelected.TotalAmount;
       doc.DeliveryMethod = docSelected.DeliveryMethod;
-      doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
+  //    doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
       doc.Counterparty = docSelected.Counterparty;
     }
     
@@ -1308,7 +1308,7 @@ namespace sberdev.SberContracts.Server
       doc.Currency = docSelected.Currency;
       doc.TotalAmount = docSelected.TotalAmount;
       doc.DeliveryMethod = docSelected.DeliveryMethod;
-      doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
+   //   doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
       doc.AccArtBaseSberDev = docSelected.AccArtBaseSberDev ;
       doc.MVPBaseSberDev = docSelected.MVPBaseSberDev;
       doc.MVZBaseSberDev = docSelected.MVZBaseSberDev;

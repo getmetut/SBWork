@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -9,6 +9,14 @@ namespace sberdev.SBContracts.Client
 {
   partial class ContractualDocumentFunctions
   {
+
+    /// <summary>
+    /// Показать инструкцию к полю "Номер ЗК"
+    /// </summary>       
+    public void ShowPurchComNumberInstruction()
+    {
+      Dialogs.ShowMessage(sberdev.SBContracts.ContractualDocuments.Resources.PurchComNumberInstruction);
+    }
     /// <summary>
     /// Отчищает таблицу калькуляции
     /// </summary>

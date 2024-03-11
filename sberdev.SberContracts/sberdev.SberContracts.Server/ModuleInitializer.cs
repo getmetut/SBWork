@@ -340,6 +340,21 @@ namespace sberdev.SberContracts.Server
       CreateApprovalStageGLStartedContractApproval();
       CreateApprovalStageProvidePostalInformation();
       CreateAutoSetMetaIDStage();
+      CreateAutoCreateInvoiceContractTaskStage();
+    }
+    
+    /// <summary>
+    /// Создание сценария создания и запуска согласования счета-оферты
+    /// </summary>
+    public void CreateAutoCreateInvoiceContractTaskStage()
+    {
+      InitializationLogger.DebugFormat("Init: Create stage for automatic create incoming invoice from invoice-contract and start approval task by new document.");
+      if (SberContracts.AutoStartInvoiceContractTasks.GetAll().Any())
+        return;
+      var stage = SberContracts.AutoStartInvoiceContractTasks.Create();
+      stage.Name = "Создание карточки входящего счета из договора-оферты и старт его согласования";
+      stage.TimeoutInHours = 4;
+      stage.Save();
     }
     
     /// <summary>

@@ -11,18 +11,22 @@ namespace sberdev.SBContracts
   partial class IncomingInvoiceSharedHandlers
   {
 
-    public override void FrameworkBaseSberDevChanged(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
-    {
-    }
-
     public virtual void PayTypeChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
     {
-      Functions.IncomingInvoice.SetRequiredProperties(_obj);
+      //для срабатывания события обновления
     }
 
-    public virtual void NoNeedLeadingDocsChanged(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
+    public override void FrameworkBaseSberDevChanged(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
     {
-      Functions.IncomingInvoice.SetRequiredProperties(_obj);
+      //удаление базового обработчика
+    }
+
+    public override void AccDocSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseAccDocSberDevChangedEventArgs e)
+    {
+      base.AccDocSberDevChanged(e);
+      
+      if (e.NewValue != null)
+        _obj.PayType = SBContracts.IncomingInvoice.PayType.Postpay;
     }
 
     public override void AccArtBaseSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseAccArtBaseSberDevChangedEventArgs e)

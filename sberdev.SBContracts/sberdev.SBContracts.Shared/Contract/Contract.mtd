@@ -759,6 +759,14 @@
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
           "Name": "ExpendableGroupSberDevSberDev",
+          "ColumnDefinitions": [
+            {
+              "Percentage": 78.42
+            },
+            {
+              "Percentage": 21.58
+            }
+          ],
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
@@ -771,7 +779,7 @@
           "NameGuid": "2e8615c7-6cf7-4d32-92f9-5bfa5ac3984b",
           "Name": "MVZBaseSberDevSberDevSberDev",
           "ColumnNumber": 0,
-          "ColumnSpan": 1,
+          "ColumnSpan": 2,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
           "PropertyGuid": "78c0338a-0c96-4d34-9c89-10b3f0cb4984",
@@ -784,7 +792,7 @@
           "NameGuid": "60adfcc6-4664-43ff-a6eb-1c76311c07f2",
           "Name": "AccArtExBaseSberDevSberDevSberDev",
           "ColumnNumber": 0,
-          "ColumnSpan": 1,
+          "ColumnSpan": 2,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
           "PropertyGuid": "645d9c3b-e8a5-40d4-86c5-7c9a05bfab66",
@@ -797,7 +805,7 @@
           "NameGuid": "503b1635-3ff1-4290-8ba1-86722510da3b",
           "Name": "ProdCollectionExBaseSberDevSberDevSberDev",
           "ColumnNumber": 0,
-          "ColumnSpan": 1,
+          "ColumnSpan": 2,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
           "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
           "PropertyGuid": "dc4dd015-73dd-40c9-ac3e-fdb163bdbf88",
@@ -1166,11 +1174,38 @@
           "NameGuid": "19c9b572-39c3-47f8-8945-344f3f744a33",
           "Name": "MarketDirectSberDevSberDev",
           "ColumnNumber": 0,
-          "ColumnSpan": 1,
+          "ColumnSpan": 2,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
           "PropertyGuid": "ddbd8560-adc3-4bc1-ad49-26faf831886f",
           "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "9fe2973d-60d8-4794-b1a3-b6750ea67816",
+          "Name": "PurchaseOrderNumberSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+          "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
+          "PropertyGuid": "824b3207-54d4-4429-91e9-2b1b318f74c1",
+          "RowNumber": 4,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.HyperlinkControlMetadata, Sungero.Metadata",
+          "NameGuid": "e977b25a-2831-456f-a955-f685457466a2",
+          "Name": "PurchNumberInfoSberDev",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.HyperlinkToSourceBinder",
+          "FunctionName": "ShowPurchComNumberInstruction",
+          "HeaderLocation": "None",
+          "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
         }

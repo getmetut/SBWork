@@ -167,6 +167,8 @@ namespace sberdev.SBContracts.Shared
           _obj.State.Properties.ProdCollectionPrBaseSberDev.IsRequired = false;
           _obj.State.Properties.MarketDirectSberDev.IsEnabled = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name.IndexOf("Маркетинг") > 0;
           _obj.State.Properties.MarketDirectSberDev.IsRequired = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name.IndexOf("Маркетинг") > 0;
+          _obj.State.Properties.PurchComNumberSberDev.IsEnabled = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name.IndexOf("Маркетинг") > 0;
+          _obj.State.Properties.PurchComNumberSberDev.IsRequired = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name.IndexOf("Маркетинг") > 0;
           break;
         case ("Profitable") :
           _obj.State.Properties.TotalAmount.IsRequired = false;
@@ -203,6 +205,8 @@ namespace sberdev.SBContracts.Shared
           _obj.State.Properties.ProdCollectionPrBaseSberDev.IsRequired = _obj.MVPBaseSberDev != null ? true : false;
           _obj.State.Properties.MarketDirectSberDev.IsEnabled = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name.IndexOf("Маркетинг") > 0;
           _obj.State.Properties.MarketDirectSberDev.IsRequired = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name.IndexOf("Маркетинг") > 0;
+          _obj.State.Properties.PurchComNumberSberDev.IsEnabled = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name.IndexOf("Маркетинг") > 0;
+          _obj.State.Properties.PurchComNumberSberDev.IsRequired = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name.IndexOf("Маркетинг") > 0;
           break;
       }
     }

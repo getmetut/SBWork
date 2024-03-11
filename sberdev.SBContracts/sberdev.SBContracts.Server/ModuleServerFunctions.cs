@@ -24,29 +24,6 @@ namespace sberdev.SBContracts.Server
     [Public, Remote]
     public void SetMetadataID(Sungero.Docflow.IOfficialDocument doc)
     {
-      /*
-      POIFSFileSystem fs = new POIFSFileSystem();
-      DirectoryEntry dir = fs.Root;
-      DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
-      CustomProperties customProperties = dsi.CustomProperties;
-      if (customProperties != null && customProperties.ContainsKey("DirectumID"))
-      {
-        return;
-      }
-      else
-      {
-        customProperties = new CustomProperties();
-        customProperties.Put("DirectumID", doc.Id.ToString());
-        dsi.CustomProperties = customProperties;
-        dsi.Write(dir, DocumentSummaryInformation.DEFAULT_STREAM_NAME);
-        doc.LastVersion.Export("C:\\Temp\\doc.doc");
-        FileStream output = new FileStream("C:\\Temp\\doc.doc", FileMode.OpenOrCreate);
-        fs.WriteFileSystem(output);
-        doc.LastVersion.Body.Write(output);
-        output.Close();
-        
-        doc.Save();
-      }*/
       if (!doc.HasVersions)
         return;
       string ext = doc.LastVersion.AssociatedApplication.Extension;
@@ -109,53 +86,79 @@ namespace sberdev.SBContracts.Server
       
       using (Stream strmCommon = doc.LastVersion.Body.Read())
       {*/
-        if (ext == "doc" || ext == "docx")
+      if (ext == "doc" || ext == "docx")
+      {
+        bool isNeedSave = false;
+        Aspose.Words.Document docAsp = new Aspose.Words.Document(path);
+        var props = docAsp.CustomDocumentProperties;
+        var prop = props.FirstOrDefault(p => p.Name == "DirectumID");
+        
+        if (prop == null)
         {
-          Aspose.Words.Document docAsp = new Aspose.Words.Document(path);
-          var props = docAsp.CustomDocumentProperties;
-          var prop = props.FirstOrDefault(p => p.Name == "DirectumID");
-          if (prop == null)
-          {
-            props.Add("DirectumID", doc.Id.ToString());
-            switch (ext)
-            {
-              case ("doc"):
-                docAsp.Save(tempPath, SaveFormat.Doc);
-                break;
-              case ("docx"):
-                docAsp.Save(tempPath, SaveFormat.Docx);
-                break;
-              case ("pdf"):
-                docAsp.Save(tempPath, SaveFormat.Pdf);
-                break;
-              default:
-                return;
-            }
-          }
-        }
-        if (ext == "pdf")
-        {
-          PdfReader reader = new PdfReader(path);
-          PdfReader.unethicalreading = true;
-          if (!reader.Info.ContainsKey("DirectumID"))
-          {
-            iTextSharp.text.Document document = new iTextSharp.text.Document();
-            PdfCopy copy = new PdfCopy(document, new System.IO.FileStream(tempPath, System.IO.FileMode.Create));
-            document.Open();
-            copy.AddDocument(reader);
-            copy.Info.Put(new PdfName("DirectumID"), new PdfString(doc.Id.ToString()));
-            copy.Close();
-            document.Close();
-          }
+          props.Add("DirectumID", doc.Id.ToString());
+          isNeedSave = true;
         }
         
-        FileInfo fi = new FileInfo(tempPath);
-        if (fi.Exists)
+        if (prop != null && prop.Value.ToString() != doc.Id.ToString())
         {
-          doc.LastVersion.Import(tempPath);
-          doc.Save();
+          prop.Value = doc.Id.ToString();
+          isNeedSave = true;
         }
-     // }
+        
+        if (isNeedSave)
+        {
+          switch (ext)
+          {
+            case ("doc"):
+              docAsp.Save(tempPath, SaveFormat.Doc);
+              break;
+            case ("docx"):
+              docAsp.Save(tempPath, SaveFormat.Docx);
+              break;
+            case ("pdf"):
+              docAsp.Save(tempPath, SaveFormat.Pdf);
+              break;
+            default:
+              return;
+          }
+        }
+      }
+      
+      if (ext == "pdf")
+      {
+        PdfReader reader = new PdfReader(path);
+        PdfReader.unethicalreading = true;
+        string idPdf = null;
+        if (reader.Info.TryGetValue("DirectumID", out idPdf) && idPdf != doc.Id.ToString())
+        {
+          reader.Info.Remove("DirectumID");
+          iTextSharp.text.Document document = new iTextSharp.text.Document();
+          PdfCopy copy = new PdfCopy(document, new System.IO.FileStream(tempPath, System.IO.FileMode.Create));
+          document.Open();
+          copy.AddDocument(reader);
+          copy.Info.Put(new PdfName("DirectumID"), new PdfString(doc.Id.ToString()));
+          copy.Close();
+          document.Close();
+        }
+        if (!reader.Info.ContainsKey("DirectumID"))
+        {
+          iTextSharp.text.Document document = new iTextSharp.text.Document();
+          PdfCopy copy = new PdfCopy(document, new System.IO.FileStream(tempPath, System.IO.FileMode.Create));
+          document.Open();
+          copy.AddDocument(reader);
+          copy.Info.Put(new PdfName("DirectumID"), new PdfString(doc.Id.ToString()));
+          copy.Close();
+          document.Close();
+        }
+      }
+      
+      FileInfo fi = new FileInfo(tempPath);
+      if (fi.Exists)
+      {
+        doc.LastVersion.Import(tempPath);
+        doc.Save();
+      }
+      // }
     }
     
     /// <summary>
@@ -164,21 +167,6 @@ namespace sberdev.SBContracts.Server
     [Public, Remote]
     public string GetMetadataID(Sungero.Docflow.IOfficialDocument doc)
     {
-      /*
-      using (Stream strmCommon = doc.LastVersion.Body.Read())
-      {
-        POIFSFileSystem fs = new POIFSFileSystem(strmCommon);
-        DirectoryEntry dir = fs.Root;
-        DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
-        CustomProperties customProperties = dsi.CustomProperties;
-        if (customProperties != null && customProperties.ContainsKey("DirectumID"))
-        {
-          Property idProperty = (Property)dsi.CustomProperties["DirectumID"];
-          return (double?)idProperty.Value;
-        }
-        else
-          return null;
-      }*/
       if (!doc.HasVersions)
         return null;
       string ext = doc.LastVersion.AssociatedApplication.Extension;
@@ -241,13 +229,13 @@ namespace sberdev.SBContracts.Server
     }
     
     /// <summary>
-    /// Функция проверяет подпись контрактного документа. Возвращает true если есть внешняя от Нашей организации или
+    /// Функция проверяет подпись документа. Возвращает true если есть внешняя от Нашей организации или
     /// внутренняя от одного человека из группы "Обязательные подписанты счета перед согласованием" у документа.
     /// <param name="document">Документ.</param>
     /// <param name="isNotNeedValid">Необходимость проверки валидности.</param>
     /// </summary>
     [Public]
-    public bool CheckSpecialGroupSignatureContractual(SBContracts.IOfficialDocument document, bool isNeedValid)
+    public bool CheckSpecialGroupSignature(SBContracts.IOfficialDocument document, bool isNeedValid)
     {
       bool flag = false;
       var signatures = Signatures.Get(document.LastVersion);
@@ -255,8 +243,7 @@ namespace sberdev.SBContracts.Server
       
       if (signatures.Any())
       {
-        var contractual = SBContracts.ContractualDocuments.As(document);
-        if (contractual != null)
+        if (document != null)
         {
           foreach(var sign in signatures)
           {
@@ -264,7 +251,7 @@ namespace sberdev.SBContracts.Server
             {
               var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(sign.GetDataSignature());
               string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyOrgTIN(certificateInfo.SubjectInfo);
-              if (Equals(tin, contractual.BusinessUnit.TIN) && (sign.IsValid || !isNeedValid))
+              if (Equals(tin, document.BusinessUnit.TIN) && (sign.IsValid || !isNeedValid))
                 flag = true;
             }
             else

@@ -30,6 +30,25 @@ namespace sberdev.SBContracts
   partial class AccountingDocumentBaseSharedHandlers
   {
 
+    public virtual void PayTypeBaseSberDevChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      //для срабатывания события обновления
+    }
+
+    public virtual void InvoiceSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseInvoiceSberDevChangedEventArgs e)
+    {
+      if (Equals(e.NewValue, e.OldValue))
+        return;
+      
+      _obj.ModifiedSberDev = Calendar.Now;
+      
+      if (e.NewValue != null)
+      {
+        _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
+        _obj.PayTypeBaseSberDev = PayTypeBaseSberDev.Postpay;
+      }
+    }
+
     public override void DocumentKindChanged(Sungero.Docflow.Shared.OfficialDocumentDocumentKindChangedEventArgs e)
     {
       base.DocumentKindChanged(e);

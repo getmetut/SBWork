@@ -364,4 +364,7 @@
   <data name="Property_MarketDirectSberDev" xml:space="preserve">
     <value>Marketing direction</value>
   </data>
+  <data name="Property_PurchComNumberSberDev" xml:space="preserve">
+    <value>Purch. com. number</value>
+  </data>
 </root>

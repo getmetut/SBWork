@@ -50,13 +50,17 @@ namespace sberdev.SBContracts.Shared
         _obj.State.Properties.Currency.IsEnabled = true;
       }
       
-      _obj.State.Properties.ProdCollectionBaseSberDev.IsEnabled = (_obj.MVZBaseSberDev != null || _obj.MVPBaseSberDev != null) ? true : false;
-      _obj.State.Properties.ProdCollectionBaseSberDev.IsRequired = (_obj.MVZBaseSberDev != null || _obj.MVPBaseSberDev != null) ? true : false;
+      bool prodFlag = (_obj.MVZBaseSberDev != null || _obj.MVPBaseSberDev != null) ? true : false;
+      _obj.State.Properties.ProdCollectionBaseSberDev.IsEnabled = prodFlag;
+      _obj.State.Properties.ProdCollectionBaseSberDev.IsRequired = prodFlag;
       
       bool markFlag = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name.IndexOf("Маркетинг") > 0;
       _obj.State.Properties.MarketDirectSberDev.IsEnabled = markFlag;
       _obj.State.Properties.MarketDirectSberDev.IsVisible = markFlag;
       _obj.State.Properties.MarketDirectSberDev.IsRequired = markFlag;
+      
+      bool invoiceFlag = _obj.PayTypeBaseSberDev == PayTypeBaseSberDev.Prepayment ? true : false;
+      _obj.State.Properties.InvoiceSberDev.IsRequired = invoiceFlag;
       
       CancelRequiredPropeties();
     }
@@ -120,10 +124,15 @@ namespace sberdev.SBContracts.Shared
         _obj.State.Properties.ContrTypeBaseSberDev.IsRequired = false;
         _obj.State.Properties.TotalAmount.IsRequired = false;
         _obj.State.Properties.Currency.IsRequired = false;
+        _obj.State.Properties.PayTypeBaseSberDev.IsRequired = false;
+        _obj.State.Properties.InvoiceSberDev.IsRequired = false;
+        _obj.State.Properties.EstPaymentDateSberDev.IsRequired = false;
         PublicFunctions.AccountingDocumentBase.Remote.ApplyAnaliticsStabs(_obj);
       }
       else
       {
+        _obj.State.Properties.EstPaymentDateSberDev.IsRequired = true;
+        _obj.State.Properties.PayTypeBaseSberDev.IsRequired = true;
         _obj.State.Properties.ContrTypeBaseSberDev.IsRequired = true;
         _obj.State.Properties.AccArtBaseSberDev.IsRequired = true;
       }

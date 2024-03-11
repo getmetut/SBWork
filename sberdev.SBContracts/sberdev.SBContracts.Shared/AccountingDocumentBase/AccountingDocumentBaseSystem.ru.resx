@@ -296,7 +296,7 @@
     <value>Информация о договоре</value>
   </data>
   <data name="Property_AccDocSberDev" xml:space="preserve">
-    <value>Доп. финансовый документ</value>
+    <value>Кон. закрывающий документ</value>
   </data>
   <data name="Property_NoticeSendBaseSberDev" xml:space="preserve">
     <value>NoticeSend</value>
@@ -333,5 +333,20 @@
   </data>
   <data name="Property_MarketDirectSberDev" xml:space="preserve">
     <value>Направление маркетинга</value>
+  </data>
+  <data name="Property_InvoiceSberDev" xml:space="preserve">
+    <value>Входящий счет</value>
+  </data>
+  <data name="Property_PayTypeBaseSberDev" xml:space="preserve">
+    <value>Тип оплаты</value>
+  </data>
+  <data name="Enum_PayTypeBaseSberDev_Prepayment" xml:space="preserve">
+    <value>Предоплата</value>
+  </data>
+  <data name="Enum_PayTypeBaseSberDev_Postpay" xml:space="preserve">
+    <value>Постоплата</value>
+  </data>
+  <data name="Property_EstPaymentDateSberDev" xml:space="preserve">
+    <value>Предполагаемая дата оплаты</value>
   </data>
 </root>

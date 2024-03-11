@@ -180,7 +180,7 @@ namespace sberdev.SBContracts
       if (error != "")
         e.AddError(error);
       
-      if (_obj.CalculationFlagBaseSberDev != null)
+      if (_obj.CalculationBaseSberDev.Count > 0)
       {
         if (_obj.CalculationAmountBaseSberDev == _obj.TotalAmount)
         {

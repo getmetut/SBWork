@@ -533,6 +533,19 @@
               "Value": 150
             }
           ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "b308b452-d5af-4d03-b993-70deeaf44509",
+          "Name": "Subject",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
+          "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
+          "PropertyGuid": "4bc39efb-1f46-4a1e-8b8c-04f2b90d6a8b",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -545,7 +558,8 @@
     }
   ],
   "HandledEvents": [
-    "CreatedServer"
+    "CreatedServer",
+    "BeforeSaveServer"
   ],
   "IconResourcesKeys": [],
   "IntegrationServiceName": "SberContractsPurchase",
@@ -609,15 +623,11 @@
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
       "NameGuid": "4bc39efb-1f46-4a1e-8b8c-04f2b90d6a8b",
       "Name": "Subject",
-      "CanBeSearch": false,
       "IsAncestorMetadata": true,
-      "IsShowedInList": false,
-      "IsVisibility": false,
+      "IsRequired": true,
       "Overridden": [
-        "IsShowedInList",
-        "CanBeSearch",
-        "IsVisibility",
-        "IsQuickSearchAllowed"
+        "IsQuickSearchAllowed",
+        "IsRequired"
       ],
       "Versions": []
     },

@@ -47,15 +47,17 @@ namespace sberdev.SBContracts.Module.Exchange.Server
             }
             catch (Exception ex)
             {
-              Logger.Debug("Exchange. ComeBackBodies. Произошла ошибка при извлечении метаданных (" + ex.ToString() + "). Карточка входящего документа: "
+              Logger.Debug("Exchange. ComeBackBodies. Результат: Неуспешно. Произошла ошибка при извлечении метаданных (" + ex.ToString() + "). Карточка входящего документа: "
                            + attach.Id + "; Карточка родного документа: " + idStr + "; Задача на обработку: " + task.Id);
+              flag = false;
+              dontNeedDocs++;
               continue;
             }
             if (idStr != null)
             {
               Logger.Debug("Exchange. ComeBackBodies. Копирование тела и подписей карточки." +
                            " Карточка входящего документа: " + attach.Id + "; Карточка родного документа: " + idStr + "; Задача на обработку: " + task.Id);
-              if (attach.Id != Int32.Parse(idStr) && Sungero.Content.ElectronicDocuments.GetAll().Where(d => Equals(d.Id.ToString(), idStr)).Any())
+              if (Sungero.Content.ElectronicDocuments.GetAll().Where(d => Equals(d.Id.ToString(), idStr)).Any())
               {
                 var signInfos = Signatures.Get(incomingDoc.LastVersion);
                 var ourTins = PublicFunctions.Module.GetAllBuisnessUnitTINs();
@@ -91,7 +93,8 @@ namespace sberdev.SBContracts.Module.Exchange.Server
                   if (strmCommon.Length > 0)
                   {
                     doc.CreateVersionFrom(strmCommon, incomingDoc.LastVersion.AssociatedApplication.Extension);
-                    doc.LastVersion.PublicBody.Write(strmPublic);
+                    if (strmPublic.Length > 0)
+                      doc.LastVersion.PublicBody.Write(strmPublic);
                     doc.Save();
                     
                     Logger.Debug("Exchange. ComeBackBodies. Тело скопировано."
@@ -135,8 +138,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
               }
               else
               {
-                Logger.Debug("Exchange. ComeBackBodies. Результат: Неуспешно. Причина: \"ИД вложения задачи совпадает с ИД в названии\" или " +
-                             "\"Не существует родного документа с ИД из названия входящего документа\".\n"
+                Logger.Debug("Exchange. ComeBackBodies. Результат: Неуспешно. Причина: Не существует родного документа с ИД из метаданных тела.\n"
                              + " Карточка входящего документа: " + attach.Id + "; Карточка родного документа: " + idStr + "; Задача на обработку: " + task.Id);
                 flag = false;
                 dontNeedDocs++;
@@ -144,7 +146,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
             }
             else
             {
-              Logger.Debug("Exchange. ComeBackBodies. Результат: Неуспешно. Причина: Не найден ИД родной карточки в названии входящего документа или ИД пуст"
+              Logger.Debug("Exchange. ComeBackBodies. Результат: Неуспешно. Причина: Не найден ИД родной карточки в метаданных документа"
                            + "; Карточка входящего документа: " + attach.Id + "; Задача на обработку: " + task.Id);
               flag = false;
               dontNeedDocs++;

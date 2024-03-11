@@ -9,8 +9,7 @@ using sberdev.SberContracts;
 namespace sberdev.SBContracts.Server
 {
   partial class AccountingDocumentBaseFunctions
-  {
-    
+  {    
     #region Функции кнопок автозаполнения
     
     /// <summary>
