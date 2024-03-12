@@ -293,7 +293,7 @@
     <value />
   </data>
   <data name="ControlGroup_68c51acd66804d9ebdcf21e3fd4d6820" xml:space="preserve">
-    <value>Contracts information</value>
+    <value>Related documents</value>
   </data>
   <data name="Property_AccDocSberDev" xml:space="preserve">
     <value>Final closing document</value>
@@ -365,6 +365,9 @@
     <value>Estimated payment date</value>
   </data>
   <data name="ControlGroup_8c86dbc620b94c438ca45561cdff0138" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_c469dc2ba1c0499992d55ff84428f187" xml:space="preserve">
     <value />
   </data>
 </root>

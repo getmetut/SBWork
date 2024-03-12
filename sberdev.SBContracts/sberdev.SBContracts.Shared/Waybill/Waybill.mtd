@@ -380,7 +380,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
           "ParentGuid": "86bc6ac8-f101-4c25-b562-62751b8e5223",
           "PropertyGuid": "c30d80ad-f9f0-4b10-a2e1-b4d57e40604b",
-          "RowNumber": 1,
+          "RowNumber": 0,
           "RowSpan": 1,
           "Settings": [],
           "Versions": []
@@ -394,7 +394,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "86bc6ac8-f101-4c25-b562-62751b8e5223",
           "PropertyGuid": "901644ff-87b0-485b-9146-13fd6ba7ede1",
-          "RowNumber": 1,
+          "RowNumber": 0,
           "RowSpan": 1,
           "Settings": [],
           "Versions": []
@@ -954,19 +954,19 @@
           "Name": "ControlGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 44.14
+              "Percentage": 45.7
             },
             {
-              "Percentage": 30.72
+              "Percentage": 31.8
             },
             {
-              "Percentage": 21.73
+              "Percentage": 22.5
             }
           ],
           "ColumnNumber": 0,
           "ColumnSpan": 2,
           "ParentGuid": "86bc6ac8-f101-4c25-b562-62751b8e5223",
-          "RowNumber": 0,
+          "RowNumber": 1,
           "RowSpan": 1
         },
         {
@@ -1014,13 +1014,10 @@
           "Name": "AccountSberDevSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 57.57
+              "Percentage": 58.57
             },
             {
-              "Percentage": 40.73
-            },
-            {
-              "Percentage": 33.33
+              "Percentage": 41.43
             }
           ],
           "ColumnNumber": 0,

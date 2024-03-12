@@ -761,10 +761,10 @@
           "Name": "ExpendableGroupSberDevSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 78.42
+              "Percentage": 79.81
             },
             {
-              "Percentage": 21.58
+              "Percentage": 20.19
             }
           ],
           "ColumnNumber": 0,

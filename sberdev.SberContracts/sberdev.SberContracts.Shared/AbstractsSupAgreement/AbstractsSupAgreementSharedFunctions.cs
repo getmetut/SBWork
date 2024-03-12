@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -35,12 +35,19 @@ namespace sberdev.SberContracts.Shared
         return false;
       
       return Functions.AbstractsSupAgreement.Remote.GetDuplicates(aSupAgr,
-                                                            businessUnit,
-                                                            registrationNumber,
-                                                            registrationDate,
-                                                            counterparty,
-                                                            contract)
+                                                                  businessUnit,
+                                                                  registrationNumber,
+                                                                  registrationDate,
+                                                                  counterparty,
+                                                                  contract)
         .Any();
+    }
+    
+    public override void SetPropertiesAccess()
+    {
+      base.SetRequiredProperties();
+      
+      _obj.State.Properties.PurchComNumberSberDev.IsRequired = false;
     }
   }
 }

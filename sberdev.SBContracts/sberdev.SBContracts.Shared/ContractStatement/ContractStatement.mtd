@@ -553,7 +553,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
           "ParentGuid": "73e9df7c-895e-4811-b3d5-76c6f95b87aa",
           "PropertyGuid": "c30d80ad-f9f0-4b10-a2e1-b4d57e40604b",
-          "RowNumber": 1,
+          "RowNumber": 0,
           "RowSpan": 1,
           "Settings": [],
           "Versions": []
@@ -567,7 +567,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "73e9df7c-895e-4811-b3d5-76c6f95b87aa",
           "PropertyGuid": "901644ff-87b0-485b-9146-13fd6ba7ede1",
-          "RowNumber": 1,
+          "RowNumber": 0,
           "RowSpan": 1,
           "Settings": [],
           "Versions": []
@@ -606,10 +606,10 @@
           "Name": "Terms",
           "ColumnDefinitions": [
             {
-              "Percentage": 60.14
+              "Percentage": 61.19
             },
             {
-              "Percentage": 38.15
+              "Percentage": 38.81
             }
           ],
           "ColumnNumber": 0,
@@ -989,19 +989,19 @@
           "Name": "ControlGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 46.01
+              "Percentage": 47.64
             },
             {
-              "Percentage": 27.9
+              "Percentage": 28.89
             },
             {
-              "Percentage": 22.67
+              "Percentage": 23.47
             }
           ],
           "ColumnNumber": 0,
           "ColumnSpan": 2,
           "ParentGuid": "73e9df7c-895e-4811-b3d5-76c6f95b87aa",
-          "RowNumber": 0,
+          "RowNumber": 1,
           "RowSpan": 1
         },
         {
@@ -1020,7 +1020,7 @@
         {
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "7653aeb6-5f21-46f3-897d-a38f41f0954f",
-          "Name": "ControlSberDev",
+          "Name": "PayTypeSberDev",
           "ColumnNumber": 1,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
@@ -1033,7 +1033,7 @@
         {
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "7575d9f6-fd7c-40da-9b15-0e3427da516c",
-          "Name": "Control1SberDev",
+          "Name": "EstPayDaySberDev",
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
