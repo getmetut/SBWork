@@ -16,11 +16,6 @@ namespace sberdev.SBContracts
       //для срабатывания события обновления
     }
 
-    public virtual void PayTypeChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
-    {
-      //для срабатывания события обновления
-    }
-
     public override void FrameworkBaseSberDevChanged(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
     {
       //удаление базового обработчика
@@ -31,7 +26,7 @@ namespace sberdev.SBContracts
       base.AccDocSberDevChanged(e);
       
       if (e.NewValue != null)
-        _obj.PayType = SBContracts.IncomingInvoice.PayType.Postpay;
+        _obj.PayTypeBaseSberDev = SBContracts.IncomingInvoice.PayTypeBaseSberDev.Postpay;
     }
 
     public override void AccArtBaseSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseAccArtBaseSberDevChangedEventArgs e)

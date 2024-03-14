@@ -19,7 +19,7 @@ namespace sberdev.SberContracts.Server
           var invoice = SBContracts.IncomingInvoices.Create();
           invoice.LeadingDocument = contract;
           invoice.Number = "test";
-          invoice.PayType = SBContracts.IncomingInvoice.PayType.Prepayment;
+          invoice.PayTypeBaseSberDev = SBContracts.IncomingInvoice.PayTypeBaseSberDev.Prepayment;
           invoice.Date = Calendar.Now;
           invoice.Save();
           SBContracts.PublicFunctions.OfficialDocument.Remote.TransferBody(contract, invoice.Id);

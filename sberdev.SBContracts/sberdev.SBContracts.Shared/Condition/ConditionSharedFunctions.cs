@@ -129,7 +129,7 @@ namespace sberdev.SBContracts.Shared
             flagTask = sbTask.IsNeedManuallyCheckSberDev.Value;
         }
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-          Create(!flagContract && !(flagStatement && invoice.PayType.Value == SBContracts.IncomingInvoice.PayType.Postpay) || flagTask,
+          Create(!flagContract && !(flagStatement && invoice.PayTypeBaseSberDev.Value == SBContracts.IncomingInvoice.PayTypeBaseSberDev.Postpay) || flagTask,
                  string.Empty);
       }
       
@@ -143,7 +143,7 @@ namespace sberdev.SBContracts.Shared
         {
           find = true;
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-            .Create(IncInv.PayType == sberdev.SBContracts.IncomingInvoice.PayType.Postpay, string.Empty);
+            .Create(IncInv.PayTypeBaseSberDev == sberdev.SBContracts.IncomingInvoice.PayTypeBaseSberDev.Postpay, string.Empty);
           
         }
         

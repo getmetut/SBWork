@@ -216,7 +216,7 @@ namespace sberdev.SBContracts.Shared
 
             Sungero.Docflow.Structures.ConditionBase.ConditionResult.
 
-            Create(IncInv.PayType == sberdev.SBContracts.IncomingInvoice.PayType.Postpay ,
+            Create(IncInv.PayTypeBaseSberDev == sberdev.SBContracts.IncomingInvoice.PayTypeBaseSberDev.Postpay ,
 
                    string.Empty);
 

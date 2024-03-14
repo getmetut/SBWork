@@ -13,7 +13,6 @@ namespace sberdev.SBContracts
     public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
     {
       base.Refresh(e);
-      Functions.IncomingInvoice.SetRequiredProperties(_obj);
     }
 
     public override void MVPBaseSberDevValueInput(sberdev.SBContracts.Client.AccountingDocumentBaseMVPBaseSberDevValueInputEventArgs e)

@@ -1231,6 +1231,7 @@
       "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
       "NameGuid": "44999ec3-5489-484e-ac2b-77952ee31dd5",
       "Name": "PayType",
+      "CanBeSearch": false,
       "Code": "PayType",
       "DirectValues": [
         {
@@ -1244,10 +1245,8 @@
           "Code": "Postpay"
         }
       ],
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsRequired": true,
+      "IsShowedInList": false,
+      "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "76593867-97b1-4cf3-91a3-c8c22d7bd5e2"
     },

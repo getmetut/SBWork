@@ -13,7 +13,6 @@ namespace sberdev.SBContracts
 
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
-      _obj.PayType = null;
       _obj.Original = false;
       _obj.NoNeedLeadingDocs = false;
       base.Created(e);

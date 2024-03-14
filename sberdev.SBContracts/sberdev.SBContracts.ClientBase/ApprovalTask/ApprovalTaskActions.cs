@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -30,7 +30,7 @@ namespace sberdev.SBContracts.Client
           base.Start(e);
         else
         {
-          if (invoice.PayType.Value == SBContracts.IncomingInvoice.PayType.Postpay)
+          if (invoice.PayTypeBaseSberDev.Value == SBContracts.IncomingInvoice.PayTypeBaseSberDev.Postpay)
           {
             var contract = invoice.LeadingDocument;
             if (contract != null)

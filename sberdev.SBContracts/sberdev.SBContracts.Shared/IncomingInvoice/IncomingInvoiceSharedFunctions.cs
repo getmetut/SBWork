@@ -10,13 +10,13 @@ namespace sberdev.SBContracts.Shared
   partial class IncomingInvoiceFunctions
   {
     
-    public override void SetRequiredProperties()
+    public override void SetPropertiesAccess()
     {
-      base.SetRequiredProperties();
+      base.SetPropertiesAccess();
       
       if (_obj.NoNeedLeadingDocs.HasValue)
       {
-        _obj.State.Properties.AccDocSberDev.IsRequired = _obj.NoNeedLeadingDocs.Value ? false : (_obj.PayType == PayType.Postpay);
+        _obj.State.Properties.AccDocSberDev.IsRequired = _obj.NoNeedLeadingDocs.Value ? false : (_obj.PayTypeBaseSberDev == PayTypeBaseSberDev.Postpay);
         _obj.State.Properties.LeadingDocument.IsRequired = !_obj.NoNeedLeadingDocs.Value;
       }
       else
@@ -32,6 +32,7 @@ namespace sberdev.SBContracts.Shared
         _obj.State.Properties.Currency.IsEnabled = true;
       }
       _obj.State.Properties.EstPaymentDateSberDev.IsRequired = false;
+      _obj.State.Properties.InvoiceSberDev.IsRequired = false;
     }
   }
 }
