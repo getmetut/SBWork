@@ -7,6 +7,16 @@ using sberdev.SBContracts.AccountingDocumentBase;
 
 namespace sberdev.SBContracts
 {
+  partial class AccountingDocumentBaseLeadingDocumentPropertyFilteringServerHandler<T>
+  {
+
+    public override IQueryable<T> LeadingDocumentFiltering(IQueryable<T> query, Sungero.Domain.PropertyFilteringEventArgs e)
+    {
+      query = base.LeadingDocumentFiltering(query, e);
+      return query.Where(q => SBContracts.Contracts.Is(q) || SBContracts.SupAgreements.Is(q));
+    }
+  }
+
 
 
   partial class AccountingDocumentBaseAccArtBaseSberDevPropertyFilteringServerHandler<T>
@@ -128,31 +138,31 @@ namespace sberdev.SBContracts
       Functions.AccountingDocumentBase.CreateOrUpdateAnaliticsCasheGeneral(_obj);
       Functions.AccountingDocumentBase.CancelRequiredPropeties(_obj);
       //============================================ ATS --------------- Заполнение списка продуктов и калькуляции
-        string spisokProd = "";
-        string spisokCalc = "";
-        if (_obj.ProdCollectionBaseSberDev.Count > 0)
+      string spisokProd = "";
+      string spisokCalc = "";
+      if (_obj.ProdCollectionBaseSberDev.Count > 0)
+      {
+        foreach (var elem in _obj.ProdCollectionBaseSberDev)
         {
-          foreach (var elem in _obj.ProdCollectionBaseSberDev)
-          {
-            spisokProd += elem.Product.Name + "; ";
-          }
+          spisokProd += elem.Product.Name + "; ";
         }
-        if (_obj.CalculationBaseSberDev.Count > 0)
+      }
+      if (_obj.CalculationBaseSberDev.Count > 0)
+      {
+        foreach (var elem3 in _obj.CalculationBaseSberDev)
         {
-          foreach (var elem3 in _obj.CalculationBaseSberDev)
-          {
-            spisokCalc += elem3.ProductCalc.Name + " " + elem3.AbsoluteCalc.ToString() + " (" + elem3.PercentCalc.ToString() + "); ";
-          }
+          spisokCalc += elem3.ProductCalc.Name + " " + elem3.AbsoluteCalc.ToString() + " (" + elem3.PercentCalc.ToString() + "); ";
         }
-        
-        spisokProd = spisokProd.Substring(0, Math.Min(spisokProd.Length, 999));
-        spisokCalc = spisokCalc.Substring(0, Math.Min(spisokCalc.Length, 999));
-          
-        if (_obj.ProductListSDev != spisokProd)
-          _obj.ProductListSDev = spisokProd;
-        
-        if (_obj.CalcListSDev != spisokCalc)
-          _obj.CalcListSDev = spisokCalc;
+      }
+      
+      spisokProd = spisokProd.Substring(0, Math.Min(spisokProd.Length, 999));
+      spisokCalc = spisokCalc.Substring(0, Math.Min(spisokCalc.Length, 999));
+      
+      if (_obj.ProductListSDev != spisokProd)
+        _obj.ProductListSDev = spisokProd;
+      
+      if (_obj.CalcListSDev != spisokCalc)
+        _obj.CalcListSDev = spisokCalc;
       //=============================================== ATS --------------- Заполнение списка продуктов и калькуляции
       var error = Functions.AccountingDocumentBase.BanToSaveForStabs(_obj);
       if (error != "")

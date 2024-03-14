@@ -45,7 +45,7 @@ namespace sberdev.SberContracts.Shared
     
     public override void SetPropertiesAccess()
     {
-      base.SetRequiredProperties();
+      base.SetPropertiesAccess();
       
       _obj.State.Properties.PurchComNumberSberDev.IsRequired = false;
     }

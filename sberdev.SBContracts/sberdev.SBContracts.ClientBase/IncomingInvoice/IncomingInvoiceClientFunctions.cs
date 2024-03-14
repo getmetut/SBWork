@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -9,6 +9,7 @@ namespace sberdev.SBContracts.Client
 {
   partial class IncomingInvoiceFunctions
   {
+    
     public void FillFromCashe()
     {
       SberContracts.PublicFunctions.Module.Remote.FillFromCasheSrv(_obj , Users.Current );

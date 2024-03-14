@@ -45,7 +45,7 @@
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
-          "RowNumber": 4,
+          "RowNumber": 5,
           "RowSpan": 1,
           "Versions": []
         },
@@ -243,7 +243,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
-          "RowNumber": 5,
+          "RowNumber": 6,
           "RowSpan": 1,
           "Versions": []
         },
@@ -403,7 +403,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 1,
+          "RowNumber": 0,
           "RowSpan": 1,
           "Versions": []
         },
@@ -423,7 +423,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 3,
+          "RowNumber": 2,
           "RowSpan": 1,
           "Versions": []
         },
@@ -581,17 +581,6 @@
         },
         {
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
-          "NameGuid": "cd1a391b-a1d4-4cc2-9055-378baad4518a",
-          "Name": "AnaliticsSberDev",
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "GroupType": "WithTitleNoBorder",
-          "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 0,
-          "RowSpan": 1
-        },
-        {
-          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "08dfa551-dd8d-4393-8dd7-7a4c9c6cffb4",
           "Name": "CalculationSberDev",
           "ColumnDefinitions": [
@@ -609,7 +598,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 2,
+          "RowNumber": 1,
           "RowSpan": 1
         },
         {
@@ -1041,6 +1030,17 @@
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
           "RowNumber": 2,
           "RowSpan": 1
+        },
+        {
+          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
+          "NameGuid": "cd1a391b-a1d4-4cc2-9055-378baad4518a",
+          "Name": "AnaliticsSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "GroupType": "WithTitleNoBorder",
+          "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
+          "RowNumber": 4,
+          "RowSpan": 1
         }
       ],
       "IsAncestorMetadata": true,
@@ -1159,7 +1159,8 @@
       "NameGuid": "aae1f6ae-d090-4c5a-963e-44c8b79dc92b",
       "Name": "LeadingDocument",
       "HandledEvents": [
-        "ChangedShared"
+        "ChangedShared",
+        "LookupServer"
       ],
       "IsAncestorMetadata": true,
       "Overridden": [

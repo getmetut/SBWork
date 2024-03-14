@@ -1,0 +1,51 @@
+{
+  "$type": "Sungero.Metadata.LayerModuleMetadata, Sungero.Metadata",
+  "NameGuid": "7205a5a5-8b4d-4f9e-8247-5495e8f8ebec",
+  "Name": "Integration",
+  "AssociatedGuid": "b33230d7-1513-4f37-9ea0-7d0db0fb6b72",
+  "AsyncHandlers": [],
+  "BaseGuid": "3adec58c-ff50-452b-9c5c-729e83f286cb",
+  "ClientBaseAssemblyName": "sberdev.SBContracts.ClientBase",
+  "ClientBaseNamespace": "sberdev.SBContracts.Module.Integration.ClientBase",
+  "Code": "Integra",
+  "CompanyCode": "centrvd",
+  "ExplorerTreeOrder": [],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "IsVisible": false,
+  "Jobs": [
+    {
+      "NameGuid": "21789343-6c4c-4964-a79d-ca84f538c2e5",
+      "Name": "FillInMarkersJob",
+      "IsAncestorMetadata": true,
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T03:00:00"
+    },
+    {
+      "NameGuid": "3eb8ce5d-1a06-491b-b825-7f2a8c9aecc2",
+      "Name": "SendCounterpartyReportJob",
+      "Daily": "Repeat",
+      "IsAncestorMetadata": true,
+      "MonthSchedule": "Monthly",
+      "TimePeriod": 60
+    }
+  ],
+  "LayeredFromGuid": "3adec58c-ff50-452b-9c5c-729e83f286cb",
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "sberdev.SBContracts.Module.Integration",
+  "ResourcesKeys": [],
+  "SpecialFolders": [],
+  "Version": "0.0.1.7",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "LayerModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    }
+  ]
+}

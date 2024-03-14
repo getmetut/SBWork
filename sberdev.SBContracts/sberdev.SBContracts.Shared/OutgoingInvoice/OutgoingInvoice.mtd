@@ -59,7 +59,7 @@
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Versions": []
         },
@@ -243,7 +243,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
-          "RowNumber": 4,
+          "RowNumber": 5,
           "RowSpan": 1,
           "Versions": []
         },
@@ -415,7 +415,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 2,
+          "RowNumber": 1,
           "RowSpan": 1,
           "Versions": []
         },
@@ -518,29 +518,6 @@
           "Versions": []
         },
         {
-          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
-          "NameGuid": "86bc6ac8-f101-4c25-b562-62751b8e5223",
-          "Name": "AccountSberDev",
-          "ColumnDefinitions": [
-            {
-              "Percentage": 49.47
-            },
-            {
-              "Percentage": 26.15
-            },
-            {
-              "Percentage": 24.38
-            }
-          ],
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "GroupType": "WithTitleNoBorder",
-          "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 1,
-          "RowSpan": 1,
-          "Versions": []
-        },
-        {
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "cd9dfbd5-c58a-44de-a129-1bd68d0de6d9",
           "Name": "SignedBySberDev",
@@ -633,7 +610,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
-          "RowNumber": 1,
+          "RowNumber": 2,
           "RowSpan": 1
         },
         {
@@ -696,21 +673,8 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
-          "RowNumber": 2,
+          "RowNumber": 3,
           "RowSpan": 1
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "d494d39f-8614-4469-946e-02f5b4fd5674",
-          "Name": "FrameworkBaseSberDevSberDev",
-          "ColumnNumber": 2,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
-          "ParentGuid": "86bc6ac8-f101-4c25-b562-62751b8e5223",
-          "PropertyGuid": "84a47c44-a3a3-4eb4-a905-f04d5768c5e9",
-          "RowNumber": 0,
-          "RowSpan": 1,
-          "Settings": []
         },
         {
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
@@ -785,6 +749,52 @@
           "ParentGuid": "d1c087e2-44df-4e72-bec2-41f335ccd4de",
           "PropertyGuid": "6543d8ba-230c-4615-87c4-5cd3c9470cdc",
           "RowNumber": 4,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
+          "NameGuid": "86bc6ac8-f101-4c25-b562-62751b8e5223",
+          "Name": "AccountSberDev",
+          "ColumnDefinitions": [
+            {
+              "Percentage": 56.6
+            },
+            {
+              "Percentage": 43.4
+            }
+          ],
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "GroupType": "WithTitleNoBorder",
+          "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Versions": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "d1d51718-56d0-4673-ad0a-091ce7375eff",
+          "Name": "EstPayDateSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+          "ParentGuid": "86bc6ac8-f101-4c25-b562-62751b8e5223",
+          "PropertyGuid": "43eda876-5008-4dbd-a35a-0b1e030d8a72",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "6814e643-32a5-4878-8d1d-c8bdc0871895",
+          "Name": "PayTypeSberDev",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "ParentGuid": "86bc6ac8-f101-4c25-b562-62751b8e5223",
+          "PropertyGuid": "e5d2905f-3cb2-44fc-898a-72caeb11a85f",
+          "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
         }

@@ -11,6 +11,11 @@ namespace sberdev.SBContracts
   partial class IncomingInvoiceSharedHandlers
   {
 
+    public virtual void NoNeedLeadingDocsChanged(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
+    {
+      //для срабатывания события обновления
+    }
+
     public virtual void PayTypeChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
     {
       //для срабатывания события обновления

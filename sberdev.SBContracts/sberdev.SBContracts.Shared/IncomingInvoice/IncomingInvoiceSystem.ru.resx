@@ -140,7 +140,7 @@
     <value>Доп. финансовый документ</value>
   </data>
   <data name="Property_NoNeedLeadingDocs" xml:space="preserve">
-    <value>Ведущие документы необязательны</value>
+    <value>Внедоговорной счет</value>
   </data>
   <data name="ControlGroup_03fde41782544f08950cd543871033a8" xml:space="preserve">
     <value />

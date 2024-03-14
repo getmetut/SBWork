@@ -62,6 +62,11 @@ namespace sberdev.SBContracts.Shared
       bool invoiceFlag = _obj.PayTypeBaseSberDev == PayTypeBaseSberDev.Prepayment ? true : false;
       _obj.State.Properties.InvoiceSberDev.IsRequired = invoiceFlag;
       
+      _obj.State.Properties.LeadingDocument.IsEnabled = _obj.PayTypeBaseSberDev.HasValue;
+      _obj.State.Properties.InvoiceSberDev.IsEnabled = _obj.PayTypeBaseSberDev.HasValue;
+      _obj.State.Properties.AccDocSberDev.IsEnabled = _obj.PayTypeBaseSberDev.HasValue;
+      _obj.State.Properties.MarketingSberDev.IsEnabled = _obj.PayTypeBaseSberDev.HasValue;
+      
       CancelRequiredPropeties();
     }
     

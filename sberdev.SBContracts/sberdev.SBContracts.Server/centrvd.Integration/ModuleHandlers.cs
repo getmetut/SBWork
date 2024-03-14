@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
-using sberdev.SBContracts.OutgoingInvoice;
 
-namespace sberdev.SBContracts.Shared
+namespace sberdev.SBContracts.Module.Integration.Server
 {
-  partial class OutgoingInvoiceFunctions
+  partial class IntegrationHandlers
   {
   }
 }

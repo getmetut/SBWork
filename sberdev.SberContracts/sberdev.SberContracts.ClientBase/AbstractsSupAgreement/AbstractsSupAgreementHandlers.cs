@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -9,6 +9,11 @@ namespace sberdev.SberContracts
 {
   partial class AbstractsSupAgreementClientHandlers
   {
+
+    public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
+    {
+      base.Refresh(e);
+    }
 
     public override void LeadingDocumentValueInput(Sungero.Docflow.Client.OfficialDocumentLeadingDocumentValueInputEventArgs e)
     {

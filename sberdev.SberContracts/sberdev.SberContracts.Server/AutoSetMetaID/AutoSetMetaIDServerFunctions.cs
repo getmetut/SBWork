@@ -11,13 +11,17 @@ namespace sberdev.SberContracts.Server
   {
     public override Sungero.Docflow.Structures.ApprovalFunctionStageBase.ExecutionResult Execute(Sungero.Docflow.IApprovalTask approvalTask)
     {
-      try
+      var doc = approvalTask.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      if (doc != null)
       {
-        SBContracts.PublicFunctions.Module.Remote.SetMetadataID(approvalTask.DocumentGroup.OfficialDocuments.FirstOrDefault());
-      }
-      catch (Exception ex)
-      {
-        Logger.ErrorFormat("Этап сценария. Неуспешное завершение записи ИД карточки в метаданные. Причина: " +  ex.ToString(), approvalTask);
+        try
+        {
+          SBContracts.PublicFunctions.Module.Remote.SetMetadataID(doc);
+        }
+        catch (Exception ex)
+        {
+          Logger.ErrorFormat("Этап сценария. Неуспешное завершение записи ИД карточки (" + doc.Id.ToString() + ") в метаданные. Причина: " +  ex.ToString(), approvalTask);
+        }
       }
       return base.Execute(approvalTask);
     }

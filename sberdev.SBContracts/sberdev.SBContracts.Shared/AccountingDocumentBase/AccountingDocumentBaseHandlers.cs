@@ -45,7 +45,14 @@ namespace sberdev.SBContracts
       if (e.NewValue != null)
       {
         _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
-        _obj.PayTypeBaseSberDev = PayTypeBaseSberDev.Postpay;
+        _obj.PayTypeBaseSberDev = PayTypeBaseSberDev.Prepayment;
+        
+        var isInvoice = SBContracts.IncomingInvoices.Is(_obj) || SBContracts.OutgoingInvoices.Is(_obj);
+        if (!isInvoice)
+        {
+          if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Prepayment)
+            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+        }
       }
     }
 
@@ -181,6 +188,16 @@ namespace sberdev.SBContracts
       {
         _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
       }
+      
+      if (e.NewValue != null)
+      {
+        var isInvoice = SBContracts.IncomingInvoices.Is(_obj) || SBContracts.OutgoingInvoices.Is(_obj);
+        if (isInvoice)
+        {
+          if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Postpay)
+            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+        }
+      }
     }
 
     public virtual void MVPBaseSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseMVPBaseSberDevChangedEventArgs e)
@@ -290,9 +307,20 @@ namespace sberdev.SBContracts
         _obj.ModifiedSberDev = Calendar.Now;
       }
       
+      
       if (e.NewValue != null)
       {
-        SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+        var isInvoice = SBContracts.IncomingInvoices.Is(_obj) || SBContracts.OutgoingInvoices.Is(_obj);
+        if (isInvoice)
+        {
+          if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Prepayment)
+            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+        }
+        else
+        {
+          if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Postpay)
+            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+        }
       }
     }
 
