@@ -97,4 +97,28 @@
   <data name="Action_DoWorkDescription" xml:space="preserve">
     <value>Complete the assignment with result "На доработку"</value>
   </data>
+  <data name="Property_TravelStr" xml:space="preserve">
+    <value>Способ доставки</value>
+  </data>
+  <data name="Enum_TravelStr_Electronic" xml:space="preserve">
+    <value>Электронный способ доставки</value>
+  </data>
+  <data name="Enum_TravelStr_Paper" xml:space="preserve">
+    <value>Отправка бумажного экземпляра</value>
+  </data>
+  <data name="Resource_c9c4beefec5b4b3796d4959c17991279" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_c9c4beefec5b4b3796d4959c17991279_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_45c3f7afea6f40948e21e643b6358f4a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_45c3f7afea6f40948e21e643b6358f4a_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ad03c4af7bfe4967aa2cdaa3265bdbe3" xml:space="preserve">
+    <value />
+  </data>
 </root>

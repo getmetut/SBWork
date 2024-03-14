@@ -1,0 +1,136 @@
+{
+  "$type": "Sungero.Metadata.SolutionMetadata, Sungero.Metadata",
+  "NameGuid": "ed6fc3e0-0fae-4506-8085-885c8222f982",
+  "Name": "ATS",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "Sungero.ATS.Client",
+  "ClientBaseAssemblyName": "Sungero.ATS.ClientBase",
+  "ClientBaseNamespace": "Sungero.ATS.ClientBase",
+  "ClientNamespace": "Sungero.ATS.Client",
+  "Code": "ATS",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "eb7e59a6-25a9-46b7-91fe-c03aeb65671d",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "504df9a3-ca38-474a-8e43-5ff584926e62",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "f150a184-30a9-4987-8ff5-81c86b66c07c",
+      "BackgroundPosition": "Stretch"
+    },
+    "Tabs": []
+  },
+  "DesktopViews": [],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "c0d4a2e6-8d3d-466f-823a-b4fdb7dd28c7"
+    },
+    {
+      "ItemId": "d4c1a43b-f2d9-4ba0-a00c-4899ee1268d0",
+      "PreviousItemId": "c0d4a2e6-8d3d-466f-823a-b4fdb7dd28c7"
+    },
+    {
+      "ItemId": "45b05017-1af2-4340-aa44-8c43d4216b64",
+      "PreviousItemId": "d4c1a43b-f2d9-4ba0-a00c-4899ee1268d0"
+    },
+    {
+      "ItemId": "c4c567d1-f856-4112-8d50-f10d798d0a6f",
+      "PreviousItemId": "45b05017-1af2-4340-aa44-8c43d4216b64"
+    },
+    {
+      "ItemId": "d410246d-5467-42d7-81e0-2940e3c6e61b",
+      "PreviousItemId": "c4c567d1-f856-4112-8d50-f10d798d0a6f"
+    },
+    {
+      "ItemId": "4c57cdf6-6f0d-4cf7-baa0-4413c1aee493",
+      "PreviousItemId": "d410246d-5467-42d7-81e0-2940e3c6e61b"
+    },
+    {
+      "ItemId": "b8b73d31-afaf-4d12-a18b-ce3076ef91ef",
+      "PreviousItemId": "4c57cdf6-6f0d-4cf7-baa0-4413c1aee493"
+    },
+    {
+      "ItemId": "e3a06f37-82f3-4ef3-b1fd-ff7a47c3638c",
+      "PreviousItemId": "b8b73d31-afaf-4d12-a18b-ce3076ef91ef"
+    },
+    {
+      "ItemId": "c86af20a-5f46-4b03-aad3-c64b895fcde3",
+      "PreviousItemId": "e3a06f37-82f3-4ef3-b1fd-ff7a47c3638c"
+    },
+    {
+      "ItemId": "465f3931-791d-4227-83e8-bcf2ff2f4964",
+      "PreviousItemId": "c86af20a-5f46-4b03-aad3-c64b895fcde3"
+    },
+    {
+      "ItemId": "310b5074-53f8-4fae-a328-1692589b8b5b",
+      "PreviousItemId": "465f3931-791d-4227-83e8-bcf2ff2f4964"
+    },
+    {
+      "ItemId": "5e2df38e-8b57-4bd1-8e7c-5f7e7ab55de0",
+      "PreviousItemId": "310b5074-53f8-4fae-a328-1692589b8b5b"
+    },
+    {
+      "ItemId": "b0fdf712-f3f5-4d96-8dbd-0e43d504776b",
+      "PreviousItemId": "5e2df38e-8b57-4bd1-8e7c-5f7e7ab55de0"
+    },
+    {
+      "ItemId": "07aa90a2-c96e-4152-a673-dd070b5e4e3a",
+      "PreviousItemId": "b0fdf712-f3f5-4d96-8dbd-0e43d504776b"
+    },
+    {
+      "ItemId": "b35312ee-5aff-49e7-8db5-da1e3df625cf",
+      "PreviousItemId": "07aa90a2-c96e-4152-a673-dd070b5e4e3a"
+    },
+    {
+      "ItemId": "7261f4e5-8bbf-496c-a445-d81cd24eba7e",
+      "PreviousItemId": "b35312ee-5aff-49e7-8db5-da1e3df625cf"
+    }
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "Sungero.ATS",
+  "IsolatedAssemblyName": "Sungero.ATS.Isolated",
+  "IsolatedNamespace": "Sungero.ATS.Isolated",
+  "NeedResetAppliedCache": true,
+  "NeedResetCache": true,
+  "OrderedSpecialFolders": [
+    {
+      "NameGuid": "fa722da7-57f4-4998-88b9-fffe9abb1162",
+      "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17"
+    }
+  ],
+  "Overridden": [
+    "NeedResetCache",
+    "NeedResetAppliedCache"
+  ],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.ATS",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "Sungero.ATS.Server",
+  "ServerNamespace": "Sungero.ATS.Server",
+  "SharedAssemblyName": "Sungero.ATS.Shared",
+  "SharedNamespace": "Sungero.ATS.Shared",
+  "SpecialFolders": [],
+  "Version": "0.1.0.3",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "SolutionMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

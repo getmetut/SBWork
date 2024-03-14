@@ -36,7 +36,17 @@
   "InterfaceNamespace": "Sungero.ATS",
   "IsolatedAssemblyName": "Sungero.ATS.Isolated",
   "IsolatedNamespace": "Sungero.ATS.Isolated",
-  "OrderedSpecialFolders": [],
+  "NeedResetAppliedCache": true,
+  "OrderedSpecialFolders": [
+    {
+      "NameGuid": "fa722da7-57f4-4998-88b9-fffe9abb1162",
+      "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17"
+    }
+  ],
+  "Overridden": [
+    "NeedResetCache",
+    "NeedResetAppliedCache"
+  ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "Sungero.ATS",
@@ -46,7 +56,7 @@
   "SharedAssemblyName": "Sungero.ATS.Shared",
   "SharedNamespace": "Sungero.ATS.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.88",
+  "Version": "0.1.0.13",
   "Widgets": [],
   "Versions": [
     {

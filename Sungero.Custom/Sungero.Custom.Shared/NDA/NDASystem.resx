@@ -133,4 +133,7 @@
   <data name="Property_KAForm" xml:space="preserve">
     <value>Форма к/а</value>
   </data>
+  <data name="Action_SendForReview" xml:space="preserve">
+    <value>Send it for approval according to the regulations</value>
+  </data>
 </root>

@@ -82,4 +82,7 @@
   <data name="Control_a915c070568d4f08a7365fbdabe9e559_EmptyText" xml:space="preserve">
     <value />
   </data>
+  <data name="Action_SendForReview" xml:space="preserve">
+    <value>Отправить на согласование по регламенту</value>
+  </data>
 </root>
