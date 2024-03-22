@@ -7,8 +7,4 @@ using sberdev.SBContracts.OfficialDocument;
 
 namespace sberdev.SBContracts
 {
-  partial class OfficialDocumentClientHandlers
-  {
-
-  }
 }

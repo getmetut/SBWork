@@ -15,6 +15,7 @@ namespace sberdev.SBContracts.Shared
       
       bool flagCalc = _obj.MVPBaseSberDev != null ? _obj.MVPBaseSberDev.CalculationIsWorking.Value
         : (_obj.MVZBaseSberDev != null ? _obj.MVZBaseSberDev.CalculationIsWorking.Value : false);
+      
       if (_obj.ProdCollectionBaseSberDev.Any())
       {
         if ((_obj.ProdCollectionBaseSberDev.Where(p => p.Product.Name == "General").Any()
@@ -60,7 +61,7 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.MarketDirectSberDev.IsRequired = markFlag;
       
       bool invoiceFlag = _obj.PayTypeBaseSberDev == PayTypeBaseSberDev.Prepayment ? true : false;
-      _obj.State.Properties.InvoiceSberDev.IsRequired = invoiceFlag;
+      _obj.State.Properties.InvoiceSberDev.IsRequired = SBContracts.IncomingInvoices.Is(_obj) ? false : invoiceFlag;
       
       _obj.State.Properties.LeadingDocument.IsEnabled = _obj.PayTypeBaseSberDev.HasValue;
       _obj.State.Properties.InvoiceSberDev.IsEnabled = _obj.PayTypeBaseSberDev.HasValue;
@@ -136,7 +137,7 @@ namespace sberdev.SBContracts.Shared
       }
       else
       {
-        _obj.State.Properties.EstPaymentDateSberDev.IsRequired = true;
+        _obj.State.Properties.EstPaymentDateSberDev.IsRequired = SBContracts.IncomingInvoices.Is(_obj) ? false : true;
         _obj.State.Properties.PayTypeBaseSberDev.IsRequired = true;
         _obj.State.Properties.ContrTypeBaseSberDev.IsRequired = true;
         _obj.State.Properties.AccArtBaseSberDev.IsRequired = true;
@@ -175,6 +176,42 @@ namespace sberdev.SBContracts.Shared
         _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsVisible = false;
         _obj.State.Properties.CalculationBaseSberDev.Properties.InterestCalc.IsVisible = false;
       }
+    }
+    
+    public void HighlightClosedAnalitics()
+    {
+      _obj.State.Properties.MVPBaseSberDev.HighlightColor = _obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Closed ?
+        Colors.Common.Red : Colors.Common.White;
+      _obj.State.Properties.MVZBaseSberDev.HighlightColor = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Closed ?
+        Colors.Common.Red : Colors.Common.White;
+      _obj.State.Properties.AccArtBaseSberDev.HighlightColor = _obj.AccArtBaseSberDev != null &&_obj.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed ?
+        Colors.Common.Red : Colors.Common.White;
+      var products = _obj.ProdCollectionBaseSberDev;
+      bool prodFlag = true;
+      foreach (var product in products)
+      {
+        if (product.Product.Status == SberContracts.ProductsAndDevices.Status.Closed)
+          prodFlag = false;
+      }
+      _obj.State.Properties.ProdCollectionBaseSberDev.HighlightColor = prodFlag ? Colors.Common.White : Colors.Common.Red;
+    }
+    
+    /// <summary>
+    /// Возвращает результат проверки аналитик на закрытые записи
+    /// </summary>
+    /// <returns>True если старых аналитик нет</returns>
+    public bool CheckOldAnalicitics()
+    {
+      bool flag = true;
+      flag = _obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active;
+      flag = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active;
+      flag = _obj.AccArtBaseSberDev != null &&_obj.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active;
+      foreach (var product in _obj.ProdCollectionBaseSberDev)
+      {
+        if (product.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          flag = false;
+      }
+      return flag;
     }
   }
 }

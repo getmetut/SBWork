@@ -9,5 +9,10 @@ namespace sberdev.SBContracts.Shared
 {
   partial class OutgoingInvoiceFunctions
   {
+    public override void SetPropertiesAccess()
+    {
+      base.SetPropertiesAccess();
+      _obj.State.Properties.InvoiceSberDev.IsRequired = false;
+    }
   }
 }

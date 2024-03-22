@@ -10,14 +10,25 @@ namespace sberdev.SBContracts.Server
 {
   partial class OfficialDocumentFunctions
   {
-
+    
     /// <summary>
     /// Переносит тело с подписями по ид
     /// </summary>
     [Public, Remote]
-    public void TransferBody(long idDoc)
+    public void TransferBodyWithSignatures(long idDoc)
     {
-      var doc = Sungero.Content.ElectronicDocuments.GetAll(d => d.Id == idDoc).First();
+      var doc = Sungero.Docflow.OfficialDocuments.GetAll(d => d.Id == idDoc).First();
+      TransferBody(doc);
+      TransferSignatures(doc);
+    }
+    
+    /// <summary>
+    /// Переносит тело документа
+    /// </summary>
+    /// <param name="idDoc"></param>
+    [Remote, Public]
+    public void TransferBody(Sungero.Docflow.IOfficialDocument doc)
+    {
       Stream strmCommon = _obj.LastVersion.Body.Read();
       doc.CreateVersionFrom(strmCommon, _obj.LastVersion.AssociatedApplication.Extension);
       if (_obj.LastVersion.PublicBody.Size > 0)
@@ -27,13 +38,23 @@ namespace sberdev.SBContracts.Server
         strmPublic.Close();
       }
       doc.Save();
+      strmCommon.Close();
+    }
+    
+    /// <summary>
+    /// Переносит подписи последней версии документа
+    /// </summary>
+    /// <param name="id"></param>
+    [Remote, Public]
+    public void TransferSignatures(Sungero.Docflow.IOfficialDocument doc)
+    {
       var signInfos = Signatures.Get(_obj.LastVersion);
       foreach(var signInfo in signInfos)
       {
         var signaturesBytes = signInfo.GetDataSignature();
-        Signatures.Import(doc, signInfo.SignatureType, signInfo.SignatoryFullName, signaturesBytes, signInfo.SigningDate, doc.LastVersion);
+        if (signInfo.IsExternal.HasValue && signInfo.IsExternal.Value)
+          Signatures.Import(doc, signInfo.SignatureType, signInfo.SignatoryFullName, signaturesBytes, signInfo.SigningDate, doc.LastVersion);
       }
-      strmCommon.Close();
     }
 
     /// <summary>
@@ -42,7 +63,8 @@ namespace sberdev.SBContracts.Server
     [Remote, Public]
     public void NullingManuallyChecked()
     {
-      _obj.ManuallyCheckedSberDev = null;
+      _obj.InternalApprovalState = null;
+      _obj.ExternalApprovalState = null;
     }
     
   }

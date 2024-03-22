@@ -32,7 +32,10 @@ namespace sberdev.SBContracts
 
     public virtual void PayTypeBaseSberDevChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
     {
-      //для срабатывания события обновления
+      if (_obj.PayTypeBaseSberDev == PayTypeBaseSberDev.Postpay)
+        _obj.AccDocSberDev = _obj.AccDocSberDev;
+      if (_obj.PayTypeBaseSberDev == PayTypeBaseSberDev.Prepayment)
+        _obj.LeadingDocument = _obj.LeadingDocument;
     }
 
     public virtual void InvoiceSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseInvoiceSberDevChangedEventArgs e)
@@ -197,6 +200,8 @@ namespace sberdev.SBContracts
           if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Postpay)
             SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
         }
+        
+        _obj.State.Properties.AccDocSberDev.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.AccDocSberDev, false);
       }
     }
 
@@ -321,6 +326,8 @@ namespace sberdev.SBContracts
           if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Postpay)
             SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
         }
+        
+        _obj.State.Properties.LeadingDocument.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.LeadingDocument, false);
       }
     }
 

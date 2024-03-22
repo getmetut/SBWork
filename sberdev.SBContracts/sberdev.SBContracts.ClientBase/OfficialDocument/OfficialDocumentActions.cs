@@ -19,7 +19,7 @@ namespace sberdev.SBContracts.Client
     public override bool CanCreateDocumentFromVersion(Sungero.Domain.Client.CanExecuteChildCollectionActionArgs e)
     {
       var doc = SBContracts.OfficialDocuments.As(_obj.ElectronicDocument);
-      if (doc != null && doc.ManuallyCheckedSberDev == true)
+      if (doc != null && PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(doc))
         return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
       else
         return base.CanCreateDocumentFromVersion(e);
@@ -34,7 +34,7 @@ namespace sberdev.SBContracts.Client
     public override bool CanCreateVersion(Sungero.Domain.Client.CanExecuteChildCollectionActionArgs e)
     {
       var doc = SBContracts.OfficialDocuments.As(_obj.ElectronicDocument);
-      if (doc != null && doc.ManuallyCheckedSberDev == true)
+      if (doc != null && PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(doc))
         return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
       else
         return base.CanCreateVersion(e);
@@ -79,7 +79,7 @@ namespace sberdev.SBContracts.Client
         bool flag = true;
         try
         {
-          PublicFunctions.OfficialDocument.Remote.TransferBody(_obj, idDoc.Value.Value);
+          PublicFunctions.OfficialDocument.Remote.TransferBodyWithSignatures(_obj, idDoc.Value.Value);
         }
         catch
         {
@@ -98,7 +98,7 @@ namespace sberdev.SBContracts.Client
 
     public override bool CanImportInLastVersion(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      if (_obj.ManuallyCheckedSberDev == true)
+      if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
         return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
       else
         return base.CanImportInLastVersion(e);
@@ -118,7 +118,7 @@ namespace sberdev.SBContracts.Client
 
     public override bool CanImportInNewVersion(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      if (_obj.ManuallyCheckedSberDev == true)
+      if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
         return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
       else
         return base.CanImportInNewVersion(e);
@@ -126,7 +126,7 @@ namespace sberdev.SBContracts.Client
 
     public override bool CanScanInNewVersion(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      if (_obj.ManuallyCheckedSberDev == true)
+      if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
         return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
       else
         return base.CanScanInNewVersion(e);
@@ -146,7 +146,7 @@ namespace sberdev.SBContracts.Client
 
     public override bool CanCreateFromScanner(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      if (_obj.ManuallyCheckedSberDev == true)
+      if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
         return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
       else
         return base.CanCreateFromScanner(e);
@@ -160,7 +160,7 @@ namespace sberdev.SBContracts.Client
 
     public override bool CanCreateFromFile(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      if (_obj.ManuallyCheckedSberDev == true)
+      if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
         return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
       else
         return base.CanCreateFromFile(e);
@@ -174,7 +174,7 @@ namespace sberdev.SBContracts.Client
 
     public override bool CanCreateVersionFromLastVersion(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      if (_obj.ManuallyCheckedSberDev == true)
+      if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
         return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
       else
         return base.CanCreateVersionFromLastVersion(e);
@@ -188,7 +188,7 @@ namespace sberdev.SBContracts.Client
 
     public override bool CanCreateFromTemplate(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      if (_obj.ManuallyCheckedSberDev == true)
+      if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
         return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
       else
         return base.CanCreateFromTemplate(e);
@@ -196,7 +196,7 @@ namespace sberdev.SBContracts.Client
 
     public virtual void ImportSignatureSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-      if (_obj.HasVersions)
+      if (_obj.HasVersions && !_obj.State.IsInserted)
       {
         var inputFileDialog = Dialogs.CreateInputDialog("Выберите файл подписи");
         var file = inputFileDialog.AddFileSelect("Файл", false);
@@ -212,7 +212,7 @@ namespace sberdev.SBContracts.Client
         }
       }
       else
-        Dialogs.ShowMessage("Невозможно импортитровать подпись. Документ не имеет версий.", MessageType.Error);
+        Dialogs.ShowMessage("Невозможно импортитровать подпись. Документ не имеет версий или карточка только что создана и не сохранена.", MessageType.Error);
 
     }
 

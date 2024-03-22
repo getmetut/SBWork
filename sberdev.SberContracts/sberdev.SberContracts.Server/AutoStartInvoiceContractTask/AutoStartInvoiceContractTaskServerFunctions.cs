@@ -18,11 +18,11 @@ namespace sberdev.SberContracts.Server
         {
           var invoice = SBContracts.IncomingInvoices.Create();
           invoice.LeadingDocument = contract;
-          invoice.Number = "test";
+          invoice.Number = contract.RegistrationNumber;
           invoice.PayTypeBaseSberDev = SBContracts.IncomingInvoice.PayTypeBaseSberDev.Prepayment;
           invoice.Date = Calendar.Now;
           invoice.Save();
-          SBContracts.PublicFunctions.OfficialDocument.Remote.TransferBody(contract, invoice.Id);
+          SBContracts.PublicFunctions.OfficialDocument.Remote.TransferBodyWithSignatures(contract, invoice.Id);
           var newTask = Sungero.Docflow.ApprovalTasks.Create();
           newTask.DocumentGroup.OfficialDocuments.Add(invoice);
           newTask.ApprovalRule = Sungero.Docflow.PublicFunctions.OfficialDocument.Remote.GetApprovalRules(invoice).FirstOrDefault();
@@ -32,13 +32,15 @@ namespace sberdev.SberContracts.Server
           newTask.Author = approvalTask.Author;
           newTask.Save();
           newTask.Start();
+          return this.GetSuccessResult();
         }
+        else
+          return this.GetErrorResult("Этот этап подходит только для согласования договора.");
       }
       catch (Exception ex)
       {
-        Logger.ErrorFormat("Этап сценария. Создание входящего счета к договору-оферте и запуск его на  Результат: Неуспешно.  Причина:" + ex.ToString(), approvalTask);
+        return this.GetRetryResult("Этап сценария. Создание входящего счета к договору-оферте и запуск его на  Результат: Неуспешно.  Причина:" + ex.ToString());
       }
-      return base.Execute(approvalTask);
     }
   }
 }

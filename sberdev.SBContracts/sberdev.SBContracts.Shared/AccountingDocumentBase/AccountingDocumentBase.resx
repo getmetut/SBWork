@@ -76,4 +76,10 @@
   <data name="FillFromDocument" xml:space="preserve">
     <value>Choose document</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>Check your analytics and exclude closed entries.</value>
+  </data>
 </root>

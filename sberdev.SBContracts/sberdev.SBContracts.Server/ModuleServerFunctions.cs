@@ -16,7 +16,7 @@ namespace sberdev.SBContracts.Server
   public class ModuleFunctions
   {
     
-    #region Разные геты
+    #region Разные геты и сеты
     
     /// <summary>
     /// Записать ИД документа в метаданные документа
@@ -32,60 +32,7 @@ namespace sberdev.SBContracts.Server
       string guid = Guid.NewGuid().ToString();
       string path = "C:\\TempDocs\\docDirectum" + guid + "." + ext;
       string tempPath = "C:\\TempDocs\\docDirectumTemp" + guid + "." + ext;
-      doc.LastVersion.Export(path);/*
-      using (Stream strmCommon = doc.LastVersion.Body.Read())
-      {
-        if (ext == "doc" || ext == "docx")
-        {
-          Aspose.Words.Document docAsp = new Aspose.Words.Document(path);
-          var props = docAsp.CustomDocumentProperties;
-          var prop = props.FirstOrDefault(p => p.Name == "DirectumID");
-          if (prop == null)
-          {
-            props.Add("DirectumID", doc.Id.ToString());
-            switch (ext)
-            {
-              case ("doc"):
-                docAsp.Save(tempPath, SaveFormat.Doc);
-                break;
-              case ("docx"):
-                docAsp.Save(tempPath, SaveFormat.Docx);
-                break;
-              case ("pdf"):
-                docAsp.Save(tempPath, SaveFormat.Pdf);
-                break;
-              default:
-                return;
-            }
-          }
-        }
-        if (ext == "pdf")
-        {
-          PdfReader reader = new PdfReader(path);
-          PdfReader.unethicalreading = true;
-          if (!reader.Info.ContainsKey("DirectumID"))
-          {
-            iTextSharp.text.Document document = new iTextSharp.text.Document();
-            PdfCopy copy = new PdfCopy(document, new System.IO.FileStream(tempPath, System.IO.FileMode.Create));
-            document.Open();
-            copy.AddDocument(reader);
-            copy.Info.Put(new PdfName("DirectumID"), new PdfString(doc.Id.ToString()));
-            copy.Close();
-            document.Close();
-          }
-        }
-        
-        FileInfo fi = new FileInfo(tempPath);
-        if (fi.Exists)
-        {
-          doc.LastVersion.Import(tempPath);
-          doc.Save();
-        }
-      }
-      
-      
-      using (Stream strmCommon = doc.LastVersion.Body.Read())
-      {*/
+      doc.LastVersion.Export(path);
       if (ext == "doc" || ext == "docx")
       {
         bool isNeedSave = false;
@@ -155,10 +102,24 @@ namespace sberdev.SBContracts.Server
       FileInfo fi = new FileInfo(tempPath);
       if (fi.Exists)
       {
-        doc.LastVersion.Import(tempPath);
-        doc.Save();
+        try
+        {
+          doc.LastVersion.Import(tempPath);
+          doc.Save();
+        }
+        catch (Exception ex)
+        {
+          Logger.Debug("Этап сценария. Неуспешный импорт версии с метаИД (" + doc.Id.ToString() + "). Будет созданна новая версия");
+          var signInfos = Signatures.Get(doc.LastVersion);
+          doc.CreateVersionFrom(tempPath);
+          doc.Save();
+          foreach(var signInfo in signInfos)
+          {
+            var signaturesBytes = signInfo.GetDataSignature();
+            Signatures.Import(doc, signInfo.SignatureType, signInfo.SignatoryFullName, signaturesBytes, signInfo.SigningDate, doc.LastVersion);
+          }
+        }
       }
-      // }
     }
     
     /// <summary>
@@ -428,8 +389,122 @@ namespace sberdev.SBContracts.Server
 
     #endregion
     
-    #region Сертификаты
+    #region Сертификаты и подписи
 
+    /// <summary>
+    /// Функция возвращает красный цвет если документ не подписан с двух сторон
+    /// </summary>
+    /// <param name="document"></param>
+    /// <param name="isNeedValid"></param>
+    /// <returns></returns>
+    [Public]
+    public Color HighlightUnsignedDocument(SBContracts.IOfficialDocument document, bool isNeedValid)
+    {
+      var realSigs = CheckRealSignatures(document, isNeedValid);
+      var propSigs = CheckPropertySignatures(document);
+      if ((realSigs[0] || propSigs[0]) && (realSigs[1] || propSigs[1]))
+        return Colors.Common.White;
+      else
+        return Colors.Common.Red;
+    }
+    
+    /// <summary>
+    /// Функция проверяет поля согласования и возвращает булевой список, первый где первый элемент флаг нашей подписи, второй контрагента.
+    /// </summary>
+    /// <param name="document">Документ</param>
+    [Public, Remote]
+    public List<bool> CheckPropertySignatures(SBContracts.IOfficialDocument document)
+    {
+      List<bool> flags = new List<bool>() {false, false};
+      flags[0] = document.InternalApprovalState == SBContracts.OfficialDocument.InternalApprovalState.Signed ? true : false;
+      flags[1] = document.ExternalApprovalState == SBContracts.OfficialDocument.ExternalApprovalState.Signed ? true : false;
+      return flags;
+    }
+    
+    /// <summary>
+    /// Функция проверяет поля согласования и возвращает общий результат
+    /// </summary>
+    /// <param name="document">Документ</param>
+    [Public, Remote]
+    public bool CheckPropertySignaturesGeneral(SBContracts.IOfficialDocument document)
+    {
+      List<bool> flags = new List<bool>() {false, false};
+      flags[0] = document.InternalApprovalState == SBContracts.OfficialDocument.InternalApprovalState.Signed ? true : false;
+      flags[1] = document.ExternalApprovalState == SBContracts.OfficialDocument.ExternalApprovalState.Signed ? true : false;
+      return flags[0] && flags[1];
+    }
+    
+    /// <summary>
+    /// Функция проверяет наличие подписи от контрагента и от одного человека из группы
+    /// "Обязательные подписанты счета перед согласованием" у документа и возвращает булевой список где первый элемент флаг нашей подписи, второй контрагента.
+    /// <param name="document">Документ.</param>
+    /// <param name="isNotNeedValid">Необходимость проверки валидности.</param>
+    /// </summary>
+    [Public, Remote]
+    public List<bool> CheckRealSignatures(SBContracts.IOfficialDocument document, bool isNeedValid)
+    {
+      List<bool> flags = new List<bool>() {false, false};
+      if (!document.HasVersions)
+        return flags;
+      var signatures = Signatures.Get(document.LastVersion);
+      // Проверка на двойную версию
+      if (document.LastVersion.Note == "Титул покупателя")
+        signatures = Signatures.Get(document);
+      var needSignGroup = PublicFunctions.Module.Remote.GetGroup("Обязательные подписанты счета перед согласованием");
+      if (signatures.Any())
+      {
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        if (contractual != null)
+        {
+          foreach(var sign in signatures)
+          {
+            if (sign.IsExternal.HasValue && sign.IsExternal.Value)
+            {
+              try
+              {
+                var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(sign.GetDataSignature());
+                string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyOrgTIN(certificateInfo.SubjectInfo);
+                if (Equals(tin, contractual.Counterparty.TIN) && (sign.IsValid || !isNeedValid))
+                  flags[1] = true;
+                if (Equals(tin, contractual.BusinessUnit.TIN) && (sign.IsValid || !isNeedValid))
+                  flags[0] = true;
+              }
+              catch (Exception ex)
+              {
+                Logger.Error("Перенос подписи. Ошибка при извлечении сертификата: " + ex.ToString());
+              }
+            }
+            else
+              if (sign.SignatureType == SignatureType.Approval && ((sign.Signatory != null && sign.Signatory.IncludedIn(needSignGroup))
+                                                                   || (sign.SubstitutedUser != null && sign.SubstitutedUser.IncludedIn(needSignGroup))))
+                flags[0] = true;
+          }
+        }
+        
+        var accounting = SBContracts.AccountingDocumentBases.As(document);
+        if (accounting != null)
+        {
+          foreach(var sign in signatures)
+          {
+            if (sign.IsExternal.HasValue && sign.IsExternal.Value)
+            {
+              var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(sign.GetDataSignature());
+              string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyOrgTIN(certificateInfo.SubjectInfo);
+              if (Equals(tin, accounting.Counterparty.TIN) && (sign.IsValid || !isNeedValid))
+                flags[1] = true;
+              if (Equals(tin, accounting.BusinessUnit.TIN) && (sign.IsValid || !isNeedValid))
+                flags[0] = true;
+            }
+            else
+              if (sign.SignatureType == SignatureType.Approval && ((sign.Signatory != null && sign.Signatory.IncludedIn(needSignGroup))
+                                                                   || (sign.SubstitutedUser != null && sign.SubstitutedUser.IncludedIn(needSignGroup))))
+                flags[0] = true;
+          }
+        }
+      }
+      return flags;
+    }
+    
     
     /// <summary>
     /// Получить структуру с информацией о владельце сертификата.

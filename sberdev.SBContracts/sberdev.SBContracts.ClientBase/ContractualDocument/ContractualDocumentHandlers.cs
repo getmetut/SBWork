@@ -55,6 +55,7 @@ namespace sberdev.SBContracts
     {
       base.Refresh(e);
       Functions.ContractualDocument.SetPropertiesAccess(_obj);
+      Functions.ContractualDocument.HighlightClosedAnalitics(_obj);
     }
 
   }

@@ -41,10 +41,33 @@ namespace sberdev.SBContracts
       }
       
       var incInv = IncomingInvoices.As(_obj.DocumentGroup.OfficialDocuments?.First());
-      if (incInv != null &&  _obj.StageSubject == "Оплата счета")
+      
+      if (incInv != null)
       {
-        incInv.PaymentDateSberDev = Calendar.Now;
-        incInv.Save();
+        switch (_obj.StageSubject)
+        {
+          case "Оплата счета":
+            incInv.PaymentDateSberDev = Calendar.Now;
+            incInv.Save();
+            break;
+            
+          case "Проверка договорных документов Делопроизводителем":
+            var contractual = incInv.LeadingDocument;
+            if (contractual != null)
+            {
+              contractual.InternalApprovalState = SBContracts.OfficialDocument.InternalApprovalState.Signed;
+              contractual.ExternalApprovalState = SBContracts.OfficialDocument.ExternalApprovalState.Signed;
+              contractual.Save();
+            }
+            var accounting = incInv.AccDocSberDev;
+            if (accounting != null)
+            {
+              accounting.InternalApprovalState = SBContracts.OfficialDocument.InternalApprovalState.Signed;
+              accounting.ExternalApprovalState = SBContracts.OfficialDocument.ExternalApprovalState.Signed;
+              accounting.Save();
+            }
+            break;
+        }
       }
     }
   }

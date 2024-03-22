@@ -122,9 +122,15 @@ namespace sberdev.SBContracts.Shared
           var sbContract = invoice.LeadingDocument;
           var sbStatement = invoice.ContractStatement;
           if (sbContract != null)
-            flagContract = sbContract.ManuallyCheckedSberDev.HasValue ? sbContract.ManuallyCheckedSberDev.Value : false;
+          {
+            var contracttList = PublicFunctions.Module.Remote.CheckPropertySignatures(sbContract);
+            flagContract = contracttList[0] && contracttList[1];
+          }
           if (sbStatement != null)
-            flagStatement = sbStatement.ManuallyCheckedSberDev.HasValue ? sbContract.ManuallyCheckedSberDev.Value : false;
+          {
+            var statementList = PublicFunctions.Module.Remote.CheckPropertySignatures(sbStatement);
+            flagStatement = statementList[0] && statementList[1];
+          }
           if (sbTask.IsNeedManuallyCheckSberDev.HasValue)
             flagTask = sbTask.IsNeedManuallyCheckSberDev.Value;
         }

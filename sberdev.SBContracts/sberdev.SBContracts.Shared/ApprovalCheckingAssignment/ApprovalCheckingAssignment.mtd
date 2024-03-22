@@ -16,17 +16,6 @@
       "Versions": []
     },
     {
-      "$type": "Sungero.Workflow.Shared.ExecutionResultActionMetadata, Sungero.Workflow.Shared",
-      "NameGuid": "bda2680c-7a2a-4836-bafa-6fa058710d94",
-      "Name": "Accept",
-      "GenerateHandler": true,
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "GenerateHandler"
-      ],
-      "Versions": []
-    },
-    {
       "NameGuid": "443b13f5-64d5-48b3-83db-4fff33303fe8",
       "Name": "AbortTask",
       "ActionArea": "Card",

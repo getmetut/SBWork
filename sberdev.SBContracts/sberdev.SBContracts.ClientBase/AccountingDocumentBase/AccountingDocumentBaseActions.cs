@@ -7,4 +7,5 @@ using sberdev.SBContracts.AccountingDocumentBase;
 
 namespace sberdev.SBContracts.Client
 {
+
 }

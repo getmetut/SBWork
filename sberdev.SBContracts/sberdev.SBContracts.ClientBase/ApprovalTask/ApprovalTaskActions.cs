@@ -19,7 +19,7 @@ namespace sberdev.SBContracts.Client
         Dialogs.ShowMessage(sberdev.SBContracts.ApprovalTasks.Resources.NoBodyError, MessageType.Error);
         return;
       }
-        
+      
       var invoice = SBContracts.IncomingInvoices.As(doc);
       if (invoice != null && !_obj.IsNeedManuallyCheckSberDev.Value)
       {
@@ -35,17 +35,10 @@ namespace sberdev.SBContracts.Client
             var contract = invoice.LeadingDocument;
             if (contract != null)
             {
-              if (contract.ManuallyCheckedSberDev == null || contract.ManuallyCheckedSberDev == false)
-              {
-                List<bool> list = PublicFunctions.ApprovalTask.Remote.CheckSignatures(_obj, contract, true);
-                flagContractOwn = list[0];
-                flagContractCounter = list[1];
-              }
-              else
-              {
-                flagContractOwn = true;
-                flagContractCounter = true;
-              }
+              List<bool> realSig = PublicFunctions.Module.Remote.CheckRealSignatures(contract, false);
+              List<bool> propSig = PublicFunctions.Module.Remote.CheckPropertySignatures(contract);
+              flagContractOwn = realSig[0] || propSig[0];
+              flagContractCounter = realSig[1] || propSig[1];
             }
             else
               error += "Заполните поле \"Договор\" в карточке счета.\n";
@@ -53,17 +46,10 @@ namespace sberdev.SBContracts.Client
             var act = invoice.AccDocSberDev;
             if (act != null)
             {
-              if (act.ManuallyCheckedSberDev == null || act.ManuallyCheckedSberDev == false)
-              {
-                var list = PublicFunctions.ApprovalTask.Remote.CheckSignatures(_obj, act, true);
-                flagActOwn = list[0];
-                flagActCounter = list[1];
-              }
-              else
-              {
-                flagActOwn = true;
-                flagActCounter = true;
-              }
+              List<bool> realSig = PublicFunctions.Module.Remote.CheckRealSignatures(act, false);
+              List<bool> propSig = PublicFunctions.Module.Remote.CheckPropertySignatures(act);
+              flagActOwn = realSig[0] || propSig[0];
+              flagActCounter = realSig[1] || propSig[1];
             }
             else
               error += "Заполните поле \"Дополнительный финансовый документ\" в карточке счета.";
@@ -82,26 +68,19 @@ namespace sberdev.SBContracts.Client
             var contract = invoice.LeadingDocument;
             if (contract != null)
             {
-              if (contract.ManuallyCheckedSberDev == null || contract.ManuallyCheckedSberDev == false)
-              {
-                List<bool> list = PublicFunctions.ApprovalTask.Remote.CheckSignatures(_obj, contract, true);
-                flagContractOwn = list[0];
-                flagContractCounter = list[1];
-              }
-              else
-              {
-                flagContractOwn = true;
-                flagContractCounter = true;
-              }
-              
-              if (flagContractOwn && flagContractCounter)
-                base.Start(e);
-              else
-                Dialogs.ShowMessage(PublicFunctions.ApprovalTask.ShowCheckSignaturesResult(_obj, flagContractOwn, flagContractCounter),
-                                    MessageType.Error);
+              List<bool> realSig = PublicFunctions.Module.Remote.CheckRealSignatures(contract, false);
+              List<bool> propSig = PublicFunctions.Module.Remote.CheckPropertySignatures(contract);
+              flagContractOwn = realSig[0] || propSig[0];
+              flagContractCounter = realSig[1] || propSig[1];
             }
             else
               Dialogs.ShowMessage("Заполните поле \"Договор\" в карточке счета.", MessageType.Error);
+            
+            if (flagContractOwn && flagContractCounter)
+              base.Start(e);
+            else
+              Dialogs.ShowMessage(PublicFunctions.ApprovalTask.ShowCheckSignaturesResult(_obj, flagContractOwn, flagContractCounter),
+                                  MessageType.Error);
           }
         }
       }

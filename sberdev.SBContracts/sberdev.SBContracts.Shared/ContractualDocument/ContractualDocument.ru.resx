@@ -64,4 +64,10 @@
   <data name="PurchComNumberInstruction" xml:space="preserve">
     <value>Введите номер закупочной комиссии, на которой была согласована закупка. Маска ввода NNN.N (например, 098.1). Если ЗК не проводилась (безальтернативный источник), то оставьте поле пустым.</value>
   </data>
+  <data name="Check" xml:space="preserve">
+    <value>Проверьте аналитики, исключите закрытые записи.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
 </root>

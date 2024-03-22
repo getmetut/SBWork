@@ -1610,7 +1610,9 @@
   "PublicStructures": [],
   "ResourcesKeys": [
     "DivisionDoesNotMatch",
-    "PurchComNumberInstruction"
+    "PurchComNumberInstruction",
+    "Check",
+    "Error"
   ],
   "RibbonCardMetadata": {
     "NameGuid": "fd4f4e0b-198c-48cf-b8e9-8276bcb94dcd",

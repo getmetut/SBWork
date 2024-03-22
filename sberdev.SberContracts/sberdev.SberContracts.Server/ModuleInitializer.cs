@@ -353,7 +353,7 @@ namespace sberdev.SberContracts.Server
         return;
       var stage = SberContracts.AutoStartInvoiceContractTasks.Create();
       stage.Name = "Создание карточки входящего счета из договора-оферты и старт его согласования";
-      stage.TimeoutInHours = 4;
+      stage.TimeoutInHours = 2;
       stage.Save();
     }
     
@@ -367,7 +367,7 @@ namespace sberdev.SberContracts.Server
         return;
       var stage = SberContracts.AutoSetLifeCycleStateActives.Create();
       stage.Name = "Установка состояния \"Принят к оплате\" для счета";
-      stage.TimeoutInHours = 4;
+      stage.TimeoutInHours = 2;
       stage.Save();
     }
     
@@ -381,7 +381,7 @@ namespace sberdev.SberContracts.Server
         return;
       var stage = SberContracts.AutoSetMetaIDs.Create();
       stage.Name = "Запись ИД карточки документа в метаданные его версии(тела)";
-      stage.TimeoutInHours = 4;
+      stage.TimeoutInHours = 2;
       stage.Save();
     }
     
@@ -396,7 +396,7 @@ namespace sberdev.SberContracts.Server
         return;
       var stage = SberContracts.AutoSetLifeCycleStateInRegisters.Create();
       stage.Name = "Установка состояния \"В реестре платежей\" для счета";
-      stage.TimeoutInHours = 4;
+      stage.TimeoutInHours = 2;
       stage.Save();
     }
 
@@ -413,6 +413,7 @@ namespace sberdev.SberContracts.Server
       stage.Name = "Проверка договорных документов Делопроизводителем";
       stage.DeadlineInDays = 2;
       stage.StageType = Sungero.Docflow.ApprovalStage.StageType.SimpleAgr;
+      stage.AllowSendToRework = true;
       stage.Status = Sungero.Docflow.ApprovalStage.Status.Active;
       stage.RightType = Sungero.Docflow.ApprovalStage.RightType.Edit;
       var recip = stage.Recipients.AddNew();

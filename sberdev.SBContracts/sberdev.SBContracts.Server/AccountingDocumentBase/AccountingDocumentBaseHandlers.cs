@@ -7,6 +7,7 @@ using sberdev.SBContracts.AccountingDocumentBase;
 
 namespace sberdev.SBContracts
 {
+
   partial class AccountingDocumentBaseLeadingDocumentPropertyFilteringServerHandler<T>
   {
 

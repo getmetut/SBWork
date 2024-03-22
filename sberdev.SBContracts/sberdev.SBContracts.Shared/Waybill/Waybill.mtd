@@ -45,7 +45,7 @@
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
-          "RowNumber": 3,
+          "RowNumber": 2,
           "RowSpan": 1,
           "Versions": []
         },
@@ -243,7 +243,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
-          "RowNumber": 4,
+          "RowNumber": 3,
           "RowSpan": 1,
           "Versions": []
         },
@@ -367,7 +367,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Versions": []
         },
@@ -498,7 +498,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 2,
+          "RowNumber": 3,
           "RowSpan": 1
         },
         {
@@ -692,7 +692,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
-          "RowNumber": 2,
+          "RowNumber": 1,
           "RowSpan": 1
         },
         {
@@ -796,7 +796,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
           "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
           "PropertyGuid": "4bc39efb-1f46-4a1e-8b8c-04f2b90d6a8b",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": [
             {
@@ -954,13 +954,10 @@
           "Name": "ControlGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 45.7
+              "Percentage": 58.97
             },
             {
-              "Percentage": 31.8
-            },
-            {
-              "Percentage": 22.5
+              "Percentage": 41.03
             }
           ],
           "ColumnNumber": 0,
@@ -973,7 +970,7 @@
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "37cbbcf8-6c4a-43d1-adcf-cba7170ea5aa",
           "Name": "FrameworkBaseSberDevSberDev",
-          "ColumnNumber": 2,
+          "ColumnNumber": 1,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
           "ParentGuid": "62142756-6b1a-4b8b-8db0-8c2bf8c45fca",
@@ -997,14 +994,27 @@
         },
         {
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "ffacf6da-53f6-4e64-a18e-63ded3e3e0c0",
+          "Name": "InvoiceSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "68c51acd-6680-4d9e-bdcf-21e3fd4d6820",
+          "PropertyGuid": "5352c228-4f67-4a98-8ea9-14aba2d8a888",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "9be709bf-aadf-4e6f-8046-ddce024ad4e3",
           "Name": "PayTypeBaseSberDevSberDev",
-          "ColumnNumber": 1,
+          "ColumnNumber": 0,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
-          "ParentGuid": "62142756-6b1a-4b8b-8db0-8c2bf8c45fca",
+          "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
           "PropertyGuid": "e5d2905f-3cb2-44fc-898a-72caeb11a85f",
-          "RowNumber": 0,
+          "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1023,23 +1033,10 @@
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
-          "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
-          "RowNumber": 1,
-          "RowSpan": 1,
-          "Versions": []
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "ffacf6da-53f6-4e64-a18e-63ded3e3e0c0",
-          "Name": "InvoiceSberDevSberDev",
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
-          "ParentGuid": "68c51acd-6680-4d9e-bdcf-21e3fd4d6820",
-          "PropertyGuid": "5352c228-4f67-4a98-8ea9-14aba2d8a888",
+          "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
           "RowNumber": 2,
           "RowSpan": 1,
-          "Settings": []
+          "Versions": []
         }
       ],
       "IsAncestorMetadata": true,

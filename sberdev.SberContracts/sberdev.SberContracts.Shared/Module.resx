@@ -107,7 +107,7 @@ When choosing the calculation type as a percentage, the "RESIDUAL:" field is ind
     <value>It is necessary to track the approval of the procurement document by the department of the same name. And complete the task as the document will be successfully approved.</value>
   </data>
   <data name="MCTaskInstr" xml:space="preserve">
-    <value>It is necessary to check the signature of our organization and the signature of the counterparty on the agreement (and additional contractual document). If signatures are missing, it is advisable to download the complete document flow from Diadoc and import the necessary .sig files into the document being checked.</value>
+    <value>By completing this task, you confirm that the documents specified in the fields “Agreement” and “Concluding document” are signed on both sides. Their status will be changed accordingly.</value>
   </data>
   <data name="ProvidePostalInformationInstruction" xml:space="preserve">
     <value>Postal information must be provided. Indicate the following in the comment: address, zip code, full name and number of the recipient.</value>

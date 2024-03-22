@@ -486,30 +486,6 @@
   ],
   "PublicFunctions": [
     {
-      "Name": "CheckSignatures",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "approvalTask",
-          "ParameterType": "global::sberdev.SBContracts.IApprovalTask",
-          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "document",
-          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "isNeedValid",
-          "ParameterType": "global::System.Boolean",
-          "ParameterTypeFullName": "System.Boolean"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::System.Collections.Generic.List<global::System.Boolean>",
-      "ReturnTypeFullName": "System.Collections.Generic.List"
-    },
-    {
       "Name": "ShowCheckSignaturesResult",
       "Parameters": [
         {

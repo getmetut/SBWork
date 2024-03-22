@@ -197,38 +197,44 @@ namespace sberdev.SBContracts
       }
       
       //============================================ ATS --------------- Заполнение списка продуктов и калькуляции
-        string spisokProd = "";
-        string spisokCalc = "";
-        if (_obj.ProdCollectionExBaseSberDev.Count > 0)
+      string spisokProd = "";
+      int prodcount = 0;
+      string spisokCalc = "";
+      if (_obj.ProdCollectionExBaseSberDev.Count > 0)
+      {
+        foreach (var elem in _obj.ProdCollectionExBaseSberDev)
         {
-          foreach (var elem in _obj.ProdCollectionExBaseSberDev)
-          {
-            spisokProd += elem.Product.Name + "; ";
-          }
+          spisokProd += elem.Product.Name + ";";
+          prodcount += 1;
         }
-        if (_obj.ProdCollectionPrBaseSberDev.Count > 0)
+      }
+      if (_obj.ProdCollectionPrBaseSberDev.Count > 0)
+      {
+        foreach (var elem in _obj.ProdCollectionPrBaseSberDev)
         {
-          foreach (var elem2 in _obj.ProdCollectionPrBaseSberDev)
-          {
-            spisokProd += elem2.Product.Name + "; ";
-          }
+          spisokProd += elem.Product.Name + ";";
+          prodcount += 1;
         }
-        if (_obj.CalculationBaseSberDev.Count > 0)
-        {
-          foreach (var elem3 in _obj.CalculationBaseSberDev)
-          {
-            spisokCalc += elem3.ProductCalc.Name + " " + elem3.AbsoluteCalc.ToString() + " (" + elem3.PercentCalc.ToString() + "); ";
-          }
-        }
+      }
+      if (_obj.CalculationBaseSberDev.Count > 0)
+      {
+        if (prodcount == 1)
+          spisokCalc += spisokProd + ":";
         
-        spisokProd = spisokProd.Substring(0, Math.Min(spisokProd.Length, 999));
-        spisokCalc = spisokCalc.Substring(0, Math.Min(spisokCalc.Length, 999));
-          
-        if (_obj.ProductListSDev != spisokProd)
-          _obj.ProductListSDev = spisokProd;
-        
-        if (_obj.CalcListSDev != spisokCalc)
-          _obj.CalcListSDev = spisokCalc;
+        foreach (var elem3 in _obj.CalculationBaseSberDev)
+        {
+          spisokCalc += elem3.ProductCalc.Name + " " + elem3.AbsoluteCalc.ToString() + ";";
+        }
+      }
+      
+      spisokProd = spisokProd.Substring(0, Math.Min(spisokProd.Length, 999));
+      spisokCalc = spisokCalc.Substring(0, Math.Min(spisokCalc.Length, 999));
+      
+      if (_obj.ProductListSDev != spisokProd)
+        _obj.ProductListSDev = spisokProd;
+      
+      if (_obj.CalcListSDev != spisokCalc)
+        _obj.CalcListSDev = spisokCalc;
       //=============================================== ATS --------------- Заполнение списка продуктов и калькуляции
     }
   }

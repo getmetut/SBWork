@@ -55,18 +55,26 @@ namespace sberdev.SBContracts.Shared
       
       if (_obj.FrameworkBaseSberDev == true)
       {
-        _obj.State.Properties.TotalAmount.IsEnabled = false ;
+        _obj.State.Properties.TotalAmount.IsEnabled = false;
         _obj.State.Properties.Currency.IsEnabled = false ;
         ChangeCalculationAccess(false);
       }
       else
       {
-        _obj.State.Properties.TotalAmount.IsEnabled = true ;
-        _obj.State.Properties.Currency.IsEnabled = true ;
+        _obj.State.Properties.TotalAmount.IsEnabled = true;
+        _obj.State.Properties.Currency.IsEnabled = true;
+      }
+      
+      if (_obj.DocumentKind.Name == "Счет-договор" || _obj.DocumentKind.Name == "Договор-оферта")
+      {
+        _obj.State.Properties.FrameworkBaseSberDev.IsVisible = false;
+      }
+      else
+      {
+        _obj.State.Properties.FrameworkBaseSberDev.IsVisible = true;
       }
       
       CancelRequiredPropeties();
-   //   CancelRequiredPropetiesByType();
     }
     
     public void ChangeCalculationAccess(bool flag)
@@ -329,6 +337,54 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.ProdCollectionExBaseSberDev.IsRequired = analiticSetup.ProdIsRequired.GetValueOrDefault() ;
       
       CancelRequiredPropeties();
+    }
+    
+    public void HighlightClosedAnalitics()
+    {
+      _obj.State.Properties.MVPBaseSberDev.HighlightColor = _obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Closed ?
+        Colors.Common.Red : Colors.Common.White;
+      _obj.State.Properties.MVZBaseSberDev.HighlightColor = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Closed ?
+        Colors.Common.Red : Colors.Common.White;
+      _obj.State.Properties.AccArtExBaseSberDev.HighlightColor = _obj.AccArtExBaseSberDev != null && _obj.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed ?
+        Colors.Common.Red : Colors.Common.White;
+      _obj.State.Properties.AccArtPrBaseSberDev.HighlightColor = _obj.AccArtPrBaseSberDev != null && _obj.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed ?
+        Colors.Common.Red : Colors.Common.White;
+      
+      bool prodFlag = true;
+      foreach (var product in _obj.ProdCollectionExBaseSberDev)
+      {
+        if (product.Product.Status == SberContracts.ProductsAndDevices.Status.Closed)
+          prodFlag = false;
+      }
+      _obj.State.Properties.ProdCollectionExBaseSberDev.HighlightColor = prodFlag ? Colors.Common.White : Colors.Common.Red;
+      
+      prodFlag = true;
+      foreach (var product in _obj.ProdCollectionPrBaseSberDev)
+      {
+        if (product.Product.Status == SberContracts.ProductsAndDevices.Status.Closed)
+          prodFlag = false;
+      }
+      _obj.State.Properties.ProdCollectionPrBaseSberDev.HighlightColor = prodFlag ? Colors.Common.White : Colors.Common.Red;
+    }
+    
+    public bool CheckOldAnalicitics()
+    {
+      bool flag = true;
+      flag = _obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Closed;
+      flag = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Closed;
+      flag = _obj.AccArtExBaseSberDev != null && _obj.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed;
+      flag = _obj.AccArtPrBaseSberDev != null && _obj.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed;
+      foreach (var product in _obj.ProdCollectionExBaseSberDev)
+      {
+        if (product.Product.Status == SberContracts.ProductsAndDevices.Status.Closed)
+          flag = false;
+      }
+      foreach (var product in _obj.ProdCollectionPrBaseSberDev)
+      {
+        if (product.Product.Status == SberContracts.ProductsAndDevices.Status.Closed)
+          flag = false;
+      }
+      return flag;
     }
   }
 }

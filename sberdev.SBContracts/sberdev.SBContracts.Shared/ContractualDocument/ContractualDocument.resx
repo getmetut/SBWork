@@ -64,4 +64,10 @@
   <data name="PurchComNumberInstruction" xml:space="preserve">
     <value>Enter the number of the purchasing committee at which the purchase was agreed upon. Input mask NNN.N (for example, 098.1). If the ZK was not carried out (no alternative source), then leave the field empty.</value>
   </data>
+  <data name="Check" xml:space="preserve">
+    <value>Check your analytics and exclude closed entries.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
 </root>

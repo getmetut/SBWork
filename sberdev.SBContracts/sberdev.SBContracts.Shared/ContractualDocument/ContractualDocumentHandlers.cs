@@ -90,6 +90,7 @@ namespace sberdev.SBContracts
       if (e.NewValue != e.OldValue)
       {
         _obj.ModifiedSberDev = Calendar.Now;
+        _obj.FrameworkBaseSberDev = false;
       }
     }
 

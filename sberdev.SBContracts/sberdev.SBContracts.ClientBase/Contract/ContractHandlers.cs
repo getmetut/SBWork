@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -13,12 +13,13 @@ namespace sberdev.SBContracts
     public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
     {
       base.Refresh(e);
+      /*
       var analiticSetup = SberContracts.AnaticsSetups.GetAll(r => (r.DocumentGroup == _obj.DocumentGroup) && (r.DocumentType == SberContracts.AnaticsSetup.DocumentType.Contract) && (r.DocumentKind == _obj.DocumentKind)).FirstOrDefault();
       if (analiticSetup != null)
         PublicFunctions.ContractualDocument.ApplyAnaliticSetup(_obj, analiticSetup);
       else
         if (_obj.ContrTypeBaseSberDev.HasValue)
-          PublicFunctions.ContractualDocument.ChangeAnaliticsAccess(_obj, _obj.ContrTypeBaseSberDev.Value.Value);
+          PublicFunctions.ContractualDocument.ChangeAnaliticsAccess(_obj, _obj.ContrTypeBaseSberDev.Value.Value);*/
     }
 
     public override void Showing(Sungero.Presentation.FormShowingEventArgs e)

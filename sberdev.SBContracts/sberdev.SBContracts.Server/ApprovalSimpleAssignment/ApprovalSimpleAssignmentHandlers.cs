@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -19,13 +19,15 @@ namespace sberdev.SBContracts
         var contractual = incInv.LeadingDocument;
         if (contractual != null)
         {
-          contractual.ManuallyCheckedSberDev = true;
+          contractual.InternalApprovalState = SBContracts.OfficialDocument.InternalApprovalState.Signed;
+          contractual.ExternalApprovalState = SBContracts.OfficialDocument.ExternalApprovalState.Signed;
           contractual.Save();
         }
         var accounting = incInv.AccDocSberDev;
         if (accounting != null)
         {
-          accounting.ManuallyCheckedSberDev = true;
+          accounting.InternalApprovalState = SBContracts.OfficialDocument.InternalApprovalState.Signed;
+          accounting.ExternalApprovalState = SBContracts.OfficialDocument.ExternalApprovalState.Signed;
           accounting.Save();
         }
       }
