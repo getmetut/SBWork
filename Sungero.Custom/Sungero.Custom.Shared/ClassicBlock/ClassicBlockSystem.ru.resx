@@ -103,4 +103,34 @@
   <data name="Action_CanceledDescription" xml:space="preserve">
     <value>Выполнение задания с результатом "Отказ"</value>
   </data>
+  <data name="Enum_Result_Ispoln" xml:space="preserve">
+    <value>Назначить исполнителя</value>
+  </data>
+  <data name="Action_Ispoln" xml:space="preserve">
+    <value>Назначить исполнителя</value>
+  </data>
+  <data name="Action_IspolnHint" xml:space="preserve">
+    <value>Выполнить с результатом "Назначить исполнителя"</value>
+  </data>
+  <data name="Action_IspolnConfirmationMessage" xml:space="preserve">
+    <value>Выполнить задание с результатом "Назначить исполнителя"?</value>
+  </data>
+  <data name="Action_IspolnDescription" xml:space="preserve">
+    <value>Выполнение задания с результатом "Назначить исполнителя"</value>
+  </data>
+  <data name="Resource_c9c4beefec5b4b3796d4959c17991279" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_c9c4beefec5b4b3796d4959c17991279_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_45c3f7afea6f40948e21e643b6358f4a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_45c3f7afea6f40948e21e643b6358f4a_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ad03c4af7bfe4967aa2cdaa3265bdbe3" xml:space="preserve">
+    <value />
+  </data>
 </root>

@@ -154,9 +154,6 @@
       ]
     }
   ],
-  "HandledEvents": [
-    "CreatedServer"
-  ],
   "IconResourcesKeys": [],
   "IntegrationServiceName": "CustomAuthorJob",
   "IsVisibleThreadText": true,

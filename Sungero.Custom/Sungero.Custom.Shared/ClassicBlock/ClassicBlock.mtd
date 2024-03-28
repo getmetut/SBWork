@@ -33,6 +33,16 @@
       "LargeIconName": "Action_Canceled_large_bf9f52decd1a41adaf81c6975f074bba.png",
       "NeedConfirmation": true,
       "SmallIconName": "Action_Canceled_small_bf9f52decd1a41adaf81c6975f074bba.png"
+    },
+    {
+      "$type": "Sungero.Workflow.Shared.ExecutionResultActionMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "4d329ab3-79a1-4e1c-bd41-bd0ca64534df",
+      "Name": "Ispoln",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_Ispoln_large_4d329ab379a14e1cbd41bd0ca64534df.png",
+      "NeedConfirmation": true,
+      "SmallIconName": "Action_Ispoln_small_4d329ab379a14e1cbd41bd0ca64534df.png"
     }
   ],
   "AssociatedGuid": "b0bd7c9b-0cbf-4126-a2b1-5bad25c0ef82",
@@ -51,6 +61,92 @@
     "Controls": [],
     "IsAncestorMetadata": true
   },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.WorkflowEntityStandaloneFormMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "e0de95d5-b9a6-4bbc-ac00-8fe44115acf6",
+      "Name": "Card",
+      "Controls": [
+        {
+          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
+          "NameGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "Name": "ControlGroup",
+          "ColumnDefinitions": [
+            {
+              "Percentage": 33.33
+            },
+            {
+              "Percentage": 33.33
+            },
+            {
+              "Percentage": 33.33
+            }
+          ],
+          "IsAncestorMetadata": true,
+          "Overridden": [
+            "Controls",
+            "ColumnDefinitions"
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "c9c4beef-ec5b-4b37-96d4-959c17991279",
+          "Name": "AuthorControl",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "PropertyGuid": "51a65ccf-9098-46d5-a853-c9a7f7e95d28",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "45c3f7af-ea6f-4094-8e21-e643b6358f4a",
+          "Name": "PerformerControl",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "PropertyGuid": "4d924904-9c82-4187-ac18-b3620cf6ec87",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "ad03c4af-7bfe-4967-aa2c-daa3265bdbe3",
+          "Name": "DeadlineControl",
+          "ColumnNumber": 2,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+          "ParentGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "PropertyGuid": "5380ec02-41db-47eb-8c29-18704454f122",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "bb357220-a8fc-4fcc-accc-123800aabb32",
+          "Name": "Employee",
+          "ColumnNumber": 1,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "PropertyGuid": "5bfda992-d01f-41ea-8118-e898fbdba5d2",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
+        }
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ]
+    }
+  ],
   "IconResourcesKeys": [],
   "IntegrationServiceName": "CustomClassicBlock",
   "IsVisibleThreadText": true,
@@ -76,12 +172,26 @@
           "NameGuid": "4e91c314-a105-479d-b379-f421264fc57b",
           "Name": "Canceled",
           "Code": "Canceled"
+        },
+        {
+          "NameGuid": "07928853-5b45-4857-abea-f0e96e8c5026",
+          "Name": "Ispoln",
+          "Code": "Ispoln"
         }
       ],
       "IsAncestorMetadata": true,
       "Overridden": [
         "Values"
       ]
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "5bfda992-d01f-41ea-8118-e898fbdba5d2",
+      "Name": "Employee",
+      "Code": "Employee2",
+      "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "b864937c-582d-4f6f-8ceb-eecdec37e0fd"
     }
   ],
   "PublicStructures": [],
@@ -118,6 +228,16 @@
         "ActionGuid": "bf9f52de-cd1a-41ad-af81-c6975f074bba",
         "ButtonSize": "Large",
         "Index": 2,
+        "IsAutoGenerated": true,
+        "ParentGuid": "ac82503a-7a47-49d0-b90c-9bb512c4559c"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "5d5c2c88-dd97-4965-a2ca-32d68a344c1b",
+        "Name": "Ispoln",
+        "ActionGuid": "4d329ab3-79a1-4e1c-bd41-bd0ca64534df",
+        "ButtonSize": "Large",
+        "Index": 3,
         "IsAutoGenerated": true,
         "ParentGuid": "ac82503a-7a47-49d0-b90c-9bb512c4559c"
       }

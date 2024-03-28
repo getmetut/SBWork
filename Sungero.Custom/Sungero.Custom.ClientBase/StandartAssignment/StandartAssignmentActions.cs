@@ -9,6 +9,20 @@ namespace Sungero.Custom.Client
 {
   partial class StandartAssignmentActions
   {
+    public virtual void Ispoln(Sungero.Workflow.Client.ExecuteResultActionArgs e)
+    {
+      if (_obj.Employee == null)
+      {
+        _obj.State.Properties.Employee.HighlightColor = Colors.Common.LightYellow;
+        e.AddError("Чтобы назначить исполнителя - укажите его на карточке задания!");
+      }
+    }
+
+    public virtual bool CanIspoln(Sungero.Workflow.Client.CanExecuteResultActionArgs e)
+    {
+      return true;
+    }
+
     public virtual void DoWork(Sungero.Workflow.Client.ExecuteResultActionArgs e)
     {
       if (_obj.ActiveText == null)

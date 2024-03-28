@@ -164,9 +164,6 @@
       ]
     }
   ],
-  "HandledEvents": [
-    "CreatedServer"
-  ],
   "IconResourcesKeys": [],
   "IntegrationServiceName": "CustomKASoglJob",
   "IsVisibleThreadText": true,

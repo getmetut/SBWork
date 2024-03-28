@@ -219,12 +219,21 @@ namespace sberdev.SBContracts
       if (_obj.CalculationBaseSberDev.Count > 0)
       {
         if (prodcount == 1)
-          spisokCalc += spisokProd + ":";
+        {
+          string ts = _obj.TotalAmount.HasValue ? " " + _obj.TotalAmount.Value.ToString() : "";
+          spisokCalc += spisokProd + ts;
+        }
         
         foreach (var elem3 in _obj.CalculationBaseSberDev)
         {
-          spisokCalc += elem3.ProductCalc.Name + " " + elem3.AbsoluteCalc.ToString() + ";";
+          string dfr = elem3.InterestCalc.HasValue ? " " + elem3.InterestCalc.ToString() : "" ;
+          spisokCalc += spisokProd + ";" + elem3.ProductCalc.Name + dfr + ";";
         }
+      }
+      else
+      {
+        string tss = _obj.TotalAmount.HasValue ? " " + _obj.TotalAmount.Value.ToString() : "";
+        spisokCalc += spisokProd + tss + ";";
       }
       
       spisokProd = spisokProd.Substring(0, Math.Min(spisokProd.Length, 999));

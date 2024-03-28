@@ -10,5 +10,15 @@ namespace sberdev.SBContracts.Client
   partial class ExchangeDocumentFunctions
   {
 
+    /// <summary>
+    /// Перекрытие доступных к выбору типов документов для смены типа
+    /// </summary>       
+    public override List<Sungero.Domain.Shared.IEntityInfo> GetTypesAvailableForChange()
+    {
+       var BaseTaskList = base.GetTypesAvailableForChange();
+       BaseTaskList.Add(Sungero.Custom.NDAs.Info);
+       return BaseTaskList;
+    }
+
   }
 }

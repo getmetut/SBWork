@@ -707,7 +707,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "4.7.0.0",
+  "Version": "4.7.0.4",
   "Widgets": [],
   "Versions": [
     {

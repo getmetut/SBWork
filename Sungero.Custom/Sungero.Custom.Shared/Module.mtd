@@ -198,6 +198,17 @@
   "InterfaceNamespace": "Sungero.Custom",
   "IsolatedAssemblyName": "Sungero.Custom.Isolated",
   "IsolatedNamespace": "Sungero.Custom.Isolated",
+  "Jobs": [
+    {
+      "NameGuid": "605d225b-de9f-4db0-af26-37766288e66b",
+      "Name": "JobSearchDocumProdCalc",
+      "GenerateHandler": true,
+      "IsAtEndOfMonth": true,
+      "Monthly": "DaysOfMonth",
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T22:30:00"
+    }
+  ],
   "Libraries": [
     {
       "NameGuid": "bdc4ab7b-7836-4131-9677-f8662d2ef6bd",
@@ -325,7 +336,7 @@
       "NeedShowMarkedCount": false
     }
   ],
-  "Version": "0.1.0.13",
+  "Version": "0.1.0.24",
   "Widgets": [],
   "Versions": [
     {

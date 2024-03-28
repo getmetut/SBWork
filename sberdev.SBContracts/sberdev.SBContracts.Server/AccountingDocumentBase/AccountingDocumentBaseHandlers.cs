@@ -145,15 +145,28 @@ namespace sberdev.SBContracts
       {
         foreach (var elem in _obj.ProdCollectionBaseSberDev)
         {
-          spisokProd += elem.Product.Name + "; ";
-        }
+          if (_obj.ProdCollectionBaseSberDev.Count == 1)
+          {
+            string ts = _obj.TotalAmount.HasValue ? " " + _obj.TotalAmount.Value.ToString() : "";
+            spisokProd += elem.Product.Name + ts + ";";
+          }
+          else
+            spisokProd += elem.Product.Name + ";";
+        }        
+          
       }
       if (_obj.CalculationBaseSberDev.Count > 0)
       {
         foreach (var elem3 in _obj.CalculationBaseSberDev)
         {
-          spisokCalc += elem3.ProductCalc.Name + " " + elem3.AbsoluteCalc.ToString() + " (" + elem3.PercentCalc.ToString() + "); ";
+          string rp = elem3.InterestCalc.HasValue ? " " + elem3.InterestCalc.ToString() : "";
+          spisokCalc += spisokProd + ";" + elem3.ProductCalc.Name + rp + ";";
         }
+      }
+      else
+      {
+        string ts2 = _obj.TotalAmount.HasValue ? " " + _obj.TotalAmount.Value.ToString() : "";
+        spisokCalc += spisokProd + ":" + ts2;
       }
       
       spisokProd = spisokProd.Substring(0, Math.Min(spisokProd.Length, 999));

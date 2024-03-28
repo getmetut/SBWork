@@ -94,4 +94,10 @@
   <data name="sf_20c6f0c0_c53e_41f1_bc2d_7c7e73d205fc" xml:space="preserve">
     <value>Продукты и калькуляции</value>
   </data>
+  <data name="JobDisplayName_605d225bde9f4db0af2637766288e66b" xml:space="preserve">
+    <value>Фоновый процесс отбора документов и заполнение полей о продуктах и калькуляциях</value>
+  </data>
+  <data name="JobDescription_605d225bde9f4db0af2637766288e66b" xml:space="preserve">
+    <value>Фоновый процесс отбора документов и заполнение полей о продуктах и калькуляциях</value>
+  </data>
 </root>

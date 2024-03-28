@@ -39,6 +39,9 @@
       "Name": "StandartAssignment",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
       "EntityType": "321f5d21-9aef-4db8-a98f-96ad59439e80",
+      "HandledEvents": [
+        "StandartAssignmentStartAssignment"
+      ],
       "Properties": []
     },
     {
@@ -47,6 +50,9 @@
       "Name": "PlusAssignment",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
       "EntityType": "3a50daaf-e0f2-4710-8120-c22fd6aa2cd7",
+      "HandledEvents": [
+        "PlusAssignmentStartAssignment"
+      ],
       "Properties": []
     },
     {
@@ -63,6 +69,9 @@
       "Name": "AuthorJob",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
       "EntityType": "6b6ab7f9-408b-417f-82df-24631d8167f1",
+      "HandledEvents": [
+        "AuthorJobStartAssignment"
+      ],
       "Properties": []
     }
   ],

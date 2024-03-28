@@ -103,4 +103,19 @@
   <data name="Resource_ad03c4af7bfe4967aa2cdaa3265bdbe3" xml:space="preserve">
     <value />
   </data>
+  <data name="Enum_Result_Ispoln" xml:space="preserve">
+    <value>Назначить исполнителя</value>
+  </data>
+  <data name="Action_Ispoln" xml:space="preserve">
+    <value>Назначить исполнителя</value>
+  </data>
+  <data name="Action_IspolnHint" xml:space="preserve">
+    <value>Выполнить с результатом "Назначить исполнителя"</value>
+  </data>
+  <data name="Action_IspolnConfirmationMessage" xml:space="preserve">
+    <value>Выполнить задание с результатом "Назначить исполнителя"?</value>
+  </data>
+  <data name="Action_IspolnDescription" xml:space="preserve">
+    <value>Выполнение задания с результатом "Назначить исполнителя"</value>
+  </data>
 </root>

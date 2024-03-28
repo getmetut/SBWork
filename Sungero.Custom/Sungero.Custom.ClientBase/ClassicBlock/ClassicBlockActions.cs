@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -9,6 +9,20 @@ namespace Sungero.Custom.Client
 {
   partial class ClassicBlockActions
   {
+    public virtual void Ispoln(Sungero.Workflow.Client.ExecuteResultActionArgs e)
+    {
+      if (_obj.Employee == null)
+      {
+        _obj.State.Properties.Employee.HighlightColor = Colors.Common.LightYellow;
+        e.AddError("Чтобы назначить исполнителя - укажите его на карточке задания!");
+      }
+    }
+
+    public virtual bool CanIspoln(Sungero.Workflow.Client.CanExecuteResultActionArgs e)
+    {
+      return true;
+    }
+
     public virtual void Canceled(Sungero.Workflow.Client.ExecuteResultActionArgs e)
     {
       

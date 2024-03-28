@@ -9,6 +9,22 @@ namespace Sungero.Custom.Client
 {
   partial class PlusAssignmentActions
   {
+    public virtual void AddIsp(Sungero.Workflow.Client.ExecuteResultActionArgs e)
+    {
+      if (_obj.Employee == null)
+      {
+        _obj.State.Properties.Employee.HighlightColor = Colors.Common.LightYellow;
+        e.AddError("чтобы назначить исполнителя - укажите его на карточке задания!");
+      }
+      
+      
+    }
+
+    public virtual bool CanAddIsp(Sungero.Workflow.Client.CanExecuteResultActionArgs e)
+    {
+      return true;
+    }
+
     public virtual void DoWork(Sungero.Workflow.Client.ExecuteResultActionArgs e)
     {
       if (_obj.ActiveText == null)
