@@ -79,4 +79,34 @@
   <data name="Action_TransferBodySberDevDescription" xml:space="preserve">
     <value>Скопировать тело докумена с подписями в карточку по указанному ИД.</value>
   </data>
+  <data name="Action_SetMetadataSberDev" xml:space="preserve">
+    <value>Запись метаИД</value>
+  </data>
+  <data name="Action_SetMetadataSberDevHint" xml:space="preserve">
+    <value>Записать ИД карточки документа в метаданные последней версии.</value>
+  </data>
+  <data name="Ribbon_AdministrationMenuSberDev_1b49aedfb54e43d8b0ea20ee3f732312" xml:space="preserve">
+    <value>Администрирование</value>
+  </data>
+  <data name="Action_GetMetadataSberDev" xml:space="preserve">
+    <value>Получить метаИД</value>
+  </data>
+  <data name="Action_GetMetadataSberDevHint" xml:space="preserve">
+    <value>Получить ИД карточки документа из метаданных последней версии.</value>
+  </data>
+  <data name="Action_SetMetadataSberDevDescription" xml:space="preserve">
+    <value>Тест мета данных</value>
+  </data>
+  <data name="Action_GetMetadataSberDevDescription" xml:space="preserve">
+    <value>Тест метаданных</value>
+  </data>
+  <data name="Action_UnblockCardSberDev" xml:space="preserve">
+    <value>Разблокировать карточку</value>
+  </data>
+  <data name="Action_UnblockCardSberDevHint" xml:space="preserve">
+    <value>Разблокируйте карту через базу данных.</value>
+  </data>
+  <data name="Action_UnblockCardSberDevDescription" xml:space="preserve">
+    <value>Карточка документа будет разблокирована посредством прямого запроса на удаление записи из таблицы Locks.</value>
+  </data>
 </root>

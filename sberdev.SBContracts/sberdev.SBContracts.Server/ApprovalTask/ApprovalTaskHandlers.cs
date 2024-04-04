@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -12,6 +12,16 @@ namespace sberdev.SBContracts
   partial class ApprovalTaskServerHandlers
   {
 
+    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
+    {
+      base.BeforeSave(e);
+      var document = _obj.DocumentGroup.OfficialDocuments.First();
+      if (document != null && _obj.DeliveryMethod != document.DeliveryMethod && document.DeliveryMethod != null)
+      {
+        _obj.DeliveryMethod = document.DeliveryMethod;
+      }
+    }
+
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       base.Created(e);
@@ -20,8 +30,9 @@ namespace sberdev.SBContracts
 
     public override void BeforeStart(Sungero.Workflow.Server.BeforeStartEventArgs e)
     {
+      var doc = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
       base.BeforeStart(e);
-      Functions.ApprovalTask.SendDiadocSettingsTask(_obj);
+      Functions.ApprovalTask.SendDiadocSettingsTask(_obj, doc);
       _obj.NeedAbort = false;
     }
 

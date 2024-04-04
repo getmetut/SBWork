@@ -92,13 +92,13 @@
     <value />
   </data>
   <data name="Action_SetMetadataSberDev" xml:space="preserve">
-    <value>SetMetadata</value>
+    <value>Set metaID</value>
   </data>
   <data name="Action_SetMetadataSberDevDescription" xml:space="preserve">
-    <value>Тест мета данных</value>
+    <value>Metadata test</value>
   </data>
   <data name="Action_SetMetadataSberDevHint" xml:space="preserve">
-    <value>SetMetadata</value>
+    <value>Write the ID of document card to metadata of last version. </value>
   </data>
   <data name="Action_SetMetadataSberDevConfirmationMessage" xml:space="preserve">
     <value />
@@ -107,18 +107,42 @@
     <value />
   </data>
   <data name="Action_GetMetadataSberDev" xml:space="preserve">
-    <value>GetMetadata</value>
+    <value>Get metaID</value>
   </data>
   <data name="Action_GetMetadataSberDevDescription" xml:space="preserve">
-    <value>GetMetadata</value>
+    <value>Metadata test</value>
   </data>
   <data name="Action_GetMetadataSberDevHint" xml:space="preserve">
-    <value>GetMetadata</value>
+    <value>Get the ID of document card from metadata of last version. </value>
   </data>
   <data name="Action_GetMetadataSberDevConfirmationMessage" xml:space="preserve">
     <value />
   </data>
   <data name="Action_GetMetadataSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Ribbon_AdministrationMenuSberDev_1b49aedfb54e43d8b0ea20ee3f732312" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="Ribbon_AdministrationMenuSberDevDescription_1b49aedfb54e43d8b0ea20ee3f732312" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Ribbon_AdministrationMenuSberDevHint_1b49aedfb54e43d8b0ea20ee3f732312" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_UnblockCardSberDev" xml:space="preserve">
+    <value>Unlock card</value>
+  </data>
+  <data name="Action_UnblockCardSberDevDescription" xml:space="preserve">
+    <value>The document card will be unlocked through a direct request to delete records from the Locks table.</value>
+  </data>
+  <data name="Action_UnblockCardSberDevHint" xml:space="preserve">
+    <value>Unblock the card through the database.</value>
+  </data>
+  <data name="Action_UnblockCardSberDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_UnblockCardSberDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
 </root>

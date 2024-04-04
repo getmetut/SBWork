@@ -16,9 +16,12 @@ namespace sberdev.SBContracts.Server
         base.UpdateDocumentApprovalState(document, state);
     }
     
-    public void SendDiadocSettingsTask()
+    /// <summary>
+    /// Функция направля
+    /// </summary>
+    /// <param name="doc"></param>
+    public void SendDiadocSettingsTask(Sungero.Docflow.IOfficialDocument doc)
     {
-      var doc = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
       var contr = SBContracts.ContractualDocuments.As(doc);
       SBContracts.ICounterparty cp = null;
       if (contr != null)
@@ -38,6 +41,47 @@ namespace sberdev.SBContracts.Server
       task.Subject = sberdev.SBContracts.ApprovalTasks.Resources.SendDiadocSettingsTaskSubject + task.Counterparty.Name + sberdev.SBContracts.ApprovalTasks.Resources.SendDiadocSettingsTaskSubject2;
       task.NeedsReview = false;
       task.Start();
+    }
+    
+    /// <summary>
+    /// Функция возвращает true если в согласуемом документе указаны закрытые аналитики
+    /// </summary>
+    [Public]
+    public bool OldAnaliticsInDocument(Sungero.Docflow.IOfficialDocument doc)
+    {
+      var contractual = SBContracts.ContractualDocuments.As(doc);
+      var accounting = SBContracts.AccountingDocumentBases.As(doc);
+      bool flag = false;
+      if (contractual != null)
+      {
+        if (contractual.MVPBaseSberDev != null && contractual.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Closed)
+          flag = true;
+        if (contractual.MVZBaseSberDev != null && contractual.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Closed)
+          flag = true;
+        if (contractual.AccArtExBaseSberDev != null && contractual.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed)
+          flag = true;
+        if (contractual.AccArtPrBaseSberDev != null && contractual.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed)
+          flag = true;
+        foreach (var prod in contractual.ProdCollectionExBaseSberDev)
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Closed)
+            flag = true;
+        foreach (var prod in contractual.ProdCollectionPrBaseSberDev)
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Closed)
+            flag = true;
+      }
+      if (accounting != null)
+      {
+        if (accounting.MVPBaseSberDev != null && accounting.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Closed)
+          flag = true;
+        if (accounting.MVZBaseSberDev != null && accounting.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Closed)
+          flag = true;
+        if (accounting.AccArtBaseSberDev != null && accounting.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed)
+          flag = true;
+        foreach (var prod in accounting.ProdCollectionBaseSberDev)
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Closed)
+            flag = true;
+      }
+      return flag;
     }
   }
 }

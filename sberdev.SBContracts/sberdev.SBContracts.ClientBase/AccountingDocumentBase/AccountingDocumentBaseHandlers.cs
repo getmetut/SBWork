@@ -21,6 +21,10 @@ namespace sberdev.SBContracts
       {
         _obj.State.Properties.AccDocSberDev.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.AccDocSberDev, false);
       }
+      if (_obj.InvoiceSberDev != null)
+      {
+        _obj.State.Properties.InvoiceSberDev.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.InvoiceSberDev, false);
+      }
     }
 
     public virtual void ContrTypeBaseSberDevValueInput(Sungero.Presentation.EnumerationValueInputEventArgs e)

@@ -25,7 +25,7 @@ namespace sberdev.SBContracts
     {
       base.AccDocSberDevChanged(e);
       
-      if (e.NewValue != null)
+      if (e.NewValue != null && _obj.PayTypeBaseSberDev != SBContracts.IncomingInvoice.PayTypeBaseSberDev.Postpay)
         _obj.PayTypeBaseSberDev = SBContracts.IncomingInvoice.PayTypeBaseSberDev.Postpay;
     }
 
@@ -45,7 +45,7 @@ namespace sberdev.SBContracts
       {
         var date = e.NewValue.Value;
         if (date.DayOfWeek != DayOfWeek.Tuesday && date.DayOfWeek != DayOfWeek.Thursday)
-        _obj.PaymentDueDate = (date.DayOfWeek > DayOfWeek.Thursday || date.DayOfWeek == DayOfWeek.Sunday) ?
+          _obj.PaymentDueDate = (date.DayOfWeek > DayOfWeek.Thursday || date.DayOfWeek == DayOfWeek.Sunday) ?
             Calendar.EndOfWeek(date).AddDays(2) : date.AddDays(1);
       }
     }

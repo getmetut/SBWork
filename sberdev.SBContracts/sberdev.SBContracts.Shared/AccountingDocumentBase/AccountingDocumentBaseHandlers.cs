@@ -30,6 +30,31 @@ namespace sberdev.SBContracts
   partial class AccountingDocumentBaseSharedHandlers
   {
 
+    public virtual void AccDocSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseAccDocSberDevChangedEventArgs e)
+    {
+      if (Equals(e.NewValue, e.OldValue))
+        return;
+      
+      _obj.ModifiedSberDev = Calendar.Now;
+      _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
+      
+      if (e.NewValue != null)
+      {
+        var isInvoice = SBContracts.IncomingInvoices.Is(_obj) || SBContracts.OutgoingInvoices.Is(_obj);
+        if (isInvoice)
+        {
+          if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Postpay)
+            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+        }
+        
+        _obj.State.Properties.AccDocSberDev.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.AccDocSberDev, false);
+      }
+      else
+      {
+        _obj.State.Properties.AccDocSberDev.HighlightColor = Colors.Common.White;
+      }
+    }
+
     public virtual void PayTypeBaseSberDevChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
     {
       if (_obj.PayTypeBaseSberDev == PayTypeBaseSberDev.Postpay)
@@ -44,10 +69,10 @@ namespace sberdev.SBContracts
         return;
       
       _obj.ModifiedSberDev = Calendar.Now;
+      _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
       
       if (e.NewValue != null)
       {
-        _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
         _obj.PayTypeBaseSberDev = PayTypeBaseSberDev.Prepayment;
         
         var isInvoice = SBContracts.IncomingInvoices.Is(_obj) || SBContracts.OutgoingInvoices.Is(_obj);
@@ -56,7 +81,14 @@ namespace sberdev.SBContracts
           if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Prepayment)
             SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
         }
+        
+        _obj.State.Properties.InvoiceSberDev.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.InvoiceSberDev, false);
       }
+      else
+      {
+        _obj.State.Properties.InvoiceSberDev.HighlightColor = Colors.Common.White;
+      }
+      
     }
 
     public override void DocumentKindChanged(Sungero.Docflow.Shared.OfficialDocumentDocumentKindChangedEventArgs e)
@@ -177,31 +209,6 @@ namespace sberdev.SBContracts
       if (e.NewValue != e.OldValue)
       {
         _obj.ModifiedSberDev = Calendar.Now;
-      }
-    }
-
-    public virtual void AccDocSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseAccDocSberDevChangedEventArgs e)
-    {
-      if (Equals(e.NewValue, e.OldValue))
-        return;
-      
-      _obj.ModifiedSberDev = Calendar.Now;
-      
-      if (e.NewValue != null)
-      {
-        _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
-      }
-      
-      if (e.NewValue != null)
-      {
-        var isInvoice = SBContracts.IncomingInvoices.Is(_obj) || SBContracts.OutgoingInvoices.Is(_obj);
-        if (isInvoice)
-        {
-          if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Postpay)
-            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
-        }
-        
-        _obj.State.Properties.AccDocSberDev.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.AccDocSberDev, false);
       }
     }
 
@@ -328,6 +335,10 @@ namespace sberdev.SBContracts
         }
         
         _obj.State.Properties.LeadingDocument.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.LeadingDocument, false);
+      }
+      else
+      {
+        _obj.State.Properties.LeadingDocument.HighlightColor = Colors.Common.White;
       }
     }
 

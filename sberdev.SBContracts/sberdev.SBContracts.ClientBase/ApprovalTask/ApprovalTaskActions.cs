@@ -12,6 +12,15 @@ namespace sberdev.SBContracts.Client
     public override void Start(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       var doc = _obj.DocumentGroup.OfficialDocuments.First();
+      
+      
+      if (PublicFunctions.ApprovalTask.OldAnaliticsInDocument(_obj, doc))
+      {
+        PublicFunctions.Module.ShowErrorMessage(sberdev.SBContracts.ApprovalTasks.Resources.BanOldAnalitics);
+        return;
+      }
+      
+      // Проверка на возможность согласования документа без версий
       var kind = SBContracts.DocumentKinds.As(doc.DocumentKind);
       bool noBodyFlag = kind != null ? kind.NoBodyApprovalSberDev.GetValueOrDefault() : true;
       if (!noBodyFlag && !doc.HasVersions)
@@ -20,6 +29,7 @@ namespace sberdev.SBContracts.Client
         return;
       }
       
+      // Проверка подписей сопуствующих документов счета
       var invoice = SBContracts.IncomingInvoices.As(doc);
       if (invoice != null && !_obj.IsNeedManuallyCheckSberDev.Value)
       {

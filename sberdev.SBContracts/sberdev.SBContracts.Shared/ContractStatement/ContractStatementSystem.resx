@@ -94,4 +94,7 @@
   <data name="ControlGroup_82b022b37ff64bf2acc7b283dde32f21" xml:space="preserve">
     <value>Analytics</value>
   </data>
+  <data name="ControlGroup_8dea542d4cf34f96b734264fd1c235c1" xml:space="preserve">
+    <value>Calculation</value>
+  </data>
 </root>

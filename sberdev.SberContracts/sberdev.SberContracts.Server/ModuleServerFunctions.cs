@@ -1029,16 +1029,23 @@ namespace sberdev.SberContracts.Server
     [Public, Remote]
     public static void FillProfitableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
     {
-      doc.AccArtPrBaseSberDev = docSelected.AccArtPrBaseSberDev ;
-      doc.MVPBaseSberDev = docSelected.MVPBaseSberDev ;
+      if (docSelected.AccArtPrBaseSberDev != null)
+      doc.AccArtPrBaseSberDev = docSelected.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+        docSelected.AccArtPrBaseSberDev : null;
+      if (docSelected.AccArtPrBaseSberDev != null)
+      doc.MVPBaseSberDev = docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+        docSelected.MVPBaseSberDev : null;
       var collection = docSelected.ProdCollectionPrBaseSberDev;
       if (collection.Count > 0)
       {
         doc.ProdCollectionPrBaseSberDev.Clear();
         foreach (var prod in collection)
         {
-          var i = doc.ProdCollectionPrBaseSberDev.AddNew();
-          i.Product = prod.Product;
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          {
+            var target = doc.ProdCollectionPrBaseSberDev.AddNew();
+            target.Product = prod.Product;
+          }
         }
       }
     }
@@ -1050,16 +1057,23 @@ namespace sberdev.SberContracts.Server
     [Public, Remote]
     public static void FillExpendableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
     {
-      doc.MVZBaseSberDev = docSelected.MVZBaseSberDev ;
-      doc.AccArtExBaseSberDev = docSelected.AccArtExBaseSberDev;
+      if (docSelected.AccArtExBaseSberDev != null)
+      doc.AccArtExBaseSberDev = docSelected.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+        docSelected.AccArtExBaseSberDev : null;
+      if (docSelected.MVZBaseSberDev != null)
+      doc.MVZBaseSberDev = docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+        docSelected.MVZBaseSberDev : null;
       var collection = docSelected.ProdCollectionExBaseSberDev;
       if (collection.Count > 0)
       {
         doc.ProdCollectionExBaseSberDev.Clear();
-        foreach (var dir in collection)
+        foreach (var prod in collection)
         {
-          var i = doc.ProdCollectionExBaseSberDev.AddNew();
-          i.Product = dir.Product;
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          {
+            var target = doc.ProdCollectionExBaseSberDev.AddNew();
+            target.Product = prod.Product;
+          }
         }
       }
     }
@@ -1081,9 +1095,12 @@ namespace sberdev.SberContracts.Server
           doc.CalculationFlagBaseSberDev = SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent;
           foreach(var prop in calcSelected)
           {
-            var target = calc.AddNew();
-            target.ProductCalc = prop.ProductCalc;
-            target.PercentCalc = prop.PercentCalc;
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.PercentCalc = prop.PercentCalc;
+            }
           }
         }
         if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Absolute")
@@ -1091,9 +1108,12 @@ namespace sberdev.SberContracts.Server
           doc.CalculationFlagBaseSberDev = SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Absolute;
           foreach(var prop in calcSelected)
           {
-            var target = calc.AddNew();
-            target.ProductCalc = prop.ProductCalc;
-            target.AbsoluteCalc = prop.AbsoluteCalc;
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.AbsoluteCalc = prop.AbsoluteCalc;
+            }
           }
         }
       }
@@ -1115,7 +1135,6 @@ namespace sberdev.SberContracts.Server
       doc.Currency = docSelected.Currency;
       doc.TotalAmount = docSelected.TotalAmount;
       doc.DeliveryMethod = docSelected.DeliveryMethod;
-    //  doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
       doc.Counterparty = docSelected.Counterparty;
     }
     
@@ -1126,16 +1145,23 @@ namespace sberdev.SberContracts.Server
     [Public, Remote]
     public static void FillProfitableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
     {
-      doc.AccArtPrBaseSberDev = docSelected.AccArtBaseSberDev ;
-      doc.MVPBaseSberDev = docSelected.MVPBaseSberDev ;
+      if (docSelected.AccArtBaseSberDev != null)
+      doc.AccArtPrBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+        docSelected.AccArtBaseSberDev : null;
+      if (docSelected.MVPBaseSberDev != null)
+      doc.MVPBaseSberDev = docSelected.MVPBaseSberDev != null && docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+        docSelected.MVPBaseSberDev : null;
       var collection = docSelected.ProdCollectionBaseSberDev;
       if (collection.Count > 0)
       {
         doc.ProdCollectionPrBaseSberDev.Clear();
         foreach (var prod in collection)
         {
-          var i = doc.ProdCollectionPrBaseSberDev.AddNew();
-          i.Product = prod.Product;
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          {
+            var target = doc.ProdCollectionPrBaseSberDev.AddNew();
+            target.Product = prod.Product;
+          }
         }
       }
     }
@@ -1147,16 +1173,23 @@ namespace sberdev.SberContracts.Server
     [Public, Remote]
     public static void FillExpendableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
     {
-      doc.MVZBaseSberDev = docSelected.MVZBaseSberDev ;
-      doc.AccArtExBaseSberDev = docSelected.AccArtBaseSberDev;
+      if (docSelected.AccArtBaseSberDev != null)
+      doc.AccArtExBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+        docSelected.AccArtBaseSberDev : null;
+      if (docSelected.MVZBaseSberDev != null)
+      doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+        docSelected.MVZBaseSberDev : null;
       var collection = docSelected.ProdCollectionBaseSberDev;
       if (collection.Count > 0)
       {
         doc.ProdCollectionExBaseSberDev.Clear();
-        foreach (var dir in collection)
+        foreach (var prod in collection)
         {
-          var i = doc.ProdCollectionExBaseSberDev.AddNew();
-          i.Product = dir.Product;
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          {
+            var target = doc.ProdCollectionExBaseSberDev.AddNew();
+            target.Product = prod.Product;
+          }
         }
       }
     }
@@ -1178,9 +1211,12 @@ namespace sberdev.SberContracts.Server
           doc.CalculationFlagBaseSberDev = SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent;
           foreach(var prop in calcSelected)
           {
-            var target = calc.AddNew();
-            target.ProductCalc = prop.ProductCalc;
-            target.PercentCalc = prop.PercentCalc;
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.PercentCalc = prop.PercentCalc;
+            }
           }
         }
         if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Absolute")
@@ -1188,9 +1224,12 @@ namespace sberdev.SberContracts.Server
           doc.CalculationFlagBaseSberDev = SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Absolute;
           foreach(var prop in calcSelected)
           {
-            var target = calc.AddNew();
-            target.ProductCalc = prop.ProductCalc;
-            target.AbsoluteCalc = prop.AbsoluteCalc;
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.AbsoluteCalc = prop.AbsoluteCalc;
+            }
           }
         }
       }
@@ -1210,7 +1249,7 @@ namespace sberdev.SberContracts.Server
       doc.Currency = docSelected.Currency;
       doc.TotalAmount = docSelected.TotalAmount;
       doc.DeliveryMethod = docSelected.DeliveryMethod;
-  //    doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
+      //    doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
       doc.Counterparty = docSelected.Counterparty;
     }
     
@@ -1222,16 +1261,23 @@ namespace sberdev.SberContracts.Server
     public static void FillProfitableAnaliticsProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
     {
       doc.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable;
-      doc.AccArtBaseSberDev = docSelected.AccArtPrBaseSberDev ;
-      doc.MVPBaseSberDev = docSelected.MVPBaseSberDev ;
+      if (docSelected.AccArtPrBaseSberDev != null)
+      doc.AccArtBaseSberDev = docSelected.AccArtPrBaseSberDev != null && docSelected.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+        docSelected.AccArtPrBaseSberDev : null;
+      if (docSelected.MVPBaseSberDev != null)
+      doc.MVPBaseSberDev = docSelected.MVPBaseSberDev != null && docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+        docSelected.MVPBaseSberDev : null;
       var collection = docSelected.ProdCollectionPrBaseSberDev;
       if (collection.Count > 0)
       {
         doc.ProdCollectionBaseSberDev.Clear();
         foreach (var prod in collection)
         {
-          var i = doc.ProdCollectionBaseSberDev.AddNew();
-          i.Product = prod.Product;
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          {
+            var i = doc.ProdCollectionBaseSberDev.AddNew();
+            i.Product = prod.Product;
+          }
         }
       }
     }
@@ -1244,16 +1290,23 @@ namespace sberdev.SberContracts.Server
     public static void FillExpendableAnaliticsProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
     {
       doc.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable;
-      doc.MVZBaseSberDev = docSelected.MVZBaseSberDev ;
-      doc.AccArtBaseSberDev = docSelected.AccArtExBaseSberDev;
+      if (docSelected.MVZBaseSberDev != null)
+      doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+        docSelected.MVZBaseSberDev : null;
+      if (docSelected.AccArtExBaseSberDev != null)
+      doc.AccArtBaseSberDev = docSelected.AccArtExBaseSberDev != null && docSelected.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+        docSelected.AccArtExBaseSberDev : null;
       var collection = docSelected.ProdCollectionExBaseSberDev;
       if (collection.Count > 0)
       {
         doc.ProdCollectionBaseSberDev.Clear();
-        foreach (var dir in collection)
+        foreach (var prod in collection)
         {
-          var i = doc.ProdCollectionBaseSberDev.AddNew();
-          i.Product = dir.Product;
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          {
+            var i = doc.ProdCollectionBaseSberDev.AddNew();
+            i.Product = prod.Product;
+          }
         }
       }
     }
@@ -1275,9 +1328,12 @@ namespace sberdev.SberContracts.Server
           doc.CalculationFlagBaseSberDev = SBContracts.AccountingDocumentBase.CalculationFlagBaseSberDev.Percent;
           foreach(var prop in calcSelected)
           {
-            var target = calc.AddNew();
-            target.ProductCalc = prop.ProductCalc;
-            target.PercentCalc = prop.PercentCalc;
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.PercentCalc = prop.PercentCalc;
+            }
           }
         }
         if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Absolute")
@@ -1285,9 +1341,12 @@ namespace sberdev.SberContracts.Server
           doc.CalculationFlagBaseSberDev = SBContracts.AccountingDocumentBase.CalculationFlagBaseSberDev.Absolute;
           foreach(var prop in calcSelected)
           {
-            var target = calc.AddNew();
-            target.ProductCalc = prop.ProductCalc;
-            target.AbsoluteCalc = prop.AbsoluteCalc;
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.AbsoluteCalc = prop.AbsoluteCalc;
+            }
           }
         }
       }
@@ -1308,17 +1367,25 @@ namespace sberdev.SberContracts.Server
       doc.Currency = docSelected.Currency;
       doc.TotalAmount = docSelected.TotalAmount;
       doc.DeliveryMethod = docSelected.DeliveryMethod;
-   //   doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
-      doc.AccArtBaseSberDev = docSelected.AccArtBaseSberDev ;
-      doc.MVPBaseSberDev = docSelected.MVPBaseSberDev;
-      doc.MVZBaseSberDev = docSelected.MVZBaseSberDev;
+      if (docSelected.AccArtBaseSberDev != null)
+      doc.AccArtBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+        docSelected.AccArtBaseSberDev : null;
+      if (docSelected.MVPBaseSberDev != null)
+        doc.MVPBaseSberDev = docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVPBaseSberDev : null;
+      if (docSelected.MVZBaseSberDev != null)
+      doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+        docSelected.MVZBaseSberDev : null;
       doc.Counterparty = docSelected.Counterparty;
       doc.ProdCollectionBaseSberDev.Clear();
       var collection = docSelected.ProdCollectionBaseSberDev;
       foreach (var prod in collection)
       {
-        var i = doc.ProdCollectionBaseSberDev.AddNew();
-        i.Product = prod.Product;
+        if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+        {
+          var target = doc.ProdCollectionBaseSberDev.AddNew();
+          target.Product = prod.Product;
+        }
       }
     }
     
@@ -1339,9 +1406,12 @@ namespace sberdev.SberContracts.Server
           doc.CalculationFlagBaseSberDev = SBContracts.AccountingDocumentBase.CalculationFlagBaseSberDev.Percent;
           foreach(var prop in calcSelected)
           {
-            var target = calc.AddNew();
-            target.ProductCalc = prop.ProductCalc;
-            target.PercentCalc = prop.PercentCalc;
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.PercentCalc = prop.PercentCalc;
+            }
           }
         }
         if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Absolute")
@@ -1349,9 +1419,12 @@ namespace sberdev.SberContracts.Server
           doc.CalculationFlagBaseSberDev = SBContracts.AccountingDocumentBase.CalculationFlagBaseSberDev.Absolute;
           foreach(var prop in calcSelected)
           {
-            var target = calc.AddNew();
-            target.ProductCalc = prop.ProductCalc;
-            target.AbsoluteCalc = prop.AbsoluteCalc;
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.AbsoluteCalc = prop.AbsoluteCalc;
+            }
           }
         }
       }

@@ -682,6 +682,19 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "ShowErrorMessage",
+      "Parameters": [
+        {
+          "Name": "message",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
       "Name": "ShowInfoMessage",
       "Parameters": [
         {
@@ -691,6 +704,20 @@
         }
       ],
       "Placement": "Client",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "UnblockEntityInDatabase",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "entity",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        }
+      ],
+      "Placement": "Shared",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
     }
@@ -707,7 +734,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "4.7.0.4",
+  "Version": "4.7.1.0",
   "Widgets": [],
   "Versions": [
     {

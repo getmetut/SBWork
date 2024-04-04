@@ -70,4 +70,7 @@
   <data name="NoBodyError" xml:space="preserve">
     <value>For this kind of document, it is not possible to start approval without versions.</value>
   </data>
+  <data name="BanOldAnalitics" xml:space="preserve">
+    <value>The document contains closed analysts.</value>
+  </data>
 </root>

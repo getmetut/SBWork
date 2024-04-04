@@ -387,7 +387,8 @@
   "HandledEvents": [
     "BeforeAbortServer",
     "BeforeStartServer",
-    "CreatedServer"
+    "CreatedServer",
+    "BeforeSaveServer"
   ],
   "IconResourcesKeys": [],
   "IsCreateVersionsOnLayerForbidden": true,
@@ -486,6 +487,23 @@
   ],
   "PublicFunctions": [
     {
+      "Name": "OldAnaliticsInDocument",
+      "Parameters": [
+        {
+          "Name": "approvalTask",
+          "ParameterType": "global::sberdev.SBContracts.IApprovalTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "doc",
+          "ParameterType": "global::Sungero.Docflow.IOfficialDocument",
+          "ParameterTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
       "Name": "ShowCheckSignaturesResult",
       "Parameters": [
         {
@@ -547,7 +565,8 @@
     "AcceptResult",
     "SendDiadocSettingsTaskSubject",
     "SendDiadocSettingsTaskSubject2",
-    "NoBodyError"
+    "NoBodyError",
+    "BanOldAnalitics"
   ],
   "RibbonCardMetadata": {
     "NameGuid": "3918540e-fee5-48d2-9e92-0b2e7bc06a16",

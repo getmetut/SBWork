@@ -67,4 +67,7 @@
   <data name="NoBodyError" xml:space="preserve">
     <value>Для этого вида документа невозможно запустить согласование документа без версий.</value>
   </data>
+  <data name="BanOldAnalitics" xml:space="preserve">
+    <value>В документе указаны закрытые аналитики.</value>
+  </data>
 </root>

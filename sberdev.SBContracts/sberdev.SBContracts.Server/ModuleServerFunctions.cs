@@ -158,7 +158,171 @@ namespace sberdev.SBContracts.Server
       return null;
       
     }
+
+    /// <summary>
+    /// Функция получения подразделения по имени
+    /// </summary>
+    /// <param name="name">Имя подразделения</param>
+    /// <returns></returns>
+    [Remote, Public]
+    public Sungero.Company.IDepartment GetDepartment(string name)
+    {
+      return Sungero.Company.Departments.GetAll().Where(d => Equals(d.Name, name)).First();
+    }
     
+    /// <summary>
+    /// Получить элемент справочника "Настройки разработки".
+    /// </summary>
+    /// <param name="name">Имя настройки.</param>
+    /// <returns>Элемент справочника "Настройки разработки".</returns>
+    [Public, Remote]
+    public sberdev.SberContracts.IDevSettings GetDevSetting(string name)
+    {
+      return SberContracts.DevSettingses.GetAll().Where(n => Equals(n.Name, name)).FirstOrDefault();
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="type">Expendable или profitable</param>
+    /// <returns></returns>
+    [Public]
+    public SberContracts.IAccountingArticles GetAccountingArticleStab(string type)
+    {
+      if (type.ToLower() == "expendable")
+        return AccountingArticleses.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                            && m.ContrType.ToString() == "Expendable");
+      if (type.ToLower() == "profitable")
+        return AccountingArticleses.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                            && m.ContrType.ToString() == "Profitable");
+      return null;
+    }
+    
+    /// <summary>
+    /// Пулучить заглушку для продукта
+    /// </summary>
+    ///<param name="type">Expendable или profitable</param>
+    /// <returns></returns>
+    [Public]
+    public SberContracts.IProductsAndDevices GetProductStab()
+    {
+      return ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
+    }
+    
+    
+    /// <summary>
+    /// Получить заглушку для мвз
+    /// </summary>
+    /// <param name="type">Expendable или profitable</param>
+    [Public]
+    public SberContracts.IMVZ GetMVZStab(string type)
+    {
+      if (type.ToLower() == "expendable")
+        return MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                            && m.ContrType.ToString() == "Expendable");
+      if (type.ToLower() == "profitable")
+        return MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                            && m.ContrType.ToString() == "Profitable");
+      return null;
+    }
+    
+    /// <summary>
+    /// Получить кеш по пользователю и если его нет, создать новый
+    /// </summary>
+    [Remote, Public]
+    public SberContracts.IBusinessUnitFilteringCashe GetOrCreateBusinessUnitFilteringCashe(Sungero.CoreEntities.IUser user)
+    {
+      var cashe = BusinessUnitFilteringCashes.GetAll().Where(c => Equals(user, Users.Current)).FirstOrDefault();
+      if (cashe == null)
+      {
+        cashe = BusinessUnitFilteringCashes.Create();
+        cashe.User = user;
+        cashe.Name = user.Info.Name;
+        cashe.BusinessUnit = Sungero.Company.Employees.As(user).Department.BusinessUnit;
+        cashe.Save();
+      }
+      return cashe;
+    }
+    
+    /// <summary>
+    /// Возвращает группу по названию
+    /// </summary>
+    /// <param name="name">Имя группы</param>
+    /// <returns>Возварщает группу</returns>
+    [Public, Remote]
+    public IGroup GetGroup(string name)
+    {
+      return Sungero.CoreEntities.Groups.GetAll().Where(g => Equals(g.Name, name)).FirstOrDefault();
+    }
+    
+    /// <summary>
+    /// Возвращает группу по названию и Нашей организации
+    /// </summary>
+    /// <param name="name">Имя группы</param>
+    /// <returns>Возварщает группу</returns>
+    [Public, Remote]
+    public IGroup GetGroup(string name, Sungero.Company.IBusinessUnit bU)
+    {
+      return Sungero.CoreEntities.Groups.GetAll().Where(g => Equals(g.Name, name)
+                                                        && Equals(Sungero.Company.Departments.As(g).BusinessUnit, bU)).FirstOrDefault();
+    }
+    
+    /// <summary>
+    /// Возвращает список ИНН всех "Наших организаций"
+    /// </summary>
+    [Public]
+    public List<string> GetAllBuisnessUnitTINs()
+    {
+      return Sungero.Company.BusinessUnits.GetAll().Select(b => b.TIN).ToList();
+    }
+    
+    #endregion
+    
+    #region Сертификаты и подписи
+
+    /// <summary>
+    /// Функция возвращает красный цвет если документ не подписан с двух сторон
+    /// </summary>
+    /// <param name="document"></param>
+    /// <param name="isNeedValid"></param>
+    /// <returns></returns>
+    [Public]
+    public Color HighlightUnsignedDocument(SBContracts.IOfficialDocument document, bool isNeedValid)
+    {
+      var realSigs = CheckRealSignatures(document, isNeedValid);
+      var propSigs = CheckPropertySignatures(document);
+      if ((realSigs[0] || propSigs[0]) && (realSigs[1] || propSigs[1]))
+        return Colors.Empty;
+      else
+        return Colors.Common.Red;
+    }
+    
+    /// <summary>
+    /// Функция проверяет поля согласования и возвращает булевой список, первый где первый элемент флаг нашей подписи, второй контрагента.
+    /// </summary>
+    /// <param name="document">Документ</param>
+    [Public, Remote]
+    public List<bool> CheckPropertySignatures(SBContracts.IOfficialDocument document)
+    {
+      List<bool> flags = new List<bool>() {false, false};
+      flags[0] = document.InternalApprovalState == SBContracts.OfficialDocument.InternalApprovalState.Signed ? true : false;
+      flags[1] = document.ExternalApprovalState == SBContracts.OfficialDocument.ExternalApprovalState.Signed ? true : false;
+      return flags;
+    }
+    
+    /// <summary>
+    /// Функция проверяет поля согласования и возвращает общий результат
+    /// </summary>
+    /// <param name="document">Документ</param>
+    [Public, Remote]
+    public bool CheckPropertySignaturesGeneral(SBContracts.IOfficialDocument document)
+    {
+      List<bool> flags = new List<bool>() {false, false};
+      flags[0] = document.InternalApprovalState == SBContracts.OfficialDocument.InternalApprovalState.Signed ? true : false;
+      flags[1] = document.ExternalApprovalState == SBContracts.OfficialDocument.ExternalApprovalState.Signed ? true : false;
+      return flags[0] && flags[1];
+    }
+        
     /// <summary>
     /// Функция проверяет согласование документа. Возвращает true,
     /// если есть согласование от начальника данного подразделения.
@@ -224,215 +388,6 @@ namespace sberdev.SBContracts.Server
       }
       return flag;
     }
-
-    /// <summary>
-    /// Функция получения подразделения по имени
-    /// </summary>
-    /// <param name="name">Имя подразделения</param>
-    /// <returns></returns>
-    [Remote, Public]
-    public Sungero.Company.IDepartment GetDepartment(string name)
-    {
-      return Sungero.Company.Departments.GetAll().Where(d => Equals(d.Name, name)).First();
-    }
-    
-    /// <summary>
-    /// Получить элемент справочника "Настройки разработки".
-    /// </summary>
-    /// <param name="name">Имя настройки.</param>
-    /// <returns>Элемент справочника "Настройки разработки".</returns>
-    [Public, Remote]
-    public sberdev.SberContracts.IDevSettings GetDevSetting(string name)
-    {
-      return SberContracts.DevSettingses.GetAll().Where(n => Equals(n.Name, name)).FirstOrDefault();
-    }
-
-    
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="type">Expendable или profitable</param>
-    /// <returns></returns>
-    [Public]
-    public SberContracts.IAccountingArticles GetAccountingArticleStab(string type)
-    {
-      if (type.ToLower() == "expendable")
-        return AccountingArticleses.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                            && m.ContrType.ToString() == "Expendable");
-      if (type.ToLower() == "profitable")
-        return AccountingArticleses.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                            && m.ContrType.ToString() == "Profitable");
-      return null;
-    }
-    
-    
-    /// <summary>
-    /// Пулучить заглушку для продукта
-    /// </summary>
-    ///<param name="type">Expendable или profitable</param>
-    /// <returns></returns>
-    [Public]
-    public SberContracts.IProductsAndDevices GetProductStab()
-    {
-      return ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
-    }
-    
-    
-    /// <summary>
-    /// Получить заглушку для мвз
-    /// </summary>
-    /// <param name="type">Expendable или profitable</param>
-    [Public]
-    public SberContracts.IMVZ GetMVZStab(string type)
-    {
-      if (type.ToLower() == "expendable")
-        return MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                            && m.ContrType.ToString() == "Expendable");
-      if (type.ToLower() == "profitable")
-        return MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                            && m.ContrType.ToString() == "Profitable");
-      return null;
-    }
-    
-    /// <summary>
-    /// Получить структуру с информацией о владельце сертификата.
-    /// </summary>
-    /// <param name="subjectInfo">Информация о владельце сертификата.</param>
-    /// <returns>Структура с информацией о владельце сертификата.</returns>
-    [Public, Remote]
-    public virtual Sungero.Docflow.Structures.Module.ICertificateSubject ParseCertificateSubject(string subjectInfo)
-    {
-      var subject = SBContracts.Functions.Module.GetOidValues(subjectInfo);
-      
-      var parsedSubject = Sungero.Docflow.Structures.Module.CertificateSubject.Create();
-      parsedSubject.CounterpartyName = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.CommonName)).FirstOrDefault().Value;
-      parsedSubject.Country = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.Country)).FirstOrDefault().Value;
-      parsedSubject.State = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.State)).FirstOrDefault().Value;
-      parsedSubject.Locality = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.Locality)).FirstOrDefault().Value;
-      parsedSubject.Street = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.Street)).FirstOrDefault().Value;
-      parsedSubject.Department = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.Department)).FirstOrDefault().Value;
-      parsedSubject.Surname = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.Surname)).FirstOrDefault().Value;
-      parsedSubject.GivenName = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.GivenName)).FirstOrDefault().Value;
-      parsedSubject.JobTitle = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.JobTitle)).FirstOrDefault().Value;
-      parsedSubject.OrganizationName = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.OrganizationName)).FirstOrDefault().Value;
-      parsedSubject.Email = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.Email)).FirstOrDefault().Value;
-      var valueTIN = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.TIN)).FirstOrDefault().Value;
-      if (!string.IsNullOrEmpty(valueTIN))
-        parsedSubject.TIN = valueTIN.StartsWith("00") ? valueTIN.Substring(2) : valueTIN;
-      
-      return parsedSubject;
-    }
-    
-    /// <summary>
-    /// Получить кеш по пользователю и если его нет, создать новый
-    /// </summary>
-    [Remote, Public]
-    public SberContracts.IBusinessUnitFilteringCashe GetOrCreateBusinessUnitFilteringCashe(Sungero.CoreEntities.IUser user)
-    {
-      var cashe = BusinessUnitFilteringCashes.GetAll().Where(c => Equals(user, Users.Current)).FirstOrDefault();
-      if (cashe == null)
-      {
-        cashe = BusinessUnitFilteringCashes.Create();
-        cashe.User = user;
-        cashe.Name = user.Info.Name;
-        cashe.BusinessUnit = Sungero.Company.Employees.As(user).Department.BusinessUnit;
-        cashe.Save();
-      }
-      return cashe;
-    }
-    
-    /// <summary>
-    /// Возвращает группу по названию
-    /// </summary>
-    /// <param name="name">Имя группы</param>
-    /// <returns>Возварщает группу</returns>
-    [Public, Remote]
-    public IGroup GetGroup(string name)
-    {
-      return Sungero.CoreEntities.Groups.GetAll().Where(g => Equals(g.Name, name)).FirstOrDefault();
-    }
-    
-    /// <summary>
-    /// Возвращает группу по названию и Нашей организации
-    /// </summary>
-    /// <param name="name">Имя группы</param>
-    /// <returns>Возварщает группу</returns>
-    [Public, Remote]
-    public IGroup GetGroup(string name, Sungero.Company.IBusinessUnit bU)
-    {
-      return Sungero.CoreEntities.Groups.GetAll().Where(g => Equals(g.Name, name)
-                                                        && Equals(Sungero.Company.Departments.As(g).BusinessUnit, bU)).FirstOrDefault();
-    }
-    
-    /// <summary>
-    /// Возвращает список ИНН всех "Наших организаций"
-    /// </summary>
-    [Public]
-    public List<string> GetAllBuisnessUnitTINs()
-    {
-      return Sungero.Company.BusinessUnits.GetAll().Select(b => b.TIN).ToList();
-    }
-    
-    /// <summary>
-    /// Проверяет существование контрагента по ИНН
-    /// </summary>
-    /// <param name="tin">ИНН</param>
-    /// <returns>Возварщает true если контрагент существует</returns>
-    [Public, Remote]
-    public bool IsExistCounterparty(string tin)
-    {
-      return Sungero.Parties.Counterparties.GetAll().Where(p => Equals(p.TIN, tin)).Any();
-    }
-
-    
-
-    #endregion
-    
-    #region Сертификаты и подписи
-
-    /// <summary>
-    /// Функция возвращает красный цвет если документ не подписан с двух сторон
-    /// </summary>
-    /// <param name="document"></param>
-    /// <param name="isNeedValid"></param>
-    /// <returns></returns>
-    [Public]
-    public Color HighlightUnsignedDocument(SBContracts.IOfficialDocument document, bool isNeedValid)
-    {
-      var realSigs = CheckRealSignatures(document, isNeedValid);
-      var propSigs = CheckPropertySignatures(document);
-      if ((realSigs[0] || propSigs[0]) && (realSigs[1] || propSigs[1]))
-        return Colors.Common.White;
-      else
-        return Colors.Common.Red;
-    }
-    
-    /// <summary>
-    /// Функция проверяет поля согласования и возвращает булевой список, первый где первый элемент флаг нашей подписи, второй контрагента.
-    /// </summary>
-    /// <param name="document">Документ</param>
-    [Public, Remote]
-    public List<bool> CheckPropertySignatures(SBContracts.IOfficialDocument document)
-    {
-      List<bool> flags = new List<bool>() {false, false};
-      flags[0] = document.InternalApprovalState == SBContracts.OfficialDocument.InternalApprovalState.Signed ? true : false;
-      flags[1] = document.ExternalApprovalState == SBContracts.OfficialDocument.ExternalApprovalState.Signed ? true : false;
-      return flags;
-    }
-    
-    /// <summary>
-    /// Функция проверяет поля согласования и возвращает общий результат
-    /// </summary>
-    /// <param name="document">Документ</param>
-    [Public, Remote]
-    public bool CheckPropertySignaturesGeneral(SBContracts.IOfficialDocument document)
-    {
-      List<bool> flags = new List<bool>() {false, false};
-      flags[0] = document.InternalApprovalState == SBContracts.OfficialDocument.InternalApprovalState.Signed ? true : false;
-      flags[1] = document.ExternalApprovalState == SBContracts.OfficialDocument.ExternalApprovalState.Signed ? true : false;
-      return flags[0] && flags[1];
-    }
     
     /// <summary>
     /// Функция проверяет наличие подписи от контрагента и от одного человека из группы
@@ -471,7 +426,8 @@ namespace sberdev.SBContracts.Server
               }
               catch (Exception ex)
               {
-                Logger.Error("Перенос подписи. Ошибка при извлечении сертификата: " + ex.ToString());
+                Logger.Error("Проверка подписи. Ошибка при извлечении сертификата: " + ex.ToString());
+                continue;
               }
             }
             else
@@ -488,12 +444,20 @@ namespace sberdev.SBContracts.Server
           {
             if (sign.IsExternal.HasValue && sign.IsExternal.Value)
             {
-              var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(sign.GetDataSignature());
-              string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyOrgTIN(certificateInfo.SubjectInfo);
-              if (Equals(tin, accounting.Counterparty.TIN) && (sign.IsValid || !isNeedValid))
-                flags[1] = true;
-              if (Equals(tin, accounting.BusinessUnit.TIN) && (sign.IsValid || !isNeedValid))
-                flags[0] = true;
+              try
+              {
+                var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(sign.GetDataSignature());
+                string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyOrgTIN(certificateInfo.SubjectInfo);
+                if (Equals(tin, accounting.Counterparty.TIN) && (sign.IsValid || !isNeedValid))
+                  flags[1] = true;
+                if (Equals(tin, accounting.BusinessUnit.TIN) && (sign.IsValid || !isNeedValid))
+                  flags[0] = true;
+              }
+              catch (Exception ex)
+              {
+                Logger.Error("Проверка подписи. Ошибка при извлечении сертификата: " + ex.ToString());
+                continue;
+              }
             }
             else
               if (sign.SignatureType == SignatureType.Approval && ((sign.Signatory != null && sign.Signatory.IncludedIn(needSignGroup))
@@ -538,6 +502,35 @@ namespace sberdev.SBContracts.Server
     }
     
     /// <summary>
+    /// Получить структуру с информацией о владельце сертификата.
+    /// </summary>
+    /// <param name="subjectInfo">Информация о владельце сертификата.</param>
+    /// <returns>Структура с информацией о владельце сертификата.</returns>
+    [Public, Remote]
+    public virtual Sungero.Docflow.Structures.Module.ICertificateSubject ParseCertificateSubject(string subjectInfo)
+    {
+      var subject = SBContracts.Functions.Module.GetOidValues(subjectInfo);
+      
+      var parsedSubject = Sungero.Docflow.Structures.Module.CertificateSubject.Create();
+      parsedSubject.CounterpartyName = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.CommonName)).FirstOrDefault().Value;
+      parsedSubject.Country = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.Country)).FirstOrDefault().Value;
+      parsedSubject.State = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.State)).FirstOrDefault().Value;
+      parsedSubject.Locality = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.Locality)).FirstOrDefault().Value;
+      parsedSubject.Street = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.Street)).FirstOrDefault().Value;
+      parsedSubject.Department = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.Department)).FirstOrDefault().Value;
+      parsedSubject.Surname = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.Surname)).FirstOrDefault().Value;
+      parsedSubject.GivenName = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.GivenName)).FirstOrDefault().Value;
+      parsedSubject.JobTitle = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.JobTitle)).FirstOrDefault().Value;
+      parsedSubject.OrganizationName = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.OrganizationName)).FirstOrDefault().Value;
+      parsedSubject.Email = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.Email)).FirstOrDefault().Value;
+      var valueTIN = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.TIN)).FirstOrDefault().Value;
+      if (!string.IsNullOrEmpty(valueTIN))
+        parsedSubject.TIN = valueTIN.StartsWith("00") ? valueTIN.Substring(2) : valueTIN;
+      
+      return parsedSubject;
+    }
+    
+    /// <summary>
     /// Получить идентификаторы объектов и их значения.
     /// </summary>
     /// <param name="certificateInfo">Информация о сертификате.</param>
@@ -561,6 +554,32 @@ namespace sberdev.SBContracts.Server
           oidDict[oidKey] = string.Format("{0}, {1}", oidDict[oidKey], oidValue);
       }
       return oidDict;
+    }
+    
+    #endregion
+    
+    #region Прочее
+    
+    /// <summary>
+    /// Проверяет существование контрагента по ИНН
+    /// </summary>
+    /// <param name="tin">ИНН</param>
+    /// <returns>Возварщает true если контрагент существует</returns>
+    [Public, Remote]
+    public bool IsExistCounterparty(string tin)
+    {
+      return Sungero.Parties.Counterparties.GetAll().Where(p => Equals(p.TIN, tin)).Any();
+    }
+    
+    /// <summary>
+    /// Функция послыает запрос на удаление записи блокировки сушности в базу
+    /// </summary>
+    [Public, Remote]
+    public void UnblockEntityInDatabase(Sungero.Domain.Shared.IEntity entity)
+    {
+   /*   Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand("delete from Sungero_System_Locks where EntityId = "
+                                                               + entity.Id.ToString() + " and EntityTypeGuid = '"
+                                                               + entity.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "'");*/
     }
     
     #endregion
