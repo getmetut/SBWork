@@ -8,6 +8,31 @@ using Sungero.Custom.NDATask;
 
 namespace Sungero.Custom.Server.NDATaskBlocks
 {
+  partial class EditLifeHandlers
+  {
+
+    public virtual void EditLifeExecute()
+    {
+      if (_block.LifeCycleState != null)
+      {
+        var Doc = _obj.BaseDocNDA.NDAs.FirstOrDefault();
+        if (Doc != null)
+        {
+          if (_block.LifeCycleState.Value.Value == "Draft")
+            Doc.LifeCycleState = Custom.NDA.LifeCycleState.Draft;
+          
+          if (_block.LifeCycleState.Value.Value == "Active")
+            Doc.LifeCycleState = Custom.NDA.LifeCycleState.Active;
+          
+          if (_block.LifeCycleState.Value.Value == "Obsolete")
+            Doc.LifeCycleState = Custom.NDA.LifeCycleState.Obsolete;
+          
+          Doc.Save();
+        }
+      }
+    }
+  }
+
 
   partial class AuthorJobHandlers
   {

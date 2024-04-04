@@ -73,6 +73,40 @@
         "AuthorJobStartAssignment"
       ],
       "Properties": []
+    },
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "dd930bc2-b741-4ef5-aa98-65c5ddb8b1e2",
+      "Name": "EditLife",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "EditLifeExecute"
+      ],
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.EnumBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "a21ba9cd-328e-4fca-806f-0a3a9c9d6d3b",
+          "Name": "LifeCycleState",
+          "DirectValues": [
+            {
+              "NameGuid": "36c6acd4-cacd-4827-ad77-8da20e3c9561",
+              "Name": "Draft",
+              "Code": "Draft"
+            },
+            {
+              "NameGuid": "4cda3647-bd25-47a9-bcad-b3bb4a115ffe",
+              "Name": "Active",
+              "Code": "Active"
+            },
+            {
+              "NameGuid": "26fe657a-90ca-4981-b618-67f796b944a1",
+              "Name": "Obsolete",
+              "Code": "Obsolete"
+            }
+          ],
+          "PreviousPropertyGuid": "5dc92a72-3a65-4872-bc04-0aa7ec353b05"
+        }
+      ]
     }
   ],
   "CanBeNavigationPropertyType": true,
@@ -203,13 +237,19 @@
   "HandledEvents": [
     "CreatedServer"
   ],
+  "HideFromCreationArea": true,
+  "HideFromNavigationEditorCreationArea": true,
   "IconResourcesKeys": [],
+  "IsAutoCreated": true,
   "IsVisibleThreadText": true,
   "NeverLinkToParentWhenCreated": true,
   "OperationsClass": "",
   "Overridden": [
     "CanBeSearch",
-    "UseSchemeFromSettings"
+    "UseSchemeFromSettings",
+    "IsAutoCreated",
+    "HideFromCreationArea",
+    "HideFromNavigationEditorCreationArea"
   ],
   "Properties": [
     {

@@ -1,0 +1,84 @@
+{
+  "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
+  "NameGuid": "16f987e8-0207-469b-a5e0-044059487cc9",
+  "Name": "BPCustom",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "SDev.BPCustom.Client",
+  "ClientBaseAssemblyName": "SDev.BPCustom.ClientBase",
+  "ClientBaseNamespace": "SDev.BPCustom.ClientBase",
+  "ClientNamespace": "SDev.BPCustom.Client",
+  "Code": "BPCusto",
+  "CompanyCode": "SDev",
+  "Cover": {
+    "NameGuid": "a9db2670-29a5-43f3-bf78-4ce683cccb89",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "9b0e8268-6644-41c2-9610-f3140ca39d6c",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "dcf8ad63-378d-4994-89e9-c33348b4d908",
+      "BackgroundPosition": "Stretch"
+    },
+    "Tabs": []
+  },
+  "Dependencies": [
+    {
+      "Id": "1a85b606-d06c-405e-a038-ebccfad74ba2",
+      "IsSolutionModule": true,
+      "MaxVersion": "",
+      "MinVersion": ""
+    },
+    {
+      "Id": "ec7b606a-21ee-4f16-aba8-ab8c2af76d12",
+      "MaxVersion": "",
+      "MinVersion": "0.0.1.0"
+    }
+  ],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "b86c530e-b0eb-4a7b-8f6f-9a8bf329ff83"
+    },
+    {
+      "ItemId": "02977b7d-fcd5-4c0a-b7b2-a2a87df6c246",
+      "PreviousItemId": "b86c530e-b0eb-4a7b-8f6f-9a8bf329ff83"
+    },
+    {
+      "ItemId": "00aae3dc-c8d0-4164-9f86-b3086f4992e7",
+      "PreviousItemId": "02977b7d-fcd5-4c0a-b7b2-a2a87df6c246"
+    },
+    {
+      "ItemId": "c0ebe0c6-4157-4015-b2db-ae1cc5cfccba",
+      "PreviousItemId": "00aae3dc-c8d0-4164-9f86-b3086f4992e7"
+    }
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "SDev.BPCustom",
+  "IsolatedAssemblyName": "SDev.BPCustom.Isolated",
+  "IsolatedNamespace": "SDev.BPCustom.Isolated",
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "SDev.BPCustom",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "SDev.BPCustom.Server",
+  "ServerNamespace": "SDev.BPCustom.Server",
+  "SharedAssemblyName": "SDev.BPCustom.Shared",
+  "SharedNamespace": "SDev.BPCustom.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.1",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

@@ -127,4 +127,19 @@
   <data name="Property_Adress" xml:space="preserve">
     <value>Адрес доставки</value>
   </data>
+  <data name="Block_dd930bc2b7414ef5aa9865c5ddb8b1e2" xml:space="preserve">
+    <value>Изменение ЖЦ NDA</value>
+  </data>
+  <data name="Block_dd930bc2b7414ef5aa9865c5ddb8b1e2_Property_a21ba9cd328e4fca806f0a3a9c9d6d3b_Enum_26fe657a90ca4981b61867f796b944a1" xml:space="preserve">
+    <value>Аннулирован</value>
+  </data>
+  <data name="Block_dd930bc2b7414ef5aa9865c5ddb8b1e2_Property_a21ba9cd328e4fca806f0a3a9c9d6d3b_Enum_36c6acd4cacd4827ad778da20e3c9561" xml:space="preserve">
+    <value>В разработке</value>
+  </data>
+  <data name="Block_dd930bc2b7414ef5aa9865c5ddb8b1e2_Property_a21ba9cd328e4fca806f0a3a9c9d6d3b_Enum_4cda3647bd2547a9bcadb3bb4a115ffe" xml:space="preserve">
+    <value>Действующий</value>
+  </data>
+  <data name="Block_dd930bc2b7414ef5aa9865c5ddb8b1e2_Property_a21ba9cd328e4fca806f0a3a9c9d6d3b" xml:space="preserve">
+    <value>Статус документа</value>
+  </data>
 </root>
