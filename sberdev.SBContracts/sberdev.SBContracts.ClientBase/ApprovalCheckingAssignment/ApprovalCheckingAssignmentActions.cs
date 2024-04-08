@@ -19,6 +19,7 @@ namespace sberdev.SBContracts.Client
         {
           if (incInv != null)
           {
+            SBContracts.PublicFunctions.Module.Remote.UnblockEntityByDatabase(incInv);
             incInv.LifeCycleState = SBContracts.IncomingInvoice.LifeCycleState.Postponed;
             incInv.InternalApprovalState = SBContracts.IncomingInvoice.InternalApprovalState.OnRework;
             incInv.Save();

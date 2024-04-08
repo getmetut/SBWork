@@ -708,7 +708,7 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "UnblockEntityInDatabase",
+      "Name": "UnblockEntityByDatabase",
       "IsRemote": true,
       "Parameters": [
         {

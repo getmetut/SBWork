@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -9,7 +9,7 @@ namespace sberdev.SBContracts.Client
 {
   partial class ApprovalTaskFunctions
   {
-
+    
     /// <summary>
     /// Вывести сообщение с результатом проверки подписей договорных документов при отправке входящего счета на согласование
     /// </summary>

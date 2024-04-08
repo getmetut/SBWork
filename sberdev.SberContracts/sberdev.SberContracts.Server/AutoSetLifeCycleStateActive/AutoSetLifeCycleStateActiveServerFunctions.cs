@@ -23,6 +23,7 @@ namespace sberdev.SberContracts.Server
       
       try
       {
+        SBContracts.PublicFunctions.Module.Remote.UnblockEntityByDatabase(document);
         var invoice = SBContracts.IncomingInvoices.As(document);
         if (invoice == null)
           return this.GetErrorResult("Документ не является входящим счетом.");

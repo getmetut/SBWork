@@ -47,12 +47,14 @@ namespace sberdev.SBContracts
         switch (_obj.StageSubject)
         {
           case "Оплата счета":
+            SBContracts.PublicFunctions.Module.Remote.UnblockEntityByDatabase(incInv);
             incInv.PaymentDateSberDev = Calendar.Now;
             incInv.Save();
             break;
             
           case "Проверка договорных документов Делопроизводителем":
             var contractual = incInv.LeadingDocument;
+            SBContracts.PublicFunctions.Module.Remote.UnblockEntityByDatabase(contractual);
             if (contractual != null)
             {
               contractual.InternalApprovalState = SBContracts.OfficialDocument.InternalApprovalState.Signed;
@@ -60,6 +62,7 @@ namespace sberdev.SBContracts
               contractual.Save();
             }
             var accounting = incInv.AccDocSberDev;
+            SBContracts.PublicFunctions.Module.Remote.UnblockEntityByDatabase(accounting);
             if (accounting != null)
             {
               accounting.InternalApprovalState = SBContracts.OfficialDocument.InternalApprovalState.Signed;

@@ -46,14 +46,13 @@ namespace sberdev.SBContracts.Client
   {
     public virtual void UnblockCardSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-      PublicFunctions.Module.Remote.UnblockEntityInDatabase(_obj);
+      PublicFunctions.Module.Remote.UnblockEntityByDatabase(_obj);
     }
 
     public virtual bool CanUnblockCardSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
       return true;
     }
-
 
     public virtual void GetMetadataSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {

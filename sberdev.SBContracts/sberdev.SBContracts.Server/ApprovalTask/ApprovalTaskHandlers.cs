@@ -15,10 +15,15 @@ namespace sberdev.SBContracts
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
       base.BeforeSave(e);
+      if (!_obj.State.Properties.DeliveryMethod.IsVisible)
+      {
+        return;
+      }
       var document = _obj.DocumentGroup.OfficialDocuments.First();
       if (document != null && _obj.DeliveryMethod != document.DeliveryMethod && document.DeliveryMethod != null)
       {
         _obj.DeliveryMethod = document.DeliveryMethod;
+        _obj.ExchangeService = null;
       }
     }
 

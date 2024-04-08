@@ -9,6 +9,8 @@ using Aspose.Words;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Sungero.Metadata;
+using Sungero.Domain.Shared;
 
 
 namespace sberdev.SBContracts.Server
@@ -575,11 +577,11 @@ namespace sberdev.SBContracts.Server
     /// Функция послыает запрос на удаление записи блокировки сушности в базу
     /// </summary>
     [Public, Remote]
-    public void UnblockEntityInDatabase(Sungero.Domain.Shared.IEntity entity)
+    public void UnblockEntityByDatabase(Sungero.Domain.Shared.IEntity entity)
     {
-   /*   Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand("delete from Sungero_System_Locks where EntityId = "
+      Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand("delete from Sungero_System_Locks where EntityId = "
                                                                + entity.Id.ToString() + " and EntityTypeGuid = '"
-                                                               + entity.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "'");*/
+                                                               + entity.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "'");
     }
     
     #endregion
