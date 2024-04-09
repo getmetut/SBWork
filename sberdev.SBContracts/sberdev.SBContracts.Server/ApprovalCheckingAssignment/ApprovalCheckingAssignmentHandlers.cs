@@ -54,17 +54,17 @@ namespace sberdev.SBContracts
             
           case "Проверка договорных документов Делопроизводителем":
             var contractual = incInv.LeadingDocument;
-            SBContracts.PublicFunctions.Module.Remote.UnblockEntityByDatabase(contractual);
             if (contractual != null)
             {
+              SBContracts.PublicFunctions.Module.Remote.UnblockEntityByDatabase(contractual);
               contractual.InternalApprovalState = SBContracts.OfficialDocument.InternalApprovalState.Signed;
               contractual.ExternalApprovalState = SBContracts.OfficialDocument.ExternalApprovalState.Signed;
               contractual.Save();
             }
             var accounting = incInv.AccDocSberDev;
-            SBContracts.PublicFunctions.Module.Remote.UnblockEntityByDatabase(accounting);
             if (accounting != null)
             {
+              SBContracts.PublicFunctions.Module.Remote.UnblockEntityByDatabase(accounting);
               accounting.InternalApprovalState = SBContracts.OfficialDocument.InternalApprovalState.Signed;
               accounting.ExternalApprovalState = SBContracts.OfficialDocument.ExternalApprovalState.Signed;
               accounting.Save();

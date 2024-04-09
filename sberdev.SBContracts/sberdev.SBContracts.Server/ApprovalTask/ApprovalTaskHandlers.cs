@@ -12,21 +12,6 @@ namespace sberdev.SBContracts
   partial class ApprovalTaskServerHandlers
   {
 
-    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
-    {
-      base.BeforeSave(e);
-      if (!_obj.State.Properties.DeliveryMethod.IsVisible)
-      {
-        return;
-      }
-      var document = _obj.DocumentGroup.OfficialDocuments.First();
-      if (document != null && _obj.DeliveryMethod != document.DeliveryMethod && document.DeliveryMethod != null)
-      {
-        _obj.DeliveryMethod = document.DeliveryMethod;
-        _obj.ExchangeService = null;
-      }
-    }
-
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       base.Created(e);
@@ -35,10 +20,21 @@ namespace sberdev.SBContracts
 
     public override void BeforeStart(Sungero.Workflow.Server.BeforeStartEventArgs e)
     {
-      var doc = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      var document = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
       base.BeforeStart(e);
-      Functions.ApprovalTask.SendDiadocSettingsTask(_obj, doc);
+      Functions.ApprovalTask.SendDiadocSettingsTask(_obj, document);
       _obj.NeedAbort = false;
+      
+      if (!_obj.State.Properties.DeliveryMethod.IsVisible)
+      {
+        return;
+      }
+      if (document != null && _obj.DeliveryMethod != document.DeliveryMethod && document.DeliveryMethod != null
+         && document.DeliveryMethod.Sid != Sungero.Docflow.Constants.MailDeliveryMethod.Exchange)
+      {
+        _obj.DeliveryMethod = document.DeliveryMethod;
+        _obj.ExchangeService = null;
+      }
     }
 
     public override void BeforeAbort(Sungero.Workflow.Server.BeforeAbortEventArgs e)
