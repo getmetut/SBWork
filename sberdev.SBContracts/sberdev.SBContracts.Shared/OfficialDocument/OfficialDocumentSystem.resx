@@ -145,4 +145,19 @@
   <data name="Action_UnblockCardSberDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
+  <data name="Action_UnblockVersionSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_UnblockVersionSberDevHint" xml:space="preserve">
+    <value>Unblock the version through the database.</value>
+  </data>
+  <data name="Action_UnblockVersionSberDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_UnblockVersionSberDevDescription" xml:space="preserve">
+    <value>The last version will be unlocked through a direct request to delete records from the Locks table.</value>
+  </data>
+  <data name="Action_UnblockVersionSberDev" xml:space="preserve">
+    <value>Unlock version</value>
+  </data>
 </root>

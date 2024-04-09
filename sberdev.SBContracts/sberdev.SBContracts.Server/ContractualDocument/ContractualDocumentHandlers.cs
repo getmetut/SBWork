@@ -169,7 +169,6 @@ namespace sberdev.SBContracts
       _obj.ModifiedSberDev = Calendar.Now;
       _obj.OriginalBaseSberDev = false;
       _obj.FrameworkBaseSberDev = false;
-      _obj.ContrTypeBaseSberDev = ContrTypeBaseSberDev.Expendable;
       base.Created(e);
     }
 

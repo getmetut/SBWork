@@ -44,6 +44,21 @@ namespace sberdev.SBContracts.Client
 
   partial class OfficialDocumentActions
   {
+    public virtual void UnblockVersionSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+    /*  var f = _obj.LastVersion;
+      var g = f.GetEntityMetadata().GetOriginal();
+      var l = g.NameGuid;
+      var srt = l.ToString();
+      PublicFunctions.Module.Remote.UnblockEntityByDatabase(_obj.LastVersion.RootEntity);*/
+    }
+
+    public virtual bool CanUnblockVersionSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
+
     public virtual void UnblockCardSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       PublicFunctions.Module.Remote.UnblockEntityByDatabase(_obj);

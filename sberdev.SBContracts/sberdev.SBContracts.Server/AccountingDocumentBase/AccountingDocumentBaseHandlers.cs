@@ -127,7 +127,6 @@ namespace sberdev.SBContracts
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       _obj.ModifiedSberDev = Calendar.Now;
-      _obj.ContrTypeBaseSberDev = ContrTypeBaseSberDev.Profitable;
       _obj.FrameworkBaseSberDev = false;
       base.Created(e);
     }

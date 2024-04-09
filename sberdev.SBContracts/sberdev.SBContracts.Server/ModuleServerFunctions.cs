@@ -324,7 +324,7 @@ namespace sberdev.SBContracts.Server
       flags[1] = document.ExternalApprovalState == SBContracts.OfficialDocument.ExternalApprovalState.Signed ? true : false;
       return flags[0] && flags[1];
     }
-        
+    
     /// <summary>
     /// Функция проверяет согласование документа. Возвращает true,
     /// если есть согласование от начальника данного подразделения.
@@ -579,9 +579,10 @@ namespace sberdev.SBContracts.Server
     [Public, Remote]
     public void UnblockEntityByDatabase(Sungero.Domain.Shared.IEntity entity)
     {
-      Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand("delete from Sungero_System_Locks where EntityId = "
-                                                               + entity.Id.ToString() + " and EntityTypeGuid = '"
-                                                               + entity.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "'");
+      if (entity != null)
+        Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand("delete from Sungero_System_Locks where EntityId = "
+                                                                 + entity.Id.ToString() + " and EntityTypeGuid = '"
+                                                                 + entity.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "'");
     }
     
     #endregion

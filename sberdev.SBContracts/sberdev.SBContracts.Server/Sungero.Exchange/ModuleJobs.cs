@@ -180,11 +180,11 @@ namespace sberdev.SBContracts.Module.Exchange.Server
           if (task.NumberOfAttempsComeback.HasValue && noticeInAttemps.Contains(task.NumberOfAttempsComeback.Value))
           {
             var iDsIncomingDocs = needComebackAgainAttachments.Split(new char[]{','}, StringSplitOptions.RemoveEmptyEntries).Select(id => Int32.Parse(id)).ToList();
-            var incomingDocs = Sungero.Content.ElectronicDocuments.GetAll().Where(d => iDsIncomingDocs.Contains(Int32.Parse(d.Id.ToString())));
+            var incomingDocs = Sungero.Docflow.OfficialDocuments.GetAll().Where(d => iDsIncomingDocs.Contains(Int32.Parse(d.Id.ToString())));
             foreach (var incomingDoc in incomingDocs)
             {
-              var iD = SberContracts.PublicFunctions.Module.GetNumberTag(incomingDoc.Name, "_ID");
-              var doc = Sungero.Content.ElectronicDocuments.GetAll(e => e.Id == Int64.Parse(iD)).FirstOrDefault();
+              var idStr = PublicFunctions.Module.Remote.GetMetadataID(incomingDoc);
+              var doc = Sungero.Content.ElectronicDocuments.GetAll(e => e.Id == Int64.Parse(idStr)).FirstOrDefault();
               if (doc != null)
               {
                 var notice = Sungero.Workflow.SimpleTasks.CreateWithNotices(String.Format("Проверьте согласование документа от {0}", task.Created.Value.ToShortDateString()), doc.Author);

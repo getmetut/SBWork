@@ -109,4 +109,13 @@
   <data name="Action_UnblockCardSberDevDescription" xml:space="preserve">
     <value>Карточка документа будет разблокирована посредством прямого запроса на удаление записи из таблицы Locks.</value>
   </data>
+  <data name="Action_UnblockVersionSberDev" xml:space="preserve">
+    <value>Разблокировать версию</value>
+  </data>
+  <data name="Action_UnblockVersionSberDevHint" xml:space="preserve">
+    <value>Разблокировать версию через базу данных.</value>
+  </data>
+  <data name="Action_UnblockVersionSberDevDescription" xml:space="preserve">
+    <value>Последняя версия документа будет разблокирована посредством прямого запроса на удаление записи из таблицы BinDataLocks.</value>
+  </data>
 </root>

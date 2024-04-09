@@ -130,6 +130,15 @@
       "GenerateHandler": true,
       "LargeIconName": null,
       "SmallIconName": null
+    },
+    {
+      "NameGuid": "15e81d7d-2745-4a8a-9586-4f50df3fa3cc",
+      "Name": "UnblockVersionSberDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "",
+      "SmallIconName": "",
+      "Versions": []
     }
   ],
   "BaseGuid": "58cca102-1e97-4f07-b6ac-fd866a8b7cb1",
@@ -329,6 +338,14 @@
         "Name": "UnblockCardSberDevSberDev",
         "ActionGuid": "b4911693-62e8-4bfe-94b6-4838f0e73b56",
         "Index": 3,
+        "ParentGuid": "1b49aedf-b54e-43d8-b0ea-20ee3f732312"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "fd40f2be-d5cc-49ee-928a-3f38b0a97f0c",
+        "Name": "UnblockVersionSberDevSberDev",
+        "ActionGuid": "15e81d7d-2745-4a8a-9586-4f50df3fa3cc",
+        "Index": 4,
         "ParentGuid": "1b49aedf-b54e-43d8-b0ea-20ee3f732312"
       }
     ],
