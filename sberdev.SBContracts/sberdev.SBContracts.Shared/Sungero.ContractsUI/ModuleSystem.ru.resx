@@ -106,4 +106,10 @@
   <data name="CoverAction_MarketDirectSberDev" xml:space="preserve">
     <value>Направления маркетинга</value>
   </data>
+  <data name="CoverAction_NonContractualStatisticSberDev" xml:space="preserve">
+    <value>Статистика по внедоговорным счетам</value>
+  </data>
+  <data name="CoverDescription_NonContractualStatisticSberDev" xml:space="preserve">
+    <value>Справочник со статистикой запущенных в согласование счетов.</value>
+  </data>
 </root>

@@ -1170,14 +1170,6 @@
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "6527ab75-6028-4500-9be5-e12e3355d156",
           "Name": "ControlGroupSberDev",
-          "ColumnDefinitions": [
-            {
-              "Percentage": 79.84
-            },
-            {
-              "Percentage": 20.16
-            }
-          ],
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
@@ -1193,20 +1185,6 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
           "ParentGuid": "6527ab75-6028-4500-9be5-e12e3355d156",
           "PropertyGuid": "824b3207-54d4-4429-91e9-2b1b318f74c1",
-          "RowNumber": 0,
-          "RowSpan": 1,
-          "Settings": []
-        },
-        {
-          "$type": "Sungero.Metadata.HyperlinkControlMetadata, Sungero.Metadata",
-          "NameGuid": "58ab230f-6349-4095-82fe-e7e9d03dccd1",
-          "Name": "PurchNumberInfoSberDev",
-          "ColumnNumber": 1,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.HyperlinkToSourceBinder",
-          "FunctionName": "ShowPurchComNumberInstruction",
-          "HeaderLocation": "None",
-          "ParentGuid": "6527ab75-6028-4500-9be5-e12e3355d156",
           "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []

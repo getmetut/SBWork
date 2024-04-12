@@ -31,7 +31,7 @@
             <property name="Name">Contract_CalculationBaseSberDev_AggregationCalc</property>
             <property name="FieldName">AggregationCalc</property>
             <property name="VisibleIndex">1</property>
-            <property name="Width">102</property>
+            <property name="Width">78</property>
             <property name="ActualWidth">15*</property>
           </property>
           <property name="Item2" isnull="true" iskey="true">
@@ -40,7 +40,7 @@
             <property name="Name">Contract_CalculationBaseSberDev_ProductCalc</property>
             <property name="FieldName">ProductCalc</property>
             <property name="VisibleIndex">0</property>
-            <property name="Width">149</property>
+            <property name="Width">115</property>
             <property name="ActualWidth">22*</property>
           </property>
           <property name="Item3" isnull="true" iskey="true">
@@ -49,7 +49,7 @@
             <property name="Name">Contract_CalculationBaseSberDev_AbsoluteCalc</property>
             <property name="FieldName">AbsoluteCalc</property>
             <property name="VisibleIndex">2</property>
-            <property name="Width">143</property>
+            <property name="Width">110</property>
             <property name="ActualWidth">21*</property>
           </property>
           <property name="Item4" isnull="true" iskey="true">
@@ -58,7 +58,7 @@
             <property name="Name">Contract_CalculationBaseSberDev_PercentCalc</property>
             <property name="FieldName">PercentCalc</property>
             <property name="VisibleIndex">3</property>
-            <property name="Width">88</property>
+            <property name="Width">68</property>
             <property name="ActualWidth">13*</property>
           </property>
           <property name="Item5" isnull="true" iskey="true">

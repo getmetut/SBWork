@@ -1533,6 +1533,10 @@
       "NameGuid": "824b3207-54d4-4429-91e9-2b1b318f74c1",
       "Name": "PurchComNumberSberDev",
       "Code": "PurchComNumber",
+      "HandledEvents": [
+        "ValueInputClient"
+      ],
+      "Length": 5,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "073737d0-bfe5-44b5-a32b-8620e9deb4b4"
     }
@@ -1612,7 +1616,8 @@
     "DivisionDoesNotMatch",
     "PurchComNumberInstruction",
     "Check",
-    "Error"
+    "Error",
+    "PurchComNumMask"
   ],
   "RibbonCardMetadata": {
     "NameGuid": "fd4f4e0b-198c-48cf-b8e9-8276bcb94dcd",

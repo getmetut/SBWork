@@ -9,6 +9,8 @@ namespace sberdev.SBContracts.Shared
 {
   partial class ContractualDocumentFunctions
   {
+    #region Общая
+    
     public virtual void SetPropertiesAccess()
     {
       if (_obj.ContrTypeBaseSberDev.HasValue)
@@ -76,6 +78,9 @@ namespace sberdev.SBContracts.Shared
       
       CancelRequiredPropeties();
     }
+    #endregion
+    
+    #region Контроля калькуляции
     
     public void ChangeCalculationAccess(bool flag)
     {
@@ -101,13 +106,43 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.CalculationResidualAmountBaseSberDev.IsVisible = flag;
     }
     
-    public override void ChangeRegistrationPaneVisibility(bool needShow, bool repeatRegister)
+    public void ChangeCalculationPropertiesAccess(Sungero.Core.Enumeration? flag)
     {
-      base.ChangeRegistrationPaneVisibility(needShow, repeatRegister);
-      _obj.State.Properties.DeliveryMethod.IsVisible = true;
-      _obj.State.Properties.DeliveryMethod.IsEnabled = true;
-      _obj.State.Properties.DeliveryMethod.IsRequired = true;
+      if (flag == CalculationFlagBaseSberDev.Absolute)
+      {
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsEnabled = true;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsRequired = true;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsVisible = true;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsEnabled = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsRequired = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsVisible = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.InterestCalc.IsVisible = false;
+        
+      }
+      else if (flag == CalculationFlagBaseSberDev.Percent)
+      {
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsEnabled = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsRequired = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsVisible = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsEnabled = true;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsRequired = true;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsVisible = true;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.InterestCalc.IsVisible = true;
+      }
+      else
+      {
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsEnabled = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsRequired = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsVisible = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsEnabled = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsRequired = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsVisible = false;
+        _obj.State.Properties.CalculationBaseSberDev.Properties.InterestCalc.IsVisible = false;
+      }
     }
+    #endregion
+    
+    #region Контроль аналитик
     
     /// <summary>
     /// Одновременно устанавливает доступность и видимость аналитик соответвенно типам договора
@@ -143,6 +178,7 @@ namespace sberdev.SBContracts.Shared
           _obj.State.Properties.ProdCollectionExBaseSberDev.IsVisible = false;
           _obj.State.Properties.ProdCollectionPrBaseSberDev.IsVisible = true;
           _obj.State.Properties.MarketDirectSberDev.IsVisible = false;
+          _obj.State.Properties.PurchComNumberSberDev.IsVisible = false;
           break;
         case ("ExpendProfit") :
           _obj.State.Properties.MVZBaseSberDev.IsVisible = true;
@@ -201,6 +237,8 @@ namespace sberdev.SBContracts.Shared
           _obj.State.Properties.ProdCollectionPrBaseSberDev.IsRequired = _obj.MVPBaseSberDev != null ? true : false;
           _obj.State.Properties.MarketDirectSberDev.IsEnabled = false;
           _obj.State.Properties.MarketDirectSberDev.IsRequired = false;
+          _obj.State.Properties.PurchComNumberSberDev.IsEnabled = false;
+          _obj.State.Properties.PurchComNumberSberDev.IsRequired = false;
           break;
         case ("ExpendProfit") :
           _obj.State.Properties.TotalAmount.IsRequired = false;
@@ -226,81 +264,9 @@ namespace sberdev.SBContracts.Shared
       }
     }
     
-    public void ChangeCalculationPropertiesAccess(Sungero.Core.Enumeration? flag)
-    {
-      if (flag == CalculationFlagBaseSberDev.Absolute)
-      {
-        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsEnabled = true;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsRequired = true;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsVisible = true;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsEnabled = false;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsRequired = false;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsVisible = false;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.InterestCalc.IsVisible = false;
-        
-      }
-      else if (flag == CalculationFlagBaseSberDev.Percent)
-      {
-        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsEnabled = false;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsRequired = false;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsVisible = false;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsEnabled = true;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsRequired = true;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsVisible = true;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.InterestCalc.IsVisible = true;
-      }
-      else
-      {
-        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsEnabled = false;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsRequired = false;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.AbsoluteCalc.IsVisible = false;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsEnabled = false;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsRequired = false;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.PercentCalc.IsVisible = false;
-        _obj.State.Properties.CalculationBaseSberDev.Properties.InterestCalc.IsVisible = false;
-      }
-    }
+    #endregion
     
-    public void CancelRequiredPropeties()
-    {
-      if (SBContracts.PublicFunctions.Module.IsSystemUser())
-      {
-        _obj.State.Properties.MVZBaseSberDev.IsRequired = false;
-        _obj.State.Properties.MVPBaseSberDev.IsRequired = false;
-        _obj.State.Properties.TotalAmount.IsRequired = false;
-        _obj.State.Properties.Currency.IsRequired = false;
-        _obj.State.Properties.ProdCollectionExBaseSberDev.IsRequired = false;
-        _obj.State.Properties.ProdCollectionPrBaseSberDev.IsRequired = false;
-        _obj.State.Properties.AccArtExBaseSberDev.IsRequired = false;
-        _obj.State.Properties.AccArtPrBaseSberDev.IsRequired = false;
-        _obj.State.Properties.ContrTypeBaseSberDev.IsRequired = false;
-        _obj.State.Properties.MarketDirectSberDev.IsRequired = false;
-        _obj.State.Properties.PurchComNumberSberDev.IsRequired = false;
-        PublicFunctions.ContractualDocument.Remote.ApplyAnaliticsStabs(_obj);
-      }
-      else
-      {
-        _obj.State.Properties.ContrTypeBaseSberDev.IsRequired = true;
-        _obj.State.Properties.AccArtExBaseSberDev.IsRequired = (_obj.ContrTypeBaseSberDev.HasValue && _obj.ContrTypeBaseSberDev.Value == ContrTypeBaseSberDev.Expendable) ? true : false;
-        _obj.State.Properties.AccArtPrBaseSberDev.IsRequired = (_obj.ContrTypeBaseSberDev.HasValue && _obj.ContrTypeBaseSberDev.Value == ContrTypeBaseSberDev.Profitable) ? true : false;
-        if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.ExpendProfitSberDev)
-        {
-          _obj.State.Properties.AccArtExBaseSberDev.IsRequired = true;
-          _obj.State.Properties.AccArtPrBaseSberDev.IsRequired = true;
-        }
-      }
-    }
-    
-    public void CancelRequiredPropetiesByType()
-    {
-      var type = _obj.GetType().Name;
-      string[] types = new string[]{"Contract", "SupAgreement", "ContractProxy", "SupAgreementProxy", "GuaranteeLetter", "GuaranteeLetterProxy"};
-      if (!types.Contains(type))
-      {
-        _obj.State.Properties.MarketDirectSberDev.IsRequired = false;
-        _obj.State.Properties.PurchComNumberSberDev.IsRequired = false;
-      }
-    }
+    #region Разные по аналитикам
     
     [Public]
     public void ApplyAnaliticSetup(SberContracts.IAnaticsSetup analiticSetup)
@@ -386,5 +352,93 @@ namespace sberdev.SBContracts.Shared
       }
       return flag;
     }
+    
+    #endregion
+    
+    #region Прочие 
+    
+    public override void ChangeRegistrationPaneVisibility(bool needShow, bool repeatRegister)
+    {
+      base.ChangeRegistrationPaneVisibility(needShow, repeatRegister);
+      _obj.State.Properties.DeliveryMethod.IsVisible = true;
+      _obj.State.Properties.DeliveryMethod.IsEnabled = true;
+      _obj.State.Properties.DeliveryMethod.IsRequired = true;
+    }
+    
+    public void CancelRequiredPropeties()
+    {
+      if (SBContracts.PublicFunctions.Module.IsSystemUser())
+      {
+        _obj.State.Properties.MVZBaseSberDev.IsRequired = false;
+        _obj.State.Properties.MVPBaseSberDev.IsRequired = false;
+        _obj.State.Properties.TotalAmount.IsRequired = false;
+        _obj.State.Properties.Currency.IsRequired = false;
+        _obj.State.Properties.ProdCollectionExBaseSberDev.IsRequired = false;
+        _obj.State.Properties.ProdCollectionPrBaseSberDev.IsRequired = false;
+        _obj.State.Properties.AccArtExBaseSberDev.IsRequired = false;
+        _obj.State.Properties.AccArtPrBaseSberDev.IsRequired = false;
+        _obj.State.Properties.ContrTypeBaseSberDev.IsRequired = false;
+        _obj.State.Properties.MarketDirectSberDev.IsRequired = false;
+        _obj.State.Properties.PurchComNumberSberDev.IsRequired = false;
+        PublicFunctions.ContractualDocument.Remote.ApplyAnaliticsStabs(_obj);
+      }
+      else
+      {
+        _obj.State.Properties.ContrTypeBaseSberDev.IsRequired = true;
+        _obj.State.Properties.AccArtExBaseSberDev.IsRequired = (_obj.ContrTypeBaseSberDev.HasValue && _obj.ContrTypeBaseSberDev.Value == ContrTypeBaseSberDev.Expendable) ? true : false;
+        _obj.State.Properties.AccArtPrBaseSberDev.IsRequired = (_obj.ContrTypeBaseSberDev.HasValue && _obj.ContrTypeBaseSberDev.Value == ContrTypeBaseSberDev.Profitable) ? true : false;
+        if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.ExpendProfitSberDev)
+        {
+          _obj.State.Properties.AccArtExBaseSberDev.IsRequired = true;
+          _obj.State.Properties.AccArtPrBaseSberDev.IsRequired = true;
+        }
+      }
+    }
+    
+    public void CancelRequiredPropetiesByType()
+    {
+      var type = _obj.GetType().Name;
+      string[] types = new string[]{"Contract", "SupAgreement", "ContractProxy", "SupAgreementProxy", "GuaranteeLetter", "GuaranteeLetterProxy"};
+      if (!types.Contains(type))
+      {
+        _obj.State.Properties.MarketDirectSberDev.IsRequired = false;
+        _obj.State.Properties.PurchComNumberSberDev.IsRequired = false;
+      }
+    }
+    
+    /// <summary>
+    /// Функция возвращает текст ошибки, если в каком либо поле выбраны заглушки
+    /// </summary>
+    public string BanToSaveForStabs()
+    {
+      var error = "";
+      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
+      {
+        
+        if (_obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
+          error += ", МВП";
+        if (_obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
+          error += ", МВЗ";
+        if (_obj.AccArtExBaseSberDev != null && _obj.AccArtExBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
+          error += ", Статья упр. учета (рас.)";
+        if (_obj.AccArtPrBaseSberDev != null && _obj.AccArtPrBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
+          error += ", Статья упр. учета (дох.)";
+        if (_obj.ProdCollectionExBaseSberDev.FirstOrDefault() != null
+            && _obj.ProdCollectionExBaseSberDev.Select(p => p.Product.Name).Any(p => p == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"))
+          error += ", Продукт (рас.)";
+        if (_obj.ProdCollectionPrBaseSberDev.FirstOrDefault() != null
+            && _obj.ProdCollectionPrBaseSberDev.Select(p => p.Product.Name).Any(p => p == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"))
+          error += ", Продукт (дох.)";
+        
+        if (error != "")
+        {
+          error = "Выберите нужные значения вместо заглушек в полях:" + error.TrimStart(',') + ".";
+        }
+      }
+      return error;
+    }
+    
+    #endregion
+    
   }
 }

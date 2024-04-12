@@ -1015,8 +1015,11 @@ namespace sberdev.SberContracts.Server
     {
       doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev ;
       doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
-      doc.Currency = docSelected.Currency;
-      doc.TotalAmount = docSelected.TotalAmount;
+      if (docSelected.TotalAmount != null)
+      {
+        doc.TotalAmount = docSelected.TotalAmount;
+        doc.Currency = docSelected.Currency;
+      }
       doc.DeliveryMethod = docSelected.DeliveryMethod;
       doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
       doc.Counterparty = docSelected.Counterparty;
@@ -1030,11 +1033,11 @@ namespace sberdev.SberContracts.Server
     public static void FillProfitableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
     {
       if (docSelected.AccArtPrBaseSberDev != null)
-      doc.AccArtPrBaseSberDev = docSelected.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-        docSelected.AccArtPrBaseSberDev : null;
+        doc.AccArtPrBaseSberDev = docSelected.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtPrBaseSberDev : null;
       if (docSelected.AccArtPrBaseSberDev != null)
-      doc.MVPBaseSberDev = docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-        docSelected.MVPBaseSberDev : null;
+        doc.MVPBaseSberDev = docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVPBaseSberDev : null;
       var collection = docSelected.ProdCollectionPrBaseSberDev;
       if (collection.Count > 0)
       {
@@ -1058,11 +1061,11 @@ namespace sberdev.SberContracts.Server
     public static void FillExpendableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
     {
       if (docSelected.AccArtExBaseSberDev != null)
-      doc.AccArtExBaseSberDev = docSelected.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-        docSelected.AccArtExBaseSberDev : null;
+        doc.AccArtExBaseSberDev = docSelected.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtExBaseSberDev : null;
       if (docSelected.MVZBaseSberDev != null)
-      doc.MVZBaseSberDev = docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-        docSelected.MVZBaseSberDev : null;
+        doc.MVZBaseSberDev = docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVZBaseSberDev : null;
       var collection = docSelected.ProdCollectionExBaseSberDev;
       if (collection.Count > 0)
       {
@@ -1132,8 +1135,11 @@ namespace sberdev.SberContracts.Server
     {
       doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev ;
       doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
-      doc.Currency = docSelected.Currency;
-      doc.TotalAmount = docSelected.TotalAmount;
+      if (docSelected.TotalAmount != null)
+      {
+        doc.TotalAmount = docSelected.TotalAmount;
+        doc.Currency = docSelected.Currency;
+      }
       doc.DeliveryMethod = docSelected.DeliveryMethod;
       doc.Counterparty = docSelected.Counterparty;
     }
@@ -1146,11 +1152,11 @@ namespace sberdev.SberContracts.Server
     public static void FillProfitableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
     {
       if (docSelected.AccArtBaseSberDev != null)
-      doc.AccArtPrBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-        docSelected.AccArtBaseSberDev : null;
+        doc.AccArtPrBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtBaseSberDev : null;
       if (docSelected.MVPBaseSberDev != null)
-      doc.MVPBaseSberDev = docSelected.MVPBaseSberDev != null && docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-        docSelected.MVPBaseSberDev : null;
+        doc.MVPBaseSberDev = docSelected.MVPBaseSberDev != null && docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVPBaseSberDev : null;
       var collection = docSelected.ProdCollectionBaseSberDev;
       if (collection.Count > 0)
       {
@@ -1174,11 +1180,11 @@ namespace sberdev.SberContracts.Server
     public static void FillExpendableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
     {
       if (docSelected.AccArtBaseSberDev != null)
-      doc.AccArtExBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-        docSelected.AccArtBaseSberDev : null;
+        doc.AccArtExBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtBaseSberDev : null;
       if (docSelected.MVZBaseSberDev != null)
-      doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-        docSelected.MVZBaseSberDev : null;
+        doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVZBaseSberDev : null;
       var collection = docSelected.ProdCollectionBaseSberDev;
       if (collection.Count > 0)
       {
@@ -1246,10 +1252,12 @@ namespace sberdev.SberContracts.Server
     public static void FillGeneralProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
     {
       doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev ;
-      doc.Currency = docSelected.Currency;
-      doc.TotalAmount = docSelected.TotalAmount;
+      if (docSelected.TotalAmount != null)
+      {
+        doc.TotalAmount = docSelected.TotalAmount;
+        doc.Currency = docSelected.Currency;
+      }
       doc.DeliveryMethod = docSelected.DeliveryMethod;
-      //    doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
       doc.Counterparty = docSelected.Counterparty;
     }
     
@@ -1262,11 +1270,11 @@ namespace sberdev.SberContracts.Server
     {
       doc.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable;
       if (docSelected.AccArtPrBaseSberDev != null)
-      doc.AccArtBaseSberDev = docSelected.AccArtPrBaseSberDev != null && docSelected.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-        docSelected.AccArtPrBaseSberDev : null;
+        doc.AccArtBaseSberDev = docSelected.AccArtPrBaseSberDev != null && docSelected.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtPrBaseSberDev : null;
       if (docSelected.MVPBaseSberDev != null)
-      doc.MVPBaseSberDev = docSelected.MVPBaseSberDev != null && docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-        docSelected.MVPBaseSberDev : null;
+        doc.MVPBaseSberDev = docSelected.MVPBaseSberDev != null && docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVPBaseSberDev : null;
       var collection = docSelected.ProdCollectionPrBaseSberDev;
       if (collection.Count > 0)
       {
@@ -1291,11 +1299,11 @@ namespace sberdev.SberContracts.Server
     {
       doc.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable;
       if (docSelected.MVZBaseSberDev != null)
-      doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-        docSelected.MVZBaseSberDev : null;
+        doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVZBaseSberDev : null;
       if (docSelected.AccArtExBaseSberDev != null)
-      doc.AccArtBaseSberDev = docSelected.AccArtExBaseSberDev != null && docSelected.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-        docSelected.AccArtExBaseSberDev : null;
+        doc.AccArtBaseSberDev = docSelected.AccArtExBaseSberDev != null && docSelected.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtExBaseSberDev : null;
       var collection = docSelected.ProdCollectionExBaseSberDev;
       if (collection.Count > 0)
       {
@@ -1364,18 +1372,21 @@ namespace sberdev.SberContracts.Server
     {
       doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
       doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
-      doc.Currency = docSelected.Currency;
-      doc.TotalAmount = docSelected.TotalAmount;
+      if (docSelected.TotalAmount != null)
+      {
+        doc.TotalAmount = docSelected.TotalAmount;
+        doc.Currency = docSelected.Currency;
+      }
       doc.DeliveryMethod = docSelected.DeliveryMethod;
       if (docSelected.AccArtBaseSberDev != null)
-      doc.AccArtBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-        docSelected.AccArtBaseSberDev : null;
+        doc.AccArtBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtBaseSberDev : null;
       if (docSelected.MVPBaseSberDev != null)
         doc.MVPBaseSberDev = docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
           docSelected.MVPBaseSberDev : null;
       if (docSelected.MVZBaseSberDev != null)
-      doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-        docSelected.MVZBaseSberDev : null;
+        doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVZBaseSberDev : null;
       doc.Counterparty = docSelected.Counterparty;
       doc.ProdCollectionBaseSberDev.Clear();
       var collection = docSelected.ProdCollectionBaseSberDev;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -11,12 +11,6 @@ using Sungero.Workflow;
 namespace sberdev.SBContracts.Server
 {
   partial class ApprovalAssignmentFunctions
-  {
-
-   
-    
-      
-      
-    
+  { 
   }
 }

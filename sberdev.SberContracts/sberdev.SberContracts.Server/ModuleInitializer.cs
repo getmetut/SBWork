@@ -282,6 +282,8 @@ namespace sberdev.SberContracts.Server
       SberContracts.AnaliticsCasheGenerals.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.FullAccess);
       SberContracts.CalculationTamplates.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.FullAccess);
       SberContracts.MarketingDirections.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Read);
+      SberContracts.NonContractInvoiceCounters.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Read);
+      SberContracts.NonContractInvoiceCounters.AccessRights.Save();
       SberContracts.MarketingDirections.AccessRights.Save();
       SberContracts.AccountingArticleses.AccessRights.Save();
       SberContracts.BudgetItems.AccessRights.Save();

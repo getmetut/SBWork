@@ -10,6 +10,26 @@ namespace sberdev.SBContracts
   partial class ContractualDocumentClientHandlers
   {
 
+    public virtual void PurchComNumberSberDevValueInput(Sungero.Presentation.StringValueInputEventArgs e)
+    {
+      if (e.NewValue != null)
+      {
+        var val = e.NewValue.ToArray();
+        if (val.Length < 5)
+        {
+          //   _obj.PurchComNumberSberDev = null;
+          e.AddError(sberdev.SBContracts.ContractualDocuments.Resources.PurchComNumMask);
+        }
+        for (var i = 0; i < 5; i++)
+        {
+          if (i == 3 && val[i] != '.')
+            e.AddError(sberdev.SBContracts.ContractualDocuments.Resources.PurchComNumMask);
+          if (!Char.IsDigit(val[i]) && i != 3)
+            e.AddError(sberdev.SBContracts.ContractualDocuments.Resources.PurchComNumMask);
+        }
+      }
+    }
+
     public override void DepartmentValueInput(Sungero.Docflow.Client.OfficialDocumentDepartmentValueInputEventArgs e)
     {
       base.DepartmentValueInput(e);

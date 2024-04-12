@@ -1,64 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -158,5 +99,62 @@
   </data>
   <data name="Property_AbortingReason" xml:space="preserve">
     <value>AbortingReason</value>
+  </data>
+  <data name="Property_NonContractInvoiceCounterSberDev" xml:space="preserve">
+    <value>Non-contractual invoices</value>
+  </data>
+  <data name="Resource_f1d24e5a51c2402585e1d5554dca4ae0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_f1d24e5a51c2402585e1d5554dca4ae0_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_423ad49c49e64f9b8742f54ed3d8ac6d" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_423ad49c49e64f9b8742f54ed3d8ac6d_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_83667b220f3e40878629c1cf806aafb6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_83667b220f3e40878629c1cf806aafb6_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_41a00769e3eb462cb51c1cff59d7c86f" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_4e94e189a7464492a435b8a937e0e8fc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_a675f366c95246c998e412bb2c30ef1f" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_2f635d44c3c6487185610a2c36e8aad7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_b7c84fcd83414e6fa73e3565e44bbcc8" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f277ac41b55a468f9640b800c87c63a2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_f277ac41b55a468f9640b800c87c63a2_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_7f66bd321edd49e1b8de14947ac240d8" xml:space="preserve">
+    <value>Document Requisites</value>
+  </data>
+  <data name="Resource_6537578eedca4ad7b0712762a625283e" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_1d138ed06ce54583bd3d3a313a31e6f6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_1d138ed06ce54583bd3d3a313a31e6f6_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_NonContractInvoiceCounterMoreSberDev" xml:space="preserve">
+    <value>More info</value>
   </data>
 </root>

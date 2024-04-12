@@ -29,11 +29,33 @@ namespace sberdev.SBContracts
       {
         return;
       }
-      if (document != null && _obj.DeliveryMethod != document.DeliveryMethod && document.DeliveryMethod != null
-         && document.DeliveryMethod.Sid != Sungero.Docflow.Constants.MailDeliveryMethod.Exchange)
+      if (document != null)
       {
-        _obj.DeliveryMethod = document.DeliveryMethod;
-        _obj.ExchangeService = null;
+        if (_obj.DeliveryMethod != document.DeliveryMethod && document.DeliveryMethod != null
+            && document.DeliveryMethod.Sid != Sungero.Docflow.Constants.MailDeliveryMethod.Exchange)
+        {
+          _obj.DeliveryMethod = document.DeliveryMethod;
+          _obj.ExchangeService = null;
+        }
+        var incInv = SBContracts.IncomingInvoices.As(document);
+        if (incInv != null && incInv.NoNeedLeadingDocs.HasValue && incInv.NoNeedLeadingDocs.Value)
+        {
+          var counter = SberContracts.NonContractInvoiceCounters.GetAll().Where(c => c.Counterparty == incInv.Counterparty
+                                                                                && c.Employee == incInv.Author).FirstOrDefault();
+          if (counter == null)
+          {
+            counter = SberContracts.NonContractInvoiceCounters.Create();
+            counter.Employee = incInv.Author;
+            counter.Counterparty = incInv.Counterparty;
+            counter.Counter = 1;
+          }
+          else
+            counter.Counter++;
+            
+            var task = counter.Tasks.AddNew();
+            task.Task = _obj;
+          //   counter.Save();
+        }
       }
     }
 

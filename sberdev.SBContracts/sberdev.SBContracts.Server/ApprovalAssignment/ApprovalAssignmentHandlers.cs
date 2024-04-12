@@ -10,6 +10,24 @@ namespace sberdev.SBContracts
   partial class ApprovalAssignmentServerHandlers
   {
 
+    public override void Saving(Sungero.Domain.SavingEventArgs e)
+    {
+      base.Saving(e);
+      var incInv = SBContracts.IncomingInvoices.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault());
+      if (incInv != null)
+      {
+        var counter = SberContracts.NonContractInvoiceCounters.GetAll().Where(c => c.Counterparty == incInv.Counterparty
+                                                                              && c.Employee == incInv.Author).FirstOrDefault();
+        if (counter != null)
+        {
+          _obj.NonContractInvoiceCounterSberDev = counter.Counter;
+          _obj.NonContractInvoiceCounterMoreSberDev = counter;
+        }
+        else
+          _obj.NonContractInvoiceCounterSberDev = 0;
+      }
+    }
+
     public override void BeforeComplete(Sungero.Workflow.Server.BeforeCompleteEventArgs e)
     {
       base.BeforeComplete(e);

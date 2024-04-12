@@ -9,6 +9,5 @@ namespace sberdev.SBContracts.Client
 {
   partial class ApprovalAssignmentFunctions
   {
-
   }
 }

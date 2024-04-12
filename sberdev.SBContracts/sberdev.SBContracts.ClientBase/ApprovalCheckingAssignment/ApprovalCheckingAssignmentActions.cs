@@ -9,6 +9,7 @@ namespace sberdev.SBContracts.Client
 {
   partial class ApprovalCheckingAssignmentActions
   {
+
     public override void ForRework(Sungero.Workflow.Client.ExecuteResultActionArgs e)
     {
       if (_obj.StageSubject == "Оплата счета")

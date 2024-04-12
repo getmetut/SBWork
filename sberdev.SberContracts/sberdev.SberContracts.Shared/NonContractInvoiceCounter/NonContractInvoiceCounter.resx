@@ -58,19 +58,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DivisionDoesNotMatch" xml:space="preserve">
-    <value>Attention! The selected department does not match the budget owner.</value>
+  <data name="Name" xml:space="preserve">
+    <value>Non-contractual invoice counter </value>
   </data>
-  <data name="PurchComNumberInstruction" xml:space="preserve">
-    <value>Enter the number of the purchasing committee at which the purchase was agreed upon. Input mask NNN.N (for example, 098.1). If the ZK was not carried out (no alternative source), then leave the field empty.</value>
-  </data>
-  <data name="Check" xml:space="preserve">
-    <value>Check your analytics and exclude closed entries.</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="PurchComNumMask" xml:space="preserve">
-    <value>The value must match the input mask NNN.N (for example, 098.1)</value>
+  <data name="By" xml:space="preserve">
+    <value> by </value>
   </data>
 </root>

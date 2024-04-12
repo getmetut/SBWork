@@ -109,6 +109,14 @@
         "GroupId": "9617fde5-c46a-4c84-9f69-4ae3c6fa12db",
         "PreviousItemGuid": "0ec74228-8b96-4454-84fa-43dd7d3affd6",
         "ReportId": "ea461a5e-67b1-448f-9e88-225bafbf3705"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
+        "NameGuid": "e4e84bb7-4411-4c2a-9543-344876aa7b3a",
+        "Name": "NonContractualStatisticSberDev",
+        "EntityTypeId": "cab9c2d8-40db-4379-8914-1d78bb227c3a",
+        "GroupId": "9617fde5-c46a-4c84-9f69-4ae3c6fa12db",
+        "PreviousItemGuid": "e07f1bbd-fc67-437f-8bad-b65b2b5b0bec"
       }
     ],
     "Groups": [
