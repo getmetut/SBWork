@@ -64,4 +64,22 @@
   <data name="CoverTitle" xml:space="preserve">
     <value>BPCustom</value>
   </data>
+  <data name="Block_cd8c6de450e04e6cb34542faf5706bb3" xml:space="preserve">
+    <value>Отправка подзадачи по маршруту</value>
+  </data>
+  <data name="Block_cd8c6de450e04e6cb34542faf5706bb3_Property_7f68191c6272409289934a98053bb57c" xml:space="preserve">
+    <value>Подзадача</value>
+  </data>
+  <data name="Block_cd8c6de450e04e6cb34542faf5706bb3_Property_ebae351178204e2fa9a49a45cf3ce5f9" xml:space="preserve">
+    <value>Маршрут для отправки подзадачи</value>
+  </data>
+  <data name="Block_cd8c6de450e04e6cb34542faf5706bb3_Property_ebae351178204e2fa9a49a45cf3ce5f9_Enum_8c356522251f468289ef8e5b45a283b6" xml:space="preserve">
+    <value>Согласование договора</value>
+  </data>
+  <data name="Block_cd8c6de450e04e6cb34542faf5706bb3_Property_ebae351178204e2fa9a49a45cf3ce5f9_Enum_2f9c1f8ee84141a89fdadc99670e9d08" xml:space="preserve">
+    <value>Согласование закупки</value>
+  </data>
+  <data name="Block_b3eba9ebe75e41889c21a8b1094d61a0" xml:space="preserve">
+    <value>Назначение Подписанта</value>
+  </data>
 </root>

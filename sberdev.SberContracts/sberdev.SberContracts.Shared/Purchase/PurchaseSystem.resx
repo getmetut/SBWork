@@ -205,4 +205,19 @@
   <data name="Property_Subject" xml:space="preserve">
     <value>Subject</value>
   </data>
+  <data name="Action_SendToTM" xml:space="preserve">
+    <value>Отправить на согласование</value>
+  </data>
+  <data name="Action_SendToTMDescription" xml:space="preserve">
+    <value>Отправить на согласование</value>
+  </data>
+  <data name="Action_SendToTMHint" xml:space="preserve">
+    <value>Отправить на согласование</value>
+  </data>
+  <data name="Action_SendToTMConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SendToTMConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
 </root>

@@ -3,6 +3,54 @@
   "NameGuid": "16f987e8-0207-469b-a5e0-044059487cc9",
   "Name": "BPCustom",
   "AsyncHandlers": [],
+  "Blocks": [
+    {
+      "$type": "Sungero.Metadata.MonitoringBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "cd8c6de4-50e0-4e6c-b345-42faf5706bb3",
+      "Name": "ReglamentBlock",
+      "BaseGuid": "91851d4e-af2b-4dc2-8c24-46dcf609e1fd",
+      "HandledEvents": [
+        "ReglamentBlockStart",
+        "ReglamentBlockResult"
+      ],
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "7f68191c-6272-4092-8993-4a98053bb57c",
+          "Name": "SubTask",
+          "EntityGuid": "d795d1f6-45c1-4e5e-9677-b53fb7280c7e",
+          "IsVisible": false,
+          "PreviousPropertyGuid": "8b7eb8c4-79a7-4474-9753-5e6dab87d5a2"
+        },
+        {
+          "$type": "Sungero.Metadata.EnumBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "ebae3511-7820-4e2f-a9a4-9a45cf3ce5f9",
+          "Name": "StandartRoute",
+          "DirectValues": [
+            {
+              "NameGuid": "8c356522-251f-4682-89ef-8e5b45a283b6",
+              "Name": "Contracts",
+              "Code": "Contracts"
+            },
+            {
+              "NameGuid": "2f9c1f8e-e841-41a8-9fda-dc99670e9d08",
+              "Name": "Zakupka",
+              "Code": "Zakupka"
+            }
+          ],
+          "PreviousPropertyGuid": "7f68191c-6272-4092-8993-4a98053bb57c"
+        }
+      ]
+    },
+    {
+      "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "b3eba9eb-e75e-4188-9c21-a8b1094d61a0",
+      "Name": "ToSignerJob",
+      "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
+      "EntityType": "923b52ef-d0eb-4b24-9e95-e1172404118b",
+      "Properties": []
+    }
+  ],
   "ClientAssemblyName": "SDev.BPCustom.Client",
   "ClientBaseAssemblyName": "SDev.BPCustom.ClientBase",
   "ClientBaseNamespace": "SDev.BPCustom.ClientBase",
@@ -52,6 +100,22 @@
     {
       "ItemId": "c0ebe0c6-4157-4015-b2db-ae1cc5cfccba",
       "PreviousItemId": "00aae3dc-c8d0-4164-9f86-b3086f4992e7"
+    },
+    {
+      "ItemId": "bd199b5c-9c37-4efb-a49e-ef6c27697dcf",
+      "PreviousItemId": "c0ebe0c6-4157-4015-b2db-ae1cc5cfccba"
+    },
+    {
+      "ItemId": "0aac549f-452c-4b6f-9f30-ffdeb328617e",
+      "PreviousItemId": "bd199b5c-9c37-4efb-a49e-ef6c27697dcf"
+    },
+    {
+      "ItemId": "dae5d614-25ab-4dcb-ac0c-bc7ceb02f709",
+      "PreviousItemId": "0aac549f-452c-4b6f-9f30-ffdeb328617e"
+    },
+    {
+      "ItemId": "3930a315-6bb3-47bf-86ab-92f5510e9416",
+      "PreviousItemId": "dae5d614-25ab-4dcb-ac0c-bc7ceb02f709"
     }
   ],
   "IconResourcesKeys": [],
@@ -69,7 +133,7 @@
   "SharedAssemblyName": "SDev.BPCustom.Shared",
   "SharedNamespace": "SDev.BPCustom.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.1",
+  "Version": "0.0.1.9",
   "Widgets": [],
   "Versions": [
     {

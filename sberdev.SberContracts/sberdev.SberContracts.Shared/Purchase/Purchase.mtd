@@ -3,6 +3,16 @@
   "NameGuid": "7aa8969f-f81d-462c-b0d8-761ccd59253f",
   "Name": "Purchase",
   "AccessRightsMode": "Both",
+  "Actions": [
+    {
+      "NameGuid": "f67b2f02-a24d-41e3-81b1-719f8b268ebf",
+      "Name": "SendToTM",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_SendToTM_large_f67b2f02a24d41e381b1719f8b268ebf.png",
+      "SmallIconName": "Action_SendToTM_small_f67b2f02a24d41e381b1719f8b268ebf.png"
+    }
+  ],
   "BaseGuid": "178d3053-5516-4f14-9f3d-4d75e3f352d4",
   "CanBeNavigationPropertyType": true,
   "CanBeSearch": true,
@@ -867,7 +877,29 @@
     "NameGuid": "e6ea4f05-6ef2-4cde-9daa-ea3631712fdb",
     "Name": "RibbonCard",
     "Categories": [],
-    "Elements": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "ba316d61-626c-49ac-b6c7-1979effe0d47",
+        "Name": "ActionButtonSDev",
+        "ActionGuid": "2ff15037-d938-4fe5-8b91-9f20ff1a3164",
+        "Index": 51,
+        "IsAncestorMetadata": true,
+        "IsVisible": false,
+        "Overridden": [
+          "IsVisible"
+        ],
+        "ParentGuid": "f3b0ddcd-9d1e-4ca3-8780-695ae25a9e8b"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "e2b5a7b0-c476-45ae-a64c-38f39903b362",
+        "Name": "ActionButton",
+        "ActionGuid": "f67b2f02-a24d-41e3-81b1-719f8b268ebf",
+        "Index": 52,
+        "ParentGuid": "f3b0ddcd-9d1e-4ca3-8780-695ae25a9e8b"
+      }
+    ],
     "Groups": [],
     "IsAncestorMetadata": true,
     "Pages": [],
