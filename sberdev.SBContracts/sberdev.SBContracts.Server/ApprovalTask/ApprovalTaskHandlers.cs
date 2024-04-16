@@ -49,12 +49,12 @@ namespace sberdev.SBContracts
             counter.Counterparty = incInv.Counterparty;
             counter.Counter = 1;
           }
-          else
-            counter.Counter++;
-            
+          else if (!counter.Tasks.Select(t => SBContracts.ApprovalTasks.As(t.Task).DocumentGroup.OfficialDocuments.First()).Where(d => d.Id == incInv.Id).Any())
+          {
             var task = counter.Tasks.AddNew();
             task.Task = _obj;
-          //   counter.Save();
+            counter.Counter++;
+          }
         }
       }
     }

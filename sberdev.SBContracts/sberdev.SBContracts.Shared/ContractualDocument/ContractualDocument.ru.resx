@@ -71,6 +71,6 @@
     <value>Ошибка</value>
   </data>
   <data name="PurchComNumMask" xml:space="preserve">
-    <value>Значение должно соответсвовать маске ввода NNN.N (например, 098.1)</value>
+    <value>Значение должно быть из 4 цифр или соответсовать маске NNN.N (пример: 123.4).</value>
   </data>
 </root>

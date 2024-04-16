@@ -71,6 +71,6 @@
     <value>Error</value>
   </data>
   <data name="PurchComNumMask" xml:space="preserve">
-    <value>The value must match the input mask NNN.N (for example, 098.1)</value>
+    <value>The value must be 4 digits or match the mask NNN.N (example: 123.4).</value>
   </data>
 </root>

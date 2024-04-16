@@ -14,17 +14,28 @@ namespace sberdev.SBContracts
     {
       if (e.NewValue != null)
       {
-        var val = e.NewValue.ToArray();
-        if (val.Length < 5)
+        var valArr = e.NewValue.ToArray();
+        if (valArr.Length < 4)
         {
-          //   _obj.PurchComNumberSberDev = null;
           e.AddError(sberdev.SBContracts.ContractualDocuments.Resources.PurchComNumMask);
+          return;
         }
-        for (var i = 0; i < 5; i++)
+        if (valArr.Length == 4)
         {
-          if (i == 3 && val[i] != '.')
+          foreach (char val in valArr)
+            if (!Char.IsDigit(val))
+          {
             e.AddError(sberdev.SBContracts.ContractualDocuments.Resources.PurchComNumMask);
-          if (!Char.IsDigit(val[i]) && i != 3)
+            return;
+          }
+          _obj.PurchComNumberSberDev = e.NewValue.Substring(0, 2) + "." + e.NewValue.Substring(4);
+        }
+        if (valArr.Length == 5)
+          for (byte i = 0; i < 5; i++)
+        {
+          if (i == 3 && valArr[i] != '.')
+            e.AddError(sberdev.SBContracts.ContractualDocuments.Resources.PurchComNumMask);
+          if (!Char.IsDigit(valArr[i]) && i != 3)
             e.AddError(sberdev.SBContracts.ContractualDocuments.Resources.PurchComNumMask);
         }
       }

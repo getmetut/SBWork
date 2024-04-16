@@ -147,6 +147,7 @@
       "Name": "Tasks",
       "Code": "NonContrTasks",
       "EntityGuid": "12727482-72ed-4195-b4b2-0abd247dae0b",
+      "IsEnabled": false,
       "IsShowedInList": false,
       "PreviousPropertyGuid": "4b52be95-304d-495b-b4c4-d440d68e9cc4"
     },

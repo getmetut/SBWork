@@ -174,7 +174,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
             Logger.Error("Exchange. ComeBackBodies. Задача " + task.Id + " превысила максимальное количество попыток обработки и больше не будет обрабатываться");
           }
           
-          
+          /*
           // Отпарвляем уведомления о документах которые давно на согласовании
           int[] noticeInAttemps = {200,300};
           if (task.NumberOfAttempsComeback.HasValue && noticeInAttemps.Contains(task.NumberOfAttempsComeback.Value))
@@ -197,7 +197,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
                 Logger.Debug("Exchange. ComeBackBodies. Отправлено уведомление по вх. документу " + incomingDoc.Id);
               }
             }
-          }
+          }*/
           
           
           if (needComebackAgainAttachments.Length > 1)
