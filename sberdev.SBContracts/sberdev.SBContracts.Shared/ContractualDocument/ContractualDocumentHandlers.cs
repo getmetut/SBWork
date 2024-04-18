@@ -30,6 +30,22 @@ namespace sberdev.SBContracts
   partial class ContractualDocumentSharedHandlers
   {
 
+    public virtual void PurchComNumberSberDevChanged(Sungero.Domain.Shared.StringPropertyChangedEventArgs e)
+    {
+      if (e.NewValue != null && e.NewValue.Length == 4)
+      {
+        var valArr = e.NewValue.ToArray();
+        bool flag = true;
+        foreach (char val in valArr)
+          if (!Char.IsDigit(val))
+        {
+          flag = false;
+          return;
+        }
+        Functions.ContractualDocument.Remote.SetPurchComNumber(_obj, e.NewValue);
+      }
+    }
+
     public override void ResponsibleEmployeeChanged(Sungero.Contracts.Shared.ContractualDocumentResponsibleEmployeeChangedEventArgs e)
     {
       base.ResponsibleEmployeeChanged(e);

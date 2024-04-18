@@ -266,7 +266,7 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "TransferSignatures",
+      "Name": "TransferExternalSignatures",
       "IsRemote": true,
       "Parameters": [
         {

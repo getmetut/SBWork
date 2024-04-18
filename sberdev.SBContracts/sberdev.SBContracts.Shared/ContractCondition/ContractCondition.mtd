@@ -161,6 +161,19 @@
               "Value": "1413717e-8a83-4add-a7dd-3cfebde97893"
             }
           ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "f9018fb3-2fbe-4793-b42e-78005a620810",
+          "Name": "ApproverSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
+          "PropertyGuid": "dadd87e0-5e88-41f5-ae98-29aee61a7be0",
+          "RowNumber": 7,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -244,6 +257,11 @@
           "NameGuid": "36f6d431-63d6-468b-85ad-02264c1f7468",
           "Name": "MarketDirect",
           "Code": "MarketDirect"
+        },
+        {
+          "NameGuid": "08573f7f-01ca-4b07-9eb8-6d28709f1c9a",
+          "Name": "EndorseFromSberDev",
+          "Code": "AgreementFrom"
         }
       ],
       "IsAncestorMetadata": true,
@@ -347,6 +365,17 @@
       "EntityGuid": "7e8291c5-cf81-4494-83fa-5860d47360f5",
       "IsShowedInList": false,
       "PreviousPropertyGuid": "a2e0ef16-51e7-4331-bada-f669ad9e33a2"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "dadd87e0-5e88-41f5-ae98-29aee61a7be0",
+      "Name": "EndorserSberDev",
+      "CanBeSearch": false,
+      "Code": "EndorserSberDe",
+      "EntityGuid": "243c2d26-f5f7-495f-9faf-951d91215c77",
+      "IsShowedInList": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "5d5f557a-caac-48df-a800-e57c5172db2b"
     }
   ],
   "PublicStructures": [],

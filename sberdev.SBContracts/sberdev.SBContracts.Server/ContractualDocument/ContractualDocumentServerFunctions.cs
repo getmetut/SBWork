@@ -19,7 +19,18 @@ namespace sberdev.SBContracts.Server
     }
     
     #region Прочие функции
-  
+    
+    /// <summary>
+    /// Функция устанавливает значение закупочной комиссии
+    /// </summary>
+    /// <param name="valArr"></param>
+    [Remote]
+    public void SetPurchComNumber(string str)
+    {
+      var valArr = str.ToArray();
+      _obj.PurchComNumberSberDev = valArr[0].ToString() + valArr[1].ToString() + valArr[2].ToString() + "." + valArr[3].ToString();
+    }
+    
     /// <summary>
     /// Если выбрано много продуктов заменяет их одним - "General"
     /// </summary>

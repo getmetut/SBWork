@@ -16,6 +16,10 @@ namespace sberdev.SBContracts.Shared
     {
       base.ChangePropertiesAccess();
 
+      var isEndorseFrom = _obj.ConditionType == ConditionType.EndorseFromSberDev;
+      _obj.State.Properties.EndorserSberDev.IsVisible = isEndorseFrom;
+      _obj.State.Properties.EndorserSberDev.IsRequired = isEndorseFrom;
+      
       var isContrType = _obj.ConditionType == ConditionType.ContrCategory;
       _obj.State.Properties.ContrCategorysberdev.IsVisible = isContrType;
 
@@ -83,6 +87,21 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      if (_obj.ConditionType == ConditionType.EndorseFromSberDev)
+      {
+        var signInfos = Signatures.Get(document.LastVersion);
+        bool flag = false;
+        foreach (var singInfo in signInfos)
+        {
+          if (singInfo.Signatory == _obj.EndorserSberDev && singInfo.SignatureType == SignatureType.Endorsing)
+          {
+            flag = true;
+            break;
+          }
+        }
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
       if (_obj.ConditionType == ConditionType.MarketDirect)
       {
         var contr = SBContracts.ContractualDocuments.As(document);
@@ -654,6 +673,9 @@ namespace sberdev.SBContracts.Shared
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.EndorseFromSberDev); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.EndorseFromSberDev); // sup agreement
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.ContrType);
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.ContrType);

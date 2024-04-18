@@ -13,6 +13,11 @@ namespace sberdev.SBContracts.Server
     {
       using (TenantInfo.Culture.SwitchTo())
       {
+        if (_obj.ConditionType == ConditionType.EndorseFromSberDev)
+        {
+          return "Есть согласование от " + _obj.EndorserSberDev.Name + "?";
+        }
+        
         if (_obj.ConditionType == ConditionType.MarketDirect)
         {
           string head = "Направление маркетинга =";

@@ -19,7 +19,7 @@ namespace sberdev.SBContracts.Server
     {
       var doc = Sungero.Docflow.OfficialDocuments.GetAll(d => d.Id == idDoc).First();
       TransferBody(doc);
-      TransferSignatures(doc);
+      TransferExternalSignatures(doc);
     }
     
     /// <summary>
@@ -42,11 +42,11 @@ namespace sberdev.SBContracts.Server
     }
     
     /// <summary>
-    /// Переносит подписи последней версии документа
+    /// Переносит внешние подписи последней версии документа
     /// </summary>
     /// <param name="id"></param>
     [Remote, Public]
-    public void TransferSignatures(Sungero.Docflow.IOfficialDocument doc)
+    public void TransferExternalSignatures(Sungero.Docflow.IOfficialDocument doc)
     {
       var signInfos = Signatures.Get(_obj.LastVersion);
       foreach(var signInfo in signInfos)

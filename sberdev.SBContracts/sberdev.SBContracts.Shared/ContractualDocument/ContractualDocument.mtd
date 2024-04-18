@@ -1534,7 +1534,8 @@
       "Name": "PurchComNumberSberDev",
       "Code": "PurchComNumber",
       "HandledEvents": [
-        "ValueInputClient"
+        "ValueInputClient",
+        "ChangedShared"
       ],
       "Length": 5,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",

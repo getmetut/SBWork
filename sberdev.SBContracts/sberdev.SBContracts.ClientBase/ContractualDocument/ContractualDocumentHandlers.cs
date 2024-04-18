@@ -28,7 +28,6 @@ namespace sberdev.SBContracts
             e.AddError(sberdev.SBContracts.ContractualDocuments.Resources.PurchComNumMask);
             return;
           }
-          _obj.PurchComNumberSberDev = e.NewValue.Substring(0, 2) + "." + e.NewValue.Substring(4);
         }
         if (valArr.Length == 5)
           for (byte i = 0; i < 5; i++)
