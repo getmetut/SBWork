@@ -61,6 +61,9 @@
       "Name": "DoWork",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
       "EntityType": "923b52ef-d0eb-4b24-9e95-e1172404118b",
+      "HandledEvents": [
+        "DoWorkStartAssignment"
+      ],
       "Properties": []
     },
     {

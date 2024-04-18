@@ -26,8 +26,9 @@ namespace Sungero.Custom.Server
         try
         {
           contrdoc.Note += " "; 
-          if ((contrdoc.State.Properties.PurchComNumberSberDev.IsRequired == true) && (contrdoc.PurchComNumberSberDev == null))
-            contrdoc.PurchComNumberSberDev = "000.0";
+          //if ((contrdoc.State.Properties.PurchComNumberSberDev.IsRequired == true) && (contrdoc.PurchComNumberSberDev == null))
+          //  contrdoc.PurchComNumberSberDev = "000.0";
+          contrdoc.State.Properties.PurchComNumberSberDev.IsRequired = false;
           contrdoc.Save();
           Con += 1;
         }
@@ -42,7 +43,9 @@ namespace Sungero.Custom.Server
       {
         try
         {
-          accdoc.Note += " ";  
+          accdoc.Note += " "; 
+          accdoc.State.Properties.PayTypeBaseSberDev.IsRequired = false;
+          accdoc.State.Properties.EstPaymentDateSberDev.IsRequired = false;
           accdoc.Save();
           Acc += 1;
         }

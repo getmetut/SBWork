@@ -79,4 +79,7 @@
   <data name="AttachmentGroup_OtherAttachmentsInformationMessage" xml:space="preserve">
     <value />
   </data>
+  <data name="Block_f568e34914eb42538ee76cfe46c43f35" xml:space="preserve">
+    <value>Типовое согласование</value>
+  </data>
 </root>

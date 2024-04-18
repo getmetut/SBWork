@@ -8,6 +8,15 @@ using Sungero.Custom.NDATask;
 
 namespace Sungero.Custom.Server.NDATaskBlocks
 {
+  partial class DoWorkHandlers
+  {
+
+    public virtual void DoWorkStartAssignment(Sungero.Custom.IDoWork assignment)
+    {
+      assignment.NOR = _obj.BaseDocNDA.NDAs.FirstOrDefault().BusinessUnit;
+    }
+  }
+
   partial class EditLifeHandlers
   {
 
@@ -39,6 +48,8 @@ namespace Sungero.Custom.Server.NDATaskBlocks
 
     public virtual void AuthorJobStartAssignment(Sungero.Custom.IAuthorJob assignment)
     {
+      assignment.NOR = _obj.BaseDocNDA.NDAs.FirstOrDefault().BusinessUnit;
+      assignment.Counterparty = _obj.BaseDocNDA.NDAs.FirstOrDefault().Counterparty;
       if (_obj.TravelDoc == Custom.NDATask.TravelDoc.Kurier)
         assignment.TravelStr = Custom.AuthorJob.TravelStr.Paper;
       else
@@ -51,6 +62,8 @@ namespace Sungero.Custom.Server.NDATaskBlocks
 
     public virtual void PlusAssignmentStartAssignment(Sungero.Custom.IPlusAssignment assignment)
     {
+      assignment.NOR = _obj.BaseDocNDA.NDAs.FirstOrDefault().BusinessUnit;
+      assignment.Counterparty = _obj.BaseDocNDA.NDAs.FirstOrDefault().Counterparty;
       if (_obj.TravelDoc == Custom.NDATask.TravelDoc.Kurier)
         assignment.TravelStr = Custom.PlusAssignment.TravelStr.Paper;
       else
@@ -63,6 +76,8 @@ namespace Sungero.Custom.Server.NDATaskBlocks
 
     public virtual void StandartAssignmentStartAssignment(Sungero.Custom.IStandartAssignment assignment)
     {
+      assignment.NOR = _obj.BaseDocNDA.NDAs.FirstOrDefault().BusinessUnit;
+      assignment.Counterparty = _obj.BaseDocNDA.NDAs.FirstOrDefault().Counterparty;
       if (_obj.TravelDoc == Custom.NDATask.TravelDoc.Kurier)
         assignment.TravelStr = Custom.StandartAssignment.TravelStr.Paper;
       else

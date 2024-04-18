@@ -8,6 +8,26 @@ using SDev.BPCustom.ContractualTask;
 
 namespace SDev.BPCustom.Server.ContractualTaskBlocks
 {
+  partial class NaPodpisanieHandlers
+  {
+
+    public virtual void NaPodpisanieStartAssignment(SDev.BPCustom.INaPodpisanie assignment)
+    {
+      assignment.NOR = _obj.BaseAttachments.ContractualDocuments.FirstOrDefault().BusinessUnit;
+      assignment.Counterparty = _obj.BaseAttachments.ContractualDocuments.FirstOrDefault().Counterparty;
+    }
+  }
+
+  partial class TypesAssignmentHandlers
+  {
+
+    public virtual void TypesAssignmentStartAssignment(SDev.BPCustom.ITypesAssignment assignment)
+    {
+      assignment.NOR = _obj.BaseAttachments.ContractualDocuments.FirstOrDefault().BusinessUnit;
+      assignment.Counterparty = _obj.BaseAttachments.ContractualDocuments.FirstOrDefault().Counterparty;
+    }
+  }
+
   partial class MonitoringBlockHandlers
   {
 
@@ -36,6 +56,12 @@ namespace SDev.BPCustom.Server.ContractualTaskBlocks
 
   partial class DoWorksHandlers
   {
+
+    public virtual void DoWorksStartAssignment(SDev.BPCustom.IDoWorks assignment)
+    {
+      assignment.NOR = _obj.BaseAttachments.ContractualDocuments.FirstOrDefault().BusinessUnit;
+      assignment.Counterparty = _obj.BaseAttachments.ContractualDocuments.FirstOrDefault().Counterparty;
+    }
 
     public virtual void DoWorksStart()
     {

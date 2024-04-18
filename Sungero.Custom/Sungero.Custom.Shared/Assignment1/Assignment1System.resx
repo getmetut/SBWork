@@ -136,4 +136,7 @@
   <data name="Ribbon_StaticDropDownButtonHint_3f51d4baf651480eb56c102c81a8e7f1" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_Counterparty" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
 </root>

@@ -97,4 +97,7 @@
   <data name="Action_ExecResultDescription" xml:space="preserve">
     <value>Complete the assignment with result "Отмена согласования"</value>
   </data>
+  <data name="Property_NOR" xml:space="preserve">
+    <value>Наша организация</value>
+  </data>
 </root>

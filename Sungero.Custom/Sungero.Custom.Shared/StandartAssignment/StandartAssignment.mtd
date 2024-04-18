@@ -211,6 +211,29 @@
       "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "95f0249f-cdbc-4036-bd5d-7c94e5fe3d72"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "056b32a9-ead8-452a-8181-17cf3b0b47c9",
+      "Name": "NOR",
+      "Code": "NOR5",
+      "EntityGuid": "eff95720-181f-4f7d-892d-dec034c7b2ab",
+      "FlatListInStandaloneLookup": true,
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "21b5014d-892c-4a2e-90c4-691e895bc1db",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "2707c936-1331-4572-be35-0f24b9d9f3ba",
+      "Name": "Counterparty",
+      "Code": "Counterparty2",
+      "EntityGuid": "294767f1-009f-4fbd-80fc-f98c49ddc560",
+      "FlatListInStandaloneLookup": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "056b32a9-ead8-452a-8181-17cf3b0b47c9",
+      "Versions": []
     }
   ],
   "PublicStructures": [],

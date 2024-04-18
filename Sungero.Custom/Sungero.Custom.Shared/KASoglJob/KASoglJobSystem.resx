@@ -139,4 +139,10 @@
   <data name="Resource_ad03c4af7bfe4967aa2cdaa3265bdbe3" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_NOR" xml:space="preserve">
+    <value>Наша организация</value>
+  </data>
+  <data name="Property_Counterparty" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
 </root>

@@ -26,6 +26,80 @@
   "ResourcesKeys": [],
   "SpecialFolders": [
     {
+      "NameGuid": "669ff039-2f05-4eb3-9d6a-049dafee948f",
+      "Name": "OnSigning",
+      "DisplayType": "Inbox",
+      "IconPath": "OnSigning_669ff0392f054eb39d6a049dafee948f.ico",
+      "IsAncestorMetadata": true,
+      "IsShow": true,
+      "IsViewSettingsByFolder": true,
+      "NeedShowMarkedCount": true,
+      "Overridden": [
+        "SupportedDescendantsTypes"
+      ],
+      "SupportedDescendantsTypes": [
+        "c0ebe0c6-4157-4015-b2db-ae1cc5cfccba",
+        "dae5d614-25ab-4dcb-ac0c-bc7ceb02f709",
+        "3930a315-6bb3-47bf-86ab-92f5510e9416",
+        "102f3750-ce9f-45c0-8e69-a6c7c7a88f4a",
+        "da8fc147-5b23-46ee-b183-6fdf0970b3de",
+        "db516acc-0f02-4ea7-960a-08f3f734db4f"
+      ],
+      "Versions": []
+    },
+    {
+      "NameGuid": "852ea6a2-304e-48d1-88e5-1bcbb1fb69a2",
+      "Name": "OnApproval",
+      "DisplayType": "Inbox",
+      "IconPath": "OnApproval_852ea6a2304e48d188e51bcbb1fb69a2.ico",
+      "IsAncestorMetadata": true,
+      "IsShow": true,
+      "IsViewSettingsByFolder": true,
+      "NeedShowMarkedCount": true,
+      "Overridden": [
+        "SupportedDescendantsTypes"
+      ],
+      "SupportedDescendantsTypes": [
+        "0aac549f-452c-4b6f-9f30-ffdeb328617e",
+        "02977b7d-fcd5-4c0a-b7b2-a2a87df6c246",
+        "0c5a665f-4ec8-4d40-87fd-605c74df1383",
+        "3a6caaff-6636-4edd-8e77-89d2fdfd451d",
+        "102f3750-ce9f-45c0-8e69-a6c7c7a88f4a",
+        "38bd47eb-ecd8-4823-b84e-c53fbd083eb5",
+        "4866aff6-f0cc-455b-b6b6-993508ec5c29",
+        "bfdab4d5-8253-4759-acbd-a6c0e963c4ae",
+        "3a50daaf-e0f2-4710-8120-c22fd6aa2cd7",
+        "321f5d21-9aef-4db8-a98f-96ad59439e80",
+        "6d73877a-b61d-480d-b53e-1df9bdbce013",
+        "daf1900f-e66b-4368-b724-a073266145d7",
+        "bbb08f45-60c1-4496-9ff6-b32caed44215",
+        "01be6c28-8785-4f74-9877-e3270704452e"
+      ],
+      "Versions": []
+    },
+    {
+      "NameGuid": "a584ebf5-f9b3-4e41-b7cf-15d8c2f96844",
+      "Name": "OnRework",
+      "DisplayType": "Inbox",
+      "IconPath": "OnRework_a584ebf5f9b34e41b7cf15d8c2f96844.ico",
+      "IsAncestorMetadata": true,
+      "IsShow": true,
+      "IsViewSettingsByFolder": true,
+      "NeedShowMarkedCount": true,
+      "Overridden": [
+        "SupportedDescendantsTypes"
+      ],
+      "SupportedDescendantsTypes": [
+        "00aae3dc-c8d0-4164-9f86-b3086f4992e7",
+        "6b6ab7f9-408b-417f-82df-24631d8167f1",
+        "0a8cb025-1657-495d-aa5e-e982898df156",
+        "923b52ef-d0eb-4b24-9e95-e1172404118b",
+        "040862cd-a46f-4366-b068-e659c7acaea6",
+        "593ff79e-38b4-4903-b20e-9e08cfea6307"
+      ],
+      "Versions": []
+    },
+    {
       "NameGuid": "1ead1abe-1b7e-4833-9e01-ee7f8404537a",
       "Name": "OnDocumentProcessing",
       "DisplayType": "Inbox",

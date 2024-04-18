@@ -31,6 +31,19 @@
   ],
   "BaseGuid": "d795d1f6-45c1-4e5e-9677-b53fb7280c7e",
   "BlockIds": [],
+  "Blocks": [
+    {
+      "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "f568e349-14eb-4253-8ee7-6cfe46c43f35",
+      "Name": "StantartJob",
+      "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
+      "EntityType": "0aac549f-452c-4b6f-9f30-ffdeb328617e",
+      "HandledEvents": [
+        "StantartJobStartAssignment"
+      ],
+      "Properties": []
+    }
+  ],
   "CanBeNavigationPropertyType": true,
   "CanBeSearch": false,
   "CreationAreaMetadata": {

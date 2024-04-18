@@ -139,4 +139,10 @@
   <data name="Property_Employee" xml:space="preserve">
     <value>Исполнитель</value>
   </data>
+  <data name="Property_NOR" xml:space="preserve">
+    <value>Наша организация</value>
+  </data>
+  <data name="Property_Counterparty" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
 </root>

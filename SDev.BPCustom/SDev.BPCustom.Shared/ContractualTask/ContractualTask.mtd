@@ -38,6 +38,9 @@
       "Name": "TypesAssignment",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
       "EntityType": "02977b7d-fcd5-4c0a-b7b2-a2a87df6c246",
+      "HandledEvents": [
+        "TypesAssignmentStartAssignment"
+      ],
       "Properties": []
     },
     {
@@ -47,7 +50,8 @@
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
       "EntityType": "00aae3dc-c8d0-4164-9f86-b3086f4992e7",
       "HandledEvents": [
-        "DoWorksStart"
+        "DoWorksStart",
+        "DoWorksStartAssignment"
       ],
       "Properties": [
         {
@@ -70,6 +74,9 @@
       "Name": "NaPodpisanie",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
       "EntityType": "c0ebe0c6-4157-4015-b2db-ae1cc5cfccba",
+      "HandledEvents": [
+        "NaPodpisanieStartAssignment"
+      ],
       "Properties": []
     },
     {

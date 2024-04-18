@@ -39,6 +39,9 @@
       "Name": "ClassicBlock",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
       "EntityType": "3a6caaff-6636-4edd-8e77-89d2fdfd451d",
+      "HandledEvents": [
+        "ClassicBlockStartAssignment"
+      ],
       "Properties": []
     },
     {
@@ -47,6 +50,9 @@
       "Name": "ExecutionBlock",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
       "EntityType": "38bd47eb-ecd8-4823-b84e-c53fbd083eb5",
+      "HandledEvents": [
+        "ExecutionBlockStartAssignment"
+      ],
       "Properties": []
     },
     {
@@ -141,7 +147,8 @@
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
       "EntityType": "102f3750-ce9f-45c0-8e69-a6c7c7a88f4a",
       "HandledEvents": [
-        "DroductSoglStart"
+        "DroductSoglStart",
+        "DroductSoglStartAssignment"
       ],
       "Properties": [
         {

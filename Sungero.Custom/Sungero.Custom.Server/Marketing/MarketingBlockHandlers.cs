@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -8,8 +8,33 @@ using Sungero.Custom.Marketing;
 
 namespace Sungero.Custom.Server.MarketingBlocks
 {
+  partial class ExecutionBlockHandlers
+  {
+
+    public virtual void ExecutionBlockStartAssignment(Sungero.Custom.IExecution assignment)
+    {
+      assignment.NOR = _obj.Baseattachment.MarcetingDocs.FirstOrDefault().BusinessUnit;
+    }
+  }
+
+  partial class ClassicBlockHandlers
+  {
+
+    public virtual void ClassicBlockStartAssignment(Sungero.Custom.IClassicBlock assignment)
+    {
+      assignment.NOR = _obj.Baseattachment.MarcetingDocs.FirstOrDefault().BusinessUnit;
+    }
+  }
+
+
+
   partial class DroductSoglHandlers
   {
+
+    public virtual void DroductSoglStartAssignment(Sungero.Custom.IDroductSogl assignment)
+    {
+      assignment.NOR = _obj.Baseattachment.MarcetingDocs.FirstOrDefault().BusinessUnit;
+    }
 
     public virtual void DroductSoglStart()
     {
