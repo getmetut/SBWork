@@ -83,7 +83,7 @@
     <value>Типовое согласование</value>
   </data>
   <data name="Block_329956dde9a448dab750cf8601c7e855" xml:space="preserve">
-    <value>Инициатору на доработку</value>
+    <value>На доработку</value>
   </data>
   <data name="Block_2a4de259e6b848d18677528c450164fc" xml:space="preserve">
     <value>Задание на подписание</value>
@@ -117,5 +117,8 @@
   </data>
   <data name="Block_146161a9de334284a550be7ed9a91849_Property_589e197866b84a8b813fb8c1bf07441c" xml:space="preserve">
     <value>Подзадача по регламенту</value>
+  </data>
+  <data name="Block_146161a9de334284a550be7ed9a91849_Property_49fed9150a3a42a18ef6b6081dd06a8b" xml:space="preserve">
+    <value>Отправить подзадачу закупки</value>
   </data>
 </root>

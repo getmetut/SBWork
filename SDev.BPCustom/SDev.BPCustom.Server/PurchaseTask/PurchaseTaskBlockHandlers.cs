@@ -13,8 +13,7 @@ namespace SDev.BPCustom.Server.PurchaseTaskBlocks
 
     public virtual void StantartJobStartAssignment(SDev.BPCustom.IStantartJob assignment)
     {
-      assignment.NOR = _obj.BaseAttachments.Purchases.FirstOrDefault().BusinessUnit;
-      assignment.Counterparty = _obj.BaseAttachments.Purchases.FirstOrDefault().Counterparty;
+
     }
   }
 

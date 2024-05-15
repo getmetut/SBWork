@@ -26,6 +26,53 @@
   "ResourcesKeys": [],
   "SpecialFolders": [
     {
+      "NameGuid": "1440d1dc-6746-434a-908d-e596c2a1f849",
+      "Name": "Approval",
+      "DisplayType": "Outbox",
+      "FilterPanel": {
+        "NameGuid": "bd0c1171-562b-4554-ae84-0234975ba40c",
+        "Name": "FilterPanel",
+        "Controls": [
+          {
+            "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+            "NameGuid": "2bab7cb6-8fbc-40e6-bfe6-6a85673d7249",
+            "Name": "FilterSDev",
+            "PreviousGuid": "9fcf03fd-95f0-495c-9cdb-ad4d013f6f19"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterNavigationMetadata, Sungero.Metadata",
+            "NameGuid": "df3e414c-2e11-4703-805d-b30ad1c36a7a",
+            "Name": "CounterpartySDev",
+            "EntityGuid": "294767f1-009f-4fbd-80fc-f98c49ddc560",
+            "HandledEvents": [
+              "FilteringServer"
+            ],
+            "LookupMode": "Standalone",
+            "MasterControlId": "5a6579ea-cbc2-42e3-b6de-87d0b435a52a",
+            "ParentGuid": "2bab7cb6-8fbc-40e6-bfe6-6a85673d7249"
+          }
+        ],
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Controls"
+        ],
+        "Versions": []
+      },
+      "HandledEvents": [
+        "DataQueryServer"
+      ],
+      "IconPath": "Approval_1440d1dc6746434a908de596c2a1f849.ico",
+      "IsAncestorMetadata": true,
+      "IsShow": true,
+      "IsViewSettingsByFolder": true,
+      "NeedShowMarkedCount": false,
+      "Overridden": [
+        "FilterPanel",
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
+    {
       "NameGuid": "669ff039-2f05-4eb3-9d6a-049dafee948f",
       "Name": "OnSigning",
       "DisplayType": "Inbox",

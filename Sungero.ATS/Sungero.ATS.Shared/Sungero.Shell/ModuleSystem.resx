@@ -73,4 +73,10 @@
   <data name="FilterPanel_OnlyReadSDev_9ee674619ef54e3687dfa040e71daead" xml:space="preserve">
     <value>Только не прочтенные</value>
   </data>
+  <data name="FilterPanel_FilterSDev_2bab7cb68fbc40e6bfe66a85673d7249" xml:space="preserve">
+    <value>Фильтрация по реквизиту</value>
+  </data>
+  <data name="FilterPanel_CounterpartySDev_df3e414c2e114703805db30ad1c36a7a" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
 </root>

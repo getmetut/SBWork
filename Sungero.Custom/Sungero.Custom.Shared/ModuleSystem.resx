@@ -100,4 +100,10 @@
   <data name="JobDescription_605d225bde9f4db0af2637766288e66b" xml:space="preserve">
     <value>Фоновый процесс отбора документов и заполнение полей о продуктах и калькуляциях</value>
   </data>
+  <data name="JobDisplayName_331a19e96a5e464a8f37d13c4ab61d50" xml:space="preserve">
+    <value>Обработка заданий для занесения их в список заданий в справочнике</value>
+  </data>
+  <data name="JobDescription_331a19e96a5e464a8f37d13c4ab61d50" xml:space="preserve">
+    <value>Обработка заданий для занесения их в список заданий в справочнике</value>
+  </data>
 </root>

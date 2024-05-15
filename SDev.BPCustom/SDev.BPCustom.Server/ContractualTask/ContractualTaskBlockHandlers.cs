@@ -59,13 +59,12 @@ namespace SDev.BPCustom.Server.ContractualTaskBlocks
 
     public virtual void DoWorksStartAssignment(SDev.BPCustom.IDoWorks assignment)
     {
-      assignment.NOR = _obj.BaseAttachments.ContractualDocuments.FirstOrDefault().BusinessUnit;
-      assignment.Counterparty = _obj.BaseAttachments.ContractualDocuments.FirstOrDefault().Counterparty;
+
     }
 
     public virtual void DoWorksStart()
     {
-      _block.Performers.Add(_obj.Author);
+      //_block.Performers.Add(_obj.Author);
     }
   }
 

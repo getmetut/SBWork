@@ -82,25 +82,4 @@
   <data name="CollectionDisplayName" xml:space="preserve">
     <value>Задания на доработку инициатору</value>
   </data>
-  <data name="Enum_Result_ExecResult" xml:space="preserve">
-    <value>Отмена согласования</value>
-  </data>
-  <data name="Action_ExecResult" xml:space="preserve">
-    <value>Отмена согласования</value>
-  </data>
-  <data name="Action_ExecResultHint" xml:space="preserve">
-    <value>Complete with Result "Отмена согласования"</value>
-  </data>
-  <data name="Action_ExecResultConfirmationMessage" xml:space="preserve">
-    <value>Complete the assignment with result "Отмена согласования"?</value>
-  </data>
-  <data name="Action_ExecResultDescription" xml:space="preserve">
-    <value>Complete the assignment with result "Отмена согласования"</value>
-  </data>
-  <data name="Property_NOR" xml:space="preserve">
-    <value>Наша организация</value>
-  </data>
-  <data name="Property_Counterparty" xml:space="preserve">
-    <value>Контрагент</value>
-  </data>
 </root>

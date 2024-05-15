@@ -97,10 +97,4 @@
   <data name="Action_ExecResultDescription" xml:space="preserve">
     <value>Complete the assignment with result "На доработку"</value>
   </data>
-  <data name="Property_NOR" xml:space="preserve">
-    <value>Наша организация</value>
-  </data>
-  <data name="Property_Counterparty" xml:space="preserve">
-    <value>Контрагент</value>
-  </data>
 </root>

@@ -73,19 +73,4 @@
   <data name="Action_CompleteDescription" xml:space="preserve">
     <value>Выполнение задания с результатом "Доработано"</value>
   </data>
-  <data name="Enum_Result_ExecResult" xml:space="preserve">
-    <value>Отмена согласования</value>
-  </data>
-  <data name="Action_ExecResult" xml:space="preserve">
-    <value>Отмена согласования</value>
-  </data>
-  <data name="Action_ExecResultHint" xml:space="preserve">
-    <value>Выполнить с результатом "Отмена согласования"</value>
-  </data>
-  <data name="Action_ExecResultConfirmationMessage" xml:space="preserve">
-    <value>Выполнить задание с результатом "Отмена согласования"?</value>
-  </data>
-  <data name="Action_ExecResultDescription" xml:space="preserve">
-    <value>Выполнение задания с результатом "Отмена согласования"</value>
-  </data>
 </root>

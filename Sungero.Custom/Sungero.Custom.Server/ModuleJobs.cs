@@ -10,6 +10,26 @@ namespace Sungero.Custom.Server
   {
 
     /// <summary>
+    /// Обработка заданий для занесения их в список заданий в справочнике
+    /// </summary>
+    public virtual void JobsinReference()
+    {
+      var ActualList = DatabookJobses.GetAll();
+      List<long> ListIds = new List<long>();
+      foreach (var elem in ActualList)
+      {
+        ListIds.Add(long.Parse(elem.IDJob.Value.ToString()));
+      }
+      var Jobs = Sungero.Workflow.Assignments.GetAll(a => ((a.Status == Sungero.Workflow.Assignment.Status.InProcess) && (!ListIds.Contains(a.Id)))).ToList();
+      foreach (var job in Jobs)
+      {
+        var DJ = DatabookJobses.Create();
+        DJ.IDJob = int.Parse(job.Id.ToString());
+        DJ.Save();
+      }
+    }
+
+    /// <summary>
     /// Фоновый процесс отбора документов и заполнение полей о продуктах и калькуляциях
     /// </summary>
     public virtual void JobSearchDocumProdCalc()

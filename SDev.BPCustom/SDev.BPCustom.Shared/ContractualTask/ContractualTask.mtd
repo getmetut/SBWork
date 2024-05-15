@@ -53,20 +53,7 @@
         "DoWorksStart",
         "DoWorksStartAssignment"
       ],
-      "Properties": [
-        {
-          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
-          "NameGuid": "ef35d829-3db7-4f11-acb3-1b833fd49234",
-          "Name": "Performers",
-          "EntityGuid": "c612fc41-44a3-428b-a97c-433c333d78e9",
-          "IsAncestorMetadata": true,
-          "IsCollection": true,
-          "IsVisible": false,
-          "Overridden": [
-            "IsVisible"
-          ]
-        }
-      ]
+      "Properties": []
     },
     {
       "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
@@ -102,6 +89,12 @@
           "Name": "SubTask",
           "EntityGuid": "100950d0-03d2-44f0-9e31-f9c8dfdf3829",
           "PreviousPropertyGuid": "24e0c299-ff20-4f13-9c2d-430cde41fc88"
+        },
+        {
+          "$type": "Sungero.Metadata.BooleanBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "49fed915-0a3a-42a1-8ef6-b6081dd06a8b",
+          "Name": "PurchaseTsk",
+          "PreviousPropertyGuid": "589e1978-66b8-4a8b-813f-b8c1bf07441c"
         }
       ]
     }
