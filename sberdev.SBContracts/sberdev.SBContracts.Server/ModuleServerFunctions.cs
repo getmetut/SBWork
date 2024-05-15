@@ -6,6 +6,7 @@ using Sungero.CoreEntities;
 using sberdev.SberContracts;
 using System.Net;
 using Aspose.Words;
+using Aspose.Words.Reporting;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -583,6 +584,373 @@ namespace sberdev.SBContracts.Server
         Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand("delete from Sungero_System_Locks where EntityId = "
                                                                  + entity.Id.ToString() + " and EntityTypeGuid = '"
                                                                  + entity.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "'");
+    }
+    
+    /// <summary>
+    /// Функция создает новое тело документа основываясь на указанных в карточке свойствах
+    /// </summary>
+    [Remote, Public]
+    public void CreateBodyByProperties(IOfficialDocument doc)
+    {
+      string pathTemplate = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Путь к папке с шаблонами").Text;
+      Aspose.Words.Document body = new Aspose.Words.Document(pathTemplate + SberContracts.PublicConstants.Purchase.TemplateDocxName);
+      var typeName = doc.GetEntityTypeFullName();
+      switch (typeName)
+      {
+        case "sberdev.SberContracts.Purchase":
+          CreateBodyByPropertiesPurchase(SberContracts.Purchases.As(doc), body);
+          break;
+      };
+      
+      var gPath = Guid.NewGuid().ToString();
+      string pathNewDoc = "C:TempDocs//" + gPath + ".docx";
+      body.Save(pathNewDoc);
+      doc.CreateVersionFrom(pathNewDoc);
+      doc.Save();
+    }
+    
+    public void CreateBodyByPropertiesPurchase(SberContracts.IPurchase purch, Aspose.Words.Document body)
+    {
+      List<string> addendums = new List<string>();
+      if (purch.Specification != null)
+      {
+        string link = "https://directum.sberdevices.ru/DrxWeb/#/sat/card/"
+          + purch.Specification.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "/" + purch.Specification.Id.ToString();
+        body.Range.Replace("[Specification]", link);
+        addendums.Add("Техническое задание - " + link);
+      }
+      if (purch.CommercialOffer != null)
+      {
+        string link = "https://directum.sberdevices.ru/DrxWeb/#/sat/card/"
+          + purch.CommercialOffer.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "/" + purch.CommercialOffer.Id.ToString();
+        body.Range.Replace("[CommercialOffer]", link);
+        addendums.Add("Коммерческое предложение - " + link);
+      }
+      if (purch.UpgradedCommercialOffer != null)
+      {
+        string link = "https://directum.sberdevices.ru/DrxWeb/#/sat/card/"
+          + purch.UpgradedCommercialOffer.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "/" + purch.UpgradedCommercialOffer.Id.ToString();
+        body.Range.Replace("[UpgradedCommercialOffer]", "Улучшенное технико-коммерческое предложение (" + link + ")");
+        addendums.Add("Улучшенное коммерческое предложение - " + link);
+      }
+      
+      body.Range.Replace("[KindPurchase]", GetPurchaseKind(purch.KindPurchase));
+      body.Range.Replace("[CPName]", purch.Counterparty.Name);
+      body.Range.Replace("[SubjectPurchase]", purch.SubjectPurchase);
+      body.Range.Replace("[SubjectPurchaseGen]", purch.SubjectPurchaseGen);
+      body.Range.Replace("[ForNeeds]", purch.ForNeeds);
+      var nowDate = Calendar.Now;
+      body.Range.Replace("[CreatedDay]", nowDate.Day.ToString());
+      body.Range.Replace("[CreatedMonth]", PublicFunctions.Module.GetMonthGenetiveName(nowDate.Month));
+      body.Range.Replace("[CreatedYear]", nowDate.Year.ToString());
+      body.Range.Replace("[MethodPurchase]", purch.MethodPurchase);
+      body.Range.Replace("[PurchaseAmount]", purch.PurchaseAmount.ToString());
+      body.Range.Replace("[MVZ]", purch.MVZBaseSberDev != null ? purch.MVZBaseSberDev.Name : purch.MVPBaseSberDev.Name);
+      body.Range.Replace("[ApprovalProjectContract]", purch.ApprovalProjectContract);
+      body.Range.Replace("[NameTaskProject]", purch.NameTaskProject);
+      body.Range.Replace("[RelizableKind]", GetRelizableKind(purch.RelizableKind));
+      body.Range.Replace("[TargetPurchase]", purch.TargetPurchase);
+      body.Range.Replace("[TargetAndDepartCp]", purch.TargetAndDepartCp);
+      
+      if (purch.Necessary != null)
+        body.Range.Replace("[Necessary]", purch.Necessary);
+      
+      var realizeList = purch.RealizeCollection.Select(p => p.Text).ToList();
+      realizeList.Add("проект \"" + purch.ProjectName + "\":");
+      ReplacePlaceholderWithMarkedParagraphs(body, "[Realize]", realizeList, Aspose.Words.Lists.ListTemplate.BulletDisk);
+      
+      body.Range.Replace("[ProjectName]", "\"" + purch.ProjectName + "\":");
+      body.Range.Replace("[InfoSubjectPurchase]", purch.InfoSubjectPurchase);
+      body.Range.Replace("[HistoryPurchase]", purch.HistoryPurchase);
+      body.Range.Replace("[TasksPurchase]", purch.TasksPurchase);
+      body.Range.Replace("[IfNoPurchase]", purch.IfNoPurchase);
+      body.Range.Replace("[JustifImpossibInhouse]", purch.JustifImpossibInhouse);
+      body.Range.Replace("[ChooseCpJustif]", purch.ChooseCpJustif);
+      if (purch.ScreenBusinessPlan.Length > 0)
+      {
+        body.Range.Replace("[ScreenBusinessPlanText]", "Скрин строки из Бизнес-плана прилагается.");
+        using (MemoryStream stream = new MemoryStream(purch.ScreenBusinessPlan))
+        {
+          ReplacePlaceholderWithImage(body, "[ScreenBusinessPlan]", stream);
+        }
+      }
+      
+      if (purch.NegotiationsDiscount.HasValue)
+        body.Range.Replace("[NegotiationsDiscount]", "По итогам переговоров цена была снижена на " + purch.NegotiationsDiscount.ToString() + "%");
+      
+      string payType = GetPaymentKind(purch.PaymentKind) + purch.PrepaymentPercent != null ? " c " + purch.PrepaymentPercent.ToString() + " % авансом" : "";
+      body.Range.Replace("[PayType]", payType);
+      
+      string linkС = null;
+      if (purch.LeadingDocument != null)
+      {
+        linkС = "https://directum.sberdevices.ru/DrxWeb/#/sat/card/"
+          + purch.LeadingDocument.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "/" + purch.LeadingDocument.Id.ToString();
+        addendums.Add("Договор - " + linkС);
+      }
+      
+      if (purch.ConcludedContractsKind == SberContracts.Purchase.ConcludedContractsKind.Yes)
+        body.Range.Replace("[ConcludedContracts]", "а также с использованием информации из действующих договоров, например:\n" +
+                           "Согласно " + purch.LeadingDocument.Name + " (" + linkС + ") стоимость " + purch.SubjectPurchaseGen + " составляет "
+                           + purch.TotalAmount.Value.ToString() + " рублей без НДС, что соответствует среднерыночной стоимости.");
+      if (purch.ConcludedContractsKind == SberContracts.Purchase.ConcludedContractsKind.NoChanges)
+        body.Range.Replace("[ConcludedContracts]", "а также с использованием информации из действующих договоров, например:\n" +
+                           "Указанная стоимость услуг остается неизменной с " + purch.LeadingDocument.DocumentDate + ", что подтверждено" + purch.LeadingDocument.Name
+                           + ". (" + linkС + "), что соответствует среднерыночной стоимости.");
+      if (purch.ConcludedContractsKind == SberContracts.Purchase.ConcludedContractsKind.No)
+        body.Range.Replace("[ConcludedContracts]", "Действующие договоры с " + purch.Counterparty.Name + " отсутствуют.");
+      
+      if (purch.PrepaymentPercent != null)
+        body.Range.Replace("[PrepaymentJustification]", "Аванс предусмотрен в размере " + purch.PrepaymentPercent + "% в связи с тем, что " + purch.PrepaymentJustification);
+      else
+        body.Range.Replace("[PrepaymentJustification]", "Аванс не предусмотрен.");
+      
+      body.Range.Replace("[BusinessUnit]", purch.BusinessUnit.Name);
+      body.Range.Replace("[Authorized]", purch.Authorized.Name);
+      body.Range.Replace("[VAT]", (purch.VAT.Value ? " с учетом НДС 20%" : " без учета НДС 20%"));
+      
+      if (purch.NecessaryConclude == SberContracts.Purchase.NecessaryConclude.Contract)
+        body.Range.Replace("[NecessaryConclude]", "Договор");
+      else
+        body.Range.Replace("[NecessaryConclude]", "Дополнительное Соглашение к " + purch.LeadingDocument.Name + " от " + purch.LeadingDocument.DocumentDate.Value.Year.ToString() +" года");
+      body.Range.Replace("[DepartmentPurchase]", purch.DepartmentPurchase.Name);
+      
+      if (purch.TotalAmount != purch.PurchaseAmount)
+        body.Range.Replace("[TotalAmount]", "при этом общая стоимость договора составит " + purch.TotalAmount.Value.ToString() + (purch.VAT.Value ? "руб. с учетом НДС 20%" : "руб. без учета НДС 20%"));
+      
+      body.Range.Replace("[PurchaseKindExt]", GetPurchaseKindExt(purch.KindPurchase));
+      body.Range.Replace("[ServiceStartDate]", purch.ServiceStartDate.Value.ToShortDateString());
+      body.Range.Replace("[ServiceEndDate]", purch.ServiceEndDate.Value.ToShortDateString());
+      body.Range.Replace("[InitiatorManager]", Sungero.Company.Employees.As(purch.Author).Department.Manager.Name);
+      body.Range.Replace("[MVZBudgetOwner]", (purch.MVZBaseSberDev.MainMVZ != null ? purch.MVZBaseSberDev.MainMVZ.BudgetOwner.Name : (purch.MVZBaseSberDev != null ?
+                                                                                                                                      purch.MVZBaseSberDev.BudgetOwner.Name : null)));
+      body.Range.Replace("[CEO]", purch.BusinessUnit.CEO.Name);
+      
+      if (addendums.Count > 0)
+        ReplacePlaceholderWithMarkedParagraphs(body, "[Addendums]", addendums, Aspose.Words.Lists.ListTemplate.NumberDefault);
+      else
+        body.Range.Replace("[Addendums]", "Отсутвует");
+      
+      #region Таблицы
+      List<int> boldRows = new List<int>(){};
+      boldRows.Add(0);
+      boldRows.Add(purch.StagesPurchaseCollection.Count + 1);
+      string[,] stages = new string[purch.StagesPurchaseCollection.Count + 2, 3];
+      stages[0, 0] = "Название этапа";
+      stages[0, 1] = "Стоимость";
+      stages[0, 2] = "Длительность (дн.)";
+      int counter = 1;
+      foreach (var stage in purch.StagesPurchaseCollection)
+      {
+        stages[counter, 0] = stage.Name;
+        stages[counter, 1] = stage.Cost.Value.ToString();
+        stages[counter, 2] = stage.Duration.Value.ToString();
+        counter++;
+      }
+      stages[purch.StagesPurchaseCollection.Count + 1, 0] = "ИТОГО длительность и стоимость реализации проекта";
+      stages[purch.StagesPurchaseCollection.Count + 1, 1] = purch.StagesPurchaseCollection.Select(p => p.Cost).Sum().ToString();
+      stages[purch.StagesPurchaseCollection.Count + 1, 2] = purch.StagesPurchaseCollection.Select(p => p.Duration).Sum().ToString();
+      ReplacePlaceholderWithTable(body, "[StagesPurchaseCollection]", CreateTableByArray(body, stages, boldRows));
+      
+      boldRows[1] = 0;
+      string[,] costAnalysis = new string[purch.CostAnalysisCollection.Count + 1, 4];
+      costAnalysis[0, 0] = "Наименование работ/услуг";
+      costAnalysis[0, 1] = "Цена по КП выбр. контр.";
+      costAnalysis[0, 2] = "Цена по КП 2";
+      costAnalysis[0, 3] = "Цена по КП 3";
+      counter = 1;
+      foreach (var row in purch.CostAnalysisCollection)
+      {
+        costAnalysis[counter, 0] = row.Name;
+        costAnalysis[counter, 1] = row.COCost1.Value.ToString();
+        costAnalysis[counter, 2] = row.COCost2.Value.ToString();
+        costAnalysis[counter, 3] = row.COCost3.Value.ToString();
+        counter++;
+      }
+      ReplacePlaceholderWithTable(body, "[CostAnalysisCollection]", CreateTableByArray(body, costAnalysis, boldRows));
+      #endregion
+    }
+    
+    static void ReplacePlaceholderWithMarkedParagraphs(Aspose.Words.Document doc, string placeholder, List<string> texts, Aspose.Words.Lists.ListTemplate listTemplate)
+    {
+      // Получаем все параграфы, содержащие текстовый заполнитель
+      NodeCollection paragraphs = doc.GetChildNodes(NodeType.Paragraph, true);
+      foreach (Aspose.Words.Paragraph paragraph in paragraphs)
+      {
+        if (paragraph.GetText().Contains(placeholder))
+        {
+          // Создаем новый список для маркированных абзацев
+          var list = doc.Lists.Add(listTemplate);
+          
+          // Заменяем текстовый заполнитель на несколько абзацев
+          for (int i = texts.Count - 1; i >= 0; i--)
+          {
+            Aspose.Words.Paragraph newParagraph = new Aspose.Words.Paragraph(doc);
+            newParagraph.ListFormat.List = list;
+            newParagraph.AppendChild(new Run(doc, texts[i]));
+            paragraph.ParentNode.InsertAfter(newParagraph, paragraph);
+          }
+
+          // Удаляем параграф с текстовым заполнителем
+          paragraph.Remove();
+        }
+      }
+    }
+    
+    static void ReplacePlaceholderWithMarkedParagraphs(Aspose.Words.Document doc, string placeholder, List<string> texts, string prestring)
+    {
+      // Получаем все параграфы, содержащие текстовый заполнитель
+      NodeCollection paragraphs = doc.GetChildNodes(NodeType.Paragraph, true);
+      foreach (Aspose.Words.Paragraph paragraph in paragraphs)
+      {
+        if (paragraph.GetText().Contains(placeholder))
+        {
+          // Создаем новый список для маркированных абзацев
+          var list = doc.Lists.Add(Aspose.Words.Lists.ListTemplate.BulletDisk);
+          
+          // Заменяем текстовый заполнитель на несколько абзацев
+          for (int i = texts.Count - 1; i >= 0; i--)
+          {
+            Aspose.Words.Paragraph newParagraph = new Aspose.Words.Paragraph(doc);
+            newParagraph.ListFormat.List = list;
+            newParagraph.AppendChild(new Run(doc, prestring + " " + texts[i]));
+            paragraph.ParentNode.InsertAfter(newParagraph, paragraph);
+          }
+
+          // Удаляем параграф с текстовым заполнителем
+          paragraph.Remove();
+        }
+      }
+    }
+    
+    static void ReplacePlaceholderWithImage(Aspose.Words.Document doc, string placeholder, Stream imageStrm)
+    {
+      // Получаем все параграфы, содержащие текстовый заполнитель
+      NodeCollection paragraphs = doc.GetChildNodes(NodeType.Paragraph, true);
+      foreach (Aspose.Words.Paragraph paragraph in paragraphs)
+      {
+        if (paragraph.GetText().Contains(placeholder))
+        {
+          // Удаляем текстовый заполнитель из параграфа
+          paragraph.Range.Replace(placeholder, "");
+          
+          // Вставляем изображение вместо текстового заполнителя
+          var builder = new Aspose.Words.DocumentBuilder(doc);
+          builder.MoveTo(paragraph);
+          builder.InsertImage(imageStrm);
+        }
+      }
+    }
+    
+    static void ReplacePlaceholderWithTable(Aspose.Words.Document doc, string placeholder, Aspose.Words.Tables.Table table)
+    {
+      // Получаем все параграфы, содержащие текстовый заполнитель
+      NodeCollection paragraphs = doc.GetChildNodes(NodeType.Paragraph, true);
+      foreach (Aspose.Words.Paragraph paragraph in paragraphs)
+      {
+        if (paragraph.GetText().Contains(placeholder))
+        {
+          // Удаляем текстовый заполнитель из параграфа
+          paragraph.Range.Replace(placeholder, "");
+          paragraph.ParentNode.InsertAfter(table, paragraph);
+        }
+      }
+    }
+    
+    static Aspose.Words.Tables.Table CreateTableByArray(Aspose.Words.Document doc, string[,] values, List<int> boldRows)
+    {
+      // Создаем новую таблицу
+      var table = new Aspose.Words.Tables.Table(doc);
+      
+      // Добавляем строки и ячейки в таблицу
+      for (int row = 0; row < values.GetLength(0); row++)
+      {
+        var tableRow = new Aspose.Words.Tables.Row(doc);
+        for (int col = 0; col < values.GetLength(1); col++)
+        {
+          var cell = new Aspose.Words.Tables.Cell(doc);
+          cell.CellFormat.Width = 50;
+
+          // Создаем пустой параграф
+          var paragraph = new Aspose.Words.Paragraph(doc);
+
+          // Добавляем текст в параграф
+          paragraph.AppendChild(new Run(doc, (values[row, col] == null ? "" : values[row, col])));
+
+          // Если номер текущей строки содержится в списке boldRows, делаем текст жирным
+          if (boldRows.Contains(row))
+          {
+            foreach (Run run in paragraph.Runs)
+            {
+              run.Font.Bold = true;
+            }
+          }
+
+          cell.AppendChild(paragraph);
+          tableRow.Cells.Add(cell);
+        }
+        table.AppendChild(tableRow);
+      }
+      return table;
+    }
+
+    static Aspose.Words.Tables.Table CreateTableByArray(Aspose.Words.Document doc, string[,] values)
+    {
+      // Создаем новую таблицу
+      var table = new Aspose.Words.Tables.Table(doc);
+      
+      // Добавляем строки и ячейки в таблицу
+      for (int row = 0; row < values.GetLength(0); row++)
+      {
+        var tableRow = new Aspose.Words.Tables.Row(doc);
+        for (int col = 0; col < values.GetLength(1); col++)
+        {
+          var cell = new Aspose.Words.Tables.Cell(doc);
+          cell.CellFormat.Width = 50;
+          cell.AppendChild(new Aspose.Words.Paragraph(doc));
+          cell.FirstParagraph.AppendChild(new Run(doc, values[row,col]));
+          tableRow.Cells.Add(cell);
+        }
+        table.AppendChild(tableRow);
+      }
+      return table;
+    }
+    
+    string GetPurchaseKind(Enumeration? kind)
+    {
+      if (kind.Value == SberContracts.Purchase.KindPurchase.Service)
+        return "услуг";
+      else
+        return "работ";
+    }
+    
+    string GetPurchaseKindExt(Enumeration? kind)
+    {
+      if (kind.Value == SberContracts.Purchase.KindPurchase.Service)
+        return "оказания услуг";
+      else
+        return "выполнения работ";
+    }
+    
+    string GetRelizableKind(Enumeration? kind)
+    {
+      if (kind.Value == SberContracts.Purchase.RelizableKind.Project)
+        return "проекта";
+      else
+        return "задачи";
+    }
+    
+    string GetPaymentKind(Enumeration? kind)
+    {
+      if (kind.Value == SberContracts.Purchase.PaymentKind.Monthly)
+        return "ежемесячно ";
+      if (kind.Value == SberContracts.Purchase.PaymentKind.OnePayment)
+        return "одним платежом ";
+      if (kind.Value == SberContracts.Purchase.PaymentKind.Quarterly)
+        return "ежеквартально ";
+      if (kind.Value == SberContracts.Purchase.PaymentKind.Stagely)
+        return "поэтапно ";
+      return "";
     }
     
     #endregion

@@ -470,6 +470,20 @@
       "ReturnTypeFullName": "System.Boolean"
     },
     {
+      "Name": "CreateBodyByProperties",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "doc",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
       "Name": "GetAccountingArticleStab",
       "Parameters": [
         {
@@ -555,6 +569,19 @@
           "Name": "doc",
           "ParameterType": "global::Sungero.Docflow.IOfficialDocument",
           "ParameterTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "GetMonthGenetiveName",
+      "Parameters": [
+        {
+          "Name": "monthNumber",
+          "ParameterType": "global::System.Int32",
+          "ParameterTypeFullName": "System.Int32"
         }
       ],
       "Placement": "Shared",
@@ -734,7 +761,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "4.9.2.0",
+  "Version": "4.10.0.0",
   "Widgets": [],
   "Versions": [
     {

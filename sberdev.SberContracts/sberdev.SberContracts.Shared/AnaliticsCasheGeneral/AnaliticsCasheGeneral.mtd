@@ -209,6 +209,20 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "0144b351-8324-4d9a-8127-6b2d6da8632c",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "45602bd3-3143-45b0-a7cd-4cf5222a346f",
+      "Name": "MarkDirection",
+      "CanBeSearch": false,
+      "Code": "MarkDirection",
+      "EntityGuid": "1893255d-6ee6-4a56-82cb-f6b3dd187ace",
+      "FlatListInStandaloneLookup": true,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "534ec544-5b72-4667-9580-3dc48f1a7a88",
+      "Versions": []
     }
   ],
   "PublicFunctions": [

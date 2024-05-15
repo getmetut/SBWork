@@ -166,4 +166,43 @@
   <data name="Control_db0be72b481a49feb8cb90f6be327354_EmptyText" xml:space="preserve">
     <value />
   </data>
+  <data name="FilterPanel_Contracts_4ec0327e53e04c87bc837c5d86832659" xml:space="preserve">
+    <value>Have contracts in period</value>
+  </data>
+  <data name="FilterPanel_ContractsIn2024Off_602dfc5f81bc463eaa65ce3468cb4912" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="FilterPanel_ContractsIn2024On_af6ff384e58f468692fee1cb10cc5663" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="FilterPanel_ContractDateRange_aec35ec80f2b49be8ccf1ad62f3293eb" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="FilterPanel_Focus_07de921cbd5447dea0adbb086e7c877a" xml:space="preserve">
+    <value>Contur.Focus</value>
+  </data>
+  <data name="FilterPanel_ExceptFilled_b6d3bafa116e477292d359aa1970b2be" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FilterPanel_FocusExcept_56079791d02b4dfa831ec4ee7d6312ca" xml:space="preserve">
+    <value>Except filled</value>
+  </data>
+  <data name="FilterPanel_FocusLeave_ec847639455e4579817199cad87e61ad" xml:space="preserve">
+    <value>Leave filled</value>
+  </data>
+  <data name="FilterPanel_FocusOff_788dc325258345c7a64c25ea9430692b" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="FilterPanel_AmountLess100k_0d0fda8cca2e44b7aecff686b7789095" xml:space="preserve">
+    <value>untill 100 t. r.</value>
+  </data>
+  <data name="FilterPanel_AmountLess500k_a9647dab171640a2bfe5bb23af83c447" xml:space="preserve">
+    <value>from 100 to 500 t. r.</value>
+  </data>
+  <data name="FilterPanel_AmountMore500k_5bd20b930ef14d30bb2d2741799d7ac5" xml:space="preserve">
+    <value>from 500 t. r.</value>
+  </data>
+  <data name="FilterPanel_ContractAmount_740e089ef92844b48aa572cbb4ad9e5f" xml:space="preserve">
+    <value>With amount</value>
+  </data>
 </root>

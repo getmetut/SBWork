@@ -17,6 +17,9 @@
     "Name": "FilterPanel",
     "Controls": [],
     "IsAncestorMetadata": true,
+    "Overridden": [
+      "IsEnabled"
+    ],
     "Versions": []
   },
   "Forms": [

@@ -755,6 +755,7 @@ namespace sberdev.SberContracts.Server
           contractual.AccArtExBaseSberDev = cashe.AccArtMVZ;
           contractual.MVZBaseSberDev = cashe.MVZ;
           contractual.MVPBaseSberDev = cashe.MVP;
+          contractual.MarketDirectSberDev = cashe.MarkDirection;
           contractual.ExitCommentBaseSberDev = cashe.ExitComment;
           contractual.Counterparty = cashe.Counterparty;
           if (cashe.ProdCollection.Count > 0)
@@ -786,6 +787,7 @@ namespace sberdev.SberContracts.Server
             accounting.AccArtBaseSberDev= cashe.AccArt;
             accounting.MVZBaseSberDev = cashe.MVZ;
             accounting.MVPBaseSberDev = cashe.MVP;
+            accounting.MarketDirectSberDev = cashe.MarkDirection;
             accounting.Counterparty = cashe.Counterparty;
             if (cashe.ProdCollection.Count > 0)
             {
@@ -826,6 +828,7 @@ namespace sberdev.SberContracts.Server
           contractual.AccArtExBaseSberDev = cashe.AccArtEx;
           contractual.MVZBaseSberDev = cashe.MVZ;
           contractual.MVPBaseSberDev = cashe.MVP;
+          contractual.MarketDirectSberDev = cashe.MarkDirection;
           contractual.Counterparty = cashe.Counterparty;
           if (cashe.ProdCollectionPr.Count > 0)
           {
@@ -869,7 +872,7 @@ namespace sberdev.SberContracts.Server
                 accounting.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable;
                 accounting.MVZBaseSberDev = cashe.MVZ;
                 accounting.AccArtBaseSberDev = cashe.AccArtEx;
-                
+                accounting.MarketDirectSberDev = cashe.MarkDirection;
                 foreach(var prop in cashe.ProdCollectionEx)
                 {
                   var target = accounting.ProdCollectionBaseSberDev.AddNew();
@@ -894,7 +897,7 @@ namespace sberdev.SberContracts.Server
                     accounting.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable;
                     accounting.MVZBaseSberDev = cashe.MVZ;
                     accounting.AccArtBaseSberDev = cashe.AccArtEx;
-                    
+                    accounting.MarketDirectSberDev = cashe.MarkDirection;
                     foreach(var prop in cashe.ProdCollectionEx)
                     {
                       var target = accounting.ProdCollectionBaseSberDev.AddNew();
@@ -1066,6 +1069,9 @@ namespace sberdev.SberContracts.Server
       if (docSelected.MVZBaseSberDev != null)
         doc.MVZBaseSberDev = docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
           docSelected.MVZBaseSberDev : null;
+      if (docSelected.MarketDirectSberDev != null)
+        doc.MarketDirectSberDev = docSelected.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Active ?
+          docSelected.MarketDirectSberDev : null;
       var collection = docSelected.ProdCollectionExBaseSberDev;
       if (collection.Count > 0)
       {
@@ -1185,6 +1191,9 @@ namespace sberdev.SberContracts.Server
       if (docSelected.MVZBaseSberDev != null)
         doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
           docSelected.MVZBaseSberDev : null;
+      if (docSelected.MarketDirectSberDev != null)
+        doc.MarketDirectSberDev = docSelected.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Active ?
+          docSelected.MarketDirectSberDev : null;
       var collection = docSelected.ProdCollectionBaseSberDev;
       if (collection.Count > 0)
       {
@@ -1304,6 +1313,9 @@ namespace sberdev.SberContracts.Server
       if (docSelected.AccArtExBaseSberDev != null)
         doc.AccArtBaseSberDev = docSelected.AccArtExBaseSberDev != null && docSelected.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
           docSelected.AccArtExBaseSberDev : null;
+      if (docSelected.MarketDirectSberDev != null)
+        doc.MarketDirectSberDev = docSelected.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Active ?
+          docSelected.MarketDirectSberDev : null;
       var collection = docSelected.ProdCollectionExBaseSberDev;
       if (collection.Count > 0)
       {
@@ -1387,6 +1399,9 @@ namespace sberdev.SberContracts.Server
       if (docSelected.MVZBaseSberDev != null)
         doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
           docSelected.MVZBaseSberDev : null;
+      if (docSelected.MarketDirectSberDev != null)
+        doc.MarketDirectSberDev = docSelected.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Active ?
+          docSelected.MarketDirectSberDev : null;
       doc.Counterparty = docSelected.Counterparty;
       doc.ProdCollectionBaseSberDev.Clear();
       var collection = docSelected.ProdCollectionBaseSberDev;

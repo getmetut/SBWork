@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using Sungero.Domain.Initialization;
@@ -24,6 +25,7 @@ namespace sberdev.SberContracts.Server
       GrantRightsOnDatabooks();
       CreateStabs();
       CreateDevSettings();
+      CreateTempDocsDir();
     }
     
     #region Роли
@@ -198,6 +200,7 @@ namespace sberdev.SberContracts.Server
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Иные договорные документы", OtherContractDocument.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Гарантийное письмо", GuaranteeLetter.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Outgoing, true);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Документы на основе доп. соглашения", AbstractsSupAgreement.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true);
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Техническое задание", Specification.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Inner, true);
     }
     
     public void CreateDocumentKinds()
@@ -247,6 +250,12 @@ namespace sberdev.SberContracts.Server
                                                                               true, true, OtherContractDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval },
                                                                               Constants.Module.OtherDoc);
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Техническое задание", "Техническое задание",
+                                                                              Sungero.Docflow.DocumentKind.NumberingType.Numerable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner,
+                                                                              true, true, Specification.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval },
+                                                                              Constants.Module.Specification);
     }
     
     #endregion
@@ -592,7 +601,8 @@ namespace sberdev.SberContracts.Server
     {
       Dictionary<string, string> settingsNames = new  Dictionary<string, string>();
       settingsNames.Add("Путь к папке с логами", "В текстовом параметре нужно указать путь к папке с логами.");
-      settingsNames.Add("Путь к папке с договорами", "В текстовом параметре нужно указать путь к папке в которой юудут хранится выгружаемые договора.");
+      settingsNames.Add("Путь к папке с договорами", "В текстовом параметре нужно указать путь к папке в которой будут храниться выгружаемые договора.");
+      settingsNames.Add("Путь к папке с шаблонами", "В текстовом параметре нужно указать путь к папке в которой будут храниться шаблоны для автосоздоваемых типов документов.");
       foreach(var settingName in settingsNames)
       {
         var devSet = SBContracts.PublicFunctions.Module.Remote.GetDevSetting(settingName.Key);
@@ -604,9 +614,14 @@ namespace sberdev.SberContracts.Server
           devSet.Save();
         }
       }
-      
     }
     
+    public void CreateTempDocsDir()
+    {
+      DirectoryInfo dir = new DirectoryInfo("C:\\TempDocs");
+      if (!dir.Exists)
+        dir.Create();
+    }
     #endregion
     
   }

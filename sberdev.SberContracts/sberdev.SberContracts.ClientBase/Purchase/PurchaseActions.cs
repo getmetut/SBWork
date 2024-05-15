@@ -9,6 +9,16 @@ namespace sberdev.SberContracts.Client
 {
   partial class PurchaseActions
   {
+    public virtual void CreateBodyByProperties(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      SBContracts.PublicFunctions.Module.Remote.CreateBodyByProperties(_obj);
+    }
+
+    public virtual bool CanCreateBodyByProperties(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return !_obj.State.IsInserted;
+    }
+
     public virtual void SendToTM(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       e.CloseFormAfterAction = true;

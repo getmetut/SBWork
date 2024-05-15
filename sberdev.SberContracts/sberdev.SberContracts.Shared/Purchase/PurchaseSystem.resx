@@ -67,139 +67,136 @@
   <data name="CollectionDisplayName" xml:space="preserve">
     <value>Purchases</value>
   </data>
-  <data name="Resource_fc50c88831554ff196e8ff7064894ead" xml:space="preserve">
+  <data name="Control_89c5c5d1362044b082a83f12ccaf3a47_EmptyText" xml:space="preserve">
     <value />
   </data>
-  <data name="Control_fc50c88831554ff196e8ff7064894ead_EmptyText" xml:space="preserve">
+  <data name="Resource_89c5c5d1362044b082a83f12ccaf3a47" xml:space="preserve">
     <value />
   </data>
-  <data name="Resource_ddf41ead829a4a3f8d12d40a52b7440c" xml:space="preserve">
+  <data name="Control_c248aafe8e354a2486a2364ce117ba5d_EmptyText" xml:space="preserve">
     <value />
   </data>
-  <data name="Control_ddf41ead829a4a3f8d12d40a52b7440c_EmptyText" xml:space="preserve">
+  <data name="Resource_c248aafe8e354a2486a2364ce117ba5d" xml:space="preserve">
     <value />
   </data>
-  <data name="ControlGroup_406e14dc17444a7f85d8f6eef8abaa3f" xml:space="preserve">
-    <value>Main</value>
-  </data>
-  <data name="ControlGroup_b8017e2288d643da8d6d8d11917b1dd6" xml:space="preserve">
-    <value>Note</value>
-  </data>
-  <data name="ControlGroup_01dd99f5db49480eb69928488f2653fb" xml:space="preserve">
+  <data name="Control_2ba45a3701c04b3e908a465e75956a24_EmptyText" xml:space="preserve">
     <value />
   </data>
-  <data name="Resource_91cff7df37834f868122f6238e9ba7c0" xml:space="preserve">
+  <data name="Resource_2ba45a3701c04b3e908a465e75956a24" xml:space="preserve">
     <value />
   </data>
-  <data name="Control_91cff7df37834f868122f6238e9ba7c0_EmptyText" xml:space="preserve">
-    <value />
+  <data name="Property_NegotiationsDiscount" xml:space="preserve">
+    <value>Discount based on negotiations (%)</value>
   </data>
-  <data name="Resource_670056d3a80d41c290537ace73f8c3e3" xml:space="preserve">
-    <value />
+  <data name="ControlGroup_519f2394febe4501adcaa34ee883d986" xml:space="preserve">
+    <value>Company</value>
   </data>
-  <data name="Resource_ec742a73eb834925a43ca0a7cf42eae0" xml:space="preserve">
-    <value />
+  <data name="ControlGroup_2a9b759d673b4a94bb3b3d6bdcae0d5d" xml:space="preserve">
+    <value>Counterparty</value>
   </data>
-  <data name="Control_ec742a73eb834925a43ca0a7cf42eae0_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_4e1d78fc6f6c4c81bf9aa1fa2031a46b" xml:space="preserve">
-    <value>Date and number</value>
-  </data>
-  <data name="Resource_dcb9c4394f4f42d287de6f225f4a2812" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_dcb9c4394f4f42d287de6f225f4a2812_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_20e94ab7b35542b7b03e10bba9c2e85c" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_696a8bb83e1244c8927a37d955cfbf0f" xml:space="preserve">
-    <value>Retention</value>
-  </data>
-  <data name="Resource_e300028a5e1f485d806917e121bb9ba9" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_e81f0c5eb58a4007aeebb672ea52875b" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_c45cfe6a44c043689482e4b0a91c3e05" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_4ebb565bb94d465295fba553ba4900b8" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_6db130988df540968fd5ffc5f9d4dfc5" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_2574d8e0ddb04af7a692711434658d6a" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_1b194ce3c44048879f0d1cdc4303c583" xml:space="preserve">
-    <value>Lifecycle</value>
-  </data>
-  <data name="ControlGroup_28a6d4a8a26a467b8fe6da426092ec4a" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_03fde41782544f08950cd543871033a8" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Property_Justification" xml:space="preserve">
-    <value>Justification for feasibility</value>
-  </data>
-  <data name="ControlGroup_72e492251e834e65bb33ea838a458e43" xml:space="preserve">
-    <value>Location</value>
-  </data>
-  <data name="Resource_4628212b0304439ab3fb29f0a1ea289e" xml:space="preserve">
+  <data name="Resource_a52c6e121b2c4fc8941d7846542e3105" xml:space="preserve">
     <value />
   </data>
   <data name="Resource_174ad90c64a4439eaa4f0c7286c511df" xml:space="preserve">
     <value />
   </data>
-  <data name="Resource_a52c6e121b2c4fc8941d7846542e3105" xml:space="preserve">
+  <data name="Resource_4628212b0304439ab3fb29f0a1ea289e" xml:space="preserve">
     <value />
   </data>
-  <data name="ControlGroup_c18501e47af044de8ac7873abb63e9d6" xml:space="preserve">
-    <value>Additional</value>
+  <data name="ControlGroup_72e492251e834e65bb33ea838a458e43" xml:space="preserve">
+    <value>Location</value>
   </data>
-  <data name="Resource_535a4857d47f4d0ab28bfbbde9e3f535" xml:space="preserve">
+  <data name="Control_0e47ae684ffc4acb80bf3d6f715ce7c2_EmptyText" xml:space="preserve">
     <value />
   </data>
-  <data name="Resource_57371953b26b4bbaa41a206167b12046" xml:space="preserve">
+  <data name="Resource_0e47ae684ffc4acb80bf3d6f715ce7c2" xml:space="preserve">
     <value />
   </data>
-  <data name="Control_57371953b26b4bbaa41a206167b12046_EmptyText" xml:space="preserve">
+  <data name="ControlGroup_42612188cf984a66a4cc5c674787d208" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="ControlGroup_03fde41782544f08950cd543871033a8" xml:space="preserve">
     <value />
   </data>
-  <data name="ControlGroup_73e9df7c895e4811b3d576c6f95b87aa" xml:space="preserve">
-    <value>Terms</value>
-  </data>
-  <data name="ControlGroup_2b752d2775e54f7c8345361eb5782168" xml:space="preserve">
-    <value>Analitics</value>
-  </data>
-  <data name="Resource_2e8615c76cf74d3292f95bfa5ac3984b" xml:space="preserve">
+  <data name="ControlGroup_28a6d4a8a26a467b8fe6da426092ec4a" xml:space="preserve">
     <value />
   </data>
-  <data name="Control_2e8615c76cf74d3292f95bfa5ac3984b_EmptyText" xml:space="preserve">
+  <data name="ControlGroup_1b194ce3c44048879f0d1cdc4303c583" xml:space="preserve">
+    <value>Lifecycle</value>
+  </data>
+  <data name="Resource_2574d8e0ddb04af7a692711434658d6a" xml:space="preserve">
     <value />
   </data>
-  <data name="Resource_60adfcc6466443ffa6eb1c76311c07f2" xml:space="preserve">
+  <data name="Resource_6db130988df540968fd5ffc5f9d4dfc5" xml:space="preserve">
     <value />
   </data>
-  <data name="Control_60adfcc6466443ffa6eb1c76311c07f2_EmptyText" xml:space="preserve">
+  <data name="Resource_4ebb565bb94d465295fba553ba4900b8" xml:space="preserve">
     <value />
   </data>
-  <data name="Resource_503b16353ff142908ba186722510da3b" xml:space="preserve">
+  <data name="Resource_c45cfe6a44c043689482e4b0a91c3e05" xml:space="preserve">
     <value />
   </data>
-  <data name="Resource_cef9fb71a92045359bc5a2f6aa08adb7" xml:space="preserve">
+  <data name="Resource_e81f0c5eb58a4007aeebb672ea52875b" xml:space="preserve">
     <value />
   </data>
-  <data name="Resource_f670edc2a3f4483f844d7fbdd10edc38" xml:space="preserve">
+  <data name="Resource_e300028a5e1f485d806917e121bb9ba9" xml:space="preserve">
     <value />
   </data>
-  <data name="Control_f670edc2a3f4483f844d7fbdd10edc38_EmptyText" xml:space="preserve">
+  <data name="ControlGroup_696a8bb83e1244c8927a37d955cfbf0f" xml:space="preserve">
+    <value>Retention</value>
+  </data>
+  <data name="Resource_20e94ab7b35542b7b03e10bba9c2e85c" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_dcb9c4394f4f42d287de6f225f4a2812_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_dcb9c4394f4f42d287de6f225f4a2812" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_4e1d78fc6f6c4c81bf9aa1fa2031a46b" xml:space="preserve">
+    <value>Date and number</value>
+  </data>
+  <data name="Control_ec742a73eb834925a43ca0a7cf42eae0_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ec742a73eb834925a43ca0a7cf42eae0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_670056d3a80d41c290537ace73f8c3e3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_91cff7df37834f868122f6238e9ba7c0_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_91cff7df37834f868122f6238e9ba7c0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_01dd99f5db49480eb69928488f2653fb" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_CommercialOffer" xml:space="preserve">
+    <value>Commercial offer</value>
+  </data>
+  <data name="ControlGroup_406e14dc17444a7f85d8f6eef8abaa3f" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="Control_f0607051ea774af2b7966d11cd8a7374_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f0607051ea774af2b7966d11cd8a7374" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_ddf41ead829a4a3f8d12d40a52b7440c_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ddf41ead829a4a3f8d12d40a52b7440c" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_fc50c88831554ff196e8ff7064894ead_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_fc50c88831554ff196e8ff7064894ead" xml:space="preserve">
     <value />
   </data>
   <data name="Property_Subject" xml:space="preserve">
@@ -219,5 +216,368 @@
   </data>
   <data name="Action_SendToTMConfirmationDescription" xml:space="preserve">
     <value />
+  </data>
+  <data name="Resource_560833ba36b94d9cb995526605b7a18c" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_560833ba36b94d9cb995526605b7a18c_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f47228b360b84bd3a8a58c7469cc8619" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_f47228b360b84bd3a8a58c7469cc8619_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_fffc387555a7467c922d11409a8ffc93" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_fffc387555a7467c922d11409a8ffc93_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_4b0f9f5a515f48e889b3b891ba9b943b" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_986164646eaf4cbb9f67ca0a09417c10" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_535a4857d47f4d0ab28bfbbde9e3f535" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_57371953b26b4bbaa41a206167b12046" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_57371953b26b4bbaa41a206167b12046_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ebca0b017fba4bb8be2c2aab0cbd5311" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_ebca0b017fba4bb8be2c2aab0cbd5311_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_6a993f552422481595e476b5a73cb9ae" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_6a993f552422481595e476b5a73cb9ae_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_407c65241df4449eb1d65df162b9d019" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_407c65241df4449eb1d65df162b9d019_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_a0eaafd1a46b489083df4635cc305a46" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_d6577d7714964a2498e782f06cc1d4c5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_a3393d74e791459eb2de320c7fa697b5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_db2d36fe1fed48a2b36a9d05a3e11134" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_bf6a0d46cd504358b8f6a3343bca68bd" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_b4cf23e225c54dbd968e1564cee7664b" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_4fbe3e106b3441f88fdcd579c023a105" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_9ee127057c244d9e8f853ca15f210b28" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_9bf3f6588c974ddd961e26ccf7259929" xml:space="preserve">
+    <value>Calculation</value>
+  </data>
+  <data name="ControlGroup_73e9df7c895e4811b3d576c6f95b87aa" xml:space="preserve">
+    <value>Terms</value>
+  </data>
+  <data name="ControlGroup_2b752d2775e54f7c8345361eb5782168" xml:space="preserve">
+    <value>Expendable part</value>
+  </data>
+  <data name="Resource_2e8615c76cf74d3292f95bfa5ac3984b" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_2e8615c76cf74d3292f95bfa5ac3984b_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_60adfcc6466443ffa6eb1c76311c07f2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_60adfcc6466443ffa6eb1c76311c07f2_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_503b16353ff142908ba186722510da3b" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_f42379fb577e4934a16c47278ae5b07b" xml:space="preserve">
+    <value>Profitable part</value>
+  </data>
+  <data name="Resource_c79aa78b6d774dd19f5df683067e866b" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_c79aa78b6d774dd19f5df683067e866b_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_46081f05942a40428b7d180b6f444a0a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_5744377342524ecdabe431d636f8a194" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_5744377342524ecdabe431d636f8a194_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_7df27ccda54245dfb05240089a659cbf" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_7df27ccda54245dfb05240089a659cbf_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_6b388968d9864c898313b13c6dff6bd2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_cef9fb71a92045359bc5a2f6aa08adb7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f670edc2a3f4483f844d7fbdd10edc38" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_f670edc2a3f4483f844d7fbdd10edc38_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_0ccc60b17db14039b1f962cec7fc7fe7" xml:space="preserve">
+    <value>Purchase information</value>
+  </data>
+  <data name="Enum_KindPurchase_Service" xml:space="preserve">
+    <value>Servive</value>
+  </data>
+  <data name="Enum_KindPurchase_Work" xml:space="preserve">
+    <value>Work</value>
+  </data>
+  <data name="Property_KindPurchase" xml:space="preserve">
+    <value>Type of purchase</value>
+  </data>
+  <data name="Property_ScreenBusinessPlan" xml:space="preserve">
+    <value>Screenshot of the business plan</value>
+  </data>
+  <data name="Resource_fc27e9e143f54bbfb327f375f540ab7a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_SubjectPurchase" xml:space="preserve">
+    <value>Subject of purchase</value>
+  </data>
+  <data name="Property_MethodPurchase" xml:space="preserve">
+    <value>Method of purchase</value>
+  </data>
+  <data name="Property_ApprovalProjectContract" xml:space="preserve">
+    <value>Appr. of project of contr.</value>
+  </data>
+  <data name="Property_ForNeeds" xml:space="preserve">
+    <value>For needs</value>
+  </data>
+  <data name="Property_NameTaskProject" xml:space="preserve">
+    <value>Task/project name</value>
+  </data>
+  <data name="Property_TargetPurchase" xml:space="preserve">
+    <value>To achieve the goals of</value>
+  </data>
+  <data name="Property_RealizeCollection" xml:space="preserve">
+    <value>Realize</value>
+  </data>
+  <data name="Property_InfoSubjectPurchase" xml:space="preserve">
+    <value>Information about the subject of purchase</value>
+  </data>
+  <data name="Property_HistoryPurchase" xml:space="preserve">
+    <value>History of the issue, by whom and when it was purchased, what effect was achieved</value>
+  </data>
+  <data name="Property_TasksPurchase" xml:space="preserve">
+    <value>What tasks of current activities will the purchase help accomplish, an approximate calculation of the effect of the purchase in money</value>
+  </data>
+  <data name="Property_IfNoPurchase" xml:space="preserve">
+    <value>What happens if the company does not receive the service</value>
+  </data>
+  <data name="Property_JustifImpossibInhouse" xml:space="preserve">
+    <value>Justification for the impossibility of creating purchased products in-house</value>
+  </data>
+  <data name="Property_Specification" xml:space="preserve">
+    <value>Specification</value>
+  </data>
+  <data name="Property_UpgradedCommercialOffer" xml:space="preserve">
+    <value>Upgraded commercial offer</value>
+  </data>
+  <data name="ControlGroup_94251e4cbed94549af9026e277dc6ac1" xml:space="preserve">
+    <value>Contract information</value>
+  </data>
+  <data name="Ribbon_MainPage_21a316275f5844168c4a90f538ee2e57" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Property_StagesPurchaseCollection" xml:space="preserve">
+    <value>Cost and Duration of stages</value>
+  </data>
+  <data name="Property_CostAnalysisCollection" xml:space="preserve">
+    <value>Cost analysis</value>
+  </data>
+  <data name="Property_AddendumDocument" xml:space="preserve">
+    <value>Sup. agreement</value>
+  </data>
+  <data name="Property_ConcludedContractsKind" xml:space="preserve">
+    <value>Concluded contracts</value>
+  </data>
+  <data name="Enum_ConcludedContractsKind_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Enum_ConcludedContractsKind_NoChanges" xml:space="preserve">
+    <value>No changes</value>
+  </data>
+  <data name="Enum_ConcludedContractsKind_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Enum_PaymentKind_OnePayment" xml:space="preserve">
+    <value>In one payment</value>
+  </data>
+  <data name="Enum_IsNeedPrepayment_Yes" xml:space="preserve">
+    <value>Provided</value>
+  </data>
+  <data name="Enum_IsNeedPrepayment_No" xml:space="preserve">
+    <value>Not provided</value>
+  </data>
+  <data name="Property_PrepaymentJustification" xml:space="preserve">
+    <value>Prepayment justification</value>
+  </data>
+  <data name="Property_DepartmentPurchase" xml:space="preserve">
+    <value>Purchase department</value>
+  </data>
+  <data name="Property_ServiceEndDate" xml:space="preserve">
+    <value>Service end date</value>
+  </data>
+  <data name="Property_ServiceStartDate" xml:space="preserve">
+    <value>Service start date</value>
+  </data>
+  <data name="Property_PaymentKind" xml:space="preserve">
+    <value>Payment kind</value>
+  </data>
+  <data name="Enum_PaymentKind_Monthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="Enum_PaymentKind_Quarterly" xml:space="preserve">
+    <value>Quarterly</value>
+  </data>
+  <data name="Property_PrepaymentPercent" xml:space="preserve">
+    <value>Prepayment in percent</value>
+  </data>
+  <data name="ControlGroup_7b6d1e42fce94ba7b486e15574065f1b" xml:space="preserve">
+    <value>Short information</value>
+  </data>
+  <data name="Action_CreateBodyByProperties" xml:space="preserve">
+    <value>Create a version using details</value>
+  </data>
+  <data name="Action_CreateBodyByPropertiesDescription" xml:space="preserve">
+    <value>The action creates a new version based on the details specified in the card.</value>
+  </data>
+  <data name="Action_CreateBodyByPropertiesHint" xml:space="preserve">
+    <value>The action creates a new version based on the details specified in the card.</value>
+  </data>
+  <data name="Action_CreateBodyByPropertiesConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_CreateBodyByPropertiesConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Enum_PaymentKind_Stagely" xml:space="preserve">
+    <value>Upon provision of services</value>
+  </data>
+  <data name="Property_Necessary" xml:space="preserve">
+    <value>Necessary</value>
+  </data>
+  <data name="Property_TargetAndDepartCp" xml:space="preserve">
+    <value>Target and department of сounterparty</value>
+  </data>
+  <data name="Property_RelizableKind" xml:space="preserve">
+    <value>Relizable of what</value>
+  </data>
+  <data name="Enum_RelizableKind_Task" xml:space="preserve">
+    <value>task</value>
+  </data>
+  <data name="Enum_RelizableKind_Project" xml:space="preserve">
+    <value>project</value>
+  </data>
+  <data name="ControlGroup_993c40627e794bfa920766b81b4e4f2a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_ff79ecdfca24465cb311ecefd5250268" xml:space="preserve">
+    <value>1.4. Justification of the cost of work</value>
+  </data>
+  <data name="Control_bf320009298a4e1ebb62d6c455ca0e92_DisplayValue" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Property_ChooseCpJustif" xml:space="preserve">
+    <value>Justif. for choosing a counterparty</value>
+  </data>
+  <data name="Control_eff59e9385f94fa98627ae9b3ee76b67_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_SubjectPurchaseGen" xml:space="preserve">
+    <value>Subject of purchase (gen. fall.)</value>
+  </data>
+  <data name="Property_ProjectName" xml:space="preserve">
+    <value>Project name</value>
+  </data>
+  <data name="Property_Authorized" xml:space="preserve">
+    <value>Authorized</value>
+  </data>
+  <data name="Property_NecessaryConclude" xml:space="preserve">
+    <value>It is necessary to conclude</value>
+  </data>
+  <data name="Enum_NecessaryConclude_Contract" xml:space="preserve">
+    <value>Contract</value>
+  </data>
+  <data name="Enum_NecessaryConclude_SupAgreement" xml:space="preserve">
+    <value>Sup. agreement</value>
+  </data>
+  <data name="Property_PurchaseAmount" xml:space="preserve">
+    <value>Purchase amount</value>
+  </data>
+  <data name="Property_VAT" xml:space="preserve">
+    <value>VAT is appearing</value>
+  </data>
+  <data name="ControlGroup_ad0e02496c374343a70b2f0585047126" xml:space="preserve">
+    <value>1.1. Justification of the feasibility of the purchase</value>
+  </data>
+  <data name="ControlGroup_cf7146d521ee444c91661c680f0c20ca" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_1e409246040c4d088b9f18053eb8d1a5_EmptyText" xml:space="preserve">
+    <value>Provide specification/characteristics information</value>
+  </data>
+  <data name="Control_e44a7af1f01743a69534b725ac2808c1_EmptyText" xml:space="preserve">
+    <value>As well as a description of the purchased service, its technical implementation (briefly), user division</value>
+  </data>
+  <data name="ControlGroup_12dbc1329e9d4128809f4555536c5802" xml:space="preserve">
+    <value>1.2 Rationale for choosing a supplier</value>
+  </data>
+  <data name="ControlGroup_aa57e90980014a7d80a08c4714377b90" xml:space="preserve">
+    <value>1.3 Information about the availability of a source of financing</value>
+  </data>
+  <data name="Control_aa40e416d6314c9b86a4d74b2aa51cb7_DisplayValue" xml:space="preserve">
+    <value>Instructions for filling</value>
+  </data>
+  <data name="ControlGroup_7019682773cd44e8b11f48d3e0dd44f3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_50345da14a394270a95f8bb616d0d6d9" xml:space="preserve">
+    <value>1.5.Analysis of the cost of the Supplier’s commercial offer.</value>
+  </data>
+  <data name="ControlGroup_4a72dccdfcd94fc4b9d98f1dc6ab3d67" xml:space="preserve">
+    <value>1.6 Justification for the need for an advance payment and its amount</value>
+  </data>
+  <data name="ControlGroup_9a2ac62b45b64804990cb39f5f27e605" xml:space="preserve">
+    <value>2. Solution and basic conditions</value>
   </data>
 </root>

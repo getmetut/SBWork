@@ -106,4 +106,7 @@
   <data name="CollectionDisplayName" xml:space="preserve">
     <value>AnaliticsCasheGeneral</value>
   </data>
+  <data name="Property_MarkDirection" xml:space="preserve">
+    <value>MarkDirection</value>
+  </data>
 </root>

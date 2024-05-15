@@ -12,12 +12,19 @@ namespace sberdev.SberContracts.Shared
     public override void SetPropertiesAccess()
     {
       base.SetPropertiesAccess();
-      
-      _obj.State.Properties.Counterparty.IsRequired = false;
-      _obj.State.Properties.DeliveryMethod.IsRequired = false;
-      _obj.State.Properties.MarketDirectSberDev.IsRequired = false;
+      _obj.State.Properties.ContrTypeBaseSberDev.IsEnabled = false;
       _obj.State.Properties.Subject.IsEnabled = true;
-      base.ChangeCalculationAccess(false);
+      
+      if (_obj.ConcludedContractsKind == ConcludedContractsKind.No)
+      {
+        _obj.State.Properties.LeadingDocument.IsVisible = false;
+        _obj.State.Properties.LeadingDocument.IsRequired = false;
+      }
+      else
+      {
+        _obj.State.Properties.LeadingDocument.IsVisible = true;
+        _obj.State.Properties.LeadingDocument.IsRequired = true;
+      }
     }
   }
 }

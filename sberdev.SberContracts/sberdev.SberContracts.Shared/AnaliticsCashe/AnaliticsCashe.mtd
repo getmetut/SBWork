@@ -250,7 +250,7 @@
       "IsShowedInList": false,
       "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
-      "PreviousPropertyGuid": "570db038-3ff9-4af1-a610-dcbd02688234"
+      "PreviousPropertyGuid": "befe32c2-b7f0-4128-84f3-6b08f22bc320"
     },
     {
       "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
@@ -273,6 +273,19 @@
       "Code": "DocumentType",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "c0c72121-51fb-439e-8d76-85a6e86b1b3f"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "befe32c2-b7f0-4128-84f3-6b08f22bc320",
+      "Name": "MarkDirection",
+      "CanBeSearch": false,
+      "Code": "MarkDirection",
+      "EntityGuid": "1893255d-6ee6-4a56-82cb-f6b3dd187ace",
+      "FlatListInStandaloneLookup": true,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "570db038-3ff9-4af1-a610-dcbd02688234"
     }
   ],
   "PublicStructures": [],

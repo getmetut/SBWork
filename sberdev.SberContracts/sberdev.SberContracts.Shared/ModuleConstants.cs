@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Sungero.Core;
 
 namespace sberdev.SberContracts.Constants
@@ -52,6 +52,9 @@ namespace sberdev.SberContracts.Constants
     
     // Уникальный идентификатор для вида «Спецификация ПАО».
     public static readonly Guid SpecificationPAO = Guid.Parse("f7d27ec4-3429-4387-bd21-bfa6f9c38aa8");
+    
+    // Уникальный идентификатор для вида «Техническое задание».
+    public static readonly Guid Specification = Guid.Parse("68a41ea6-e83e-4fe7-a62e-a0df6a79ec94");
     
     // Уникальный идентификатор для этапа «Проверка договорных документов Делопроизводителем».
     public static readonly Guid ApprovalStageManuallyChecking = Guid.Parse("61589cbf-7f0f-4773-9c15-be99a726a6be");

@@ -127,4 +127,7 @@
   <data name="Property_DocumentType" xml:space="preserve">
     <value>DocumentType</value>
   </data>
+  <data name="Property_MarkDirection" xml:space="preserve">
+    <value>MarkDirection</value>
+  </data>
 </root>

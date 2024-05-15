@@ -29,6 +29,7 @@ namespace sberdev.SBContracts.Server
         cashe.AccArt = _obj.AccArtBaseSberDev;
         cashe.MVZ = _obj.MVZBaseSberDev;
         cashe.MVP = _obj.MVPBaseSberDev;
+        cashe.MarkDirection = _obj.MarketDirectSberDev;
         cashe.ProdCollection.Clear();
         cashe.Counterparty = _obj.Counterparty;
         var collection = _obj.ProdCollectionBaseSberDev;
@@ -78,6 +79,7 @@ namespace sberdev.SBContracts.Server
         {
           cashe.MVZ = _obj.MVZBaseSberDev;
           cashe.AccArtEx = _obj.AccArtBaseSberDev;
+          cashe.MarkDirection = _obj.MarketDirectSberDev;
           cashe.ProdCollectionEx.Clear();
           var collection = _obj.ProdCollectionBaseSberDev;
           if (collection.Count > 0)

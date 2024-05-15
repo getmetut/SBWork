@@ -997,6 +997,9 @@
       "Versions": []
     }
   ],
+  "HandledEvents": [
+    "CreatedServer"
+  ],
   "IconResourcesKeys": [],
   "IntegrationServiceName": "SberContractsGuaranteeLetter",
   "IsSelectableAsFolderContent": true,
