@@ -1679,6 +1679,19 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "GetMVZBudgetOwner",
+      "Parameters": [
+        {
+          "Name": "accountingDocumentBase",
+          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
+          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.CoreEntities.IUser",
+      "ReturnTypeFullName": "Sungero.CoreEntities.IUser, Sungero.Domain.Shared"
+    },
+    {
       "Name": "ShowContractChangedDialog",
       "Parameters": [
         {

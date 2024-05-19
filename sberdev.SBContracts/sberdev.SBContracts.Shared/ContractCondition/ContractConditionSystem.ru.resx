@@ -184,4 +184,7 @@
   <data name="Property_EndorserSberDev" xml:space="preserve">
     <value>Согласующий</value>
   </data>
+  <data name="Enum_ConditionType_IsNeedCheckCp" xml:space="preserve">
+    <value>Сумма договоров по ка &gt; 500 тыс. руб.</value>
+  </data>
 </root>

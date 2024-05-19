@@ -25,6 +25,7 @@
       "Name": "Name",
       "CanBeSearch": false,
       "Code": "Name",
+      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "a58d9726-604c-4284-81af-c99b3d9dd648"
     },
@@ -34,6 +35,7 @@
       "Name": "Cost",
       "CanBeSearch": false,
       "Code": "Cost",
+      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "8e7b55ed-2d0c-430d-a44b-f9c3fc096f8a"
     },
@@ -43,6 +45,7 @@
       "Name": "Duration",
       "CanBeSearch": false,
       "Code": "Duration",
+      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "024b1a69-2296-4bda-baab-80493f7921b3"
     }

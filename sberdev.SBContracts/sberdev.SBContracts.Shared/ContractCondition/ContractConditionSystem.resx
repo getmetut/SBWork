@@ -184,4 +184,7 @@
   <data name="Property_EndorserSberDev" xml:space="preserve">
     <value>Endorser</value>
   </data>
+  <data name="Enum_ConditionType_IsNeedCheckCp" xml:space="preserve">
+    <value>The amount contracts for ka &gt; 500k rub.</value>
+  </data>
 </root>

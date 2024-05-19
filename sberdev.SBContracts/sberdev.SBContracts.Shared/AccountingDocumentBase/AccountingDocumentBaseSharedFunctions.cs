@@ -9,6 +9,23 @@ namespace sberdev.SBContracts.Shared
 {
   partial class AccountingDocumentBaseFunctions
   {
+    
+    [Public]
+    public Sungero.CoreEntities.IUser GetMVZBudgetOwner()
+    {
+      if (_obj.MVZBaseSberDev != null)
+        if (_obj.MVZBaseSberDev.MainMVZ != null)
+          return _obj.MVZBaseSberDev.MainMVZ.BudgetOwner;
+        else
+          return _obj.MVZBaseSberDev.BudgetOwner;
+      if (_obj.MVPBaseSberDev != null)
+        if (_obj.MVPBaseSberDev.MainMVZ != null)
+          return _obj.MVPBaseSberDev.MainMVZ.BudgetOwner;
+        else
+          return _obj.MVPBaseSberDev.BudgetOwner;
+      return null;
+    }
+    
     public virtual void SetPropertiesAccess()
     {
       ChangeAnaliticsEnable(_obj.ContrTypeBaseSberDev);

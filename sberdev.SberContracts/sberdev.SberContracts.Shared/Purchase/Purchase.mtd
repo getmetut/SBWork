@@ -17,8 +17,8 @@
       "Name": "CreateBodyByProperties",
       "ActionArea": "Card",
       "GenerateHandler": true,
-      "LargeIconName": null,
-      "SmallIconName": null
+      "LargeIconName": "Action_CreateBodyByProperties_large_f017bc0a24a24efbad9fa2789f037a29.png",
+      "SmallIconName": "Action_CreateBodyByProperties_small_f017bc0a24a24efbad9fa2789f037a29.png"
     }
   ],
   "BaseGuid": "178d3053-5516-4f14-9f3d-4d75e3f352d4",
@@ -1269,10 +1269,6 @@
             {
               "Name": "Height",
               "Value": 150
-            },
-            {
-              "Name": "NeedExpand",
-              "Value": false
             }
           ]
         },

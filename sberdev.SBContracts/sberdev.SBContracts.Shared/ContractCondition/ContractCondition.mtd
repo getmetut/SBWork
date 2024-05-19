@@ -262,6 +262,11 @@
           "NameGuid": "08573f7f-01ca-4b07-9eb8-6d28709f1c9a",
           "Name": "EndorseFromSberDev",
           "Code": "AgreementFrom"
+        },
+        {
+          "NameGuid": "1b7aa327-114f-4ffa-a51c-fa912340567f",
+          "Name": "IsNeedCheckCp",
+          "Code": "IsNeedCheckCp"
         }
       ],
       "IsAncestorMetadata": true,

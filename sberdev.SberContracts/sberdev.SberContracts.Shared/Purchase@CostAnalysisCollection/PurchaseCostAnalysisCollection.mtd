@@ -25,6 +25,7 @@
       "Name": "Name",
       "CanBeSearch": false,
       "Code": "Name",
+      "IsRequired": true,
       "Length": 400,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "ec00c92e-66c7-4158-9141-08f9304807a3"
@@ -35,6 +36,7 @@
       "Name": "COCost1",
       "CanBeSearch": false,
       "Code": "COCost1",
+      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "be8d6a82-d2ab-438f-941d-3f3c2d9338e0"
     },

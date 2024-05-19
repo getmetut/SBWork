@@ -112,32 +112,32 @@
       "Name": "SetMetadataSberDev",
       "ActionArea": "Card",
       "GenerateHandler": true,
-      "LargeIconName": null,
-      "SmallIconName": null
+      "LargeIconName": "Action_SetMetadataSberDev_large_ac7cd6c86ae84d839a1be148b4b4dd18.png",
+      "SmallIconName": "Action_SetMetadataSberDev_small_ac7cd6c86ae84d839a1be148b4b4dd18.png"
     },
     {
       "NameGuid": "ac721b84-e68e-4b0b-bfde-0ce4e1ea6e97",
       "Name": "GetMetadataSberDev",
       "ActionArea": "Card",
       "GenerateHandler": true,
-      "LargeIconName": null,
-      "SmallIconName": null
+      "LargeIconName": "Action_GetMetadataSberDev_large_ac721b84e68e4b0bbfde0ce4e1ea6e97.png",
+      "SmallIconName": "Action_GetMetadataSberDev_small_ac721b84e68e4b0bbfde0ce4e1ea6e97.png"
     },
     {
       "NameGuid": "b4911693-62e8-4bfe-94b6-4838f0e73b56",
       "Name": "UnblockCardSberDev",
       "ActionArea": "Card",
       "GenerateHandler": true,
-      "LargeIconName": null,
-      "SmallIconName": null
+      "LargeIconName": "Action_UnblockCardSberDev_large_b491169362e84bfe94b64838f0e73b56.png",
+      "SmallIconName": "Action_UnblockCardSberDev_small_b491169362e84bfe94b64838f0e73b56.png"
     },
     {
       "NameGuid": "15e81d7d-2745-4a8a-9586-4f50df3fa3cc",
       "Name": "UnblockVersionSberDev",
       "ActionArea": "Card",
       "GenerateHandler": true,
-      "LargeIconName": "",
-      "SmallIconName": "",
+      "LargeIconName": "Action_UnblockVersionSberDev_large_15e81d7d27454a8a95864f50df3fa3cc.png",
+      "SmallIconName": "Action_UnblockVersionSberDev_small_15e81d7d27454a8a95864f50df3fa3cc.png",
       "Versions": []
     }
   ],
@@ -306,7 +306,9 @@
         "NameGuid": "1b49aedf-b54e-43d8-b0ea-20ee3f732312",
         "Name": "AdministrationMenuSberDev",
         "Index": 51,
-        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
+        "LargeIconName": "Ribbon_AdministrationMenuSberDev_large_1b49aedfb54e43d8b0ea20ee3f732312.png",
+        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4",
+        "SmallIconName": "Ribbon_AdministrationMenuSberDev_small_1b49aedfb54e43d8b0ea20ee3f732312.png"
       },
       {
         "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",

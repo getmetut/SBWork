@@ -586,6 +586,9 @@ namespace sberdev.SBContracts.Server
                                                                  + entity.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "'");
     }
     
+    #endregion
+    
+    #region Создание и заполнение документа
     /// <summary>
     /// Функция создает новое тело документа основываясь на указанных в карточке свойствах
     /// </summary>
@@ -666,7 +669,7 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[IfNoPurchase]", purch.IfNoPurchase);
       body.Range.Replace("[JustifImpossibInhouse]", purch.JustifImpossibInhouse);
       body.Range.Replace("[ChooseCpJustif]", purch.ChooseCpJustif);
-      if (purch.ScreenBusinessPlan.Length > 0)
+      if (purch.ScreenBusinessPlan != null)
       {
         body.Range.Replace("[ScreenBusinessPlanText]", "Скрин строки из Бизнес-плана прилагается.");
         using (MemoryStream stream = new MemoryStream(purch.ScreenBusinessPlan))
@@ -678,8 +681,7 @@ namespace sberdev.SBContracts.Server
       if (purch.NegotiationsDiscount.HasValue)
         body.Range.Replace("[NegotiationsDiscount]", "По итогам переговоров цена была снижена на " + purch.NegotiationsDiscount.ToString() + "%");
       
-      string payType = GetPaymentKind(purch.PaymentKind) + purch.PrepaymentPercent != null ? " c " + purch.PrepaymentPercent.ToString() + " % авансом" : "";
-      body.Range.Replace("[PayType]", payType);
+      body.Range.Replace("[PayType]", GetPaymentType(purch));
       
       string linkС = null;
       if (purch.LeadingDocument != null)
@@ -762,14 +764,16 @@ namespace sberdev.SBContracts.Server
       foreach (var row in purch.CostAnalysisCollection)
       {
         costAnalysis[counter, 0] = row.Name;
-        costAnalysis[counter, 1] = row.COCost1.Value.ToString();
-        costAnalysis[counter, 2] = row.COCost2.Value.ToString();
-        costAnalysis[counter, 3] = row.COCost3.Value.ToString();
+        costAnalysis[counter, 1] = row.COCost1.HasValue ? row.COCost1.Value.ToString() : "";
+        costAnalysis[counter, 2] = row.COCost2.HasValue ? row.COCost2.Value.ToString() : "";
+        costAnalysis[counter, 3] = row.COCost3.HasValue ? row.COCost3.Value.ToString() : "";
         counter++;
       }
       ReplacePlaceholderWithTable(body, "[CostAnalysisCollection]", CreateTableByArray(body, costAnalysis, boldRows));
       #endregion
     }
+    
+    #region Вспомогателбные функции для построения документа
     
     static void ReplacePlaceholderWithMarkedParagraphs(Aspose.Words.Document doc, string placeholder, List<string> texts, Aspose.Words.Lists.ListTemplate listTemplate)
     {
@@ -940,6 +944,12 @@ namespace sberdev.SBContracts.Server
         return "задачи";
     }
     
+    [Public]
+    public string GetPaymentType(SberContracts.IPurchase purch)
+    {
+      return GetPaymentKind(purch.PaymentKind) + (purch.PrepaymentPercent != null ? " c " + purch.PrepaymentPercent.ToString() + " % авансом" : "");
+    }
+    
     string GetPaymentKind(Enumeration? kind)
     {
       if (kind.Value == SberContracts.Purchase.PaymentKind.Monthly)
@@ -952,6 +962,8 @@ namespace sberdev.SBContracts.Server
         return "поэтапно ";
       return "";
     }
+    
+    #endregion
     
     #endregion
   }

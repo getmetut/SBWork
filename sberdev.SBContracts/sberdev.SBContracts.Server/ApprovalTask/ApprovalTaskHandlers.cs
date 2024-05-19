@@ -25,18 +25,9 @@ namespace sberdev.SBContracts
       Functions.ApprovalTask.SendDiadocSettingsTask(_obj, document);
       _obj.NeedAbort = false;
       
-      if (!_obj.State.Properties.DeliveryMethod.IsVisible)
-      {
-        return;
-      }
       if (document != null)
       {
-        if (_obj.DeliveryMethod != document.DeliveryMethod && document.DeliveryMethod != null
-            && document.DeliveryMethod.Sid != Sungero.Docflow.Constants.MailDeliveryMethod.Exchange)
-        {
-          _obj.DeliveryMethod = document.DeliveryMethod;
-          _obj.ExchangeService = null;
-        }
+        // Механика проверки бездоговорных счетов
         var incInv = SBContracts.IncomingInvoices.As(document);
         if (incInv != null && incInv.NoNeedLeadingDocs.HasValue && incInv.NoNeedLeadingDocs.Value)
         {
@@ -55,6 +46,18 @@ namespace sberdev.SBContracts
             task.Task = _obj;
             counter.Counter++;
           }
+        }
+        
+        // Механика переноса значения поля Способ доставки
+        if (!_obj.State.Properties.DeliveryMethod.IsVisible)
+        {
+          return;
+        }
+        if (_obj.DeliveryMethod != document.DeliveryMethod && document.DeliveryMethod != null
+            && document.DeliveryMethod.Sid != Sungero.Docflow.Constants.MailDeliveryMethod.Exchange)
+        {
+          _obj.DeliveryMethod = document.DeliveryMethod;
+          _obj.ExchangeService = null;
         }
       }
     }

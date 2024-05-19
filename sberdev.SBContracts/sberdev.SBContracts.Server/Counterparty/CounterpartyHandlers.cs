@@ -21,8 +21,6 @@ namespace sberdev.SBContracts
       {
         var contracts = SBContracts.ContractualDocuments.GetAll().Where(c => c.ExternalApprovalState == ExternalApprovalState.Signed
                                                                         && c.InternalApprovalState == InternalApprovalState.Signed
-                                                                        && (c.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable
-                                                                            || c.ContrTypeBaseSberDev == ContrTypeBaseSberDev.ExpendProfitSberDev)
                                                                         && c.Counterparty != null && c.Currency != null && c.Currency.Id == 1);
         var dateFrom = _filter.ContractDateRangeFrom;
         var dateTo = _filter.ContractDateRangeTo;
@@ -36,13 +34,16 @@ namespace sberdev.SBContracts
         if (dateFrom.HasValue && dateTo.HasValue)
           contracts = contracts.Where(l => l.DocumentDate > dateFrom && l.DocumentDate < dateTo);
         
-        contracts = contracts.Where(с =>
-                                    (_filter.AmountLess100k && с.TotalAmount <= 100000) ||
-                                    (_filter.AmountLess500k && с.TotalAmount > 100000 && с.TotalAmount < 500000) ||
-                                    (_filter.AmountMore500k && с.TotalAmount >= 500000));
-        
-        var filtredParties = contracts.Select(c => c.Counterparty);
-        parties = parties.Where(q => filtredParties.Contains(q));
+        var allCounterparties = contracts.Select(c => c.Counterparty).Distinct().ToList();
+        var filteredParties = allCounterparties.Where(cp =>
+                                                      {
+                                                        var totalAmount = PublicFunctions.Counterparty.CalculateTotalAmount(SBContracts.Counterparties.As(cp));
+                                                        return (_filter.AmountLess100k && totalAmount <= 100000) ||
+                                                          (_filter.AmountLess500k && totalAmount > 100000 && totalAmount < 500000) ||
+                                                          (_filter.AmountMore500k && totalAmount >= 500000);
+                                                      }).ToList();
+
+        parties = parties.Where(q => filteredParties.Contains(q));
       }
       
       if (_filter.FocusExcept)
