@@ -118,4 +118,10 @@
   <data name="Control_017c9130ddd64a16832c8bfe277441d1_DisplayValue" xml:space="preserve">
     <value>Открыть карточку задания</value>
   </data>
+  <data name="FilterPanel_NOR_28385f2f3c3f4f19a100a33528128926" xml:space="preserve">
+    <value>Наша организация</value>
+  </data>
+  <data name="FilterPanel_Company_963a2c90f4c24a27b5dc929dd882e662" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
 </root>

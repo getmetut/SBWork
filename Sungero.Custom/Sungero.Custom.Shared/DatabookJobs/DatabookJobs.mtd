@@ -25,8 +25,32 @@
   "FilterPanel": {
     "NameGuid": "b0125fbd-3b91-4dbb-914a-689276216404",
     "Name": "FilterPanel",
-    "Controls": [],
-    "IsAncestorMetadata": true
+    "Controls": [
+      {
+        "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+        "NameGuid": "c9a4530a-7134-4cae-b39b-97ae9a747a10",
+        "Name": "Group"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterNavigationMetadata, Sungero.Metadata",
+        "NameGuid": "28385f2f-3c3f-4f19-a100-a33528128926",
+        "Name": "NOR",
+        "EntityGuid": "eff95720-181f-4f7d-892d-dec034c7b2ab",
+        "ParentGuid": "c9a4530a-7134-4cae-b39b-97ae9a747a10"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterNavigationMetadata, Sungero.Metadata",
+        "NameGuid": "963a2c90-f4c2-4a27-b5dc-929dd882e662",
+        "Name": "Company",
+        "EntityGuid": "294767f1-009f-4fbd-80fc-f98c49ddc560",
+        "ParentGuid": "c9a4530a-7134-4cae-b39b-97ae9a747a10",
+        "PreviousGuid": "28385f2f-3c3f-4f19-a100-a33528128926"
+      }
+    ],
+    "IsAncestorMetadata": true,
+    "Overridden": [
+      "Controls"
+    ]
   },
   "Forms": [
     {
@@ -194,6 +218,10 @@
       ]
     }
   ],
+  "HandledEvents": [
+    "FilteringServer",
+    "ShowingClient"
+  ],
   "HideFromCreationArea": true,
   "HideFromNavigationEditorCreationArea": true,
   "IconName": "DatabookJobs.ico",
@@ -217,6 +245,7 @@
       "Name": "Name",
       "Code": "Name",
       "IsDisplayValue": true,
+      "IsEnabled": false,
       "IsQuickSearchAllowed": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "1dcedc29-5140-4770-ac92-eabc212326a1"
@@ -230,6 +259,7 @@
       "HandledEvents": [
         "ChangedShared"
       ],
+      "IsEnabled": false,
       "IsRequired": true,
       "IsShowedInList": false,
       "IsUnique": true,
@@ -243,6 +273,7 @@
       "Code": "BusinessUnit",
       "EntityGuid": "eff95720-181f-4f7d-892d-dec034c7b2ab",
       "FlatListInStandaloneLookup": true,
+      "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "bcec0f85-def8-4f76-b911-468b1acd7705"
     },
@@ -253,6 +284,7 @@
       "Code": "Company",
       "EntityGuid": "294767f1-009f-4fbd-80fc-f98c49ddc560",
       "FlatListInStandaloneLookup": true,
+      "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "a5958d16-22c2-46f1-9d15-c2ccba4aa6e4"
     },
@@ -261,6 +293,7 @@
       "NameGuid": "c35ab995-81d4-48ba-8282-4cd2680aa524",
       "Name": "StateJob",
       "Code": "StateJob",
+      "IsEnabled": false,
       "Length": 50,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "fd3bb970-a1e4-46ae-aab2-52f2af138260"
@@ -271,7 +304,7 @@
       "Name": "AuthorJob",
       "Code": "AuthorJob",
       "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
-      "IsRequired": true,
+      "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "c35ab995-81d4-48ba-8282-4cd2680aa524"
     },
@@ -281,7 +314,7 @@
       "Name": "EmployeeJob",
       "Code": "EmployeeJob",
       "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
-      "IsRequired": true,
+      "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "aa6b1ead-a230-4f12-acba-2847bb3a5ec2"
     },
@@ -292,7 +325,7 @@
       "Code": "Assignment",
       "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
       "FlatListInStandaloneLookup": true,
-      "IsRequired": true,
+      "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "99428110-57f7-4b83-bffc-c8772a87cd61"
     },
@@ -301,6 +334,7 @@
       "NameGuid": "b87807e2-e354-44cb-85a5-069713c42ef8",
       "Name": "IsRead",
       "Code": "IsRead",
+      "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "033d25fd-e861-45d7-aa4c-7bf045e4560b"
     },
@@ -309,6 +343,7 @@
       "NameGuid": "aed1817c-7bfb-442c-b5df-6f965437901e",
       "Name": "IsExpired",
       "Code": "IsExpired",
+      "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "b87807e2-e354-44cb-85a5-069713c42ef8"
     },
@@ -318,6 +353,7 @@
       "Name": "Deadline",
       "Code": "Deadline",
       "DateTimeFormat": "DateTime",
+      "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
       "PreviousPropertyGuid": "aed1817c-7bfb-442c-b5df-6f965437901e"
     }

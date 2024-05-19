@@ -24,8 +24,15 @@ namespace Sungero.Custom.Server
       foreach (var job in Jobs)
       {
         var DJ = DatabookJobses.Create();
-        DJ.IDJob = int.Parse(job.Id.ToString());
-        DJ.Save();
+        try
+        {          
+          DJ.IDJob = int.Parse(job.Id.ToString());
+          DJ.Save();
+        }
+        catch (Exception e)
+        {
+          Logger.Debug("Фоновый процесс сбора заданий завершился ошибкой: " + e.Message.ToString());
+        }
       }
     }
 
