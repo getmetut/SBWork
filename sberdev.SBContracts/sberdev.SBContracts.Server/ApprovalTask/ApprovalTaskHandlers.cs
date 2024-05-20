@@ -9,6 +9,7 @@ using System.IO;
 
 namespace sberdev.SBContracts
 {
+
   partial class ApprovalTaskServerHandlers
   {
 

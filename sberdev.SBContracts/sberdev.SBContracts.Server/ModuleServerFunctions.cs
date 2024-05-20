@@ -726,7 +726,10 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[InitiatorManager]", Sungero.Company.Employees.As(purch.Author).Department.Manager.Name);
       body.Range.Replace("[MVZBudgetOwner]", (purch.MVZBaseSberDev.MainMVZ != null ? purch.MVZBaseSberDev.MainMVZ.BudgetOwner.Name : (purch.MVZBaseSberDev != null ?
                                                                                                                                       purch.MVZBaseSberDev.BudgetOwner.Name : null)));
-      body.Range.Replace("[CEO]", purch.BusinessUnit.CEO.Name);
+      if (purch.BusinessUnit.CEO != null)
+        body.Range.Replace("[CEO]", purch.BusinessUnit.CEO.Name);
+      else
+        body.Range.Replace("[CEO]", "Руководитель Нашей организации отсутвует");
       
       if (addendums.Count > 0)
         ReplacePlaceholderWithMarkedParagraphs(body, "[Addendums]", addendums, Aspose.Words.Lists.ListTemplate.NumberDefault);

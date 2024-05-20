@@ -179,5 +179,15 @@ namespace sberdev.SBContracts.Server
     }
     
     #endregion
+    
+  public override IQueryable<Sungero.Docflow.ISignatureSetting> GetSignatureSettingsQuery()
+  {
+    var query = base.GetSignatureSettingsQuery();
+      if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable)
+        return query.Where(q => SBContracts.SignatureSettings.As(q).ExpendableSberDev.Value);
+      if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
+        return query.Where(q => SBContracts.SignatureSettings.As(q).ProfitableSberDev.Value);
+      return query;
+  }
   }
 }

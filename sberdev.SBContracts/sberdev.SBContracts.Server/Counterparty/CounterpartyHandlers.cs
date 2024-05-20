@@ -25,19 +25,10 @@ namespace sberdev.SBContracts
         var dateFrom = _filter.ContractDateRangeFrom;
         var dateTo = _filter.ContractDateRangeTo;
         
-        if (dateFrom.HasValue && !dateTo.HasValue)
-          contracts = contracts.Where(l => l.DocumentDate > dateFrom);
-        
-        if (dateTo.HasValue && !dateFrom.HasValue)
-          contracts = contracts.Where(l => l.DocumentDate < dateTo);
-        
-        if (dateFrom.HasValue && dateTo.HasValue)
-          contracts = contracts.Where(l => l.DocumentDate > dateFrom && l.DocumentDate < dateTo);
-        
         var allCounterparties = contracts.Select(c => c.Counterparty).Distinct().ToList();
         var filteredParties = allCounterparties.Where(cp =>
                                                       {
-                                                        var totalAmount = PublicFunctions.Counterparty.CalculateTotalAmount(SBContracts.Counterparties.As(cp));
+                                                        var totalAmount = PublicFunctions.Counterparty.CalculateTotalAmount(SBContracts.Counterparties.As(cp), dateFrom, dateTo);
                                                         return (_filter.AmountLess100k && totalAmount <= 100000) ||
                                                           (_filter.AmountLess500k && totalAmount > 100000 && totalAmount < 500000) ||
                                                           (_filter.AmountMore500k && totalAmount >= 500000);

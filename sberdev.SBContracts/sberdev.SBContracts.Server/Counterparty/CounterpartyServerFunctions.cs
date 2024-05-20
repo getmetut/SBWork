@@ -12,17 +12,28 @@ namespace sberdev.SBContracts.Server
     [Public]
     public double CalculateTotalAmount()
     {
-      return SBContracts.ContractualDocuments.GetAll().Where(c => c.Counterparty == _obj && c.TotalAmount.HasValue
-                                                             && (c.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Expendable
-                                                                 || c.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.ExpendProfitSberDev)).Sum(a => a.TotalAmount.Value);
+      var contracts =  SBContracts.ContractualDocuments.GetAll().Where(c => c.Counterparty == _obj && c.TotalAmount.HasValue
+                                                                       && (c.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Expendable
+                                                                           || c.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.ExpendProfitSberDev)).ToList();
+      
+      return contracts.Sum(a => a.TotalAmount.GetValueOrDefault());
     }
     [Public]
-    public double CalculateTotalAmount(DateTime from, DateTime to)
+    public double CalculateTotalAmount(Nullable<DateTime> dateFrom, Nullable<DateTime> dateTo)
     {
-      return SBContracts.ContractualDocuments.GetAll().Where(c => c.Counterparty == _obj && c.TotalAmount.HasValue
-                                                             && c.DocumentDate >= from && c.DocumentDate <= to 
-                                                             && (c.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Expendable
-                                                                 || c.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.ExpendProfitSberDev)).Sum(a => a.TotalAmount.Value);
+      var contracts = SBContracts.ContractualDocuments.GetAll().Where(c => c.Counterparty == _obj && c.TotalAmount.HasValue
+                                                                      && (c.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Expendable
+                                                                          || c.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.ExpendProfitSberDev)).ToList();
+      if (dateFrom.HasValue && !dateTo.HasValue)
+        contracts = contracts.Where(l => l.DocumentDate > dateFrom).ToList();
+      
+      if (dateTo.HasValue && !dateFrom.HasValue)
+        contracts = contracts.Where(l => l.DocumentDate < dateTo).ToList();
+      
+      if (dateFrom.HasValue && dateTo.HasValue)
+        contracts = contracts.Where(l => l.DocumentDate > dateFrom && l.DocumentDate < dateTo).ToList();
+      
+      return contracts.Sum(a => a.TotalAmount.GetValueOrDefault());
     }
   }
 }

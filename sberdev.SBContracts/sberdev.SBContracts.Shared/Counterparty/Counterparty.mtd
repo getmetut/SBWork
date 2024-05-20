@@ -78,6 +78,7 @@
         "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
         "NameGuid": "788dc325-2583-45c7-a64c-25ea9430692b",
         "Name": "FocusOff",
+        "IsSelected": true,
         "ParentGuid": "b6d3bafa-116e-4772-92d3-59aa1970b2be",
         "PreviousGuid": "ec847639-455e-4579-8171-99cad87e61ad"
       },
@@ -187,14 +188,14 @@
           "ParameterTypeFullName": "sberdev.SBContracts.ICounterparty, Sungero.Domain.Interfaces"
         },
         {
-          "Name": "from",
-          "ParameterType": "global::System.DateTime",
-          "ParameterTypeFullName": "System.DateTime"
+          "Name": "dateFrom",
+          "ParameterType": "global::System.Nullable<global::System.DateTime>",
+          "ParameterTypeFullName": "System.Nullable"
         },
         {
-          "Name": "to",
-          "ParameterType": "global::System.DateTime",
-          "ParameterTypeFullName": "System.DateTime"
+          "Name": "dateTo",
+          "ParameterType": "global::System.Nullable<global::System.DateTime>",
+          "ParameterTypeFullName": "System.Nullable"
         }
       ],
       "ReturnType": "global::System.Double",
