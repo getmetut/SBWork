@@ -1,0 +1,111 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "b8b17ac7-e8ee-40f8-aa7e-17afe3fb07b2",
+  "Name": "MarcetingDocChannels",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "TabChannels",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "bd787788-465f-4214-b164-9fc8b25d53e9",
+      "Name": "MarcetingDoc",
+      "CanBeSearch": false,
+      "Code": "EDoc",
+      "EntityGuid": "17b4a41d-2ea8-43d3-b2c2-39dc966189db",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "fe496ca0-7263-45a0-892b-e44da7501786",
+      "Name": "Channel",
+      "CanBeSearch": false,
+      "Code": "Channel",
+      "EntityGuid": "ae04c530-ee79-4976-a024-383cdaeceb6d",
+      "FlatListInStandaloneLookup": true,
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "bd787788-465f-4214-b164-9fc8b25d53e9"
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e1d9e593-25cb-4d03-b0fe-d90349571fa6",
+      "Name": "Komission",
+      "CanBeSearch": false,
+      "Code": "Komission",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "fe496ca0-7263-45a0-892b-e44da7501786"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "6d4b1d4d-2b9d-4805-90eb-abdb2a41c375",
+      "Name": "KommissCurrency",
+      "CanBeSearch": false,
+      "Code": "KommissCurrenc",
+      "EntityGuid": "ffc2629f-dc30-4106-a3ce-c402ae7d32b9",
+      "FlatListInStandaloneLookup": true,
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "e1d9e593-25cb-4d03-b0fe-d90349571fa6"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "16ba7ddc-5035-4c0f-8b62-0ab971b878a8",
+      "Name": "ProductsAndDevices",
+      "CanBeSearch": false,
+      "Code": "ProductsAndDev",
+      "EntityGuid": "15fd6e99-dd3f-4959-98ff-c800852c6700",
+      "FlatListInStandaloneLookup": true,
+      "HandledEvents": [
+        "LookupServer"
+      ],
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "NeedPassEntityToLookupEvent": true,
+      "PreviousPropertyGuid": "6d4b1d4d-2b9d-4805-90eb-abdb2a41c375"
+    },
+    {
+      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "332be9f6-f8f5-462a-be05-622c6adaea22",
+      "Name": "KolVoChannels",
+      "CanBeSearch": false,
+      "Code": "KolVoChannels",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "16ba7ddc-5035-4c0f-8b62-0ab971b878a8"
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "a6bfbe1b-7169-4423-bd06-f14fb6825339",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "d662452e-4699-4b0a-99d0-3c45c4dfbbd6",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

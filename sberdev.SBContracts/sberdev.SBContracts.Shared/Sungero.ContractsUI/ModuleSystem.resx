@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CoverGroup_Groupsberdev" xml:space="preserve">
+    <value>Groupsberdev</value>
+  </data>
+  <data name="CoverAction_AccArtSberDev" xml:space="preserve">
+    <value>Accounting Articles</value>
+  </data>
+  <data name="CoverDescription_AccArtSberDev" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CoverAction_BudgetItemsSberDev" xml:space="preserve">
+    <value>BudgetItems</value>
+  </data>
+  <data name="CoverAction_MVZSberDev" xml:space="preserve">
+    <value>MVZ</value>
+  </data>
+  <data name="CoverDescription_MVZSberDev" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CoverAction_ProductsSberDev" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="CoverDescription_ProductsSberDev" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CoverGroup_Administration" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="CoverAction_Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="CoverDescription_Import" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CoverAction_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="CoverDescription_Delete" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CoverAction_AnaticsSetup" xml:space="preserve">
+    <value>AnaticsSetup</value>
+  </data>
+  <data name="CoverDescription_AnaticsSetup" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CoverAction_DevSettings" xml:space="preserve">
+    <value>Development settings</value>
+  </data>
+  <data name="CoverDescription_DevSettings" xml:space="preserve">
+    <value />
+  </data>
+  <data name="sf_4402b972_946d_40ac_9e2b_af9674c0e199" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="CoverAction_PaidInvoiceReportSberDev" xml:space="preserve">
+    <value>Report on paid invoices</value>
+  </data>
+  <data name="CoverDescription_PaidInvoiceReportSberDev" xml:space="preserve">
+    <value>The report will show all paid incoming invoices for the specified date.</value>
+  </data>
+  <data name="CoverAction_ProductUnitSberDev" xml:space="preserve">
+    <value>Product-units</value>
+  </data>
+  <data name="CoverDescription_ProductUnitSberDev" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CoverAction_BudgetOwnerReportSberDev" xml:space="preserve">
+    <value>Budget owner report</value>
+  </data>
+  <data name="CoverDescription_BudgetOwnerReportSberDev" xml:space="preserve">
+    <value>The report will indicate contract documents for the specified period.</value>
+  </data>
+  <data name="CoverAction_MarketDirectSberDev" xml:space="preserve">
+    <value>Marketing Directions</value>
+  </data>
+  <data name="CoverDescription_MarketDirectSberDev" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CoverDescription_NonContractualStatisticSberDev" xml:space="preserve">
+    <value>Directory with statistics of accounts launched for reconciliation.</value>
+  </data>
+  <data name="CoverAction_NonContractualStatisticSberDev" xml:space="preserve">
+    <value>Non-contractual invoices statistic</value>
+  </data>
+</root>

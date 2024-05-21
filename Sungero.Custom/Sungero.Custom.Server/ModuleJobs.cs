@@ -1,0 +1,91 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Sungero.Core;
+using Sungero.CoreEntities;
+
+namespace Sungero.Custom.Server
+{
+  public class ModuleJobs
+  {
+
+    /// <summary>
+    /// Обработка заданий для занесения их в список заданий в справочнике
+    /// </summary>
+    public virtual void JobsinReference()
+    {
+      var ActualList = DatabookJobses.GetAll();
+      List<long> ListIds = new List<long>();
+      foreach (var elem in ActualList)
+      {
+        ListIds.Add(long.Parse(elem.IDJob.Value.ToString()));
+      }
+      var Jobs = Sungero.Workflow.Assignments.GetAll(a => ((a.Status == Sungero.Workflow.Assignment.Status.InProcess) && (!ListIds.Contains(a.Id)))).ToList();
+      foreach (var job in Jobs)
+      {
+        var DJ = DatabookJobses.Create();
+        try
+        {          
+          DJ.IDJob = int.Parse(job.Id.ToString());
+          DJ.Save();
+        }
+        catch (Exception e)
+        {
+          Logger.Debug("Фоновый процесс сбора заданий завершился ошибкой: " + e.Message.ToString());
+        }
+      }
+    }
+
+    /// <summary>
+    /// Фоновый процесс отбора документов и заполнение полей о продуктах и калькуляциях
+    /// </summary>
+    public virtual void JobSearchDocumProdCalc()
+    {
+      int Acc = 0;
+      int errAcc = 0;
+      int Con = 0;
+      int errCon = 0;
+      string ErrorString = "";
+      
+      var listDogDocs = sberdev.SBContracts.ContractualDocuments.GetAll().ToList();
+      foreach (var contrdoc in listDogDocs)
+      {
+        try
+        {
+          contrdoc.Note += " "; 
+          //if ((contrdoc.State.Properties.PurchComNumberSberDev.IsRequired == true) && (contrdoc.PurchComNumberSberDev == null))
+          //  contrdoc.PurchComNumberSberDev = "000.0";
+          contrdoc.State.Properties.PurchComNumberSberDev.IsRequired = false;
+          contrdoc.Save();
+          Con += 1;
+        }
+        catch
+        {
+          errCon += 1;
+          ErrorString += contrdoc.Id.ToString() + ";";
+        }
+      }
+      var listAccoutingDocs = sberdev.SBContracts.AccountingDocumentBases.GetAll().ToList();
+      foreach (var accdoc in listAccoutingDocs)
+      {
+        try
+        {
+          accdoc.Note += " "; 
+          accdoc.State.Properties.PayTypeBaseSberDev.IsRequired = false;
+          accdoc.State.Properties.EstPaymentDateSberDev.IsRequired = false;
+          accdoc.Save();
+          Acc += 1;
+        }
+        catch
+        {
+          errAcc += 1;
+          ErrorString += accdoc.Id.ToString() + ";";
+        }
+      }
+      Logger.Debug("Отработан фоновый процесс заполнения продуктов и калькуляций. Отработано Финансовых докуменнтов: " + Acc.ToString() + "| " + "Отработано Финансовых докуменнтов: " + Acc.ToString() + "| " + 
+                   "Отработано Договорных докуменнтов: " + Con.ToString() + "| Получено ошибок: " + errAcc.ToString() + "/" + errCon.ToString());
+      Logger.Debug("Ошибки в документах: " + ErrorString);
+    }
+
+  }
+}

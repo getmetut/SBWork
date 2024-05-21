@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Документ маркетинговых операций</value>
+  </data>
+  <data name="AccusativeDisplayName" xml:space="preserve">
+    <value>Документ маркетинговых операций</value>
+  </data>
+  <data name="CollectionDisplayName" xml:space="preserve">
+    <value>Документы маркетинговых операций</value>
+  </data>
+  <data name="Property_ActionCode" xml:space="preserve">
+    <value>Код мероприятия</value>
+  </data>
+  <data name="Property_ActionName" xml:space="preserve">
+    <value>Название мероприятия</value>
+  </data>
+  <data name="Property_MarketingKind" xml:space="preserve">
+    <value>Вид мероприятия</value>
+  </data>
+  <data name="Property_Subject" xml:space="preserve">
+    <value>Описание мероприятия</value>
+  </data>
+  <data name="Property_ActionType" xml:space="preserve">
+    <value>Тип мероприятия</value>
+  </data>
+  <data name="Enum_ActionType_Rashod" xml:space="preserve">
+    <value>Расходное</value>
+  </data>
+  <data name="Enum_ActionType_Prihod" xml:space="preserve">
+    <value>Приходное</value>
+  </data>
+  <data name="Property_MarketingSubKind" xml:space="preserve">
+    <value>Подвид мероприятия</value>
+  </data>
+  <data name="Property_OwnerEmployee" xml:space="preserve">
+    <value>Владелец мероприятия</value>
+  </data>
+  <data name="Property_StartDate" xml:space="preserve">
+    <value>Дата начала </value>
+  </data>
+  <data name="Property_EndDate" xml:space="preserve">
+    <value>Дата конца</value>
+  </data>
+  <data name="Property_BudgetItem" xml:space="preserve">
+    <value>Бюджет</value>
+  </data>
+  <data name="Property_AccountingArticles" xml:space="preserve">
+    <value>Статья управленческого учета</value>
+  </data>
+  <data name="Property_PlannedSummRub" xml:space="preserve">
+    <value>Плановая сумма продаж</value>
+  </data>
+  <data name="Property_PlannedRashod" xml:space="preserve">
+    <value>Плановые затраты</value>
+  </data>
+  <data name="Property_PlanKolInt" xml:space="preserve">
+    <value>Плановое кол-во интересов</value>
+  </data>
+  <data name="Property_FacktTotalSumm" xml:space="preserve">
+    <value>Фактическая сумма продаж</value>
+  </data>
+  <data name="Property_FacktRashod" xml:space="preserve">
+    <value>Фактические затраты</value>
+  </data>
+  <data name="Property_FacktKolInt" xml:space="preserve">
+    <value>Фактическое кол-во интересов</value>
+  </data>
+  <data name="Property_Note" xml:space="preserve">
+    <value>FAQ для поддержки</value>
+  </data>
+  <data name="ControlGroup_42612188cf984a66a4cc5c674787d208" xml:space="preserve">
+    <value>FAQ для поддержки</value>
+  </data>
+  <data name="Property_DevicesAction" xml:space="preserve">
+    <value>Таблица "Девайсы"</value>
+  </data>
+  <data name="Property_Channels" xml:space="preserve">
+    <value>Таблица "Каналы"</value>
+  </data>
+  <data name="Property_PlanSummCurrency" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="Property_PlanRashCurrency" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="Property_FacktSummCurrency" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="Property_FacktRashCurrency" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="Resource_fc50c88831554ff196e8ff7064894ead" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_fc50c88831554ff196e8ff7064894ead_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ddf41ead829a4a3f8d12d40a52b7440c" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_ddf41ead829a4a3f8d12d40a52b7440c_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f0607051ea774af2b7966d11cd8a7374" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_f0607051ea774af2b7966d11cd8a7374_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_bccbad44ccef48aaae161f8266196b0a" xml:space="preserve">
+    <value>Девайсы и Каналы</value>
+  </data>
+  <data name="ControlGroup_3cac8d0a44a74fc78d56d1a013effc4c" xml:space="preserve">
+    <value>Информация о мероприятии</value>
+  </data>
+  <data name="ControlGroup_22461bafc6d14bcf8a93e7340bb39941" xml:space="preserve">
+    <value>Финансы и аналитика</value>
+  </data>
+  <data name="Action_SendToTM" xml:space="preserve">
+    <value>Согласовать</value>
+  </data>
+  <data name="Action_SendToTMDescription" xml:space="preserve">
+    <value>Отправка документа на согласование по типовому маршруту</value>
+  </data>
+  <data name="Action_SendToTMHint" xml:space="preserve">
+    <value>Отправка документа на согласование по типовому маршруту</value>
+  </data>
+  <data name="Action_SendToTMConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SendToTMConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_StagesOfApproval" xml:space="preserve">
+    <value>Этап согласования</value>
+  </data>
+  <data name="Enum_StagesOfApproval_Draft" xml:space="preserve">
+    <value>Черновик</value>
+  </data>
+  <data name="Enum_StagesOfApproval_NewObj" xml:space="preserve">
+    <value>Новое</value>
+  </data>
+  <data name="Enum_StagesOfApproval_OnApproval" xml:space="preserve">
+    <value>На согласовании</value>
+  </data>
+  <data name="Enum_StagesOfApproval_Confirmed" xml:space="preserve">
+    <value>Подтверждено</value>
+  </data>
+  <data name="Enum_StagesOfApproval_AtWork" xml:space="preserve">
+    <value>В работе</value>
+  </data>
+  <data name="Enum_StagesOfApproval_SummingResult" xml:space="preserve">
+    <value>Подведение итогов</value>
+  </data>
+  <data name="Enum_StagesOfApproval_Completed" xml:space="preserve">
+    <value>Завершено</value>
+  </data>
+  <data name="Enum_StagesOfApproval_Canceled" xml:space="preserve">
+    <value>Отменено</value>
+  </data>
+  <data name="Enum_StagesOfApproval_Approval" xml:space="preserve">
+    <value>Согласовано</value>
+  </data>
+  <data name="Property_BudjetList" xml:space="preserve">
+    <value>Бюджет</value>
+  </data>
+  <data name="Property_CtrlKolvo" xml:space="preserve">
+    <value>Контроль кол-ва</value>
+  </data>
+</root>

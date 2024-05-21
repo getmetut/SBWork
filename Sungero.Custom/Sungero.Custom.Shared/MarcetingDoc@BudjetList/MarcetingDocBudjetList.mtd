@@ -1,0 +1,60 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "34d84ec3-f366-48e1-b08c-f27166496210",
+  "Name": "MarcetingDocBudjetList",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "MarcetingDocBu",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e951ec1c-b6f7-4301-b084-dd6b805b074f",
+      "Name": "MarcetingDoc",
+      "CanBeSearch": false,
+      "Code": "EDoc",
+      "EntityGuid": "17b4a41d-2ea8-43d3-b2c2-39dc966189db",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9ae1aca3-f82c-4b9a-a529-1f943294adb9",
+      "Name": "MVZ",
+      "CanBeSearch": false,
+      "Code": "MVZ",
+      "EntityGuid": "d2061f28-0788-4291-9a87-3e2b87acd765",
+      "FlatListInStandaloneLookup": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "e951ec1c-b6f7-4301-b084-dd6b805b074f"
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "2cf29959-d643-4ca6-a12e-8052e9cbaf63",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "b3df4b31-ac7c-4bb2-ae77-e1b4d34042c0",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

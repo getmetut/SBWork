@@ -1,0 +1,79 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "1ce5af16-d6a6-4eb7-8664-64bfe187e316",
+  "Name": "PurchaseStagesPurchaseCollection",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "PurchaseStages",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "a58d9726-604c-4284-81af-c99b3d9dd648",
+      "Name": "Purchase",
+      "CanBeSearch": false,
+      "Code": "EDoc",
+      "EntityGuid": "7aa8969f-f81d-462c-b0d8-761ccd59253f",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "8e7b55ed-2d0c-430d-a44b-f9c3fc096f8a",
+      "Name": "Name",
+      "CanBeSearch": false,
+      "Code": "Name",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "a58d9726-604c-4284-81af-c99b3d9dd648"
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "024b1a69-2296-4bda-baab-80493f7921b3",
+      "Name": "Cost",
+      "CanBeSearch": false,
+      "Code": "Cost",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "8e7b55ed-2d0c-430d-a44b-f9c3fc096f8a"
+    },
+    {
+      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "1bda045d-5079-426d-a754-f26f5a3b06ce",
+      "Name": "Duration",
+      "CanBeSearch": false,
+      "Code": "Duration",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "024b1a69-2296-4bda-baab-80493f7921b3"
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "2cb4c796-70b2-4e09-9f03-ea5e2f169ab3",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "e019cee1-2965-4136-9331-ad39dfedd70d",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

@@ -1,0 +1,363 @@
+{
+  "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
+  "NameGuid": "4f29765d-0e0c-4935-9e51-f7a31b14aeb7",
+  "Name": "Custom",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "Sungero.Custom.Client",
+  "ClientBaseAssemblyName": "Sungero.Custom.ClientBase",
+  "ClientBaseNamespace": "Sungero.Custom.ClientBase",
+  "ClientNamespace": "Sungero.Custom.Client",
+  "Code": "Custom",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "caa00d00-27dd-470b-92b0-77e1e1665471",
+    "Actions": [
+      {
+        "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
+        "NameGuid": "834e8694-3226-4436-a758-452216ea18f3",
+        "Name": "SearchDocDiadoc",
+        "FunctionName": "SearchDocDiadoc",
+        "GroupId": "87590ec7-b390-4e15-8a60-3e53df37e634",
+        "PreviousItemGuid": "c260f95d-f814-4d4b-ae97-65b5dd9d72b5"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
+        "NameGuid": "bc62dc3f-85b9-4e02-8e0e-4b537e353870",
+        "Name": "ReSaveKA",
+        "FunctionName": "ReSaveKA",
+        "GroupId": "87590ec7-b390-4e15-8a60-3e53df37e634"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
+        "NameGuid": "c260f95d-f814-4d4b-ae97-65b5dd9d72b5",
+        "Name": "ActionKAInCSV",
+        "FunctionName": "ParseCsv",
+        "GroupId": "87590ec7-b390-4e15-8a60-3e53df37e634",
+        "PreviousItemGuid": "bc62dc3f-85b9-4e02-8e0e-4b537e353870"
+      }
+    ],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "d9b194c3-75c9-4759-b88f-7ba2cd1ff7b2",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [
+      {
+        "NameGuid": "87590ec7-b390-4e15-8a60-3e53df37e634",
+        "Name": "AdminsBlock",
+        "BackgroundPosition": "Stretch",
+        "IconName": "GroupIconAdminsBlock_87590ec7b3904e158a603e53df37e634.png",
+        "TabId": "c3bfdbb6-0923-4b41-b9f7-7395802b1a33"
+      }
+    ],
+    "Header": {
+      "NameGuid": "d1d646dd-86c5-4a22-bebe-1708b184fd0d",
+      "BackgroundPosition": "Stretch",
+      "IconName": "HeaderIcon_d1d646dd86c54a22bebe1708b184fd0d.png"
+    },
+    "Tabs": [
+      {
+        "NameGuid": "c3bfdbb6-0923-4b41-b9f7-7395802b1a33",
+        "Name": "TabBase"
+      }
+    ]
+  },
+  "Dependencies": [
+    {
+      "Id": "ed6fc3e0-0fae-4506-8085-885c8222f982",
+      "IsSolutionModule": true,
+      "MaxVersion": "",
+      "MinVersion": ""
+    },
+    {
+      "Id": "df83a2ea-8d43-4ec4-a34a-2e61863014df",
+      "MaxVersion": "",
+      "MinVersion": "4.6.34.0"
+    }
+  ],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "25493923-67d7-4282-8f42-62a4cb066fe2"
+    },
+    {
+      "ItemId": "0c5a665f-4ec8-4d40-87fd-605c74df1383",
+      "PreviousItemId": "25493923-67d7-4282-8f42-62a4cb066fe2"
+    },
+    {
+      "ItemId": "0a8cb025-1657-495d-aa5e-e982898df156",
+      "PreviousItemId": "0c5a665f-4ec8-4d40-87fd-605c74df1383"
+    },
+    {
+      "ItemId": "175ed514-13ac-427b-986e-008c04647eac",
+      "PreviousItemId": "0a8cb025-1657-495d-aa5e-e982898df156"
+    },
+    {
+      "ItemId": "b6ccd59f-cba9-4a2f-96cd-4873f04422b2",
+      "PreviousItemId": "175ed514-13ac-427b-986e-008c04647eac"
+    },
+    {
+      "ItemId": "6d73877a-b61d-480d-b53e-1df9bdbce013",
+      "PreviousItemId": "b6ccd59f-cba9-4a2f-96cd-4873f04422b2"
+    },
+    {
+      "ItemId": "f2913dcd-1e4c-4fc7-8ac7-d9747fb189af",
+      "PreviousItemId": "6d73877a-b61d-480d-b53e-1df9bdbce013"
+    },
+    {
+      "ItemId": "da8fc147-5b23-46ee-b183-6fdf0970b3de",
+      "PreviousItemId": "f2913dcd-1e4c-4fc7-8ac7-d9747fb189af"
+    },
+    {
+      "ItemId": "b0bd7c9b-0cbf-4126-a2b1-5bad25c0ef82",
+      "PreviousItemId": "da8fc147-5b23-46ee-b183-6fdf0970b3de"
+    },
+    {
+      "ItemId": "3a6caaff-6636-4edd-8e77-89d2fdfd451d",
+      "PreviousItemId": "b0bd7c9b-0cbf-4126-a2b1-5bad25c0ef82"
+    },
+    {
+      "ItemId": "38bd47eb-ecd8-4823-b84e-c53fbd083eb5",
+      "PreviousItemId": "3a6caaff-6636-4edd-8e77-89d2fdfd451d"
+    },
+    {
+      "ItemId": "17b4a41d-2ea8-43d3-b2c2-39dc966189db",
+      "PreviousItemId": "38bd47eb-ecd8-4823-b84e-c53fbd083eb5"
+    },
+    {
+      "ItemId": "5bf34a7b-7b5d-4531-80d6-2c858ffc064a",
+      "PreviousItemId": "17b4a41d-2ea8-43d3-b2c2-39dc966189db"
+    },
+    {
+      "ItemId": "8df790a7-c184-4efe-8e7e-6adb70329662",
+      "PreviousItemId": "5bf34a7b-7b5d-4531-80d6-2c858ffc064a"
+    },
+    {
+      "ItemId": "ae04c530-ee79-4976-a024-383cdaeceb6d",
+      "PreviousItemId": "8df790a7-c184-4efe-8e7e-6adb70329662"
+    },
+    {
+      "ItemId": "923b52ef-d0eb-4b24-9e95-e1172404118b",
+      "PreviousItemId": "ae04c530-ee79-4976-a024-383cdaeceb6d"
+    },
+    {
+      "ItemId": "4866aff6-f0cc-455b-b6b6-993508ec5c29",
+      "PreviousItemId": "923b52ef-d0eb-4b24-9e95-e1172404118b"
+    },
+    {
+      "ItemId": "1b71c97c-a6d5-435a-8baf-095d5b3264f7",
+      "PreviousItemId": "4866aff6-f0cc-455b-b6b6-993508ec5c29"
+    },
+    {
+      "ItemId": "102f3750-ce9f-45c0-8e69-a6c7c7a88f4a",
+      "PreviousItemId": "1b71c97c-a6d5-435a-8baf-095d5b3264f7"
+    },
+    {
+      "ItemId": "d62141c7-715c-47bb-82b0-cf2ffbe8b6e7",
+      "PreviousItemId": "102f3750-ce9f-45c0-8e69-a6c7c7a88f4a"
+    },
+    {
+      "ItemId": "b78060af-8621-46cb-afc1-944aca7cedc6",
+      "PreviousItemId": "d62141c7-715c-47bb-82b0-cf2ffbe8b6e7"
+    },
+    {
+      "ItemId": "321f5d21-9aef-4db8-a98f-96ad59439e80",
+      "PreviousItemId": "b78060af-8621-46cb-afc1-944aca7cedc6"
+    },
+    {
+      "ItemId": "3a50daaf-e0f2-4710-8120-c22fd6aa2cd7",
+      "PreviousItemId": "321f5d21-9aef-4db8-a98f-96ad59439e80"
+    },
+    {
+      "ItemId": "6b6ab7f9-408b-417f-82df-24631d8167f1",
+      "PreviousItemId": "3a50daaf-e0f2-4710-8120-c22fd6aa2cd7"
+    },
+    {
+      "ItemId": "bfdab4d5-8253-4759-acbd-a6c0e963c4ae",
+      "PreviousItemId": "6b6ab7f9-408b-417f-82df-24631d8167f1"
+    },
+    {
+      "ItemId": "c61b0478-a42d-4138-88da-bf33e487a62c",
+      "PreviousItemId": "bfdab4d5-8253-4759-acbd-a6c0e963c4ae"
+    },
+    {
+      "ItemId": "20c6f0c0-c53e-41f1-bc2d-7c7e73d205fc",
+      "PreviousItemId": "c61b0478-a42d-4138-88da-bf33e487a62c"
+    },
+    {
+      "ItemId": "e0104a0f-6105-462b-9798-61b785562729",
+      "PreviousItemId": "20c6f0c0-c53e-41f1-bc2d-7c7e73d205fc"
+    },
+    {
+      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "PreviousItemId": "e0104a0f-6105-462b-9798-61b785562729"
+    }
+  ],
+  "HandledEvents": [
+    "InitializingServer",
+    "VisibilityServer"
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "Sungero.Custom",
+  "IsolatedAssemblyName": "Sungero.Custom.Isolated",
+  "IsolatedNamespace": "Sungero.Custom.Isolated",
+  "Jobs": [
+    {
+      "NameGuid": "605d225b-de9f-4db0-af26-37766288e66b",
+      "Name": "JobSearchDocumProdCalc",
+      "GenerateHandler": true,
+      "IsAtEndOfMonth": true,
+      "Monthly": "DaysOfMonth",
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T22:30:00"
+    },
+    {
+      "NameGuid": "331a19e9-6a5e-464a-8f37-d13c4ab61d50",
+      "Name": "JobsinReference",
+      "Daily": "Repeat",
+      "GenerateHandler": true,
+      "MonthSchedule": "Monthly",
+      "TimePeriod": 10
+    }
+  ],
+  "Libraries": [
+    {
+      "NameGuid": "bdc4ab7b-7836-4131-9677-f8662d2ef6bd",
+      "Name": "RabbitMQ",
+      "Scope": "Both"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "ClearJobRef",
+      "Parameters": [
+        {
+          "Name": "IDTask",
+          "ParameterType": "global::System.Int32",
+          "ParameterTypeFullName": "System.Int32"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "CreateJobRef",
+      "Parameters": [
+        {
+          "Name": "IDTask",
+          "ParameterType": "global::System.Int32",
+          "ParameterTypeFullName": "System.Int32"
+        },
+        {
+          "Name": "Performen",
+          "ParameterType": "global::Sungero.Company.IEmployee",
+          "ParameterTypeFullName": "Sungero.Company.IEmployee, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "TimeResult",
+          "ParameterType": "global::System.DateTime",
+          "ParameterTypeFullName": "System.DateTime"
+        },
+        {
+          "Name": "Result",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "Comment",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "CreateTaskRef",
+      "Parameters": [
+        {
+          "Name": "ID",
+          "ParameterType": "global::System.Int32",
+          "ParameterTypeFullName": "System.Int32"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "DostumMarketing",
+      "Parameters": [
+        {
+          "Name": "user",
+          "ParameterType": "global::Sungero.CoreEntities.IUser",
+          "ParameterTypeFullName": "Sungero.CoreEntities.IUser, Sungero.Domain.Shared"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
+      "Name": "GetTestValFromRabbitMQ",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String",
+      "WebApiRequestType": "Get"
+    },
+    {
+      "Name": "MSG",
+      "Parameters": [
+        {
+          "Name": "msg",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    }
+  ],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.Custom",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "Sungero.Custom.Server",
+  "ServerNamespace": "Sungero.Custom.Server",
+  "SharedAssemblyName": "Sungero.Custom.Shared",
+  "SharedNamespace": "Sungero.Custom.Shared",
+  "SpecialFolders": [
+    {
+      "NameGuid": "20c6f0c0-c53e-41f1-bc2d-7c7e73d205fc",
+      "Name": "AccountingDocuments",
+      "DefaultContentType": "2b3f0839-76de-4b49-800c-c1531253a3e7",
+      "DisplayType": "Module",
+      "FilterPanel": {
+        "NameGuid": "98cd49fe-7c84-4fda-8ef8-0816e6408bc0",
+        "Name": "FilterPanel",
+        "Controls": []
+      },
+      "HandledEvents": [
+        "DataQueryServer"
+      ],
+      "IconPath": "AccountingDocuments_20c6f0c0c53e41f1bc2d7c7e73d205fc.ico",
+      "IsShow": true,
+      "Kind": "Computable",
+      "NeedShowMarkedCount": false
+    }
+  ],
+  "Version": "0.1.0.48",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

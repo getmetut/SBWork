@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Property_Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Установки видимости аналитик</value>
+  </data>
+  <data name="AccusativeDisplayName" xml:space="preserve">
+    <value>Установки видимости аналитик</value>
+  </data>
+  <data name="CollectionDisplayName" xml:space="preserve">
+    <value>Установки видимости аналитик</value>
+  </data>
+  <data name="Property_DocumentType" xml:space="preserve">
+    <value>Тип документа</value>
+  </data>
+  <data name="Enum_DocumentType_Contract" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="Enum_DocumentType_OutgoingLetter" xml:space="preserve">
+    <value>Исходящее письмо</value>
+  </data>
+  <data name="Property_DocumentKind" xml:space="preserve">
+    <value>Вид документа</value>
+  </data>
+  <data name="Property_MVZIsEnabled" xml:space="preserve">
+    <value>Только чтение</value>
+  </data>
+  <data name="Property_MVZIsRequired" xml:space="preserve">
+    <value>Обязательное</value>
+  </data>
+  <data name="Property_MVZIsVisible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="Property_AccArtsIsEnabled" xml:space="preserve">
+    <value>Только чтение</value>
+  </data>
+  <data name="ControlGroup_071f87312a43441caef5f843929ee336" xml:space="preserve">
+    <value>МВЗ</value>
+  </data>
+  <data name="Property_DocumentGroup" xml:space="preserve">
+    <value>Категория договоров</value>
+  </data>
+  <data name="Property_AccArtsIsRequired" xml:space="preserve">
+    <value>Обязательное</value>
+  </data>
+  <data name="Property_AccArtsIsVisible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="Property_ProdIsEnabled" xml:space="preserve">
+    <value>Только чтение</value>
+  </data>
+  <data name="Property_ProdIsRequired" xml:space="preserve">
+    <value>Обязательное</value>
+  </data>
+  <data name="Property_ProdIsVisible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="Property_BrandNameIsEnable" xml:space="preserve">
+    <value>Только чтение</value>
+  </data>
+  <data name="Property_BrandNameIsRequired" xml:space="preserve">
+    <value>Обязательное</value>
+  </data>
+  <data name="Property_BrandNameIsVisible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="ControlGroup_af06fa1b20534101ac0b12c7130bb8fa" xml:space="preserve">
+    <value>Статьи по управленческому учету</value>
+  </data>
+  <data name="ControlGroup_70ccda2a472d439e81ae0e2af7319517" xml:space="preserve">
+    <value>Brand name</value>
+  </data>
+  <data name="ControlGroup_96a951bcf1a44ff0a7be1ec65fb8b1d1" xml:space="preserve">
+    <value>Направление</value>
+  </data>
+  <data name="Property_MVPIsEnabled" xml:space="preserve">
+    <value>Только чтение</value>
+  </data>
+  <data name="Property_MVPIsRequired" xml:space="preserve">
+    <value>Обязательное</value>
+  </data>
+  <data name="Property_MVPIsVisible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="ControlGroup_28803edcbac7447890301f284a5f0133" xml:space="preserve">
+    <value>МВП</value>
+  </data>
+  <data name="Property_ContractIsEnabled" xml:space="preserve">
+    <value>Только чтение</value>
+  </data>
+  <data name="Property_ContractIsRequired" xml:space="preserve">
+    <value>Обязательное</value>
+  </data>
+  <data name="Property_ContractIsVisible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="ControlGroup_53061159c9d1469b9a0f476914366bcc" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="Property_ActExistsEnabled" xml:space="preserve">
+    <value>Только чтение</value>
+  </data>
+  <data name="Property_ActExistsRequired" xml:space="preserve">
+    <value>Обязательное</value>
+  </data>
+  <data name="Property_ActExistsVisible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="ControlGroup_02049ec94f7142b088ff10a6975b3f2a" xml:space="preserve">
+    <value>Наличие акта</value>
+  </data>
+  <data name="Property_DeviceExistsEnabled" xml:space="preserve">
+    <value>Только чтение</value>
+  </data>
+  <data name="Property_DeviceExistsVisible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="Property_DeviceExistsRequired" xml:space="preserve">
+    <value>Обязательное</value>
+  </data>
+  <data name="ControlGroup_b84c6b574d8c48df96771f2966c0ff68" xml:space="preserve">
+    <value>Наличие устройства</value>
+  </data>
+  <data name="Property_FactOfPaymentEnabled" xml:space="preserve">
+    <value>Только чтение</value>
+  </data>
+  <data name="Property_FactOfPaymentVisible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="Property_FactOfPaymentRequired" xml:space="preserve">
+    <value>Обязательное</value>
+  </data>
+  <data name="ControlGroup_3687535a5b944a04874bdcaa04b2f3d6" xml:space="preserve">
+    <value>Факт оплаты</value>
+  </data>
+  <data name="Property_PricesAgreedEnabled" xml:space="preserve">
+    <value>Только чтение</value>
+  </data>
+  <data name="Property_PricesAgreedVisible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="Property_PricesAgreedRequired" xml:space="preserve">
+    <value>Обязательное</value>
+  </data>
+  <data name="ControlGroup_371a5e8260154107b7e16c7d5614eea1" xml:space="preserve">
+    <value>Цены согласованы</value>
+  </data>
+  <data name="Enum_DocumentType_IncomingLetter" xml:space="preserve">
+    <value>Входящее письмо</value>
+  </data>
+  <data name="Property_FrameworkVisible" xml:space="preserve">
+    <value>Видимое</value>
+  </data>
+  <data name="Property_FrameworkRequired" xml:space="preserve">
+    <value>Обязательное</value>
+  </data>
+  <data name="Property_FrameworkEnabled" xml:space="preserve">
+    <value>Только чтение</value>
+  </data>
+</root>

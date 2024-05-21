@@ -1,0 +1,309 @@
+{
+  "$type": "Sungero.Metadata.AssignmentMetadata, Sungero.Workflow.Shared",
+  "NameGuid": "321f5d21-9aef-4db8-a98f-96ad59439e80",
+  "Name": "StandartAssignment",
+  "AccessRightsMode": "Instance",
+  "Actions": [
+    {
+      "$type": "Sungero.Workflow.Shared.ExecutionResultActionMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "eb4f40a6-ffc4-40d8-9710-cf834dde95e4",
+      "Name": "Complete",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_Complete_large_eb4f40a6ffc440d89710cf834dde95e4.png",
+      "NeedConfirmation": true,
+      "SmallIconName": "Action_Complete_small_eb4f40a6ffc440d89710cf834dde95e4.png"
+    },
+    {
+      "$type": "Sungero.Workflow.Shared.ExecutionResultActionMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "c454f63f-2b3e-44ef-bd08-c74da4f50db9",
+      "Name": "DoWork",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_DoWork_large_c454f63f2b3e44efbd08c74da4f50db9.png",
+      "NeedConfirmation": true,
+      "SmallIconName": "Action_DoWork_small_c454f63f2b3e44efbd08c74da4f50db9.png"
+    },
+    {
+      "$type": "Sungero.Workflow.Shared.ExecutionResultActionMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "9ce19db8-aa70-4d5e-8e81-4455a1875b9f",
+      "Name": "Ispoln",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_Ispoln_large_9ce19db8aa704d5e8e814455a1875b9f.png",
+      "NeedConfirmation": true,
+      "SmallIconName": "Action_Ispoln_small_9ce19db8aa704d5e8e814455a1875b9f.png"
+    }
+  ],
+  "AssociatedGuid": "b78060af-8621-46cb-afc1-944aca7cedc6",
+  "BaseGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
+  "CanBeNavigationPropertyType": true,
+  "CreationAreaMetadata": {
+    "NameGuid": "5c1f535b-b4ea-44b0-98c3-774869317e7f",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "23d98c0f-b348-479d-b1fb-ccdcf2096bd2",
+    "Name": "FilterPanel",
+    "Controls": [],
+    "IsAncestorMetadata": true
+  },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.WorkflowEntityStandaloneFormMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "e0de95d5-b9a6-4bbc-ac00-8fe44115acf6",
+      "Name": "Card",
+      "Controls": [
+        {
+          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
+          "NameGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "Name": "ControlGroup",
+          "ColumnDefinitions": [
+            {
+              "Percentage": 30.19
+            },
+            {
+              "Percentage": 27.0
+            },
+            {
+              "Percentage": 42.81
+            }
+          ],
+          "IsAncestorMetadata": true,
+          "Overridden": [
+            "Controls",
+            "ColumnDefinitions"
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "c9c4beef-ec5b-4b37-96d4-959c17991279",
+          "Name": "AuthorControl",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "PropertyGuid": "51a65ccf-9098-46d5-a853-c9a7f7e95d28",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "45c3f7af-ea6f-4094-8e21-e643b6358f4a",
+          "Name": "PerformerControl",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "PropertyGuid": "4d924904-9c82-4187-ac18-b3620cf6ec87",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "ad03c4af-7bfe-4967-aa2c-daa3265bdbe3",
+          "Name": "DeadlineControl",
+          "ColumnNumber": 2,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+          "ParentGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "PropertyGuid": "5380ec02-41db-47eb-8c29-18704454f122",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "e1a2ecd8-f14e-4df8-84a1-46e277430847",
+          "Name": "TravelStr",
+          "ColumnNumber": 2,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "ParentGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "PropertyGuid": "95f0249f-cdbc-4036-bd5d-7c94e5fe3d72",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "87219541-f68e-4710-a4d2-cbc4b7eca386",
+          "Name": "Employee",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "PropertyGuid": "21b5014d-892c-4a2e-90c4-691e895bc1db",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
+        }
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ]
+    }
+  ],
+  "IconResourcesKeys": [],
+  "IntegrationServiceName": "CustomStandartAssignment",
+  "IsVisibleThreadText": true,
+  "NeverLinkToParentWhenCreated": true,
+  "OperationsClass": "",
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "14fda39b-c81c-4e1c-8fc4-bf3144460f57",
+      "Name": "Result",
+      "DirectValues": [
+        {
+          "NameGuid": "f7f2ab70-4e10-45a1-bc0b-bf03d1730628",
+          "Name": "Complete",
+          "Code": "Complete"
+        },
+        {
+          "NameGuid": "1eca5671-3a7e-4a94-a3a3-c4983ebcbb4e",
+          "Name": "DoWork",
+          "Code": "DoWork"
+        },
+        {
+          "NameGuid": "fd67d6e3-cb1c-4806-8cd5-ed6583584a54",
+          "Name": "Ispoln",
+          "Code": "Ispoln"
+        }
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "Values"
+      ]
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "95f0249f-cdbc-4036-bd5d-7c94e5fe3d72",
+      "Name": "TravelStr",
+      "Code": "TravelStr1",
+      "DirectValues": [
+        {
+          "NameGuid": "75a96268-3d73-4136-bdd2-658d7ffbbd9b",
+          "Name": "Electronic",
+          "Code": "Electronic"
+        },
+        {
+          "NameGuid": "9073bf3d-57ef-4b82-9405-c8ca4f4800c1",
+          "Name": "Paper",
+          "Code": "Paper"
+        }
+      ],
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "b864937c-582d-4f6f-8ceb-eecdec37e0fd"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "21b5014d-892c-4a2e-90c4-691e895bc1db",
+      "Name": "Employee",
+      "Code": "Employee1",
+      "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "95f0249f-cdbc-4036-bd5d-7c94e5fe3d72"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "056b32a9-ead8-452a-8181-17cf3b0b47c9",
+      "Name": "NOR",
+      "Code": "NOR5",
+      "EntityGuid": "eff95720-181f-4f7d-892d-dec034c7b2ab",
+      "FlatListInStandaloneLookup": true,
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "21b5014d-892c-4a2e-90c4-691e895bc1db",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "2707c936-1331-4572-be35-0f24b9d9f3ba",
+      "Name": "Counterparty",
+      "Code": "Counterparty2",
+      "EntityGuid": "294767f1-009f-4fbd-80fc-f98c49ddc560",
+      "FlatListInStandaloneLookup": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "056b32a9-ead8-452a-8181-17cf3b0b47c9",
+      "Versions": []
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "2de5f1b2-7be5-400a-be09-ad4b93bf7392",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "f7480ea4-af91-458b-97c8-fae4edc4e713",
+        "Name": "Complete",
+        "ActionGuid": "eb4f40a6-ffc4-40d8-9710-cf834dde95e4",
+        "ButtonSize": "Large",
+        "Index": 0,
+        "IsAutoGenerated": true,
+        "ParentGuid": "ac82503a-7a47-49d0-b90c-9bb512c4559c"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "91f90f6b-e7e5-40b1-8f86-1456d73078fd",
+        "Name": "DoWork",
+        "ActionGuid": "c454f63f-2b3e-44ef-bd08-c74da4f50db9",
+        "ButtonSize": "Large",
+        "Index": 1,
+        "IsAutoGenerated": true,
+        "ParentGuid": "ac82503a-7a47-49d0-b90c-9bb512c4559c"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "b637ad55-a74f-4df4-acf5-adf7ae19d75f",
+        "Name": "Ispoln",
+        "ActionGuid": "9ce19db8-aa70-4d5e-8e81-4455a1875b9f",
+        "ButtonSize": "Large",
+        "Index": 2,
+        "IsAutoGenerated": true,
+        "ParentGuid": "ac82503a-7a47-49d0-b90c-9bb512c4559c"
+      }
+    ],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "164c24f7-ee5c-4ba2-b4ac-907e924280e9",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "AssignmentMetadata",
+      "Number": 1
+    },
+    {
+      "Type": "AssignmentBaseMetadata",
+      "Number": 2
+    },
+    {
+      "Type": "WorkflowEntityMetadata",
+      "Number": 2
+    },
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "$type": "Sungero.Metadata.SolutionMetadata, Sungero.Metadata",
+  "NameGuid": "c658c091-6caa-4ffe-a105-d06c7b74b58b",
+  "Name": "Integration",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "Sungero.Integration.Client",
+  "ClientBaseAssemblyName": "Sungero.Integration.ClientBase",
+  "ClientBaseNamespace": "Sungero.Integration.ClientBase",
+  "ClientNamespace": "Sungero.Integration.Client",
+  "Code": "Integra",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "4ab716f9-987e-47d6-862c-63373f43141f",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "a967a813-4879-4c70-8bb3-5b2cb4c66980",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "0856f929-64f0-4fea-862c-448a10b3aa24",
+      "BackgroundPosition": "Stretch"
+    },
+    "Tabs": []
+  },
+  "DesktopViews": [],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "Sungero.Integration",
+  "IsolatedAssemblyName": "Sungero.Integration.Isolated",
+  "IsolatedNamespace": "Sungero.Integration.Isolated",
+  "OrderedSpecialFolders": [],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.Integration",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "Sungero.Integration.Server",
+  "ServerNamespace": "Sungero.Integration.Server",
+  "SharedAssemblyName": "Sungero.Integration.Shared",
+  "SharedNamespace": "Sungero.Integration.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.125",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "SolutionMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

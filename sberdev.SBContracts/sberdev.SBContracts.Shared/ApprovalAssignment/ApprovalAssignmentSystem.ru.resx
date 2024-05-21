@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Property_AmountChangesberdev" xml:space="preserve">
+    <value>Сумма изменилась</value>
+  </data>
+  <data name="Action_AmountChangesberdev" xml:space="preserve">
+    <value>Сумма изменилась</value>
+  </data>
+  <data name="Action_AmountChangesberdevHint" xml:space="preserve">
+    <value>Согласовать с сладельцем бюджета изменение суммы</value>
+  </data>
+  <data name="Action_AmountChangesberdevDescription" xml:space="preserve">
+    <value>Согласовать с сладельцем бюджета изменение суммы</value>
+  </data>
+  <data name="Property_AmountChanges" xml:space="preserve">
+    <value>Сумма изменилась параметр</value>
+  </data>
+  <data name="Property_NeedAbort" xml:space="preserve">
+    <value>Прекратить задачу</value>
+  </data>
+  <data name="Action_AbortTask" xml:space="preserve">
+    <value>Отказано</value>
+  </data>
+  <data name="Action_AbortTaskHint" xml:space="preserve">
+    <value>Прекратить согласование</value>
+  </data>
+  <data name="Action_AbortTaskDescription" xml:space="preserve">
+    <value>Прекратить согласовние </value>
+  </data>
+  <data name="Property_AbortingReason" xml:space="preserve">
+    <value>Причина прекращения</value>
+  </data>
+  <data name="Property_NonContractInvoiceCounterSberDev" xml:space="preserve">
+    <value>Внедоговорных счетов</value>
+  </data>
+  <data name="Resource_f1d24e5a51c2402585e1d5554dca4ae0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_f1d24e5a51c2402585e1d5554dca4ae0_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_423ad49c49e64f9b8742f54ed3d8ac6d" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_423ad49c49e64f9b8742f54ed3d8ac6d_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_83667b220f3e40878629c1cf806aafb6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_83667b220f3e40878629c1cf806aafb6_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_41a00769e3eb462cb51c1cff59d7c86f" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_4e94e189a7464492a435b8a937e0e8fc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_a675f366c95246c998e412bb2c30ef1f" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_2f635d44c3c6487185610a2c36e8aad7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_b7c84fcd83414e6fa73e3565e44bbcc8" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f277ac41b55a468f9640b800c87c63a2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_f277ac41b55a468f9640b800c87c63a2_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_7f66bd321edd49e1b8de14947ac240d8" xml:space="preserve">
+    <value>Реквизиты документа</value>
+  </data>
+  <data name="Resource_6537578eedca4ad7b0712762a625283e" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_1d138ed06ce54583bd3d3a313a31e6f6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_1d138ed06ce54583bd3d3a313a31e6f6_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_NonContractInvoiceCounterMoreSberDev" xml:space="preserve">
+    <value>Подробнее</value>
+  </data>
+</root>

@@ -1,0 +1,232 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "d37f067e-f4a2-4a51-9c69-0c94d5ec9991",
+  "Name": "Counterparty",
+  "BaseGuid": "294767f1-009f-4fbd-80fc-f98c49ddc560",
+  "CanBeNavigationPropertyType": true,
+  "CreationAreaMetadata": {
+    "NameGuid": "44f23965-7406-44e3-b898-7004712bfbbe",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "b0125fbd-3b91-4dbb-914a-689276216404",
+    "Name": "FilterPanel",
+    "Controls": [
+      {
+        "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+        "NameGuid": "4ec0327e-53e0-4c87-bc83-7c5d86832659",
+        "Name": "Contracts",
+        "PreviousGuid": "57749e2f-df7b-4d8b-9cae-3bab5b8fb35e"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+        "NameGuid": "1961715e-547e-4181-b0ef-f1a163a1bfbe",
+        "Name": "ContractFlagsList",
+        "ParentGuid": "4ec0327e-53e0-4c87-bc83-7c5d86832659"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+        "NameGuid": "af6ff384-e58f-4686-92fe-e1cb10cc5663",
+        "Name": "ContractsIn2024On",
+        "ParentGuid": "1961715e-547e-4181-b0ef-f1a163a1bfbe"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+        "NameGuid": "602dfc5f-81bc-463e-aa65-ce3468cb4912",
+        "Name": "ContractsIn2024Off",
+        "IsSelected": true,
+        "ParentGuid": "1961715e-547e-4181-b0ef-f1a163a1bfbe",
+        "PreviousGuid": "af6ff384-e58f-4686-92fe-e1cb10cc5663"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterDateRangeMetadata, Sungero.Metadata",
+        "NameGuid": "aec35ec8-0f2b-49be-8ccf-1ad62f3293eb",
+        "Name": "ContractDateRange",
+        "ParentGuid": "4ec0327e-53e0-4c87-bc83-7c5d86832659",
+        "PreviousGuid": "1961715e-547e-4181-b0ef-f1a163a1bfbe"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+        "NameGuid": "07de921c-bd54-47de-a0ad-bb086e7c877a",
+        "Name": "Focus",
+        "PreviousGuid": "4ec0327e-53e0-4c87-bc83-7c5d86832659"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+        "NameGuid": "b6d3bafa-116e-4772-92d3-59aa1970b2be",
+        "Name": "ExceptFilled",
+        "ParentGuid": "07de921c-bd54-47de-a0ad-bb086e7c877a"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+        "NameGuid": "56079791-d02b-4dfa-831e-c4ee7d6312ca",
+        "Name": "FocusExcept",
+        "ParentGuid": "b6d3bafa-116e-4772-92d3-59aa1970b2be"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+        "NameGuid": "ec847639-455e-4579-8171-99cad87e61ad",
+        "Name": "FocusLeave",
+        "ParentGuid": "b6d3bafa-116e-4772-92d3-59aa1970b2be",
+        "PreviousGuid": "56079791-d02b-4dfa-831e-c4ee7d6312ca"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+        "NameGuid": "788dc325-2583-45c7-a64c-25ea9430692b",
+        "Name": "FocusOff",
+        "IsSelected": true,
+        "ParentGuid": "b6d3bafa-116e-4772-92d3-59aa1970b2be",
+        "PreviousGuid": "ec847639-455e-4579-8171-99cad87e61ad"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+        "NameGuid": "740e089e-f928-44b4-8aa5-72cbb4ad9e5f",
+        "Name": "ContractAmount",
+        "IsMultiSelect": true,
+        "ParentGuid": "4ec0327e-53e0-4c87-bc83-7c5d86832659",
+        "PreviousGuid": "aec35ec8-0f2b-49be-8ccf-1ad62f3293eb"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+        "NameGuid": "0d0fda8c-ca2e-44b7-aecf-f686b7789095",
+        "Name": "AmountLess100k",
+        "IsSelected": true,
+        "ParentGuid": "740e089e-f928-44b4-8aa5-72cbb4ad9e5f"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+        "NameGuid": "a9647dab-1716-40a2-bfe5-bb23af83c447",
+        "Name": "AmountLess500k",
+        "IsSelected": true,
+        "ParentGuid": "740e089e-f928-44b4-8aa5-72cbb4ad9e5f",
+        "PreviousGuid": "0d0fda8c-ca2e-44b7-aecf-f686b7789095"
+      },
+      {
+        "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+        "NameGuid": "5bd20b93-0ef1-4d30-bb2d-2741799d7ac5",
+        "Name": "AmountMore500k",
+        "IsSelected": true,
+        "ParentGuid": "740e089e-f928-44b4-8aa5-72cbb4ad9e5f",
+        "PreviousGuid": "a9647dab-1716-40a2-bfe5-bb23af83c447"
+      }
+    ],
+    "IsAncestorMetadata": true,
+    "Overridden": [
+      "Controls"
+    ],
+    "Versions": []
+  },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.StandaloneFormMetadata, Sungero.Metadata",
+      "NameGuid": "026f3b94-a2e4-47bc-a270-d900853f782e",
+      "Name": "Card",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ],
+      "Versions": []
+    }
+  ],
+  "HandledEvents": [
+    "CreatedServer",
+    "FilteringServer"
+  ],
+  "IconResourcesKeys": [],
+  "IsAbstract": true,
+  "LayeredFromGuid": "294767f1-009f-4fbd-80fc-f98c49ddc560",
+  "OperationsClass": "",
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "8c43815d-1a3d-47ec-a98d-909052509a21",
+      "Name": "ExchangeBoxes",
+      "EntityGuid": "09f0d160-4ae0-4310-bc01-7b97802236f7",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "95ef8e3f-deda-4b22-863b-4cfe3f9db746",
+      "Name": "DiadocIsSetSberDev",
+      "CanBeSearch": false,
+      "Code": "DiadocIsSet",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "f3253916-499d-4f30-8041-6aa47fb10fc8"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "CalculateTotalAmount",
+      "Parameters": [
+        {
+          "Name": "counterparty",
+          "ParameterType": "global::sberdev.SBContracts.ICounterparty",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICounterparty, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Double",
+      "ReturnTypeFullName": "System.Double"
+    },
+    {
+      "Name": "CalculateTotalAmount",
+      "Parameters": [
+        {
+          "Name": "counterparty",
+          "ParameterType": "global::sberdev.SBContracts.ICounterparty",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICounterparty, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "dateFrom",
+          "ParameterType": "global::System.Nullable<global::System.DateTime>",
+          "ParameterTypeFullName": "System.Nullable"
+        },
+        {
+          "Name": "dateTo",
+          "ParameterType": "global::System.Nullable<global::System.DateTime>",
+          "ParameterTypeFullName": "System.Nullable"
+        }
+      ],
+      "ReturnType": "global::System.Double",
+      "ReturnTypeFullName": "System.Double"
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "70be353b-816b-470d-8f20-3e8e403c6587",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "c54356c0-f5ba-4972-b805-3926e642ef16",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

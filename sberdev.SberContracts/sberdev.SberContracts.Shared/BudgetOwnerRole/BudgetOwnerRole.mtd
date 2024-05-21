@@ -1,0 +1,118 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "497fb0f7-b0bc-42ca-8eeb-65dda301863b",
+  "Name": "BudgetOwnerRole",
+  "BaseGuid": "3445f357-1435-4444-9f24-a56a752fc471",
+  "CanBeNavigationPropertyType": true,
+  "CreationAreaMetadata": {
+    "NameGuid": "f7766750-eee2-4fcd-8003-5c06a90d1f44",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "b0125fbd-3b91-4dbb-914a-689276216404",
+    "Name": "FilterPanel",
+    "Controls": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "HideFromCreationArea": true,
+  "IconResourcesKeys": [],
+  "OperationsClass": "",
+  "Overridden": [
+    "HideFromCreationArea"
+  ],
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "644bffad-c8fe-4ef4-90fc-15bc9176a728",
+      "Name": "Type",
+      "DirectValues": [
+        {
+          "NameGuid": "eecdf9cd-f7af-47d0-9bf7-b358b6feebc9",
+          "Name": "BudgetOwner",
+          "Code": "BudgetOwner"
+        },
+        {
+          "NameGuid": "7545abb1-f78c-482c-a496-f308d8815048",
+          "Name": "BudgetOwnerMVZ",
+          "Code": "BudgetOwnerMVZ"
+        },
+        {
+          "NameGuid": "b57e254c-898c-4868-b10a-66cbca06bb67",
+          "Name": "BudgetOwnerMVP",
+          "Code": "BudgetOwnerMVP"
+        },
+        {
+          "NameGuid": "e83a5c3c-3356-4797-8377-b4afd4f6bead",
+          "Name": "BudgetOwnerMark",
+          "Code": "BudgetOwnerMark"
+        },
+        {
+          "NameGuid": "ceca0607-817a-4742-a9b9-9a7c83812a91",
+          "Name": "BudgetOwnerProd",
+          "Code": "BudgetOwnerProd"
+        },
+        {
+          "NameGuid": "0240f921-6400-4cd0-a08d-aa2ca225ee8b",
+          "Name": "BudgetOwnerPrGe",
+          "Code": "BudgetOwnerPrGe"
+        }
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "Values"
+      ],
+      "Versions": []
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "GetRolePerformers",
+      "Parameters": [
+        {
+          "Name": "budgetOwnerRole",
+          "ParameterType": "global::sberdev.SberContracts.IBudgetOwnerRole",
+          "ParameterTypeFullName": "sberdev.SberContracts.IBudgetOwnerRole, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "task",
+          "ParameterType": "global::Sungero.Docflow.IApprovalTask",
+          "ParameterTypeFullName": "Sungero.Docflow.IApprovalTask, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Collections.Generic.List<global::Sungero.Company.IEmployee>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "a947d581-1e1f-48ca-a831-ac9d4abd5ca9",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "c9f39a28-34eb-4e62-a018-1133c3ff2160",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

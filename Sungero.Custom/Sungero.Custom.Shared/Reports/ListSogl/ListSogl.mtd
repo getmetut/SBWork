@@ -1,0 +1,42 @@
+{
+  "$type": "Sungero.Metadata.ReportMetadata, Sungero.Reporting.Shared",
+  "NameGuid": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+  "Name": "ListSogl",
+  "AccessRightsMode": "NoRight",
+  "AssociatedGuid": "175ed514-13ac-427b-986e-008c04647eac",
+  "BaseGuid": "cef9a810-3f30-4eca-9fe3-30992af0b818",
+  "DataSources": [
+    {
+      "NameGuid": "8aa08f7c-47fe-416c-bb34-51d8a2077a6a",
+      "Name": "Reference",
+      "EntityType": "175ed514-13ac-427b-986e-008c04647eac"
+    }
+  ],
+  "DefaultExportFormat": "Pdf",
+  "ExportFormats": [
+    "Pdf"
+  ],
+  "IconResourcesKeys": [],
+  "IntegrationServiceName": "CustomListSogl",
+  "Overridden": [
+    "AccessRightsMode",
+    "PublicConstants",
+    "PublicStructures",
+    "DisplayName",
+    "HandledEvents",
+    "DataSources",
+    "Parameters"
+  ],
+  "Parameters": [
+    {
+      "NameGuid": "1bfd6cab-d751-43e8-82e0-d2e9102edf72",
+      "Name": "Entity",
+      "EntityType": "175ed514-13ac-427b-986e-008c04647eac",
+      "InternalDataTypeName": "Sungero.Custom.ITasksRefer, Sungero.Domain.Interfaces",
+      "IsRequired": true
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "Versions": []
+}

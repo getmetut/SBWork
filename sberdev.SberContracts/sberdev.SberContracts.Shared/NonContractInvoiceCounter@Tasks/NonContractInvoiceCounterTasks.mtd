@@ -1,0 +1,60 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "12727482-72ed-4195-b4b2-0abd247dae0b",
+  "Name": "NonContractInvoiceCounterTasks",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "NonContrTasks",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "204d0426-8e49-4970-98a5-31784a2e58ec",
+      "Name": "NonContractInvoiceCounter",
+      "CanBeSearch": false,
+      "Code": "NonContrInv",
+      "EntityGuid": "cab9c2d8-40db-4379-8914-1d78bb227c3a",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "3b5f2e8d-1568-478d-9e56-03bcf556613c",
+      "Name": "Task",
+      "Code": "Task",
+      "EntityGuid": "d795d1f6-45c1-4e5e-9677-b53fb7280c7e",
+      "FlatListInStandaloneLookup": true,
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "204d0426-8e49-4970-98a5-31784a2e58ec"
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "e0cbdf73-91e1-4b3f-934b-fed6604c9e24",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "7f5a370e-3133-4a9a-afaf-337da19199c1",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

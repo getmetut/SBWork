@@ -1,0 +1,66 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "6c37cc6f-0416-4d8b-841f-34f208eeb78d",
+  "Name": "ContractualDocumentProdCollectionExBaseSberDev",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "ContractualDoc",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "a7b683ba-c7d8-4420-9bf6-d3f7d839eded",
+      "Name": "ContractualDocument",
+      "CanBeSearch": false,
+      "Code": "EDoc",
+      "EntityGuid": "1d5473f7-1bfe-4c31-a1c0-b73d3f7dad89",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "ae5faaa9-fb6d-4d4a-ab33-9eb4411fad4c",
+      "Name": "Product",
+      "Code": "Product",
+      "EntityGuid": "15fd6e99-dd3f-4959-98ff-c800852c6700",
+      "FlatListInStandaloneLookup": true,
+      "HandledEvents": [
+        "LookupServer",
+        "SearchDialogLookupServer"
+      ],
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "NeedPassEntityToLookupEvent": true,
+      "OnlyRootEntityUsedInChildLookupEvent": true,
+      "PreviousPropertyGuid": "a7b683ba-c7d8-4420-9bf6-d3f7d839eded",
+      "Versions": []
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "2e0abb43-eae8-4e7b-bd05-65c9027520ea",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "4cc14500-f3b9-4191-9f29-7cf2d958b5ce",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

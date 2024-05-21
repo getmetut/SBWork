@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<queries>
+  <query key="BudgetOwnerEpendableQuery">
+    <mssql><![CDATA[WITH CTE AS (
+  -- Первый запрос
+  select e.Id, c.Name as Counterparty, c.TIN as TIN, e.ContrTypeBase2_SBContr_sberdev as Contrtype, 
+         e.TotalAmount_Docflow_Sungero as Amount, FORMAT(e.DocumentDate_Docflow_Sungero, 'yyyy-MM-dd') as DocumentDate, 
+         r.Name as Author, m.Name as MVZ_MVP, a.Name as AccArt, s.Name as ProductName, r2.Name as BudgetOwner
+  from Sungero_Content_EDoc e
+  right join sberdev_SBContr_ContractualDo1 p on e.Id = p.EDoc
+  right join sberdev_SberCon_ProductsAndDev s on p.Product = s.Id
+  left join sberdev_SberCon_MVZ m on e.MVPBaseSberDe1_SBContr_sberdev = m.Id
+  left join sberdev_SberCon_AccountingArti a on e.AccArtPrBaseSb_SBContr_sberdev = a.Id
+  left join Sungero_Parties_Counterparty c on e.Counterparty_Docflow_Sungero = c.Id
+  left join Sungero_Core_Recipient r on e.Author = r.Id
+  left join Sungero_Core_Recipient r2 on m.BudgetOwner = r2.Id
+  where (e.Discriminator = 'F37C7E63-B134-4446-9B5B-F8811F6C9666' or e.Discriminator = '265F2C57-6A8A-4A15-833B-CA00E8047FA5')
+  and e.HasVersions = 1 and e.OurSignatory_Docflow_Sungero is not null and e.ContrTypeBase2_SBContr_sberdev = 'Profitable'
+  and e.Created >= @startDate and e.Created <= @endDate
+
+  UNION ALL
+
+  -- Второй запрос
+  select e.Id, c.Name as Counterparty, c.TIN as TIN, e.ContrTypeBase2_SBContr_sberdev as Contrtype, 
+         e.TotalAmount_Docflow_Sungero as Amount, FORMAT(e.DocumentDate_Docflow_Sungero, 'yyyy-MM-dd') as DocumentDate, 
+         r.Name as Author, m.Name as MVZ_MVP, a.Name as AccArt, s.Name as ProductName, r2.Name as BudgetOwner
+  from Sungero_Content_EDoc e
+  right join sberdev_SBContr_ContractualDoc p on e.Id = p.EDoc
+  right join sberdev_SberCon_ProductsAndDev s on p.Product = s.Id
+  left join sberdev_SberCon_MVZ m on e.MVZBaseSberDe1_SBContr_sberdev = m.Id
+  left join sberdev_SberCon_AccountingArti a on e.AccArtExBaseSb_SBContr_sberdev = a.Id
+  left join Sungero_Parties_Counterparty c on e.Counterparty_Docflow_Sungero = c.Id
+  left join Sungero_Core_Recipient r on e.Author = r.Id
+  left join Sungero_Core_Recipient r2 on m.BudgetOwner = r2.Id
+  where (e.Discriminator = 'F37C7E63-B134-4446-9B5B-F8811F6C9666' or e.Discriminator = '265F2C57-6A8A-4A15-833B-CA00E8047FA5')
+  and e.HasVersions = 1 and e.OurSignatory_Docflow_Sungero is not null and e.ContrTypeBase2_SBContr_sberdev = 'Expendable'
+  and e.Created >= @startDate and e.Created <= @endDate
+)
+
+select distinct Id, Counterparty, TIN, Amount, DocumentDate, Author, MVZ_MVP, AccArt,
+  stuff((
+    select concat(',', ProductName) 
+    from CTE 
+    where Id = t.Id 
+    order by ProductName 
+    for XML path('')
+  ),1,1,'') as ProductName, BudgetOwner, Contrtype
+from CTE t
+where t.Contrtype = @type]]></mssql>
+  </query>
+</queries>

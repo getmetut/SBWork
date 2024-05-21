@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Action_ImportSignatureSberDev" xml:space="preserve">
+    <value>Import signature</value>
+  </data>
+  <data name="Action_ImportSignatureSberDevDescription" xml:space="preserve">
+    <value>Import the signature into the latest version of the document.</value>
+  </data>
+  <data name="Action_ImportSignatureSberDevHint" xml:space="preserve">
+    <value>Import the signature into the latest version of the document.</value>
+  </data>
+  <data name="Action_ImportSignatureSberDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_ImportSignatureSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_ManuallyCheckedSberDev" xml:space="preserve">
+    <value>The document has been manually verified signatures</value>
+  </data>
+  <data name="Action_TransferBodySberDev" xml:space="preserve">
+    <value>Body copy</value>
+  </data>
+  <data name="Action_TransferBodySberDevDescription" xml:space="preserve">
+    <value>Copy the body of the document with signatures to the card at the specified ID.</value>
+  </data>
+  <data name="Action_TransferBodySberDevHint" xml:space="preserve">
+    <value>Copy the body of the document with signatures to the card at the specified ID.</value>
+  </data>
+  <data name="Action_TransferBodySberDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_TransferBodySberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SetMetadataSberDev" xml:space="preserve">
+    <value>Set metaID</value>
+  </data>
+  <data name="Action_SetMetadataSberDevDescription" xml:space="preserve">
+    <value>Metadata test</value>
+  </data>
+  <data name="Action_SetMetadataSberDevHint" xml:space="preserve">
+    <value>Write the ID of document card to metadata of last version. </value>
+  </data>
+  <data name="Action_SetMetadataSberDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SetMetadataSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_GetMetadataSberDev" xml:space="preserve">
+    <value>Get metaID</value>
+  </data>
+  <data name="Action_GetMetadataSberDevDescription" xml:space="preserve">
+    <value>Metadata test</value>
+  </data>
+  <data name="Action_GetMetadataSberDevHint" xml:space="preserve">
+    <value>Get the ID of document card from metadata of last version. </value>
+  </data>
+  <data name="Action_GetMetadataSberDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_GetMetadataSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Ribbon_AdministrationMenuSberDev_1b49aedfb54e43d8b0ea20ee3f732312" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="Ribbon_AdministrationMenuSberDevDescription_1b49aedfb54e43d8b0ea20ee3f732312" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Ribbon_AdministrationMenuSberDevHint_1b49aedfb54e43d8b0ea20ee3f732312" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_UnblockCardSberDev" xml:space="preserve">
+    <value>Unlock card</value>
+  </data>
+  <data name="Action_UnblockCardSberDevDescription" xml:space="preserve">
+    <value>The document card will be unlocked through a direct request to delete records from the Locks table.</value>
+  </data>
+  <data name="Action_UnblockCardSberDevHint" xml:space="preserve">
+    <value>Unblock the card through the database.</value>
+  </data>
+  <data name="Action_UnblockCardSberDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_UnblockCardSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_UnblockVersionSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_UnblockVersionSberDevHint" xml:space="preserve">
+    <value>Unblock the version through the database.</value>
+  </data>
+  <data name="Action_UnblockVersionSberDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_UnblockVersionSberDevDescription" xml:space="preserve">
+    <value>The last version will be unlocked through a direct request to delete records from the Locks table.</value>
+  </data>
+  <data name="Action_UnblockVersionSberDev" xml:space="preserve">
+    <value>Unlock version</value>
+  </data>
+</root>

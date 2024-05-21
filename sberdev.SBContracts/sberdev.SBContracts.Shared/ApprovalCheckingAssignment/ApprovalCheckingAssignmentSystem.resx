@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Property_NeedAbort" xml:space="preserve">
+    <value>NeedAbort</value>
+  </data>
+  <data name="Property_AbortingReason" xml:space="preserve">
+    <value>AbortingReason</value>
+  </data>
+  <data name="Action_AbortTask" xml:space="preserve">
+    <value>AbortTask</value>
+  </data>
+  <data name="Action_AbortTaskDescription" xml:space="preserve">
+    <value>Abort Task</value>
+  </data>
+  <data name="Action_AbortTaskHint" xml:space="preserve">
+    <value>Abort Task</value>
+  </data>
+  <data name="Action_AbortTaskConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_AbortTaskConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_PaymentDueDateSberDev" xml:space="preserve">
+    <value>Payment due date</value>
+  </data>
+  <data name="Resource_cf45ca53bfe446fdb398de06f4d71fad" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_cf45ca53bfe446fdb398de06f4d71fad_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_be1f292a6e7e4e769314ca57e93f9f81" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_be1f292a6e7e4e769314ca57e93f9f81_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_c30f7a151d6f4a7a89db073bc27141b4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_c30f7a151d6f4a7a89db073bc27141b4_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_52d7741ffda145a3a678f925c3712232" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_99078a64599f458f870281d97fd3e9b6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_4377633005284f2a8e5b6e1c8d5161c6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_527ed9d595c34acdb19a453897eea3d7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_b554f15870b94539a3cc41e20683dfaf" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_1188a9ce36234676a6587d523344e538" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_3792363a2cde4cc39c7d27944f34630e" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_3792363a2cde4cc39c7d27944f34630e_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_DocumentIDSberDev" xml:space="preserve">
+    <value>Documnet ID</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Assignment with checking</value>
+  </data>
+  <data name="AccusativeDisplayName" xml:space="preserve">
+    <value>Assignment with checking</value>
+  </data>
+  <data name="CollectionDisplayName" xml:space="preserve">
+    <value>Assignments with checking</value>
+  </data>
+</root>

@@ -1,0 +1,63 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "62b44c0c-327e-4b3c-9d57-a39ddb7f51d3",
+  "Name": "SupAgreementProdSberDevCollection",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "ProdSber",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9441dffb-69b1-4641-85c1-c2c7353006a2",
+      "Name": "SupAgreement",
+      "CanBeSearch": false,
+      "Code": "EDoc",
+      "EntityGuid": "32cbd61f-bd12-4ee8-932e-090d4e5ba5dc",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "34d30a34-8138-4a87-9a38-85c4156d9d0c",
+      "Name": "ProdSberDev",
+      "CanBeSearch": false,
+      "Code": "ProdSberDev",
+      "EntityGuid": "15fd6e99-dd3f-4959-98ff-c800852c6700",
+      "FlatListInStandaloneLookup": true,
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "9441dffb-69b1-4641-85c1-c2c7353006a2"
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "d31d48be-9a8d-4757-8bc8-89e7e2c6d2d4",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "77db74f7-c4ca-468e-aa71-14ccefe92887",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

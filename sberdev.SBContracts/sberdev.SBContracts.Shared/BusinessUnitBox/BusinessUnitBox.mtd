@@ -1,0 +1,78 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "94e8515d-bea0-4b89-94b3-9b98750bfcb3",
+  "Name": "BusinessUnitBox",
+  "AccessRightsMode": "Both",
+  "BaseGuid": "2dd7a803-8db7-40e1-9da6-b41c62d367c8",
+  "CanBeNavigationPropertyType": true,
+  "CreationAreaMetadata": {
+    "NameGuid": "f7766750-eee2-4fcd-8003-5c06a90d1f44",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "b0125fbd-3b91-4dbb-914a-689276216404",
+    "Name": "FilterPanel",
+    "Controls": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "IconResourcesKeys": [],
+  "LayeredFromGuid": "2dd7a803-8db7-40e1-9da6-b41c62d367c8",
+  "OperationsClass": "",
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "40243333-5c74-412d-aa07-a669abde3d97",
+      "Name": "ExchangeServiceCertificates",
+      "EntityGuid": "52b9ae1d-cb7f-4457-8ee1-617d0368562d",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "a6f4bce9-0547-43a4-9938-c7ed11fd4015",
+      "Name": "FormalizedPoAInfos",
+      "EntityGuid": "9369cd58-5e14-48a1-93a5-c35fe814a42e",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ]
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [
+    "CANotFound"
+  ],
+  "RibbonCardMetadata": {
+    "NameGuid": "cd0dd391-b726-4693-854f-3b53648d603f",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "5303f0a2-f7af-4d82-8629-75b0fe04108b",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "$type": "Sungero.Metadata.LayerModuleMetadata, Sungero.Metadata",
+  "NameGuid": "29d94460-9031-4d7a-bc41-4eeea12b4267",
+  "Name": "Company",
+  "AssociatedGuid": "b33230d7-1513-4f37-9ea0-7d0db0fb6b72",
+  "AsyncHandlers": [
+    {
+      "NameGuid": "dbbabb31-4c23-4551-8687-c153d2051620",
+      "Name": "UpdateEmployeeName",
+      "DelayPeriod": 15,
+      "DelayStrategy": "ExponentialDelayStrategy",
+      "IsAncestorMetadata": true,
+      "Parameters": [
+        {
+          "NameGuid": "3c07eb9e-b2e7-4961-afe8-cef592ab8e48",
+          "Name": "PersonId",
+          "ParameterType": "Integer"
+        }
+      ]
+    }
+  ],
+  "BaseGuid": "4adc7dd5-5c0e-4af8-82d0-b63ebb0475d3",
+  "ClientBaseAssemblyName": "sberdev.SBContracts.ClientBase",
+  "ClientBaseNamespace": "sberdev.SBContracts.Module.Company.ClientBase",
+  "Code": "Company",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "a52a7382-131e-4cb5-9a18-28898b8b1f49",
+    "Actions": [
+      {
+        "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
+        "NameGuid": "39df6569-27c8-44d4-ad1a-0342bc66704c",
+        "Name": "ChangeBusinessUnitFilteringCasheSberDev",
+        "FunctionName": "DialogUpdateBusinessUnitFilteringCashe",
+        "GroupId": "9778efad-0f26-4150-86b0-b539e9fa468f",
+        "PreviousItemGuid": "9ebcf6d5-cd2e-4c6f-a110-9d5d304e3e9d"
+      }
+    ],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Overridden": [
+      "Actions"
+    ],
+    "Tabs": [],
+    "Versions": []
+  },
+  "ExplorerTreeOrder": [],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "LayeredFromGuid": "d534e107-a54d-48ec-85ff-bc44d731a82f",
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "sberdev.SBContracts.Module.Company",
+  "ResourcesKeys": [
+    "UnitFilteringTitle",
+    "DialogUpdateBusinessUnitFilteringCasheBusinessUnit"
+  ],
+  "SpecialFolders": [],
+  "Version": "4.8.39.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "LayerModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    }
+  ]
+}

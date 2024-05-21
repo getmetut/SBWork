@@ -1,0 +1,127 @@
+{
+  "$type": "Sungero.Metadata.TaskMetadata, Sungero.Workflow.Shared",
+  "NameGuid": "bd199b5c-9c37-4efb-a49e-ef6c27697dcf",
+  "Name": "PurchaseTask",
+  "AccessRightsMode": "Both",
+  "AttachmentGroups": [
+    {
+      "NameGuid": "3965ab2b-af79-4dc3-b766-0df4fa63d6d8",
+      "Name": "BaseAttachments",
+      "Constraints": [
+        {
+          "NameGuid": "d448eaae-8d6b-45db-9121-28ac82c97207",
+          "Name": "Purchases",
+          "ConstraintTypeId": "7aa8969f-f81d-462c-b0d8-761ccd59253f",
+          "Limit": 1
+        }
+      ]
+    },
+    {
+      "NameGuid": "ffb4b2ce-868e-48c5-a2e1-c8186c09da95",
+      "Name": "OtherAttachments",
+      "Constraints": [
+        {
+          "NameGuid": "e8aac3c7-f803-4236-9d1a-c3c1b0e2aee8",
+          "Name": "ElectronicDocuments",
+          "ConstraintTypeId": "030d8d67-9b94-4f0d-bcc6-691016eb70f3"
+        }
+      ],
+      "PreviousGroupId": "3965ab2b-af79-4dc3-b766-0df4fa63d6d8"
+    }
+  ],
+  "BaseGuid": "d795d1f6-45c1-4e5e-9677-b53fb7280c7e",
+  "BlockIds": [],
+  "Blocks": [
+    {
+      "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "f568e349-14eb-4253-8ee7-6cfe46c43f35",
+      "Name": "StantartJob",
+      "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
+      "EntityType": "0aac549f-452c-4b6f-9f30-ffdeb328617e",
+      "HandledEvents": [
+        "StantartJobStartAssignment"
+      ],
+      "Properties": []
+    }
+  ],
+  "CanBeNavigationPropertyType": true,
+  "CanBeSearch": false,
+  "CreationAreaMetadata": {
+    "NameGuid": "8d829390-c6cf-4b00-b846-412f2d086650",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "bd0a4ce3-3467-48ad-b905-3820bf6b9da6",
+    "Name": "FilterPanel",
+    "Controls": [],
+    "IsAncestorMetadata": true
+  },
+  "IconName": "PurchaseTask.ico",
+  "IconResourcesKeys": [],
+  "IntegrationServiceName": "BPCustomPurchaseTask",
+  "IsVisibleThreadText": true,
+  "NeverLinkToParentWhenCreated": true,
+  "OperationsClass": "",
+  "Overridden": [
+    "CanBeSearch",
+    "UseSchemeFromSettings",
+    "IconName"
+  ],
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "3364c324-c4c4-4ccb-a81c-53653255a022",
+      "Name": "Observers",
+      "EntityGuid": "442b782d-1712-4e81-8344-b5a86b4069ea",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ]
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "d59db9a3-85b6-459a-8adb-913cbed22aed",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "c73607ae-8022-4c02-a5a3-f8d2a75cec11",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Scheme": {
+    "NameGuid": "c7ae4ee8-f2a6-4784-8e61-7f7f642dbcd1",
+    "Name": "RouteScheme",
+    "IsAncestorMetadata": true,
+    "VersionsCounter": 1
+  },
+  "UseSchemeFromSettings": true,
+  "Versions": [
+    {
+      "Type": "TaskMetadata",
+      "Number": 3
+    },
+    {
+      "Type": "WorkflowEntityMetadata",
+      "Number": 2
+    },
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

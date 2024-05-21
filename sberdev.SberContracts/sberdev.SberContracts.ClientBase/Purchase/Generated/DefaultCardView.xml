@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+  <ViewName>Default</ViewName>
+  <Collectionbf6a0d46cd504358b8f6a3343bca68bd FormGuid="fa03f748-4397-42ef-bdc2-22119af7bf7f">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">153.6,-1597.6</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="5">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_CalculationBaseSberDev_AggregationCalc</property>
+            <property name="FieldName">AggregationCalc</property>
+            <property name="VisibleIndex">0</property>
+            <property name="ActualWidth">NaN</property>
+          </property>
+          <property name="Item2" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_CalculationBaseSberDev_ProductCalc</property>
+            <property name="FieldName">ProductCalc</property>
+            <property name="VisibleIndex">1</property>
+            <property name="ActualWidth">NaN</property>
+          </property>
+          <property name="Item3" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_CalculationBaseSberDev_AbsoluteCalc</property>
+            <property name="FieldName">AbsoluteCalc</property>
+            <property name="VisibleIndex">2</property>
+            <property name="ActualWidth">NaN</property>
+          </property>
+          <property name="Item4" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_CalculationBaseSberDev_PercentCalc</property>
+            <property name="FieldName">PercentCalc</property>
+            <property name="VisibleIndex">3</property>
+            <property name="ActualWidth">NaN</property>
+          </property>
+          <property name="Item5" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_CalculationBaseSberDev_InterestCalc</property>
+            <property name="FieldName">InterestCalc</property>
+            <property name="VisibleIndex">4</property>
+            <property name="ActualWidth">NaN</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collectionbf6a0d46cd504358b8f6a3343bca68bd>
+  <Collection2db6332fe07145a486a4f32d93e51571 FormGuid="fa03f748-4397-42ef-bdc2-22119af7bf7f">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">470.4,1165.6</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="1">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_RealizeCollection_Text</property>
+            <property name="FieldName">Text</property>
+            <property name="VisibleIndex">0</property>
+            <property name="ActualWidth">97*</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collection2db6332fe07145a486a4f32d93e51571>
+  <Collectionc924220ee0564100a97b13990ee5b8b1 FormGuid="fa03f748-4397-42ef-bdc2-22119af7bf7f">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">470.4,-370.4</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="4">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_CostAnalysisCollection_Name</property>
+            <property name="FieldName">Name</property>
+            <property name="VisibleIndex">0</property>
+            <property name="ActualWidth">54*</property>
+          </property>
+          <property name="Item2" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_CostAnalysisCollection_COCost1</property>
+            <property name="FieldName">COCost1</property>
+            <property name="VisibleIndex">1</property>
+            <property name="ActualWidth">15*</property>
+          </property>
+          <property name="Item3" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_CostAnalysisCollection_COCost2</property>
+            <property name="FieldName">COCost2</property>
+            <property name="VisibleIndex">2</property>
+            <property name="ActualWidth">15*</property>
+          </property>
+          <property name="Item4" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_CostAnalysisCollection_COCost3</property>
+            <property name="FieldName">COCost3</property>
+            <property name="VisibleIndex">3</property>
+            <property name="ActualWidth">14*</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collectionc924220ee0564100a97b13990ee5b8b1>
+  <Collection3a1e59f31fd348e4ae093790c006ff97 FormGuid="fa03f748-4397-42ef-bdc2-22119af7bf7f">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">470.4,-12</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="3">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_StagesPurchaseCollection_Name</property>
+            <property name="FieldName">Name</property>
+            <property name="VisibleIndex">0</property>
+            <property name="ActualWidth">68*</property>
+          </property>
+          <property name="Item2" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_StagesPurchaseCollection_Cost</property>
+            <property name="FieldName">Cost</property>
+            <property name="VisibleIndex">1</property>
+            <property name="ActualWidth">15*</property>
+          </property>
+          <property name="Item3" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">Purchase_StagesPurchaseCollection_Duration</property>
+            <property name="FieldName">Duration</property>
+            <property name="VisibleIndex">2</property>
+            <property name="ActualWidth">17*</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collection3a1e59f31fd348e4ae093790c006ff97>
+  <AccessRightsAccessRightEntryCardGrid_38106a151b4548f2900c4f02ff9fa8b2>
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="\$GridControl" iskey="true" value="GridControl">
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="View" isnull="true" iskey="true">
+          <property name="AutoWidth">true</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="LinesPerRowMode">None</property>
+        </property>
+      </property>
+    </XtraSerializer>
+  </AccessRightsAccessRightEntryCardGrid_38106a151b4548f2900c4f02ff9fa8b2>
+  <collapsableTree>
+    <Layout>
+      <IsDocked>true</IsDocked>
+      <Width>230</Width>
+    </Layout>
+  </collapsableTree>
+  <treeListLayout>
+    <GridViewSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <ColumnWidths>
+        <string>230</string>
+        <string>Auto</string>
+        <string>*</string>
+      </ColumnWidths>
+    </GridViewSettings>
+  </treeListLayout>
+</settings>

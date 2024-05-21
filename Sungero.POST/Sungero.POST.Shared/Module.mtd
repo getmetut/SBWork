@@ -1,0 +1,466 @@
+{
+  "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
+  "NameGuid": "c815e7a1-6dd1-45ff-a52e-2669a2f2052f",
+  "Name": "POST",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "Sungero.POST.Client",
+  "ClientBaseAssemblyName": "Sungero.POST.ClientBase",
+  "ClientBaseNamespace": "Sungero.POST.ClientBase",
+  "ClientNamespace": "Sungero.POST.Client",
+  "Code": "POST",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "576df106-51d8-4eeb-806d-3113303adc26",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "67f9fdea-cf3c-47e5-a9cb-83d919e4c17e",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "77f56dfd-0020-4080-bae4-da8f76896df9",
+      "BackgroundPosition": "Stretch"
+    },
+    "Tabs": []
+  },
+  "Dependencies": [
+    {
+      "Id": "c658c091-6caa-4ffe-a105-d06c7b74b58b",
+      "IsSolutionModule": true,
+      "MaxVersion": "",
+      "MinVersion": ""
+    },
+    {
+      "Id": "b33230d7-1513-4f37-9ea0-7d0db0fb6b72",
+      "MaxVersion": "",
+      "MinVersion": "0.0.1.100"
+    }
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "Sungero.POST",
+  "IsolatedAssemblyName": "Sungero.POST.Isolated",
+  "IsolatedNamespace": "Sungero.POST.Isolated",
+  "PublicFunctions": [
+    {
+      "Name": "GetClosedDocs",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String",
+      "WebApiRequestType": "Get"
+    },
+    {
+      "Name": "GetMarcetingDocuments",
+      "Parameters": [
+        {
+          "Name": "IDDoc",
+          "ParameterType": "global::System.Int32",
+          "ParameterTypeFullName": "System.Int32"
+        }
+      ],
+      "ReturnType": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IMarcetingDoc>",
+      "ReturnTypeFullName": "System.Collections.Generic.List",
+      "WebApiRequestType": "Get"
+    },
+    {
+      "Name": "loadDGD",
+      "Parameters": [
+        {
+          "Name": "GUIDRX",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::Sungero.POST.Structures.Module.IFormatRequest",
+      "ReturnTypeFullName": "Sungero.POST.Structures.Module.IFormatRequest",
+      "WebApiRequestType": "Post"
+    },
+    {
+      "Name": "PostMarcetingDocuments",
+      "Parameters": [
+        {
+          "Name": "IDDoc",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IMarcetingDoc>",
+      "ReturnTypeFullName": "System.Collections.Generic.List",
+      "WebApiRequestType": "Post"
+    },
+    {
+      "Name": "test",
+      "Parameters": [
+        {
+          "Name": "inputstring",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::Sungero.POST.Structures.Module.IBaseStruct",
+      "ReturnTypeFullName": "Sungero.POST.Structures.Module.IBaseStruct",
+      "WebApiRequestType": "Post"
+    }
+  ],
+  "PublicStructures": [
+    {
+      "Name": "BaseStruct",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Name",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Value",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "Sungero.POST.Structures.Module"
+    },
+    {
+      "Name": "Channels",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Channel",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Product",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Komission",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "KomissionCurrency",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "Sungero.POST.Structures.Module"
+    },
+    {
+      "Name": "ContractRequest",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "GUIDRX",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Kind",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Name",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Counter",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Buyer",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "NOR",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Departament",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Signatory",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Summ",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Currency",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Number",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Date",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Status",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ValidC",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ValidPO",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "Sungero.POST.Structures.Module"
+    },
+    {
+      "Name": "DevicesAction",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Product",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "KolVoDevices",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "PriceNoPromo",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "PriceNoPromoCurrency",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "PricePromo",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "PricePromoCurrency",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "Sungero.POST.Structures.Module"
+    },
+    {
+      "Name": "FormatRequest",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Sysname",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Function",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Entity",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Param",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IBaseStruct>"
+        }
+      ],
+      "StructureNamespace": "Sungero.POST.Structures.Module"
+    },
+    {
+      "Name": "MarcetingDoc",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Name",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Kind",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ActionCode",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ActionName",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MarketingKind",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ActionType",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MarketingSubKind",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "OwnerEmployee",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "StartDate",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "EndDate",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "BudgetItem",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AccountingArticles",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "PlannedSumm",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "PlannedSummCurrency",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "PlannedRashod",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "PlannedRashodCurrency",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "PlanKolInt",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "FacktTotalSumm",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "FacktTotalSummCurrency",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "FacktRashod",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "FacktRashodCurrency",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "FacktKolInt",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "StagesOfApproval",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DevicesAction",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IDevicesAction>"
+        },
+        {
+          "Name": "Channels",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IChannels>"
+        }
+      ],
+      "StructureNamespace": "Sungero.POST.Structures.Module"
+    },
+    {
+      "Name": "MarcetingDocsList",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "MarcetingDocumentStruct",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IMarcetingDoc>"
+        }
+      ],
+      "StructureNamespace": "Sungero.POST.Structures.Module"
+    }
+  ],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.POST",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "Sungero.POST.Server",
+  "ServerNamespace": "Sungero.POST.Server",
+  "SharedAssemblyName": "Sungero.POST.Shared",
+  "SharedNamespace": "Sungero.POST.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.125",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

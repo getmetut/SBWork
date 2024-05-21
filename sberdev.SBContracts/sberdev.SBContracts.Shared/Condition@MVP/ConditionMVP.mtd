@@ -1,0 +1,60 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "dfbf0009-0073-42b8-8cb1-88bf68d8c17d",
+  "Name": "ConditionMVP",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "ConditionMVP",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9d4ee239-ac0f-455b-8a6e-28afe43c97d9",
+      "Name": "Condition",
+      "CanBeSearch": false,
+      "Code": "Condition",
+      "EntityGuid": "872e5f84-aa00-4d4c-8272-acaafe2662b4",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "d4782520-8c5f-4767-97f4-020b7c0c4ba9",
+      "Name": "MVP",
+      "CanBeSearch": false,
+      "Code": "MVP",
+      "EntityGuid": "d2061f28-0788-4291-9a87-3e2b87acd765",
+      "FlatListInStandaloneLookup": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "9d4ee239-ac0f-455b-8a6e-28afe43c97d9"
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "bafba487-dd63-4d51-8730-5ceef1b8118e",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "b5079c5c-2af3-4e2e-9e3a-ae502ab39b64",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

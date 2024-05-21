@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Согласование NDA</value>
+  </data>
+  <data name="AccusativeDisplayName" xml:space="preserve">
+    <value>Согласование NDA</value>
+  </data>
+  <data name="CollectionDisplayName" xml:space="preserve">
+    <value>Согласования NDA</value>
+  </data>
+  <data name="AttachmentGroup_BaseDocNDATitle" xml:space="preserve">
+    <value>Основной документ</value>
+  </data>
+  <data name="AttachmentGroup_BaseDocNDAInformationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AttachmentGroup_OtherAttachmentsTitle" xml:space="preserve">
+    <value>Сопровождающие документы</value>
+  </data>
+  <data name="AttachmentGroup_OtherAttachmentsInformationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Block_3310307b15874d5b841df023132a8979" xml:space="preserve">
+    <value>Типовое согласование</value>
+  </data>
+  <data name="Block_9c0d01deb45d404f9a53386f70092361" xml:space="preserve">
+    <value>Расширенное согласование</value>
+  </data>
+  <data name="Block_394383431a86491e878f9f2d7a40e8d1" xml:space="preserve">
+    <value>На доработку</value>
+  </data>
+  <data name="Block_5c445d365c9d4eb6a92c92344b5f477f" xml:space="preserve">
+    <value>Согласование инициатора по NDA</value>
+  </data>
+  <data name="Property_TravelDoc" xml:space="preserve">
+    <value>Способ отправки документов</value>
+  </data>
+  <data name="Enum_TravelDoc_EDO" xml:space="preserve">
+    <value>Отправка по ЭДО</value>
+  </data>
+  <data name="Enum_TravelDoc_Kurier" xml:space="preserve">
+    <value>Отправка курьером</value>
+  </data>
+  <data name="Enum_TravelDoc_Email" xml:space="preserve">
+    <value>Отправка по электронной почте</value>
+  </data>
+  <data name="Resource_035869ed2baa4573bdfe9e4f5e10c4b3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_035869ed2baa4573bdfe9e4f5e10c4b3_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_74e85eafe5944dc5b4724e791948b781" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_74e85eafe5944dc5b4724e791948b781_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_679cef60166e482cbfa7a1ec861f0263" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_679cef60166e482cbfa7a1ec861f0263_EmptyText" xml:space="preserve">
+    <value>Specify observers…</value>
+  </data>
+  <data name="Property_Email" xml:space="preserve">
+    <value>Эл.почта</value>
+  </data>
+  <data name="Property_Adress" xml:space="preserve">
+    <value>Адрес доставки</value>
+  </data>
+  <data name="Block_dd930bc2b7414ef5aa9865c5ddb8b1e2" xml:space="preserve">
+    <value>Изменение ЖЦ NDA</value>
+  </data>
+  <data name="Block_dd930bc2b7414ef5aa9865c5ddb8b1e2_Property_a21ba9cd328e4fca806f0a3a9c9d6d3b_Enum_26fe657a90ca4981b61867f796b944a1" xml:space="preserve">
+    <value>Аннулирован</value>
+  </data>
+  <data name="Block_dd930bc2b7414ef5aa9865c5ddb8b1e2_Property_a21ba9cd328e4fca806f0a3a9c9d6d3b_Enum_36c6acd4cacd4827ad778da20e3c9561" xml:space="preserve">
+    <value>В разработке</value>
+  </data>
+  <data name="Block_dd930bc2b7414ef5aa9865c5ddb8b1e2_Property_a21ba9cd328e4fca806f0a3a9c9d6d3b_Enum_4cda3647bd2547a9bcadb3bb4a115ffe" xml:space="preserve">
+    <value>Действующий</value>
+  </data>
+  <data name="Block_dd930bc2b7414ef5aa9865c5ddb8b1e2_Property_a21ba9cd328e4fca806f0a3a9c9d6d3b" xml:space="preserve">
+    <value>Статус документа</value>
+  </data>
+</root>

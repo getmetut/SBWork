@@ -1,0 +1,59 @@
+{
+  "$type": "Sungero.Metadata.ReportMetadata, Sungero.Reporting.Shared",
+  "NameGuid": "8fc24fb9-3645-4ff8-ac1a-f4f416ac4076",
+  "Name": "BudgetOwnerReport",
+  "AssociatedGuid": "fb838405-d1d2-4edc-b1d5-3d9915540871",
+  "BaseGuid": "cef9a810-3f30-4eca-9fe3-30992af0b818",
+  "DataSources": [],
+  "DefaultExportFormat": "Excel",
+  "ExportFormats": [
+    "Pdf",
+    "Excel"
+  ],
+  "HandledEvents": [
+    "BeforeExecuteClient"
+  ],
+  "IconResourcesKeys": [],
+  "IntegrationServiceName": "SberContractsPaidInvoiceReport",
+  "Overridden": [
+    "PublicConstants",
+    "PublicStructures",
+    "HandledEvents",
+    "Parameters",
+    "ExportFormats",
+    "DefaultExportFormat",
+    "DisplayName"
+  ],
+  "Parameters": [
+    {
+      "NameGuid": "cac0b4bb-2e3a-418d-8f0f-d3e7ba1cae55",
+      "Name": "StartDate",
+      "InternalDataTypeName": "System.DateTime",
+      "IsRequired": true,
+      "IsSimpleDataType": true
+    },
+    {
+      "NameGuid": "529789a0-fc79-4d01-b465-b4dcc9d04fe1",
+      "Name": "EndDate",
+      "InternalDataTypeName": "System.DateTime",
+      "IsRequired": true,
+      "IsSimpleDataType": true
+    },
+    {
+      "NameGuid": "8163674d-580e-4151-8cf1-8134c459a5ef",
+      "Name": "Type",
+      "InternalDataTypeName": "System.String",
+      "IsRequired": true
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [
+    "PaidInvoiceReportDialog_Title",
+    "PaidInvoiceReportDialog_StartDate",
+    "PaidInvoiceReportDialog_EndDate",
+    "PaidInvoiceReportDialog_Type",
+    "PaidInvoiceReportDialog_Expendable",
+    "PaidInvoiceReportDialog_Profitable"
+  ],
+  "Versions": []
+}

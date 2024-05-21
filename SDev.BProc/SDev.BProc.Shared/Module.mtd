@@ -1,0 +1,60 @@
+{
+  "$type": "Sungero.Metadata.SolutionMetadata, Sungero.Metadata",
+  "NameGuid": "1a85b606-d06c-405e-a038-ebccfad74ba2",
+  "Name": "BProc",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "SDev.BProc.Client",
+  "ClientBaseAssemblyName": "SDev.BProc.ClientBase",
+  "ClientBaseNamespace": "SDev.BProc.ClientBase",
+  "ClientNamespace": "SDev.BProc.Client",
+  "Code": "BProc",
+  "CompanyCode": "SDev",
+  "Cover": {
+    "NameGuid": "7f745838-bbcf-45d4-8c04-23e4133c471a",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "78a52360-259a-41e4-b5e7-fd7127edf2a8",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "be195fc3-6320-48ac-ad08-301603d1296a",
+      "BackgroundPosition": "Stretch"
+    },
+    "Tabs": []
+  },
+  "DesktopViews": [],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "SDev.BProc",
+  "IsolatedAssemblyName": "SDev.BProc.Isolated",
+  "IsolatedNamespace": "SDev.BProc.Isolated",
+  "OrderedSpecialFolders": [],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "SDev.BProc",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "SDev.BProc.Server",
+  "ServerNamespace": "SDev.BProc.Server",
+  "SharedAssemblyName": "SDev.BProc.Shared",
+  "SharedNamespace": "SDev.BProc.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.21",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "SolutionMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

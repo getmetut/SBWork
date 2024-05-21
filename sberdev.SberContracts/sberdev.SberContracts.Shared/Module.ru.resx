@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="KZgroup" xml:space="preserve">
+    <value>Комитет закупок</value>
+  </data>
+  <data name="KZgroupDesc" xml:space="preserve">
+    <value>Группа для отображения кнопки "Сумма изменилась" в регламенте согласования договора</value>
+  </data>
+  <data name="NotApprove" xml:space="preserve">
+    <value>Отказано
+</value>
+  </data>
+  <data name="NoticeBySingGroup" xml:space="preserve">
+    <value>Контроль подписания Диадок</value>
+  </data>
+  <data name="NoticeBySingDesc" xml:space="preserve">
+    <value>Группа пользователей которым будет отправлено уведомление при подписании в Диадок документа обеими сторанми.</value>
+  </data>
+  <data name="AmountChangedAbsolute" xml:space="preserve">
+    <value>После изменения суммы документа калькуляция разнесена некорректно. Проверьте, пожалуйста, корректность введенных вами данных.</value>
+  </data>
+  <data name="CalculationInstruction" xml:space="preserve">
+    <value>———&gt;Вид расчета:
+● «Абсолютные суммы»: При выборе данного вида распределения Вам необходимо будет вручную внести абсолютные суммы по каждому необходимому продукту в рублях. Важно! Итоговая сумма по всем продуктам должна быть равна введенной Вами ранее сумме в блоке «УСЛОВИЯ» настоящей карточки с точностью до копейки.
+● «Процент»: При выборе данного вида распределения Вам необходимо будет вручную внести процент распределения по каждому необходимому продукту. Важно! Итоговый процент по всем продуктам должен быть равен 100.
+———&gt;Распределить на:
+● «Распределить на продукты»: При выборе данного вида распределения сумма будет равномерно распределена между всеми продуктами компании (устройства и лицензии).
+● «Распределить на устройства»: При выборе данного вида распределения сумма будет равномерно распределена между всеми устройствами компании (физические девайсы).
+● «Распределить на лицензии»: При выборе данного вида распределения сумма будет равномерно распределена между всеми лицензиями на b2b-продукты компании.
+
+ПРИМЕЧАНИЕ:
+При выборе вида расчета в процентах, поле "ОСТАТОК:" указывается в процентах.</value>
+  </data>
+  <data name="AmountChangedPercent" xml:space="preserve">
+    <value>После изменения суммы блок калькуляции был пересчитан.</value>
+  </data>
+  <data name="CreateProductUnitDialogTittle" xml:space="preserve">
+    <value>Выберите Продукт-юнит</value>
+  </data>
+  <data name="CreateProductUnitDialogProp" xml:space="preserve">
+    <value>Продукт-юнит</value>
+  </data>
+  <data name="BCRoleName" xml:space="preserve">
+    <value>Бизнес-контроллер</value>
+  </data>
+  <data name="BCRoleDisc" xml:space="preserve">
+    <value>Работники, которые заменяют автоматический мониторинг согласований документов.</value>
+  </data>
+  <data name="PATaskInstr" xml:space="preserve">
+    <value>Нужно отследить согласование документа закупки одноименным подразделением. И выполнить задание как документ будет успешно согласован.</value>
+  </data>
+  <data name="MCTaskInstr" xml:space="preserve">
+    <value>Выполняя это задание вы подтверждаете, что документы указанные в полях "Договор" и "Кон. закрывающий документ" подписаны с обеих сторон. Их статус будет сменен соответвующим образом.</value>
+  </data>
+  <data name="ProvidePostalInformationInstruction" xml:space="preserve">
+    <value>Необходимо предоставить почтовую информацию. Укажите в комментарии следущее: адрес, индекс, ФИО и номер получателя.</value>
+  </data>
+  <data name="CreateCalcTamplateDialogProp" xml:space="preserve">
+    <value>Шаблон калькуляции</value>
+  </data>
+</root>

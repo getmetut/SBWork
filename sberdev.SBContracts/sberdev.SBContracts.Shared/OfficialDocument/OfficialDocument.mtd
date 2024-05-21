@@ -1,0 +1,378 @@
+{
+  "$type": "Sungero.Metadata.DocumentMetadata, Sungero.Content.Shared",
+  "NameGuid": "509e1035-d2a8-4e56-8f25-452ad1d903b9",
+  "Name": "OfficialDocument",
+  "AccessRightsMode": "Both",
+  "Actions": [
+    {
+      "NameGuid": "cff11896-d843-428c-b768-dc6c7fe62d7a",
+      "Name": "CreateVersionFromLastVersion",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ]
+    },
+    {
+      "NameGuid": "91113570-18a5-4f42-b321-607acce3f4b9",
+      "Name": "CreateVersion",
+      "CollectionPropertyGuid": "56cbe741-880f-4e6f-9567-343d08494b59",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ]
+    },
+    {
+      "NameGuid": "c3de8ac4-c856-4c03-bfe3-e59db9e7c7d9",
+      "Name": "ImportInNewVersion",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ]
+    },
+    {
+      "NameGuid": "046c6bfc-a9fb-4896-88ae-98805d0869da",
+      "Name": "ImportInLastVersion",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ]
+    },
+    {
+      "NameGuid": "63dc0a6c-df88-4187-810e-db3afe0214c5",
+      "Name": "ScanInNewVersion",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ]
+    },
+    {
+      "NameGuid": "b807b816-dafa-4b17-acac-f06aa306c543",
+      "Name": "CreateFromFile",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ]
+    },
+    {
+      "NameGuid": "c80c04bb-b41c-435b-9b33-699e01504513",
+      "Name": "CreateFromScanner",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "IsVisibleInWebClient": false,
+      "Overridden": [
+        "GenerateHandler"
+      ]
+    },
+    {
+      "NameGuid": "2cd06508-0938-4197-85ca-ce1cb0ce9750",
+      "Name": "CreateDocumentFromVersion",
+      "CollectionPropertyGuid": "56cbe741-880f-4e6f-9567-343d08494b59",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "IsVisibleInDesktopClient": false,
+      "Overridden": [
+        "GenerateHandler"
+      ]
+    },
+    {
+      "NameGuid": "bada190c-5ad2-4129-ab51-553b481492f0",
+      "Name": "CreateFromTemplate",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ],
+      "Versions": []
+    },
+    {
+      "NameGuid": "642b5055-7e1d-478d-8b4d-b0f31eeff0f0",
+      "Name": "ImportSignatureSberDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_ImportSignatureSberDev_large_642b50557e1d478d8b4db0f31eeff0f0.png",
+      "SmallIconName": "Action_ImportSignatureSberDev_small_642b50557e1d478d8b4db0f31eeff0f0.png"
+    },
+    {
+      "NameGuid": "b02147b8-dc66-4300-a9ca-f08cadbdeb8d",
+      "Name": "TransferBodySberDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_TransferBodySberDevSberDev_large_b02147b8dc664300a9caf08cadbdeb8d.png",
+      "SmallIconName": "Action_TransferBodySberDevSberDev_small_b02147b8dc664300a9caf08cadbdeb8d.png",
+      "Versions": []
+    },
+    {
+      "NameGuid": "ac7cd6c8-6ae8-4d83-9a1b-e148b4b4dd18",
+      "Name": "SetMetadataSberDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_SetMetadataSberDev_large_ac7cd6c86ae84d839a1be148b4b4dd18.png",
+      "SmallIconName": "Action_SetMetadataSberDev_small_ac7cd6c86ae84d839a1be148b4b4dd18.png"
+    },
+    {
+      "NameGuid": "ac721b84-e68e-4b0b-bfde-0ce4e1ea6e97",
+      "Name": "GetMetadataSberDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_GetMetadataSberDev_large_ac721b84e68e4b0bbfde0ce4e1ea6e97.png",
+      "SmallIconName": "Action_GetMetadataSberDev_small_ac721b84e68e4b0bbfde0ce4e1ea6e97.png"
+    },
+    {
+      "NameGuid": "b4911693-62e8-4bfe-94b6-4838f0e73b56",
+      "Name": "UnblockCardSberDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_UnblockCardSberDev_large_b491169362e84bfe94b64838f0e73b56.png",
+      "SmallIconName": "Action_UnblockCardSberDev_small_b491169362e84bfe94b64838f0e73b56.png"
+    },
+    {
+      "NameGuid": "15e81d7d-2745-4a8a-9586-4f50df3fa3cc",
+      "Name": "UnblockVersionSberDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_UnblockVersionSberDev_large_15e81d7d27454a8a95864f50df3fa3cc.png",
+      "SmallIconName": "Action_UnblockVersionSberDev_small_15e81d7d27454a8a95864f50df3fa3cc.png",
+      "Versions": []
+    }
+  ],
+  "BaseGuid": "58cca102-1e97-4f07-b6ac-fd866a8b7cb1",
+  "CanBeNavigationPropertyType": true,
+  "CreationAreaMetadata": {
+    "NameGuid": "7322020b-3299-4fba-b9b0-4c995bd2e401",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "80d3ce1a-9a72-443a-8b6c-6c6eef0c8d0f",
+    "Name": "FilterPanel",
+    "Controls": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.StandaloneFormMetadata, Sungero.Metadata",
+      "NameGuid": "fa03f748-4397-42ef-bdc2-22119af7bf7f",
+      "Name": "Card",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ],
+      "Versions": []
+    }
+  ],
+  "IconResourcesKeys": [],
+  "IsAbstract": true,
+  "LayeredFromGuid": "58cca102-1e97-4f07-b6ac-fd866a8b7cb1",
+  "OpenCardByDefaultInCollection": true,
+  "OperationsClass": "",
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "56cbe741-880f-4e6f-9567-343d08494b59",
+      "Name": "Versions",
+      "EntityGuid": "fa55804a-7b6f-46c4-b19a-dbecb308e1d3",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "15280407-331e-42f6-b263-041a495b66cd",
+      "Name": "Tracking",
+      "EntityGuid": "7295bfaa-ea4e-4159-831d-0f90a778a686",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "1c3f277d-3762-46e4-a631-eff7244a31b2",
+      "Name": "ManuallyCheckedSberDev",
+      "CanBeSearch": false,
+      "Code": "ManuallyChecke",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "184ab537-5748-454f-8a9c-cdbdd506321e"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "NullingManuallyChecked",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "officialDocument",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "TransferBody",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "officialDocument",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "doc",
+          "ParameterType": "global::Sungero.Docflow.IOfficialDocument",
+          "ParameterTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "TransferBodyWithSignatures",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "officialDocument",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "idDoc",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "TransferExternalSignatures",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "officialDocument",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "doc",
+          "ParameterType": "global::Sungero.Docflow.IOfficialDocument",
+          "ParameterTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "6924fb77-02ff-483a-9edd-9a977c138c3a",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "fa33fd31-b2ce-44cb-84ee-cbb842283cef",
+        "Name": "ActionButtonSberDev",
+        "ActionGuid": "642b5055-7e1d-478d-8b4d-b0f31eeff0f0",
+        "ButtonSize": "Large",
+        "Index": 32,
+        "ParentGuid": "52099269-7fc8-4a2c-b6bf-20a19fb11d09"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonStaticDropDownButtonMetadata, Sungero.Metadata",
+        "NameGuid": "1b49aedf-b54e-43d8-b0ea-20ee3f732312",
+        "Name": "AdministrationMenuSberDev",
+        "Index": 51,
+        "LargeIconName": "Ribbon_AdministrationMenuSberDev_large_1b49aedfb54e43d8b0ea20ee3f732312.png",
+        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4",
+        "SmallIconName": "Ribbon_AdministrationMenuSberDev_small_1b49aedfb54e43d8b0ea20ee3f732312.png"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "5434f95d-55b2-41a5-8596-d30dbfb0a800",
+        "Name": "TransferBodySberDevSberDev",
+        "ActionGuid": "b02147b8-dc66-4300-a9ca-f08cadbdeb8d",
+        "Index": 0,
+        "ParentGuid": "1b49aedf-b54e-43d8-b0ea-20ee3f732312"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "6732c75b-a1d2-46e6-9efd-fd5b3ecf07f7",
+        "Name": "SetMetadataSberDev",
+        "ActionGuid": "ac7cd6c8-6ae8-4d83-9a1b-e148b4b4dd18",
+        "Index": 1,
+        "ParentGuid": "1b49aedf-b54e-43d8-b0ea-20ee3f732312"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "1f5447ec-b70d-414e-a55e-25cbfa1ad792",
+        "Name": "GetMetadataSberDevSberDev",
+        "ActionGuid": "ac721b84-e68e-4b0b-bfde-0ce4e1ea6e97",
+        "Index": 2,
+        "ParentGuid": "1b49aedf-b54e-43d8-b0ea-20ee3f732312"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "1f6feae7-5c51-4820-8c8b-5a48ad90bf15",
+        "Name": "UnblockCardSberDevSberDev",
+        "ActionGuid": "b4911693-62e8-4bfe-94b6-4838f0e73b56",
+        "Index": 3,
+        "ParentGuid": "1b49aedf-b54e-43d8-b0ea-20ee3f732312"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "fd40f2be-d5cc-49ee-928a-3f38b0a97f0c",
+        "Name": "UnblockVersionSberDevSberDev",
+        "ActionGuid": "15e81d7d-2745-4a8a-9586-4f50df3fa3cc",
+        "Index": 4,
+        "ParentGuid": "1b49aedf-b54e-43d8-b0ea-20ee3f732312"
+      }
+    ],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "7ff74f88-19c4-4ab7-b926-86e8fa1de623",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "DocumentMetadata",
+      "Number": 2
+    },
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<queries>
+  <query key="StartedTasksQuery">
+    <mssql><![CDATA[with assigns as(SELECT
+  FORMAT(a.Created, 'yyyy-MM-dd') AS Created,
+  e.Name AS EmployeeName,
+  CASE 
+    WHEN CHARINDEX('(', e.Name) > 0 AND CHARINDEX(')', e.Name) > 0
+    THEN 
+      CONCAT(
+        LEFT(e.Name, CHARINDEX('(', e.Name) - 1),
+        SUBSTRING(e.Name, CHARINDEX(')', e.Name) + 1, LEN(e.Name) - CHARINDEX(')', e.Name))
+      )
+    ELSE
+      e.Name
+  END AS Performer,
+  DATEDIFF(day, a.Created, GETDATE()) - (DATEDIFF(WEEK, a.Created, GETDATE()) * 2) 
+    - CASE 
+        WHEN DATEPART(WEEKDAY, a.Created) = 1 THEN 1 
+        WHEN DATEPART(WEEKDAY, GETDATE()) = 7 THEN 1 
+        ELSE 0 
+      END AS Days,
+  a.[Subject],
+  a.Discriminator,
+  a.Id,
+  e.Department_Company_Sungero as DepId
+FROM 
+  Sungero_WF_Assignment a
+LEFT JOIN 
+  Sungero_Core_Recipient e ON e.Id = a.Performer
+LEFT JOIN 
+  Sungero_Core_Recipient man ON man.Id = e.Department_Company_Sungero
+right join
+  Sungero_WF_Task t on t.Id = a.MainTask and (t.IsIncoming_ExCh_Sungero = 1 or t.IsIncoming_ExCh_Sungero is null)
+WHERE 
+  a.Status = 'InProcess' and  a.Created >= @startDate and a.Created <= @endDate and a.Discriminator != '0917CA0B-898F-429D-BE37-C12DA50C5A95')
+  
+select Created, EmployeeName, Performer, mans.Name as ManagerName, [Days], [Subject], assigns.Discriminator, assigns.Id from assigns
+Left JOIN
+  Sungero_Core_Recipient deps ON deps.Id = assigns.DepId
+Left JOIN
+  Sungero_Core_Recipient mans ON mans.Id = deps.Manager_Company_Sungero]]></mssql>
+  </query>
+  <query key="PPQuery">
+    <mssql><![CDATA[WITH CTE as (
+  SELECT DISTINCT
+    CASE 
+      WHEN CHARINDEX('(', r.Name) > 0 AND CHARINDEX(')', r.Name) > 0 AND r.Name IS NOT NULL
+      THEN 
+        RTRIM(REPLACE(r.Name, ' ПП', '')) 
+    END as PP
+  FROM 
+    Sungero_WF_Assignment a
+  LEFT JOIN 
+    Sungero_Core_Recipient r ON r.Id = a.Performer
+  WHERE 
+  a.Status != 'InProcess' and Created >= @startDate and Created <= @endDate
+)
+SELECT PP
+FROM CTE
+WHERE PP IS NOT NULL;]]></mssql>
+  </query>
+  <query key="TotalQuery">
+    <mssql><![CDATA[WITH assigns AS (
+  SELECT
+    FORMAT(a.Created, 'yyyy-MM-dd') AS Created,
+    CASE 
+      WHEN CHARINDEX('(', e.Name) > 0 AND CHARINDEX(')', e.Name) > 0
+      THEN 
+        CONCAT(
+          LEFT(e.Name, CHARINDEX('(', e.Name) - 1),
+          SUBSTRING(e.Name, CHARINDEX(')', e.Name) + 1, LEN(e.Name) - CHARINDEX(')', e.Name))
+        )
+      ELSE
+        e.Name
+    END AS Performer,
+    DATEDIFF(day, a.Created, GETDATE()) - (DATEDIFF(WEEK, a.Created, GETDATE()) * 2) 
+      - CASE 
+          WHEN DATEPART(WEEKDAY, a.Created) = 1 THEN 1 
+          WHEN DATEPART(WEEKDAY, GETDATE()) = 7 THEN 1 
+          ELSE 0 
+        END AS Days,
+    a.Discriminator,
+    e.Department_Company_Sungero AS DepId
+  FROM 
+    Sungero_WF_Assignment a
+  LEFT JOIN 
+    Sungero_Core_Recipient e ON e.Id = a.Performer
+  LEFT JOIN 
+    Sungero_Core_Recipient man ON man.Id = e.Department_Company_Sungero
+  right join
+    Sungero_WF_Task t on t.Id = a.MainTask and (t.IsIncoming_ExCh_Sungero = 1 or t.IsIncoming_ExCh_Sungero is null)
+  WHERE 
+    a.Status = 'InProcess' and a.Discriminator != '0917CA0B-898F-429D-BE37-C12DA50C5A95'  and  a.Created >= @startDate and a.Created <= @endDate
+)
+
+SELECT
+  a.Performer,
+  mans.Name AS Manager,
+  ROUND(AVG(CAST(a.Days AS FLOAT)), 2) AS AvarageDays,
+  COUNT(*) AS NumberTasks
+FROM 
+  assigns a
+LEFT JOIN
+  Sungero_Core_Recipient deps ON deps.Id = a.DepId
+LEFT JOIN
+  Sungero_Core_Recipient mans ON mans.Id = deps.Manager_Company_Sungero
+GROUP BY
+  a.Performer,
+  mans.Name;
+]]></mssql>
+  </query>
+</queries>

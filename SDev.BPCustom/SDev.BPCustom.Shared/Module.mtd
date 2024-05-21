@@ -1,0 +1,152 @@
+{
+  "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
+  "NameGuid": "16f987e8-0207-469b-a5e0-044059487cc9",
+  "Name": "BPCustom",
+  "AsyncHandlers": [],
+  "Blocks": [
+    {
+      "$type": "Sungero.Metadata.MonitoringBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "cd8c6de4-50e0-4e6c-b345-42faf5706bb3",
+      "Name": "ReglamentBlock",
+      "BaseGuid": "91851d4e-af2b-4dc2-8c24-46dcf609e1fd",
+      "HandledEvents": [
+        "ReglamentBlockStart",
+        "ReglamentBlockResult"
+      ],
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "7f68191c-6272-4092-8993-4a98053bb57c",
+          "Name": "SubTask",
+          "EntityGuid": "d795d1f6-45c1-4e5e-9677-b53fb7280c7e",
+          "IsVisible": false,
+          "PreviousPropertyGuid": "8b7eb8c4-79a7-4474-9753-5e6dab87d5a2"
+        },
+        {
+          "$type": "Sungero.Metadata.EnumBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "ebae3511-7820-4e2f-a9a4-9a45cf3ce5f9",
+          "Name": "StandartRoute",
+          "DirectValues": [
+            {
+              "NameGuid": "8c356522-251f-4682-89ef-8e5b45a283b6",
+              "Name": "Contracts",
+              "Code": "Contracts"
+            },
+            {
+              "NameGuid": "2f9c1f8e-e841-41a8-9fda-dc99670e9d08",
+              "Name": "Zakupka",
+              "Code": "Zakupka"
+            }
+          ],
+          "PreviousPropertyGuid": "7f68191c-6272-4092-8993-4a98053bb57c"
+        }
+      ]
+    },
+    {
+      "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "b3eba9eb-e75e-4188-9c21-a8b1094d61a0",
+      "Name": "ToSignerJob",
+      "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
+      "EntityType": "923b52ef-d0eb-4b24-9e95-e1172404118b",
+      "Properties": []
+    }
+  ],
+  "ClientAssemblyName": "SDev.BPCustom.Client",
+  "ClientBaseAssemblyName": "SDev.BPCustom.ClientBase",
+  "ClientBaseNamespace": "SDev.BPCustom.ClientBase",
+  "ClientNamespace": "SDev.BPCustom.Client",
+  "Code": "BPCusto",
+  "CompanyCode": "SDev",
+  "Cover": {
+    "NameGuid": "a9db2670-29a5-43f3-bf78-4ce683cccb89",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "9b0e8268-6644-41c2-9610-f3140ca39d6c",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "dcf8ad63-378d-4994-89e9-c33348b4d908",
+      "BackgroundPosition": "Stretch"
+    },
+    "Tabs": []
+  },
+  "Dependencies": [
+    {
+      "Id": "1a85b606-d06c-405e-a038-ebccfad74ba2",
+      "IsSolutionModule": true,
+      "MaxVersion": "",
+      "MinVersion": ""
+    },
+    {
+      "Id": "ec7b606a-21ee-4f16-aba8-ab8c2af76d12",
+      "MaxVersion": "",
+      "MinVersion": "0.0.1.0"
+    }
+  ],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "b86c530e-b0eb-4a7b-8f6f-9a8bf329ff83"
+    },
+    {
+      "ItemId": "02977b7d-fcd5-4c0a-b7b2-a2a87df6c246",
+      "PreviousItemId": "b86c530e-b0eb-4a7b-8f6f-9a8bf329ff83"
+    },
+    {
+      "ItemId": "00aae3dc-c8d0-4164-9f86-b3086f4992e7",
+      "PreviousItemId": "02977b7d-fcd5-4c0a-b7b2-a2a87df6c246"
+    },
+    {
+      "ItemId": "c0ebe0c6-4157-4015-b2db-ae1cc5cfccba",
+      "PreviousItemId": "00aae3dc-c8d0-4164-9f86-b3086f4992e7"
+    },
+    {
+      "ItemId": "bd199b5c-9c37-4efb-a49e-ef6c27697dcf",
+      "PreviousItemId": "c0ebe0c6-4157-4015-b2db-ae1cc5cfccba"
+    },
+    {
+      "ItemId": "0aac549f-452c-4b6f-9f30-ffdeb328617e",
+      "PreviousItemId": "bd199b5c-9c37-4efb-a49e-ef6c27697dcf"
+    },
+    {
+      "ItemId": "dae5d614-25ab-4dcb-ac0c-bc7ceb02f709",
+      "PreviousItemId": "0aac549f-452c-4b6f-9f30-ffdeb328617e"
+    },
+    {
+      "ItemId": "3930a315-6bb3-47bf-86ab-92f5510e9416",
+      "PreviousItemId": "dae5d614-25ab-4dcb-ac0c-bc7ceb02f709"
+    },
+    {
+      "ItemId": "7472da69-451f-4724-887c-1b3ca87934ab",
+      "PreviousItemId": "3930a315-6bb3-47bf-86ab-92f5510e9416"
+    }
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "SDev.BPCustom",
+  "IsolatedAssemblyName": "SDev.BPCustom.Isolated",
+  "IsolatedNamespace": "SDev.BPCustom.Isolated",
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "SDev.BPCustom",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "SDev.BPCustom.Server",
+  "ServerNamespace": "SDev.BPCustom.Server",
+  "SharedAssemblyName": "SDev.BPCustom.Shared",
+  "SharedNamespace": "SDev.BPCustom.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.21",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}
