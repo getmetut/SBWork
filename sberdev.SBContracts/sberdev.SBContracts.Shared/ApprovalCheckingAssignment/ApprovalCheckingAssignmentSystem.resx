@@ -136,4 +136,7 @@
   <data name="CollectionDisplayName" xml:space="preserve">
     <value>Assignments with checking</value>
   </data>
+  <data name="Property_OurCompany" xml:space="preserve">
+    <value>Our company</value>
+  </data>
 </root>

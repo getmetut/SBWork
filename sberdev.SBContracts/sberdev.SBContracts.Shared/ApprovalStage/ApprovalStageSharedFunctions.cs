@@ -23,6 +23,7 @@ namespace sberdev.SBContracts.Shared
         baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerMark);
         baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerProd);
         baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerPrGe);
+        baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.AddApprovers);
       }
       
       return baseRoles;

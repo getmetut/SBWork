@@ -184,6 +184,24 @@
           "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "83ef019c-faf4-4d72-8190-df076ee71dac",
+          "Name": "AddApprovers",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiLikeEditorToCollectionBinder",
+          "ParentGuid": "c5d29b4b-0050-4a5c-9629-c3e0e38bb5c3",
+          "PropertyGuid": "77a23cf7-bd14-46b9-a019-a010316f77e6",
+          "RowNumber": 4,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "NavigationPropertyGuid",
+              "Value": "9d5f409d-cbe9-4a7e-855d-2cca82aaa366"
+            }
+          ]
         }
       ]
     }
@@ -321,6 +339,15 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "3038481f-00c9-4932-a18f-68f040c3d372",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "77a23cf7-bd14-46b9-a019-a010316f77e6",
+      "Name": "AddApprovers",
+      "Code": "BudgetAddAppr",
+      "EntityGuid": "1d7b7e05-2fb8-4328-9a53-ab8814751ff6",
+      "IsShowedInList": false,
+      "PreviousPropertyGuid": "58db58c6-8980-48c3-9396-06244b9c3ac2"
     }
   ],
   "PublicStructures": [],

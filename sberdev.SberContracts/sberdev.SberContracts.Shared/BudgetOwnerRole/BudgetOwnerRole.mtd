@@ -60,6 +60,11 @@
           "NameGuid": "0240f921-6400-4cd0-a08d-aa2ca225ee8b",
           "Name": "BudgetOwnerPrGe",
           "Code": "BudgetOwnerPrGe"
+        },
+        {
+          "NameGuid": "131aa7d2-4a9e-4e50-8d7c-c31d51651635",
+          "Name": "AddApprovers",
+          "Code": "AddApprovers"
         }
       ],
       "IsAncestorMetadata": true,

@@ -112,4 +112,7 @@
   <data name="Property_BudgetOwnerGeneral" xml:space="preserve">
     <value>Ген. владелец бюджета</value>
   </data>
+  <data name="Property_AddApprovers" xml:space="preserve">
+    <value>Дополнительные согласующие</value>
+  </data>
 </root>

@@ -112,4 +112,7 @@
   <data name="Property_BudgetOwnerGeneral" xml:space="preserve">
     <value>Budget owner gen.</value>
   </data>
+  <data name="Property_AddApprovers" xml:space="preserve">
+    <value>Additional Approvers</value>
+  </data>
 </root>

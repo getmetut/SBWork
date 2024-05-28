@@ -226,6 +226,19 @@
           "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "95eea87d-275c-47c7-bd03-4b96e1cb4aea",
+          "Name": "OurCompany",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "99078a64-599f-458f-8702-81d97fd3e9b6",
+          "PropertyGuid": "9a8ec8ca-d0d9-478f-a322-300078d63507",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -291,6 +304,17 @@
       "Code": "DocumentIDSber",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "c67fd8d8-0500-4a0e-92f7-59b5557d44b7"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9a8ec8ca-d0d9-478f-a322-300078d63507",
+      "Name": "OurCompany",
+      "Code": "OurCompany",
+      "EntityGuid": "eff95720-181f-4f7d-892d-dec034c7b2ab",
+      "FlatListInStandaloneLookup": true,
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "ec9aba4f-0663-4474-b2a2-c20ad9fee91d"
     }
   ],
   "PublicStructures": [],
