@@ -19,6 +19,8 @@ namespace sberdev.SBContracts
       {
         _obj.State.Properties.PaymentDueDateSberDev.IsVisible = true;
         var inv = SBContracts.IncomingInvoices.As(attach);
+        if (inv != null)
+          _obj.OurCompany = inv.BusinessUnit;
         if (inv != null && _obj.PaymentDueDateSberDev != inv.PaymentDueDate)
         {
           _obj.PaymentDueDateSberDev = inv.PaymentDueDate;

@@ -88,4 +88,7 @@
   <data name="Enum_Type_BudgetOwnerPrGe" xml:space="preserve">
     <value>Budget owner Product General</value>
   </data>
+  <data name="Enum_Type_AddApprovers" xml:space="preserve">
+    <value>Additional Approvers</value>
+  </data>
 </root>

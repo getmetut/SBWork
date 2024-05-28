@@ -59,7 +59,7 @@ namespace sberdev.SberContracts.Server
       documentBlock.AddLineBreak();
       documentBlock.AddLabel("Обоснование выбора поставщика: " + _obj.ChooseCpJustif);
       documentBlock.AddLineBreak();
-      documentBlock.AddLabel("Условия оплаты: " + SBContracts.PublicFunctions.Module.GetPaymentType(_obj));
+      documentBlock.AddLabel("Условия оплаты:" + SBContracts.PublicFunctions.Module.GetPaymentType(_obj));
       documentBlock.AddLineBreak();
       return documentSummary;
     }

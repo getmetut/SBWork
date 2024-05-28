@@ -58,76 +58,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_NeedAbort" xml:space="preserve">
-    <value>NeedAbort</value>
-  </data>
-  <data name="Action_AbortTask" xml:space="preserve">
-    <value>Отказано</value>
-  </data>
-  <data name="Action_AbortTaskHint" xml:space="preserve">
-    <value>Отказано</value>
-  </data>
-  <data name="Action_AbortTaskDescription" xml:space="preserve">
-    <value>Отказано</value>
-  </data>
-  <data name="Property_PaymentDueDateSberDev" xml:space="preserve">
-    <value>Оплатить до</value>
-  </data>
-  <data name="Resource_cf45ca53bfe446fdb398de06f4d71fad" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_cf45ca53bfe446fdb398de06f4d71fad_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_be1f292a6e7e4e769314ca57e93f9f81" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_be1f292a6e7e4e769314ca57e93f9f81_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_c30f7a151d6f4a7a89db073bc27141b4" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_c30f7a151d6f4a7a89db073bc27141b4_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_52d7741ffda145a3a678f925c3712232" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_99078a64599f458f870281d97fd3e9b6" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_4377633005284f2a8e5b6e1c8d5161c6" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_527ed9d595c34acdb19a453897eea3d7" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_b554f15870b94539a3cc41e20683dfaf" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_1188a9ce36234676a6587d523344e538" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_3792363a2cde4cc39c7d27944f34630e" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_3792363a2cde4cc39c7d27944f34630e_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Property_DocumentIDSberDev" xml:space="preserve">
-    <value>ИД документа</value>
-  </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Задание с проверкой</value>
-  </data>
-  <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Задание с проверкой</value>
-  </data>
-  <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Задания с проверкой</value>
-  </data>
-  <data name="Property_OurCompany" xml:space="preserve">
-    <value>Наша организация</value>
+  <data name="Property_Approver" xml:space="preserve">
+    <value>Approver</value>
   </data>
 </root>

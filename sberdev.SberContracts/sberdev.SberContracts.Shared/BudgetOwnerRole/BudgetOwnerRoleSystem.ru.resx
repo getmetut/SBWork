@@ -88,4 +88,7 @@
   <data name="Enum_Type_BudgetOwnerPrGe" xml:space="preserve">
     <value>Владелец бюджета Продукт Главный</value>
   </data>
+  <data name="Enum_Type_AddApprovers" xml:space="preserve">
+    <value>Дополнительные согласующие</value>
+  </data>
 </root>
