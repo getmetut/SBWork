@@ -12,6 +12,7 @@ namespace sberdev.SberContracts.Client
     public virtual void CreateBodyByProperties(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       SBContracts.PublicFunctions.Module.Remote.CreateBodyByProperties(_obj);
+      _obj.Save();
     }
 
     public virtual bool CanCreateBodyByProperties(Sungero.Domain.Client.CanExecuteActionArgs e)
