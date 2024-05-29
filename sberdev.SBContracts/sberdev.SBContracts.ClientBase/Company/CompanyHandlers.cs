@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -25,7 +25,6 @@ namespace sberdev.SBContracts
     {
       base.Showing(e);
       Functions.Company.UpdInterface(_obj);
-      Functions.Company.HideEmptyFocusMarkers(_obj);
     }
 
   }
