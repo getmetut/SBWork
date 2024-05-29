@@ -387,7 +387,8 @@
   "HandledEvents": [
     "BeforeAbortServer",
     "BeforeStartServer",
-    "CreatedServer"
+    "CreatedServer",
+    "RefreshClient"
   ],
   "IconResourcesKeys": [],
   "IsCreateVersionsOnLayerForbidden": true,

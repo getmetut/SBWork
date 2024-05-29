@@ -63,7 +63,7 @@
         },
         {
           "NameGuid": "131aa7d2-4a9e-4e50-8d7c-c31d51651635",
-          "Name": "AddApprovers",
+          "Name": "AddApproversProd",
           "Code": "AddApprovers"
         }
       ],

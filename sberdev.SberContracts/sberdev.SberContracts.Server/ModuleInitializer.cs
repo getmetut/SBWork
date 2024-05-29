@@ -176,7 +176,7 @@ namespace sberdev.SberContracts.Server
         sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerMark,
         sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerProd,
         sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerPrGe,
-        sberdev.SberContracts.BudgetOwnerRole.Type.AddApprovers};
+        sberdev.SberContracts.BudgetOwnerRole.Type.AddApproversProd};
       foreach (var customRole in customRoles)
       {
         var role = roles.FirstOrDefault(r => r.Type.Value == customRole);

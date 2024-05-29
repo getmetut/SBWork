@@ -131,7 +131,7 @@ namespace sberdev.SberContracts.Server
       #endregion
       
       #region AddApprovers
-      if (_obj.Type == SberContracts.BudgetOwnerRole.Type.AddApprovers)
+      if (_obj.Type == SberContracts.BudgetOwnerRole.Type.AddApproversProd)
       {
         var document = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
         var contract = SBContracts.ContractualDocuments.As(document);
@@ -143,11 +143,12 @@ namespace sberdev.SberContracts.Server
           {
             if (contract.ProdCollectionExBaseSberDev.FirstOrDefault().Product.Name == "General")
             {
-              var productEx = contract.ProdCollectionExBaseSberDev.FirstOrDefault();
-              foreach(var emp in productEx.Product.AddApprovers)
+              var productEx = contract.CalculationBaseSberDev.FirstOrDefault();
+              foreach(var emp in productEx.ProductCalc.AddApprovers)
                 group.Add(emp.Approver);
             }
-            else {
+            else
+            {
               var productEx = contract.ProdCollectionExBaseSberDev.FirstOrDefault();
               foreach(var emp in productEx.Product.AddApprovers)
                 group.Add(emp.Approver);
@@ -157,11 +158,12 @@ namespace sberdev.SberContracts.Server
           {
             if (contract.ProdCollectionPrBaseSberDev.FirstOrDefault().Product.Name == "General")
             {
-              var productEx = contract.ProdCollectionExBaseSberDev.FirstOrDefault();
-              foreach(var emp in productEx.Product.AddApprovers)
+              var productEx = contract.CalculationBaseSberDev.FirstOrDefault();
+              foreach(var emp in productEx.ProductCalc.AddApprovers)
                 group.Add(emp.Approver);
             }
-            else {
+            else
+            {
               var productPr = contract.ProdCollectionPrBaseSberDev.FirstOrDefault();
               foreach(var emp in productPr.Product.AddApprovers)
                 group.Add(emp.Approver);
@@ -172,28 +174,17 @@ namespace sberdev.SberContracts.Server
         var acc = SBContracts.AccountingDocumentBases.As(document);
         if (acc != null)
         {
-          if (acc.MarketDirectSberDev != null)
+          if (acc.ProdCollectionBaseSberDev.FirstOrDefault().Product.Name == "General")
           {
-            var markDir = acc.MarketDirectSberDev;
-            if (markDir.BudgetOwner == null)
-            {
-              if (acc.ProdCollectionBaseSberDev.FirstOrDefault().Product.Name == "General")
-              {
-                var productAcc = acc.ProdCollectionBaseSberDev.FirstOrDefault();
-                foreach(var emp in productAcc.Product.AddApprovers)
-                  group.Add(emp.Approver);
-              }
-              else {
-                var productAcc = acc.ProdCollectionBaseSberDev.FirstOrDefault();
-                foreach(var emp in productAcc.Product.AddApprovers)
-                  group.Add(emp.Approver);
-              }
-            }
-            else {
-              var productAcc = acc.ProdCollectionBaseSberDev.FirstOrDefault();
-              foreach(var emp in productAcc.Product.AddApprovers)
-                group.Add(emp.Approver);
-            }
+            var productAcc = acc.CalculationBaseSberDev.FirstOrDefault();
+            foreach(var emp in productAcc.ProductCalc.AddApprovers)
+              group.Add(emp.Approver);
+          }
+          else
+          {
+            var productAcc = acc.ProdCollectionBaseSberDev.FirstOrDefault();
+            foreach(var emp in productAcc.Product.AddApprovers)
+              group.Add(emp.Approver);
           }
         }
         

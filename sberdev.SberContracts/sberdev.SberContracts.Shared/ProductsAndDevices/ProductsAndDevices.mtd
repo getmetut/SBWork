@@ -190,7 +190,7 @@
           "NameGuid": "83ef019c-faf4-4d72-8190-df076ee71dac",
           "Name": "AddApprovers",
           "ColumnNumber": 0,
-          "ColumnSpan": 1,
+          "ColumnSpan": 2,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiLikeEditorToCollectionBinder",
           "ParentGuid": "c5d29b4b-0050-4a5c-9629-c3e0e38bb5c3",
           "PropertyGuid": "77a23cf7-bd14-46b9-a019-a010316f77e6",

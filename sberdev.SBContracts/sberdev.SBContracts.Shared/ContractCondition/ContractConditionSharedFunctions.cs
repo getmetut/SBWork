@@ -90,7 +90,7 @@ namespace sberdev.SBContracts.Shared
       if (_obj.ConditionType == ConditionType.IsNeedCheckCp)
       {
         var contr = SBContracts.ContractualDocuments.As(document);
-        if (contr.Currency.Id == 1 && PublicFunctions.Counterparty.CalculateTotalAmount(SBContracts.Counterparties.As(contr.Counterparty)) > 500000)
+        if (contr != null && PublicFunctions.Counterparty.CalculateTotalAmount(SBContracts.Counterparties.As(contr.Counterparty)) > 500000)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(true, string.Empty);
         else
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
