@@ -70,4 +70,10 @@
   <data name="BanOldAnalitics" xml:space="preserve">
     <value>В документе указаны закрытые аналитики.</value>
   </data>
+  <data name="GuranteeAmountConfirm" xml:space="preserve">
+    <value>Вы подтверждаете, что общая сумма закупки по проекту не больше 5 млн. руб.?</value>
+  </data>
+  <data name="NotConfirmedPurchAmount" xml:space="preserve">
+    <value>Вы не подтвердили общую сумму закупки по проекту.</value>
+  </data>
 </root>

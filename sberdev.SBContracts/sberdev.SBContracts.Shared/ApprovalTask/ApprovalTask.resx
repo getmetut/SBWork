@@ -73,4 +73,10 @@
   <data name="BanOldAnalitics" xml:space="preserve">
     <value>The document contains closed analysts.</value>
   </data>
+  <data name="GuranteeAmountConfirm" xml:space="preserve">
+    <value>Do you confirm that the total purchase amount for the project is not more than 5 million rubles?</value>
+  </data>
+  <data name="NotConfirmedPurchAmount" xml:space="preserve">
+    <value>You have not confirmed the total purchase amount for the project.</value>
+  </data>
 </root>

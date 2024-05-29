@@ -14,6 +14,11 @@ namespace sberdev.SberContracts.Shared
       base.SetPropertiesAccess();
       
       _obj.State.Properties.ContrTypeBaseSberDev.IsEnabled = false;
+      if (_obj.TotalAmount > 5000000)
+        _obj.State.Properties.AddendumDocument.IsRequired = true;
+      else
+        _obj.State.Properties.AddendumDocument.IsRequired = false;
+      
     }
   }
 }

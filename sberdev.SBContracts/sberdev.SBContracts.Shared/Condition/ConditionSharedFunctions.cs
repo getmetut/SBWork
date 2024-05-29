@@ -87,9 +87,10 @@ namespace sberdev.SBContracts.Shared
       {
         var salut = Sungero.Company.PublicFunctions.BusinessUnit.Remote.GetBusinessUnits().Where(u => u.TIN == "7730253720").FirstOrDefault();
         var depart = SBContracts.PublicFunctions.Module.Remote.GetGroup("Закупки", salut);
-        if (depart != null)
+        var purchase = SberContracts.GuaranteeLetters.As(document).AddendumDocument;
+        if (depart != null && purchase != null)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-            .Create(PublicFunctions.Module.CheckDepartmentApproval(SberContracts.GuaranteeLetters.As(document).AddendumDocument, depart), string.Empty);
+            .Create(PublicFunctions.Module.CheckDepartmentApproval(purchase, depart), string.Empty);
         else
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
       }

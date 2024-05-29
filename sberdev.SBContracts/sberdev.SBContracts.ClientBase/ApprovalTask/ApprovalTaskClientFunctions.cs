@@ -9,6 +9,12 @@ namespace sberdev.SBContracts.Client
 {
   partial class ApprovalTaskFunctions
   {
+    [Public]
+    public bool ShowConfirmationAmountDialog()
+    {
+      var dialog = Dialogs.CreateConfirmDialog(sberdev.SBContracts.ApprovalTasks.Resources.GuranteeAmountConfirm);
+      return dialog.Show();
+    }
     
     /// <summary>
     /// Вывести сообщение с результатом проверки подписей договорных документов при отправке входящего счета на согласование

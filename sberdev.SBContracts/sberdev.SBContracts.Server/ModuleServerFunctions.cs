@@ -336,6 +336,8 @@ namespace sberdev.SBContracts.Server
     public bool CheckDepartmentApproval(SBContracts.IOfficialDocument document, Sungero.CoreEntities.IGroup depart)
     {
       bool flag = false;
+      if (document == null)
+        return false;
       var signatures = Signatures.Get(document.LastVersion);
       var signer = Sungero.CoreEntities.Users.As(Sungero.Company.Departments.As(depart).Manager);
       if (signer == null)

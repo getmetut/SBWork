@@ -557,6 +557,19 @@
       "Placement": "Client",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "ShowConfirmationAmountDialog",
+      "Parameters": [
+        {
+          "Name": "approvalTask",
+          "ParameterType": "global::sberdev.SBContracts.IApprovalTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
     }
   ],
   "PublicStructures": [],
@@ -565,7 +578,9 @@
     "SendDiadocSettingsTaskSubject",
     "SendDiadocSettingsTaskSubject2",
     "NoBodyError",
-    "BanOldAnalitics"
+    "BanOldAnalitics",
+    "GuranteeAmountConfirm",
+    "NotConfirmedPurchAmount"
   ],
   "RibbonCardMetadata": {
     "NameGuid": "3918540e-fee5-48d2-9e92-0b2e7bc06a16",

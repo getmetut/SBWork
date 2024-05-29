@@ -22,12 +22,21 @@ namespace sberdev.SBContracts
     public override void BeforeStart(Sungero.Workflow.Server.BeforeStartEventArgs e)
     {
       var document = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
-      base.BeforeStart(e);
-      Functions.ApprovalTask.SendDiadocSettingsTask(_obj, document);
-      _obj.NeedAbort = false;
       
+      // Механика подтверждения суммы закупки
       if (document != null)
       {
+        var gurantee = SberContracts.GuaranteeLetters.As(document);
+        if (gurantee != null && gurantee.TotalAmount < 5000000 && gurantee.AddendumDocument == null)
+        {
+          if (!PublicFunctions.ApprovalTask.ShowConfirmationAmountDialog(_obj))
+            e.AddError(sberdev.SBContracts.ApprovalTasks.Resources.NotConfirmedPurchAmount);
+        }
+        
+        base.BeforeStart(e);
+        Functions.ApprovalTask.SendDiadocSettingsTask(_obj, document);
+        _obj.NeedAbort = false;
+        
         // Механика проверки бездоговорных счетов
         var incInv = SBContracts.IncomingInvoices.As(document);
         if (incInv != null && incInv.NoNeedLeadingDocs.HasValue && incInv.NoNeedLeadingDocs.Value)
