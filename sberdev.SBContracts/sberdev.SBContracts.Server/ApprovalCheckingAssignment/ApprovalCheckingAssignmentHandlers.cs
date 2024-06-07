@@ -34,6 +34,13 @@ namespace sberdev.SBContracts
       }
       else
         _obj.State.Properties.PaymentDueDateSberDev.IsVisible = false;
+      
+      var accounting = SBContracts.AccountingDocumentBases.As(attach);
+      if (accounting != null)
+      {
+        _obj.InternalApprovalStateSberDev = accounting.LeadingDocument?.InternalApprovalState;
+        _obj.ExternalApprovalStateSberDev = accounting.LeadingDocument?.ExternalApprovalState;
+      }
     }
 
     public override void BeforeComplete(Sungero.Workflow.Server.BeforeCompleteEventArgs e)

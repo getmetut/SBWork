@@ -139,4 +139,34 @@
   <data name="Property_OurCompany" xml:space="preserve">
     <value>Our company</value>
   </data>
+  <data name="Property_ExternalApprovalStateSberDev" xml:space="preserve">
+    <value>Contract ext. approval</value>
+  </data>
+  <data name="Enum_ExternalApprovalStateSberDev_Unsigned" xml:space="preserve">
+    <value>Unsigned</value>
+  </data>
+  <data name="Enum_ExternalApprovalStateSberDev_OnApproval" xml:space="preserve">
+    <value>On approval</value>
+  </data>
+  <data name="Enum_ExternalApprovalStateSberDev_Signed" xml:space="preserve">
+    <value>Signed</value>
+  </data>
+  <data name="Property_InternalApprovalStateSberDev" xml:space="preserve">
+    <value>Contract int. approval</value>
+  </data>
+  <data name="Enum_InternalApprovalStateSberDev_Aborted" xml:space="preserve">
+    <value>Aborted</value>
+  </data>
+  <data name="Enum_InternalApprovalStateSberDev_OnApproval" xml:space="preserve">
+    <value>On approval</value>
+  </data>
+  <data name="Enum_InternalApprovalStateSberDev_OnRework" xml:space="preserve">
+    <value>On rework</value>
+  </data>
+  <data name="Enum_InternalApprovalStateSberDev_PendingSign" xml:space="preserve">
+    <value>Pending signature</value>
+  </data>
+  <data name="Enum_InternalApprovalStateSberDev_Signed" xml:space="preserve">
+    <value>Signed</value>
+  </data>
 </root>

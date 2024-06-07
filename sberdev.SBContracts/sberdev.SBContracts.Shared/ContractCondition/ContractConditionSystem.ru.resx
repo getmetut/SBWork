@@ -187,4 +187,16 @@
   <data name="Enum_ConditionType_IsNeedCheckCp" xml:space="preserve">
     <value>Сумма договоров по ка &gt; 500 тыс. руб.</value>
   </data>
+  <data name="Enum_ConditionType_InvApprByTreas" xml:space="preserve">
+    <value>Вх. счет согласован казначеем</value>
+  </data>
+  <data name="Enum_ConditionType_IsPrepayment" xml:space="preserve">
+    <value>Предоплата</value>
+  </data>
+  <data name="Enum_ConditionType_ProductUnit" xml:space="preserve">
+    <value>Бизнес юнит</value>
+  </data>
+  <data name="Property_ProductUnitSberDev" xml:space="preserve">
+    <value>Бизненс юнит</value>
+  </data>
 </root>

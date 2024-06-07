@@ -194,57 +194,6 @@ namespace sberdev.SBContracts
         base.BeforeSave(e);
         Functions.ContractualDocument.BeforeSaveFunction(_obj);
       }
-      
-      //============================================ ATS --------------- Заполнение списка продуктов и калькуляции
-      string spisokProd = "";
-      int prodcount = 0;
-      string spisokCalc = "";
-      if (_obj.ProdCollectionExBaseSberDev.Count > 0)
-      {
-        foreach (var elem in _obj.ProdCollectionExBaseSberDev)
-        {
-          spisokProd += elem.Product.Name + ";";
-          prodcount += 1;
-        }
-      }
-      if (_obj.ProdCollectionPrBaseSberDev.Count > 0)
-      {
-        foreach (var elem in _obj.ProdCollectionPrBaseSberDev)
-        {
-          spisokProd += elem.Product.Name + ";";
-          prodcount += 1;
-        }
-      }
-      if (_obj.CalculationBaseSberDev.Count > 0)
-      {
-        if (prodcount == 1)
-        {
-          string ts = _obj.TotalAmount.HasValue ? " " + _obj.TotalAmount.Value.ToString() : "";
-          spisokCalc += spisokProd + ts;
-        }
-        
-        foreach (var elem3 in _obj.CalculationBaseSberDev)
-        {
-          string dfr = elem3.InterestCalc.HasValue ? " " + elem3.InterestCalc.ToString() : "" ;
-          spisokCalc += spisokProd + ";" + elem3.ProductCalc.Name + dfr + ";";
-        }
-      }
-      else
-      {
-        string tss = _obj.TotalAmount.HasValue ? " " + _obj.TotalAmount.Value.ToString() : "";
-        spisokCalc += spisokProd + tss + ";";
-      }
-      
-      spisokProd = spisokProd.Substring(0, Math.Min(spisokProd.Length, 999));
-      spisokCalc = spisokCalc.Substring(0, Math.Min(spisokCalc.Length, 999));
-      
-      if (_obj.ProductListSDev != spisokProd)
-        _obj.ProductListSDev = spisokProd;
-      
-      if (_obj.CalcListSDev != spisokCalc)
-        _obj.CalcListSDev = spisokCalc;
-      //=============================================== ATS --------------- Заполнение списка продуктов и калькуляции
     }
   }
-
 }

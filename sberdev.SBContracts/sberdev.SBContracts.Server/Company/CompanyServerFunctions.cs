@@ -9,6 +9,5 @@ namespace sberdev.SBContracts.Server
 {
   partial class CompanyFunctions
   {
-
   }
 }

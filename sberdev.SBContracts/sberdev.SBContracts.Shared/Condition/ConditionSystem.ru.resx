@@ -181,4 +181,7 @@
   <data name="Enum_ConditionType_MarketDirect" xml:space="preserve">
     <value>Направления маркетинга</value>
   </data>
+  <data name="Enum_ConditionType_FCDApprByTreasSberDev" xml:space="preserve">
+    <value>КЗД согласовано казначеем</value>
+  </data>
 </root>

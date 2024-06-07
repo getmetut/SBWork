@@ -155,13 +155,13 @@
           "Name": "ControlGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 36.56
+              "Percentage": 37.64
             },
             {
-              "Percentage": 33.21
+              "Percentage": 34.19
             },
             {
-              "Percentage": 27.37
+              "Percentage": 28.18
             }
           ],
           "ColumnNumber": 0,
@@ -239,6 +239,32 @@
           "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "234845af-156f-4722-b624-6047d48d1add",
+          "Name": "InternalApprovalStateSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "ParentGuid": "99078a64-599f-458f-8702-81d97fd3e9b6",
+          "PropertyGuid": "0ce7a08a-0b66-4977-a4c5-4b5aa07a66dd",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "1d3090b2-4035-466a-b604-f9c8f2ec74d4",
+          "Name": "ExternalApprovalStateSberDevSberDev",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "ParentGuid": "99078a64-599f-458f-8702-81d97fd3e9b6",
+          "PropertyGuid": "7c6f8cc7-7564-45e1-9843-347f9aea0105",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -252,7 +278,8 @@
   ],
   "HandledEvents": [
     "BeforeCompleteServer",
-    "BeforeSaveServer"
+    "BeforeSaveServer",
+    "ShowingClient"
   ],
   "IconResourcesKeys": [],
   "IsSelectableAsFolderContent": true,
@@ -315,6 +342,84 @@
       "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "ec9aba4f-0663-4474-b2a2-c20ad9fee91d"
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "7c6f8cc7-7564-45e1-9843-347f9aea0105",
+      "Name": "ExternalApprovalStateSberDev",
+      "CanBeSearch": false,
+      "Code": "ExtApprCheckAs",
+      "DirectValues": [
+        {
+          "NameGuid": "4130ab00-b2ba-4db4-910c-47d244991c6b",
+          "Name": "OnApproval",
+          "Code": "OnApproval",
+          "Versions": []
+        },
+        {
+          "NameGuid": "a1637ee6-f4b4-4c5d-8fe3-cfdd7e383ba0",
+          "Name": "Signed",
+          "Code": "Signed",
+          "Versions": []
+        },
+        {
+          "NameGuid": "a1e757df-a17e-44ee-8b18-f20c10af6856",
+          "Name": "Unsigned",
+          "Code": "Unsigned",
+          "Versions": []
+        }
+      ],
+      "IsEnabled": false,
+      "IsLoadEagerly": true,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "9a8ec8ca-d0d9-478f-a322-300078d63507",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "0ce7a08a-0b66-4977-a4c5-4b5aa07a66dd",
+      "Name": "InternalApprovalStateSberDev",
+      "CanBeSearch": false,
+      "Code": "IntApprCheckAs",
+      "DirectValues": [
+        {
+          "NameGuid": "7f0214de-41b4-4088-8676-ed54bda49e0b",
+          "Name": "OnApproval",
+          "Code": "OnApproval",
+          "Versions": []
+        },
+        {
+          "NameGuid": "ec5ac154-edee-49d6-98a0-ad91ef6239a7",
+          "Name": "OnRework",
+          "Code": "OnRework",
+          "Versions": []
+        },
+        {
+          "NameGuid": "d55d9f0d-2bb2-4df7-940f-14d66c170c7a",
+          "Name": "PendingSign",
+          "Code": "PendingSign",
+          "Versions": []
+        },
+        {
+          "NameGuid": "473ff0c7-fa87-4718-99f9-424358664255",
+          "Name": "Signed",
+          "Code": "Signed",
+          "Versions": []
+        },
+        {
+          "NameGuid": "184896c4-de49-4df9-b2a2-31a779fa1f12",
+          "Name": "Aborted",
+          "Code": "Aborted",
+          "Versions": []
+        }
+      ],
+      "IsEnabled": false,
+      "IsLoadEagerly": true,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "7c6f8cc7-7564-45e1-9843-347f9aea0105",
+      "Versions": []
     }
   ],
   "PublicStructures": [],

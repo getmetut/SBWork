@@ -265,7 +265,7 @@
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "7084be62-0cb5-45f9-bc50-a88ed590caec",
           "Name": "NonContractInvoiceCounterSberDevSberDev",
-          "ColumnNumber": 1,
+          "ColumnNumber": 0,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
           "ParentGuid": "4e94e189-a746-4492-a435-b8a937e0e8fc",
@@ -278,12 +278,38 @@
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "ec404462-9ea2-4aad-8f6f-c5c5a9749547",
           "Name": "NonContractInvoiceCounterMoreSberDevSberDev",
-          "ColumnNumber": 2,
+          "ColumnNumber": 1,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "4e94e189-a746-4492-a435-b8a937e0e8fc",
           "PropertyGuid": "a309578d-a2c0-4ae3-9eb1-7c1c1f794cd7",
           "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "d76770dc-ee62-4ded-a649-0084d67e5105",
+          "Name": "InternalApprovalStateSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "ParentGuid": "4e94e189-a746-4492-a435-b8a937e0e8fc",
+          "PropertyGuid": "b2204868-7dff-483b-82e7-92071356331a",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "0bf11e64-b7e1-461d-b25f-608cba0d24bb",
+          "Name": "ExternalApprovalStateSberDevSberDev",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "ParentGuid": "4e94e189-a746-4492-a435-b8a937e0e8fc",
+          "PropertyGuid": "044b13bf-9042-4180-8621-9c8e523075b3",
+          "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
         }
@@ -371,6 +397,84 @@
       "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "065c30cd-ed0f-4915-890b-29d7d32bb9e7"
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "b2204868-7dff-483b-82e7-92071356331a",
+      "Name": "InternalApprovalStateSberDev",
+      "CanBeSearch": false,
+      "Code": "IntApprSimpAs",
+      "DirectValues": [
+        {
+          "NameGuid": "7f0214de-41b4-4088-8676-ed54bda49e0b",
+          "Name": "OnApproval",
+          "Code": "OnApproval",
+          "Versions": []
+        },
+        {
+          "NameGuid": "ec5ac154-edee-49d6-98a0-ad91ef6239a7",
+          "Name": "OnRework",
+          "Code": "OnRework",
+          "Versions": []
+        },
+        {
+          "NameGuid": "d55d9f0d-2bb2-4df7-940f-14d66c170c7a",
+          "Name": "PendingSign",
+          "Code": "PendingSign",
+          "Versions": []
+        },
+        {
+          "NameGuid": "473ff0c7-fa87-4718-99f9-424358664255",
+          "Name": "Signed",
+          "Code": "Signed",
+          "Versions": []
+        },
+        {
+          "NameGuid": "184896c4-de49-4df9-b2a2-31a779fa1f12",
+          "Name": "Aborted",
+          "Code": "Aborted",
+          "Versions": []
+        }
+      ],
+      "IsEnabled": false,
+      "IsLoadEagerly": true,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "a309578d-a2c0-4ae3-9eb1-7c1c1f794cd7",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "044b13bf-9042-4180-8621-9c8e523075b3",
+      "Name": "ExternalApprovalStateSberDev",
+      "CanBeSearch": false,
+      "Code": "ExtApprSimpAs",
+      "DirectValues": [
+        {
+          "NameGuid": "4130ab00-b2ba-4db4-910c-47d244991c6b",
+          "Name": "OnApproval",
+          "Code": "OnApproval",
+          "Versions": []
+        },
+        {
+          "NameGuid": "a1637ee6-f4b4-4c5d-8fe3-cfdd7e383ba0",
+          "Name": "Signed",
+          "Code": "Signed",
+          "Versions": []
+        },
+        {
+          "NameGuid": "a1e757df-a17e-44ee-8b18-f20c10af6856",
+          "Name": "Unsigned",
+          "Code": "Unsigned",
+          "Versions": []
+        }
+      ],
+      "IsEnabled": false,
+      "IsLoadEagerly": true,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "b2204868-7dff-483b-82e7-92071356331a",
+      "Versions": []
     }
   ],
   "PublicStructures": [],

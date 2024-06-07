@@ -13,7 +13,8 @@ namespace sberdev.SBContracts
     public override void Saving(Sungero.Domain.SavingEventArgs e)
     {
       base.Saving(e);
-      var incInv = SBContracts.IncomingInvoices.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault());
+      var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      var incInv = SBContracts.IncomingInvoices.As(attach);
       if (incInv != null)
       {
         var counter = SberContracts.NonContractInvoiceCounters.GetAll().Where(c => c.Counterparty == incInv.Counterparty
@@ -25,6 +26,13 @@ namespace sberdev.SBContracts
         }
         else
           _obj.NonContractInvoiceCounterSberDev = 0;
+      }
+      
+      var accounting = SBContracts.AccountingDocumentBases.As(attach);
+      if (accounting != null)
+      {
+        _obj.InternalApprovalStateSberDev = accounting.LeadingDocument?.InternalApprovalState;
+        _obj.ExternalApprovalStateSberDev = accounting.LeadingDocument?.ExternalApprovalState;
       }
     }
 

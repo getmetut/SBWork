@@ -145,4 +145,34 @@
   <data name="Property_NonContractInvoiceCounterMoreSberDev" xml:space="preserve">
     <value>Подробнее</value>
   </data>
+  <data name="Enum_InternalApprovalStateSberDev_Aborted" xml:space="preserve">
+    <value>Прекращено</value>
+  </data>
+  <data name="Enum_InternalApprovalStateSberDev_OnApproval" xml:space="preserve">
+    <value>На согласовании</value>
+  </data>
+  <data name="Enum_InternalApprovalStateSberDev_OnRework" xml:space="preserve">
+    <value>На доработке</value>
+  </data>
+  <data name="Enum_InternalApprovalStateSberDev_PendingSign" xml:space="preserve">
+    <value>На подписании</value>
+  </data>
+  <data name="Enum_InternalApprovalStateSberDev_Signed" xml:space="preserve">
+    <value>Подписан</value>
+  </data>
+  <data name="Property_InternalApprovalStateSberDev" xml:space="preserve">
+    <value>Внутр. согл. договора</value>
+  </data>
+  <data name="Enum_ExternalApprovalStateSberDev_Unsigned" xml:space="preserve">
+    <value>Не подписан</value>
+  </data>
+  <data name="Enum_ExternalApprovalStateSberDev_OnApproval" xml:space="preserve">
+    <value>На согласовании</value>
+  </data>
+  <data name="Enum_ExternalApprovalStateSberDev_Signed" xml:space="preserve">
+    <value>Подписан</value>
+  </data>
+  <data name="Property_ExternalApprovalStateSberDev" xml:space="preserve">
+    <value>Согл. договора с контраг.</value>
+  </data>
 </root>

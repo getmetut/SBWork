@@ -29,7 +29,7 @@ namespace sberdev.SBContracts
         var filteredParties = allCounterparties.Where(cp =>
                                                       {
                                                         var totalAmount = PublicFunctions.Counterparty.CalculateTotalAmount(SBContracts.Counterparties.As(cp), dateFrom, dateTo);
-                                                        return (_filter.AmountLess100k && totalAmount <= 100000) ||
+                                                        return (_filter.AmountLess100k && totalAmount <= 100000 && totalAmount != 0) ||
                                                           (_filter.AmountLess500k && totalAmount > 100000 && totalAmount < 500000) ||
                                                           (_filter.AmountMore500k && totalAmount >= 500000);
                                                       }).ToList();

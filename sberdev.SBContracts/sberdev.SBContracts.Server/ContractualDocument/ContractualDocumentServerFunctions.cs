@@ -16,6 +16,7 @@ namespace sberdev.SBContracts.Server
       CreateOrUpdateAnaliticsCashe();
       ReplaceProducts();
       CreateOrUpdateAnaliticsCasheGeneral();
+      _obj.CalcListSDev = PublicFunctions.ContractualDocument.GetCalculationString(_obj);
     }
     
     #region Прочие функции

@@ -25,6 +25,9 @@ namespace sberdev.SBContracts.Server
           return head;
         }
         
+        if (_obj.ConditionType == ConditionType.FCDApprByTreasSberDev)
+          return "Есть согласование на КЗД от казначея?";
+        
         if (_obj.ConditionType == ConditionType.ContractSigned)
           return "Договор подписан?";
         

@@ -1599,23 +1599,13 @@
     },
     {
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "83f9143e-5ff9-42fb-9b71-83e5cc114d69",
-      "Name": "ProductListSDev",
-      "Code": "ProductListSDe",
+      "NameGuid": "1bbd899a-c2d4-40e1-8c92-70ed67da6d2c",
+      "Name": "CalcListSDev",
+      "Code": "CalcListAcc",
       "IsVisibility": false,
       "Length": 1000,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "401165db-5e03-4339-90be-abf04c16912c"
-    },
-    {
-      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "1bbd899a-c2d4-40e1-8c92-70ed67da6d2c",
-      "Name": "CalcListSDev",
-      "Code": "CalcListSDev",
-      "IsVisibility": false,
-      "Length": 1000,
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
-      "PreviousPropertyGuid": "83f9143e-5ff9-42fb-9b71-83e5cc114d69"
     },
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
@@ -1677,6 +1667,19 @@
       "Placement": "Shared",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "GetCalculationString",
+      "Parameters": [
+        {
+          "Name": "accountingDocumentBase",
+          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
+          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
     },
     {
       "Name": "GetMVZBudgetOwner",

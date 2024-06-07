@@ -204,15 +204,6 @@
   "IsolatedNamespace": "Sungero.Custom.Isolated",
   "Jobs": [
     {
-      "NameGuid": "605d225b-de9f-4db0-af26-37766288e66b",
-      "Name": "JobSearchDocumProdCalc",
-      "GenerateHandler": true,
-      "IsAtEndOfMonth": true,
-      "Monthly": "DaysOfMonth",
-      "MonthSchedule": "Monthly",
-      "StartAt": "1753-01-01T22:30:00"
-    },
-    {
       "NameGuid": "331a19e9-6a5e-464a-8f37-d13c4ab61d50",
       "Name": "JobsinReference",
       "Daily": "Repeat",
@@ -328,26 +319,7 @@
   "ServerNamespace": "Sungero.Custom.Server",
   "SharedAssemblyName": "Sungero.Custom.Shared",
   "SharedNamespace": "Sungero.Custom.Shared",
-  "SpecialFolders": [
-    {
-      "NameGuid": "20c6f0c0-c53e-41f1-bc2d-7c7e73d205fc",
-      "Name": "AccountingDocuments",
-      "DefaultContentType": "2b3f0839-76de-4b49-800c-c1531253a3e7",
-      "DisplayType": "Module",
-      "FilterPanel": {
-        "NameGuid": "98cd49fe-7c84-4fda-8ef8-0816e6408bc0",
-        "Name": "FilterPanel",
-        "Controls": []
-      },
-      "HandledEvents": [
-        "DataQueryServer"
-      ],
-      "IconPath": "AccountingDocuments_20c6f0c0c53e41f1bc2d7c7e73d205fc.ico",
-      "IsShow": true,
-      "Kind": "Computable",
-      "NeedShowMarkedCount": false
-    }
-  ],
+  "SpecialFolders": [],
   "Version": "0.1.0.48",
   "Widgets": [],
   "Versions": [

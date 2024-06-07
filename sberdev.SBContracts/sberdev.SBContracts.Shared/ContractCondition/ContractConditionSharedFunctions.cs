@@ -16,6 +16,10 @@ namespace sberdev.SBContracts.Shared
     {
       base.ChangePropertiesAccess();
 
+      var isProductUnit = _obj.ConditionType == ConditionType.ProductUnit;
+      _obj.State.Properties.ProductUnitSberDev.IsVisible = isProductUnit;
+      _obj.State.Properties.ProductUnitSberDev.IsRequired = isProductUnit;
+      
       var isEndorseFrom = _obj.ConditionType == ConditionType.EndorseFromSberDev;
       _obj.State.Properties.EndorserSberDev.IsVisible = isEndorseFrom;
       _obj.State.Properties.EndorserSberDev.IsRequired = isEndorseFrom;
@@ -59,6 +63,9 @@ namespace sberdev.SBContracts.Shared
     {
       base.ClearHiddenProperties();
       
+      if(!_obj.State.Properties.ProductUnitSberDev.IsVisible)
+        _obj.ProductUnitSberDev.Clear();
+      
       if(!_obj.State.Properties.InitiatorsDepartment.IsVisible)
         _obj.InitiatorsDepartment.Clear();
       
@@ -87,6 +94,64 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      if (_obj.ConditionType == ConditionType.ProductUnit)
+      {
+        bool flag = false;
+        var acc = SBContracts.AccountingDocumentBases.As(document);
+        var contr = SBContracts.ContractualDocuments.As(document);
+        if (acc != null)
+        {
+          var products = acc.CalculationBaseSberDev.Select(c => c.ProductCalc).ToList();
+          products.Add(acc.ProdCollectionBaseSberDev.FirstOrDefault()?.Product);
+          var units = products.Select(p => p.ProductUnit).ToList();
+          foreach (var unit in _obj.ProductUnitSberDev.Select(p => p.ProductUnit).ToList())
+            if (units.Any(u => u == unit))
+              flag = true;
+        }
+        if (contr != null)
+        {
+          var products = contr.CalculationBaseSberDev.Select(c => c.ProductCalc).ToList();
+          products.Add(contr.ProdCollectionExBaseSberDev.FirstOrDefault()?.Product);
+          products.Add(contr.ProdCollectionPrBaseSberDev.FirstOrDefault()?.Product);
+          var units = products.Where(p => p != null).Select(p => p.ProductUnit).ToList();
+          foreach (var unit in _obj.ProductUnitSberDev.Select(p => p.ProductUnit).ToList())
+            if (units.Any(u => u == unit))
+              flag = true;
+        }
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
+      if (_obj.ConditionType == ConditionType.IsPrepayment)
+      {
+        bool flag = false;
+        var acc = SBContracts.AccountingDocumentBases.As(document);
+        if (acc != null && acc.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Prepayment)
+        {
+          flag = true;
+        }
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
+      if (_obj.ConditionType == ConditionType.InvApprByTreas)
+      {
+        bool flag = false;
+        var acc = SBContracts.AccountingDocumentBases.As(document);
+        var inv = acc.InvoiceSberDev;
+        if (inv != null && inv.HasVersions)
+        {
+          var signInfos = Signatures.Get(inv.LastVersion);
+          foreach (var signInfo in signInfos)
+          {
+            if (signInfo.SubstitutedUserFullName.Split(' ').FirstOrDefault() == "Казначей" && signInfo.IsValid)
+            {
+              flag = true;
+              break;
+            }
+          }
+        }
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
       if (_obj.ConditionType == ConditionType.IsNeedCheckCp)
       {
         var contr = SBContracts.ContractualDocuments.As(document);
@@ -682,6 +747,20 @@ namespace sberdev.SBContracts.Shared
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.ProductUnit); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.ProductUnit); // sup agreement
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.ProductUnit); // сontract statement
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.ProductUnit); // universal transfer document
+      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.ProductUnit); // waybill
+      
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.IsPrepayment); // сontract statement
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.IsPrepayment); // universal transfer document
+      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.IsPrepayment); // waybill
+      
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.InvApprByTreas); // сontract statement
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.InvApprByTreas); // universal transfer document
+      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.InvApprByTreas); // waybill
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.IsNeedCheckCp); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.IsNeedCheckCp); // sup agreement

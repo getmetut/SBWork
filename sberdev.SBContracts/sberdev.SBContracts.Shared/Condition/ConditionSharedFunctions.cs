@@ -62,6 +62,26 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      if (_obj.ConditionType == ConditionType.FCDApprByTreasSberDev)
+      {
+        bool flag = false;
+        var incInv = SBContracts.IncomingInvoices.As(document);
+        var fcd = incInv.AccDocSberDev;
+        if (fcd != null && fcd.HasVersions)
+        {
+          var signInfos = Signatures.Get(fcd.LastVersion);
+          foreach (var signInfo in signInfos)
+          {
+            if (signInfo.SubstitutedUserFullName.Split(' ').FirstOrDefault() == "Казначей" && signInfo.IsValid)
+            {
+              flag = true;
+              break;
+            }
+          }
+        }
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
       if (_obj.ConditionType == ConditionType.MarketDirect)
       {
         var acc = SBContracts.AccountingDocumentBases.As(document);
@@ -703,6 +723,8 @@ namespace sberdev.SBContracts.Shared
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      
+      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.FCDApprByTreasSberDev); // incoming invoice
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.MarketDirect); // incoming invoice
       

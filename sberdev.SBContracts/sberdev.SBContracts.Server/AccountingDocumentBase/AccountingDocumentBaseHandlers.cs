@@ -137,46 +137,7 @@ namespace sberdev.SBContracts
       Functions.AccountingDocumentBase.CreateOrUpdateAnaliticsCashe(_obj);
       Functions.AccountingDocumentBase.CreateOrUpdateAnaliticsCasheGeneral(_obj);
       Functions.AccountingDocumentBase.CancelRequiredPropeties(_obj);
-      //============================================ ATS --------------- Заполнение списка продуктов и калькуляции
-      string spisokProd = "";
-      string spisokCalc = "";
-      if (_obj.ProdCollectionBaseSberDev.Count > 0)
-      {
-        foreach (var elem in _obj.ProdCollectionBaseSberDev)
-        {
-          if (_obj.ProdCollectionBaseSberDev.Count == 1)
-          {
-            string ts = _obj.TotalAmount.HasValue ? " " + _obj.TotalAmount.Value.ToString() : "";
-            spisokProd += elem.Product.Name + ts + ";";
-          }
-          else
-            spisokProd += elem.Product.Name + ";";
-        }        
-          
-      }
-      if (_obj.CalculationBaseSberDev.Count > 0)
-      {
-        foreach (var elem3 in _obj.CalculationBaseSberDev)
-        {
-          string rp = elem3.InterestCalc.HasValue ? " " + elem3.InterestCalc.ToString() : "";
-          spisokCalc += spisokProd + ";" + elem3.ProductCalc.Name + rp + ";";
-        }
-      }
-      else
-      {
-        string ts2 = _obj.TotalAmount.HasValue ? " " + _obj.TotalAmount.Value.ToString() : "";
-        spisokCalc += spisokProd + ":" + ts2;
-      }
-      
-      spisokProd = spisokProd.Substring(0, Math.Min(spisokProd.Length, 999));
-      spisokCalc = spisokCalc.Substring(0, Math.Min(spisokCalc.Length, 999));
-      
-      if (_obj.ProductListSDev != spisokProd)
-        _obj.ProductListSDev = spisokProd;
-      
-      if (_obj.CalcListSDev != spisokCalc)
-        _obj.CalcListSDev = spisokCalc;
-      //=============================================== ATS --------------- Заполнение списка продуктов и калькуляции
+      _obj.CalcListSDev = PublicFunctions.AccountingDocumentBase.GetCalculationString(_obj);
       var error = Functions.AccountingDocumentBase.BanToSaveForStabs(_obj);
       if (error != "")
         e.AddError(error);

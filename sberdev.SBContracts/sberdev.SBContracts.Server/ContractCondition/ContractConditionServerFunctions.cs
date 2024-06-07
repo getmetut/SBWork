@@ -13,10 +13,27 @@ namespace sberdev.SBContracts.Server
     {
       using (TenantInfo.Culture.SwitchTo())
       {
+        if (_obj.ConditionType == ConditionType.ProductUnit)
+         {
+          string head = "В продуктах есть юнит:";
+          foreach (var dir in _obj.ProductUnitSberDev)
+            head += String.Format(" {0};", dir.ProductUnit.Name);
+          head = head.TrimEnd(';');
+          head += "?";
+          return head;
+        }
+        
+        if (_obj.ConditionType == ConditionType.IsPrepayment)
+          return "Тип оплаты = предоплата?";
+        
+        if (_obj.ConditionType == ConditionType.InvApprByTreas)
+          return "Есть согласование на счете от казначея?";
+        
         if (_obj.ConditionType == ConditionType.IsNeedCheckCp)
         {
           return "Сумма расходных договоров по данному КА больше 500 тыс. руб. (за календарный год)?";
         }
+        
         if (_obj.ConditionType == ConditionType.EndorseFromSberDev)
         {
           return "Есть согласование от " + _obj.EndorserSberDev.Name + "?";
@@ -27,7 +44,7 @@ namespace sberdev.SBContracts.Server
           string head = "Направление маркетинга =";
           foreach (var dir in _obj.MarketDirectSberDev)
             head += String.Format(" {0};", dir.MarketDirect.Name);
-          head = head.TrimEnd(new char[] {';'});
+          head = head.TrimEnd(';');
           head += "?";
           return head;
         }
@@ -42,7 +59,7 @@ namespace sberdev.SBContracts.Server
           string head = "Подразделение инициатора согласования =";
           foreach (var dep in _obj.InitiatorsDepartment)
             head += String.Format(" {0};", dep.InitiatorsDepartment.Name);
-          head = head.TrimEnd(new char[] {';'});
+          head = head.TrimEnd(';');
           head += "?";
           return head;
         }
@@ -103,7 +120,7 @@ namespace sberdev.SBContracts.Server
           {
             text = text + str.AccountingArticles.Name + ", ";
           }
-          text = text.TrimEnd(new char[]{','});
+          text = text.TrimEnd(',');
           text += "?";
           return text;
         }
@@ -116,7 +133,7 @@ namespace sberdev.SBContracts.Server
           {
             text = text + str.BudgetItem.Name + ", ";
           }
-          text = text.TrimEnd(new char[]{','});
+          text = text.TrimEnd(',');
           text += "?";
           return text;
         }

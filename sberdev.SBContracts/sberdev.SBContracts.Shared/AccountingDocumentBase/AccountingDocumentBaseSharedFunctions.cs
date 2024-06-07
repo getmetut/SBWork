@@ -9,6 +9,30 @@ namespace sberdev.SBContracts.Shared
 {
   partial class AccountingDocumentBaseFunctions
   {
+
+    /// <summary>
+    /// Формирует строку с продуктами
+    /// </summary>
+    [Public]
+    public string GetCalculationString()
+    {
+      string spisokCalc = "";
+      if (_obj.CalculationBaseSberDev.Count > 0)
+      {
+        if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Absolute)
+          foreach (var elem in _obj.CalculationBaseSberDev)
+            spisokCalc += elem.ProductCalc.Name + " " + Math.Round((decimal)elem.AbsoluteCalc.Value, 2) + "; ";
+          else
+            foreach (var elem in _obj.CalculationBaseSberDev)
+              spisokCalc += elem.ProductCalc.Name + " " + Math.Round((decimal)elem.InterestCalc.Value, 2) + "; ";
+      }
+      else
+      {
+        spisokCalc += _obj.ProdCollectionBaseSberDev.FirstOrDefault()?.Product.Name + " " + _obj.TotalAmount;
+      }
+      spisokCalc = spisokCalc.Substring(0, Math.Min(spisokCalc.Length, 999)).TrimEnd(';');
+      return spisokCalc;
+    }
     
     [Public]
     public Sungero.CoreEntities.IUser GetMVZBudgetOwner()

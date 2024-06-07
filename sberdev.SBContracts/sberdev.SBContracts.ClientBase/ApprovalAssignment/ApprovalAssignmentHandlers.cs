@@ -33,6 +33,19 @@ namespace sberdev.SBContracts
         _obj.State.Properties.NonContractInvoiceCounterMoreSberDev.IsVisible = false;
       }
       
+      var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      var accounting = SBContracts.AccountingDocumentBases.As(attach);
+      if (accounting != null)
+      {
+        _obj.State.Properties.InternalApprovalStateSberDev.IsVisible = true;
+        _obj.State.Properties.ExternalApprovalStateSberDev.IsVisible = true;
+      }
+      else
+      {
+        _obj.State.Properties.InternalApprovalStateSberDev.IsVisible = false;
+        _obj.State.Properties.ExternalApprovalStateSberDev.IsVisible = false;
+      }
+      
       if ((!approvalStage.AmountChangesberdev.GetValueOrDefault()) || (!performer.IncludedIn( sberdev.SberContracts.PublicConstants.Module.KZTypeGuid)))
       {e.HideAction(_obj.Info.Actions.AmountChangesberdev);}
       base.Showing(e);

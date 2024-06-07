@@ -1612,6 +1612,19 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "GetCalculationString",
+      "Parameters": [
+        {
+          "Name": "contractualDocument",
+          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "GetMVZBudgetOwner",
       "Parameters": [
         {
