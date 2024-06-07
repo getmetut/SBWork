@@ -45,6 +45,12 @@
   "IsolatedNamespace": "Sungero.POST.Isolated",
   "PublicFunctions": [
     {
+      "Name": "Contracts",
+      "ReturnType": "global::Sungero.POST.Structures.Module.IStructContractList",
+      "ReturnTypeFullName": "Sungero.POST.Structures.Module.IStructContractList",
+      "WebApiRequestType": "Get"
+    },
+    {
       "Name": "GetClosedDocs",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String",
@@ -441,6 +447,251 @@
         }
       ],
       "StructureNamespace": "Sungero.POST.Structures.Module"
+    },
+    {
+      "Name": "StructContract",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "AccArtExBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AccArtMVZOldSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AccArtPrBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AccArtsberdevOldSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Assignee",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AssociatedApplication",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Author",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "BudItemBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "BudItemsberdevOldSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "BusinessUnit",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "CalculationBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "CaseFile",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "CollectionProperty",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Contact",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Counterparty",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "CounterpartySignatory",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Currency",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DeliveredTo",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DeliveryMethod",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Department",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DirectionMVZ",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DocumentGroup",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DocumentKind",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DocumentRegister",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "LeadingDocument",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MarketDirectSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Milestones",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MVPBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MVPsberdevOldSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MVZBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MVZsberdevOldSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "OurSignatory",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "OurSigningReason",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Parameters",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "PreparedBy",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ProdCollectionExBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ProdCollectionPrBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Project",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ResponsibleEmployee",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ResponsibleForReturnEmployee",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Subtopic",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Topic",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Tracking",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "VatRate",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Versions",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "Sungero.POST.Structures.Module"
+    },
+    {
+      "Name": "StructContractList",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "ContractList",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IStructContract>"
+        }
+      ],
+      "StructureNamespace": "Sungero.POST.Structures.Module"
     }
   ],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
@@ -451,7 +702,7 @@
   "SharedAssemblyName": "Sungero.POST.Shared",
   "SharedNamespace": "Sungero.POST.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.125",
+  "Version": "0.0.1.127",
   "Widgets": [],
   "Versions": [
     {

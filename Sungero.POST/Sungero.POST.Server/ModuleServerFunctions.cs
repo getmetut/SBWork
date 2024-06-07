@@ -11,8 +11,72 @@ using System.Text;
 
 namespace Sungero.POST.Server
 {
+  
   public class ModuleFunctions
   {
+
+    /// <summary>
+    /// Получение Маркетингового документа
+    /// </summary>
+    /// <param name="IDDoc">Тестовая строка</param>
+    [Public(WebApiRequestType = RequestType.Get)]
+    public Structures.Module.IStructContractList Contracts()
+    {
+      var Contracts = sberdev.SBContracts.Contracts.GetAll();
+      var Request = Structures.Module.StructContractList.Create();
+      foreach (var Dog in Contracts)
+      {
+        var StrContract = Structures.Module.StructContract.Create();
+        StrContract.AccArtExBaseSberDev = Dog.AccArtExBaseSberDev.ToString();
+        StrContract.AccArtMVZOldSberDev = Dog.AccArtMVZOldSberDev.ToString();
+        StrContract.AccArtPrBaseSberDev = Dog.AccArtPrBaseSberDev.ToString();
+        StrContract.AccArtsberdevOldSberDev = Dog.AccArtsberdevOldSberDev.ToString();
+        StrContract.Assignee = Dog.Assignee.ToString();
+        StrContract.AssociatedApplication = Dog.AssociatedApplication.ToString();
+        StrContract.Author = Dog.Author.ToString();
+        StrContract.BudItemBaseSberDev = Dog.BudItemBaseSberDev.ToString();
+        StrContract.BudItemsberdevOldSberDev = Dog.BudItemsberdevOldSberDev.ToString();
+        StrContract.BusinessUnit = Dog.BusinessUnit.ToString();
+        StrContract.CalculationBaseSberDev = Dog.CalculationBaseSberDev.ToString();
+        StrContract.CaseFile = Dog.CaseFile.ToString();
+        StrContract.CollectionProperty = Dog.CollectionProperty.ToString();
+        StrContract.Contact = Dog.Contact.ToString();
+        StrContract.Counterparty = Dog.Counterparty.ToString();
+        StrContract.CounterpartySignatory = Dog.CounterpartySignatory.ToString();
+        StrContract.Currency = Dog.Currency.ToString();
+        StrContract.DeliveredTo = Dog.DeliveredTo.ToString();
+        StrContract.DeliveryMethod = Dog.DeliveryMethod.ToString();
+        StrContract.Department = Dog.Department.ToString();
+        StrContract.DirectionMVZ = Dog.DirectionMVZ.ToString();
+        StrContract.DocumentGroup = Dog.DocumentGroup.ToString();
+        StrContract.DocumentKind = Dog.DocumentKind.ToString();
+        StrContract.DocumentRegister = Dog.DocumentRegister.ToString();
+        StrContract.LeadingDocument = Dog.LeadingDocument.ToString();
+        StrContract.MarketDirectSberDev = Dog.MarketDirectSberDev.ToString();
+        StrContract.Milestones = Dog.Milestones.ToString();
+        StrContract.MVPBaseSberDev = Dog.MVPBaseSberDev.ToString();
+        StrContract.MVPsberdevOldSberDev = Dog.MVPsberdevOldSberDev.ToString();
+        StrContract.MVZBaseSberDev = Dog.MVZBaseSberDev.ToString();
+        StrContract.MVZsberdevOldSberDev = Dog.MVZsberdevOldSberDev.ToString();
+        StrContract.OurSignatory = Dog.OurSignatory.ToString();
+        StrContract.OurSigningReason = Dog.OurSigningReason.ToString();
+        StrContract.Parameters = Dog.Parameters.ToString();
+        StrContract.PreparedBy = Dog.PreparedBy.ToString();
+        StrContract.ProdCollectionExBaseSberDev = Dog.ProdCollectionExBaseSberDev.ToString();
+        StrContract.ProdCollectionPrBaseSberDev = Dog.ProdCollectionPrBaseSberDev.ToString();
+        StrContract.Project = Dog.Project.ToString();
+        StrContract.ResponsibleEmployee = Dog.ResponsibleEmployee.ToString();
+        StrContract.ResponsibleForReturnEmployee = Dog.ResponsibleForReturnEmployee.ToString();
+        StrContract.Subtopic = Dog.Subtopic.ToString();
+        StrContract.Topic = Dog.Topic.ToString();
+        StrContract.Tracking = Dog.Tracking.ToString();
+        StrContract.VatRate = Dog.VatRate.ToString();
+        StrContract.Versions = Dog.Versions.ToString();
+        
+        Request.ContractList.Add(StrContract);
+      }
+      return Request;
+    }
 
     /// <summary>
     /// Получение Маркетингового документа

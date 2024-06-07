@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -6,6 +6,68 @@ using Sungero.CoreEntities;
 
 namespace Sungero.POST.Structures.Module
 {
+
+  /// <summary>
+  /// Структура списка договоров
+  /// </summary>
+  [Public]
+  partial class StructContractList
+  {
+    public List<Sungero.POST.Structures.Module.IStructContract> ContractList {get; set; }
+  }
+  
+  /// <summary>
+  /// Структура договора
+  /// </summary>
+  [Public]
+  partial class StructContract
+  {
+    public string AccArtExBaseSberDev { get; set; } // { get; set; } //Target="IAccountingArticless"/>
+    public string AccArtMVZOldSberDev { get; set; } //Target="IAccountingArticless"/>
+    public string AccArtPrBaseSberDev { get; set; } //Target="IAccountingArticless"/>
+    public string AccArtsberdevOldSberDev { get; set; } //Target="IAccountingArticless"/>
+    public string Assignee { get; set; } //Target="IEmployees"/>
+    public string AssociatedApplication { get; set; } //Target="IAssociatedApplications"/>
+    public string Author { get; set; } //Target="IUsers"/>
+    public string BudItemBaseSberDev { get; set; } //Target="IBudgetItems"/>
+    public string BudItemsberdevOldSberDev { get; set; } //Target="IBudgetItems"/>
+    public string BusinessUnit { get; set; } //Target="IBusinessUnits"/>
+    public string CalculationBaseSberDev { get; set; } //Target="IContractualDocumentCalculationBaseSberDevs"/>
+    public string CaseFile { get; set; } //Target="ICaseFiles"/>
+    public string CollectionProperty { get; set; } //Target="IContractCollectionProperties"/>
+    public string Contact { get; set; } //Target="IContacts"/>
+    public string Counterparty { get; set; } //Target="ICounterparties"/>
+    public string CounterpartySignatory { get; set; } //Target="IContacts"/>
+    public string Currency { get; set; } //Target="ICurrencies"/>
+    public string DeliveredTo { get; set; } //Target="IEmployees"/>
+    public string DeliveryMethod { get; set; } //Target="IMailDeliveryMethods"/>
+    public string Department { get; set; } //Target="IDepartments"/>
+    public string DirectionMVZ { get; set; } //Target="IContractDirectionMVZs"/>
+    public string DocumentGroup { get; set; } //Target="IDocumentGroupBases"/>
+    public string DocumentKind { get; set; } //Target="IDocumentKinds"/>
+    public string DocumentRegister { get; set; } //Target="IDocumentRegisters"/>
+    public string LeadingDocument { get; set; } //Target="IOfficialDocuments"/>
+    public string MarketDirectSberDev { get; set; } //Target="ISberContractsMarketingDirections"/>
+    public string Milestones { get; set; } //Target="IContractualDocumentMilestoness"/>
+    public string MVPBaseSberDev { get; set; } //Target="IMVZs"/>
+    public string MVPsberdevOldSberDev { get; set; } //Target="IMVZs"/>
+    public string MVZBaseSberDev { get; set; } //Target="IMVZs"/>
+    public string MVZsberdevOldSberDev { get; set; } //Target="IMVZs"/>
+    public string OurSignatory { get; set; } //Target="IEmployees"/>
+    public string OurSigningReason { get; set; } //Target="ISignatureSettings"/>
+    public string Parameters { get; set; } //Target="IElectronicDocumentParameterss"/>
+    public string PreparedBy { get; set; } //Target="IEmployees"/>
+    public string ProdCollectionExBaseSberDev { get; set; } //Target="IContractualDocumentProdCollectionExBaseSberDevs"/>
+    public string ProdCollectionPrBaseSberDev { get; set; } //Target="IContractualDocumentProdCollectionPrBaseSberDevs"/>
+    public string Project { get; set; } //Target="IProjectBases"/>
+    public string ResponsibleEmployee { get; set; } //Target="IEmployees"/>
+    public string ResponsibleForReturnEmployee { get; set; } //Target="IEmployees"/>
+    public string Subtopic { get; set; } //Target="ITopics"/>
+    public string Topic { get; set; } //Target="ITopics"/>
+    public string Tracking { get; set; } //Target="IOfficialDocumentTrackings"/>
+    public string VatRate { get; set; } //Target="IVatRates"/>
+    public string Versions { get; set; } //Target="IElectronicDocumentVersionss"/>
+  }
 
   /// <summary>
   /// Структура выдачи маркетингового документа
@@ -120,8 +182,8 @@ namespace Sungero.POST.Structures.Module
   [Public]
   partial class ContractRequest
   {  
-    public string GUIDRX { get; set; }          //" GUID "	
-    public string Kind { get; set; }            //" GUID "    	
+    public string GUIDRX { get; set; }          // { get; set; } //GUID "	
+    public string Kind { get; set; }            // { get; set; } //GUID "    	
     public string Name { get; set; }            //"текст"	Наименование
     public string Counter { get; set; }         //"GUID"	Контрагент
     public string Buyer { get; set; }           //"GUID"	Покупатель
