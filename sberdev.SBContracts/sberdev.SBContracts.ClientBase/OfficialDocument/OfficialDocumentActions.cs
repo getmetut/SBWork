@@ -5,6 +5,8 @@ using Sungero.Core;
 using Sungero.CoreEntities;
 using sberdev.SBContracts.OfficialDocument;
 using System.IO;
+using Sungero.Metadata;
+using Sungero.Domain.Shared;
 
 namespace sberdev.SBContracts.Client
 {
@@ -46,11 +48,10 @@ namespace sberdev.SBContracts.Client
   {
     public virtual void UnblockVersionSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-    /*  var f = _obj.LastVersion;
-      var g = f.GetEntityMetadata().GetOriginal();
-      var l = g.NameGuid;
-      var srt = l.ToString();
-      PublicFunctions.Module.Remote.UnblockEntityByDatabase(_obj.LastVersion.RootEntity);*/
+      if (_obj.HasVersions == true)
+        Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand("delete from Sungero_System_BinDataLocks where EntityId = "
+                                                                 + _obj.LastVersion.Id.ToString() + " and EntityTypeGuid = '"
+                                                                 + _obj.LastVersion.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "'");
     }
 
     public virtual bool CanUnblockVersionSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
@@ -61,7 +62,7 @@ namespace sberdev.SBContracts.Client
 
     public virtual void UnblockCardSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-      PublicFunctions.Module.Remote.UnblockEntityByDatabase(_obj);
+      PublicFunctions.Module.Remote.UnblockCardByDatabase(_obj);
     }
 
     public virtual bool CanUnblockCardSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)

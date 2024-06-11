@@ -751,13 +751,27 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "UnblockEntityByDatabase",
+      "Name": "UnblockCardByDatabase",
       "IsRemote": true,
       "Parameters": [
         {
           "Name": "entity",
           "ParameterType": "global::Sungero.Domain.Shared.IEntity",
           "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "UnblockVersionByDatabase",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "version",
+          "ParameterType": "global::Sungero.Content.IElectronicDocumentVersions",
+          "ParameterTypeFullName": "Sungero.Content.IElectronicDocumentVersions, Sungero.Content.Shared"
         }
       ],
       "Placement": "Shared",

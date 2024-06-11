@@ -58,7 +58,7 @@ namespace sberdev.SBContracts
         switch (_obj.StageSubject)
         {
           case "Оплата счета":
-            SBContracts.PublicFunctions.Module.Remote.UnblockEntityByDatabase(incInv);
+            SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(incInv);
             incInv.PaymentDateSberDev = Calendar.Now;
             incInv.Save();
             break;
@@ -67,7 +67,7 @@ namespace sberdev.SBContracts
             var contractual = incInv.LeadingDocument;
             if (contractual != null)
             {
-              SBContracts.PublicFunctions.Module.Remote.UnblockEntityByDatabase(contractual);
+              SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(contractual);
               contractual.InternalApprovalState = SBContracts.OfficialDocument.InternalApprovalState.Signed;
               contractual.ExternalApprovalState = SBContracts.OfficialDocument.ExternalApprovalState.Signed;
               contractual.Save();
@@ -75,7 +75,7 @@ namespace sberdev.SBContracts
             var accounting = incInv.AccDocSberDev;
             if (accounting != null)
             {
-              SBContracts.PublicFunctions.Module.Remote.UnblockEntityByDatabase(accounting);
+              SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(accounting);
               accounting.InternalApprovalState = SBContracts.OfficialDocument.InternalApprovalState.Signed;
               accounting.ExternalApprovalState = SBContracts.OfficialDocument.ExternalApprovalState.Signed;
               accounting.Save();
