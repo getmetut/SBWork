@@ -16,66 +16,301 @@ namespace Sungero.POST.Server
   {
 
     /// <summary>
+    /// 
+    /// </summary>
+    [Public(WebApiRequestType = RequestType.Get)]
+    public List<Structures.Module.IStructSupAgreement> SupAgreements(int iddoc)
+    {
+      var SupAgreements = sberdev.SBContracts.SupAgreements.GetAll();
+      List<Structures.Module.IStructSupAgreement> RequestElem = new List<Sungero.POST.Structures.Module.IStructSupAgreement>(); //Structures.Module.StructContractList.Create();
+      if (iddoc == 0)
+      {
+        foreach (var Doc in SupAgreements)
+        {
+          var StrSupAgreement = Structures.Module.StructSupAgreement.Create();
+          StrSupAgreement.Id =  Doc.Id.ToString();
+          StrSupAgreement.Name =  Doc.Name != null ? Doc.Name.ToString()  : "";
+          StrSupAgreement.Created =  Doc.Created != null ? Doc.Created.Value.ToString()  : "";
+          StrSupAgreement.TotalAmount =  Doc.TotalAmount != null ? Doc.TotalAmount.Value.ToString()  : "";
+          StrSupAgreement.ValidFrom =  Doc.ValidFrom != null ? Doc.ValidFrom.Value.ToString()  : "";
+          StrSupAgreement.ValidTill =  Doc.ValidTill != null ? Doc.ValidTill.Value.ToString()  : "";
+          StrSupAgreement.MVZOldSberDevSDev =  Doc.MVZOldSberDev != null ? Doc.MVZOldSberDev.ToString()  : "";
+          StrSupAgreement.AccArtExOldSberDevSDev =  Doc.AccArtExOldSberDev != null ? Doc.AccArtExOldSberDev.ToString()  : "";
+          StrSupAgreement.MVPOldSberDevSDev =  Doc.MVPOldSberDev != null ? Doc.MVPOldSberDev.ToString()  : "";
+          StrSupAgreement.AccArtPrOldSberDevSDev =  Doc.AccArtPrOldSberDev != null ? Doc.AccArtPrOldSberDev.ToString()  : "";
+          StrSupAgreement.BudItemOldSberDevSDev =  Doc.BudItemOldSberDev != null ? Doc.BudItemOldSberDev.ToString()  : "";
+          StrSupAgreement.ContrTypeOldSberDevSDev =  Doc.ContrTypeOldSberDev != null ? Doc.ContrTypeOldSberDev.ToString()  : "";
+          StrSupAgreement.OriginalOldSberDevSDev =  Doc.OriginalOldSberDev != null ? Doc.OriginalOldSberDev.ToString()  : "";
+          StrSupAgreement.SigningSDev =  Doc.Signing != null ? Doc.Signing.Value.ToString()  : "";
+          StrSupAgreement.DeliveryInfoOldSberDevSDev =  Doc.DeliveryInfoOldSberDev != null ? Doc.DeliveryInfoOldSberDev.ToString()  : "";
+          StrSupAgreement.NoticeSendOldSberDevSDev =  Doc.NoticeSendOldSberDev != null ? Doc.NoticeSendOldSberDev.ToString()  : "";
+          StrSupAgreement.FrameworkOldSberDevSDev =  Doc.FrameworkOldSberDev != null ? Doc.FrameworkOldSberDev.ToString()  : "";
+          StrSupAgreement.SDSFSberDevSDev =  Doc.SDSFSberDev != null ? Doc.SDSFSberDev.ToString()  : "";
+          StrSupAgreement.SRSberDevSDev =  Doc.SRSberDev != null ? Doc.SRSberDev.ToString()  : "";
+          StrSupAgreement.GoogleDocsLinkSberDevSDev =  Doc.GoogleDocsLinkSberDev != null ? Doc.GoogleDocsLinkSberDev.ToString()  : "";
+          StrSupAgreement.SubjectSpecificationSberDevSDev =  Doc.SubjectSpecificationSberDev != null ? Doc.SubjectSpecificationSberDev.ToString()  : "";
+          StrSupAgreement.AccArtExBaseSberDev =  Doc.AccArtExBaseSberDev != null ? Doc.AccArtExBaseSberDev.Id.ToString()  : "";
+          StrSupAgreement.AccArtExOldSberDev =  Doc.AccArtExOldSberDev != null ? Doc.AccArtExOldSberDev.Id.ToString()  : "";
+          StrSupAgreement.AccArtPrBaseSberDev =  Doc.AccArtPrBaseSberDev != null ? Doc.AccArtPrBaseSberDev.Id.ToString()  : "";
+          StrSupAgreement.AccArtPrOldSberDev =  Doc.AccArtPrOldSberDev != null ? Doc.AccArtPrOldSberDev.Id.ToString()  : "";
+          StrSupAgreement.Assignee =  Doc.Assignee != null ? Doc.Assignee.Id.ToString()  : "";
+          StrSupAgreement.AssociatedApplication =  Doc.AssociatedApplication != null ? Doc.AssociatedApplication.Id.ToString()  : "";
+          StrSupAgreement.Author =  Doc.Author != null ? Doc.Author.Id.ToString()  : "";
+          StrSupAgreement.BudItemBaseSberDev =  Doc.BudItemBaseSberDev != null ? Doc.BudItemBaseSberDev.Id.ToString()  : "";
+          StrSupAgreement.BudItemOldSberDev =  Doc.BudItemOldSberDev != null ? Doc.BudItemOldSberDev.Id.ToString()  : "";
+          StrSupAgreement.BusinessUnit =  Doc.BusinessUnit != null ? Doc.BusinessUnit.Id.ToString()  : "";
+          StrSupAgreement.CalculationBaseSberDev = "";
+          StrSupAgreement.CaseFile =  Doc.CaseFile != null ? Doc.CaseFile.Id.ToString()  : "";
+          StrSupAgreement.Contact =  Doc.Contact != null ? Doc.Contact.Id.ToString()  : "";
+          StrSupAgreement.Counterparty =  Doc.Counterparty != null ? Doc.Counterparty.Id.ToString()  : "";
+          StrSupAgreement.CounterpartySignatory =  Doc.CounterpartySignatory != null ? Doc.CounterpartySignatory.Id.ToString()  : "";
+          StrSupAgreement.Currency =  Doc.Currency != null ? Doc.Currency.Id.ToString()  : "";
+          StrSupAgreement.DeliveredTo =  Doc.DeliveredTo != null ? Doc.DeliveredTo.Id.ToString()  : "";
+          StrSupAgreement.DeliveryMethod =  Doc.DeliveryMethod != null ? Doc.DeliveryMethod.Id.ToString()  : "";
+          StrSupAgreement.Department =  Doc.Department != null ? Doc.Department.Id.ToString()  : "";
+          StrSupAgreement.DirectionMVZ = "";
+          StrSupAgreement.DocumentGroup =  Doc.DocumentGroup != null ? Doc.DocumentGroup.Id.ToString()  : "";
+          StrSupAgreement.DocumentKind =  Doc.DocumentKind != null ? Doc.DocumentKind.Id.ToString()  : "";
+          StrSupAgreement.DocumentRegister =  Doc.DocumentRegister != null ? Doc.DocumentRegister.Id.ToString()  : "";
+          StrSupAgreement.LeadingDocument =  Doc.LeadingDocument != null ? Doc.LeadingDocument.Id.ToString()  : "";
+          StrSupAgreement.MarketDirectSberDev =  Doc.MarketDirectSberDev != null ? Doc.MarketDirectSberDev.Id.ToString()  : "";
+          StrSupAgreement.Milestones = "";
+          StrSupAgreement.MVPBaseSberDev =  Doc.MVPBaseSberDev != null ? Doc.MVPBaseSberDev.Id.ToString()  : "";
+          StrSupAgreement.MVPOldSberDev =  Doc.MVPOldSberDev != null ? Doc.MVPOldSberDev.Id.ToString()  : "";
+          StrSupAgreement.MVZBaseSberDev =  Doc.MVZBaseSberDev != null ? Doc.MVZBaseSberDev.Id.ToString()  : "";
+          StrSupAgreement.MVZOldSberDev =  Doc.MVZOldSberDev != null ? Doc.MVZOldSberDev.Id.ToString()  : "";
+          StrSupAgreement.OurSignatory =  Doc.OurSignatory != null ? Doc.OurSignatory.Id.ToString()  : "";
+          StrSupAgreement.OurSigningReason =  Doc.OurSigningReason != null ? Doc.OurSigningReason.Id.ToString()  : "";
+          StrSupAgreement.Parameters = "";
+          StrSupAgreement.PreparedBy =  Doc.PreparedBy != null ? Doc.PreparedBy.Id.ToString()  : "";
+          StrSupAgreement.ProdCollectionExBaseSberDev =  "";
+          StrSupAgreement.ProdCollectionPrBaseSberDev =  "";
+          StrSupAgreement.ProdSberDevCollection =  "";
+          StrSupAgreement.Project =  Doc.Project != null ? Doc.Project.Id.ToString()  : "";
+          StrSupAgreement.ResponsibleEmployee =  Doc.ResponsibleEmployee != null ? Doc.ResponsibleEmployee.Id.ToString()  : "";
+          StrSupAgreement.ResponsibleForReturnEmployee =  Doc.ResponsibleForReturnEmployee != null ? Doc.ResponsibleForReturnEmployee.Id.ToString()  : "";
+          StrSupAgreement.Subtopic =  Doc.Subtopic != null ? Doc.Subtopic.Id.ToString()  : "";
+          StrSupAgreement.Topic =  Doc.Topic != null ? Doc.Topic.Id.ToString()  : "";
+          StrSupAgreement.Tracking = "";
+          StrSupAgreement.VatRate =  Doc.VatRate != null ? Doc.VatRate.Id.ToString()  : "";
+          StrSupAgreement.Versions =  "";
+          StrSupAgreement.Link = @"https://directum.sberdevices.ru/DrxWeb/#/card/265f2c57-6a8a-4a15-833b-ca00e8047fa5/" + Doc.Id.ToString();
+          
+          RequestElem.Add(StrSupAgreement);
+        }
+        return RequestElem;
+      }
+      else
+      {
+        var Doc = sberdev.SBContracts.SupAgreements.Get(long.Parse(iddoc.ToString()));
+        var StrSupAgreement = Structures.Module.StructSupAgreement.Create();
+        StrSupAgreement.Id =  Doc.Id.ToString();
+          StrSupAgreement.Name =  Doc.Name != null ? Doc.Name.ToString()  : "";
+          StrSupAgreement.Created =  Doc.Created != null ? Doc.Created.Value.ToString()  : "";
+          StrSupAgreement.TotalAmount =  Doc.TotalAmount != null ? Doc.TotalAmount.Value.ToString()  : "";
+          StrSupAgreement.ValidFrom =  Doc.ValidFrom != null ? Doc.ValidFrom.Value.ToString()  : "";
+          StrSupAgreement.ValidTill =  Doc.ValidTill != null ? Doc.ValidTill.Value.ToString()  : "";
+          StrSupAgreement.MVZOldSberDevSDev =  Doc.MVZOldSberDev != null ? Doc.MVZOldSberDev.ToString()  : "";
+          StrSupAgreement.AccArtExOldSberDevSDev =  Doc.AccArtExOldSberDev != null ? Doc.AccArtExOldSberDev.ToString()  : "";
+          StrSupAgreement.MVPOldSberDevSDev =  Doc.MVPOldSberDev != null ? Doc.MVPOldSberDev.ToString()  : "";
+          StrSupAgreement.AccArtPrOldSberDevSDev =  Doc.AccArtPrOldSberDev != null ? Doc.AccArtPrOldSberDev.ToString()  : "";
+          StrSupAgreement.BudItemOldSberDevSDev =  Doc.BudItemOldSberDev != null ? Doc.BudItemOldSberDev.ToString()  : "";
+          StrSupAgreement.ContrTypeOldSberDevSDev =  Doc.ContrTypeOldSberDev != null ? Doc.ContrTypeOldSberDev.ToString()  : "";
+          StrSupAgreement.OriginalOldSberDevSDev =  Doc.OriginalOldSberDev != null ? Doc.OriginalOldSberDev.ToString()  : "";
+          StrSupAgreement.SigningSDev =  Doc.Signing != null ? Doc.Signing.Value.ToString()  : "";
+          StrSupAgreement.DeliveryInfoOldSberDevSDev =  Doc.DeliveryInfoOldSberDev != null ? Doc.DeliveryInfoOldSberDev.ToString()  : "";
+          StrSupAgreement.NoticeSendOldSberDevSDev =  Doc.NoticeSendOldSberDev != null ? Doc.NoticeSendOldSberDev.ToString()  : "";
+          StrSupAgreement.FrameworkOldSberDevSDev =  Doc.FrameworkOldSberDev != null ? Doc.FrameworkOldSberDev.ToString()  : "";
+          StrSupAgreement.SDSFSberDevSDev =  Doc.SDSFSberDev != null ? Doc.SDSFSberDev.ToString()  : "";
+          StrSupAgreement.SRSberDevSDev =  Doc.SRSberDev != null ? Doc.SRSberDev.ToString()  : "";
+          StrSupAgreement.GoogleDocsLinkSberDevSDev =  Doc.GoogleDocsLinkSberDev != null ? Doc.GoogleDocsLinkSberDev.ToString()  : "";
+          StrSupAgreement.SubjectSpecificationSberDevSDev =  Doc.SubjectSpecificationSberDev != null ? Doc.SubjectSpecificationSberDev.ToString()  : "";
+          StrSupAgreement.AccArtExBaseSberDev =  Doc.AccArtExBaseSberDev != null ? Doc.AccArtExBaseSberDev.Id.ToString()  : "";
+          StrSupAgreement.AccArtExOldSberDev =  Doc.AccArtExOldSberDev != null ? Doc.AccArtExOldSberDev.Id.ToString()  : "";
+          StrSupAgreement.AccArtPrBaseSberDev =  Doc.AccArtPrBaseSberDev != null ? Doc.AccArtPrBaseSberDev.Id.ToString()  : "";
+          StrSupAgreement.AccArtPrOldSberDev =  Doc.AccArtPrOldSberDev != null ? Doc.AccArtPrOldSberDev.Id.ToString()  : "";
+          StrSupAgreement.Assignee =  Doc.Assignee != null ? Doc.Assignee.Id.ToString()  : "";
+          StrSupAgreement.AssociatedApplication =  Doc.AssociatedApplication != null ? Doc.AssociatedApplication.Id.ToString()  : "";
+          StrSupAgreement.Author =  Doc.Author != null ? Doc.Author.Id.ToString()  : "";
+          StrSupAgreement.BudItemBaseSberDev =  Doc.BudItemBaseSberDev != null ? Doc.BudItemBaseSberDev.Id.ToString()  : "";
+          StrSupAgreement.BudItemOldSberDev =  Doc.BudItemOldSberDev != null ? Doc.BudItemOldSberDev.Id.ToString()  : "";
+          StrSupAgreement.BusinessUnit =  Doc.BusinessUnit != null ? Doc.BusinessUnit.Id.ToString()  : "";
+          StrSupAgreement.CalculationBaseSberDev = "";
+          StrSupAgreement.CaseFile =  Doc.CaseFile != null ? Doc.CaseFile.Id.ToString()  : "";
+          StrSupAgreement.Contact =  Doc.Contact != null ? Doc.Contact.Id.ToString()  : "";
+          StrSupAgreement.Counterparty =  Doc.Counterparty != null ? Doc.Counterparty.Id.ToString()  : "";
+          StrSupAgreement.CounterpartySignatory =  Doc.CounterpartySignatory != null ? Doc.CounterpartySignatory.Id.ToString()  : "";
+          StrSupAgreement.Currency =  Doc.Currency != null ? Doc.Currency.Id.ToString()  : "";
+          StrSupAgreement.DeliveredTo =  Doc.DeliveredTo != null ? Doc.DeliveredTo.Id.ToString()  : "";
+          StrSupAgreement.DeliveryMethod =  Doc.DeliveryMethod != null ? Doc.DeliveryMethod.Id.ToString()  : "";
+          StrSupAgreement.Department =  Doc.Department != null ? Doc.Department.Id.ToString()  : "";
+          StrSupAgreement.DirectionMVZ = "";
+          StrSupAgreement.DocumentGroup =  Doc.DocumentGroup != null ? Doc.DocumentGroup.Id.ToString()  : "";
+          StrSupAgreement.DocumentKind =  Doc.DocumentKind != null ? Doc.DocumentKind.Id.ToString()  : "";
+          StrSupAgreement.DocumentRegister =  Doc.DocumentRegister != null ? Doc.DocumentRegister.Id.ToString()  : "";
+          StrSupAgreement.LeadingDocument =  Doc.LeadingDocument != null ? Doc.LeadingDocument.Id.ToString()  : "";
+          StrSupAgreement.MarketDirectSberDev =  Doc.MarketDirectSberDev != null ? Doc.MarketDirectSberDev.Id.ToString()  : "";
+          StrSupAgreement.Milestones = "";
+          StrSupAgreement.MVPBaseSberDev =  Doc.MVPBaseSberDev != null ? Doc.MVPBaseSberDev.Id.ToString()  : "";
+          StrSupAgreement.MVPOldSberDev =  Doc.MVPOldSberDev != null ? Doc.MVPOldSberDev.Id.ToString()  : "";
+          StrSupAgreement.MVZBaseSberDev =  Doc.MVZBaseSberDev != null ? Doc.MVZBaseSberDev.Id.ToString()  : "";
+          StrSupAgreement.MVZOldSberDev =  Doc.MVZOldSberDev != null ? Doc.MVZOldSberDev.Id.ToString()  : "";
+          StrSupAgreement.OurSignatory =  Doc.OurSignatory != null ? Doc.OurSignatory.Id.ToString()  : "";
+          StrSupAgreement.OurSigningReason =  Doc.OurSigningReason != null ? Doc.OurSigningReason.Id.ToString()  : "";
+          StrSupAgreement.Parameters = "";
+          StrSupAgreement.PreparedBy =  Doc.PreparedBy != null ? Doc.PreparedBy.Id.ToString()  : "";
+          StrSupAgreement.ProdCollectionExBaseSberDev =  "";
+          StrSupAgreement.ProdCollectionPrBaseSberDev =  "";
+          StrSupAgreement.ProdSberDevCollection =  "";
+          StrSupAgreement.Project =  Doc.Project != null ? Doc.Project.Id.ToString()  : "";
+          StrSupAgreement.ResponsibleEmployee =  Doc.ResponsibleEmployee != null ? Doc.ResponsibleEmployee.Id.ToString()  : "";
+          StrSupAgreement.ResponsibleForReturnEmployee =  Doc.ResponsibleForReturnEmployee != null ? Doc.ResponsibleForReturnEmployee.Id.ToString()  : "";
+          StrSupAgreement.Subtopic =  Doc.Subtopic != null ? Doc.Subtopic.Id.ToString()  : "";
+          StrSupAgreement.Topic =  Doc.Topic != null ? Doc.Topic.Id.ToString()  : "";
+          StrSupAgreement.Tracking = "";
+          StrSupAgreement.VatRate =  Doc.VatRate != null ? Doc.VatRate.Id.ToString()  : "";
+          StrSupAgreement.Versions =  "";
+          StrSupAgreement.Link = @"https://directum.sberdevices.ru/DrxWeb/#/card/265f2c57-6a8a-4a15-833b-ca00e8047fa5/" + Doc.Id.ToString();
+        RequestElem.Add(StrSupAgreement);
+        return RequestElem;
+      }
+    }
+
+    /// <summary>
     /// Получение Маркетингового документа
     /// </summary>
     /// <param name="IDDoc">Тестовая строка</param>
     [Public(WebApiRequestType = RequestType.Get)]
-    public Structures.Module.IStructContractList Contracts()
+    public List<Structures.Module.IStructContract> Contracts(int iddoc) 
     {
       var Contracts = sberdev.SBContracts.Contracts.GetAll();
-      var Request = Structures.Module.StructContractList.Create();
-      foreach (var Dog in Contracts)
+      List<Structures.Module.IStructContract> RequestElem = new List<Sungero.POST.Structures.Module.IStructContract>(); //Structures.Module.StructContractList.Create();
+      if (iddoc == 0)
       {
-        var StrContract = Structures.Module.StructContract.Create();
-        StrContract.AccArtExBaseSberDev = Dog.AccArtExBaseSberDev.ToString();
-        StrContract.AccArtMVZOldSberDev = Dog.AccArtMVZOldSberDev.ToString();
-        StrContract.AccArtPrBaseSberDev = Dog.AccArtPrBaseSberDev.ToString();
-        StrContract.AccArtsberdevOldSberDev = Dog.AccArtsberdevOldSberDev.ToString();
-        StrContract.Assignee = Dog.Assignee.ToString();
-        StrContract.AssociatedApplication = Dog.AssociatedApplication.ToString();
-        StrContract.Author = Dog.Author.ToString();
-        StrContract.BudItemBaseSberDev = Dog.BudItemBaseSberDev.ToString();
-        StrContract.BudItemsberdevOldSberDev = Dog.BudItemsberdevOldSberDev.ToString();
-        StrContract.BusinessUnit = Dog.BusinessUnit.ToString();
-        StrContract.CalculationBaseSberDev = Dog.CalculationBaseSberDev.ToString();
-        StrContract.CaseFile = Dog.CaseFile.ToString();
-        StrContract.CollectionProperty = Dog.CollectionProperty.ToString();
-        StrContract.Contact = Dog.Contact.ToString();
-        StrContract.Counterparty = Dog.Counterparty.ToString();
-        StrContract.CounterpartySignatory = Dog.CounterpartySignatory.ToString();
-        StrContract.Currency = Dog.Currency.ToString();
-        StrContract.DeliveredTo = Dog.DeliveredTo.ToString();
-        StrContract.DeliveryMethod = Dog.DeliveryMethod.ToString();
-        StrContract.Department = Dog.Department.ToString();
-        StrContract.DirectionMVZ = Dog.DirectionMVZ.ToString();
-        StrContract.DocumentGroup = Dog.DocumentGroup.ToString();
-        StrContract.DocumentKind = Dog.DocumentKind.ToString();
-        StrContract.DocumentRegister = Dog.DocumentRegister.ToString();
-        StrContract.LeadingDocument = Dog.LeadingDocument.ToString();
-        StrContract.MarketDirectSberDev = Dog.MarketDirectSberDev.ToString();
-        StrContract.Milestones = Dog.Milestones.ToString();
-        StrContract.MVPBaseSberDev = Dog.MVPBaseSberDev.ToString();
-        StrContract.MVPsberdevOldSberDev = Dog.MVPsberdevOldSberDev.ToString();
-        StrContract.MVZBaseSberDev = Dog.MVZBaseSberDev.ToString();
-        StrContract.MVZsberdevOldSberDev = Dog.MVZsberdevOldSberDev.ToString();
-        StrContract.OurSignatory = Dog.OurSignatory.ToString();
-        StrContract.OurSigningReason = Dog.OurSigningReason.ToString();
-        StrContract.Parameters = Dog.Parameters.ToString();
-        StrContract.PreparedBy = Dog.PreparedBy.ToString();
-        StrContract.ProdCollectionExBaseSberDev = Dog.ProdCollectionExBaseSberDev.ToString();
-        StrContract.ProdCollectionPrBaseSberDev = Dog.ProdCollectionPrBaseSberDev.ToString();
-        StrContract.Project = Dog.Project.ToString();
-        StrContract.ResponsibleEmployee = Dog.ResponsibleEmployee.ToString();
-        StrContract.ResponsibleForReturnEmployee = Dog.ResponsibleForReturnEmployee.ToString();
-        StrContract.Subtopic = Dog.Subtopic.ToString();
-        StrContract.Topic = Dog.Topic.ToString();
-        StrContract.Tracking = Dog.Tracking.ToString();
-        StrContract.VatRate = Dog.VatRate.ToString();
-        StrContract.Versions = Dog.Versions.ToString();
-        
-        Request.ContractList.Add(StrContract);
+        foreach (var Dog in Contracts)
+        {
+          var StrContract = Structures.Module.StructContract.Create();
+          StrContract.ID = Dog.Id.ToString(); 
+          StrContract.Name = Dog.Name; 
+          StrContract.Created = Dog.Created.Value.ToString();
+          StrContract.DocNum = Dog.RegistrationNumber != null ? Dog.RegistrationNumber.ToString()  : "";
+          StrContract.DocDate = Dog.RegistrationDate != null ? Dog.RegistrationDate.Value.ToString() : "";
+          StrContract.TotalAmount = Dog.TotalAmount != null ? Dog.TotalAmount.ToString() : "";
+          StrContract.ValidFrom = Dog.RegistrationNumber != null ? Dog.RegistrationNumber.ToString() : "";
+          StrContract.ValidTill = Dog.ValidTill != null ? Dog.ValidTill.Value.ToString() : "";
+          StrContract.AccArtExBaseSberDev = Dog.AccArtExBaseSberDev != null ? Dog.AccArtExBaseSberDev.Id.ToString()  : "";
+          StrContract.AccArtMVZOldSberDev = Dog.AccArtMVZOldSberDev != null ? Dog.AccArtMVZOldSberDev.Id.ToString()  : "";
+          StrContract.AccArtPrBaseSberDev = Dog.AccArtPrBaseSberDev != null ? Dog.AccArtPrBaseSberDev.Id.ToString()  : "";
+          StrContract.AccArtsberdevOldSberDev = Dog.AccArtsberdevOldSberDev != null ? Dog.AccArtsberdevOldSberDev.Id.ToString()  : "";
+          StrContract.Assignee = Dog.Assignee != null ? Dog.Assignee.Id.ToString()  : "";
+          StrContract.AssociatedApplication = Dog.AssociatedApplication != null ? Dog.AssociatedApplication.Id.ToString()  : "";
+          StrContract.Author = Dog.Author != null ? Dog.Author.Id.ToString()  : "";
+          StrContract.BudItemBaseSberDev = Dog.BudItemBaseSberDev != null ? Dog.BudItemBaseSberDev.Id.ToString()  : "";
+          StrContract.BudItemsberdevOldSberDev = Dog.BudItemsberdevOldSberDev != null ? Dog.BudItemsberdevOldSberDev.Id.ToString()  : "";
+          StrContract.BusinessUnit = Dog.BusinessUnit != null ? Dog.BusinessUnit.Id.ToString()  : "";
+          StrContract.CalculationBaseSberDev = "";
+          StrContract.CaseFile = Dog.CaseFile != null ? Dog.CaseFile.Id.ToString()  : "";
+          StrContract.CollectionProperty = "";
+          StrContract.Contact = Dog.Contact != null ? Dog.Contact.Id.ToString()  : "";
+          StrContract.Counterparty = Dog.Counterparty != null ? Dog.Counterparty.Id.ToString()  : "";
+          StrContract.CounterpartySignatory = Dog.CounterpartySignatory != null ? Dog.CounterpartySignatory.Id.ToString()  : "";
+          StrContract.Currency = Dog.Currency != null ? Dog.Currency.Id.ToString()  : "";
+          StrContract.DeliveredTo = Dog.DeliveredTo != null ? Dog.DeliveredTo.Id.ToString()  : "";
+          StrContract.DeliveryMethod = Dog.DeliveryMethod != null ? Dog.DeliveryMethod.Id.ToString()  : "";
+          StrContract.Department = Dog.Department != null ? Dog.Department.Id.ToString()  : "";
+          StrContract.DirectionMVZ = Dog.DirectionMVZ != null ? Dog.DirectionMVZ.ToString()  : "";
+          StrContract.DocumentGroup = Dog.DocumentGroup != null ? Dog.DocumentGroup.Id.ToString()  : "";
+          StrContract.DocumentKind = Dog.DocumentKind != null ? Dog.DocumentKind.Id.ToString()  : "";
+          StrContract.DocumentRegister = Dog.DocumentRegister != null ? Dog.DocumentRegister.Id.ToString()  : "";
+          StrContract.LeadingDocument = Dog.LeadingDocument != null ? Dog.LeadingDocument.Id.ToString()  : "";
+          StrContract.MarketDirectSberDev = Dog.MarketDirectSberDev != null ? Dog.MarketDirectSberDev.Id.ToString()  : "";
+          StrContract.Milestones = "";
+          StrContract.MVPBaseSberDev = Dog.MVPBaseSberDev != null ? Dog.MVPBaseSberDev.Id.ToString()  : "";
+          StrContract.MVPsberdevOldSberDev = Dog.MVPsberdevOldSberDev != null ? Dog.MVPsberdevOldSberDev.Id.ToString()  : "";
+          StrContract.MVZBaseSberDev = Dog.MVZBaseSberDev != null ? Dog.MVZBaseSberDev.Id.ToString()  : "";
+          StrContract.MVZsberdevOldSberDev = Dog.MVZsberdevOldSberDev != null ? Dog.MVZsberdevOldSberDev.Id.ToString()  : "";
+          StrContract.OurSignatory = Dog.OurSignatory != null ? Dog.OurSignatory.Id.ToString()  : "";
+          StrContract.OurSigningReason = Dog.OurSigningReason != null ? Dog.OurSigningReason.Id.ToString()  : "";
+          StrContract.Parameters = "";
+          StrContract.PreparedBy = Dog.PreparedBy != null ? Dog.PreparedBy.Id.ToString()  : "";
+          StrContract.ProdCollectionExBaseSberDev = "";
+          StrContract.ProdCollectionPrBaseSberDev = "";
+          StrContract.Project = Dog.Project != null ? Dog.Project.Id.ToString()  : "";
+          StrContract.ResponsibleEmployee = Dog.ResponsibleEmployee != null ? Dog.ResponsibleEmployee.Id.ToString()  : "";
+          StrContract.ResponsibleForReturnEmployee = Dog.ResponsibleForReturnEmployee != null ? Dog.ResponsibleForReturnEmployee.Id.ToString()  : "";
+          StrContract.Subtopic = Dog.Subtopic != null ? Dog.Subtopic.Id.ToString()  : "";
+          StrContract.Topic = Dog.Topic != null ? Dog.Topic.Id.ToString()  : "";
+          StrContract.Tracking = "";
+          StrContract.VatRate = Dog.VatRate != null ? Dog.VatRate.Id.ToString()  : "";
+          StrContract.Versions = "";
+          StrContract.Link = @"https://directum.sberdevices.ru/DrxWeb/#/card/f37c7e63-b134-4446-9b5b-f8811f6c9666/" + Dog.Id.ToString();
+          
+          RequestElem.Add(StrContract);
+        }
+        return RequestElem;
       }
-      return Request;
+      else
+      {
+        var Dog = sberdev.SBContracts.Contracts.Get(long.Parse(iddoc.ToString()));
+        var StrContract = Structures.Module.StructContract.Create();
+          StrContract.ID = Dog.Id.ToString(); 
+          StrContract.Name = Dog.Name; 
+          StrContract.Created = Dog.Created.Value.ToString();
+          StrContract.DocNum = Dog.RegistrationNumber != null ? Dog.RegistrationNumber.ToString()  : "";
+          StrContract.DocDate = Dog.RegistrationDate != null ? Dog.RegistrationDate.Value.ToString() : "";
+          StrContract.TotalAmount = Dog.TotalAmount != null ? Dog.TotalAmount.ToString() : "";
+          StrContract.ValidFrom = Dog.RegistrationNumber != null ? Dog.RegistrationNumber.ToString() : "";
+          StrContract.ValidTill = Dog.ValidTill != null ? Dog.ValidTill.Value.ToString() : "";
+          StrContract.AccArtExBaseSberDev = Dog.AccArtExBaseSberDev != null ? Dog.AccArtExBaseSberDev.Id.ToString()  : "";
+          StrContract.AccArtMVZOldSberDev = Dog.AccArtMVZOldSberDev != null ? Dog.AccArtMVZOldSberDev.Id.ToString()  : "";
+          StrContract.AccArtPrBaseSberDev = Dog.AccArtPrBaseSberDev != null ? Dog.AccArtPrBaseSberDev.Id.ToString()  : "";
+          StrContract.AccArtsberdevOldSberDev = Dog.AccArtsberdevOldSberDev != null ? Dog.AccArtsberdevOldSberDev.Id.ToString()  : "";
+          StrContract.Assignee = Dog.Assignee != null ? Dog.Assignee.Id.ToString()  : "";
+          StrContract.AssociatedApplication = Dog.AssociatedApplication != null ? Dog.AssociatedApplication.Id.ToString()  : "";
+          StrContract.Author = Dog.Author != null ? Dog.Author.Id.ToString()  : "";
+          StrContract.BudItemBaseSberDev = Dog.BudItemBaseSberDev != null ? Dog.BudItemBaseSberDev.Id.ToString()  : "";
+          StrContract.BudItemsberdevOldSberDev = Dog.BudItemsberdevOldSberDev != null ? Dog.BudItemsberdevOldSberDev.Id.ToString()  : "";
+          StrContract.BusinessUnit = Dog.BusinessUnit != null ? Dog.BusinessUnit.Id.ToString()  : "";
+          StrContract.CalculationBaseSberDev = "";
+          StrContract.CaseFile = Dog.CaseFile != null ? Dog.CaseFile.Id.ToString()  : "";
+          StrContract.CollectionProperty = "";
+          StrContract.Contact = Dog.Contact != null ? Dog.Contact.Id.ToString()  : "";
+          StrContract.Counterparty = Dog.Counterparty != null ? Dog.Counterparty.Id.ToString()  : "";
+          StrContract.CounterpartySignatory = Dog.CounterpartySignatory != null ? Dog.CounterpartySignatory.Id.ToString()  : "";
+          StrContract.Currency = Dog.Currency != null ? Dog.Currency.Id.ToString()  : "";
+          StrContract.DeliveredTo = Dog.DeliveredTo != null ? Dog.DeliveredTo.Id.ToString()  : "";
+          StrContract.DeliveryMethod = Dog.DeliveryMethod != null ? Dog.DeliveryMethod.Id.ToString()  : "";
+          StrContract.Department = Dog.Department != null ? Dog.Department.Id.ToString()  : "";
+          StrContract.DirectionMVZ = Dog.DirectionMVZ != null ? Dog.DirectionMVZ.ToString()  : "";
+          StrContract.DocumentGroup = Dog.DocumentGroup != null ? Dog.DocumentGroup.Id.ToString()  : "";
+          StrContract.DocumentKind = Dog.DocumentKind != null ? Dog.DocumentKind.Id.ToString()  : "";
+          StrContract.DocumentRegister = Dog.DocumentRegister != null ? Dog.DocumentRegister.Id.ToString()  : "";
+          StrContract.LeadingDocument = Dog.LeadingDocument != null ? Dog.LeadingDocument.Id.ToString()  : "";
+          StrContract.MarketDirectSberDev = Dog.MarketDirectSberDev != null ? Dog.MarketDirectSberDev.Id.ToString()  : "";
+          StrContract.Milestones = "";
+          StrContract.MVPBaseSberDev = Dog.MVPBaseSberDev != null ? Dog.MVPBaseSberDev.Id.ToString()  : "";
+          StrContract.MVPsberdevOldSberDev = Dog.MVPsberdevOldSberDev != null ? Dog.MVPsberdevOldSberDev.Id.ToString()  : "";
+          StrContract.MVZBaseSberDev = Dog.MVZBaseSberDev != null ? Dog.MVZBaseSberDev.Id.ToString()  : "";
+          StrContract.MVZsberdevOldSberDev = Dog.MVZsberdevOldSberDev != null ? Dog.MVZsberdevOldSberDev.Id.ToString()  : "";
+          StrContract.OurSignatory = Dog.OurSignatory != null ? Dog.OurSignatory.Id.ToString()  : "";
+          StrContract.OurSigningReason = Dog.OurSigningReason != null ? Dog.OurSigningReason.Id.ToString()  : "";
+          StrContract.Parameters = "";
+          StrContract.PreparedBy = Dog.PreparedBy != null ? Dog.PreparedBy.Id.ToString()  : "";
+          StrContract.ProdCollectionExBaseSberDev = "";
+          StrContract.ProdCollectionPrBaseSberDev = "";
+          StrContract.Project = Dog.Project != null ? Dog.Project.Id.ToString()  : "";
+          StrContract.ResponsibleEmployee = Dog.ResponsibleEmployee != null ? Dog.ResponsibleEmployee.Id.ToString()  : "";
+          StrContract.ResponsibleForReturnEmployee = Dog.ResponsibleForReturnEmployee != null ? Dog.ResponsibleForReturnEmployee.Id.ToString()  : "";
+          StrContract.Subtopic = Dog.Subtopic != null ? Dog.Subtopic.Id.ToString()  : "";
+          StrContract.Topic = Dog.Topic != null ? Dog.Topic.Id.ToString()  : "";
+          StrContract.Tracking = "";
+          StrContract.VatRate = Dog.VatRate != null ? Dog.VatRate.Id.ToString()  : "";
+          StrContract.Versions = "";
+          StrContract.Link = @"https://directum.sberdevices.ru/DrxWeb/#/card/f37c7e63-b134-4446-9b5b-f8811f6c9666/" + Dog.Id.ToString();
+
+          RequestElem.Add(StrContract);
+          return RequestElem;
+      }
     }
 
     /// <summary>

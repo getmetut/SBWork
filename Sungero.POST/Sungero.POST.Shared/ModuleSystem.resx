@@ -59,9 +59,129 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DisplayName" xml:space="preserve">
-    <value>POST</value>
+    <value>Отчеты</value>
   </data>
   <data name="CoverTitle" xml:space="preserve">
-    <value>POST</value>
+    <value>Отчеты</value>
+  </data>
+  <data name="CoverDescription" xml:space="preserve">
+    <value>Отчеты системы</value>
+  </data>
+  <data name="CoverTab_TabOtchet" xml:space="preserve">
+    <value>Таблица отчетов</value>
+  </data>
+  <data name="CoverGroup_Otchets" xml:space="preserve">
+    <value>Отчеты</value>
+  </data>
+  <data name="CoverAction_BudgetOwnerReport" xml:space="preserve">
+    <value>Отчет по оплаченным счетам</value>
+  </data>
+  <data name="CoverDescription_BudgetOwnerReport" xml:space="preserve">
+    <value>Отчет по оплаченным счетам</value>
+  </data>
+  <data name="CoverAction_PaidInvoiceReport" xml:space="preserve">
+    <value>Отчет по оплаченным счетам</value>
+  </data>
+  <data name="CoverDescription_PaidInvoiceReport" xml:space="preserve">
+    <value>Отчет по оплаченным счетам</value>
+  </data>
+  <data name="CoverAction_StartedTasksReport" xml:space="preserve">
+    <value>Отчет по исполнительной дисциплине</value>
+  </data>
+  <data name="CoverDescription_StartedTasksReport" xml:space="preserve">
+    <value>Отчет по исполнительной дисциплине</value>
+  </data>
+  <data name="CoverAction_ApprovalRulesConsolidatedReport" xml:space="preserve">
+    <value>Сводный отчет по правилам согласования</value>
+  </data>
+  <data name="CoverDescription_ApprovalRulesConsolidatedReport" xml:space="preserve">
+    <value>Контроль настройки правил согласования в разрезе организационной структуры, документопотоков и видов документов.</value>
+  </data>
+  <data name="CoverAction_DepartmentsAssignmentCompletionReport" xml:space="preserve">
+    <value>Исполнительская дисциплина по подразделениям</value>
+  </data>
+  <data name="CoverDescription_DepartmentsAssignmentCompletionReport" xml:space="preserve">
+    <value>Показатели исполнительской дисциплины подразделений за период.</value>
+  </data>
+  <data name="CoverAction_DocumentUsageReport" xml:space="preserve">
+    <value>Статистика работы с документами</value>
+  </data>
+  <data name="CoverDescription_DocumentUsageReport" xml:space="preserve">
+    <value>Статистика работы сотрудников по созданию, изменению и просмотру содержимого документов.</value>
+  </data>
+  <data name="CoverDescription_MailRegisterReport" xml:space="preserve">
+    <value>Реестр почтовых отправлений</value>
+  </data>
+  <data name="CoverAction_MailRegisterReport" xml:space="preserve">
+    <value>Реестр почтовых отправлений</value>
+  </data>
+  <data name="CoverAction_ExchangeServiceDocumentReport" xml:space="preserve">
+    <value>Документы на подписании у контрагентов в сервисах обмена</value>
+  </data>
+  <data name="CoverDescription_ExchangeServiceDocumentReport" xml:space="preserve">
+    <value>Перечень документов, отправленных контрагентам через сервисы обмена и ожидающих подписания.</value>
+  </data>
+  <data name="CoverAction_RegistrationSettingReport" xml:space="preserve">
+    <value>Настройки регистрации документов</value>
+  </data>
+  <data name="CoverDescription_RegistrationSettingReport" xml:space="preserve">
+    <value>Информация по настройкам регистрации/нумерации в разрезе видов документов, наших организаций и подразделений.</value>
+  </data>
+  <data name="CoverAction_SkippedNumbersReport" xml:space="preserve">
+    <value>Контроль пропусков в нумерации документов</value>
+  </data>
+  <data name="CoverDescription_SkippedNumbersReport" xml:space="preserve">
+    <value>Отчет для контроля пропусков в нумерации документов в указанном журнале с учетом периода и разреза нумерации.</value>
+  </data>
+  <data name="CoverGroup_Otchet2" xml:space="preserve">
+    <value>Отчеты</value>
+  </data>
+  <data name="CoverAction_FinArchiveExportReport" xml:space="preserve">
+    <value>Журнал выгрузки документов из архива</value>
+  </data>
+  <data name="CoverDescription_FinArchiveExportReport" xml:space="preserve">
+    <value>Журнал выгрузки документов из архива</value>
+  </data>
+  <data name="CoverAction_AcquaintanceReport" xml:space="preserve">
+    <value>Лист ознакомления</value>
+  </data>
+  <data name="CoverDescription_AcquaintanceReport" xml:space="preserve">
+    <value>Печать листа ознакомления</value>
+  </data>
+  <data name="CoverAction_ActionItemsExecutionReport" xml:space="preserve">
+    <value>Контроль сроков исполнения поручений</value>
+  </data>
+  <data name="CoverDescription_ActionItemsExecutionReport" xml:space="preserve">
+    <value>Список поручений с плановым сроком исполнения в выбранном периоде.</value>
+  </data>
+  <data name="CoverAction_DocumentReturnReport" xml:space="preserve">
+    <value>Контроль возврата документов</value>
+  </data>
+  <data name="CoverDescription_DocumentReturnReport" xml:space="preserve">
+    <value>Перечень документов, которые не были возвращены из подразделений.</value>
+  </data>
+  <data name="CoverAction_IncomingDocumentsProcessingReport" xml:space="preserve">
+    <value>Контроль обработки входящих документов</value>
+  </data>
+  <data name="CoverDescription_IncomingDocumentsProcessingReport" xml:space="preserve">
+    <value>Список всех зарегистрированных входящих документов с информацией о процессе обработки.</value>
+  </data>
+  <data name="CoverAction_IncomingDocumentsReport" xml:space="preserve">
+    <value>Журнал входящих документов</value>
+  </data>
+  <data name="CoverDescription_IncomingDocumentsReport" xml:space="preserve">
+    <value>Список всех зарегистрированных документов, относящихся к входящему документопотоку.</value>
+  </data>
+  <data name="CoverAction_InternalDocumentsReport" xml:space="preserve">
+    <value>Журнал внутренних документов</value>
+  </data>
+  <data name="CoverDescription_InternalDocumentsReport" xml:space="preserve">
+    <value>Список всех зарегистрированных документов, относящихся к внутреннему документопотоку.</value>
+  </data>
+  <data name="CoverAction_OutgoingDocumentsReport" xml:space="preserve">
+    <value>Журнал исходящих документов</value>
+  </data>
+  <data name="CoverDescription_OutgoingDocumentsReport" xml:space="preserve">
+    <value>Список всех зарегистрированных документов, относящихся к исходящему документопотоку.</value>
   </data>
 </root>

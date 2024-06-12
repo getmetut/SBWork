@@ -30,19 +30,6 @@
     "IsAncestorMetadata": true,
     "Versions": []
   },
-  "Forms": [
-    {
-      "$type": "Sungero.Metadata.StandaloneFormMetadata, Sungero.Metadata",
-      "NameGuid": "fa03f748-4397-42ef-bdc2-22119af7bf7f",
-      "Name": "Card",
-      "Controls": [],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "SettingsResourceKey"
-      ],
-      "Versions": []
-    }
-  ],
   "IconResourcesKeys": [],
   "IsAbstract": true,
   "LayeredFromGuid": "454df3c6-b850-47cf-897f-a10d767baa77",
@@ -88,13 +75,26 @@
       "NameGuid": "6a98074c-a096-49ed-8858-f25f5e58c580",
       "Name": "CalcListSDev",
       "CanBeSearch": false,
-      "Code": "CalcListContr",
+      "Code": "CalcListSDev",
       "IsEnabled": false,
       "IsQuickSearchAllowed": true,
       "IsVisibility": false,
       "Length": 1000,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "6c316926-04e7-453d-9d0e-57b89e8f477b"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "6b72ea45-09a3-4fa5-ad1e-fab43766e418",
+      "Name": "ProductListSDev",
+      "CanBeSearch": false,
+      "Code": "ProductListSDe",
+      "IsEnabled": false,
+      "IsQuickSearchAllowed": true,
+      "IsVisibility": false,
+      "Length": 1000,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "6a98074c-a096-49ed-8858-f25f5e58c580"
     }
   ],
   "PublicStructures": [],

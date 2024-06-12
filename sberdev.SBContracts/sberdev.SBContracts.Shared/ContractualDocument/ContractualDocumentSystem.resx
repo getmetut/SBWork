@@ -367,4 +367,22 @@
   <data name="Property_PurchComNumberSberDev" xml:space="preserve">
     <value>Purch. com. number</value>
   </data>
+  <data name="Property_ProductionOrderSDev" xml:space="preserve">
+    <value>Производственный заказ</value>
+  </data>
+  <data name="Property_DepositSDev" xml:space="preserve">
+    <value>Депозит %</value>
+  </data>
+  <data name="Property_BalanceSDev" xml:space="preserve">
+    <value>Баланс %</value>
+  </data>
+  <data name="Property_NumOrder1CUTSDev" xml:space="preserve">
+    <value>Номер заказа в 1С УТ</value>
+  </data>
+  <data name="Property_PaymentDaysBeforeSDev" xml:space="preserve">
+    <value>Оплата за дней до поставки</value>
+  </data>
+  <data name="ControlGroup_621a02080e7d4c27a03340b1a2f1e573" xml:space="preserve">
+    <value>Условия оплаты</value>
+  </data>
 </root>

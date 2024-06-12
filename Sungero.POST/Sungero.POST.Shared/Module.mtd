@@ -11,18 +11,201 @@
   "CompanyCode": "Sungero",
   "Cover": {
     "NameGuid": "576df106-51d8-4eeb-806d-3113303adc26",
-    "Actions": [],
+    "Actions": [
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "046f0480-ba0a-4549-8495-234d5140a646",
+        "Name": "StartedTasksReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
+        "PreviousItemGuid": "a64a4aef-3b20-4bff-820c-da4547b34e9b",
+        "ReportId": "77fc00ff-f108-4acc-a384-fed225e47f9a"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "132e5950-3d0e-4a34-b3ce-8a00170923cf",
+        "Name": "IncomingDocumentsProcessingReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "44aef9d1-19e8-426f-a4dc-2d5f8e2f03f8",
+        "PreviousItemGuid": "abc52a31-7609-4fea-9889-560c0f79d0ae",
+        "ReportId": "50cd6eb3-ad77-4c3b-a681-6dc040964aaa"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "20df09df-33f5-4337-8843-7c40b3b9c13a",
+        "Name": "IncomingDocumentsReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "44aef9d1-19e8-426f-a4dc-2d5f8e2f03f8",
+        "PreviousItemGuid": "132e5950-3d0e-4a34-b3ce-8a00170923cf",
+        "ReportId": "540f174a-d952-47c4-8b87-eaeb029ddb74"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "384bae96-a191-434a-a647-373877c11361",
+        "Name": "AcquaintanceReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "44aef9d1-19e8-426f-a4dc-2d5f8e2f03f8",
+        "PreviousItemGuid": "4507a7dc-14c9-43b2-9c8f-c8a183798621",
+        "ReportId": "0de3eaa4-5b9d-46c3-a64d-5dd32c4a3f7c"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "4507a7dc-14c9-43b2-9c8f-c8a183798621",
+        "Name": "FinArchiveExportReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "44aef9d1-19e8-426f-a4dc-2d5f8e2f03f8",
+        "ReportId": "e5081ffe-8a47-41fd-ad9f-407d1b181464"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "579381a5-a52d-40d6-acd4-a5603397356d",
+        "Name": "InternalDocumentsReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "44aef9d1-19e8-426f-a4dc-2d5f8e2f03f8",
+        "PreviousItemGuid": "20df09df-33f5-4337-8843-7c40b3b9c13a",
+        "ReportId": "25729a15-9367-4af9-b5cc-656e998b6475"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "603e83d5-d35b-4264-a10b-85d1d8f12a81",
+        "Name": "ApprovalRulesConsolidatedReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
+        "PreviousItemGuid": "046f0480-ba0a-4549-8495-234d5140a646",
+        "ReportId": "65a79eb2-8bae-4640-b817-e033c8ba9589"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "6472d478-9635-452d-a3d9-55abd3e8c9c0",
+        "Name": "MailRegisterReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
+        "PreviousItemGuid": "968610a0-5508-48d9-a6aa-9dae2e4444d8",
+        "ReportId": "2875a21b-b6e4-476b-9bef-3693a58040e5"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "64e7fbbc-da06-46de-a1f3-fc814d75cdac",
+        "Name": "BudgetOwnerReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
+        "ReportId": "8fc24fb9-3645-4ff8-ac1a-f4f416ac4076"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "7de0dbe2-6a51-40ba-b405-eea557d088eb",
+        "Name": "OutgoingDocumentsReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "44aef9d1-19e8-426f-a4dc-2d5f8e2f03f8",
+        "PreviousItemGuid": "579381a5-a52d-40d6-acd4-a5603397356d",
+        "ReportId": "c6f32f03-13fa-4752-93d2-ff750a88dca7"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "8404d781-d903-4ad3-87a1-0a2ed094a4b6",
+        "Name": "DepartmentsAssignmentCompletionReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
+        "PreviousItemGuid": "603e83d5-d35b-4264-a10b-85d1d8f12a81",
+        "ReportId": "23fc035e-72bf-4bd9-9659-a21ad2378f43"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "968610a0-5508-48d9-a6aa-9dae2e4444d8",
+        "Name": "ExchangeServiceDocumentReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
+        "PreviousItemGuid": "cff8c314-c1c9-4e88-8688-521e20e0263b",
+        "ReportId": "eb9bebab-6c1b-448b-ab15-c0e029f7af3c"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "a2f7814e-4ea9-4776-94a8-57b1001b4731",
+        "Name": "SkippedNumbersReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
+        "PreviousItemGuid": "a6122f55-70c0-4133-8382-364b7d576d95",
+        "ReportId": "efd88005-7a4b-419b-9325-25eb4d313a09"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "a6122f55-70c0-4133-8382-364b7d576d95",
+        "Name": "RegistrationSettingReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
+        "PreviousItemGuid": "6472d478-9635-452d-a3d9-55abd3e8c9c0",
+        "ReportId": "8afc6640-7bfc-4eba-952e-0d17deac9d8f"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "a64a4aef-3b20-4bff-820c-da4547b34e9b",
+        "Name": "PaidInvoiceReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
+        "PreviousItemGuid": "64e7fbbc-da06-46de-a1f3-fc814d75cdac",
+        "ReportId": "ea461a5e-67b1-448f-9e88-225bafbf3705"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "abc52a31-7609-4fea-9889-560c0f79d0ae",
+        "Name": "DocumentReturnReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "44aef9d1-19e8-426f-a4dc-2d5f8e2f03f8",
+        "PreviousItemGuid": "e9d1c38c-6436-4587-8362-e7c3332eca14",
+        "ReportId": "aaccef11-d184-4225-9861-2e6578ae54de"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "cff8c314-c1c9-4e88-8688-521e20e0263b",
+        "Name": "DocumentUsageReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
+        "PreviousItemGuid": "8404d781-d903-4ad3-87a1-0a2ed094a4b6",
+        "ReportId": "f70c4908-34b1-47c7-9bf1-90d18e8309d4"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "e9d1c38c-6436-4587-8362-e7c3332eca14",
+        "Name": "ActionItemsExecutionReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "44aef9d1-19e8-426f-a4dc-2d5f8e2f03f8",
+        "PreviousItemGuid": "384bae96-a191-434a-a647-373877c11361",
+        "ReportId": "48704d21-fc8c-4081-8a24-575cc8264537"
+      }
+    ],
     "Background": null,
     "Footer": {
       "NameGuid": "67f9fdea-cf3c-47e5-a9cb-83d919e4c17e",
       "BackgroundPosition": "Stretch"
     },
-    "Groups": [],
+    "Groups": [
+      {
+        "NameGuid": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
+        "Name": "Otchets",
+        "BackgroundPosition": "Stretch",
+        "IconName": "GroupIconOtchets_2c5fed464cb4444a84b48cffe9f0e94e.png",
+        "TabId": "afa10276-0c85-4ad3-8b5d-59d533ff923a"
+      },
+      {
+        "NameGuid": "44aef9d1-19e8-426f-a4dc-2d5f8e2f03f8",
+        "Name": "Otchet2",
+        "BackgroundPosition": "Stretch",
+        "IconName": "GroupIconOtchet2_44aef9d119e8426fa4dc2d5f8e2f03f8.png",
+        "PreviousItemGuid": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
+        "TabId": "afa10276-0c85-4ad3-8b5d-59d533ff923a"
+      }
+    ],
     "Header": {
       "NameGuid": "77f56dfd-0020-4080-bae4-da8f76896df9",
-      "BackgroundPosition": "Stretch"
+      "BackgroundPosition": "Stretch",
+      "IconName": "HeaderIcon_77f56dfd00204080bae4da8f76896df9.png"
     },
-    "Tabs": []
+    "Tabs": [
+      {
+        "NameGuid": "afa10276-0c85-4ad3-8b5d-59d533ff923a",
+        "Name": "TabOtchet"
+      }
+    ]
   },
   "Dependencies": [
     {
@@ -46,8 +229,15 @@
   "PublicFunctions": [
     {
       "Name": "Contracts",
-      "ReturnType": "global::Sungero.POST.Structures.Module.IStructContractList",
-      "ReturnTypeFullName": "Sungero.POST.Structures.Module.IStructContractList",
+      "Parameters": [
+        {
+          "Name": "iddoc",
+          "ParameterType": "global::System.Int32",
+          "ParameterTypeFullName": "System.Int32"
+        }
+      ],
+      "ReturnType": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IStructContract>",
+      "ReturnTypeFullName": "System.Collections.Generic.List",
       "WebApiRequestType": "Get"
     },
     {
@@ -94,6 +284,19 @@
       "ReturnType": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IMarcetingDoc>",
       "ReturnTypeFullName": "System.Collections.Generic.List",
       "WebApiRequestType": "Post"
+    },
+    {
+      "Name": "SupAgreements",
+      "Parameters": [
+        {
+          "Name": "iddoc",
+          "ParameterType": "global::System.Int32",
+          "ParameterTypeFullName": "System.Int32"
+        }
+      ],
+      "ReturnType": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IStructSupAgreement>",
+      "ReturnTypeFullName": "System.Collections.Generic.List",
+      "WebApiRequestType": "Get"
     },
     {
       "Name": "test",
@@ -453,6 +656,46 @@
       "IsPublic": true,
       "Properties": [
         {
+          "Name": "ID",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Name",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Created",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DocNum",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DocDate",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "TotalAmount",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ValidFrom",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ValidTill",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
           "Name": "AccArtExBaseSberDev",
           "IsNullable": true,
           "TypeFullName": "global::System.String"
@@ -676,6 +919,11 @@
           "Name": "Versions",
           "IsNullable": true,
           "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Link",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
         }
       ],
       "StructureNamespace": "Sungero.POST.Structures.Module"
@@ -692,6 +940,348 @@
         }
       ],
       "StructureNamespace": "Sungero.POST.Structures.Module"
+    },
+    {
+      "Name": "StructSupAgreement",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Id",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Name",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Created",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "TotalAmount",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ValidFrom",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ValidTill",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MVZOldSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AccArtExOldSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MVPOldSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AccArtPrOldSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "BudItemOldSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ContrTypeOldSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "OriginalOldSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "SigningSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DeliveryInfoOldSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "NoticeSendOldSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "FrameworkOldSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "SDSFSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "SRSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "GoogleDocsLinkSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "SubjectSpecificationSberDevSDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AccArtExBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AccArtExOldSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AccArtPrBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AccArtPrOldSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Assignee",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AssociatedApplication",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Author",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "BudItemBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "BudItemOldSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "BusinessUnit",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "CalculationBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "CaseFile",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Contact",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Counterparty",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "CounterpartySignatory",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Currency",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DeliveredTo",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DeliveryMethod",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Department",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DirectionMVZ",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DocumentGroup",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DocumentKind",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "DocumentRegister",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "LeadingDocument",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MarketDirectSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Milestones",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MVPBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MVPOldSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MVZBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "MVZOldSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "OurSignatory",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "OurSigningReason",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Parameters",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "PreparedBy",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ProdCollectionExBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ProdCollectionPrBaseSberDev",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ProdSberDevCollection",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Project",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ResponsibleEmployee",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "ResponsibleForReturnEmployee",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Subtopic",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Topic",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Tracking",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "VatRate",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Versions",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Link",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "Sungero.POST.Structures.Module"
     }
   ],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
@@ -702,7 +1292,7 @@
   "SharedAssemblyName": "Sungero.POST.Shared",
   "SharedNamespace": "Sungero.POST.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.127",
+  "Version": "0.0.1.139",
   "Widgets": [],
   "Versions": [
     {

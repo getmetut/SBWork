@@ -8,6 +8,81 @@ namespace Sungero.POST.Structures.Module
 {
 
   /// <summary>
+  /// Структура допсоглашения
+  /// </summary>
+  [Public]
+  partial class StructSupAgreement
+  {
+    public string  Id  { get; set; }
+    public string  Name  { get; set; }
+    public string  Created  { get; set; }
+    public string  TotalAmount  { get; set; }
+    public string  ValidFrom  { get; set; }
+    public string  ValidTill  { get; set; }
+    public string  MVZOldSberDevSDev  { get; set; }
+    public string  AccArtExOldSberDevSDev  { get; set; }
+    public string  MVPOldSberDevSDev  { get; set; }
+    public string  AccArtPrOldSberDevSDev  { get; set; }
+    public string  BudItemOldSberDevSDev  { get; set; }
+    public string  ContrTypeOldSberDevSDev  { get; set; }
+    public string  OriginalOldSberDevSDev  { get; set; }
+    public string  SigningSDev  { get; set; }
+    public string  DeliveryInfoOldSberDevSDev  { get; set; }
+    public string  NoticeSendOldSberDevSDev  { get; set; }
+    public string  FrameworkOldSberDevSDev  { get; set; }
+    public string  SDSFSberDevSDev  { get; set; }
+    public string  SRSberDevSDev  { get; set; }
+    public string  GoogleDocsLinkSberDevSDev  { get; set; }
+    public string  SubjectSpecificationSberDevSDev  { get; set; }
+    public string  AccArtExBaseSberDev  { get; set; }
+    public string  AccArtExOldSberDev  { get; set; }
+    public string  AccArtPrBaseSberDev  { get; set; }
+    public string  AccArtPrOldSberDev  { get; set; }
+    public string  Assignee  { get; set; }
+    public string  AssociatedApplication  { get; set; }
+    public string  Author  { get; set; }
+    public string  BudItemBaseSberDev  { get; set; }
+    public string  BudItemOldSberDev  { get; set; }
+    public string  BusinessUnit  { get; set; }
+    public string  CalculationBaseSberDev  { get; set; }
+    public string  CaseFile  { get; set; }
+    public string  Contact  { get; set; }
+    public string  Counterparty  { get; set; }
+    public string  CounterpartySignatory  { get; set; }
+    public string  Currency  { get; set; }
+    public string  DeliveredTo  { get; set; }
+    public string  DeliveryMethod  { get; set; }
+    public string  Department  { get; set; }
+    public string  DirectionMVZ  { get; set; }
+    public string  DocumentGroup  { get; set; }
+    public string  DocumentKind  { get; set; }
+    public string  DocumentRegister  { get; set; }
+    public string  LeadingDocument  { get; set; }
+    public string  MarketDirectSberDev  { get; set; }
+    public string  Milestones  { get; set; }
+    public string  MVPBaseSberDev  { get; set; }
+    public string  MVPOldSberDev  { get; set; }
+    public string  MVZBaseSberDev  { get; set; }
+    public string  MVZOldSberDev  { get; set; }
+    public string  OurSignatory  { get; set; }
+    public string  OurSigningReason  { get; set; }
+    public string  Parameters  { get; set; }
+    public string  PreparedBy  { get; set; }
+    public string  ProdCollectionExBaseSberDev  { get; set; }
+    public string  ProdCollectionPrBaseSberDev  { get; set; }
+    public string  ProdSberDevCollection  { get; set; }
+    public string  Project  { get; set; }
+    public string  ResponsibleEmployee  { get; set; }
+    public string  ResponsibleForReturnEmployee  { get; set; }
+    public string  Subtopic  { get; set; }
+    public string  Topic  { get; set; }
+    public string  Tracking  { get; set; }
+    public string  VatRate  { get; set; }
+    public string  Versions  { get; set; }
+    public string  Link  { get; set; }
+  }
+
+  /// <summary>
   /// Структура списка договоров
   /// </summary>
   [Public]
@@ -22,6 +97,14 @@ namespace Sungero.POST.Structures.Module
   [Public]
   partial class StructContract
   {
+    public string ID { get; set; }
+    public string Name { get; set; }
+    public string Created { get; set; }
+    public string DocNum { get; set; }
+    public string DocDate { get; set; }
+    public string TotalAmount { get; set; }
+    public string ValidFrom { get; set; }
+    public string ValidTill { get; set; }
     public string AccArtExBaseSberDev { get; set; } // { get; set; } //Target="IAccountingArticless"/>
     public string AccArtMVZOldSberDev { get; set; } //Target="IAccountingArticless"/>
     public string AccArtPrBaseSberDev { get; set; } //Target="IAccountingArticless"/>
@@ -67,6 +150,7 @@ namespace Sungero.POST.Structures.Module
     public string Tracking { get; set; } //Target="IOfficialDocumentTrackings"/>
     public string VatRate { get; set; } //Target="IVatRates"/>
     public string Versions { get; set; } //Target="IElectronicDocumentVersionss"/>
+    public string Link { get; set; }
   }
 
   /// <summary>

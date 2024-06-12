@@ -9,5 +9,6 @@ namespace Sungero.ATS.Shared
 {
   partial class ContractualDocumentBaseFunctions
   {
+
   }
 }
