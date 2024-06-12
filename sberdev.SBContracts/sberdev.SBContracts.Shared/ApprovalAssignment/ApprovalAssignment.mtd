@@ -164,13 +164,13 @@
           "Name": "JobSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 34.02
+              "Percentage": 35.0
             },
             {
-              "Percentage": 41.8
+              "Percentage": 43.01
             },
             {
-              "Percentage": 21.37
+              "Percentage": 21.99
             }
           ],
           "ColumnNumber": 0,
