@@ -26,8 +26,8 @@ namespace sberdev.SBContracts.Server
         if (_obj.ConditionType == ConditionType.IsPrepayment)
           return "Тип оплаты = предоплата?";
         
-        if (_obj.ConditionType == ConditionType.InvApprByTreas)
-          return "Есть согласование на счете от казначея?";
+        if (_obj.ConditionType == ConditionType.InvApprBySberDev)
+          return String.Format("Есть согласование на счете от {0}?", _obj.EndorserSberDev.Name);
         
         if (_obj.ConditionType == ConditionType.IsNeedCheckCp)
         {

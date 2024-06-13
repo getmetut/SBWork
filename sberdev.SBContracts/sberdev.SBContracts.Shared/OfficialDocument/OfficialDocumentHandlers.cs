@@ -7,38 +7,42 @@ using sberdev.SBContracts.OfficialDocument;
 
 namespace sberdev.SBContracts
 {
+  partial class OfficialDocumentVersionsSharedCollectionHandlers
+  {
+
+    public override void VersionsAdded(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
+    {
+      base.VersionsAdded(e);
+      Nullable<Enumeration> statusExt = null;
+      Nullable<Enumeration> statusInt = null;
+      e.Params.TryGetValue(Constants.Docflow.OfficialDocument.OldExtStatus, out statusExt);
+      e.Params.TryGetValue(Constants.Docflow.OfficialDocument.OldIntStatus, out statusExt);
+      if (statusExt != null)
+        _obj.ExternalApprovalState = statusExt;
+      if (statusInt != null)
+        _obj.ExternalApprovalState = statusInt;
+    }
+  }
+
+  
   partial class OfficialDocumentSharedHandlers
   {
 
     public override void ExternalApprovalStateChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
     {
-      if (e.NewValue != ExternalApprovalState.Signed)
-      {
-        bool flag = true;
-        var indefiniteParam = e.Params.Contains(Constants.Docflow.OfficialDocument.IsNeedChangeApprovalStatus);
-        e.Params.TryGetValue(Constants.Docflow.OfficialDocument.IsNeedChangeApprovalStatus, out flag);
-        if (!flag)
-        {
-          _obj.ExternalApprovalState = e.OldValue;
-          e.Params.AddOrUpdate(Constants.Docflow.OfficialDocument.IsNeedChangeApprovalStatus, true);
-        }
-      }
+      bool flag = PublicFunctions.Module.IsSystemUser() || Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
+        || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
+      if (!e.Params.Contains(Constants.Docflow.OfficialDocument.OldExtStatus) && flag)
+        e.Params.AddOrUpdate(Constants.Docflow.OfficialDocument.OldExtStatus, e.OldValue);
       base.ExternalApprovalStateChanged(e);
     }
 
     public override void InternalApprovalStateChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
     {
-      if (e.NewValue != InternalApprovalState.Signed)
-      {
-        bool flag = true;
-        var indefiniteParam = e.Params.Contains(Constants.Docflow.OfficialDocument.IsNeedChangeApprovalStatus);
-        e.Params.TryGetValue(Constants.Docflow.OfficialDocument.IsNeedChangeApprovalStatus, out flag);
-        if (!flag)
-        {
-          _obj.InternalApprovalState = e.OldValue;
-          e.Params.AddOrUpdate(Constants.Docflow.OfficialDocument.IsNeedChangeApprovalStatus, true);
-        }
-      }
+      bool flag = PublicFunctions.Module.IsSystemUser() || Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
+        || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
+      if (!e.Params.Contains(Constants.Docflow.OfficialDocument.OldIntStatus) && flag)
+        e.Params.AddOrUpdate(Constants.Docflow.OfficialDocument.OldIntStatus, e.OldValue);
       base.InternalApprovalStateChanged(e);
     }
 

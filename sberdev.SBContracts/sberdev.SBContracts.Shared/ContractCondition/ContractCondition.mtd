@@ -288,7 +288,7 @@
         },
         {
           "NameGuid": "1a9ef0ac-fa05-410c-a89d-b7a6ffe6ede0",
-          "Name": "InvApprByTreas",
+          "Name": "InvApprBySberDev",
           "Code": "InvApprByTreas"
         },
         {
@@ -409,7 +409,7 @@
       "NameGuid": "dadd87e0-5e88-41f5-ae98-29aee61a7be0",
       "Name": "EndorserSberDev",
       "CanBeSearch": false,
-      "Code": "EndorserSberDe",
+      "Code": "EndorsCondCont",
       "EntityGuid": "243c2d26-f5f7-495f-9faf-951d91215c77",
       "IsShowedInList": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",

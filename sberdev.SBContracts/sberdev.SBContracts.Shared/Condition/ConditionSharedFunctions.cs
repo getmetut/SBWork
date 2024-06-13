@@ -15,6 +15,10 @@ namespace sberdev.SBContracts.Shared
     {
       base.ChangePropertiesAccess();
       
+      var isFCDApprBySberDev = _obj.ConditionType == ConditionType.FCDApprBySberDev;
+      _obj.State.Properties.EndorserSberDev.IsVisible = isFCDApprBySberDev;
+      _obj.State.Properties.EndorserSberDev.IsRequired = isFCDApprBySberDev;
+      
       var isMVP = _obj.ConditionType == ConditionType.MVP;
       _obj.State.Properties.MVP.IsVisible = isMVP;
       _obj.State.Properties.MVP.IsRequired = isMVP;
@@ -39,6 +43,8 @@ namespace sberdev.SBContracts.Shared
     public override void ClearHiddenProperties()
     {
       base.ClearHiddenProperties();
+      if (!_obj.State.Properties.EndorserSberDev.IsVisible)
+        _obj.EndorserSberDev = null;
       
       if (!_obj.State.Properties.MVP.IsVisible)
         _obj.MVP.Clear();
@@ -62,7 +68,7 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
-      if (_obj.ConditionType == ConditionType.FCDApprByTreasSberDev)
+      if (_obj.ConditionType == ConditionType.FCDApprBySberDev)
       {
         bool flag = false;
         var incInv = SBContracts.IncomingInvoices.As(document);
@@ -72,7 +78,8 @@ namespace sberdev.SBContracts.Shared
           var signInfos = Signatures.Get(fcd.LastVersion);
           foreach (var signInfo in signInfos)
           {
-            if (signInfo.SubstitutedUserFullName.Split(' ').FirstOrDefault() == "Казначей" && signInfo.IsValid)
+            if (signInfo.IsValid && (signInfo.SubstitutedUser == _obj.EndorserSberDev
+                                     || signInfo.Signatory == _obj.EndorserSberDev))
             {
               flag = true;
               break;
@@ -724,7 +731,7 @@ namespace sberdev.SBContracts.Shared
     {
       var baseSupport = base.GetSupportedConditions();
       
-      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.FCDApprByTreasSberDev); // incoming invoice
+      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.FCDApprBySberDev); // incoming invoice
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.MarketDirect); // incoming invoice
       

@@ -187,8 +187,8 @@
   <data name="Enum_ConditionType_IsNeedCheckCp" xml:space="preserve">
     <value>Сумма договоров по ка &gt; 500 тыс. руб.</value>
   </data>
-  <data name="Enum_ConditionType_InvApprByTreas" xml:space="preserve">
-    <value>Вх. счет согласован казначеем</value>
+  <data name="Enum_ConditionType_InvApprBySberDev" xml:space="preserve">
+    <value>Вх. счет согласован</value>
   </data>
   <data name="Enum_ConditionType_IsPrepayment" xml:space="preserve">
     <value>Предоплата</value>

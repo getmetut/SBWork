@@ -20,7 +20,7 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.ProductUnitSberDev.IsVisible = isProductUnit;
       _obj.State.Properties.ProductUnitSberDev.IsRequired = isProductUnit;
       
-      var isEndorseFrom = _obj.ConditionType == ConditionType.EndorseFromSberDev;
+      var isEndorseFrom = _obj.ConditionType == ConditionType.EndorseFromSberDev || _obj.ConditionType == ConditionType.InvApprBySberDev;
       _obj.State.Properties.EndorserSberDev.IsVisible = isEndorseFrom;
       _obj.State.Properties.EndorserSberDev.IsRequired = isEndorseFrom;
       
@@ -62,6 +62,8 @@ namespace sberdev.SBContracts.Shared
     public override void ClearHiddenProperties()
     {
       base.ClearHiddenProperties();
+      if(!_obj.State.Properties.EndorserSberDev.IsVisible)
+        _obj.EndorserSberDev = null;
       
       if(!_obj.State.Properties.ProductUnitSberDev.IsVisible)
         _obj.ProductUnitSberDev.Clear();
@@ -132,7 +134,7 @@ namespace sberdev.SBContracts.Shared
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
       }
       
-      if (_obj.ConditionType == ConditionType.InvApprByTreas)
+      if (_obj.ConditionType == ConditionType.InvApprBySberDev)
       {
         bool flag = false;
         var acc = SBContracts.AccountingDocumentBases.As(document);
@@ -142,7 +144,8 @@ namespace sberdev.SBContracts.Shared
           var signInfos = Signatures.Get(inv.LastVersion);
           foreach (var signInfo in signInfos)
           {
-            if (signInfo.SubstitutedUserFullName.Split(' ').FirstOrDefault() == "Казначей" && signInfo.IsValid)
+            if (signInfo.IsValid && (signInfo.SubstitutedUser == _obj.EndorserSberDev
+                                     || signInfo.Signatory == _obj.EndorserSberDev))
             {
               flag = true;
               break;
@@ -167,7 +170,7 @@ namespace sberdev.SBContracts.Shared
         bool flag = false;
         foreach (var singInfo in signInfos)
         {
-          if (singInfo.Signatory == _obj.EndorserSberDev && singInfo.SignatureType == SignatureType.Endorsing)
+          if ((singInfo.Signatory == _obj.EndorserSberDev || singInfo.SubstitutedUser == _obj.EndorserSberDev) && singInfo.SignatureType == SignatureType.Endorsing)
           {
             flag = true;
             break;
@@ -715,13 +718,10 @@ namespace sberdev.SBContracts.Shared
       }
       
       if (_obj.ConditionType == ConditionType.Framework )
-
       {
-        var find = false;
         var contract = SBContracts.ContractualDocuments.As(document);
         if (contract != null)
         {
-          find = true;
           return
             Sungero.Docflow.Structures.ConditionBase.ConditionResult.
             Create(contract.FrameworkBaseSberDev == true,
@@ -730,7 +730,6 @@ namespace sberdev.SBContracts.Shared
         var acc = SBContracts.AccountingDocumentBases.As(document);
         if (acc != null)
         {
-          find = true;
           return
             Sungero.Docflow.Structures.ConditionBase.ConditionResult.
             Create(acc.FrameworkBaseSberDev == true,
@@ -758,9 +757,9 @@ namespace sberdev.SBContracts.Shared
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.IsPrepayment); // universal transfer document
       baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.IsPrepayment); // waybill
       
-      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.InvApprByTreas); // сontract statement
-      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.InvApprByTreas); // universal transfer document
-      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.InvApprByTreas); // waybill
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.InvApprBySberDev); // сontract statement
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.InvApprBySberDev); // universal transfer document
+      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.InvApprBySberDev); // waybill
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.IsNeedCheckCp); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.IsNeedCheckCp); // sup agreement

@@ -181,7 +181,10 @@
   <data name="Enum_ConditionType_MarketDirect" xml:space="preserve">
     <value>Marketing directions</value>
   </data>
-  <data name="Enum_ConditionType_FCDApprByTreasSberDev" xml:space="preserve">
-    <value>FCD approved by treasurer</value>
+  <data name="Enum_ConditionType_FCDApprBySberDev" xml:space="preserve">
+    <value>FCD approved by</value>
+  </data>
+  <data name="Property_EndorserSberDev" xml:space="preserve">
+    <value>Endorser</value>
   </data>
 </root>

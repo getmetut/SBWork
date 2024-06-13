@@ -187,8 +187,8 @@
   <data name="Enum_ConditionType_IsNeedCheckCp" xml:space="preserve">
     <value>The amount contracts for ka &gt; 500k rub.</value>
   </data>
-  <data name="Enum_ConditionType_InvApprByTreas" xml:space="preserve">
-    <value>Incom. invoice approved by treasurer</value>
+  <data name="Enum_ConditionType_InvApprBySberDev" xml:space="preserve">
+    <value>Incom. invoice approved</value>
   </data>
   <data name="Enum_ConditionType_IsPrepayment" xml:space="preserve">
     <value>Prepayment</value>

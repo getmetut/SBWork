@@ -205,10 +205,6 @@ namespace sberdev.SBContracts.Client
     {
       PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
       base.CreateVersionFromLastVersion(e);
-      bool flag = PublicFunctions.Module.IsSystemUser() || Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
-          || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
-      if (!e.Params.Contains(Constants.Docflow.OfficialDocument.IsNeedChangeApprovalStatus))
-        e.Params.AddOrUpdate(Constants.Docflow.OfficialDocument.IsNeedChangeApprovalStatus, !flag);
     }
 
     public override bool CanCreateVersionFromLastVersion(Sungero.Domain.Client.CanExecuteActionArgs e)
