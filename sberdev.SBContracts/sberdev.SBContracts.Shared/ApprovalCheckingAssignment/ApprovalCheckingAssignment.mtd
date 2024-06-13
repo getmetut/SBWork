@@ -22,6 +22,15 @@
       "GenerateHandler": true,
       "LargeIconName": "Action_AbortTask_large_443b13f564d548b383db4fff33303fe8.png",
       "SmallIconName": "Action_AbortTask_small_443b13f564d548b383db4fff33303fe8.png"
+    },
+    {
+      "NameGuid": "0175a9fe-6923-489a-a355-b006bc81732e",
+      "Name": "UnblockAttachSberDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_UnblockAttachSberDev_large_0175a9fe6923489aa355b006bc81732e.png",
+      "NeedConfirmation": true,
+      "SmallIconName": "Action_UnblockAttachSberDev_small_0175a9fe6923489aa355b006bc81732e.png"
     }
   ],
   "AssociatedGuid": "d7041916-1429-42e2-869b-661edeef70e5",
@@ -155,13 +164,13 @@
           "Name": "ControlGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 37.64
+              "Percentage": 36.55
             },
             {
-              "Percentage": 34.19
+              "Percentage": 38.33
             },
             {
-              "Percentage": 28.18
+              "Percentage": 22.31
             }
           ],
           "ColumnNumber": 0,
@@ -437,9 +446,27 @@
         "ButtonSize": "Large",
         "Index": 3,
         "ParentGuid": "ac82503a-7a47-49d0-b90c-9bb512c4559c"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "53ae8b1f-eef6-4d4e-83b2-bfd76d34fbff",
+        "Name": "UnblockAttachSberDevSberDev",
+        "ActionGuid": "0175a9fe-6923-489a-a355-b006bc81732e",
+        "ButtonSize": "Large",
+        "Index": 600,
+        "ParentGuid": "a8591a26-e100-4db9-992c-97c13fd33ce9"
       }
     ],
-    "Groups": [],
+    "Groups": [
+      {
+        "NameGuid": "a8591a26-e100-4db9-992c-97c13fd33ce9",
+        "Name": "AdminButtons",
+        "IconName": null,
+        "Index": 51,
+        "ParentGuid": "21a31627-5f58-4416-8c4a-90f538ee2e57",
+        "SmallIconName": null
+      }
+    ],
     "IsAncestorMetadata": true,
     "Pages": [],
     "RibbonKind": "Card"

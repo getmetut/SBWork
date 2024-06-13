@@ -23,10 +23,34 @@ namespace sberdev.SBContracts.Shared
         baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerMark);
         baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerProd);
         baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerPrGe);
-        baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.AddApproversProd);
+        baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerUnit);
       }
       
       return baseRoles;
+    }
+    
+    public override void SetPropertiesVisibility()
+    {
+      base.SetPropertiesVisibility();
+      
+      var properties = _obj.State.Properties;
+      var isUnits = false;
+      foreach (var role in _obj.ApprovalRoles)
+      {
+        if (role.ApprovalRole.Type == sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerUnit)
+          isUnits = true;
+      }
+      var isUnit = _obj.ApprovalRole != null ? _obj.ApprovalRole.Type == sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerUnit : false;
+      if (isUnit || isUnits)
+      {
+        properties.ProductUnitSberDev.IsVisible = true;
+        properties.ProductUnitSberDev.IsRequired = true;
+      }
+      else
+      {
+        properties.ProductUnitSberDev.IsVisible = false;
+        properties.ProductUnitSberDev.IsRequired = false;
+      }
     }
   }
 }

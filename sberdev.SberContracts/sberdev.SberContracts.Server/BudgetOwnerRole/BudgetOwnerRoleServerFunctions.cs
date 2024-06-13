@@ -130,68 +130,6 @@ namespace sberdev.SberContracts.Server
       
       #endregion
       
-      #region AddApprovers
-      if (_obj.Type == SberContracts.BudgetOwnerRole.Type.AddApproversProd)
-      {
-        var document = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
-        var contract = SBContracts.ContractualDocuments.As(document);
-        List<Sungero.Company.IEmployee> group = new List<Sungero.Company.IEmployee>();
-        if (contract != null)
-        {
-          if (contract.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Expendable ||
-              contract.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.ExpendProfitSberDev)
-          {
-            if (contract.ProdCollectionExBaseSberDev.FirstOrDefault().Product.Name == "General")
-            {
-              var productEx = contract.CalculationBaseSberDev.FirstOrDefault();
-              foreach(var emp in productEx.ProductCalc.AddApprovers)
-                group.Add(emp.Approver);
-            }
-            else
-            {
-              var productEx = contract.ProdCollectionExBaseSberDev.FirstOrDefault();
-              foreach(var emp in productEx.Product.AddApprovers)
-                group.Add(emp.Approver);
-            }
-          }
-          else
-          {
-            if (contract.ProdCollectionPrBaseSberDev.FirstOrDefault().Product.Name == "General")
-            {
-              var productEx = contract.CalculationBaseSberDev.FirstOrDefault();
-              foreach(var emp in productEx.ProductCalc.AddApprovers)
-                group.Add(emp.Approver);
-            }
-            else
-            {
-              var productPr = contract.ProdCollectionPrBaseSberDev.FirstOrDefault();
-              foreach(var emp in productPr.Product.AddApprovers)
-                group.Add(emp.Approver);
-            }
-          }
-        }
-        
-        var acc = SBContracts.AccountingDocumentBases.As(document);
-        if (acc != null)
-        {
-          if (acc.ProdCollectionBaseSberDev.FirstOrDefault().Product.Name == "General")
-          {
-            var productAcc = acc.CalculationBaseSberDev.FirstOrDefault();
-            foreach(var emp in productAcc.ProductCalc.AddApprovers)
-              group.Add(emp.Approver);
-          }
-          else
-          {
-            var productAcc = acc.ProdCollectionBaseSberDev.FirstOrDefault();
-            foreach(var emp in productAcc.Product.AddApprovers)
-              group.Add(emp.Approver);
-          }
-        }
-        
-        return group.Distinct().ToList();
-      }
-      #endregion
-      
       return base.GetRolePerformers(task);
     }
 
@@ -334,6 +272,15 @@ namespace sberdev.SberContracts.Server
         }
         
         return null;
+      }
+      #endregion
+      
+      #region BudgetOwnerUnit
+      if (_obj.Type == SberContracts.BudgetOwnerRole.Type.BudgetOwnerUnit)
+      {
+        var stage = task.ApprovalRule.Stages.Where(s => s.Number == task.StageNumber).FirstOrDefault();
+        if (stage != null)
+          return SBContracts.ApprovalStages.As(stage.Stage)?.ProductUnitSberDev?.Responsible;
       }
       #endregion
       

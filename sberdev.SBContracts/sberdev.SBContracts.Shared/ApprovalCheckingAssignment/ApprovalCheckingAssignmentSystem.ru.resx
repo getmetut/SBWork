@@ -160,4 +160,19 @@
   <data name="Property_InternalApprovalStateSberDev" xml:space="preserve">
     <value>Внутр. согл. договора</value>
   </data>
+  <data name="Action_UnblockAttachSberDev" xml:space="preserve">
+    <value>Разблокировать вложение</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevHint" xml:space="preserve">
+    <value>Разблокировать вложение (карточки и посл. версию) через базу данных.</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevDescription" xml:space="preserve">
+    <value>Документ (карточка и послденяя версия) будет разблокирован посредством прямых запросов на удаление записи из таблицы BinDataLocks и Locks.</value>
+  </data>
+  <data name="Ribbon_AdminButtons_a8591a26e1004db9992c97c13fd33ce9" xml:space="preserve">
+    <value>Администрирование</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevConfirmationMessage" xml:space="preserve">
+    <value>Вы уверены что хотите разблокировать карточку и версию вложения?</value>
+  </data>
 </root>

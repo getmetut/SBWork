@@ -31,6 +31,16 @@
       "GenerateHandler": true,
       "LargeIconName": "Action_AbortTask_large_fe1243b49f624758ac49355616cab7c7.png",
       "SmallIconName": "Action_AbortTask_small_fe1243b49f624758ac49355616cab7c7.png"
+    },
+    {
+      "NameGuid": "b820d2f6-9a57-4b05-ae39-370d3492491c",
+      "Name": "UnblockAttachSberDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_UnblockAttachSberDevSberDev_large_b820d2f69a574b05ae39370d3492491c.png",
+      "NeedConfirmation": true,
+      "SmallIconName": "Action_UnblockAttachSberDevSberDev_small_b820d2f69a574b05ae39370d3492491c.png",
+      "Versions": []
     }
   ],
   "AssociatedGuid": "d7041916-1429-42e2-869b-661edeef70e5",
@@ -500,6 +510,15 @@
         "ButtonSize": "Large",
         "Index": 4,
         "ParentGuid": "ac82503a-7a47-49d0-b90c-9bb512c4559c"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "554a3bd2-693d-47a7-962b-74e57e9ac88a",
+        "Name": "UnblockAttach",
+        "ActionGuid": "b820d2f6-9a57-4b05-ae39-370d3492491c",
+        "ButtonSize": "Large",
+        "Index": 0,
+        "ParentGuid": "711df1d1-fff4-49c1-9a04-b257f2ffeab8"
       }
     ],
     "Groups": [
@@ -512,6 +531,14 @@
           "SmallIconResource"
         ],
         "ParentGuid": "21a31627-5f58-4416-8c4a-90f538ee2e57"
+      },
+      {
+        "NameGuid": "711df1d1-fff4-49c1-9a04-b257f2ffeab8",
+        "Name": "AdminButtons",
+        "IconName": null,
+        "Index": 52,
+        "ParentGuid": "21a31627-5f58-4416-8c4a-90f538ee2e57",
+        "SmallIconName": null
       }
     ],
     "IsAncestorMetadata": true,

@@ -140,7 +140,7 @@
     <value>Unblock the card through the database.</value>
   </data>
   <data name="Action_UnblockCardSberDevConfirmationMessage" xml:space="preserve">
-    <value />
+    <value>Are you sure you want to unlock the card?</value>
   </data>
   <data name="Action_UnblockCardSberDevConfirmationDescription" xml:space="preserve">
     <value />
@@ -152,7 +152,7 @@
     <value>Unblock the version through the database.</value>
   </data>
   <data name="Action_UnblockVersionSberDevConfirmationMessage" xml:space="preserve">
-    <value />
+    <value>Are you sure you want to unlock the last version of document?</value>
   </data>
   <data name="Action_UnblockVersionSberDevDescription" xml:space="preserve">
     <value>The last version will be unlocked through a direct request to delete records from the Locks table.</value>

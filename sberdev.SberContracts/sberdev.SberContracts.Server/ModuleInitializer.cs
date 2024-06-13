@@ -32,6 +32,28 @@ namespace sberdev.SberContracts.Server
     
     public static void CreateRoles()
     {
+      var roleAB = Roles.GetAll(r => r.Sid == Constants.Module.AdminButtonsUserRoleGuid).FirstOrDefault();
+      
+      if (roleAB == null)
+      {
+        roleAB = Roles.Create();
+        roleAB.Name = "Пользователи админ. кнопок";
+        roleAB.Description = "Участники роли могут использовать кнопки группы \"Администрирование\" в карточках сущностей";
+        roleAB.Sid = Constants.Module.AdminButtonsUserRoleGuid;
+        roleAB.IsSystem = false;
+        roleAB.Save();
+        InitializationLogger.Debug("Пользователи админ. кнопок");
+      }
+      else
+      {
+        roleAB.Name = "Пользователи админ. кнопок";
+        roleAB.Description = "Участники роли могут использовать кнопки группы \"Администрирование\" в карточках сущностей";
+        roleAB.Sid = Constants.Module.AdminButtonsUserRoleGuid;
+        roleAB.IsSystem = false;
+        roleAB.Save();
+        InitializationLogger.Debug("Пользователи админ. кнопок");
+      }
+      
       var roleBC = Roles.GetAll(r => r.Sid == Constants.Module.BusinessControlerRoleGuid).FirstOrDefault();
       
       if (roleBC == null)
@@ -176,7 +198,7 @@ namespace sberdev.SberContracts.Server
         sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerMark,
         sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerProd,
         sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerPrGe,
-        sberdev.SberContracts.BudgetOwnerRole.Type.AddApproversProd};
+        sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerUnit};
       foreach (var customRole in customRoles)
       {
         var role = roles.FirstOrDefault(r => r.Type.Value == customRole);

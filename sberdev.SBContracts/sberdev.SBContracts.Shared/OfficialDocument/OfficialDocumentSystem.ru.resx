@@ -118,4 +118,10 @@
   <data name="Action_UnblockVersionSberDevDescription" xml:space="preserve">
     <value>Последняя версия документа будет разблокирована посредством прямого запроса на удаление записи из таблицы BinDataLocks.</value>
   </data>
+  <data name="Action_UnblockCardSberDevConfirmationMessage" xml:space="preserve">
+    <value>Вы уверены что хотите разблокировать карточку?</value>
+  </data>
+  <data name="Action_UnblockVersionSberDevConfirmationMessage" xml:space="preserve">
+    <value>Вы уверены что хотите разблокировать последнюю версию документа?</value>
+  </data>
 </root>

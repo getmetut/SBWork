@@ -279,6 +279,14 @@
       "Value": "new System.Guid(\"465bf65a-3e4c-4430-8bf5-557626a62c76\")"
     },
     {
+      "Name": "AdminButtonsUserRoleGuid",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"c48e6195-7f93-4e1b-98cf-293d2a2c862d\")"
+    },
+    {
       "Name": "BusinessControlerRoleGuid",
       "ParentClasses": [
         "Module"

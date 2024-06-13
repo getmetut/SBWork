@@ -65,10 +65,10 @@
     <value>Сумма изменилась</value>
   </data>
   <data name="Action_AmountChangesberdevHint" xml:space="preserve">
-    <value>Согласовать с сладельцем бюджета изменение суммы</value>
+    <value>Согласовать с владельцем бюджета изменение суммы</value>
   </data>
   <data name="Action_AmountChangesberdevDescription" xml:space="preserve">
-    <value>Согласовать с сладельцем бюджета изменение суммы</value>
+    <value>Согласовать с владельцем бюджета изменение суммы</value>
   </data>
   <data name="Property_AmountChanges" xml:space="preserve">
     <value>Сумма изменилась параметр</value>
@@ -174,5 +174,20 @@
   </data>
   <data name="Property_ExternalApprovalStateSberDev" xml:space="preserve">
     <value>Согл. договора с контраг.</value>
+  </data>
+  <data name="Action_UnblockAttachSberDev" xml:space="preserve">
+    <value>Разблокировать вложение</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevHint" xml:space="preserve">
+    <value>Разблокировать вложение (карточки и посл. версию) через базу данных.</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevDescription" xml:space="preserve">
+    <value>Документ (карточка и послденяя версия) будет разблокирован посредством прямых запросов на удаление записи из таблицы BinDataLocks и Locks.</value>
+  </data>
+  <data name="Ribbon_AdminButtons_711df1d1fff449c19a04b257f2ffeab8" xml:space="preserve">
+    <value>Администрирование</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevConfirmationMessage" xml:space="preserve">
+    <value>Вы уверены что хотите разблокировать карточку и версию вложения?</value>
   </data>
 </root>

@@ -187,4 +187,22 @@
   <data name="Enum_ExternalApprovalStateSberDev_Signed" xml:space="preserve">
     <value>Signed</value>
   </data>
+  <data name="Action_UnblockAttachSberDev" xml:space="preserve">
+    <value>Unlock attachment</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevDescription" xml:space="preserve">
+    <value>The attachment (card and last version) will be unlocked through a direct request to delete records from the BinDataLocks and Locks tables.</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevHint" xml:space="preserve">
+    <value>Unblock the attachment (card and last version) through the database.</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevConfirmationMessage" xml:space="preserve">
+    <value>Are you sure you want to unlock the card and attachment version?</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Ribbon_AdminButtons_711df1d1fff449c19a04b257f2ffeab8" xml:space="preserve">
+    <value>Administrating</value>
+  </data>
 </root>

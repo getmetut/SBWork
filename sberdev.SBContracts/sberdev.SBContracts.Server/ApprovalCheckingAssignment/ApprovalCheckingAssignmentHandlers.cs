@@ -55,6 +55,8 @@ namespace sberdev.SBContracts
       
       if (incInv != null)
       {
+        var accounting = incInv.AccDocSberDev;
+        var contractual = incInv.LeadingDocument;
         switch (_obj.StageSubject)
         {
           case "Оплата счета":
@@ -64,7 +66,6 @@ namespace sberdev.SBContracts
             break;
             
           case "Проверка договорных документов Делопроизводителем":
-            var contractual = incInv.LeadingDocument;
             if (contractual != null)
             {
               SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(contractual);
@@ -72,7 +73,23 @@ namespace sberdev.SBContracts
               contractual.ExternalApprovalState = SBContracts.OfficialDocument.ExternalApprovalState.Signed;
               contractual.Save();
             }
-            var accounting = incInv.AccDocSberDev;
+            if (accounting != null)
+            {
+              SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(accounting);
+              accounting.InternalApprovalState = SBContracts.OfficialDocument.InternalApprovalState.Signed;
+              accounting.ExternalApprovalState = SBContracts.OfficialDocument.ExternalApprovalState.Signed;
+              accounting.Save();
+            }
+            break;
+            
+          case "Проверка договорных документов Делопроизводителем ГФ":
+            if (contractual != null)
+            {
+              SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(contractual);
+              contractual.InternalApprovalState = SBContracts.OfficialDocument.InternalApprovalState.Signed;
+              contractual.ExternalApprovalState = SBContracts.OfficialDocument.ExternalApprovalState.Signed;
+              contractual.Save();
+            }
             if (accounting != null)
             {
               SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(accounting);

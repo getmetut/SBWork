@@ -4,11 +4,28 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using sberdev.SBContracts.ApprovalCheckingAssignment;
+using Sungero.Metadata;
+using Sungero.Domain.Shared;
 
 namespace sberdev.SBContracts.Client
 {
   partial class ApprovalCheckingAssignmentActions
   {
+    public virtual void UnblockAttachSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      var attach = Functions.ApprovalCheckingAssignment.Remote.GetAttachment(_obj);
+      PublicFunctions.Module.Remote.UnblockCardByDatabase(attach);
+      if (attach.HasVersions == true)
+        Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand("delete from Sungero_System_BinDataLocks where EntityId = "
+                                                                 + attach.LastVersion.Id.ToString() + " and EntityTypeGuid = '"
+                                                                 + attach.LastVersion.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "'");
+    }
+
+    public virtual bool CanUnblockAttachSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return Sungero.Company.Employees.Current.IncludedIn(Roles.GetAll(r => r.Sid == SberContracts.PublicConstants.Module.AdminButtonsUserRoleGuid).FirstOrDefault());
+    }
+
 
     public override void ForRework(Sungero.Workflow.Client.ExecuteResultActionArgs e)
     {

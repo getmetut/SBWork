@@ -22,7 +22,8 @@ namespace sberdev.SBContracts.Client
     {
       var doc = SBContracts.OfficialDocuments.As(_obj.ElectronicDocument);
       if (doc != null && PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(doc))
-        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
+        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
+          || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
       else
         return base.CanCreateDocumentFromVersion(e);
     }
@@ -37,7 +38,8 @@ namespace sberdev.SBContracts.Client
     {
       var doc = SBContracts.OfficialDocuments.As(_obj.ElectronicDocument);
       if (doc != null && PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(doc))
-        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
+        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
+          || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
       else
         return base.CanCreateVersion(e);
     }
@@ -56,7 +58,7 @@ namespace sberdev.SBContracts.Client
 
     public virtual bool CanUnblockVersionSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      return true;
+      return Sungero.Company.Employees.Current.IncludedIn(Roles.GetAll(r => r.Sid == SberContracts.PublicConstants.Module.AdminButtonsUserRoleGuid).FirstOrDefault());
     }
 
 
@@ -67,7 +69,7 @@ namespace sberdev.SBContracts.Client
 
     public virtual bool CanUnblockCardSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      return true;
+      return Sungero.Company.Employees.Current.IncludedIn(Roles.GetAll(r => r.Sid == SberContracts.PublicConstants.Module.AdminButtonsUserRoleGuid).FirstOrDefault());
     }
 
     public virtual void GetMetadataSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
@@ -81,7 +83,8 @@ namespace sberdev.SBContracts.Client
 
     public virtual bool CanGetMetadataSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      return Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
+      return Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"))
+        || Sungero.Company.Employees.Current.IncludedIn(Roles.GetAll(r => r.Sid == SberContracts.PublicConstants.Module.AdminButtonsUserRoleGuid).FirstOrDefault());
     }
 
     public virtual void SetMetadataSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
@@ -91,7 +94,8 @@ namespace sberdev.SBContracts.Client
 
     public virtual bool CanSetMetadataSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      return Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
+      return Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"))
+        || Sungero.Company.Employees.Current.IncludedIn(Roles.GetAll(r => r.Sid == SberContracts.PublicConstants.Module.AdminButtonsUserRoleGuid).FirstOrDefault());
     }
 
     public virtual void TransferBodySberDev(Sungero.Domain.Client.ExecuteActionArgs e)
@@ -118,13 +122,15 @@ namespace sberdev.SBContracts.Client
 
     public virtual bool CanTransferBodySberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      return Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
+      return Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"))
+        || Sungero.Company.Employees.Current.IncludedIn(Roles.GetAll(r => r.Sid == SberContracts.PublicConstants.Module.AdminButtonsUserRoleGuid).FirstOrDefault());
     }
 
     public override bool CanImportInLastVersion(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
       if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
-        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
+        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
+          || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
       else
         return base.CanImportInLastVersion(e);
     }
@@ -144,7 +150,8 @@ namespace sberdev.SBContracts.Client
     public override bool CanImportInNewVersion(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
       if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
-        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
+        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
+          || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
       else
         return base.CanImportInNewVersion(e);
     }
@@ -152,7 +159,8 @@ namespace sberdev.SBContracts.Client
     public override bool CanScanInNewVersion(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
       if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
-        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
+        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
+          || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
       else
         return base.CanScanInNewVersion(e);
     }
@@ -172,7 +180,8 @@ namespace sberdev.SBContracts.Client
     public override bool CanCreateFromScanner(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
       if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
-        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
+        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
+          || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
       else
         return base.CanCreateFromScanner(e);
     }
@@ -186,7 +195,8 @@ namespace sberdev.SBContracts.Client
     public override bool CanCreateFromFile(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
       if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
-        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
+        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
+          || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
       else
         return base.CanCreateFromFile(e);
     }
@@ -195,12 +205,17 @@ namespace sberdev.SBContracts.Client
     {
       PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
       base.CreateVersionFromLastVersion(e);
+      bool flag = PublicFunctions.Module.IsSystemUser() || Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
+          || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
+      if (!e.Params.Contains(Constants.Docflow.OfficialDocument.IsNeedChangeApprovalStatus))
+        e.Params.AddOrUpdate(Constants.Docflow.OfficialDocument.IsNeedChangeApprovalStatus, !flag);
     }
 
     public override bool CanCreateVersionFromLastVersion(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
       if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
-        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
+        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
+          || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
       else
         return base.CanCreateVersionFromLastVersion(e);
     }
@@ -214,7 +229,8 @@ namespace sberdev.SBContracts.Client
     public override bool CanCreateFromTemplate(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
       if (PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(_obj))
-        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"));
+        return Sungero.Company.Employees.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Делопроизводители"))
+          || Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"));
       else
         return base.CanCreateFromTemplate(e);
     }

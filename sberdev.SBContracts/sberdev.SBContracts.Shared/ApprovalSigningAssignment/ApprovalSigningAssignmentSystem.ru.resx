@@ -64,4 +64,19 @@
   <data name="Action_ActionSignedSberDevDescription" xml:space="preserve">
     <value>Выполнение задания на этапе подписания.</value>
   </data>
+  <data name="Action_UnblockAttachSberDev" xml:space="preserve">
+    <value>Разблокировать вложение</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevHint" xml:space="preserve">
+    <value>Разблокировать вложение (карточки и посл. версию) через базу данных.</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevDescription" xml:space="preserve">
+    <value>Документ (карточка и послденяя версия) будет разблокирован посредством прямых запросов на удаление записи из таблицы BinDataLocks и Locks.</value>
+  </data>
+  <data name="Ribbon_AdminButtons_327e948fe60848ea91684394524875c5" xml:space="preserve">
+    <value>Администрирование</value>
+  </data>
+  <data name="Action_UnblockAttachSberDevConfirmationMessage" xml:space="preserve">
+    <value>Вы уверены что хотите разблокировать карточку и версию вложения?</value>
+  </data>
 </root>

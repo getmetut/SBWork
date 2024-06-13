@@ -129,6 +129,7 @@
       "ActionArea": "Card",
       "GenerateHandler": true,
       "LargeIconName": "Action_UnblockCardSberDev_large_b491169362e84bfe94b64838f0e73b56.png",
+      "NeedConfirmation": true,
       "SmallIconName": "Action_UnblockCardSberDev_small_b491169362e84bfe94b64838f0e73b56.png"
     },
     {
@@ -137,6 +138,7 @@
       "ActionArea": "Card",
       "GenerateHandler": true,
       "LargeIconName": "Action_UnblockVersionSberDev_large_15e81d7d27454a8a95864f50df3fa3cc.png",
+      "NeedConfirmation": true,
       "SmallIconName": "Action_UnblockVersionSberDev_small_15e81d7d27454a8a95864f50df3fa3cc.png",
       "Versions": []
     }
@@ -177,6 +179,32 @@
   "OpenCardByDefaultInCollection": true,
   "OperationsClass": "",
   "Properties": [
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "fdcc98d0-a972-4b77-9e03-bd9a29a9b6fb",
+      "Name": "InternalApprovalState",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "fec695ea-aa2c-4d91-89fd-52c644da24c5",
+      "Name": "ExternalApprovalState",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "bbbc063d-7367-4ea8-a777-5dd1bbe8e216",

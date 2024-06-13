@@ -13,9 +13,59 @@
       "LargeIconName": "Action_ActionSignedSberDev_large_4cf20f0c35454655a2000bc6c6ebd27c.png",
       "NeedRefreshCollectionAfterExecute": true,
       "SmallIconName": "Action_ActionSignedSberDev_small_4cf20f0c35454655a2000bc6c6ebd27c.png"
+    },
+    {
+      "NameGuid": "54cb7dab-53cf-456a-8f7b-4d5beb78a954",
+      "Name": "UnblockAttachSberDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_UnblockAttachSberDevSberDev_large_54cb7dab53cf456a8f7b4d5beb78a954.png",
+      "NeedConfirmation": true,
+      "SmallIconName": "Action_UnblockAttachSberDevSberDev_small_54cb7dab53cf456a8f7b4d5beb78a954.png",
+      "Versions": []
     }
   ],
   "AssociatedGuid": "d7041916-1429-42e2-869b-661edeef70e5",
+  "AttachmentGroups": [
+    {
+      "NameGuid": "08e1ef90-521f-41a1-a13f-c6f175007e54",
+      "Name": "DocumentGroup",
+      "Constraints": [],
+      "IsAncestorMetadata": true,
+      "IsAssociatedEntityGroup": true,
+      "IsEnabled": false,
+      "IsRequired": true,
+      "Overridden": [
+        "Title",
+        "Description"
+      ],
+      "Versions": []
+    },
+    {
+      "NameGuid": "852b3e7d-f178-47d3-8fad-a64021065cfd",
+      "Name": "AddendaGroup",
+      "Constraints": [],
+      "IsAncestorMetadata": true,
+      "IsAssociatedEntityGroup": true,
+      "Overridden": [
+        "Title",
+        "Description"
+      ],
+      "Versions": []
+    },
+    {
+      "NameGuid": "bd87e6b5-e247-485a-93bf-52f24a64af5a",
+      "Name": "OtherGroup",
+      "Constraints": [],
+      "IsAncestorMetadata": true,
+      "IsAssociatedEntityGroup": true,
+      "Overridden": [
+        "Title",
+        "Description"
+      ],
+      "Versions": []
+    }
+  ],
   "BaseGuid": "db516acc-0f02-4ea7-960a-08f3f734db4f",
   "CanBeNavigationPropertyType": true,
   "CreationAreaMetadata": {
@@ -61,8 +111,27 @@
     "NameGuid": "57f95eb6-f77f-4c44-a8d0-730e7d77617d",
     "Name": "RibbonCard",
     "Categories": [],
-    "Elements": [],
-    "Groups": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "57ea7562-3f5c-4ebb-bec4-e0b54123a1e2",
+        "Name": "UnblockAttachSberDevSberDev",
+        "ActionGuid": "54cb7dab-53cf-456a-8f7b-4d5beb78a954",
+        "ButtonSize": "Large",
+        "Index": -1,
+        "ParentGuid": "327e948f-e608-48ea-9168-4394524875c5"
+      }
+    ],
+    "Groups": [
+      {
+        "NameGuid": "327e948f-e608-48ea-9168-4394524875c5",
+        "Name": "AdminButtons",
+        "IconName": null,
+        "Index": 51,
+        "ParentGuid": "21a31627-5f58-4416-8c4a-90f538ee2e57",
+        "SmallIconName": null
+      }
+    ],
     "IsAncestorMetadata": true,
     "Pages": [],
     "RibbonKind": "Card"
