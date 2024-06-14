@@ -21,6 +21,10 @@ namespace sberdev.SBContracts
 
     public override void BeforeStart(Sungero.Workflow.Server.BeforeStartEventArgs e)
     {
+      if (_obj.NewAuthorSDev != null)
+        if (_obj.NewAuthorSDev.Login != null)
+          _obj.Author = Users.GetAll(r => r.Login == _obj.NewAuthorSDev.Login).FirstOrDefault();
+
       var document = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
       base.BeforeStart(e);
       

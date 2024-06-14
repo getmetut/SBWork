@@ -39,6 +39,7 @@ namespace Sungero.Custom.Server
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Расширенное дополнительное соглашение", SupAgreementPlus.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Inner, true);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("NDA", NDA.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Неформализованный отчет", FacelessTochet.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Inner, true);
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Спецификация", Specs.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Incoming, true);
     }
     
     public void CreateDocumentKinds()
@@ -52,6 +53,12 @@ namespace Sungero.Custom.Server
                                                                               Marketing.ClassTypeGuid,      
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },      
                                                                               Constants.Module.Marketing);
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Спецификация", "Спецификация",      
+                                                                              Sungero.Docflow.DocumentKind.NumberingType.Numerable,      
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Incoming, true, false,      
+                                                                              Specs.ClassTypeGuid,      
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },      
+                                                                              Constants.Module.Specs);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Рекламная заявка", "Рекламная заявка",      
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Numerable,      
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, false,      
@@ -88,6 +95,7 @@ namespace Sungero.Custom.Server
     {
       var allUsers = Roles.AllUsers;
       Sungero.Custom.Marketings.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
+      Sungero.Custom.Specses.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
       Sungero.Custom.SupAgreementPluses.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
       Custom.NDAs.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
       Custom.FacelessTochets.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
@@ -101,6 +109,15 @@ namespace Sungero.Custom.Server
         Role.Name = "Доступ к обложке Custom";
         Role.Status = Sungero.CoreEntities.Role.Status.Active;
         Role.Description = "Программная роль для доступа к обложке Custom";
+        Role.IsSingleUser = false;
+        Role.Save();
+      }
+      if (Roles.GetAll(r => (r.Name == "Доступ к обложке Отчеты")).Count() == 0)
+      {
+        var Role = Roles.Create();
+        Role.Name = "Доступ к обложке Отчеты";
+        Role.Status = Sungero.CoreEntities.Role.Status.Active;
+        Role.Description = "Программная роль для доступа к обложке Отчеты";
         Role.IsSingleUser = false;
         Role.Save();
       }

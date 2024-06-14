@@ -472,7 +472,7 @@
         {
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "c18501e4-7af0-44de-8ac7-873abb63e9d6",
-          "Name": "AdditionalSberDev",
+          "Name": "PaymentTerms",
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",

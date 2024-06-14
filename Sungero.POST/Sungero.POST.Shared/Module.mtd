@@ -220,6 +220,9 @@
       "MinVersion": "0.0.1.100"
     }
   ],
+  "HandledEvents": [
+    "VisibilityServer"
+  ],
   "IconResourcesKeys": [],
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
@@ -1292,7 +1295,7 @@
   "SharedAssemblyName": "Sungero.POST.Shared",
   "SharedNamespace": "Sungero.POST.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.139",
+  "Version": "0.0.1.141",
   "Widgets": [],
   "Versions": [
     {

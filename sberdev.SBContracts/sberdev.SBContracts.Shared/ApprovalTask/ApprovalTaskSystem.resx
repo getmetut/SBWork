@@ -160,4 +160,10 @@
   <data name="Control_795d55293ed140429c36ff861221083b_EmptyText" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_NewAuthorSDev" xml:space="preserve">
+    <value>Ответственный за задачу</value>
+  </data>
+  <data name="Control_a8720170834a4475a20091eaba0644b6_EmptyText" xml:space="preserve">
+    <value>Если ответственный за задачу отличается от Автора - укажите его в этом поле</value>
+  </data>
 </root>
