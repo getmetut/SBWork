@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<queries>
+  <query key="PaidInvoiceQuery">
+    <mssql><![CDATA[WITH CTE AS ( select e.Id, e.Name as DocumentName, FORMAT(e.AccDate_Docflow_Sungero, 'yyyy-MM-dd') as AccDate, e.AccNumber_Docflow_Sungero as Number,
+m.Name as MVZ_MVP, a.Name as AccArt, s.Name as ProductName, e.ContrTypeBaseS_SBContr_sberdev as Contrtype, r.Name as Conterparty,
+e.AccTotalAmount_Docflow_Sungero as Amount
+from Sungero_Content_EDoc e
+left join sberdev_SBContr_AccountingDocu p on e.Id = p.EDoc
+inner join sberdev_SberCon_ProductsAndDev s on p.Product = s.Id
+left join sberdev_SberCon_MVZ m on e.MVZBaseSberDev_SBContr_sberdev = m.Id or e.MVPBaseSberDev_SBContr_sberdev = m.Id
+left join sberdev_SberCon_AccountingArti a on e.AccArtBaseSber_SBContr_sberdev = a.Id
+left join Sungero_Parties_Counterparty r on e.AccCParty_Docflow_Sungero = r.Id
+where e.Discriminator = 'A523A263-BC00-40F9-810D-F582BAE2205D' and e.HasVersions = 1 and e.LifeCycleState_Docflow_Sungero = 'Paid'
+and e.Created >= @startDate and e.Created <= @endDate and e.ContrTypeBaseS_SBContr_sberdev = @type)
+
+select distinct Id, DocumentName,  Contrtype, MVZ_MVP, AccArt,
+  stuff((
+    select concat(',',ProductName) 
+    from CTE 
+    where Id=t.Id 
+    order by ProductName 
+    for XML path('')
+    ),1,1,'') ProductName, AccDate, Number, Conterparty, Amount
+from CTE t]]></mssql>
+  </query>
+</queries>

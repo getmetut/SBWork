@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Sungero.Core;
+using Sungero.CoreEntities;
+
+namespace sberdev.SberContracts
+{
+  partial class InvoiceProductReportClientHandlers
+  {
+
+    public override void BeforeExecute(Sungero.Reporting.Client.BeforeExecuteEventArgs e)
+    {
+      if (!PaidInvoiceReport.StartDate.HasValue && !PaidInvoiceReport.EndDate.HasValue)
+      {
+        // Создание диалогового окна для запроса значений параметров
+        // beginDate, endDate
+        var dialog = Dialogs.CreateInputDialog(sberdev.SberContracts.Reports.Resources.PaidInvoiceReport.PaidInvoiceReportDialog_Title);
+        var startDate = dialog.AddDate(sberdev.SberContracts.Reports.Resources.PaidInvoiceReport.PaidInvoiceReportDialog_StartDate, true, Calendar.Now.AddMonths(-1));
+        var endDate = dialog.AddDate(sberdev.SberContracts.Reports.Resources.PaidInvoiceReport.PaidInvoiceReportDialog_EndDate, true, Calendar.UserNow);
+        var type = dialog.AddSelect(SberContracts.Reports.Resources.PaidInvoiceReport.PaidInvoiceReportDialog_Type, true, SberContracts.Reports.Resources.PaidInvoiceReport.PaidInvoiceReportDialog_Expendable)
+          .From(new string[]{SberContracts.Reports.Resources.PaidInvoiceReport.PaidInvoiceReportDialog_Expendable, SberContracts.Reports.Resources.PaidInvoiceReport.PaidInvoiceReportDialog_Profitable});
+        if (dialog.Show() == DialogButtons.Ok)
+        {
+          // Передача введенных значений в параметры beginDate, endDate
+          PaidInvoiceReport.StartDate = startDate.Value.Value;
+          PaidInvoiceReport.EndDate = endDate.Value.Value;
+          if (type.Value == SberContracts.Reports.Resources.PaidInvoiceReport.PaidInvoiceReportDialog_Expendable)
+            PaidInvoiceReport.Type = "Expendable";
+          else
+            PaidInvoiceReport.Type = "Profitable";
+        }
+        else
+          e.Cancel = true;
+      }
+    }
+
+  }
+}
