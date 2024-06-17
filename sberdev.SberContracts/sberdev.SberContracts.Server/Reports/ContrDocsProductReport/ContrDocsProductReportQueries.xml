@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<queries>
+  <query key="ContrDocsProductQuery">
+    <mssql><![CDATA[-- Шаг 1: Расчетные значения (Calculations)
+WITH Calculations AS (
+    SELECT
+        c.EDoc,
+        'Absolute' AS CalcKind,
+        STRING_AGG(CONCAT(p.Name, ' ', FORMAT(c.AbsoluteCalc, 'F0')), '; ') AS CalcList
+    FROM
+        sberdev_SBContr_ContrCalc c
+    JOIN
+        sberdev_SberCon_ProductsAndDev p ON c.ProductCalc = p.Id
+    GROUP BY
+        c.EDoc
+
+    UNION ALL
+
+    SELECT
+        c.EDoc,
+        'Percent' AS CalcKind,
+        STRING_AGG(CONCAT(p.Name, ' ', FORMAT(c.InterestCalc, 'F0')), '; ') AS CalcList
+    FROM
+        sberdev_SBContr_ContrCalc c
+    JOIN
+        sberdev_SberCon_ProductsAndDev p ON c.ProductCalc = p.Id
+    GROUP BY
+        c.EDoc
+),
+
+-- Шаг 2: Основной запрос (CTE)
+CTE AS (
+    SELECT 
+        e.Id, 
+        e.Discriminator,
+        re2.Name as Author,
+        re1.Name as BusinessUnit, 
+        FORMAT(e.Modified, 'yyyy-MM-dd') AS Modified, 
+        FORMAT(e.DocumentDate_Docflow_Sungero, 'yyyy-MM-dd') AS DocDate,
+        cu.Name as Currency,
+        e.RegNumber_Docflow_Sungero AS Number, 
+        m.Name AS MVZ_MVP, 
+        a.Name AS AccArt, 
+
+        -- Объединение значений CalcList
+        COALESCE(c.CalcList, 
+            (
+                SELECT STRING_AGG(CONCAT(p.Name, ' ', FORMAT(sc.TotalAmount_Docflow_Sungero, 'F0')), ', ') 
+                FROM Sungero_Content_EDoc sc 
+                JOIN sberdev_SBContr_ContractualDoc cd ON cd.EDoc = sc.Id 
+                JOIN sberdev_SberCon_ProductsAndDev p ON cd.Product = p.Id 
+                WHERE sc.Id = e.Id
+                GROUP BY sc.Id
+            ),
+            (
+                SELECT STRING_AGG(CONCAT(p.Name, ' ', FORMAT(sc.TotalAmount_Docflow_Sungero, 'F0')), ', ') 
+                FROM Sungero_Content_EDoc sc 
+                JOIN sberdev_SBContr_ContractualDo1 cd ON cd.EDoc = sc.Id 
+                JOIN sberdev_SberCon_ProductsAndDev p ON cd.Product = p.Id 
+                WHERE sc.Id = e.Id
+                GROUP BY sc.Id
+            )
+        ) AS CalcList,
+
+        e.ContrTypeBase2_SBContr_sberdev AS Contrtype,
+        r.Name AS Conterparty, 
+        e.IntApprState_Docflow_Sungero as IntApprState,
+        e.LifeCycleState_Docflow_Sungero as LifeCycleState,
+        dk.Name as DocumentKind,
+        e.Name as [Name],
+        e.Subject_Docflow_Sungero as Subject,
+        e.FrameworkBaseS_SBContr_sberdev as Framework,
+        re3.Name as OurSignatory,
+        e.TotalAmount_Docflow_Sungero AS Amount 
+    FROM 
+        Sungero_Content_EDoc e
+        LEFT JOIN Sungero_Docflow_DocumentKind dk on e.DocumentKind_Docflow_Sungero = dk.Id
+        LEFT JOIN sberdev_SberCon_MVZ m ON e.MVZBaseSberDe1_SBContr_sberdev = m.Id OR e.MVPBaseSberDe1_SBContr_sberdev = m.Id 
+        LEFT JOIN sberdev_SberCon_AccountingArti a ON e.AccArtExBaseSb_SBContr_sberdev = a.Id or e.AccArtPrBaseSb_SBContr_sberdev = a.Id
+        LEFT JOIN Sungero_Parties_Counterparty r ON e.Counterparty_Docflow_Sungero = r.Id 
+        LEFT JOIN Sungero_Core_Recipient re1 on e.BusinessUnit_Docflow_Sungero = re1.Id
+        LEFT JOIN Sungero_Core_Recipient re2 on e.Author = re2.Id
+        LEFT JOIN Sungero_Core_Recipient re3 on e.OurSignatory_Docflow_Sungero = re3.Id
+        LEFT JOIN Sungero_Commons_Currency cu on e.ContrCurrency_Docflow_Sungero = cu.Id
+        LEFT JOIN Calculations c ON e.Id = c.EDoc and c.CalcKind = e.CalculationFl2_SBContr_sberdev
+    WHERE 
+        e.Discriminator = 'F37C7E63-B134-4446-9B5B-F8811F6C9666' or e.Discriminator = '265F2C57-6A8A-4A15-833B-CA00E8047FA5'
+)
+
+-- Шаг 3: Финальный запрос
+SELECT 
+    c.Id, 
+    c.Discriminator,
+    c.BusinessUnit, 
+    c.Author,
+    c.Modified,
+    c.Contrtype, 
+    c.MVZ_MVP, 
+    c.AccArt, 
+    c.DocDate, 
+    c.Number, 
+    c.DocumentKind,
+    c.Conterparty, 
+    c.LifeCycleState,
+    c.IntApprState,
+    c.Amount, 
+    c.Currency,
+    c.CalcList,
+    c.[Subject],
+    c.Framework,
+    c.OurSignatory,
+    c.[Name]
+FROM 
+    CTE c;
+]]></mssql>
+  </query>
+</queries>

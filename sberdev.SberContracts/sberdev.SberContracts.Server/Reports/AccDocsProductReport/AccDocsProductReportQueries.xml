@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<queries>
+  <query key="AccDocsProductQuery">
+    <mssql><![CDATA[WITH Calculations AS (
+    SELECT
+        c.EDoc,
+        'Absolute' AS CalcKind,
+        STRING_AGG(CONCAT(p.Name, ' ', FORMAT(c.AbsoluteCalc, 'F0')), '; ') AS CalcList
+    FROM
+        sberdev_SBContr_AccCalc  c
+    JOIN
+        sberdev_SberCon_ProductsAndDev p ON c.ProductCalc = p.Id
+    GROUP BY
+        c.EDoc
+
+    UNION ALL
+
+    SELECT
+        c.EDoc,
+        'Percent' AS CalcKind,
+        STRING_AGG(CONCAT(p.Name, ' ', FORMAT(c.InterestCalc, 'F0')), '; ') AS CalcList
+    FROM
+        sberdev_SBContr_AccCalc  c
+    JOIN
+        sberdev_SberCon_ProductsAndDev p ON c.ProductCalc = p.Id
+    GROUP BY
+        c.EDoc
+),
+CTE AS (
+    SELECT 
+        e.Id, 
+		e.Discriminator,
+		re2.Name as Author,
+        re1.Name as BusinessUnit, 
+		FORMAT(e.Modified, 'yyyy-MM-dd') AS Modified, 
+        FORMAT(e.DocumentDate_Docflow_Sungero, 'yyyy-MM-dd') AS DocDate, 
+		FORMAT(e.PaymentDateSbe_SBContr_sberdev, 'yyyy-MM-dd') AS PayDate, 
+		cu.Name as Currency,
+        e.RegNumber_Docflow_Sungero AS Number, 
+        m.Name AS MVZ_MVP, 
+        a.Name AS AccArt, 
+        COALESCE(c.CalcList, (
+            SELECT STRING_AGG(CONCAT(p.Name, ' ', FORMAT(sc.AccTotalAmount_Docflow_Sungero, 'F0')), ', ') 
+            FROM Sungero_Content_EDoc sc 
+            JOIN sberdev_SBContr_AccountingDocu cd ON cd.EDoc = sc.Id 
+            JOIN sberdev_SberCon_ProductsAndDev p ON cd.Product = p.Id 
+            WHERE sc.Id = e.Id
+            GROUP BY sc.Id
+        )) AS CalcList,
+        e.ContrTypeBaseS_SBContr_sberdev AS Contrtype, 
+		e.PayTypeBaseSbe_SBContr_sberdev as PayType,
+		e.LeadDocument_Docflow_Sungero as IdLead,
+		e1.Discriminator as DiscriminatorLead,
+		e1.Name as NameLead,
+        r.Name AS Conterparty, 
+		e.IntApprState_Docflow_Sungero as IntApprState,
+		e.LifeCycleState_Docflow_Sungero as LifeCycleState,
+		e.DocumentType as DocumentType,
+		dk.Name as DocumentKind,
+		e.Name as [Name],
+		e.Subject_Docflow_Sungero as Subject,
+		e.FrameworkBase1_SBContr_sberdev as Framework,
+		re3.Name as OurSignatory,
+        e.AccTotalAmount_Docflow_Sungero AS Amount 
+    FROM 
+        Sungero_Content_EDoc e
+		left join Sungero_Content_EDoc e1 on e.LeadDocument_Docflow_Sungero = e1.Id
+		left join Sungero_Docflow_DocumentKind dk on e.DocumentKind_Docflow_Sungero = dk.Id
+    LEFT JOIN 
+        sberdev_SBContr_AccountingDocu p ON e.Id = p.EDoc 
+    INNER JOIN 
+        sberdev_SberCon_ProductsAndDev s ON p.Product = s.Id 
+    LEFT JOIN 
+        sberdev_SberCon_MVZ m ON e.MVZBaseSberDev_SBContr_sberdev = m.Id OR e.MVPBaseSberDev_SBContr_sberdev = m.Id 
+    LEFT JOIN 
+        sberdev_SberCon_AccountingArti a ON e.AccArtBaseSber_SBContr_sberdev = a.Id 
+    LEFT JOIN 
+        Sungero_Parties_Counterparty r ON e.AccCParty_Docflow_Sungero = r.Id 
+		left join
+		Sungero_Core_Recipient re1 on e.BusinessUnit_Docflow_Sungero = re1.Id
+		left join
+		Sungero_Core_Recipient re2 on e.Author = re2.Id
+		left join
+		Sungero_Core_Recipient re3 on e.OurSignatory_Docflow_Sungero = re3.Id
+		left join
+		Sungero_Commons_Currency cu on e.Currency_Docflow_Sungero = cu.Id
+    left JOIN 
+        Calculations c ON e.Id = c.EDoc and c.CalcKind = e.CalculationFl4_SBContr_sberdev
+    WHERE 
+       e.Discriminator = 'a523a263-bc00-40f9-810d-f582bae2205d' or e.Discriminator = 'f2f5774d-5ca3-4725-b31d-ac618f6b8850'
+	or e.Discriminator = '58986e23-2b0a-4082-af37-bd1991bc6f7e' or e.Discriminator = 'f50c4d8a-56bc-43ef-bac3-856f57ca70be'
+	or e.Discriminator = '74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a' or e.Discriminator = '58ad01fb-6805-426b-9152-4de16d83b258'
+	or e.Discriminator = '4e81f9ca-b95a-4fd4-bf76-ea7176c215a7'
+)
+SELECT 
+    c.Id, 
+	c.IdLead,
+	c.NameLead,
+	c.Discriminator,
+	c.DiscriminatorLead,
+    c.BusinessUnit, 
+	c.Author,
+	c.Modified,
+    c.Contrtype, 
+	c.PayType,
+    c.MVZ_MVP, 
+    c.AccArt, 
+    c.DocDate, 
+	c.PayDate,
+    c.Number, 
+	c.DocumentType,
+	c.DocumentKind,
+    c.Conterparty, 
+	c.LifeCycleState,
+	c.IntApprState,
+    c.Amount, 
+	c.Currency,
+    c.CalcList,
+	c.[Subject],
+	c.Framework,
+	c.OurSignatory,
+	c.[Name]
+FROM 
+    CTE c;]]></mssql>
+  </query>
+</queries>

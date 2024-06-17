@@ -6,7 +6,7 @@ using Sungero.CoreEntities;
 
 namespace sberdev.SberContracts
 {
-  partial class InvoiceProductReportServerHandlers
+  partial class ContrDocsProductReportServerHandlers
   {
 
   }

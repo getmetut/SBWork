@@ -4,7 +4,10 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 
-namespace sberdev.SberContracts.Structures.InvoiceProductReport
+namespace sberdev.SberContracts
 {
+  partial class AccDocsProductReportServerHandlers
+  {
 
+  }
 }

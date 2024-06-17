@@ -208,15 +208,6 @@
   "IsolatedNamespace": "Sungero.Custom.Isolated",
   "Jobs": [
     {
-      "NameGuid": "605d225b-de9f-4db0-af26-37766288e66b",
-      "Name": "JobSearchDocumProdCalc",
-      "GenerateHandler": true,
-      "IsAtEndOfMonth": true,
-      "Monthly": "DaysOfMonth",
-      "MonthSchedule": "Monthly",
-      "StartAt": "1753-01-01T22:30:00"
-    },
-    {
       "NameGuid": "331a19e9-6a5e-464a-8f37-d13c4ab61d50",
       "Name": "JobsinReference",
       "Daily": "Repeat",

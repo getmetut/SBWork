@@ -142,4 +142,19 @@
   <data name="CoverAction_NonContractualStatisticSberDev" xml:space="preserve">
     <value>Non-contractual invoices statistic</value>
   </data>
+  <data name="CoverGroup_ReportsSberDev" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="CoverAction_AccDocsProductReportSberDev" xml:space="preserve">
+    <value>Report on financial documents</value>
+  </data>
+  <data name="CoverDescription_AccDocsProductReportSberDev" xml:space="preserve">
+    <value>Report on all financial documents. With a list of products.</value>
+  </data>
+  <data name="CoverAction_ContrDocsProductReportSberDev" xml:space="preserve">
+    <value>Report on contractual documents</value>
+  </data>
+  <data name="CoverDescription_ContrDocsProductReportSberDev" xml:space="preserve">
+    <value>Report on all contractual documents. With a list of products.</value>
+  </data>
 </root>

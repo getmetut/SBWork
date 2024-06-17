@@ -58,46 +58,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Custom</value>
+  <data name="PaidInvoiceReportDialog_Title" xml:space="preserve">
+    <value>Report parametrs</value>
   </data>
-  <data name="CoverTitle" xml:space="preserve">
-    <value>Административная среда</value>
+  <data name="PaidInvoiceReportDialog_StartDate" xml:space="preserve">
+    <value>Start date</value>
   </data>
-  <data name="CoverTab_TabBase" xml:space="preserve">
-    <value>Основаная</value>
+  <data name="PaidInvoiceReportDialog_EndDate" xml:space="preserve">
+    <value>End date</value>
   </data>
-  <data name="CoverGroup_AdminsBlock" xml:space="preserve">
-    <value>Административные инструменты</value>
+  <data name="PaidInvoiceReportDialog_Type" xml:space="preserve">
+    <value>Type</value>
   </data>
-  <data name="CoverAction_ReSaveKA" xml:space="preserve">
-    <value>Пересохранение всех записей справочника КА</value>
+  <data name="PaidInvoiceReportDialog_Expendable" xml:space="preserve">
+    <value>Expendable</value>
   </data>
-  <data name="CoverDescription_ReSaveKA" xml:space="preserve">
-    <value>Сценарий прохода по всем Активным записям справочника Конрагентов с приравниванием Nama=Name</value>
-  </data>
-  <data name="CoverAction_ActionKAInCSV" xml:space="preserve">
-    <value>Обработка КА через csv-файл</value>
-  </data>
-  <data name="CoverDescription_ActionKAInCSV" xml:space="preserve">
-    <value>Инстремент обрабатывающий переданный csv-файл для занесения данных в справочник. </value>
-  </data>
-  <data name="CoverAction_SearchDocDiadoc" xml:space="preserve">
-    <value>Поиск документов из Diadoc</value>
-  </data>
-  <data name="CoverDescription_SearchDocDiadoc" xml:space="preserve">
-    <value>Тестовый вывод информации для отчетности</value>
-  </data>
-  <data name="sf_7dd45ff6_ed5e_46ca_b5cf_3cb7205d783d" xml:space="preserve">
-    <value>Folder</value>
-  </data>
-  <data name="sf_20c6f0c0_c53e_41f1_bc2d_7c7e73d205fc" xml:space="preserve">
-    <value>Продукты и калькуляции</value>
-  </data>
-  <data name="JobDisplayName_331a19e96a5e464a8f37d13c4ab61d50" xml:space="preserve">
-    <value>Обработка заданий для занесения их в список заданий в справочнике</value>
-  </data>
-  <data name="JobDescription_331a19e96a5e464a8f37d13c4ab61d50" xml:space="preserve">
-    <value>Обработка заданий для занесения их в список заданий в справочнике</value>
+  <data name="PaidInvoiceReportDialog_Profitable" xml:space="preserve">
+    <value>Profitable</value>
   </data>
 </root>

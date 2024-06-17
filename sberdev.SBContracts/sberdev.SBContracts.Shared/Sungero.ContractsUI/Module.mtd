@@ -25,9 +25,63 @@
         "NameGuid": "049d9c8a-c318-4aa4-9eb6-0be9df5e65b7",
         "Name": "BudgetOwnerReportSberDev",
         "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
-        "GroupId": "136b5b7b-053a-4ca1-8f05-79af1fc2dffb",
-        "PreviousItemGuid": "1f58bc0f-bdbf-42db-b4bc-d75e41275793",
+        "GroupId": "d0572c85-1b50-4741-8c32-3dc74fb8ed0e",
+        "PreviousItemGuid": "e07f1bbd-fc67-437f-8bad-b65b2b5b0bec",
         "ReportId": "8fc24fb9-3645-4ff8-ac1a-f4f416ac4076"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
+        "NameGuid": "0a185210-5bfc-4d53-8741-dcbb6b22bbc8",
+        "Name": "ContractualDocumentsWithContractors",
+        "FunctionName": "SearchContractualDocumentsWithCounterparty",
+        "GroupId": "3f655ea9-b12d-427d-97de-528d9966cab4",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "b7108481-b7ee-4b43-85c5-b2e8051d1765",
+        "Versions": []
+      },
+      {
+        "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
+        "NameGuid": "0ec74228-8b96-4454-84fa-43dd7d3affd6",
+        "Name": "OutgoingInvoices",
+        "EntityTypeId": "58ad01fb-6805-426b-9152-4de16d83b258",
+        "GroupId": "9617fde5-c46a-4c84-9f69-4ae3c6fa12db",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "d995b550-ed2c-4faf-b0da-d246d9638698"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "31cdc499-46ca-47be-b172-ac553acfc9f4",
+        "Name": "AccDocsProductReportSberDev",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "d0572c85-1b50-4741-8c32-3dc74fb8ed0e",
+        "PreviousItemGuid": "049d9c8a-c318-4aa4-9eb6-0be9df5e65b7",
+        "ReportId": "ef8aad9a-8709-4b9e-9876-bfdd72102167"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "41fe7372-305e-467b-9ae2-ce87bd9749b4",
+        "Name": "ContrDocsProductReportSberDev",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "d0572c85-1b50-4741-8c32-3dc74fb8ed0e",
+        "PreviousItemGuid": "31cdc499-46ca-47be-b172-ac553acfc9f4",
+        "ReportId": "638cd35a-526e-4888-89e0-4573fde27ec2"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverComputableFolderActionMetadata, Sungero.Metadata",
+        "NameGuid": "4449de7c-a545-4238-a995-29cb160a4d3f",
+        "Name": "PowerOfAttorneyList",
+        "ComputableFolderId": "aeac0a51-31cb-4508-9267-e9a602186943",
+        "GroupId": "aff028e8-2519-4dcb-a8ab-36cd0b777a17",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ]
       },
       {
         "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
@@ -45,6 +99,18 @@
         "GroupId": "aa14a693-91aa-447c-88ef-2afb6743587c",
         "IsVisible": false,
         "PreviousItemGuid": "896e17a5-1460-4f82-8b63-ea2027a34a82"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverComputableFolderActionMetadata, Sungero.Metadata",
+        "NameGuid": "557b631d-30bf-4690-ad9a-bf530b7becd6",
+        "Name": "HeldByEmployees",
+        "ComputableFolderId": "37d0e546-5b38-4b60-b680-5ab862dcea47",
+        "GroupId": "74a83232-2ab3-4786-b5d7-90dd4c6809b4",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "e834dd5e-a6be-4d8b-a5fc-0073f3626e25"
       },
       {
         "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
@@ -78,6 +144,43 @@
         "IsVisible": false
       },
       {
+        "$type": "Sungero.Metadata.CoverComputableFolderActionMetadata, Sungero.Metadata",
+        "NameGuid": "8b24f304-1387-49e1-9079-9692c61384b0",
+        "Name": "CompletedContracts",
+        "ComputableFolderId": "f7a4bbcf-69d8-49c5-a86e-274fa1b1ce5f",
+        "GroupId": "74a83232-2ab3-4786-b5d7-90dd4c6809b4",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "Versions": []
+      },
+      {
+        "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
+        "NameGuid": "8ec99555-b399-4957-b565-5452751d5615",
+        "Name": "Contacts",
+        "EntityTypeId": "c8daaef9-a679-4a29-ac01-b93c1637c72e",
+        "GroupId": "ed4c55bf-aeea-46b2-ac7f-b1000bcf2423",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "949b141c-2e18-48b1-ac42-39091c95cafb",
+        "Versions": []
+      },
+      {
+        "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
+        "NameGuid": "949b141c-2e18-48b1-ac42-39091c95cafb",
+        "Name": "Organizations",
+        "EntityTypeId": "593e143c-616c-4d95-9457-fd916c4aa7f8",
+        "GroupId": "ed4c55bf-aeea-46b2-ac7f-b1000bcf2423",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "Versions": []
+      },
+      {
         "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
         "NameGuid": "9ec7adee-d6c0-4c28-b096-838efec0ac09",
         "Name": "DevSettings",
@@ -87,11 +190,61 @@
       },
       {
         "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
+        "NameGuid": "abdff18b-f34c-4237-b145-d2417aa5d5aa",
+        "Name": "Persons",
+        "EntityTypeId": "f5509cdc-ac0c-4507-a4d3-61d7a0a9b6f6",
+        "GroupId": "ed4c55bf-aeea-46b2-ac7f-b1000bcf2423",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "8ec99555-b399-4957-b565-5452751d5615",
+        "Versions": []
+      },
+      {
+        "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
+        "NameGuid": "b7108481-b7ee-4b43-85c5-b2e8051d1765",
+        "Name": "SearchByRegistrationData",
+        "FunctionName": "SearchByRegistrationData",
+        "GroupId": "3f655ea9-b12d-427d-97de-528d9966cab4",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "Versions": []
+      },
+      {
+        "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
         "NameGuid": "cefd83a7-f90a-4753-9859-cdb1cb1baa7f",
         "Name": "MVZSberDev",
         "EntityTypeId": "d2061f28-0788-4291-9a87-3e2b87acd765",
         "GroupId": "5d4035eb-e503-4e8f-a3cf-d35c8023bdd9",
         "PreviousItemGuid": "006560ac-ea7b-4a3c-8298-12f8dc3b2a06"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverComputableFolderActionMetadata, Sungero.Metadata",
+        "NameGuid": "d6b36bd7-0dca-47e1-b5e9-9d57a4259159",
+        "Name": "ContractsHistory",
+        "ComputableFolderId": "c09c7eeb-5957-4631-be80-a589b8cfbec5",
+        "GroupId": "74a83232-2ab3-4786-b5d7-90dd4c6809b4",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "557b631d-30bf-4690-ad9a-bf530b7becd6",
+        "Versions": []
+      },
+      {
+        "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
+        "NameGuid": "d995b550-ed2c-4faf-b0da-d246d9638698",
+        "Name": "IncomingInvoices",
+        "EntityTypeId": "a523a263-bc00-40f9-810d-f582bae2205d",
+        "GroupId": "9617fde5-c46a-4c84-9f69-4ae3c6fa12db",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "Versions": []
       },
       {
         "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
@@ -106,8 +259,7 @@
         "NameGuid": "e07f1bbd-fc67-437f-8bad-b65b2b5b0bec",
         "Name": "PaidInvoiceReportSberDev",
         "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
-        "GroupId": "9617fde5-c46a-4c84-9f69-4ae3c6fa12db",
-        "PreviousItemGuid": "0ec74228-8b96-4454-84fa-43dd7d3affd6",
+        "GroupId": "d0572c85-1b50-4741-8c32-3dc74fb8ed0e",
         "ReportId": "ea461a5e-67b1-448f-9e88-225bafbf3705"
       },
       {
@@ -116,10 +268,93 @@
         "Name": "NonContractualStatisticSberDev",
         "EntityTypeId": "cab9c2d8-40db-4379-8914-1d78bb227c3a",
         "GroupId": "9617fde5-c46a-4c84-9f69-4ae3c6fa12db",
-        "PreviousItemGuid": "e07f1bbd-fc67-437f-8bad-b65b2b5b0bec"
+        "PreviousItemGuid": "0ec74228-8b96-4454-84fa-43dd7d3affd6"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverComputableFolderActionMetadata, Sungero.Metadata",
+        "NameGuid": "e834dd5e-a6be-4d8b-a5fc-0073f3626e25",
+        "Name": "ContractsAtContractors",
+        "ComputableFolderId": "7afd9b8e-f293-4984-a75e-c09f44b598a7",
+        "GroupId": "74a83232-2ab3-4786-b5d7-90dd4c6809b4",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "8b24f304-1387-49e1-9079-9692c61384b0",
+        "Versions": []
       }
     ],
     "Groups": [
+      {
+        "NameGuid": "d0572c85-1b50-4741-8c32-3dc74fb8ed0e",
+        "Name": "ReportsSberDev",
+        "BackgroundPosition": "Stretch",
+        "IconName": "GroupIconReportsSberDev_d0572c851b5047418c323dc74fb8ed0e.png",
+        "PreviousItemGuid": "136b5b7b-053a-4ca1-8f05-79af1fc2dffb",
+        "TabId": "0bf75d9d-0906-4fcc-89bf-64a2a57cbb02"
+      },
+      {
+        "NameGuid": "ed4c55bf-aeea-46b2-ac7f-b1000bcf2423",
+        "Name": "LinkedInformation",
+        "BackgroundPosition": "Stretch",
+        "IconName": "GroupIconLinkedInformation_ed4c55bfaeea46b2ac7fb1000bcf2423.png",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "d0572c85-1b50-4741-8c32-3dc74fb8ed0e",
+        "TabId": "0bf75d9d-0906-4fcc-89bf-64a2a57cbb02",
+        "Versions": []
+      },
+      {
+        "NameGuid": "9617fde5-c46a-4c84-9f69-4ae3c6fa12db",
+        "Name": "Invoices",
+        "BackgroundPosition": "Stretch",
+        "IconName": "GroupIconInvoices_9617fde5c46a4c849f694ae3c6fa12db.png",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "ed4c55bf-aeea-46b2-ac7f-b1000bcf2423",
+        "TabId": "0bf75d9d-0906-4fcc-89bf-64a2a57cbb02",
+        "Versions": []
+      },
+      {
+        "NameGuid": "3f655ea9-b12d-427d-97de-528d9966cab4",
+        "Name": "Search",
+        "BackgroundPosition": "Stretch",
+        "IconName": "GroupIconSearch_3f655ea9b12d427d97de528d9966cab4.png",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "9617fde5-c46a-4c84-9f69-4ae3c6fa12db",
+        "TabId": "0bf75d9d-0906-4fcc-89bf-64a2a57cbb02",
+        "Versions": []
+      },
+      {
+        "NameGuid": "aff028e8-2519-4dcb-a8ab-36cd0b777a17",
+        "Name": "PowersOfAttorney",
+        "BackgroundPosition": "Stretch",
+        "IconName": "GroupIconPowersOfAttorney_aff028e825194dcba8ab36cd0b777a17.png",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "3f655ea9-b12d-427d-97de-528d9966cab4",
+        "TabId": "0bf75d9d-0906-4fcc-89bf-64a2a57cbb02"
+      },
+      {
+        "NameGuid": "7ed9b820-fce5-4c81-ac89-8a5859ce989d",
+        "Name": "Group",
+        "BackgroundPosition": "Stretch",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "aff028e8-2519-4dcb-a8ab-36cd0b777a17",
+        "TabId": "0bf75d9d-0906-4fcc-89bf-64a2a57cbb02"
+      },
       {
         "NameGuid": "74a83232-2ab3-4786-b5d7-90dd4c6809b4",
         "Name": "Control",
@@ -152,7 +387,8 @@
     "IsAncestorMetadata": true,
     "Overridden": [
       "Groups",
-      "Actions"
+      "Actions",
+      "Tabs"
     ],
     "Tabs": [],
     "Versions": []

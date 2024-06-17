@@ -3,7 +3,7 @@ using Sungero.Core;
 
 namespace sberdev.SberContracts.Constants
 {
-  public static class InvoiceProductReport
+  public static class AccDocsProductReport
   {
 
   }

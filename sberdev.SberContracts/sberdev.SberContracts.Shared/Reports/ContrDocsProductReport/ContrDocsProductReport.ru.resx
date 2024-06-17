@@ -58,7 +58,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Отчет по оплаченным счетам</value>
+  <data name="PaidInvoiceReportDialog_Title" xml:space="preserve">
+    <value>Настройки отчета</value>
+  </data>
+  <data name="PaidInvoiceReportDialog_StartDate" xml:space="preserve">
+    <value>Начальная дата</value>
+  </data>
+  <data name="PaidInvoiceReportDialog_EndDate" xml:space="preserve">
+    <value>Конечная дата</value>
+  </data>
+  <data name="PaidInvoiceReportDialog_Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="PaidInvoiceReportDialog_Expendable" xml:space="preserve">
+    <value>Расходный</value>
+  </data>
+  <data name="PaidInvoiceReportDialog_Profitable" xml:space="preserve">
+    <value>Доходный</value>
   </data>
 </root>
