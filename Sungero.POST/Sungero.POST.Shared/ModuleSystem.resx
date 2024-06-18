@@ -79,12 +79,6 @@
   <data name="CoverDescription_BudgetOwnerReport" xml:space="preserve">
     <value>Отчет по оплаченным счетам</value>
   </data>
-  <data name="CoverAction_PaidInvoiceReport" xml:space="preserve">
-    <value>Отчет по оплаченным счетам</value>
-  </data>
-  <data name="CoverDescription_PaidInvoiceReport" xml:space="preserve">
-    <value>Отчет по оплаченным счетам</value>
-  </data>
   <data name="CoverAction_StartedTasksReport" xml:space="preserve">
     <value>Отчет по исполнительной дисциплине</value>
   </data>

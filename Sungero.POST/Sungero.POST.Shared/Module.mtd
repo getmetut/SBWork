@@ -18,7 +18,7 @@
         "Name": "StartedTasksReport",
         "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
         "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
-        "PreviousItemGuid": "a64a4aef-3b20-4bff-820c-da4547b34e9b",
+        "PreviousItemGuid": "64e7fbbc-da06-46de-a1f3-fc814d75cdac",
         "ReportId": "77fc00ff-f108-4acc-a384-fed225e47f9a"
       },
       {
@@ -135,15 +135,6 @@
         "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
         "PreviousItemGuid": "6472d478-9635-452d-a3d9-55abd3e8c9c0",
         "ReportId": "8afc6640-7bfc-4eba-952e-0d17deac9d8f"
-      },
-      {
-        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
-        "NameGuid": "a64a4aef-3b20-4bff-820c-da4547b34e9b",
-        "Name": "PaidInvoiceReport",
-        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
-        "GroupId": "2c5fed46-4cb4-444a-84b4-8cffe9f0e94e",
-        "PreviousItemGuid": "64e7fbbc-da06-46de-a1f3-fc814d75cdac",
-        "ReportId": "ea461a5e-67b1-448f-9e88-225bafbf3705"
       },
       {
         "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
