@@ -89,9 +89,9 @@ namespace FastReport
     {
       switch (enumValue)
       {
-        case &quot;F37C7E63-B134-4446-9B5B-F8811F6C9666&quot;:
+        case &quot;f37c7e63-b134-4446-9b5b-f8811f6c9666&quot;:
           return &quot;Договор&quot;;
-        case &quot;265F2C57-6A8A-4A15-833B-CA00E8047FA5&quot;:
+        case &quot;265f2c57-6a8a-4a15-833b-ca00e8047fa5&quot;:
           return &quot;Доп. соглашение&quot;; 
         // Добавьте остальные значения
         default:
