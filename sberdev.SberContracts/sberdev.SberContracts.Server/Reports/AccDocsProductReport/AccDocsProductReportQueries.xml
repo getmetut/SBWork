@@ -87,10 +87,10 @@ CTE AS (
     left JOIN 
         Calculations c ON e.Id = c.EDoc and c.CalcKind = e.CalculationFl4_SBContr_sberdev
     WHERE 
-       e.Discriminator = 'a523a263-bc00-40f9-810d-f582bae2205d' or e.Discriminator = 'f2f5774d-5ca3-4725-b31d-ac618f6b8850'
+       (e.Discriminator = 'a523a263-bc00-40f9-810d-f582bae2205d' or e.Discriminator = 'f2f5774d-5ca3-4725-b31d-ac618f6b8850'
 	or e.Discriminator = '58986e23-2b0a-4082-af37-bd1991bc6f7e' or e.Discriminator = 'f50c4d8a-56bc-43ef-bac3-856f57ca70be'
 	or e.Discriminator = '74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a' or e.Discriminator = '58ad01fb-6805-426b-9152-4de16d83b258'
-	or e.Discriminator = '4e81f9ca-b95a-4fd4-bf76-ea7176c215a7'
+	or e.Discriminator = '4e81f9ca-b95a-4fd4-bf76-ea7176c215a7') and e.Created >= @startDate and e.Created <= @endDate
 )
 SELECT 
     c.Id, 

@@ -84,7 +84,8 @@ CTE AS (
         LEFT JOIN Sungero_Commons_Currency cu on e.ContrCurrency_Docflow_Sungero = cu.Id
         LEFT JOIN Calculations c ON e.Id = c.EDoc and c.CalcKind = e.CalculationFl2_SBContr_sberdev
     WHERE 
-        e.Discriminator = 'F37C7E63-B134-4446-9B5B-F8811F6C9666' or e.Discriminator = '265F2C57-6A8A-4A15-833B-CA00E8047FA5'
+        (e.Discriminator = 'F37C7E63-B134-4446-9B5B-F8811F6C9666' or e.Discriminator = '265F2C57-6A8A-4A15-833B-CA00E8047FA5')
+        and e.Created >= @startDate and e.Created <= @endDate
 )
 
 -- Шаг 3: Финальный запрос
@@ -111,7 +112,6 @@ SELECT
     c.OurSignatory,
     c.[Name]
 FROM 
-    CTE c;
-]]></mssql>
+    CTE c;]]></mssql>
   </query>
 </queries>
