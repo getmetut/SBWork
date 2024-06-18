@@ -6,18 +6,6 @@ using Sungero.CoreEntities;
 
 namespace Sungero.Custom.Server
 {
-  partial class AccountingDocumentsFolderHandlers
-  {
-
-    public virtual IQueryable<sberdev.SBContracts.IAccountingDocumentBase> AccountingDocumentsDataQuery(IQueryable<sberdev.SBContracts.IAccountingDocumentBase> query)
-    {
-      //query = query.Where(d => (d.AccessRights.IsGranted(Sungero.Core.DefaultAccessRightsTypes.Read, Users.Current)) ||
-      //                    (d.AccessRights.IsGranted(Sungero.Core.DefaultAccessRightsTypes.Change, Users.Current)) ||
-      //                    (d.AccessRights.IsGranted(Sungero.Core.DefaultAccessRightsTypes.FullAccess, Users.Current)));
-      query = query.Where(d => (d.CalcListSDev.Length > 1)); // ((d.ProductListSDev.Length > 1) || 
-      return query;
-    }
-  }
 
   partial class ProdCalcFolderFolderHandlers
   {
