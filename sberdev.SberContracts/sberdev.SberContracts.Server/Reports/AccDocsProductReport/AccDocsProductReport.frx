@@ -24,7 +24,7 @@ using Resources = sberdev.SberContracts.Reports.Resources;
 namespace FastReport
 {
   public class ReportScript
-  {
+  {              
     public string TranslateIntApprEnum(string enumValue)
     {
       switch (enumValue)
@@ -114,7 +114,7 @@ namespace FastReport
   <Dictionary>
     <SungeroSqlDataConnection Name="Sungero_Connection" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties" ConnectionStringExpression="[SungeroConnectionString]">
       <TableDataSource Name="Table" Alias="AccDocsProductTable" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${AccDocsProductQuery}">
-        <Column Name="Id" DataType="System.Int32" PropName="Column"/>
+        <Column Name="Id" DataType="System.Int64" PropName="Column"/>
         <Column Name="Name" DataType="System.String" PropName="Column"/>
         <Column Name="MVZ_MVP" DataType="System.String" PropName="Column"/>
         <Column Name="AccArt" DataType="System.String" PropName="Column1"/>
@@ -122,7 +122,7 @@ namespace FastReport
         <Column Name="Number" DataType="System.String" PropName="Column1"/>
         <Column Name="Conterparty" DataType="System.String" PropName="Column2"/>
         <Column Name="Amount" DataType="System.Double" PropName="Column3"/>
-        <Column Name="IdLead" DataType="System.Int32" PropName="Column"/>
+        <Column Name="IdLead" DataType="System.Int64" PropName="Column"/>
         <Column Name="NameLead" DataType="System.String" PropName="Column1"/>
         <Column Name="DiscriminatorLead" DataType="System.String" PropName="Column1"/>
         <Column Name="BusinessUnit" DataType="System.String" PropName="Column"/>
@@ -151,8 +151,8 @@ namespace FastReport
     <SungeroParameter Name="EndDate" Id="ded759b9-c306-4b60-8e85-0a47dc12b12f" IsRequired="true" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
   </Dictionary>
   <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
-    <DataBand Name="Data1" Top="21.57" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table">
-      <TextObject Name="Text6" Left="425.25" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.Subject]" Font="Arial, 8pt"/>
+    <DataBand Name="Data1" Top="21.65" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table">
+      <TextObject Name="Text6" Left="453.6" Width="37.8" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.Subject]" Font="Arial, 8pt"/>
       <TextObject Name="Text7" Left="519.75" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.Author]" Font="Arial, 8pt"/>
       <TextObject Name="Text8" Left="633.15" Width="56.7" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.CalcList]" Font="Arial, 8pt"/>
       <TextObject Name="Text9" Left="604.8" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.AccArt]" Font="Arial, 8pt"/>
@@ -162,8 +162,8 @@ namespace FastReport
       <TextObject Name="Text18" Left="491.4" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.Conterparty]" Font="Arial, 8pt"/>
       <TextObject Name="Text20" Left="56.7" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.PayDate]" Font="Arial, 8pt"/>
       <TextObject Name="Text21" Left="170.1" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.Currency]" Font="Arial, 8pt"/>
-      <TextObject Name="Text22" Left="198.45" Width="28.35" Height="18.9" Border.Lines="All" Cursor="Hand" Hyperlink.Expression="&quot;https://directum.sberdevices.ru/DrxWeb/#/sat/card/&quot; + [AccDocsProductTable.DiscriminatorLead].ToString() + &quot;/&quot; + [AccDocsProductTable.IdLead].ToString()" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.NameLead]" Font="Arial, 8pt, style=Underline" TextFill.Color="Blue"/>
-      <TextObject Name="Text23" Left="226.8" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslateLifeStateEnum([AccDocsProductTable.LifeCycleState])]" Font="Arial, 8pt"/>
+      <TextObject Name="Text22" Left="226.8" Width="28.35" Height="18.9" Border.Lines="All" Cursor="Hand" Hyperlink.Expression="&quot;https://directum.sberdevices.ru/DrxWeb/#/sat/card/&quot; + [AccDocsProductTable.DiscriminatorLead].ToString() + &quot;/&quot; + [AccDocsProductTable.IdLead].ToString()" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.NameLead]" Font="Arial, 8pt, style=Underline" TextFill.Color="Blue"/>
+      <TextObject Name="Text23" Left="255.15" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslateLifeStateEnum([AccDocsProductTable.LifeCycleState])]" Font="Arial, 8pt"/>
       <TextObject Name="Text24" Left="141.75" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.Amount]" Font="Arial, 8pt">
         <Formats>
           <GeneralFormat/>
@@ -178,19 +178,20 @@ namespace FastReport
           <GeneralFormat/>
         </Formats>
       </TextObject>
-      <TextObject Name="Text43" Left="368.55" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.DocumentKind]" Font="Arial, 8pt"/>
-      <TextObject Name="Text44" Left="255.15" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslateIntApprEnum([AccDocsProductTable.IntApprState])]" Font="Arial, 8pt"/>
-      <TextObject Name="Text41" Left="340.2" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslateContrTypeEnum([AccDocsProductTable.Contrtype])]" Font="Arial, 8pt"/>
-      <TextObject Name="Text40" Left="283.5" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslateType([AccDocsProductTable.Discriminator])]" Font="Arial, 8pt"/>
-      <TextObject Name="Text39" Left="311.85" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslatePayTypeEnum([AccDocsProductTable.PayType])]" Font="Arial, 8pt"/>
+      <TextObject Name="Text43" Left="396.9" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.DocumentKind]" Font="Arial, 8pt"/>
+      <TextObject Name="Text44" Left="283.5" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslateIntApprEnum([AccDocsProductTable.IntApprState])]" Font="Arial, 8pt"/>
+      <TextObject Name="Text41" Left="368.55" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslateContrTypeEnum([AccDocsProductTable.Contrtype])]" Font="Arial, 8pt"/>
+      <TextObject Name="Text40" Left="311.85" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslateType([AccDocsProductTable.Discriminator])]" Font="Arial, 8pt"/>
+      <TextObject Name="Text39" Left="340.2" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslatePayTypeEnum([AccDocsProductTable.PayType])]" Font="Arial, 8pt"/>
       <TextObject Name="Text27" Left="28.35" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.DocDate]" Font="Arial, 8pt"/>
       <TextObject Name="Text19" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.BusinessUnit]" Font="Arial, 8pt"/>
-      <TextObject Name="Text42" Left="396.9" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.Name]" Font="Arial, 8pt">
+      <TextObject Name="Text42" Left="425.25" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.Name]" Font="Arial, 8pt">
         <Formats>
           <GeneralFormat/>
           <GeneralFormat/>
         </Formats>
       </TextObject>
+      <TextObject Name="Text54" Left="198.45" Width="28.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.IdLead]&#13;&#10;&#13;&#10;" Font="Arial, 8pt"/>
       <DataHeaderBand Name="DataHeader1" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true">
         <TextObject Name="Text2" Left="519.75" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Автор" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text3" Left="633.15" Width="56.7" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Продукты" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
@@ -199,22 +200,23 @@ namespace FastReport
         <TextObject Name="Text14" Left="548.1" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Изменено" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text15" Left="576.45" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="МВП/МВЗ" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text17" Left="491.4" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Контрагент" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text1" Left="396.9" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Имя" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text1" Left="425.25" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Имя" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text28" Left="56.7" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Дата оплаты" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text29" Left="170.1" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Валюта" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text30" Left="198.45" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Договор" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text31" Left="226.8" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Состояние" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text30" Left="226.8" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Договор" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text31" Left="255.15" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Состояние" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text32" Left="85.05" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="ИД" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text33" Left="113.4" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Рег. №" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text34" Left="141.75" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Сумма" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text35" Left="28.35" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Дата документа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text36" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Наша орг." HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text47" Left="340.2" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Тип договора" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text48" Left="368.55" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Вид документа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text49" Left="425.25" Width="66.15" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Содержание" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text50" Left="255.15" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Согласование" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text51" Left="283.5" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Тип" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text52" Left="311.85" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Тип оплаты" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text47" Left="368.55" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Тип договора" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text48" Left="396.9" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Вид документа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text49" Left="453.6" Width="37.8" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Содержание" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text50" Left="283.5" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Согласование" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text51" Left="311.85" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Тип" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text52" Left="340.2" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Тип оплаты" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text53" Left="198.45" Width="28.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="ИД (Договор)" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
       </DataHeaderBand>
       <Sort>
         <Sort Expression="[AccDocsProductTable.Id]"/>

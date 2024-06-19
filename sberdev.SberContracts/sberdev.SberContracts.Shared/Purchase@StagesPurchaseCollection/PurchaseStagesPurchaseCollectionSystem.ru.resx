@@ -65,6 +65,6 @@
     <value>Стоимость</value>
   </data>
   <data name="Property_Duration" xml:space="preserve">
-    <value>Длительность</value>
+    <value>Длительность (дн.)</value>
   </data>
 </root>

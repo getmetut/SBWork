@@ -6,7 +6,7 @@ WITH Calculations AS (
     SELECT
         c.EDoc,
         'Absolute' AS CalcKind,
-        STRING_AGG(CONCAT(p.Name, ' ', FORMAT(c.AbsoluteCalc, 'F0')), '; ') AS CalcList
+        STRING_AGG(CONCAT(p.Name, ' ', FORMAT(c.AbsoluteCalc, 'F2')), '; ') AS CalcList
     FROM
         sberdev_SBContr_ContrCalc c
     JOIN
@@ -19,7 +19,7 @@ WITH Calculations AS (
     SELECT
         c.EDoc,
         'Percent' AS CalcKind,
-        STRING_AGG(CONCAT(p.Name, ' ', FORMAT(c.InterestCalc, 'F0')), '; ') AS CalcList
+        STRING_AGG(CONCAT(p.Name, ' ', FORMAT(c.InterestCalc, 'F2')), '; ') AS CalcList
     FROM
         sberdev_SBContr_ContrCalc c
     JOIN
@@ -45,7 +45,7 @@ CTE AS (
         -- Объединение значений CalcList
         COALESCE(c.CalcList, 
             (
-                SELECT STRING_AGG(CONCAT(p.Name, ' ', FORMAT(sc.TotalAmount_Docflow_Sungero, 'F0')), ', ') 
+                SELECT STRING_AGG(CONCAT(p.Name, ' ', FORMAT(sc.TotalAmount_Docflow_Sungero, 'F2')), ', ') 
                 FROM Sungero_Content_EDoc sc 
                 JOIN sberdev_SBContr_ContractualDoc cd ON cd.EDoc = sc.Id 
                 JOIN sberdev_SberCon_ProductsAndDev p ON cd.Product = p.Id 
@@ -53,7 +53,7 @@ CTE AS (
                 GROUP BY sc.Id
             ),
             (
-                SELECT STRING_AGG(CONCAT(p.Name, ' ', FORMAT(sc.TotalAmount_Docflow_Sungero, 'F0')), ', ') 
+                SELECT STRING_AGG(CONCAT(p.Name, ' ', FORMAT(sc.TotalAmount_Docflow_Sungero, 'F2')), ', ') 
                 FROM Sungero_Content_EDoc sc 
                 JOIN sberdev_SBContr_ContractualDo1 cd ON cd.EDoc = sc.Id 
                 JOIN sberdev_SberCon_ProductsAndDev p ON cd.Product = p.Id 
@@ -71,9 +71,14 @@ CTE AS (
         e.Subject_Docflow_Sungero as Subject,
         e.FrameworkBaseS_SBContr_sberdev as Framework,
         re3.Name as OurSignatory,
-        e.TotalAmount_Docflow_Sungero AS Amount 
+        e.TotalAmount_Docflow_Sungero AS Amount,
+		    e.PurchComNumber_SBContr_sberdev as PurchComNumber,
+		    e.LeadDocument_Docflow_Sungero as IdLead,
+        e1.Discriminator as DiscriminatorLead,
+        e1.Name as NameLead
     FROM 
         Sungero_Content_EDoc e
+		LEFT JOIN Sungero_Content_EDoc e1 ON e.LeadDocument_Docflow_Sungero = e1.Id
         LEFT JOIN Sungero_Docflow_DocumentKind dk on e.DocumentKind_Docflow_Sungero = dk.Id
         LEFT JOIN sberdev_SberCon_MVZ m ON e.MVZBaseSberDe1_SBContr_sberdev = m.Id OR e.MVPBaseSberDe1_SBContr_sberdev = m.Id 
         LEFT JOIN sberdev_SberCon_AccountingArti a ON e.AccArtExBaseSb_SBContr_sberdev = a.Id or e.AccArtPrBaseSb_SBContr_sberdev = a.Id
@@ -85,7 +90,7 @@ CTE AS (
         LEFT JOIN Calculations c ON e.Id = c.EDoc and c.CalcKind = e.CalculationFl2_SBContr_sberdev
     WHERE 
         (e.Discriminator = 'F37C7E63-B134-4446-9B5B-F8811F6C9666' or e.Discriminator = '265F2C57-6A8A-4A15-833B-CA00E8047FA5')
-         and e.DocumentDate_Docflow_Sungero >= @startDate and e.DocumentDate_Docflow_Sungero <= @endDate
+        and e.DocumentDate_Docflow_Sungero >= @startDate and e.DocumentDate_Docflow_Sungero <= @endDate
 )
 
 -- Шаг 3: Финальный запрос
@@ -110,7 +115,11 @@ SELECT
     c.[Subject],
     c.Framework,
     c.OurSignatory,
-    c.[Name]
+    c.[Name],
+	  c.PurchComNumber, 
+    c.IdLead,
+    c.NameLead,
+    c.DiscriminatorLead
 FROM 
     CTE c;]]></mssql>
   </query>

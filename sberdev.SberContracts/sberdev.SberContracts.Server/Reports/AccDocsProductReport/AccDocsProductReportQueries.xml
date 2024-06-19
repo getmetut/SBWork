@@ -5,7 +5,7 @@
     SELECT
         c.EDoc,
         'Absolute' AS CalcKind,
-        STRING_AGG(CONCAT(p.Name, ' ', FORMAT(c.AbsoluteCalc, 'F0')), '; ') AS CalcList
+        STRING_AGG(CONCAT(p.Name, ' ', FORMAT(c.AbsoluteCalc, 'F2')), '; ') AS CalcList
     FROM
         sberdev_SBContr_AccCalc  c
     JOIN
@@ -18,7 +18,7 @@
     SELECT
         c.EDoc,
         'Percent' AS CalcKind,
-        STRING_AGG(CONCAT(p.Name, ' ', FORMAT(c.InterestCalc, 'F0')), '; ') AS CalcList
+        STRING_AGG(CONCAT(p.Name, ' ', FORMAT(c.InterestCalc, 'F2')), '; ') AS CalcList
     FROM
         sberdev_SBContr_AccCalc  c
     JOIN
@@ -40,7 +40,7 @@ CTE AS (
         m.Name AS MVZ_MVP, 
         a.Name AS AccArt, 
         COALESCE(c.CalcList, (
-            SELECT STRING_AGG(CONCAT(p.Name, ' ', FORMAT(sc.AccTotalAmount_Docflow_Sungero, 'F0')), ', ') 
+            SELECT STRING_AGG(CONCAT(p.Name, ' ', FORMAT(sc.AccTotalAmount_Docflow_Sungero, 'F2')), ', ') 
             FROM Sungero_Content_EDoc sc 
             JOIN sberdev_SBContr_AccountingDocu cd ON cd.EDoc = sc.Id 
             JOIN sberdev_SberCon_ProductsAndDev p ON cd.Product = p.Id 

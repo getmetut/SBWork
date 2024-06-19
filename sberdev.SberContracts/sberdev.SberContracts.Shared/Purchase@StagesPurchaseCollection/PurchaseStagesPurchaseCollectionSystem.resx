@@ -65,6 +65,6 @@
     <value>Cost</value>
   </data>
   <data name="Property_Duration" xml:space="preserve">
-    <value>Duration</value>
+    <value>Duration (d.)</value>
   </data>
 </root>
