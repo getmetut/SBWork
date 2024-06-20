@@ -32,6 +32,7 @@ WITH Calculations AS (
 CTE AS (
     SELECT 
         e.Id, 
+        md.Name as MarketDirect,
         e.Discriminator,
         re2.Name as Author,
         re1.Name as BusinessUnit, 
@@ -78,7 +79,8 @@ CTE AS (
         e1.Name as NameLead
     FROM 
         Sungero_Content_EDoc e
-		LEFT JOIN Sungero_Content_EDoc e1 ON e.LeadDocument_Docflow_Sungero = e1.Id
+        LEFT JOIN sberdev_SberCon_MarketingDirec md ON e.MarkDirContr_SBContr_sberdev = md.Id
+		    LEFT JOIN Sungero_Content_EDoc e1 ON e.LeadDocument_Docflow_Sungero = e1.Id
         LEFT JOIN Sungero_Docflow_DocumentKind dk on e.DocumentKind_Docflow_Sungero = dk.Id
         LEFT JOIN sberdev_SberCon_MVZ m ON e.MVZBaseSberDe1_SBContr_sberdev = m.Id OR e.MVPBaseSberDe1_SBContr_sberdev = m.Id 
         LEFT JOIN sberdev_SberCon_AccountingArti a ON e.AccArtExBaseSb_SBContr_sberdev = a.Id or e.AccArtPrBaseSb_SBContr_sberdev = a.Id
@@ -119,7 +121,8 @@ SELECT
 	  c.PurchComNumber, 
     c.IdLead,
     c.NameLead,
-    c.DiscriminatorLead
+    c.DiscriminatorLead,
+    c.MarketDirect
 FROM 
     CTE c;]]></mssql>
   </query>

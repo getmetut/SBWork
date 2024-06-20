@@ -1605,7 +1605,7 @@
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "ddbd8560-adc3-4bc1-ad49-26faf831886f",
       "Name": "MarketDirectSberDev",
-      "Code": "MarketDirectS1",
+      "Code": "MarkDirContr",
       "EntityGuid": "1893255d-6ee6-4a56-82cb-f6b3dd187ace",
       "FlatListInStandaloneLookup": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",

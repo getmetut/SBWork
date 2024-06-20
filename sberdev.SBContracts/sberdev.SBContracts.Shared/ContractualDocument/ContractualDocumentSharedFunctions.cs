@@ -309,13 +309,13 @@ namespace sberdev.SBContracts.Shared
     public void HighlightClosedAnalitics()
     {
       _obj.State.Properties.MVPBaseSberDev.HighlightColor = _obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Closed ?
-        Colors.Common.Red : Colors.Common.White;
+        Colors.Common.Red : Colors.Empty;
       _obj.State.Properties.MVZBaseSberDev.HighlightColor = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Closed ?
-        Colors.Common.Red : Colors.Common.White;
+        Colors.Common.Red : Colors.Empty;
       _obj.State.Properties.AccArtExBaseSberDev.HighlightColor = _obj.AccArtExBaseSberDev != null && _obj.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed ?
-        Colors.Common.Red : Colors.Common.White;
+        Colors.Common.Red : Colors.Empty;
       _obj.State.Properties.AccArtPrBaseSberDev.HighlightColor = _obj.AccArtPrBaseSberDev != null && _obj.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed ?
-        Colors.Common.Red : Colors.Common.White;
+        Colors.Common.Red : Colors.Empty;
       
       bool prodFlag = true;
       foreach (var product in _obj.ProdCollectionExBaseSberDev)
@@ -323,7 +323,7 @@ namespace sberdev.SBContracts.Shared
         if (product.Product.Status == SberContracts.ProductsAndDevices.Status.Closed)
           prodFlag = false;
       }
-      _obj.State.Properties.ProdCollectionExBaseSberDev.HighlightColor = prodFlag ? Colors.Common.White : Colors.Common.Red;
+      _obj.State.Properties.ProdCollectionExBaseSberDev.HighlightColor = prodFlag ? Colors.Empty : Colors.Common.Red;
       
       prodFlag = true;
       foreach (var product in _obj.ProdCollectionPrBaseSberDev)
@@ -331,7 +331,7 @@ namespace sberdev.SBContracts.Shared
         if (product.Product.Status == SberContracts.ProductsAndDevices.Status.Closed)
           prodFlag = false;
       }
-      _obj.State.Properties.ProdCollectionPrBaseSberDev.HighlightColor = prodFlag ? Colors.Common.White : Colors.Common.Red;
+      _obj.State.Properties.ProdCollectionPrBaseSberDev.HighlightColor = prodFlag ? Colors.Empty : Colors.Common.Red;
     }
     
     public bool CheckOldAnalicitics()

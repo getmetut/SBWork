@@ -222,11 +222,11 @@ namespace sberdev.SBContracts.Shared
     public void HighlightClosedAnalitics()
     {
       _obj.State.Properties.MVPBaseSberDev.HighlightColor = _obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Closed ?
-        Colors.Common.Red : Colors.Common.White;
+        Colors.Common.Red : Colors.Empty;
       _obj.State.Properties.MVZBaseSberDev.HighlightColor = _obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Closed ?
-        Colors.Common.Red : Colors.Common.White;
+        Colors.Common.Red : Colors.Empty;
       _obj.State.Properties.AccArtBaseSberDev.HighlightColor = _obj.AccArtBaseSberDev != null &&_obj.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed ?
-        Colors.Common.Red : Colors.Common.White;
+        Colors.Common.Red : Colors.Empty;
       var products = _obj.ProdCollectionBaseSberDev;
       bool prodFlag = true;
       foreach (var product in products)
@@ -234,7 +234,7 @@ namespace sberdev.SBContracts.Shared
         if (product.Product.Status == SberContracts.ProductsAndDevices.Status.Closed)
           prodFlag = false;
       }
-      _obj.State.Properties.ProdCollectionBaseSberDev.HighlightColor = prodFlag ? Colors.Common.White : Colors.Common.Red;
+      _obj.State.Properties.ProdCollectionBaseSberDev.HighlightColor = prodFlag ? Colors.Empty : Colors.Common.Red;
     }
     
     /// <summary>
