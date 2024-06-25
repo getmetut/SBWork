@@ -2,6 +2,18 @@
   "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
   "NameGuid": "afef502e-6cc5-4897-a390-266174dd9946",
   "Name": "Company",
+  "Actions": [
+    {
+      "NameGuid": "e296d20d-5811-4626-9b70-2d0fa03fc5f4",
+      "Name": "OpenOnDueDiligenceWebsite",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ],
+      "Versions": []
+    }
+  ],
   "BaseGuid": "db3bd8e2-8133-4cbd-8936-ab859ec27eac",
   "CanBeNavigationPropertyType": true,
   "CreationAreaMetadata": {

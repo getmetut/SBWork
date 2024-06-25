@@ -59,75 +59,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DisplayName" xml:space="preserve">
-    <value>Спецификация</value>
+    <value>Согласование спецификации</value>
   </data>
   <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Спецификацию</value>
+    <value>Согласование спецификации</value>
   </data>
   <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Спецификации</value>
+    <value>Согласования спецификаций</value>
   </data>
-  <data name="Property_MVZOldSberDev" xml:space="preserve">
-    <value>MVZ</value>
+  <data name="AttachmentGroup_BaseAttachmentsTitle" xml:space="preserve">
+    <value>Основные документы</value>
   </data>
-  <data name="Property_DirectionMVZ" xml:space="preserve">
-    <value>Direction (ex.)</value>
-  </data>
-  <data name="Property_AccArtExOldSberDev" xml:space="preserve">
-    <value>Accounting articles (ex.)</value>
-  </data>
-  <data name="Property_MVPOldSberDev" xml:space="preserve">
-    <value>MVP</value>
-  </data>
-  <data name="Property_Signing" xml:space="preserve">
-    <value>Signing method</value>
-  </data>
-  <data name="Enum_Signing_InElectron" xml:space="preserve">
-    <value>InElectron</value>
-  </data>
-  <data name="Enum_Signing_OnPaper" xml:space="preserve">
-    <value>OnPaper</value>
-  </data>
-  <data name="Resource_fc50c88831554ff196e8ff7064894ead" xml:space="preserve">
+  <data name="AttachmentGroup_BaseAttachmentsInformationMessage" xml:space="preserve">
     <value />
   </data>
-  <data name="Control_fc50c88831554ff196e8ff7064894ead_EmptyText" xml:space="preserve">
-    <value />
+  <data name="AttachmentGroup_OtherAttachmentsTitle" xml:space="preserve">
+    <value>Сопровождающие документы</value>
   </data>
-  <data name="Resource_ddf41ead829a4a3f8d12d40a52b7440c" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_ddf41ead829a4a3f8d12d40a52b7440c_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_f0607051ea774af2b7966d11cd8a7374" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_f0607051ea774af2b7966d11cd8a7374_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_a915c070568d4f08a7365fbdabe9e559" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_a915c070568d4f08a7365fbdabe9e559_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Property_LeadingDocument" xml:space="preserve">
-    <value>Договор</value>
-  </data>
-  <data name="Action_StartTask" xml:space="preserve">
-    <value>Согласовать спецификацию</value>
-  </data>
-  <data name="Action_StartTaskDescription" xml:space="preserve">
-    <value>Отправка документа на согласование по типовому маршруту</value>
-  </data>
-  <data name="Action_StartTaskHint" xml:space="preserve">
-    <value>Отправка документа на согласование по типовому маршруту</value>
-  </data>
-  <data name="Action_StartTaskConfirmationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Action_StartTaskConfirmationDescription" xml:space="preserve">
+  <data name="AttachmentGroup_OtherAttachmentsInformationMessage" xml:space="preserve">
     <value />
   </data>
 </root>
