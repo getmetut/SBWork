@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -11,6 +11,73 @@ namespace Sungero.Custom.Server
 {
   public class ModuleFunctions
   {
+
+    /// <summary>
+    /// Функция создания лимита по документу типа договор
+    /// </summary>
+    [Public]
+    public void CreateLiminInContract(long IdDoc)
+    {
+      var doc = ControlContracts.Create();
+      doc.LeadingDocID = int.Parse(IdDoc.ToString());
+      doc.Save();
+    }
+    
+    /// <summary>
+    /// Функция Занесения нового элемента в список контроля лимита по договору
+    /// </summary>
+    [Public]
+    public void CreateSupInLiminInContract(long IdLeadDoc, long IdDoc)
+    {
+      var LeadDoc = ControlContracts.GetAll(d => d.LeadingDocID == int.Parse(IdLeadDoc.ToString())).FirstOrDefault();
+      if (LeadDoc != null)
+      {
+        var DDS = LeadDoc.CollectionDocs;
+        bool valid = true;
+        foreach (var str in DDS)
+        {
+          if (str.IDDoc.Value == int.Parse(IdDoc.ToString()))
+            valid = false;
+        }
+        if (valid)
+        {
+          var NewStr = LeadDoc.CollectionDocs.AddNew();
+          NewStr.IDDoc = int.Parse(IdDoc.ToString());
+          LeadDoc.Save();
+        }
+      }
+    }
+    
+    /// <summary>
+    /// Функция запрос лимита по догвоору с утетом Указанной суммы - true если контроля нет или он допустимый и false если он превышен.
+    /// </summary>
+    [Public]
+    public bool RequestCorrectLiminInContract(long LeadingDocID, double EntityDocSumm)
+    {
+      var LeadDoc = ControlContracts.GetAll(d => d.LeadingDocID == int.Parse(LeadingDocID.ToString())).FirstOrDefault();
+      if (LeadDoc != null)
+      {
+        if ((LeadDoc.TotalLimit - EntityDocSumm) < 0.0)
+          return false;
+        else
+          return true;
+      }
+      else
+        return true;
+    }
+    
+    /// <summary>
+    /// Функция запрос лимита по догвоору с утетом Указанной суммы - Возвращает вещественное число разницы
+    /// </summary>
+    [Public]
+    public double RequestSummLiminInContract(long LeadingDocID, double EntityDocSumm)
+    {
+      var LeadDoc = ControlContracts.GetAll(d => d.LeadingDocID == int.Parse(LeadingDocID.ToString())).FirstOrDefault();
+      if (LeadDoc != null)
+        return LeadDoc.TotalLimit.Value - EntityDocSumm;
+      else
+        return 0.0;
+    }
 
     /// <summary>
     /// Функция проверки соответствия пользователя на принадлежность группе "Допуск к маркетинговым документам"

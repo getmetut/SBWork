@@ -10,9 +10,10 @@ namespace sberdev.SBContracts
   partial class ContractServerHandlers
   {
 
-    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
+    public override void AfterSave(Sungero.Domain.AfterSaveEventArgs e)
     {
-      base.BeforeSave(e);     
+      base.AfterSave(e);
+      Sungero.Custom.PublicFunctions.Module.CreateLiminInContract(_obj.Id);
     }
   }
 

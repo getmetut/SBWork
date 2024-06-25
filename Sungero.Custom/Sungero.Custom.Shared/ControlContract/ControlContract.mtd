@@ -73,7 +73,7 @@
           "HeaderLocation": "Top",
           "ParentGuid": "2bc33fd4-661f-496b-95e5-cf8b79776b5f",
           "PropertyGuid": "8824e93f-8144-4efb-8169-9108184c9a97",
-          "RowNumber": 1,
+          "RowNumber": 2,
           "RowSpan": 1,
           "Settings": []
         },
@@ -86,12 +86,28 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
           "ParentGuid": "2bc33fd4-661f-496b-95e5-cf8b79776b5f",
           "PropertyGuid": "d3c4e9de-3cc6-4e32-b36b-7cbbaee42c73",
-          "RowNumber": 2,
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "6758db89-1e4e-47f5-be67-c0a6f6066694",
+          "Name": "TotalLimit",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+          "ParentGuid": "2bc33fd4-661f-496b-95e5-cf8b79776b5f",
+          "PropertyGuid": "63f27622-af4b-44dc-b9f1-cf482e3f7375",
+          "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
         }
       ]
     }
+  ],
+  "HandledEvents": [
+    "BeforeSaveServer"
   ],
   "IconName": "ControlContract.ico",
   "IconResourcesKeys": [],
@@ -116,6 +132,9 @@
       "NameGuid": "cd92ed98-d502-4d2e-8ca1-d275003d8b2f",
       "Name": "LeadingDocID",
       "Code": "LeadingDocID",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "c0b1a4b9-7927-4201-b36a-d2c964e6fa45"
@@ -136,6 +155,34 @@
       "EntityGuid": "5530b282-a076-4998-97ca-95b0e1bca387",
       "IsShowedInList": false,
       "PreviousPropertyGuid": "d3c4e9de-3cc6-4e32-b36b-7cbbaee42c73"
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "63f27622-af4b-44dc-b9f1-cf482e3f7375",
+      "Name": "TotalLimit",
+      "Code": "TotalLimit",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "8824e93f-8144-4efb-8169-9108184c9a97"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "ShowMessage",
+      "Parameters": [
+        {
+          "Name": "controlContract",
+          "ParameterType": "global::Sungero.Custom.IControlContract",
+          "ParameterTypeFullName": "Sungero.Custom.IControlContract, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "message",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [],

@@ -10,5 +10,14 @@ namespace Sungero.Custom.Client
   partial class ControlContractFunctions
   {
 
+    /// <summary>
+    /// Функция вывода диалога для пользователя
+    /// </summary> 
+    [Public]
+    public void ShowMessage(string message)
+    {
+      Dialogs.ShowMessage(message);
+    }
+
   }
 }

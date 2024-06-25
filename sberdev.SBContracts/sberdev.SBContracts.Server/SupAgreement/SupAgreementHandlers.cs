@@ -7,6 +7,21 @@ using sberdev.SBContracts.SupAgreement;
 
 namespace sberdev.SBContracts
 {
+  partial class SupAgreementServerHandlers
+  {
+
+    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
+    {
+      base.BeforeSave(e);
+    }
+
+    public override void AfterSave(Sungero.Domain.AfterSaveEventArgs e)
+    {
+      base.AfterSave(e);
+      Sungero.Custom.PublicFunctions.Module.CreateSupInLiminInContract(_obj.LeadingDocument.Id, _obj.Id);
+    }
+  }
+
   partial class SupAgreementLeadingDocumentPropertyFilteringServerHandler<T>
   {
 

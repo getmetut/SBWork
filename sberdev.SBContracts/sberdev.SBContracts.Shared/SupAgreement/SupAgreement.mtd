@@ -1199,11 +1199,29 @@
       "Versions": []
     }
   ],
+  "HandledEvents": [
+    "AfterSaveServer",
+    "RefreshClient",
+    "BeforeSaveServer"
+  ],
   "IconResourcesKeys": [],
   "LayeredFromGuid": "265f2c57-6a8a-4a15-833b-ca00e8047fa5",
   "OpenCardByDefaultInCollection": true,
   "OperationsClass": "",
   "Properties": [
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "96c9e3f6-9201-4e6c-92e0-acf7a1624081",
+      "Name": "TotalAmount",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "bbbc063d-7367-4ea8-a777-5dd1bbe8e216",

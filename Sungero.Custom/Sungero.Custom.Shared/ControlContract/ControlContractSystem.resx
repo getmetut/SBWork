@@ -79,4 +79,7 @@
   <data name="Property_CollectionDocs" xml:space="preserve">
     <value>Подчиненные документы</value>
   </data>
+  <data name="Property_TotalLimit" xml:space="preserve">
+    <value>Итоговый лимит</value>
+  </data>
 </root>
