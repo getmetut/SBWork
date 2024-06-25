@@ -11,7 +11,7 @@ namespace sberdev.SberContracts
 
     public override void BeforeExecute(Sungero.Reporting.Client.BeforeExecuteEventArgs e)
     {
-      if (!StartedTasksReport.StartDate.HasValue && !StartedTasksReport.EndDate.HasValue)
+      if (!TasksByDocReport.StartDate.HasValue && !TasksByDocReport.EndDate.HasValue)
       {
         // Создание диалогового окна для запроса значений параметров
         // beginDate, endDate
@@ -21,8 +21,8 @@ namespace sberdev.SberContracts
         if (dialog.Show() == DialogButtons.Ok)
         {
           // Передача введенных значений в параметры beginDate, endDate
-          StartedTasksReport.StartDate = startDate.Value.Value;
-          StartedTasksReport.EndDate = endDate.Value.Value;
+          TasksByDocReport.StartDate = startDate.Value.Value;
+          TasksByDocReport.EndDate = endDate.Value.Value;
         }
         else
           e.Cancel = true;
