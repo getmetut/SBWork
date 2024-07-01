@@ -1,60 +1,93 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <queries>
-  <query key="StartedTasksQuery">
-    <mssql><![CDATA[WITH assigns AS (
-    SELECT
-        FORMAT(a.Created, 'yyyy-MM-dd') AS Created,
-        e.Name AS EmployeeName,
-        CASE 
-            WHEN CHARINDEX('(', e.Name) > 0 AND CHARINDEX(')', e.Name) > 0
-            THEN 
-                CONCAT(
-                    LEFT(e.Name, CHARINDEX('(', e.Name) - 1),
-                    SUBSTRING(e.Name, CHARINDEX(')', e.Name) + 1, LEN(e.Name) - CHARINDEX(')', e.Name))
-                )
-            ELSE
-                e.Name
-        END AS Performer,
-        DATEDIFF(day, a.Created, GETDATE()) - (DATEDIFF(WEEK, a.Created, GETDATE()) * 2) 
-            - CASE 
-                WHEN DATEPART(WEEKDAY, a.Created) = 1 THEN 1 
-                WHEN DATEPART(WEEKDAY, GETDATE()) = 7 THEN 1 
-                ELSE 0 
-            END AS Days,
-        a.[Subject],
-        a.Discriminator,
-        a.Id,
-        e.Department_Company_Sungero as DepId
-    FROM 
-        Sungero_WF_Assignment a
-    LEFT JOIN 
-        Sungero_Core_Recipient e ON e.Id = a.Performer
-    LEFT JOIN 
-        Sungero_Core_Recipient man ON man.Id = e.Department_Company_Sungero
-    RIGHT JOIN
-        Sungero_WF_Task t ON t.Id = a.MainTask AND (t.IsIncoming_ExCh_Sungero = 1 OR t.IsIncoming_ExCh_Sungero IS NULL)
-    WHERE 
-        a.Status = 'InProcess' and a.Created >= @startDate and a.Created <= @endDate
-        AND a.Discriminator != '0917CA0B-898F-429D-BE37-C12DA50C5A95'
-)
-SELECT 
-    assigns.Created, 
-    EmployeeName, 
-    Performer, 
-    mans.Name AS ManagerName, 
-    [Days], 
-    [Subject], 
-    assigns.Discriminator, 
-    assigns.Id 
+  <query key="TasksByDocQuery">
+    <mssql><![CDATA[SELECT 
+    t.Started AS TaskStarted,
+    t.Status AS TaskStatus,
+	   t.Id as TaskId,
+    ag.Id as AssigmentId,
+    ag.Status as AssignmentStatus,
+    ag.Created AssignmentCreated,
+    ag.Discriminator AS AssignmentDiscriminator,
+    ag.ThreadSubject,
+    ag.Subject,
+    r1.Name AS Performer,
+    r2.Name AS PerformerDepartment,
+    CASE
+        WHEN ag.Completed IS NOT NULL THEN DATEDIFF(HOUR, ag.Created, ag.Completed)
+        ELSE DATEDIFF(HOUR, ag.Created, GETDATE())
+    END AS ProcessHours,
+    e.Id AS EDocId,
+    e.Discriminator AS DocumentDiscriminator,
+    e.RegNumber_Docflow_Sungero AS RegNumber,
+    du.Name AS DocumentKind,
+    e.PayTypeBaseSbe_SBContr_sberdev AS PayType,
+    CASE
+        WHEN e.AccTotalAmount_Docflow_Sungero > 0 THEN e.AccTotalAmount_Docflow_Sungero
+        ELSE e.TotalAmount_Docflow_Sungero
+    END AS TotalAmount,
+    cu.Name AS Currency,
+    CASE
+        WHEN e.ContrTypeBaseS_SBContr_sberdev IS NOT NULL THEN e.ContrTypeBaseS_SBContr_sberdev
+        ELSE e.ContrTypeBase2_SBContr_sberdev
+    END AS Contrtype,
+    dk.Name AS ContrCategory,
+    CASE
+        WHEN m1.Name IS NOT NULL THEN m1.Name
+        ELSE m2.Name
+    END AS MVZ_MVP,
+    CASE
+        WHEN aa1.Name IS NOT NULL THEN aa1.Name
+        ELSE aa2.Name
+    END AS AccArt,
+    CASE
+        WHEN e.AccCParty_Docflow_Sungero IS NOT NULL THEN cp1.Name
+        ELSE cp2.Name
+    END AS Counterparty,
+    e.Created AS DocumentCreated,
+    e.DocumentDate_Docflow_Sungero AS DocumentDate,
+	r3.Name as DocumentAuthor,
+	r4.Name as TaskResponsible,
+	r5.Name as TaskResponsibleDepart
 FROM 
-    assigns
-LEFT JOIN
-    Sungero_Core_Recipient deps ON deps.Id = assigns.DepId
-LEFT JOIN
-    Sungero_Core_Recipient mans ON mans.Id = deps.Manager_Company_Sungero
-WHERE
-    Performer NOT LIKE '%Делопроизводитель%';
-]]></mssql>
+    Sungero_WF_Assignment ag
+left JOIN 
+     Sungero_WF_Task t ON ag.Task = t.Id
+left JOIN 
+    Sungero_WF_Attachment a ON a.Task = t.Id
+LEFT JOIN 
+    Sungero_Core_Recipient r1 ON ag.Performer = r1.Id
+LEFT JOIN 
+    Sungero_Core_Recipient r2 ON r1.Department_Company_Sungero = r2.Id
+LEFT JOIN 
+    Sungero_Core_Recipient r4 ON t.NewAuthorSDev_SBContr_sberdev = r4.Id or t.Author = r4.Id
+LEFT JOIN 
+    Sungero_Core_Recipient r5 ON r4.Department_Company_Sungero = r5.Id
+INNER JOIN 
+    Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+LEFT JOIN 
+    Sungero_Core_Recipient r3 ON e.Author = r3.Id
+LEFT JOIN 
+    sberdev_SberCon_MVZ m1 ON e.MVZBaseSberDev_SBContr_sberdev = m1.Id OR e.MVPBaseSberDev_SBContr_sberdev = m1.Id
+LEFT JOIN 
+    sberdev_SberCon_MVZ m2 ON e.MVZBaseSberDe1_SBContr_sberdev = m2.Id OR e.MVPBaseSberDe1_SBContr_sberdev = m2.Id
+LEFT JOIN 
+    Sungero_Commons_Currency cu ON e.ContrCurrency_Docflow_Sungero = cu.Id OR e.Currency_Docflow_Sungero = cu.Id
+LEFT JOIN 
+    Sungero_Docflow_DocumentGroup du ON e.DocumentGroup_Docflow_Sungero = du.Id
+LEFT JOIN 
+    Sungero_Docflow_DocumentKind dk ON e.DocumentKind_Docflow_Sungero = dk.Id
+LEFT JOIN 
+    sberdev_SberCon_AccountingArti aa1 ON e.AccArtExBaseSb_SBContr_sberdev = aa1.Id OR e.AccArtPrBaseSb_SBContr_sberdev = aa1.Id
+LEFT JOIN 
+    sberdev_SberCon_AccountingArti aa2 ON e.AccArtBaseSber_SBContr_sberdev = aa2.Id
+LEFT JOIN 
+    Sungero_Parties_Counterparty cp1 ON e.AccCParty_Docflow_Sungero = cp1.Id
+LEFT JOIN 
+    Sungero_Parties_Counterparty cp2 ON e.Counterparty_Docflow_Sungero = cp2.Id
+WHERE 
+    a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54' and e.DocumentDate_Docflow_Sungero >= @startDate
+    and e.DocumentDate_Docflow_Sungero <= @endDate]]></mssql>
   </query>
   <query key="PPQuery">
     <mssql><![CDATA[WITH CTE as (
@@ -75,55 +108,493 @@ SELECT PP
 FROM CTE
 WHERE PP IS NOT NULL;]]></mssql>
   </query>
-  <query key="TotalQuery">
-    <mssql><![CDATA[WITH assigns AS (
-  SELECT
-    FORMAT(a.Created, 'yyyy-MM-dd') AS Created,
-    CASE 
-      WHEN CHARINDEX('(', e.Name) > 0 AND CHARINDEX(')', e.Name) > 0
-      THEN 
-        CONCAT(
-          LEFT(e.Name, CHARINDEX('(', e.Name) - 1),
-          SUBSTRING(e.Name, CHARINDEX(')', e.Name) + 1, LEN(e.Name) - CHARINDEX(')', e.Name))
-        )
-      ELSE
-        e.Name
-    END AS Performer,
-    DATEDIFF(day, a.Created, GETDATE()) - (DATEDIFF(WEEK, a.Created, GETDATE()) * 2) 
-      - CASE 
-          WHEN DATEPART(WEEKDAY, a.Created) = 1 THEN 1 
-          WHEN DATEPART(WEEKDAY, GETDATE()) = 7 THEN 1 
-          ELSE 0 
-        END AS Days,
-    a.Discriminator,
-    e.Department_Company_Sungero AS DepId
-  FROM 
-    Sungero_WF_Assignment a
-  LEFT JOIN 
-    Sungero_Core_Recipient e ON e.Id = a.Performer
-  LEFT JOIN 
-    Sungero_Core_Recipient man ON man.Id = e.Department_Company_Sungero
-  right join
-    Sungero_WF_Task t on t.Id = a.MainTask and (t.IsIncoming_ExCh_Sungero = 1 or t.IsIncoming_ExCh_Sungero is null)
-  WHERE 
-    a.Status = 'InProcess' and a.Discriminator != '0917CA0B-898F-429D-BE37-C12DA50C5A95'  and  a.Created >= @startDate and a.Created <= @endDate
+  <query key="ReworkByTypeQuery">
+    <mssql><![CDATA[SELECT 
+    e.Discriminator AS DocumentDiscriminator,
+    FORMAT(COUNT(CASE WHEN ag.Discriminator = '040862cd-a46f-4366-b068-e659c7acaea6' THEN 1 END) * 1.0 / COUNT(*), 'F4') AS AvgTaskCount
+FROM 
+    Sungero_WF_Assignment ag
+LEFT JOIN 
+    Sungero_WF_Task t ON ag.Task = t.Id
+LEFT JOIN 
+    Sungero_WF_Attachment a ON a.Task = t.Id
+INNER JOIN 
+    Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+LEFT JOIN 
+    Sungero_Core_Recipient r1 ON e.Author = r1.Id
+LEFT JOIN 
+    Sungero_Core_Recipient r2 ON r1.Department_Company_Sungero = r2.Id
+WHERE 
+    a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54' and e.DocumentDate_Docflow_Sungero >= @startDate
+    and e.DocumentDate_Docflow_Sungero <= @endDate
+GROUP BY 
+    e.Discriminator;]]></mssql>
+  </query>
+  <query key="ReworByDepartmentQuery">
+    <mssql><![CDATA[SELECT 
+    r2.Name AS InitiatorDepartment,
+    FORMAT(COUNT(CASE WHEN ag.Discriminator = '040862cd-a46f-4366-b068-e659c7acaea6' THEN 1 END) * 1.0 / COUNT(*), 'F4') AS AvgTaskCount
+FROM 
+    Sungero_WF_Assignment ag
+LEFT JOIN 
+    Sungero_WF_Task t ON ag.Task = t.Id
+LEFT JOIN 
+    Sungero_WF_Attachment a ON a.Task = t.Id
+INNER JOIN 
+    Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+LEFT JOIN 
+    Sungero_Core_Recipient r1 ON e.Author = r1.Id
+LEFT JOIN 
+    Sungero_Core_Recipient r2 ON r1.Department_Company_Sungero = r2.Id
+WHERE 
+    a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54' and e.DocumentDate_Docflow_Sungero >= @startDate
+    and e.DocumentDate_Docflow_Sungero <= @endDate
+GROUP BY 
+    r2.Name;]]></mssql>
+  </query>
+  <query key="AvgApprovalByTypeQuery">
+    <mssql><![CDATA[SELECT 
+    e.Discriminator AS DocumentDiscriminator,
+    FORMAT(AVG(
+        DATEDIFF(HOUR, t.Started, LastAssignment.Completed) / 24.0
+    ), 'F3') AS AvgApprovalTimeInDays
+FROM 
+    Sungero_WF_Task t
+LEFT JOIN 
+    (
+        SELECT 
+            ag.Task,
+            MAX(ag.Created) AS MaxCreated
+        FROM 
+            Sungero_WF_Assignment ag
+        GROUP BY 
+            ag.Task
+    ) AS LatestAssignment ON t.Id = LatestAssignment.Task
+LEFT JOIN 
+    Sungero_WF_Assignment LastAssignment ON 
+        LastAssignment.Task = LatestAssignment.Task AND 
+        LastAssignment.Created = LatestAssignment.MaxCreated
+LEFT JOIN 
+    Sungero_WF_Attachment a ON a.Task = t.Id
+INNER JOIN 
+    Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+WHERE 
+    t.Status = 'Completed' and t.Discriminator != '83f2a537-0cf0-4429-ae76-e9a386ca53aa'
+	and t.Discriminator != '00ac21cf-6ad9-4a50-b0c5-a73d87f6438f'
+	and t.Discriminator != '1e5b11de-bd28-4dc2-a03c-74b8db9ac1c4'
+	and t.Discriminator != 'ae03c598-ab50-4781-b1b2-968510b338b9' and e.DocumentDate_Docflow_Sungero >= @startDate
+    and e.DocumentDate_Docflow_Sungero <= @endDate
+GROUP BY 
+    e.Discriminator;]]></mssql>
+  </query>
+  <query key="AvgApprovalByDepartmentQuery">
+    <mssql><![CDATA[SELECT 
+    r2.Name AS InitiatorDepartment,
+    FORMAT(AVG(
+        DATEDIFF(HOUR, t.Started, LastAssignment.Completed) / 24.0
+    ), 'F3') AS AvgApprovalTimeInDays
+FROM 
+    Sungero_WF_Task t
+LEFT JOIN 
+    (
+        SELECT 
+            ag.Task,
+            MAX(ag.Created) AS MaxCreated
+        FROM 
+            Sungero_WF_Assignment ag
+        GROUP BY 
+            ag.Task
+    ) AS LatestAssignment ON t.Id = LatestAssignment.Task
+LEFT JOIN 
+    Sungero_WF_Assignment LastAssignment ON 
+        LastAssignment.Task = LatestAssignment.Task AND 
+        LastAssignment.Created = LatestAssignment.MaxCreated
+LEFT JOIN 
+    Sungero_WF_Attachment a ON a.Task = t.Id
+INNER JOIN 
+    Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+LEFT JOIN 
+	Sungero_Core_Recipient r1 ON e.Author = r1.Id
+LEFT JOIN 
+	Sungero_Core_Recipient r2 ON r1.Department_Company_Sungero = r2.Id
+WHERE 
+    t.Status = 'Completed' and t.Discriminator != '83f2a537-0cf0-4429-ae76-e9a386ca53aa'
+	and t.Discriminator != '00ac21cf-6ad9-4a50-b0c5-a73d87f6438f'
+	and t.Discriminator != '1e5b11de-bd28-4dc2-a03c-74b8db9ac1c4'
+	and t.Discriminator != 'ae03c598-ab50-4781-b1b2-968510b338b9' and e.DocumentDate_Docflow_Sungero >= @startDate
+    and e.DocumentDate_Docflow_Sungero <= @endDate
+GROUP BY 
+    r2.Name;]]></mssql>
+  </query>
+  <query key="TasksInDeadlineByDepartmentQuery">
+    <mssql><![CDATA[WITH TaskCounts AS (
+    SELECT 
+        r2.Name AS InitiatorDepartment,
+        COUNT(*) AS TotalTaskCount,
+        SUM(CASE 
+                WHEN LastAssignment.Completed <= t.MaxDeadline OR LastAssignment.Completed <= t.Deadline 
+                THEN 1 
+                ELSE 0 
+            END) AS ConditionTaskCount
+    FROM 
+        Sungero_WF_Task t
+    LEFT JOIN 
+        (
+            SELECT 
+                ag.Task,
+                MAX(ag.Created) AS MaxCreated
+            FROM 
+                Sungero_WF_Assignment ag
+            GROUP BY 
+                ag.Task
+        ) AS LatestAssignment ON t.Id = LatestAssignment.Task
+    LEFT JOIN 
+        Sungero_WF_Assignment LastAssignment ON 
+            LastAssignment.Task = LatestAssignment.Task AND 
+            LastAssignment.Created = LatestAssignment.MaxCreated
+    LEFT JOIN 
+        Sungero_WF_Attachment a ON a.Task = t.Id
+    INNER JOIN 
+        Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+    LEFT JOIN 
+        Sungero_Core_Recipient r1 ON e.Author = r1.Id
+    LEFT JOIN 
+        Sungero_Core_Recipient r2 ON r1.Department_Company_Sungero = r2.Id
+    WHERE 
+        t.Status = 'Completed' AND 
+        t.Discriminator NOT IN ('83f2a537-0cf0-4429-ae76-e9a386ca53aa',
+                                '00ac21cf-6ad9-4a50-b0c5-a73d87f6438f',
+                                '1e5b11de-bd28-4dc2-a03c-74b8db9ac1c4',
+                                'ae03c598-ab50-4781-b1b2-968510b338b9') and e.DocumentDate_Docflow_Sungero >= @startDate
+    and e.DocumentDate_Docflow_Sungero <= @endDate
+    GROUP BY 
+        r2.Name
 )
 
-SELECT
-  a.Performer,
-  mans.Name AS Manager,
-  ROUND(AVG(CAST(a.Days AS FLOAT)), 2) AS AvarageDays,
-  COUNT(*) AS NumberTasks
+SELECT 
+    InitiatorDepartment,
+    CAST(ConditionTaskCount AS FLOAT) / TotalTaskCount AS ConditionTaskPercentage
 FROM 
-  assigns a
-LEFT JOIN
-  Sungero_Core_Recipient deps ON deps.Id = a.DepId
-LEFT JOIN
-  Sungero_Core_Recipient mans ON mans.Id = deps.Manager_Company_Sungero
-  WHERE
-    Performer NOT LIKE '%Делопроизводитель%'
-GROUP BY
-  a.Performer,
-  mans.Name;]]></mssql>
+    TaskCounts;]]></mssql>
+  </query>
+  <query key="TasksInDeadlineByTypeQuery">
+    <mssql><![CDATA[WITH TaskCounts AS (
+    SELECT 
+        e.Discriminator AS DocumentDiscriminator,
+        COUNT(*) AS TotalTaskCount,
+        SUM(CASE 
+                WHEN LastAssignment.Completed <= t.MaxDeadline OR LastAssignment.Completed <= t.Deadline 
+                THEN 1 
+                ELSE 0 
+            END) AS ConditionTaskCount
+    FROM 
+        Sungero_WF_Task t
+    LEFT JOIN 
+        (
+            SELECT 
+                ag.Task,
+                MAX(ag.Created) AS MaxCreated
+            FROM 
+                Sungero_WF_Assignment ag
+            GROUP BY 
+                ag.Task
+        ) AS LatestAssignment ON t.Id = LatestAssignment.Task
+    LEFT JOIN 
+        Sungero_WF_Assignment LastAssignment ON 
+            LastAssignment.Task = LatestAssignment.Task AND 
+            LastAssignment.Created = LatestAssignment.MaxCreated
+    LEFT JOIN 
+        Sungero_WF_Attachment a ON a.Task = t.Id
+    INNER JOIN 
+        Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+    WHERE 
+        t.Status = 'Completed' AND 
+        t.Discriminator NOT IN ('83f2a537-0cf0-4429-ae76-e9a386ca53aa',
+                                '00ac21cf-6ad9-4a50-b0c5-a73d87f6438f',
+                                '1e5b11de-bd28-4dc2-a03c-74b8db9ac1c4',
+                                'ae03c598-ab50-4781-b1b2-968510b338b9') and e.DocumentDate_Docflow_Sungero >= @startDate
+    and e.DocumentDate_Docflow_Sungero <= @endDate
+    GROUP BY 
+        e.Discriminator
+)
+
+SELECT 
+    DocumentDiscriminator,
+    CASE 
+        WHEN TotalTaskCount > 0 THEN CAST(ConditionTaskCount AS FLOAT) / TotalTaskCount 
+        ELSE 0 
+    END AS ConditionTaskPercentage
+FROM 
+    TaskCounts;]]></mssql>
+  </query>
+  <query key="MetricsByTypeQuery">
+    <mssql><![CDATA[WITH TaskCounts AS (
+    SELECT 
+        e.Discriminator AS DocumentDiscriminator,
+        COUNT(*) AS TotalTaskCount,
+        SUM(CASE 
+                WHEN LastAssignment.Completed <= t.MaxDeadline OR LastAssignment.Completed <= t.Deadline 
+                THEN 1
+                ELSE 0 
+            END) AS ConditionTaskCount
+    FROM 
+        Sungero_WF_Task t
+    LEFT JOIN 
+        (
+            SELECT 
+                ag.Task,
+                MAX(ag.Created) AS MaxCreated
+            FROM 
+                Sungero_WF_Assignment ag
+            GROUP BY 
+                ag.Task
+        ) AS LatestAssignment ON t.Id = LatestAssignment.Task
+    LEFT JOIN 
+        Sungero_WF_Assignment LastAssignment ON 
+            LastAssignment.Task = LatestAssignment.Task AND 
+            LastAssignment.Created = LatestAssignment.MaxCreated
+    LEFT JOIN 
+        Sungero_WF_Attachment a ON a.Task = t.Id
+    INNER JOIN 
+        Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+    WHERE 
+        t.Status = 'Completed' AND 
+        t.Discriminator NOT IN ('83f2a537-0cf0-4429-ae76-e9a386ca53aa',
+                                '00ac21cf-6ad9-4a50-b0c5-a73d87f6438f',
+                                '1e5b11de-bd28-4dc2-a03c-74b8db9ac1c4',
+                                'ae03c598-ab50-4781-b1b2-968510b338b9')
+        AND e.DocumentDate_Docflow_Sungero >= @startDate
+        AND e.DocumentDate_Docflow_Sungero <= @endDate
+    GROUP BY 
+        e.Discriminator
+),
+
+AvgAprTime AS (
+    SELECT 
+        e.Discriminator AS DocumentDiscriminator,
+        AVG(DATEDIFF(HOUR, t.Started, LastAssignment.Completed) / 24.0) AS AvgAprTime
+    FROM 
+        Sungero_WF_Task t
+    LEFT JOIN 
+        (
+            SELECT 
+                ag.Task,
+                MAX(ag.Created) AS MaxCreated
+            FROM 
+                Sungero_WF_Assignment ag
+            GROUP BY 
+                ag.Task
+        ) AS LatestAssignment ON t.Id = LatestAssignment.Task
+    LEFT JOIN 
+        Sungero_WF_Assignment LastAssignment ON 
+            LastAssignment.Task = LatestAssignment.Task AND 
+            LastAssignment.Created = LatestAssignment.MaxCreated
+    LEFT JOIN 
+        Sungero_WF_Attachment a ON a.Task = t.Id
+    INNER JOIN 
+        Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+    WHERE 
+        t.Status = 'Completed' 
+        AND t.Discriminator NOT IN ('83f2a537-0cf0-4429-ae76-e9a386ca53aa',
+                                    '00ac21cf-6ad9-4a50-b0c5-a73d87f6438f',
+                                    '1e5b11de-bd28-4dc2-a03c-74b8db9ac1c4',
+                                    'ae03c598-ab50-4781-b1b2-968510b338b9')
+        AND e.DocumentDate_Docflow_Sungero >= @startDate
+        AND e.DocumentDate_Docflow_Sungero <= @endDate
+    GROUP BY 
+        e.Discriminator
+    HAVING 
+        AVG(DATEDIFF(HOUR, t.Started, LastAssignment.Completed) / 24.0) > 0
+),
+
+AvgRwkAssigns AS (
+    SELECT 
+        e.Discriminator AS DocumentDiscriminator,
+        COUNT(CASE WHEN ag.Discriminator = '040862cd-a46f-4366-b068-e659c7acaea6' THEN 1 END) * 1.0 / COUNT(*) AS AvgRwkAssigns
+    FROM 
+        Sungero_WF_Assignment ag
+    LEFT JOIN 
+        Sungero_WF_Task t ON ag.Task = t.Id
+    LEFT JOIN 
+        Sungero_WF_Attachment a ON a.Task = t.Id
+    INNER JOIN 
+        Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+    WHERE 
+        a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54'
+        AND e.DocumentDate_Docflow_Sungero >= @startDate
+        AND e.DocumentDate_Docflow_Sungero <= @endDate
+    GROUP BY 
+        e.Discriminator
+    HAVING 
+        AVG(CASE WHEN ag.Discriminator = '040862cd-a46f-4366-b068-e659c7acaea6' THEN 1.0 ELSE 0.0 END) > 0
+)
+
+SELECT 
+    CAST(TaskCounts.DocumentDiscriminator AS VARCHAR(250)) as DocumentDiscriminator,
+    CAST(CASE 
+        WHEN TotalTaskCount > 0 
+            THEN ConditionTaskCount * 1.0 / TotalTaskCount
+        ELSE 0.000
+    END AS FLOAT) AS TaskCompletedInDeadline,
+    CAST(AvgAprTime.AvgAprTime AS FLOAT) AS AvgAprTime,
+    CAST(AvgRwkAssigns.AvgRwkAssigns AS FLOAT) AS AvgRwkAssigns
+FROM 
+    TaskCounts
+LEFT JOIN 
+    AvgAprTime ON TaskCounts.DocumentDiscriminator = AvgAprTime.DocumentDiscriminator
+LEFT JOIN 
+    AvgRwkAssigns ON TaskCounts.DocumentDiscriminator = AvgRwkAssigns.DocumentDiscriminator;
+]]></mssql>
+  </query>
+  <query key="MetricsByDepartQuery">
+    <mssql><![CDATA[WITH TaskCountsPerDepartment AS (
+    SELECT 
+        COALESCE(r2.Name, 'NULL_DEPARTMENT') AS InitiatorDepartment,
+        t.Id AS TaskId,
+        SUM(CASE WHEN ag.Discriminator = '040862cd-a46f-4366-b068-e659c7acaea6' THEN 1 ELSE 0 END) AS AssignmentCountWithDiscriminator
+    FROM 
+        Sungero_WF_Assignment ag
+    LEFT JOIN 
+        Sungero_WF_Task t ON ag.Task = t.Id
+    LEFT JOIN 
+        Sungero_WF_Attachment a ON a.Task = t.Id
+    INNER JOIN 
+        Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+    LEFT JOIN 
+        Sungero_Core_Recipient r1 ON e.Author = r1.Id
+    LEFT JOIN 
+        Sungero_Core_Recipient r2 ON r1.Department_Company_Sungero = r2.Id
+    WHERE 
+        a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54'
+        AND e.DocumentDate_Docflow_Sungero >= @startDate
+        AND e.DocumentDate_Docflow_Sungero <= @endDate
+    GROUP BY 
+        r2.Name, t.Id
+),
+
+AvgTaskCountPerDepartment AS (
+    SELECT 
+        InitiatorDepartment,
+        AVG(CAST(AssignmentCountWithDiscriminator AS FLOAT)) AS AvgRwkAssignsPerTask
+    FROM 
+        TaskCountsPerDepartment
+    GROUP BY 
+        InitiatorDepartment
+),
+
+AvgApprovalTimeCTE AS (
+    SELECT 
+        COALESCE(r2.Name, 'NULL_DEPARTMENT') AS InitiatorDepartment,
+        CAST(AVG(DATEDIFF(HOUR, t.Started, LastAssignment.Completed) / 24.0) AS FLOAT) AS AvgApprovalTimeInDays
+    FROM 
+        Sungero_WF_Task t
+    LEFT JOIN 
+        (
+            SELECT 
+                ag.Task,
+                MAX(ag.Created) AS MaxCreated
+            FROM 
+                Sungero_WF_Assignment ag
+            GROUP BY 
+                ag.Task
+        ) AS LatestAssignment ON t.Id = LatestAssignment.Task
+    LEFT JOIN 
+        Sungero_WF_Assignment LastAssignment ON 
+            LastAssignment.Task = LatestAssignment.Task AND 
+            LastAssignment.Created = LatestAssignment.MaxCreated
+    LEFT JOIN 
+        Sungero_WF_Attachment a ON a.Task = t.Id
+    INNER JOIN 
+        Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+    LEFT JOIN 
+        Sungero_Core_Recipient r1 ON e.Author = r1.Id
+    LEFT JOIN 
+        Sungero_Core_Recipient r2 ON r1.Department_Company_Sungero = r2.Id
+    WHERE 
+        t.Status = 'Completed' 
+        AND t.Discriminator NOT IN ('83f2a537-0cf0-4429-ae76-e9a386ca53aa',
+                                    '00ac21cf-6ad9-4a50-b0c5-a73d87f6438f',
+                                    '1e5b11de-bd28-4dc2-a03c-74b8db9ac1c4',
+                                    'ae03c598-ab50-4781-b1b2-968510b338b9')
+        AND e.DocumentDate_Docflow_Sungero >= @startDate
+        AND e.DocumentDate_Docflow_Sungero <= @endDate
+    GROUP BY 
+        r2.Name
+),
+
+TaskCountsCTE AS (
+    SELECT 
+        COALESCE(r2.Name, 'NULL_DEPARTMENT') AS InitiatorDepartment,
+        COUNT(*) AS TotalTaskCount,
+        SUM(CASE 
+                WHEN LastAssignment.Completed <= t.MaxDeadline OR LastAssignment.Completed <= t.Deadline 
+                THEN 1 
+                ELSE 0 
+            END) AS ConditionTaskCount
+    FROM 
+        Sungero_WF_Task t
+    LEFT JOIN 
+        (
+            SELECT 
+                ag.Task,
+                MAX(ag.Created) AS MaxCreated
+            FROM 
+                Sungero_WF_Assignment ag
+            GROUP BY 
+                ag.Task
+        ) AS LatestAssignment ON t.Id = LatestAssignment.Task
+    LEFT JOIN 
+        Sungero_WF_Assignment LastAssignment ON 
+            LastAssignment.Task = LatestAssignment.Task AND 
+            LastAssignment.Created = LatestAssignment.MaxCreated
+    LEFT JOIN 
+        Sungero_WF_Attachment a ON a.Task = t.Id
+    INNER JOIN 
+        Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+    LEFT JOIN 
+        Sungero_Core_Recipient r1 ON e.Author = r1.Id
+    LEFT JOIN 
+        Sungero_Core_Recipient r2 ON r1.Department_Company_Sungero = r2.Id
+    WHERE 
+        t.Status = 'Completed' 
+        AND t.Discriminator NOT IN ('83f2a537-0cf0-4429-ae76-e9a386ca53aa',
+                                    '00ac21cf-6ad9-4a50-b0c5-a73d87f6438f',
+                                    '1e5b11de-bd28-4dc2-a03c-74b8db9ac1c4',
+                                    'ae03c598-ab50-4781-b1b2-968510b338b9')
+        AND e.DocumentDate_Docflow_Sungero >= @startDate
+        AND e.DocumentDate_Docflow_Sungero <= @endDate
+    GROUP BY 
+        r2.Name
+),
+
+CombinedCTE AS (
+    SELECT 
+        COALESCE(atc.InitiatorDepartment, aat.InitiatorDepartment, tcc.InitiatorDepartment) AS InitiatorDepartment,
+        COALESCE(CAST(atc.AvgRwkAssignsPerTask AS FLOAT), 0.0000) AS AvgTaskCount,
+        COALESCE(CAST(aat.AvgApprovalTimeInDays AS FLOAT), 0.000) AS AvgApprovalTimeInDays,
+        CASE 
+            WHEN tcc.TotalTaskCount > 0 THEN CAST(tcc.ConditionTaskCount AS FLOAT) / tcc.TotalTaskCount
+            ELSE 0.000
+        END AS TaskCompletedInDeadline
+    FROM 
+        AvgTaskCountPerDepartment atc
+    FULL OUTER JOIN 
+        AvgApprovalTimeCTE aat ON atc.InitiatorDepartment = aat.InitiatorDepartment
+    FULL OUTER JOIN 
+        TaskCountsCTE tcc ON COALESCE(atc.InitiatorDepartment, aat.InitiatorDepartment) = tcc.InitiatorDepartment
+)
+
+SELECT 
+    CAST(InitiatorDepartment AS VARCHAR(250)) as InitiatorDepartment,
+    AVG(AvgTaskCount) AS AvgRwkAssigns,
+    AVG(AvgApprovalTimeInDays) AS AvgAprTime,
+    AVG(TaskCompletedInDeadline) AS TaskCompletedInDeadline
+FROM 
+    CombinedCTE
+GROUP BY 
+    InitiatorDepartment
+ORDER BY 
+    InitiatorDepartment;
+]]></mssql>
   </query>
 </queries>

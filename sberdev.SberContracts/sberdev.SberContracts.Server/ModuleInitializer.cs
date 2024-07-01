@@ -350,6 +350,7 @@ namespace sberdev.SberContracts.Server
       Reports.AccessRights.Grant(Reports.GetStartedTasksReport().Info, allUsers, DefaultReportAccessRightsTypes.Execute);
       Reports.AccessRights.Grant(Reports.GetAccDocsProductReport().Info, allUsers, DefaultReportAccessRightsTypes.Execute);
       Reports.AccessRights.Grant(Reports.GetContrDocsProductReport().Info, allUsers, DefaultReportAccessRightsTypes.Execute);
+      Reports.AccessRights.Grant(Reports.GetTasksByDocReport().Info, allUsers, DefaultReportAccessRightsTypes.Execute);
     }
     
     public void GrantRightsOnTasks()

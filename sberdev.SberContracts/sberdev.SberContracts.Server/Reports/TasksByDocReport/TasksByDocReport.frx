@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Core.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;Sungero.Domain.Shared&#13;&#10;Sungero.CoreEntities.Shared&#13;&#10;Sungero.Reporting.Shared&#13;&#10;CommonLibrary&#13;&#10;Sungero.Localization&#13;&#10;Sungero.Declension&#13;&#10;Sungero.Domain.Interfaces&#13;&#10;sberdev.SberContracts.Shared&#13;&#10;sberdev.SberContracts.Server" ReportInfo.CreatorVersion="2020.2.12.0">
   <ScriptText>using System;
 using System.Collections;
@@ -25,20 +25,168 @@ namespace FastReport
 {
   public class ReportScript
   {
+    public string TranslateType(string enumValue)
+    {
+      switch (enumValue.ToLower())
+      {
+        case &quot;a523a263-bc00-40f9-810d-f582bae2205d&quot;:
+          return &quot;Входящий счет&quot;;
+        case &quot;f2f5774d-5ca3-4725-b31d-ac618f6b8850&quot;:
+          return &quot;Акт выполненных работ&quot;;
+        case &quot;58986e23-2b0a-4082-af37-bd1991bc6f7e&quot;:
+          return &quot;Универсальный передаточный документ&quot;;
+        case &quot;f50c4d8a-56bc-43ef-bac3-856f57ca70be&quot;:
+          return &quot;Счет-фактура выставленный&quot;;
+        case &quot;74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a&quot;:
+          return &quot;Счет-фактура полученный&quot;;
+        case &quot;58ad01fb-6805-426b-9152-4de16d83b258&quot;:
+          return &quot;Исходящий счет&quot;;
+        case &quot;4e81f9ca-b95a-4fd4-bf76-ea7176c215a7&quot;:
+          return &quot;Накладная&quot;;  
+        case &quot;f37c7e63-b134-4446-9b5b-f8811f6c9666&quot;:
+          return &quot;Договор&quot;;
+        case &quot;265f2c57-6a8a-4a15-833b-ca00e8047fa5&quot;:
+          return &quot;Доп. соглашение&quot;;
+        // Добавьте остальные значения
+        default:
+          return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
+      }
+    }
+    public string TranslateIntApprEnum(string enumValue)
+    {
+      switch (enumValue)
+      {
+        case &quot;OnApproval&quot;:
+          return &quot;На согласовании&quot;;
+        case &quot;OnRework&quot;:
+          return &quot;На доработке&quot;;
+        case &quot;PendingSign&quot;:
+          return &quot;На подписании&quot;;
+        case &quot;Signed&quot;:
+          return &quot;Подписан&quot;;
+        case &quot;Aborted&quot;:
+          return &quot;Прекращено&quot;;
+        // Добавьте остальные значения
+        default:
+          return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
+      }
+    }
+    public string TranslateAssignStatusEnum(string enumValue)
+    {
+      switch (enumValue)
+      {
+        case &quot;InProcess&quot;:
+          return &quot;В работе&quot;;
+        case &quot;Suspended&quot;:
+          return &quot;Приостановлено&quot;;
+        case &quot;Completed&quot;:
+          return &quot;Выполнено&quot;;
+        case &quot;Aborted&quot;:
+          return &quot;Прекращено&quot;;
+        // Добавьте остальные значения
+        default:
+          return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
+      }
+    }
+    public string TranslateTaskStatusEnum(string enumValue)
+    {
+      switch (enumValue)
+      {
+        case &quot;InProcess&quot;:
+          return &quot;В работе&quot;;
+        case &quot;Suspended&quot;:
+          return &quot;Остановлена&quot;;
+        case &quot;Completed&quot;:
+          return &quot;Завершена&quot;;
+        case &quot;Aborted&quot;:
+          return &quot;Прекращена&quot;;
+        case &quot;Draft&quot;:
+          return &quot;Черновик&quot;;
+        case &quot;UnderReview&quot;:
+          return &quot;На приемке&quot;;
+        // Добавьте остальные значения
+        default:
+          return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
+      }
+    }
+    public string TranslateLifeStateEnum(string enumValue)
+    {
+      switch (enumValue)
+      {
+        case &quot;Draft&quot;:
+          return &quot;В разработке&quot;;
+        case &quot;Active&quot;:
+          return &quot;Действующий&quot;;
+        case &quot;Obsolete&quot;:
+          return &quot;Устаревший&quot;;
+        // Добавьте остальные значения
+        default:
+          return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
+      }
+    }
+    public string TranslatePayTypeEnum(string enumValue)
+    {
+      switch (enumValue)
+      {
+        case &quot;Prepayment&quot;:
+          return &quot;Предоплата&quot;;
+        case &quot;Postpay&quot;:
+          return &quot;Постоплата&quot;;
+        // Добавьте остальные значения
+        default:
+          return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
+      }
+    }
+    public string TranslateContrTypeEnum(string enumValue)
+    {
+      switch (enumValue)
+      {
+        case &quot;Expendable&quot;:
+          return &quot;Доходный&quot;;
+        case &quot;Profitable&quot;:
+          return &quot;Расходный&quot;;
+        case &quot;ExpendProfit&quot;:
+          return &quot;Доходно-расходный&quot;;
+        // Добавьте остальные значения
+        default:
+          return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
+      }
+    }
   }
 }
   </ScriptText>
   <Dictionary>
     <SungeroSqlDataConnection Name="Sungero_Connection" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties" ConnectionStringExpression="[SungeroConnectionString]">
-      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${StartedTasksQuery}">
-        <Column Name="Created" DataType="System.String" PropName="Column"/>
+      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${TasksByDocQuery}">
+        <Column Name="TaskStarted" DataType="System.DateTime" PropName="Column"/>
+        <Column Name="TaskStatus" DataType="System.String" PropName="Column1"/>
+        <Column Name="TaskId" DataType="System.UInt64" PropName="Column"/>
+        <Column Name="AssigmentId" DataType="System.Int64" PropName="Column"/>
+        <Column Name="AssignmentDiscriminator" DataType="System.String" PropName="Column"/>
+        <Column Name="ThreadSubject" DataType="System.String" PropName="Column"/>
+        <Column Name="Subject" DataType="System.String" PropName="Column1"/>
         <Column Name="Performer" DataType="System.String" PropName="Column"/>
-        <Column Name="Days" DataType="System.Int32" PropName="Column1"/>
-        <Column Name="Subject" DataType="System.String" PropName="Column"/>
-        <Column Name="Discriminator" DataType="System.String" PropName="Column"/>
-        <Column Name="Id" DataType="System.Int32" PropName="Column"/>
-        <Column Name="Link" DataType="System.String" PropName="Column" Calculated="true" Expression="&quot;https://directum.sberdevices.ru/DrxWeb/#/sat/card/&quot; + [Table.Discriminator] + &quot;/&quot; + [Table.Id]"/>
-        <Column Name="ManagerName" DataType="System.String" PropName="Column"/>
+        <Column Name="PerformerDepartment" DataType="System.String" PropName="Column"/>
+        <Column Name="ProcessHours" DataType="System.Int32" PropName="Column1"/>
+        <Column Name="EDocId" DataType="System.Int64" PropName="Column2"/>
+        <Column Name="DocumentDiscriminator" DataType="System.String" PropName="Column3"/>
+        <Column Name="RegNumber" DataType="System.String" PropName="Column4"/>
+        <Column Name="DocumentKind" DataType="System.String" PropName="Column5"/>
+        <Column Name="PayType" DataType="System.String" PropName="Column6"/>
+        <Column Name="TotalAmount" DataType="System.Double" PropName="Column7"/>
+        <Column Name="Currency" DataType="System.String" PropName="Column8"/>
+        <Column Name="Contrtype" DataType="System.String" PropName="Column9"/>
+        <Column Name="ContrCategory" DataType="System.String" PropName="Column10"/>
+        <Column Name="AccArt" DataType="System.String" PropName="Column"/>
+        <Column Name="Counterparty" DataType="System.String" PropName="Column1"/>
+        <Column Name="DocumentCreated" DataType="System.DateTime" PropName="Column2"/>
+        <Column Name="DocumentDate" DataType="System.DateTime" PropName="Column3"/>
+        <Column Name="MVZ_MVP" DataType="System.String" PropName="Column4"/>
+        <Column Name="DocumentAuthor" DataType="System.String" PropName="Column"/>
+        <Column Name="TaskResponsible" DataType="System.String" PropName="Column"/>
+        <Column Name="TaskResponsibleDepart" DataType="System.String" PropName="Column"/>
+        <Column Name="AssignmentStatus" DataType="System.String" PropName="Column"/>
+        <Column Name="AssignmentCreated" DataType="System.DateTime" PropName="Column"/>
         <CommandParameter Name="StartDate" DataType="6" IsDbType="true" Expression="[StartDate]"/>
         <CommandParameter Name="EndDate" DataType="6" IsDbType="true" Expression="[EndDate]"/>
       </TableDataSource>
@@ -47,11 +195,19 @@ namespace FastReport
         <CommandParameter Name="StartDate" DataType="6" IsDbType="true" Expression="[StartDate]"/>
         <CommandParameter Name="EndDate" DataType="6" IsDbType="true" Expression="[EndDate]"/>
       </TableDataSource>
-      <TableDataSource Name="Table2" Alias="TableTotal" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${TotalQuery}">
-        <Column Name="Manager" DataType="System.String" PropName="Column"/>
-        <Column Name="Performer" DataType="System.String" PropName="Column"/>
-        <Column Name="AvarageDays" DataType="System.Double" PropName="Column" Format="Number"/>
-        <Column Name="NumberTasks" DataType="System.Int32" PropName="Column" Format="Number"/>
+      <TableDataSource Name="Table2" Alias="TableMetricsByType" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${MetricsByTypeQuery}">
+        <Column Name="DocumentDiscriminator" DataType="System.String" PropName="Column"/>
+        <Column Name="TaskCompletedInDeadline" DataType="System.Double" PropName="Column1"/>
+        <Column Name="AvgAprTime" DataType="System.Double" PropName="Column2"/>
+        <Column Name="AvgRwkAssigns" DataType="System.Double" PropName="Column3"/>
+        <CommandParameter Name="StartDate" DataType="6" IsDbType="true" Expression="[StartDate]"/>
+        <CommandParameter Name="EndDate" DataType="6" IsDbType="true" Expression="[EndDate]"/>
+      </TableDataSource>
+      <TableDataSource Name="Table3" Alias="TableMetricsByDepartment" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${MetricsByDepartQuery}">
+        <Column Name="InitiatorDepartment" DataType="System.String" PropName="Column"/>
+        <Column Name="AvgRwkAssigns" DataType="System.Double" PropName="Column1"/>
+        <Column Name="AvgAprTime" DataType="System.Double" PropName="Column2"/>
+        <Column Name="TaskCompletedInDeadline" DataType="System.Double" PropName="Column3"/>
         <CommandParameter Name="StartDate" DataType="6" IsDbType="true" Expression="[StartDate]"/>
         <CommandParameter Name="EndDate" DataType="6" IsDbType="true" Expression="[EndDate]"/>
       </TableDataSource>
@@ -59,86 +215,171 @@ namespace FastReport
     <SungeroParameter Name="SungeroConnectionString" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties, DontShow" Id="c5b81ab6-ab88-472e-bc29-514d2e7bfb1a" IsRequired="false" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
     <SungeroParameter Name="StartDate" Id="be5577f6-8de0-4a37-9358-f14612cb90cb" IsRequired="true" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
     <SungeroParameter Name="EndDate" Id="44898b77-4e73-4584-a614-938acbfa9ff4" IsRequired="true" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
-    <Total Name="TotalAvarageDays" TotalType="Avg" Expression="[TableTotal.AvarageDays]" Evaluator="Data3"/>
-    <Total Name="TotalNumberTasks" Expression="[TableTotal.NumberTasks]" Evaluator="Data3"/>
   </Dictionary>
-  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
-    <DataBand Name="Data1" Top="21.57" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Guides="18.9" DataSource="Table">
-      <TextObject Name="Text14" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.Created]" Font="Arial, 8pt"/>
-      <TextObject Name="Text15" Left="66.15" Width="122.85" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.Performer]" Font="Arial, 8pt"/>
-      <TextObject Name="Text19" Left="302.4" Width="37.8" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.Days]" Font="Arial, 8pt">
+  <ReportPage Name="Page1" PaperWidth="430" RawPaperSize="0" Watermark.Font="Arial, 60pt">
+    <DataBand Name="Data1" Top="22.23" Width="1549.8" Height="18.9" CanGrow="true" CanShrink="true" Guides="18.9" DataSource="Table">
+      <TextObject Name="Text14" Left="47.25" Width="47.25" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.RegNumber]" Font="Arial, 8pt"/>
+      <TextObject Name="Text15" Left="94.5" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.DocumentKind]" Font="Arial, 8pt"/>
+      <TextObject Name="Text19" Left="198.45" Width="85.05" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.TotalAmount]" Font="Arial, 8pt">
+        <Formats>
+          <NumberFormat UseLocale="false" DecimalSeparator="," GroupSeparator="" NegativePattern="1"/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text20" Left="283.5" Width="47.25" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.Currency]" Font="Arial, 8pt"/>
+      <TextObject Name="Text26" Left="160.65" Width="37.8" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslatePayTypeEnum([Table.PayType])]" Font="Arial, 8pt"/>
+      <TextObject Name="Text27" Left="330.75" Width="37.8" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslateContrTypeEnum([Table.Contrtype])]" Font="Arial, 8pt"/>
+      <TextObject Name="Text28" Left="368.55" Width="47.25" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.ContrCategory]" Font="Arial, 8pt"/>
+      <TextObject Name="Text29" Left="472.5" Width="56.7" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.TaskResponsible]" Font="Arial, 8pt">
         <Formats>
           <NumberFormat UseLocale="false" DecimalDigits="0" DecimalSeparator="," GroupSeparator=" " NegativePattern="1"/>
           <GeneralFormat/>
         </Formats>
       </TextObject>
-      <TextObject Name="Text20" Left="340.2" Width="302.4" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.Subject]" Font="Arial, 8pt"/>
-      <TextObject Name="Text21" Left="642.6" Width="75.6" Height="18.9" Border.Lines="All" Cursor="Hand" Hyperlink.Expression="&quot;https://directum.sberdevices.ru/DrxWeb/#/sat/card/&quot; + [Table.Discriminator] + &quot;/&quot; + [Table.Id]" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.Id]" WordWrap="false" Font="Arial, 8pt, style=Underline" TextFill.Color="Blue">
+      <TextObject Name="Text30" Left="529.2" Width="75.6" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.TaskResponsibleDepart]" Font="Arial, 8pt"/>
+      <TextObject Name="Text31" Left="415.8" Width="56.7" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.DocumentAuthor]" Font="Arial, 8pt"/>
+      <TextObject Name="Text32" Left="604.8" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.MVZ_MVP]" Font="Arial, 8pt"/>
+      <TextObject Name="Text33" Left="670.95" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.AccArt]" Font="Arial, 8pt"/>
+      <TextObject Name="Text34" Left="822.15" Width="47.25" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.DocumentCreated]" Font="Arial, 8pt">
         <Formats>
           <GeneralFormat/>
           <GeneralFormat/>
         </Formats>
       </TextObject>
-      <TextObject Name="Text26" Left="189" Width="113.4" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.ManagerName]" Font="Arial, 8pt"/>
-      <DataHeaderBand Name="DataHeader1" Width="718.2" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true">
-        <TextObject Name="Text1" Width="66.15" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Дата старта" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text2" Left="66.15" Width="122.85" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Исполнитель" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text11" Left="302.4" Width="37.8" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="В процесс (дней)" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text12" Left="340.2" Width="302.4" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Тема" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text6" Left="642.6" Width="75.6" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Ссылка" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text25" Left="189" Width="113.4" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Руководитель" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text35" Left="869.4" Width="47.25" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.DocumentDate]" Font="Arial, 8pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text36" Left="737.1" Width="85.05" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.Counterparty]" Font="Arial, 8pt"/>
+      <TextObject Name="Text37" Left="916.65" Width="47.25" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.TaskStarted]" Font="Arial, 8pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text38" Left="1011.15" Width="47.25" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.ThreadSubject]" Font="Arial, 8pt"/>
+      <TextObject Name="Text39" Left="1266.3" Width="56.7" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.Performer]" Font="Arial, 8pt">
+        <Formats>
+          <NumberFormat UseLocale="false" DecimalDigits="0" DecimalSeparator="," GroupSeparator=" " NegativePattern="1"/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text40" Left="1323" Width="75.6" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.PerformerDepartment]" Font="Arial, 8pt"/>
+      <TextObject Name="Text41" Left="1058.4" Width="207.9" Height="18.9" Border.Lines="All" Cursor="Hand" Hyperlink.Expression="&quot;https://directum.sberdevices.ru/DrxWeb/#/sat/card/&quot; + [Table.AssignmentDiscriminator].ToString() + &quot;/&quot; + [Table.AssigmentId].ToString()" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.Subject]" Font="Arial, 8pt, style=Underline" TextFill.Color="Blue"/>
+      <TextObject Name="Text42" Left="1398.6" Width="47.25" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslateAssignStatusEnum([Table.AssignmentStatus])]" Font="Arial, 8pt"/>
+      <TextObject Name="Text43" Left="1445.85" Width="47.25" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.ProcessHours]" Font="Arial, 8pt"/>
+      <TextObject Name="Text46" Left="1493.1" Width="56.7" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.AssignmentCreated]" Font="Arial, 8pt"/>
+      <TextObject Name="Text68" Width="47.25" Height="18.9" Border.Lines="All" Cursor="Hand" Hyperlink.Expression="&quot;https://directum.sberdevices.ru/DrxWeb/#/sat/card/&quot; + [Table.DocumentDiscriminator].ToString() + &quot;/&quot; + [Table.EDocId].ToString()" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.EDocId]" Font="Arial, 8pt, style=Underline" TextFill.Color="Blue"/>
+      <TextObject Name="Text70" Left="963.9" Width="47.25" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslateTaskStatusEnum([Table.TaskStatus])]" Font="Arial, 8pt"/>
+      <DataHeaderBand Name="DataHeader1" Width="1549.8" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true">
+        <TextObject Name="Text1" Left="47.25" Width="47.25" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Номер документа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text2" Left="94.5" Width="66.15" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Вид документа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text11" Left="198.45" Width="85.05" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Сумма документа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text12" Left="283.5" Width="47.25" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Валюта" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text25" Left="160.65" Width="37.8" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Тип оплаты" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text47" Left="330.75" Width="37.8" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Тип договора" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text48" Left="368.55" Width="47.25" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Категория договора" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text49" Left="472.5" Width="56.7" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Ответственный" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text50" Left="529.2" Width="75.6" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Подразделение овтетственного" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text51" Left="415.8" Width="56.7" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Автор документа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text52" Left="604.8" Width="66.15" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="МВЗ/МВП" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text53" Left="670.95" Width="66.15" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Статья упр. учета" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text54" Left="822.15" Width="47.25" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Док. создан" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text55" Left="869.4" Width="47.25" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Дата документа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text56" Left="737.1" Width="85.05" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Контрагент" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text57" Left="916.65" Width="47.25" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Запуск согласования" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text58" Left="1011.15" Width="47.25" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Тип этапа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text59" Left="1266.3" Width="56.7" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Исполнитель задания" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text60" Left="1323" Width="75.6" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Подразделение исполнителя" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text61" Left="1058.4" Width="207.9" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Имя этапа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text62" Left="1398.6" Width="47.25" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Статус задания" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text63" Left="1445.85" Width="47.25" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Время выполнения задания (ч.)" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text66" Left="1493.1" Width="56.7" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Дата и время начала задания" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text67" Width="47.25" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="ИД документа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text69" Left="963.9" Width="47.25" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Статус задачи" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
       </DataHeaderBand>
       <Sort>
-        <Sort Expression="[Table.Id]"/>
+        <Sort Expression="[Table.DocumentDate]"/>
       </Sort>
     </DataBand>
   </ReportPage>
   <ReportPage Name="Page2" Watermark.Font="Arial, 60pt">
-    <DataBand Name="Data2" Top="21.57" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table1">
+    <DataBand Name="Data2" Top="22.23" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table1">
       <TextObject Name="Text3" Width="718.2" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TablePP.PP]" Font="Arial, 8pt"/>
       <DataHeaderBand Name="DataHeader2" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true">
         <TextObject Name="Text23" Width="718.2" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Раскрытия имен псевдо-пользователей" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
       </DataHeaderBand>
     </DataBand>
   </ReportPage>
-  <ReportPage Name="Page3" Watermark.Font="Arial, 60pt">
-    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true">
-      <TextObject Name="Text27" Width="283.5" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Руководитель/Работник" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-      <TextObject Name="Text28" Left="283.5" Width="217.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Среднее кол-во дней по задачам" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-      <TextObject Name="Text29" Left="500.85" Width="217.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Кол-во открытых заданий" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-    </ReportTitleBand>
-    <GroupHeaderBand Name="GroupHeader1" Top="21.57" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" KeepWithData="true" Condition="[TableTotal.Manager]">
-      <TextObject Name="Text30" Width="718.2" Height="18.9" Border.Lines="All" Fill.Color="Gainsboro" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableTotal.Manager]" VertAlign="Center" Font="Arial, 8pt, style=Underline"/>
-      <DataBand Name="Data3" Top="43.13" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table2">
-        <TextObject Name="Text37" Width="283.5" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableTotal.Performer]" VertAlign="Center" Font="Arial, 8pt"/>
-        <TextObject Name="Text38" Left="283.5" Width="217.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableTotal.AvarageDays]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt">
-          <Formats>
-            <NumberFormat/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-        <TextObject Name="Text39" Left="500.85" Width="217.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableTotal.NumberTasks]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt">
-          <Formats>
-            <NumberFormat DecimalDigits="0"/>
-            <GeneralFormat/>
-          </Formats>
-        </TextObject>
-      </DataBand>
-    </GroupHeaderBand>
-    <ReportSummaryBand Name="ReportSummary1" Top="64.7" Width="718.2" Height="18.9">
-      <TextObject Name="Text34" Width="283.5" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Общий итог:" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-      <TextObject Name="Text35" Left="283.5" Width="217.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TotalAvarageDays]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold">
+  <ReportPage Name="Page3" RawPaperSize="0" Watermark.Font="Arial, 60pt">
+    <PageHeaderBand Name="PageHeader1" Width="718.2" Height="18.9">
+      <TextObject Name="Text4" Width="727.65" Height="18.9" Text="Метрики в разрезе типа документа" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+    <DataBand Name="Data3" Top="44.45" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table2">
+      <TextObject Name="Text75" Width="349.65" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TranslateType([TableMetricsByType.DocumentDiscriminator])]" Font="Arial, 8pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text76" Left="349.65" Width="122.85" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableMetricsByType.AvgAprTime]" Font="Arial, 8pt">
         <Formats>
           <NumberFormat/>
           <GeneralFormat/>
         </Formats>
       </TextObject>
-      <TextObject Name="Text36" Left="500.85" Width="217.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TotalNumberTasks]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold">
+      <TextObject Name="Text77" Left="472.5" Width="122.85" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableMetricsByType.TaskCompletedInDeadline]" Font="Arial, 8pt">
         <Formats>
-          <NumberFormat DecimalDigits="0"/>
+          <PercentFormat/>
           <GeneralFormat/>
         </Formats>
       </TextObject>
-    </ReportSummaryBand>
+      <TextObject Name="Text78" Left="595.35" Width="122.85" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableMetricsByType.AvgRwkAssigns]" Font="Arial, 8pt">
+        <Formats>
+          <NumberFormat DecimalDigits="3"/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <DataHeaderBand Name="DataHeader3" Top="22.23" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true">
+        <TextObject Name="Text71" Width="368.55" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Тип документа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text72" Left="349.65" Width="122.85" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Ср. срок согл. документов (дн.)" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text73" Left="472.5" Width="122.85" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Доля документов, согл. в срок (%)" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text74" Left="595.35" Width="122.85" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Ср. кол-во доработок на согл." HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+  </ReportPage>
+  <ReportPage Name="Page4" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle2" Width="718.2" Height="18.9">
+      <TextObject Name="Text87" Width="727.65" Height="18.9" Text="Метрики в разрезе подразделения автора" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data4" Top="44.45" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table3">
+      <TextObject Name="Text79" Width="349.65" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableMetricsByDepartment.InitiatorDepartment]" Font="Arial, 8pt"/>
+      <TextObject Name="Text80" Left="349.65" Width="122.85" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableMetricsByDepartment.AvgAprTime]" Font="Arial, 8pt">
+        <Formats>
+          <NumberFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text81" Left="472.5" Width="122.85" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableMetricsByDepartment.TaskCompletedInDeadline]" Font="Arial, 8pt">
+        <Formats>
+          <PercentFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text85" Left="595.35" Width="122.85" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableMetricsByDepartment.AvgRwkAssigns]" Font="Arial, 8pt">
+        <Formats>
+          <NumberFormat DecimalDigits="3"/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <DataHeaderBand Name="DataHeader4" Top="22.23" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true">
+        <TextObject Name="Text82" Width="368.55" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Подразделение автора" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text83" Left="349.65" Width="122.85" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Ср. срок согл. документов (дн.)" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text84" Left="472.5" Width="122.85" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Доля документов, согл. в срок" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text86" Left="595.35" Width="122.85" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Ср. кол-во доработок на согл." HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
   </ReportPage>
 </Report>

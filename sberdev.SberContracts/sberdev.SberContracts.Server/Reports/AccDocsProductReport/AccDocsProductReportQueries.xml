@@ -60,10 +60,12 @@ CTE AS (
 		e.Name as [Name],
 		e.Subject_Docflow_Sungero as Subject,
 		e.FrameworkBase1_SBContr_sberdev as Framework,
+		md.Name as MarketDirection,
 		re3.Name as OurSignatory,
         e.AccTotalAmount_Docflow_Sungero AS Amount 
     FROM 
         Sungero_Content_EDoc e
+        left join sberdev_SberCon_MarketingDirec md on e.MarketDirectSb_SBContr_sberdev = md.Id
 		left join Sungero_Content_EDoc e1 on e.LeadDocument_Docflow_Sungero = e1.Id
 		left join Sungero_Docflow_DocumentKind dk on e.DocumentKind_Docflow_Sungero = dk.Id
     LEFT JOIN 
@@ -120,7 +122,8 @@ SELECT
 	c.[Subject],
 	c.Framework,
 	c.OurSignatory,
-	c.[Name]
+	c.[Name],
+	c.MarketDirection
 FROM 
     CTE c;]]></mssql>
   </query>

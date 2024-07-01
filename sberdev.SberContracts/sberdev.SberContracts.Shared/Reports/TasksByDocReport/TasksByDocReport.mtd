@@ -22,7 +22,8 @@
     "Parameters",
     "ExportFormats",
     "DefaultExportFormat",
-    "DisplayName"
+    "DisplayName",
+    "Description"
   ],
   "Parameters": [
     {

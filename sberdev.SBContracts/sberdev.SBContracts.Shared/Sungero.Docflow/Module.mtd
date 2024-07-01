@@ -404,7 +404,7 @@
         "Overridden": [
           "PreviousItemGuid"
         ],
-        "PreviousItemGuid": "561b8ea3-4631-41ec-8b93-40a2e4f2612e",
+        "PreviousItemGuid": "dd7b58fd-0b25-4341-a70e-189b2abd006d",
         "Versions": []
       },
       {
@@ -423,6 +423,15 @@
         "GroupId": "bf7ec0bf-a0cd-4390-8e20-4071d2745ac9",
         "PreviousItemGuid": "ecc03cbf-3721-4cfe-bd4c-6bddc82dfc3a",
         "ReportId": "77fc00ff-f108-4acc-a384-fed225e47f9a"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "dd7b58fd-0b25-4341-a70e-189b2abd006d",
+        "Name": "TasksByDocReportSberDev",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "bf7ec0bf-a0cd-4390-8e20-4071d2745ac9",
+        "PreviousItemGuid": "561b8ea3-4631-41ec-8b93-40a2e4f2612e",
+        "ReportId": "de1484bd-58ee-4c70-b265-67d9537230a9"
       }
     ],
     "Groups": [],

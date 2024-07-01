@@ -70,4 +70,10 @@
   <data name="CoverDescription_CalculationTamplatesSberDev" xml:space="preserve">
     <value>Набор личных шаблонов для калькуляции.</value>
   </data>
+  <data name="CoverDescription_TasksByDocReportSberDev" xml:space="preserve">
+    <value>Отчет по задачам и заданиям по документам за указанный период.</value>
+  </data>
+  <data name="CoverAction_TasksByDocReportSberDev" xml:space="preserve">
+    <value>Отчет по задачам и заданиям</value>
+  </data>
 </root>
