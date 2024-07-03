@@ -4,6 +4,7 @@
     <mssql><![CDATA[SELECT 
     t.Started AS TaskStarted,
     t.Status AS TaskStatus,
+    t.Discriminator AS TaskDiscriminator,
 	   t.Id as TaskId,
     ag.Id as AssigmentId,
     ag.Status as AssignmentStatus,
@@ -107,225 +108,6 @@ WHERE
 SELECT PP
 FROM CTE
 WHERE PP IS NOT NULL;]]></mssql>
-  </query>
-  <query key="ReworkByTypeQuery">
-    <mssql><![CDATA[SELECT 
-    e.Discriminator AS DocumentDiscriminator,
-    FORMAT(COUNT(CASE WHEN ag.Discriminator = '040862cd-a46f-4366-b068-e659c7acaea6' THEN 1 END) * 1.0 / COUNT(*), 'F4') AS AvgTaskCount
-FROM 
-    Sungero_WF_Assignment ag
-LEFT JOIN 
-    Sungero_WF_Task t ON ag.Task = t.Id
-LEFT JOIN 
-    Sungero_WF_Attachment a ON a.Task = t.Id
-INNER JOIN 
-    Sungero_Content_EDoc e ON a.AttachmentId = e.Id
-LEFT JOIN 
-    Sungero_Core_Recipient r1 ON e.Author = r1.Id
-LEFT JOIN 
-    Sungero_Core_Recipient r2 ON r1.Department_Company_Sungero = r2.Id
-WHERE 
-    a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54' and e.DocumentDate_Docflow_Sungero >= @startDate
-    and e.DocumentDate_Docflow_Sungero <= @endDate
-GROUP BY 
-    e.Discriminator;]]></mssql>
-  </query>
-  <query key="ReworByDepartmentQuery">
-    <mssql><![CDATA[SELECT 
-    r2.Name AS InitiatorDepartment,
-    FORMAT(COUNT(CASE WHEN ag.Discriminator = '040862cd-a46f-4366-b068-e659c7acaea6' THEN 1 END) * 1.0 / COUNT(*), 'F4') AS AvgTaskCount
-FROM 
-    Sungero_WF_Assignment ag
-LEFT JOIN 
-    Sungero_WF_Task t ON ag.Task = t.Id
-LEFT JOIN 
-    Sungero_WF_Attachment a ON a.Task = t.Id
-INNER JOIN 
-    Sungero_Content_EDoc e ON a.AttachmentId = e.Id
-LEFT JOIN 
-    Sungero_Core_Recipient r1 ON e.Author = r1.Id
-LEFT JOIN 
-    Sungero_Core_Recipient r2 ON r1.Department_Company_Sungero = r2.Id
-WHERE 
-    a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54' and e.DocumentDate_Docflow_Sungero >= @startDate
-    and e.DocumentDate_Docflow_Sungero <= @endDate
-GROUP BY 
-    r2.Name;]]></mssql>
-  </query>
-  <query key="AvgApprovalByTypeQuery">
-    <mssql><![CDATA[SELECT 
-    e.Discriminator AS DocumentDiscriminator,
-    FORMAT(AVG(
-        DATEDIFF(HOUR, t.Started, LastAssignment.Completed) / 24.0
-    ), 'F3') AS AvgApprovalTimeInDays
-FROM 
-    Sungero_WF_Task t
-LEFT JOIN 
-    (
-        SELECT 
-            ag.Task,
-            MAX(ag.Created) AS MaxCreated
-        FROM 
-            Sungero_WF_Assignment ag
-        GROUP BY 
-            ag.Task
-    ) AS LatestAssignment ON t.Id = LatestAssignment.Task
-LEFT JOIN 
-    Sungero_WF_Assignment LastAssignment ON 
-        LastAssignment.Task = LatestAssignment.Task AND 
-        LastAssignment.Created = LatestAssignment.MaxCreated
-LEFT JOIN 
-    Sungero_WF_Attachment a ON a.Task = t.Id
-INNER JOIN 
-    Sungero_Content_EDoc e ON a.AttachmentId = e.Id
-WHERE 
-    t.Status = 'Completed' and t.Discriminator != '83f2a537-0cf0-4429-ae76-e9a386ca53aa'
-	and t.Discriminator != '00ac21cf-6ad9-4a50-b0c5-a73d87f6438f'
-	and t.Discriminator != '1e5b11de-bd28-4dc2-a03c-74b8db9ac1c4'
-	and t.Discriminator != 'ae03c598-ab50-4781-b1b2-968510b338b9' and e.DocumentDate_Docflow_Sungero >= @startDate
-    and e.DocumentDate_Docflow_Sungero <= @endDate
-GROUP BY 
-    e.Discriminator;]]></mssql>
-  </query>
-  <query key="AvgApprovalByDepartmentQuery">
-    <mssql><![CDATA[SELECT 
-    r2.Name AS InitiatorDepartment,
-    FORMAT(AVG(
-        DATEDIFF(HOUR, t.Started, LastAssignment.Completed) / 24.0
-    ), 'F3') AS AvgApprovalTimeInDays
-FROM 
-    Sungero_WF_Task t
-LEFT JOIN 
-    (
-        SELECT 
-            ag.Task,
-            MAX(ag.Created) AS MaxCreated
-        FROM 
-            Sungero_WF_Assignment ag
-        GROUP BY 
-            ag.Task
-    ) AS LatestAssignment ON t.Id = LatestAssignment.Task
-LEFT JOIN 
-    Sungero_WF_Assignment LastAssignment ON 
-        LastAssignment.Task = LatestAssignment.Task AND 
-        LastAssignment.Created = LatestAssignment.MaxCreated
-LEFT JOIN 
-    Sungero_WF_Attachment a ON a.Task = t.Id
-INNER JOIN 
-    Sungero_Content_EDoc e ON a.AttachmentId = e.Id
-LEFT JOIN 
-	Sungero_Core_Recipient r1 ON e.Author = r1.Id
-LEFT JOIN 
-	Sungero_Core_Recipient r2 ON r1.Department_Company_Sungero = r2.Id
-WHERE 
-    t.Status = 'Completed' and t.Discriminator != '83f2a537-0cf0-4429-ae76-e9a386ca53aa'
-	and t.Discriminator != '00ac21cf-6ad9-4a50-b0c5-a73d87f6438f'
-	and t.Discriminator != '1e5b11de-bd28-4dc2-a03c-74b8db9ac1c4'
-	and t.Discriminator != 'ae03c598-ab50-4781-b1b2-968510b338b9' and e.DocumentDate_Docflow_Sungero >= @startDate
-    and e.DocumentDate_Docflow_Sungero <= @endDate
-GROUP BY 
-    r2.Name;]]></mssql>
-  </query>
-  <query key="TasksInDeadlineByDepartmentQuery">
-    <mssql><![CDATA[WITH TaskCounts AS (
-    SELECT 
-        r2.Name AS InitiatorDepartment,
-        COUNT(*) AS TotalTaskCount,
-        SUM(CASE 
-                WHEN LastAssignment.Completed <= t.MaxDeadline OR LastAssignment.Completed <= t.Deadline 
-                THEN 1 
-                ELSE 0 
-            END) AS ConditionTaskCount
-    FROM 
-        Sungero_WF_Task t
-    LEFT JOIN 
-        (
-            SELECT 
-                ag.Task,
-                MAX(ag.Created) AS MaxCreated
-            FROM 
-                Sungero_WF_Assignment ag
-            GROUP BY 
-                ag.Task
-        ) AS LatestAssignment ON t.Id = LatestAssignment.Task
-    LEFT JOIN 
-        Sungero_WF_Assignment LastAssignment ON 
-            LastAssignment.Task = LatestAssignment.Task AND 
-            LastAssignment.Created = LatestAssignment.MaxCreated
-    LEFT JOIN 
-        Sungero_WF_Attachment a ON a.Task = t.Id
-    INNER JOIN 
-        Sungero_Content_EDoc e ON a.AttachmentId = e.Id
-    LEFT JOIN 
-        Sungero_Core_Recipient r1 ON e.Author = r1.Id
-    LEFT JOIN 
-        Sungero_Core_Recipient r2 ON r1.Department_Company_Sungero = r2.Id
-    WHERE 
-        t.Status = 'Completed' AND 
-        t.Discriminator NOT IN ('83f2a537-0cf0-4429-ae76-e9a386ca53aa',
-                                '00ac21cf-6ad9-4a50-b0c5-a73d87f6438f',
-                                '1e5b11de-bd28-4dc2-a03c-74b8db9ac1c4',
-                                'ae03c598-ab50-4781-b1b2-968510b338b9') and e.DocumentDate_Docflow_Sungero >= @startDate
-    and e.DocumentDate_Docflow_Sungero <= @endDate
-    GROUP BY 
-        r2.Name
-)
-
-SELECT 
-    InitiatorDepartment,
-    CAST(ConditionTaskCount AS FLOAT) / TotalTaskCount AS ConditionTaskPercentage
-FROM 
-    TaskCounts;]]></mssql>
-  </query>
-  <query key="TasksInDeadlineByTypeQuery">
-    <mssql><![CDATA[WITH TaskCounts AS (
-    SELECT 
-        e.Discriminator AS DocumentDiscriminator,
-        COUNT(*) AS TotalTaskCount,
-        SUM(CASE 
-                WHEN LastAssignment.Completed <= t.MaxDeadline OR LastAssignment.Completed <= t.Deadline 
-                THEN 1 
-                ELSE 0 
-            END) AS ConditionTaskCount
-    FROM 
-        Sungero_WF_Task t
-    LEFT JOIN 
-        (
-            SELECT 
-                ag.Task,
-                MAX(ag.Created) AS MaxCreated
-            FROM 
-                Sungero_WF_Assignment ag
-            GROUP BY 
-                ag.Task
-        ) AS LatestAssignment ON t.Id = LatestAssignment.Task
-    LEFT JOIN 
-        Sungero_WF_Assignment LastAssignment ON 
-            LastAssignment.Task = LatestAssignment.Task AND 
-            LastAssignment.Created = LatestAssignment.MaxCreated
-    LEFT JOIN 
-        Sungero_WF_Attachment a ON a.Task = t.Id
-    INNER JOIN 
-        Sungero_Content_EDoc e ON a.AttachmentId = e.Id
-    WHERE 
-        t.Status = 'Completed' AND 
-        t.Discriminator NOT IN ('83f2a537-0cf0-4429-ae76-e9a386ca53aa',
-                                '00ac21cf-6ad9-4a50-b0c5-a73d87f6438f',
-                                '1e5b11de-bd28-4dc2-a03c-74b8db9ac1c4',
-                                'ae03c598-ab50-4781-b1b2-968510b338b9') and e.DocumentDate_Docflow_Sungero >= @startDate
-    and e.DocumentDate_Docflow_Sungero <= @endDate
-    GROUP BY 
-        e.Discriminator
-)
-
-SELECT 
-    DocumentDiscriminator,
-    CASE 
-        WHEN TotalTaskCount > 0 THEN CAST(ConditionTaskCount AS FLOAT) / TotalTaskCount 
-        ELSE 0 
-    END AS ConditionTaskPercentage
-FROM 
-    TaskCounts;]]></mssql>
   </query>
   <query key="MetricsByTypeQuery">
     <mssql><![CDATA[WITH TaskCounts AS (
@@ -443,8 +225,7 @@ FROM
 LEFT JOIN 
     AvgAprTime ON TaskCounts.DocumentDiscriminator = AvgAprTime.DocumentDiscriminator
 LEFT JOIN 
-    AvgRwkAssigns ON TaskCounts.DocumentDiscriminator = AvgRwkAssigns.DocumentDiscriminator;
-]]></mssql>
+    AvgRwkAssigns ON TaskCounts.DocumentDiscriminator = AvgRwkAssigns.DocumentDiscriminator;]]></mssql>
   </query>
   <query key="MetricsByDepartQuery">
     <mssql><![CDATA[WITH TaskCountsPerDepartment AS (
@@ -594,7 +375,6 @@ FROM
 GROUP BY 
     InitiatorDepartment
 ORDER BY 
-    InitiatorDepartment;
-]]></mssql>
+    InitiatorDepartment;]]></mssql>
   </query>
 </queries>

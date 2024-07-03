@@ -361,14 +361,11 @@
   <data name="Property_MethodPurchase" xml:space="preserve">
     <value>Способ закупки</value>
   </data>
-  <data name="Property_ApprovalProjectContract" xml:space="preserve">
-    <value>Согл. проекта договора</value>
-  </data>
   <data name="Property_ForNeeds" xml:space="preserve">
     <value>Для нужд</value>
   </data>
   <data name="Property_NameTaskProject" xml:space="preserve">
-    <value>Имя задачи/проекта</value>
+    <value>Имя проекта</value>
   </data>
   <data name="Property_TargetPurchase" xml:space="preserve">
     <value>Для реализации целей по</value>
@@ -474,18 +471,6 @@
   </data>
   <data name="Property_Necessary" xml:space="preserve">
     <value>Необходимо</value>
-  </data>
-  <data name="Property_TargetAndDepartCp" xml:space="preserve">
-    <value>Цель и подразделение зазчика</value>
-  </data>
-  <data name="Enum_RelizableKind_Task" xml:space="preserve">
-    <value>задачи</value>
-  </data>
-  <data name="Enum_RelizableKind_Project" xml:space="preserve">
-    <value>проекта</value>
-  </data>
-  <data name="Property_RelizableKind" xml:space="preserve">
-    <value>Реализация чего</value>
   </data>
   <data name="Control_bf320009298a4e1ebb62d6c455ca0e92_DisplayValue" xml:space="preserve">
     <value>Загрузить</value>

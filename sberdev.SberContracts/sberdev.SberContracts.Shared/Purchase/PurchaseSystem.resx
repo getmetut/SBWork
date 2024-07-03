@@ -376,14 +376,11 @@
   <data name="Property_MethodPurchase" xml:space="preserve">
     <value>Method of purchase</value>
   </data>
-  <data name="Property_ApprovalProjectContract" xml:space="preserve">
-    <value>Appr. of project of contr.</value>
-  </data>
   <data name="Property_ForNeeds" xml:space="preserve">
     <value>For needs</value>
   </data>
   <data name="Property_NameTaskProject" xml:space="preserve">
-    <value>Task/project name</value>
+    <value>Project name</value>
   </data>
   <data name="Property_TargetPurchase" xml:space="preserve">
     <value>To achieve the goals of</value>
@@ -495,18 +492,6 @@
   </data>
   <data name="Property_Necessary" xml:space="preserve">
     <value>Necessary</value>
-  </data>
-  <data name="Property_TargetAndDepartCp" xml:space="preserve">
-    <value>Target and department of сounterparty</value>
-  </data>
-  <data name="Property_RelizableKind" xml:space="preserve">
-    <value>Relizable of what</value>
-  </data>
-  <data name="Enum_RelizableKind_Task" xml:space="preserve">
-    <value>task</value>
-  </data>
-  <data name="Enum_RelizableKind_Project" xml:space="preserve">
-    <value>project</value>
   </data>
   <data name="ControlGroup_993c40627e794bfa920766b81b4e4f2a" xml:space="preserve">
     <value />

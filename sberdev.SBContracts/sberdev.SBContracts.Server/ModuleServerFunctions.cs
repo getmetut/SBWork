@@ -668,11 +668,9 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[MethodPurchase]", purch.MethodPurchase);
       body.Range.Replace("[PurchaseAmount]", purch.PurchaseAmount.ToString());
       body.Range.Replace("[MVZ]", purch.MVZBaseSberDev != null ? purch.MVZBaseSberDev.Name : purch.MVPBaseSberDev.Name);
-      body.Range.Replace("[ApprovalProjectContract]", purch.ApprovalProjectContract);
+      
       body.Range.Replace("[NameTaskProject]", purch.NameTaskProject);
-      body.Range.Replace("[RelizableKind]", GetRelizableKind(purch.RelizableKind));
       body.Range.Replace("[TargetPurchase]", purch.TargetPurchase);
-      body.Range.Replace("[TargetAndDepartCp]", purch.TargetAndDepartCp);
       
       if (purch.Necessary != null)
         body.Range.Replace("[Necessary]", purch.Necessary);
@@ -708,6 +706,7 @@ namespace sberdev.SBContracts.Server
         linkС = "https://directum.sberdevices.ru/DrxWeb/#/sat/card/"
           + purch.LeadingDocument.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "/" + purch.LeadingDocument.Id.ToString();
         addendums.Add("Договор - " + linkС);
+        body.Range.Replace("[ApprovalProjectContract]", linkС);
       }
       
       if (purch.ConcludedContractsKind == SberContracts.Purchase.ConcludedContractsKind.Yes)
@@ -956,14 +955,6 @@ namespace sberdev.SBContracts.Server
         return "оказания услуг";
       else
         return "выполнения работ";
-    }
-    
-    string GetRelizableKind(Enumeration? kind)
-    {
-      if (kind.Value == SberContracts.Purchase.RelizableKind.Project)
-        return "проекта";
-      else
-        return "задачи";
     }
     
     [Public]
