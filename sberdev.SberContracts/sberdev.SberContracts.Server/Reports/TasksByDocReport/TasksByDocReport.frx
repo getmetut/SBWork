@@ -232,7 +232,7 @@ namespace FastReport
     <SungeroParameter Name="EndDate" Id="44898b77-4e73-4584-a614-938acbfa9ff4" IsRequired="true" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
   </Dictionary>
   <ReportPage Name="Page1" PaperWidth="460" RawPaperSize="0" Watermark.Font="Arial, 60pt">
-    <DataBand Name="Data1" Top="22.23" Width="1663.2" Height="18.9" CanGrow="true" CanShrink="true" Guides="18.9" DataSource="Table">
+    <DataBand Name="Data1" Top="21.65" Width="1663.2" Height="18.9" CanGrow="true" CanShrink="true" Guides="18.9" DataSource="Table">
       <TextObject Name="Text14" Left="47.25" Width="47.25" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.RegNumber]" Font="Arial, 8pt"/>
       <TextObject Name="Text15" Left="94.5" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.DocumentKind]" Font="Arial, 8pt"/>
       <TextObject Name="Text19" Left="198.45" Width="85.05" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.TotalAmount]" Font="Arial, 8pt">
@@ -319,6 +319,8 @@ namespace FastReport
       </DataHeaderBand>
       <Sort>
         <Sort Expression="[Table.EDocId]"/>
+        <Sort Expression="[Table.TaskId]"/>
+        <Sort Expression="[Table.AssignmentCreated]"/>
       </Sort>
     </DataBand>
   </ReportPage>

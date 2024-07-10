@@ -10,6 +10,12 @@ namespace sberdev.SberContracts
   partial class PurchaseSharedHandlers
   {
 
+    public virtual void MethodPurchaseChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      if (e.NewValue == MethodPurchase.SeveralCP)
+        _obj.CostAnalysisCollection.Clear();
+    }
+
     public virtual void SpecificationChanged(sberdev.SberContracts.Shared.PurchaseSpecificationChangedEventArgs e)
     {
       if (Equals(e.NewValue, e.OldValue))

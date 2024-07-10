@@ -641,6 +641,9 @@ namespace sberdev.SBContracts.Server
         body.Range.Replace("[Specification]", link);
         addendums.Add("Техническое задание - " + link);
       }
+      else
+        body.Range.Replace("[Specification]", "отсутсвует");
+      
       if (purch.CommercialOffer != null)
       {
         string link = "https://directum.sberdevices.ru/DrxWeb/#/sat/card/"
@@ -655,6 +658,8 @@ namespace sberdev.SBContracts.Server
         body.Range.Replace("[UpgradedCommercialOffer]", "Улучшенное технико-коммерческое предложение (" + link + ")");
         addendums.Add("Улучшенное коммерческое предложение - " + link);
       }
+      else
+        body.Range.Replace("[UpgradedCommercialOffer]", "");
       
       body.Range.Replace("[KindPurchase]", GetPurchaseKind(purch.KindPurchase));
       body.Range.Replace("[CPName]", purch.Counterparty.Name);
@@ -665,15 +670,17 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[CreatedDay]", nowDate.Day.ToString());
       body.Range.Replace("[CreatedMonth]", PublicFunctions.Module.GetMonthGenetiveName(nowDate.Month));
       body.Range.Replace("[CreatedYear]", nowDate.Year.ToString());
-      body.Range.Replace("[MethodPurchase]", purch.MethodPurchase);
+      body.Range.Replace("[MethodPurchase]", purch.MethodPurchase.Value.Value);
       body.Range.Replace("[PurchaseAmount]", purch.PurchaseAmount.ToString());
       body.Range.Replace("[MVZ]", purch.MVZBaseSberDev != null ? purch.MVZBaseSberDev.Name : purch.MVPBaseSberDev.Name);
       
-      body.Range.Replace("[NameTaskProject]", purch.NameTaskProject);
+      body.Range.Replace("[ProjectName]", purch.ProjectName);
       body.Range.Replace("[TargetPurchase]", purch.TargetPurchase);
       
       if (purch.Necessary != null)
         body.Range.Replace("[Necessary]", purch.Necessary);
+      else
+        body.Range.Replace("[Necessary]", "");
       
       var realizeList = purch.RealizeCollection.Select(p => p.Text).ToList();
       realizeList.Add("проект \"" + purch.ProjectName + "\":");
@@ -694,9 +701,15 @@ namespace sberdev.SBContracts.Server
           ReplacePlaceholderWithImage(body, "[ScreenBusinessPlan]", stream);
         }
       }
+      else
+      {
+        body.Range.Replace("[ScreenBusinessPlan]", "");
+      }
       
       if (purch.NegotiationsDiscount.HasValue)
         body.Range.Replace("[NegotiationsDiscount]", "По итогам переговоров цена была снижена на " + purch.NegotiationsDiscount.ToString() + "%");
+      else
+        body.Range.Replace("[NegotiationsDiscount]", "");
       
       body.Range.Replace("[PayType]", GetPaymentType(purch));
       
@@ -708,6 +721,8 @@ namespace sberdev.SBContracts.Server
         addendums.Add("Договор - " + linkС);
         body.Range.Replace("[ApprovalProjectContract]", linkС);
       }
+      else
+        body.Range.Replace("[ApprovalProjectContract]", "");
       
       if (purch.ConcludedContractsKind == SberContracts.Purchase.ConcludedContractsKind.Yes)
         body.Range.Replace("[ConcludedContracts]", "а также с использованием информации из действующих договоров, например:\n" +
@@ -742,8 +757,8 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[ServiceStartDate]", purch.ServiceStartDate.Value.ToShortDateString());
       body.Range.Replace("[ServiceEndDate]", purch.ServiceEndDate.Value.ToShortDateString());
       body.Range.Replace("[InitiatorManager]", Sungero.Company.Employees.As(purch.Author).Department.Manager.Name);
-      body.Range.Replace("[MVZBudgetOwner]", (purch.MVZBaseSberDev.MainMVZ != null ? purch.MVZBaseSberDev.MainMVZ.BudgetOwner.Name : (purch.MVZBaseSberDev != null ?
-                                                                                                                                      purch.MVZBaseSberDev.BudgetOwner.Name : null)));
+      body.Range.Replace("[MVZBudgetOwner]", (purch.MVZBaseSberDev.MainMVZ != null ? purch.MVZBaseSberDev.MainMVZ.BudgetOwner.Person.ShortName : (purch.MVZBaseSberDev != null ?
+                                                                                                                                                  purch.MVZBaseSberDev.BudgetOwner.Person.ShortName : null)));
       if (purch.BusinessUnit.CEO != null)
         body.Range.Replace("[CEO]", purch.BusinessUnit.CEO.Name);
       else
@@ -790,7 +805,10 @@ namespace sberdev.SBContracts.Server
         costAnalysis[counter, 3] = row.COCost3.HasValue ? row.COCost3.Value.ToString() : "";
         counter++;
       }
-      ReplacePlaceholderWithTable(body, "[CostAnalysisCollection]", CreateTableByArray(body, costAnalysis, boldRows));
+      if (purch.CostAnalysisCollection.Count > 0)
+        ReplacePlaceholderWithTable(body, "[CostAnalysisCollection]", CreateTableByArray(body, costAnalysis, boldRows));
+      else
+        body.Range.Replace("[CostAnalysisCollection]", "");
       #endregion
     }
     

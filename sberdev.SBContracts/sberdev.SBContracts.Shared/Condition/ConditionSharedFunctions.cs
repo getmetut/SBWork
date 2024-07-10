@@ -15,9 +15,9 @@ namespace sberdev.SBContracts.Shared
     {
       base.ChangePropertiesAccess();
       
-      var isFCDApprBySberDev = _obj.ConditionType == ConditionType.FCDApprBySberDev;
-      _obj.State.Properties.EndorserSberDev.IsVisible = isFCDApprBySberDev;
-      _obj.State.Properties.EndorserSberDev.IsRequired = isFCDApprBySberDev;
+      var isEndorseFrom = _obj.ConditionType == ConditionType.EndorseFromSberDev || _obj.ConditionType == ConditionType.FCDApprBySberDev;
+      _obj.State.Properties.EndorserSberDev.IsVisible = isEndorseFrom;
+      _obj.State.Properties.EndorserSberDev.IsRequired = isEndorseFrom;
       
       var isMVP = _obj.ConditionType == ConditionType.MVP;
       _obj.State.Properties.MVP.IsVisible = isMVP;
@@ -43,7 +43,7 @@ namespace sberdev.SBContracts.Shared
     public override void ClearHiddenProperties()
     {
       base.ClearHiddenProperties();
-      if (!_obj.State.Properties.EndorserSberDev.IsVisible)
+      if(!_obj.State.Properties.EndorserSberDev.IsVisible)
         _obj.EndorserSberDev = null;
       
       if (!_obj.State.Properties.MVP.IsVisible)
@@ -68,6 +68,21 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      if (_obj.ConditionType == ConditionType.EndorseFromSberDev)
+      {
+        var signInfos = Signatures.Get(document.LastVersion);
+        bool flag = false;
+        foreach (var singInfo in signInfos)
+        {
+          if ((singInfo.Signatory == _obj.EndorserSberDev || singInfo.SubstitutedUser == _obj.EndorserSberDev) && singInfo.SignatureType != SignatureType.NotEndorsing)
+          {
+            flag = true;
+            break;
+          }
+        }
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
       if (_obj.ConditionType == ConditionType.FCDApprBySberDev)
       {
         bool flag = false;
@@ -730,6 +745,9 @@ namespace sberdev.SBContracts.Shared
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      
+      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.AmountIsMore);
+      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.EndorseFromSberDev); // purchase
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.FCDApprBySberDev); // incoming invoice
       

@@ -1700,6 +1700,19 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "BanToSaveForStabs",
+      "Parameters": [
+        {
+          "Name": "contractualDocument",
+          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "ChangeAnaliticsAccess",
       "Parameters": [
         {

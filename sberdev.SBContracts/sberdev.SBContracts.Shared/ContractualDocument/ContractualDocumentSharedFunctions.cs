@@ -454,12 +454,12 @@ namespace sberdev.SBContracts.Shared
     /// <summary>
     /// Функция возвращает текст ошибки, если в каком либо поле выбраны заглушки
     /// </summary>
+    [Public]
     public string BanToSaveForStabs()
     {
       var error = "";
       if (!SBContracts.PublicFunctions.Module.IsSystemUser())
       {
-        
         if (_obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
           error += ", МВП";
         if (_obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
@@ -477,7 +477,7 @@ namespace sberdev.SBContracts.Shared
         
         if (error != "")
         {
-          error = "Выберите нужные значения вместо заглушек в полях:" + error.TrimStart(',') + ".";
+          error = "Выберите нужные значения вместо заглушек в полях:" + error.TrimStart(',') + ". Документ: " + _obj.Name;
         }
       }
       return error;

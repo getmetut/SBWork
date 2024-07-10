@@ -21,12 +21,28 @@ namespace sberdev.SBContracts
 
     public override void BeforeStart(Sungero.Workflow.Server.BeforeStartEventArgs e)
     {
+      // Механика указания нового ответсвенного
       if (_obj.NewAuthorSDev != null)
         if (_obj.NewAuthorSDev.Login != null)
           _obj.Author = Users.GetAll(r => r.Login == _obj.NewAuthorSDev.Login).FirstOrDefault();
 
       var document = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
       base.BeforeStart(e);
+      
+      
+      // Механика проверки обязательных свойств и заглушек
+      var accounting = SBContracts.AccountingDocumentBases.As(document);
+      var contractual = SBContracts.ContractualDocuments.As(document);
+      string er1 = "";
+      string er2 = "";
+      if (accounting != null)
+        er1 = PublicFunctions.AccountingDocumentBase.BanToSaveForStabs(accounting);
+      if (contractual != null)
+        er2 = PublicFunctions.ContractualDocument.BanToSaveForStabs(contractual);
+      if (er1 != "")
+        e.AddError(er1);
+      if (er2 != "")
+        e.AddError(er2);
       
       // Механика подтверждения суммы закупки
       var gurantee = SberContracts.GuaranteeLetters.As(document);

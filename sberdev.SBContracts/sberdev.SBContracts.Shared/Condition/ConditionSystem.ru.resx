@@ -187,4 +187,7 @@
   <data name="Property_EndorserSberDev" xml:space="preserve">
     <value>Согласующий</value>
   </data>
+  <data name="Enum_ConditionType_EndorseFromSberDev" xml:space="preserve">
+    <value>Есть согласование от</value>
+  </data>
 </root>

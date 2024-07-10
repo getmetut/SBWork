@@ -379,7 +379,7 @@
   <data name="Property_ForNeeds" xml:space="preserve">
     <value>For needs</value>
   </data>
-  <data name="Property_NameTaskProject" xml:space="preserve">
+  <data name="Property_ProjectName" xml:space="preserve">
     <value>Project name</value>
   </data>
   <data name="Property_TargetPurchase" xml:space="preserve">
@@ -499,8 +499,8 @@
   <data name="ControlGroup_ff79ecdfca24465cb311ecefd5250268" xml:space="preserve">
     <value>1.4. Justification of the cost of work</value>
   </data>
-  <data name="Control_bf320009298a4e1ebb62d6c455ca0e92_DisplayValue" xml:space="preserve">
-    <value>Download</value>
+  <data name="Control_becbfec21f6249bd9d72e22dd4ff611b_DisplayValue" xml:space="preserve">
+    <value>Instruction to create</value>
   </data>
   <data name="Property_ChooseCpJustif" xml:space="preserve">
     <value>Justif. for choosing a counterparty</value>
@@ -510,9 +510,6 @@
   </data>
   <data name="Property_SubjectPurchaseGen" xml:space="preserve">
     <value>Subject of purchase (gen. fall.)</value>
-  </data>
-  <data name="Property_ProjectName" xml:space="preserve">
-    <value>Project name</value>
   </data>
   <data name="Property_Authorized" xml:space="preserve">
     <value>Authorized</value>
@@ -564,5 +561,17 @@
   </data>
   <data name="ControlGroup_9a2ac62b45b64804990cb39f5f27e605" xml:space="preserve">
     <value>2. Solution and basic conditions</value>
+  </data>
+  <data name="Enum_MethodPurchase_OneCP" xml:space="preserve">
+    <value>One counterparty</value>
+  </data>
+  <data name="Enum_MethodPurchase_SeveralCP" xml:space="preserve">
+    <value>Request for proposals</value>
+  </data>
+  <data name="ControlGroup_b0b08c49c3674f21ab9d10701bac7b6e" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_e1cb85ce3e59491896cacfebff63e9d2_DisplayValue" xml:space="preserve">
+    <value>Download</value>
   </data>
 </root>

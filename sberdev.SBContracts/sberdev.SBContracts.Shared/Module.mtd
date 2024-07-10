@@ -236,6 +236,10 @@
     {
       "ItemId": "905ef939-a0ef-4cea-bca5-219b2442beb3",
       "PreviousItemId": "d37f067e-f4a2-4a51-9c69-0c94d5ec9991"
+    },
+    {
+      "ItemId": "079e2517-53c0-4bd4-b835-a46bb9f757c9",
+      "PreviousItemId": "905ef939-a0ef-4cea-bca5-219b2442beb3"
     }
   ],
   "IconResourcesKeys": [],
@@ -791,7 +795,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "4.15.0.0",
+  "Version": "4.15.1.0",
   "Widgets": [],
   "Versions": [
     {

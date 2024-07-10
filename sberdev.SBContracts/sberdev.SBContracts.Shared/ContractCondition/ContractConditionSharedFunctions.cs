@@ -170,7 +170,7 @@ namespace sberdev.SBContracts.Shared
         bool flag = false;
         foreach (var singInfo in signInfos)
         {
-          if ((singInfo.Signatory == _obj.EndorserSberDev || singInfo.SubstitutedUser == _obj.EndorserSberDev) && singInfo.SignatureType == SignatureType.Endorsing)
+          if ((singInfo.Signatory == _obj.EndorserSberDev || singInfo.SubstitutedUser == _obj.EndorserSberDev) && singInfo.SignatureType != SignatureType.NotEndorsing)
           {
             flag = true;
             break;

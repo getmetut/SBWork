@@ -1669,6 +1669,18 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "BanToSaveForStabs",
+      "Parameters": [
+        {
+          "Name": "accountingDocumentBase",
+          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
+          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "GetCalculationString",
       "Parameters": [
         {

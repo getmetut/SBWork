@@ -117,6 +117,7 @@ namespace sberdev.SBContracts.Server
     /// <summary>
     /// Функция возвращает текст ошибки, если в каком либо поле выбраны заглушки
     /// </summary>
+    [Public]
     public string BanToSaveForStabs()
     {
       var error = "";
@@ -135,7 +136,7 @@ namespace sberdev.SBContracts.Server
         
         if (error != "")
         {
-          error = "Выберите нужные значения вместо заглушек в полях:" + error.TrimStart(',') + ".";
+          error = "Выберите нужные значения вместо заглушек в полях:" + error.TrimStart(',') + ". Документ: " + _obj.Name;
         }
       }
       return error;

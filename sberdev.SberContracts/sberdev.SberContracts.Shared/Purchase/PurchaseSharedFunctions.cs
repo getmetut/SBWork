@@ -25,6 +25,17 @@ namespace sberdev.SberContracts.Shared
         _obj.State.Properties.LeadingDocument.IsVisible = true;
         _obj.State.Properties.LeadingDocument.IsRequired = true;
       }
+      
+      if(_obj.MethodPurchase == MethodPurchase.OneCP)
+      {
+        _obj.State.Properties.CostAnalysisCollection.IsRequired = false;
+        _obj.State.Properties.CostAnalysisCollection.IsVisible = false;
+      }
+      else
+      {
+        _obj.State.Properties.CostAnalysisCollection.IsRequired = true;
+        _obj.State.Properties.CostAnalysisCollection.IsVisible = true;
+      }
     }
   }
 }

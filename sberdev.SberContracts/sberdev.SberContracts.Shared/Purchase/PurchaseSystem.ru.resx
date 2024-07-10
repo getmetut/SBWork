@@ -364,7 +364,7 @@
   <data name="Property_ForNeeds" xml:space="preserve">
     <value>Для нужд</value>
   </data>
-  <data name="Property_NameTaskProject" xml:space="preserve">
+  <data name="Property_ProjectName" xml:space="preserve">
     <value>Имя проекта</value>
   </data>
   <data name="Property_TargetPurchase" xml:space="preserve">
@@ -472,8 +472,8 @@
   <data name="Property_Necessary" xml:space="preserve">
     <value>Необходимо</value>
   </data>
-  <data name="Control_bf320009298a4e1ebb62d6c455ca0e92_DisplayValue" xml:space="preserve">
-    <value>Загрузить</value>
+  <data name="Control_becbfec21f6249bd9d72e22dd4ff611b_DisplayValue" xml:space="preserve">
+    <value>Инструкция к созданию</value>
   </data>
   <data name="Property_ChooseCpJustif" xml:space="preserve">
     <value>Обоснование выбора поставщика</value>
@@ -483,9 +483,6 @@
   </data>
   <data name="Property_SubjectPurchaseGen" xml:space="preserve">
     <value>Предмет закупки (род. пад.)</value>
-  </data>
-  <data name="Property_ProjectName" xml:space="preserve">
-    <value>Название проекта</value>
   </data>
   <data name="Property_Authorized" xml:space="preserve">
     <value>Уполномоченный</value>
@@ -534,5 +531,14 @@
   </data>
   <data name="ControlGroup_9a2ac62b45b64804990cb39f5f27e605" xml:space="preserve">
     <value>2. Решение и основные условия</value>
+  </data>
+  <data name="Enum_MethodPurchase_OneCP" xml:space="preserve">
+    <value>Eдинственный поставщик</value>
+  </data>
+  <data name="Enum_MethodPurchase_SeveralCP" xml:space="preserve">
+    <value>Запрос предложений</value>
+  </data>
+  <data name="Control_e1cb85ce3e59491896cacfebff63e9d2_DisplayValue" xml:space="preserve">
+    <value>Загрузить</value>
   </data>
 </root>

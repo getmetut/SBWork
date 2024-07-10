@@ -9,6 +9,5 @@ namespace sberdev.SBContracts.Shared
 {
   partial class ExchangeDocumentProcessingAssignmentFunctions
   {
-
   }
 }

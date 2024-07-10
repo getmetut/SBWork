@@ -10,11 +10,6 @@ namespace sberdev.SberContracts.Client
   partial class PurchaseFunctions
   {
 
-    public void ShowJustifCooseCpFAQ()
-    {
-      Dialogs.ShowMessage(sberdev.SberContracts.Purchases.Resources.JustifChooseCpFAQName, sberdev.SberContracts.Purchases.Resources.JustifChooseCpFAQ);
-    }
-    
     public void ChooseImage()
     {
       var dfile = Dialogs.CreateInputDialog("Выберите файл");
@@ -26,6 +21,17 @@ namespace sberdev.SberContracts.Client
         
       }
     }
+    
+    public void ShowJustifCooseCpFAQ()
+    {
+      Dialogs.ShowMessage(sberdev.SberContracts.Purchases.Resources.JustifChooseCpFAQName, sberdev.SberContracts.Purchases.Resources.JustifChooseCpFAQ);
+    }
+    
+    public void ShowSpeqificationFAQ()
+    {
+      Dialogs.ShowMessage(sberdev.SberContracts.Purchases.Resources.SpecificationFAQname, sberdev.SberContracts.Purchases.Resources.SpecificcationFAQ);
+    }
+    
     
     public override bool NeedViewDocumentSummary()
     {

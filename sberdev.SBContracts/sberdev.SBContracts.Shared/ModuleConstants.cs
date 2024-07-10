@@ -1,12 +1,11 @@
-﻿using System;
+using System;
 using Sungero.Core;
 
 namespace sberdev.SBContracts.Constants
 {
   public static class Module
   {
-    public static readonly Guid KZTypeGuid = Guid.Parse( "271898c8-18ca-4192-9892-e27b273ce5fc");
-    
+    public static readonly Guid KZTypeGuid = Guid.Parse("271898c8-18ca-4192-9892-e27b273ce5fc");
     /// <summary>
     /// Список идентификаторов объектов.
     /// </summary>

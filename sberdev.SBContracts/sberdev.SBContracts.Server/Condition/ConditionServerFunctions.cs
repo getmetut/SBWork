@@ -25,6 +25,11 @@ namespace sberdev.SBContracts.Server
           return head;
         }
         
+        if (_obj.ConditionType == ConditionType.EndorseFromSberDev)
+        {
+          return "Есть согласование от " + _obj.EndorserSberDev.Name + "?";
+        }
+        
         if (_obj.ConditionType == ConditionType.FCDApprBySberDev)
           return String.Format("Есть согласование на счете от {0}?", _obj.EndorserSberDev.Name);
         

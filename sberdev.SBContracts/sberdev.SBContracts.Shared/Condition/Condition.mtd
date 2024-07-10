@@ -490,6 +490,11 @@
           "NameGuid": "3240df14-2191-4d00-ba84-d44199159d96",
           "Name": "FCDApprBySberDev",
           "Code": "FInalClDocSigne"
+        },
+        {
+          "NameGuid": "6426ebd6-80b7-40de-8075-e1b6e5526749",
+          "Name": "EndorseFromSberDev",
+          "Code": "EndorsFrom"
         }
       ],
       "IsAncestorMetadata": true,
