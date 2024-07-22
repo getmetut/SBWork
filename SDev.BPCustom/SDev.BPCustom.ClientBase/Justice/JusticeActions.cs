@@ -9,6 +9,19 @@ namespace SDev.BPCustom.Client
 {
   partial class JusticeActions
   {
+    public virtual void Replace(Sungero.Workflow.Client.ExecuteResultActionArgs e)
+    {
+      
+    }
+
+    public virtual bool CanReplace(Sungero.Workflow.Client.CanExecuteResultActionArgs e)
+    {
+      if (_obj.Employee != null)
+        return true;
+      else
+        return false;
+    }
+
     public virtual void Canceled(Sungero.Workflow.Client.ExecuteResultActionArgs e)
     {
       if (_obj.ActiveText == null)

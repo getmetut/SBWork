@@ -142,4 +142,55 @@
   <data name="Action_CanceledDescription" xml:space="preserve">
     <value>Complete the assignment with result "Прекратить согласование"</value>
   </data>
+  <data name="Property_Employee" xml:space="preserve">
+    <value>Переадресовать</value>
+  </data>
+  <data name="Enum_Result_Replace" xml:space="preserve">
+    <value>Переадресовать</value>
+  </data>
+  <data name="Action_Replace" xml:space="preserve">
+    <value>Переадресовать</value>
+  </data>
+  <data name="Action_ReplaceHint" xml:space="preserve">
+    <value>Complete with Result "Переадресовать"</value>
+  </data>
+  <data name="Action_ReplaceConfirmationMessage" xml:space="preserve">
+    <value>Complete the assignment with result "Переадресовать"?</value>
+  </data>
+  <data name="Action_ReplaceDescription" xml:space="preserve">
+    <value>Complete the assignment with result "Переадресовать"</value>
+  </data>
+  <data name="Resource_1bbfaba9c44445878d1c51150787fb2e" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_1bbfaba9c44445878d1c51150787fb2e_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_4917364762724459ab15867c0b3c85a2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_c9c4beefec5b4b3796d4959c17991279" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_c9c4beefec5b4b3796d4959c17991279_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_45c3f7afea6f40948e21e643b6358f4a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_45c3f7afea6f40948e21e643b6358f4a_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ad03c4af7bfe4967aa2cdaa3265bdbe3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Ribbon_StaticDropDownButton_3cb23d50ef644c029074cf892f12ff87" xml:space="preserve">
+    <value>Выполнить</value>
+  </data>
+  <data name="Ribbon_StaticDropDownButtonDescription_3cb23d50ef644c029074cf892f12ff87" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Ribbon_StaticDropDownButtonHint_3cb23d50ef644c029074cf892f12ff87" xml:space="preserve">
+    <value />
+  </data>
 </root>
