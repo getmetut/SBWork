@@ -665,7 +665,6 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[CPName]", purch.Counterparty.Name);
       body.Range.Replace("[SubjectPurchase]", purch.SubjectPurchase);
       body.Range.Replace("[SubjectPurchaseGen]", purch.SubjectPurchaseGen);
-      body.Range.Replace("[ForNeeds]", purch.ForNeeds);
       var nowDate = Calendar.Now;
       body.Range.Replace("[CreatedDay]", nowDate.Day.ToString());
       body.Range.Replace("[CreatedMonth]", PublicFunctions.Module.GetMonthGenetiveName(nowDate.Month));

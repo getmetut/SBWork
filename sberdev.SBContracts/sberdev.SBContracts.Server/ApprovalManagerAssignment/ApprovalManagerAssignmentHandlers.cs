@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -9,6 +9,13 @@ namespace sberdev.SBContracts
 {
   partial class ApprovalManagerAssignmentServerHandlers
   {
+
+    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
+    {
+      base.BeforeSave(e);
+      var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      _obj.DocumentIDSberDev = attach?.Id.ToString();
+    }
 
     public override void BeforeComplete(Sungero.Workflow.Server.BeforeCompleteEventArgs e)
     {

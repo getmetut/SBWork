@@ -14,6 +14,7 @@ namespace sberdev.SBContracts
     {
       base.Saving(e);
       var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      _obj.DocumentIDSberDev = attach?.Id.ToString();
       var incInv = SBContracts.IncomingInvoices.As(attach);
       if (incInv != null)
       {

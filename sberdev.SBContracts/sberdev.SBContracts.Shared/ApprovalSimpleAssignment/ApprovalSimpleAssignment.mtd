@@ -32,7 +32,8 @@
     "Versions": []
   },
   "HandledEvents": [
-    "BeforeCompleteServer"
+    "BeforeCompleteServer",
+    "BeforeSaveServer"
   ],
   "IconResourcesKeys": [],
   "IsVisibleThreadText": true,
@@ -65,6 +66,15 @@
       "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "f3f178d5-53b8-4905-b651-5923362d6a52"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "eb790f5e-d5af-42ec-8336-72cbaf8928ce",
+      "Name": "DocumentIDSberDev",
+      "Code": "DocumentIDSA",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "b19fdbb6-df60-4f2b-8560-ddf1694f020b",
+      "Versions": []
     }
   ],
   "PublicStructures": [],

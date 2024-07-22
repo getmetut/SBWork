@@ -190,4 +190,7 @@
   <data name="Action_UnblockAttachSberDevConfirmationMessage" xml:space="preserve">
     <value>Вы уверены что хотите разблокировать карточку и версию вложения?</value>
   </data>
+  <data name="Property_DocumentIDSberDev" xml:space="preserve">
+    <value>ИД документа</value>
+  </data>
 </root>

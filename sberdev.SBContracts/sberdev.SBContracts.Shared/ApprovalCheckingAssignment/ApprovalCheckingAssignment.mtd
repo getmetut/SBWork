@@ -337,7 +337,7 @@
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
       "NameGuid": "ec9aba4f-0663-4474-b2a2-c20ad9fee91d",
       "Name": "DocumentIDSberDev",
-      "Code": "DocumentIDSber",
+      "Code": "DocumentIDCA",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "c67fd8d8-0500-4a0e-92f7-59b5557d44b7"
     },

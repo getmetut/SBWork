@@ -361,9 +361,6 @@
   <data name="Property_MethodPurchase" xml:space="preserve">
     <value>Способ закупки</value>
   </data>
-  <data name="Property_ForNeeds" xml:space="preserve">
-    <value>Для нужд</value>
-  </data>
   <data name="Property_ProjectName" xml:space="preserve">
     <value>Имя проекта</value>
   </data>
@@ -395,7 +392,7 @@
     <value>Главная</value>
   </data>
   <data name="Property_NegotiationsDiscount" xml:space="preserve">
-    <value>Скидка по итогу переговоров (%)</value>
+    <value>Скидка по итогу перег. (%)</value>
   </data>
   <data name="Property_UpgradedCommercialOffer" xml:space="preserve">
     <value>Улучшенное ком. предложение</value>

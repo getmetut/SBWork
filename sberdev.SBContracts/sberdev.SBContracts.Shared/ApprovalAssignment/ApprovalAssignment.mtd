@@ -485,6 +485,15 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "b2204868-7dff-483b-82e7-92071356331a",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "abd99dd5-04e0-4bac-8a4f-5e623796084d",
+      "Name": "DocumentIDSberDev",
+      "Code": "DocumentIDAA",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "044b13bf-9042-4180-8621-9c8e523075b3",
+      "Versions": []
     }
   ],
   "PublicStructures": [],

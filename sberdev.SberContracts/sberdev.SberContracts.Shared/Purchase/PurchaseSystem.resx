@@ -86,7 +86,7 @@
     <value />
   </data>
   <data name="Property_NegotiationsDiscount" xml:space="preserve">
-    <value>Discount based on negotiations (%)</value>
+    <value>Discount based on neg. (%)</value>
   </data>
   <data name="ControlGroup_519f2394febe4501adcaa34ee883d986" xml:space="preserve">
     <value>Company</value>
@@ -375,9 +375,6 @@
   </data>
   <data name="Property_MethodPurchase" xml:space="preserve">
     <value>Method of purchase</value>
-  </data>
-  <data name="Property_ForNeeds" xml:space="preserve">
-    <value>For needs</value>
   </data>
   <data name="Property_ProjectName" xml:space="preserve">
     <value>Project name</value>
