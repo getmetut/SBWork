@@ -14,7 +14,10 @@ namespace Sungero.ATS.Client
       e.CloseFormAfterAction = true;
       var Task = SDev.BPCustom.ContractualTasks.Create();
       Task.BaseAttachments.ContractualDocuments.Add(sberdev.SBContracts.ContractualDocuments.Get(_obj.Id));
-      Task.Subject = "Согласование: " + _obj.Name.ToString();
+      string Theme = "Согласование: (" + _obj.Counterparty.Name.ToString() + ") - " + _obj.Name.ToString();
+      if (Theme.Length > 249)
+          Theme = Theme.Substring(0, 249);      
+      Task.Subject = Theme;
       Task.Save();
       Task.Show();
     }

@@ -1555,7 +1555,7 @@
         "Name": "SendForApproval",
         "ActionGuid": "d021d43d-7949-4bdf-b0a0-4db25547f388",
         "ButtonSize": "Large",
-        "Index": -1,
+        "Index": 3,
         "IsAncestorMetadata": true,
         "Overridden": [
           "IsVisible"

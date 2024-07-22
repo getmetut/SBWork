@@ -15,6 +15,11 @@ namespace SDev.BPCustom
       var Doc = _obj.BaseAttachments.ContractualDocuments.FirstOrDefault();
       if (Doc != null)
       {
+        if (Doc.OurSignatory == null)
+          e.AddError("В исходном документе Не указан подписант от нашей организации - внесите его и повторите запуск на согласование!");
+        else
+          _obj.Signer = Doc.OurSignatory;
+        
         if (Doc.HasRelations)
         {
           foreach (var sdoc in Doc.Relations.GetRelated())
