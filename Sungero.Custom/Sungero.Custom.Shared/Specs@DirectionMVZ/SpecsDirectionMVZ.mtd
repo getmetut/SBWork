@@ -23,13 +23,9 @@
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "73d0eff7-0d68-4800-b97f-4401b2c1fe99",
       "Name": "DirectionMVZProp",
-      "CanBeSearch": false,
       "Code": "DirectionMVZPr",
       "EntityGuid": "15fd6e99-dd3f-4959-98ff-c800852c6700",
       "FlatListInStandaloneLookup": true,
-      "IsEnabled": false,
-      "IsShowedInList": false,
-      "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "b634a52e-73e7-44b1-bc07-921b7c4deade",
       "Versions": []

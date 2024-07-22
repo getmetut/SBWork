@@ -21,18 +21,7 @@ namespace Sungero.ATS.Client
 
     public virtual bool CanSendDocInTMSDev(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      var User = Users.Current;
-      var ctr = false;
-      var Rol = Roles.GetAll(r => r.Name == "Тестировщики").FirstOrDefault();
-      if (Rol != null)
-      {
-        foreach (var us in Rol.RecipientLinks)
-        {
-          if (us.Member.Name == User.Name)
-            ctr = true;
-        }
-      }
-      return ctr;
+      return true;
     }
 
   }

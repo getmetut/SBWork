@@ -54,6 +54,8 @@ namespace Sungero.Custom
         {
           if (doc.TotalAmount > 0.0)
             _obj.Limit = doc.TotalAmount;
+          else
+            _obj.Limit = 0.0;
           _obj.Name = doc.Name;
         }
         else

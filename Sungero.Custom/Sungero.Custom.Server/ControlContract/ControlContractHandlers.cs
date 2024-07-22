@@ -13,13 +13,21 @@ namespace Sungero.Custom
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
       var DDS = _obj.CollectionDocs;
-      double limit = _obj.Limit.Value;
-      foreach (var str in DDS)
+      if (_obj.Limit.HasValue)
       {
-        limit -= str.Summ.Value;
+        double limit = _obj.Limit.Value;
+        if (DDS.Count > 0)
+        {
+          foreach (var str in DDS)
+          {
+            if (str.Summ.HasValue)
+              limit -= str.Summ.Value;
+          }
+        }
+        
+        if (_obj.TotalLimit != limit)
+          _obj.TotalLimit = limit;
       }
-      if (_obj.TotalLimit != limit)
-        _obj.TotalLimit = limit;
     }
   }
 

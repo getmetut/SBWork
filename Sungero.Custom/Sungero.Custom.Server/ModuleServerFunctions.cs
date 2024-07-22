@@ -18,9 +18,13 @@ namespace Sungero.Custom.Server
     [Public]
     public void CreateLiminInContract(long IdDoc)
     {
-      var doc = ControlContracts.Create();
-      doc.LeadingDocID = int.Parse(IdDoc.ToString());
-      doc.Save();
+      if (ControlContracts.GetAll(d => ((d.LeadingDocID == int.Parse(IdDoc.ToString())) && (d.Limit != null))).FirstOrDefault() == null)
+      {
+        var doc = ControlContracts.Create();
+        doc.LeadingDocID = int.Parse(IdDoc.ToString());
+        if (doc.Limit != null)
+          doc.Save();
+      }
     }
     
     /// <summary>
@@ -29,21 +33,24 @@ namespace Sungero.Custom.Server
     [Public]
     public void CreateSupInLiminInContract(long IdLeadDoc, long IdDoc)
     {
-      var LeadDoc = ControlContracts.GetAll(d => d.LeadingDocID == int.Parse(IdLeadDoc.ToString())).FirstOrDefault();
+      var LeadDoc = ControlContracts.GetAll(d => ((d.LeadingDocID == int.Parse(IdLeadDoc.ToString())) && (d.Limit != null))).FirstOrDefault();
       if (LeadDoc != null)
       {
         var DDS = LeadDoc.CollectionDocs;
         bool valid = true;
-        foreach (var str in DDS)
+        if (DDS.Count > 0)
         {
-          if (str.IDDoc.Value == int.Parse(IdDoc.ToString()))
-            valid = false;
-        }
-        if (valid)
-        {
-          var NewStr = LeadDoc.CollectionDocs.AddNew();
-          NewStr.IDDoc = int.Parse(IdDoc.ToString());
-          LeadDoc.Save();
+          foreach (var str in DDS)
+          {
+            if (str.IDDoc.Value == int.Parse(IdDoc.ToString()))
+              valid = false;
+          }
+          if (valid)
+          {
+            var NewStr = LeadDoc.CollectionDocs.AddNew();
+            NewStr.IDDoc = int.Parse(IdDoc.ToString());
+            LeadDoc.Save();
+          }
         }
       }
     }
@@ -54,7 +61,7 @@ namespace Sungero.Custom.Server
     [Public]
     public bool RequestCorrectLiminInContract(long LeadingDocID, double EntityDocSumm)
     {
-      var LeadDoc = ControlContracts.GetAll(d => d.LeadingDocID == int.Parse(LeadingDocID.ToString())).FirstOrDefault();
+      var LeadDoc = ControlContracts.GetAll(d => ((d.LeadingDocID == int.Parse(LeadingDocID.ToString())) && (d.Limit != null))).FirstOrDefault();
       if (LeadDoc != null)
       {
         if ((LeadDoc.TotalLimit - EntityDocSumm) < 0.0)
@@ -72,7 +79,7 @@ namespace Sungero.Custom.Server
     [Public]
     public double RequestSummLiminInContract(long LeadingDocID, double EntityDocSumm)
     {
-      var LeadDoc = ControlContracts.GetAll(d => d.LeadingDocID == int.Parse(LeadingDocID.ToString())).FirstOrDefault();
+      var LeadDoc = ControlContracts.GetAll(d => ((d.LeadingDocID == int.Parse(LeadingDocID.ToString())) && (d.Limit != null))).FirstOrDefault();
       if (LeadDoc != null)
         return LeadDoc.TotalLimit.Value - EntityDocSumm;
       else

@@ -58,49 +58,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Custom</value>
-  </data>
-  <data name="CoverTitle" xml:space="preserve">
-    <value>Административная среда</value>
-  </data>
-  <data name="CoverTab_TabBase" xml:space="preserve">
-    <value>Основаная</value>
-  </data>
-  <data name="CoverGroup_AdminsBlock" xml:space="preserve">
-    <value>Административные инструменты</value>
-  </data>
-  <data name="CoverAction_ReSaveKA" xml:space="preserve">
-    <value>Пересохранение всех записей справочника КА</value>
-  </data>
-  <data name="CoverDescription_ReSaveKA" xml:space="preserve">
-    <value>Сценарий прохода по всем Активным записям справочника Конрагентов с приравниванием Nama=Name</value>
-  </data>
-  <data name="CoverAction_ActionKAInCSV" xml:space="preserve">
-    <value>Обработка КА через csv-файл</value>
-  </data>
-  <data name="CoverDescription_ActionKAInCSV" xml:space="preserve">
-    <value>Инстремент обрабатывающий переданный csv-файл для занесения данных в справочник. </value>
-  </data>
-  <data name="CoverAction_SearchDocDiadoc" xml:space="preserve">
-    <value>Поиск документов из Diadoc</value>
-  </data>
-  <data name="CoverDescription_SearchDocDiadoc" xml:space="preserve">
-    <value>Тестовый вывод информации для отчетности</value>
-  </data>
-  <data name="sf_7dd45ff6_ed5e_46ca_b5cf_3cb7205d783d" xml:space="preserve">
-    <value>Folder</value>
-  </data>
-  <data name="JobDisplayName_331a19e96a5e464a8f37d13c4ab61d50" xml:space="preserve">
-    <value>Обработка заданий для занесения их в список заданий в справочнике</value>
-  </data>
-  <data name="JobDescription_331a19e96a5e464a8f37d13c4ab61d50" xml:space="preserve">
-    <value>Обработка заданий для занесения их в список заданий в справочнике</value>
-  </data>
-  <data name="JobDisplayName_8908cbb1c53f40bea450c1b7be88cac7" xml:space="preserve">
-    <value>Фоновый процесс рассылки уведомлений по договорам с истекающим сроком действия</value>
-  </data>
-  <data name="JobDescription_8908cbb1c53f40bea450c1b7be88cac7" xml:space="preserve">
-    <value>Фоновый процесс рассылки уведомлений по договорам с истекающим сроком действия</value>
-  </data>
 </root>

@@ -10,6 +10,45 @@ namespace Sungero.Custom.Server
   {
 
     /// <summary>
+    /// Фоновый процесс рассылки уведомлений по договорам с истекающим сроком действия
+    /// </summary>
+    public virtual void ControlSkorContracts()
+    {
+       DateTime currentDate = Calendar.Today;   
+        var targetDates = new List<DateTime>
+        {
+            currentDate.AddDays(14),
+            currentDate.AddDays(7),
+            currentDate.AddDays(3),
+            currentDate.AddDays(1)
+        };
+    
+        foreach (var targetDate in targetDates)
+        {
+          if (targetDate.DayOfWeek == DayOfWeek.Saturday)
+              targetDate.AddDays(-1);
+          else if (targetDate.DayOfWeek == DayOfWeek.Sunday)
+              targetDate.AddDays(-2);
+        }
+        var Contractuals = sberdev.SBContracts.Contracts.GetAll(d => d.ValidTill.HasValue).Where(c => ((targetDates.Contains(c.ValidTill.Value)) && (c.LifeCycleState == sberdev.SBContracts.Contract.LifeCycleState.Active)));
+      if (Contractuals.Count() > 0)
+      {
+        foreach (var cons in Contractuals)
+        {
+          var Empl = Sungero.Company.Employees.GetAll(r => r.Login == cons.Author.Login).FirstOrDefault();
+          if (Empl != null)
+          {
+            var task = FreedomicTasks.Create();
+            task.Employee = Empl;
+            task.Subject = "Заканчивается срок действия договора: " + cons.Name;
+            task.OtherAttachment.ElectronicDocuments.Add(cons);
+            task.Start();
+          }          
+        }
+      }
+    }
+
+    /// <summary>
     /// Обработка заданий для занесения их в список заданий в справочнике
     /// </summary>
     public virtual void JobsinReference()
