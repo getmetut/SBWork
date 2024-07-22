@@ -7,5 +7,19 @@ using sberdev.SBContracts.SupAgreement;
 
 namespace sberdev.SBContracts.Client
 {
+  partial class SupAgreementActions
+  {
+    public override void SendDocInTMSDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      base.SendDocInTMSDev(e);
+    }
+
+    public override bool CanSendDocInTMSDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
+  }
+
 
 }

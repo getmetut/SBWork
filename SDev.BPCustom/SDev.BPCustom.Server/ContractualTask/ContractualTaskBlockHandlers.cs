@@ -44,13 +44,13 @@ namespace SDev.BPCustom.Server.ContractualTaskBlocks
     {
       var task = Sungero.Docflow.ApprovalTasks.CreateAsSubtask(_obj);        
       task.DocumentGroup.OfficialDocuments.Add(_obj.BaseAttachments.ContractualDocuments.FirstOrDefault());
-      task.Signatory = _obj.BaseAttachments.ContractualDocuments.FirstOrDefault().OurSignatory;                
+      task.Signatory = _obj.Signer;                
       task.Author = _obj.Author;      
       task.ApprovalRule = _block.ApprovalRule;     
       task.Save();
       task.Start();
 	    _block.SubTask = task;
-	    _obj.Save();
+	    _obj.Save(); 	    
     }
   }
 

@@ -120,6 +120,14 @@
     {
       "ItemId": "7472da69-451f-4724-887c-1b3ca87934ab",
       "PreviousItemId": "3930a315-6bb3-47bf-86ab-92f5510e9416"
+    },
+    {
+      "ItemId": "9f7d9bb0-720f-456f-94a2-339896bea245",
+      "PreviousItemId": "7472da69-451f-4724-887c-1b3ca87934ab"
+    },
+    {
+      "ItemId": "903298be-dd28-4da6-9682-1a898041342b",
+      "PreviousItemId": "9f7d9bb0-720f-456f-94a2-339896bea245"
     }
   ],
   "IconResourcesKeys": [],
@@ -137,7 +145,7 @@
   "SharedAssemblyName": "SDev.BPCustom.Shared",
   "SharedNamespace": "SDev.BPCustom.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.27",
+  "Version": "0.0.1.44",
   "Widgets": [],
   "Versions": [
     {

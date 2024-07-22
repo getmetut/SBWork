@@ -5,6 +5,15 @@
   "AccessRightsMode": "Both",
   "Actions": [
     {
+      "NameGuid": "2ff15037-d938-4fe5-8b91-9f20ff1a3164",
+      "Name": "SendDocInTMSDev",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ]
+    },
+    {
       "NameGuid": "d021d43d-7949-4bdf-b0a0-4db25547f388",
       "Name": "SendForApproval",
       "GenerateHandler": true,
@@ -1200,7 +1209,8 @@
   "HandledEvents": [
     "ShowingClient",
     "RefreshClient",
-    "AfterSaveServer"
+    "AfterSaveServer",
+    "BeforeSaveServer"
   ],
   "IconResourcesKeys": [],
   "LayeredFromGuid": "f37c7e63-b134-4446-9b5b-f8811f6c9666",

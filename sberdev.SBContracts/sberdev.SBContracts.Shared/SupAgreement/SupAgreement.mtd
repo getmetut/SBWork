@@ -3,6 +3,17 @@
   "NameGuid": "32cbd61f-bd12-4ee8-932e-090d4e5ba5dc",
   "Name": "SupAgreement",
   "AccessRightsMode": "Both",
+  "Actions": [
+    {
+      "NameGuid": "2ff15037-d938-4fe5-8b91-9f20ff1a3164",
+      "Name": "SendDocInTMSDev",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ]
+    }
+  ],
   "BaseGuid": "265f2c57-6a8a-4a15-833b-ca00e8047fa5",
   "CanBeNavigationPropertyType": true,
   "CreationAreaMetadata": {

@@ -14,6 +14,9 @@
           "ConstraintTypeId": "1d5473f7-1bfe-4c31-a1c0-b73d3f7dad89",
           "Limit": 1
         }
+      ],
+      "HandledEvents": [
+        "AddedShared"
       ]
     },
     {
@@ -97,6 +100,22 @@
           "PreviousPropertyGuid": "589e1978-66b8-4a8b-813f-b8c1bf07441c"
         }
       ]
+    },
+    {
+      "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "e4c2462a-a7d3-4c65-8f8e-fd412ee6644c",
+      "Name": "Justice",
+      "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
+      "EntityType": "9f7d9bb0-720f-456f-94a2-339896bea245",
+      "Properties": []
+    },
+    {
+      "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "795b9609-ead3-4bb6-94cd-9c6ea427493c",
+      "Name": "Finance",
+      "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
+      "EntityType": "903298be-dd28-4da6-9682-1a898041342b",
+      "Properties": []
     }
   ],
   "CanBeNavigationPropertyType": true,
@@ -165,7 +184,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiLikeEditorToCollectionBinder",
           "ParentGuid": "3849ac3b-2529-41c6-aa0d-03907f402a05",
           "PropertyGuid": "3364c324-c4c4-4ccb-a81c-53653255a022",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": [
             {
@@ -196,6 +215,19 @@
               "Value": "2515b9f1-8bab-4d9e-b96c-9bd3cedac0c9"
             }
           ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "b06735d1-27ad-4cef-b480-85522b8c0cd4",
+          "Name": "Signer",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "3849ac3b-2529-41c6-aa0d-03907f402a05",
+          "PropertyGuid": "a8f9c0f8-057c-46f4-9974-57f25dff6aa7",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -239,6 +271,15 @@
       "EntityGuid": "3edabd85-2fb0-4f54-8160-6668641efb8b",
       "IsShowedInList": false,
       "PreviousPropertyGuid": "e5e944f2-e530-487a-a480-b111c31fa70e"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "a8f9c0f8-057c-46f4-9974-57f25dff6aa7",
+      "Name": "Signer",
+      "Code": "Signer",
+      "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "3364c324-c4c4-4ccb-a81c-53653255a022"
     }
   ],
   "PublicStructures": [],

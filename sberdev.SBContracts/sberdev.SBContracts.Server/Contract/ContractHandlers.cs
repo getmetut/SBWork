@@ -10,6 +10,19 @@ namespace sberdev.SBContracts
   partial class ContractServerHandlers
   {
 
+    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
+    {
+      base.BeforeSave(e);
+      if (_obj.State.IsInserted)
+      {
+        var DOff = Sungero.Docflow.DocumentKinds.GetAll(dt => dt.Name == "Договор-оферта").FirstOrDefault();
+        if (DOff != null)
+          if (_obj.DocumentKind == DOff)
+            if (_obj.RegistrationDate == null)
+              _obj.RegistrationDate = _obj.Created;
+      }
+    }
+
     public override void AfterSave(Sungero.Domain.AfterSaveEventArgs e)
     {
       base.AfterSave(e);

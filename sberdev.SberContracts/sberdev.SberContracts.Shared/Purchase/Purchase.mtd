@@ -2128,7 +2128,6 @@
       "NameGuid": "efe26c30-2551-4037-9eee-aa169e9e89e1",
       "Name": "ForNeeds",
       "Code": "ForNeeds",
-      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "3237509b-84e0-49b2-b43b-bc58a1a080ed"
     },

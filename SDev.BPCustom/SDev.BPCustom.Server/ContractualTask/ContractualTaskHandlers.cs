@@ -23,6 +23,12 @@ namespace SDev.BPCustom
           }
         }
       }
+      
+      if (_obj.Signer == null)
+      {
+        _obj.State.Properties.Signer.HighlightColor = Colors.Common.Red;
+        e.AddError("Перед стартом задачи внесите подписанта данного документа!");
+      }
     }
   }
 

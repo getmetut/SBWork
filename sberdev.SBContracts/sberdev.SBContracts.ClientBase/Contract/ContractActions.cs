@@ -9,6 +9,16 @@ namespace sberdev.SBContracts.Client
 {
   partial class ContractActions
   {
+    public override void SendDocInTMSDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      base.SendDocInTMSDev(e);
+    }
+
+    public override bool CanSendDocInTMSDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
 
 
     public override void SendForApproval(Sungero.Domain.Client.ExecuteActionArgs e)

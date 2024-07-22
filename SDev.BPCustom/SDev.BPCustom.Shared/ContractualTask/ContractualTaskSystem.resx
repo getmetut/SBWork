@@ -121,4 +121,16 @@
   <data name="Block_146161a9de334284a550be7ed9a91849_Property_49fed9150a3a42a18ef6b6081dd06a8b" xml:space="preserve">
     <value>Отправить подзадачу закупки</value>
   </data>
+  <data name="Block_146161a9de334284a550be7ed9a91849_Property_108304d18f804c8fb84bd21920401f72" xml:space="preserve">
+    <value>ИД Регламента</value>
+  </data>
+  <data name="Block_e4c2462aa7d34c658f8efd412ee6644c" xml:space="preserve">
+    <value>Согласование Юристов</value>
+  </data>
+  <data name="Block_795b9609ead34bb694cd9c6ea427493c" xml:space="preserve">
+    <value>Согласование с финансистами</value>
+  </data>
+  <data name="Property_Signer" xml:space="preserve">
+    <value>Подписант</value>
+  </data>
 </root>
