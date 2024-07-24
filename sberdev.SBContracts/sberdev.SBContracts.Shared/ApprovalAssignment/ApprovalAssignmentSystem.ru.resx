@@ -193,4 +193,19 @@
   <data name="Property_DocumentIDSberDev" xml:space="preserve">
     <value>ИД документа</value>
   </data>
+  <data name="Property_InvApprByTreasSberDev" xml:space="preserve">
+    <value>Счет согл. казначеем</value>
+  </data>
+  <data name="Action_ApproveSberDev" xml:space="preserve">
+    <value>Согласовать</value>
+  </data>
+  <data name="Action_ApproveSberDevHint" xml:space="preserve">
+    <value>Выполнение всех выделенных заданий.</value>
+  </data>
+  <data name="Action_ApproveSberDevDescription" xml:space="preserve">
+    <value>Действие позволяет проводить массовые выполнения заданий.</value>
+  </data>
+  <data name="Action_ApproveSberDevConfirmationMessage" xml:space="preserve">
+    <value>Вы хотите выполнить все выбранные задания?</value>
+  </data>
 </root>

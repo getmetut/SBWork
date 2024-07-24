@@ -175,4 +175,19 @@
   <data name="Action_UnblockAttachSberDevConfirmationMessage" xml:space="preserve">
     <value>Вы уверены что хотите разблокировать карточку и версию вложения?</value>
   </data>
+  <data name="Property_FDAApprByTreasSberDev" xml:space="preserve">
+    <value>КЗД согл. с казначеем</value>
+  </data>
+  <data name="Action_ApproveSberDev" xml:space="preserve">
+    <value>Согласовать</value>
+  </data>
+  <data name="Action_ApproveSberDevHint" xml:space="preserve">
+    <value>Выполнение всех выделенных заданий.</value>
+  </data>
+  <data name="Action_ApproveSberDevDescription" xml:space="preserve">
+    <value>Действие позволяет проводить массовые выполнения заданий.</value>
+  </data>
+  <data name="Action_ApproveSberDevConfirmationMessage" xml:space="preserve">
+    <value>Вы хотите выполнить все выбранные задания?</value>
+  </data>
 </root>

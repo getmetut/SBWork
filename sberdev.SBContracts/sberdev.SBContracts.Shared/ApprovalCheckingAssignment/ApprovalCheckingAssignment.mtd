@@ -31,6 +31,17 @@
       "LargeIconName": "Action_UnblockAttachSberDev_large_0175a9fe6923489aa355b006bc81732e.png",
       "NeedConfirmation": true,
       "SmallIconName": "Action_UnblockAttachSberDev_small_0175a9fe6923489aa355b006bc81732e.png"
+    },
+    {
+      "NameGuid": "ce147b2c-bc25-44a9-b361-0842372ece01",
+      "Name": "ApproveSberDev",
+      "ActionArea": "Collection",
+      "GenerateHandler": true,
+      "IsMultiSelectAction": true,
+      "LargeIconName": "Action_ApproveSberDev_large_ce147b2cbc2544a9b3610842372ece01.png",
+      "NeedConfirmation": true,
+      "NeedRefreshCollectionAfterExecute": true,
+      "SmallIconName": "Action_ApproveSberDev_small_ce147b2cbc2544a9b3610842372ece01.png"
     }
   ],
   "AssociatedGuid": "d7041916-1429-42e2-869b-661edeef70e5",
@@ -241,7 +252,7 @@
           "NameGuid": "95eea87d-275c-47c7-bd03-4b96e1cb4aea",
           "Name": "OurCompany",
           "ColumnNumber": 0,
-          "ColumnSpan": 1,
+          "ColumnSpan": 2,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "99078a64-599f-458f-8702-81d97fd3e9b6",
           "PropertyGuid": "9a8ec8ca-d0d9-478f-a322-300078d63507",
@@ -274,6 +285,19 @@
           "RowNumber": 2,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "cab7262e-8142-46f4-8eeb-984a0dd6ef01",
+          "Name": "FDAApprByTreasSberDevSberDev",
+          "ColumnNumber": 2,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+          "ParentGuid": "99078a64-599f-458f-8702-81d97fd3e9b6",
+          "PropertyGuid": "cb1d50cd-fcbf-4da0-9763-4ac95a6308c2",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -288,7 +312,8 @@
   "HandledEvents": [
     "BeforeCompleteServer",
     "BeforeSaveServer",
-    "ShowingClient"
+    "ShowingClient",
+    "CreatedServer"
   ],
   "IconResourcesKeys": [],
   "IsSelectableAsFolderContent": true,
@@ -429,6 +454,15 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "7c6f8cc7-7564-45e1-9843-347f9aea0105",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "cb1d50cd-fcbf-4da0-9763-4ac95a6308c2",
+      "Name": "FDAApprByTreasSberDev",
+      "Code": "FDAApprByTreas",
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "0ce7a08a-0b66-4977-a4c5-4b5aa07a66dd"
     }
   ],
   "PublicStructures": [],
@@ -475,7 +509,17 @@
     "NameGuid": "87c30be7-af63-4d3a-b5bf-cdbe2c3d0b18",
     "Name": "RibbonCollection",
     "Categories": [],
-    "Elements": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "02819823-002e-46d7-8bfd-c205b454758f",
+        "Name": "ApproveSberDevSberDev",
+        "ActionGuid": "ce147b2c-bc25-44a9-b361-0842372ece01",
+        "ButtonSize": "Large",
+        "Index": 399,
+        "ParentGuid": "8414b29a-d426-4a50-98e1-cf685ffbab1d"
+      }
+    ],
     "Groups": [],
     "IsAncestorMetadata": true,
     "Pages": []

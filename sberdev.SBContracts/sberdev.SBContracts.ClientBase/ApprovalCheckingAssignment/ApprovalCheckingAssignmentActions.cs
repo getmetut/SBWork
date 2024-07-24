@@ -9,8 +9,30 @@ using Sungero.Domain.Shared;
 
 namespace sberdev.SBContracts.Client
 {
+  partial class ApprovalCheckingAssignmentCollectionActions
+  {
+
+    public virtual bool CanApproveSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
+    public virtual void ApproveSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      foreach(var assign in _objs)
+      {
+        if (Locks.TryLock(assign))
+        {
+          assign.Complete(SBContracts.ApprovalCheckingAssignment.Result.Accept);
+        }
+        Locks.Unlock(assign);
+      }
+    }
+  }
+
   partial class ApprovalCheckingAssignmentActions
   {
+
     public virtual void UnblockAttachSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       var attach = Functions.ApprovalCheckingAssignment.Remote.GetAttachment(_obj);

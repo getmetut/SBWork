@@ -18,6 +18,7 @@ namespace sberdev.SBContracts
       {
         _obj.State.Properties.NonContractInvoiceCounterSberDev.IsVisible = true;
         _obj.State.Properties.NonContractInvoiceCounterMoreSberDev.IsVisible = true;
+        _obj.State.Properties.InvApprByTreasSberDev.IsVisible = true;
         if (_obj.NonContractInvoiceCounterSberDev > 3)
         {
           _obj.State.Properties.NonContractInvoiceCounterSberDev.HighlightColor = Colors.Common.Red;
@@ -31,6 +32,7 @@ namespace sberdev.SBContracts
       {
         _obj.State.Properties.NonContractInvoiceCounterSberDev.IsVisible = false;
         _obj.State.Properties.NonContractInvoiceCounterMoreSberDev.IsVisible = false;
+        _obj.State.Properties.InvApprByTreasSberDev.IsVisible = false;
       }
       
       var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();

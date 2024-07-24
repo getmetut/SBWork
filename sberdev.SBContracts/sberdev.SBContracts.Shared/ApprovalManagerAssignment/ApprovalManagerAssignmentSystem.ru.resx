@@ -70,7 +70,4 @@
   <data name="Action_AbortTaskDescription" xml:space="preserve">
     <value>Отказано</value>
   </data>
-  <data name="Property_DocumentIDSberDev" xml:space="preserve">
-    <value>ИД документа</value>
-  </data>
 </root>

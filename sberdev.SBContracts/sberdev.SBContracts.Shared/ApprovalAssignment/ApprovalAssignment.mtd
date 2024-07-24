@@ -41,6 +41,18 @@
       "NeedConfirmation": true,
       "SmallIconName": "Action_UnblockAttachSberDevSberDev_small_b820d2f69a574b05ae39370d3492491c.png",
       "Versions": []
+    },
+    {
+      "NameGuid": "fe829bb7-1b44-4b12-9f50-8d9f32a93436",
+      "Name": "ApproveSberDev",
+      "ActionArea": "Collection",
+      "GenerateHandler": true,
+      "IsMultiSelectAction": true,
+      "LargeIconName": "Action_ApproveSberDevSberDev_large_fe829bb71b444b129f508d9f32a93436.png",
+      "NeedConfirmation": true,
+      "NeedRefreshCollectionAfterExecute": true,
+      "SmallIconName": "Action_ApproveSberDevSberDev_small_fe829bb71b444b129f508d9f32a93436.png",
+      "Versions": []
     }
   ],
   "AssociatedGuid": "d7041916-1429-42e2-869b-661edeef70e5",
@@ -322,6 +334,19 @@
           "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "d114fdfd-ee6e-4036-86b3-ac0028dfbbe7",
+          "Name": "InvApprByTreasSberDevSberDev",
+          "ColumnNumber": 2,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+          "ParentGuid": "4e94e189-a746-4492-a435-b8a937e0e8fc",
+          "PropertyGuid": "f93d4bee-17e2-4a2b-8bc6-c4536dee68bd",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -336,7 +361,8 @@
   "HandledEvents": [
     "ShowingClient",
     "BeforeCompleteServer",
-    "SavingServer"
+    "SavingServer",
+    "CreatedServer"
   ],
   "IconResourcesKeys": [],
   "IsVisibleThreadText": true,
@@ -494,6 +520,16 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "044b13bf-9042-4180-8621-9c8e523075b3",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "f93d4bee-17e2-4a2b-8bc6-c4536dee68bd",
+      "Name": "InvApprByTreasSberDev",
+      "Code": "InvApprByTreas",
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "abd99dd5-04e0-4bac-8a4f-5e623796084d",
+      "Versions": []
     }
   ],
   "PublicStructures": [],
@@ -558,7 +594,17 @@
     "NameGuid": "7b065a93-c15a-4c6c-9936-51d284d5f811",
     "Name": "RibbonCollection",
     "Categories": [],
-    "Elements": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "4d0b3b64-787a-45d2-9fd1-207fa81dbd80",
+        "Name": "ApproveSberDevSberDev",
+        "ActionGuid": "fe829bb7-1b44-4b12-9f50-8d9f32a93436",
+        "ButtonSize": "Large",
+        "Index": 399,
+        "ParentGuid": "8414b29a-d426-4a50-98e1-cf685ffbab1d"
+      }
+    ],
     "Groups": [],
     "IsAncestorMetadata": true,
     "Pages": []

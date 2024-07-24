@@ -79,7 +79,4 @@
   <data name="Action_AbortTaskConfirmationDescription" xml:space="preserve">
     <value />
   </data>
-  <data name="Property_DocumentIDSberDev" xml:space="preserve">
-    <value>Documnet ID</value>
-  </data>
 </root>

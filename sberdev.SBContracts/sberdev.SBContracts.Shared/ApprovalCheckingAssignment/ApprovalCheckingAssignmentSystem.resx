@@ -187,4 +187,22 @@
   <data name="Ribbon_AdminButtons_a8591a26e1004db9992c97c13fd33ce9" xml:space="preserve">
     <value>Admin buttons</value>
   </data>
+  <data name="Property_FDAApprByTreasSberDev" xml:space="preserve">
+    <value>FDA appr. by treasurer</value>
+  </data>
+  <data name="Action_ApproveSberDev" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="Action_ApproveSberDevDescription" xml:space="preserve">
+    <value>The action allows you to carry out mass execution of assigments.</value>
+  </data>
+  <data name="Action_ApproveSberDevHint" xml:space="preserve">
+    <value>Complete all allocated assigments.</value>
+  </data>
+  <data name="Action_ApproveSberDevConfirmationMessage" xml:space="preserve">
+    <value>Do you want to complete all selected assigments?</value>
+  </data>
+  <data name="Action_ApproveSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
 </root>

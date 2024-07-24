@@ -10,6 +10,12 @@ namespace sberdev.SBContracts
   partial class ApprovalCheckingAssignmentServerHandlers
   {
 
+    public override void Created(Sungero.Domain.CreatedEventArgs e)
+    {
+      base.Created(e);
+      _obj.FDAApprByTreasSberDev = false;
+    }
+
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
       base.BeforeSave(e);
@@ -30,6 +36,23 @@ namespace sberdev.SBContracts
             else
               _obj.State.Properties.PaymentDueDateSberDev.HighlightColor = Sungero.Core.Colors.Common.White;
           }
+          
+          var signs = Signatures.Get(inv.AccDocSberDev?.LastVersion);
+          bool signFlag = false;
+          var treasurer = Users.GetAll().Where(u => u.Name.IndexOf("Проверка бюджетных аналитик") > -1).FirstOrDefault();
+          if (signs != null && treasurer != null)
+            foreach (var sign in signs)
+          {
+            if ((sign.Signatory == treasurer || sign.SubstitutedUser == treasurer) && sign.SignatureType != SignatureType.NotEndorsing)
+            {
+              signFlag = true;
+              break;
+            }
+          }
+          if (signFlag)
+            _obj.FDAApprByTreasSberDev = true;
+          else
+            _obj.FDAApprByTreasSberDev = false;
         }
       }
       else

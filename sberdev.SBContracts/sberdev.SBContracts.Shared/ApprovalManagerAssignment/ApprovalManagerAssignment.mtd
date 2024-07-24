@@ -77,15 +77,6 @@
       "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "795eb043-e1a3-4806-8bb9-9b245719e672"
-    },
-    {
-      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "2066e75a-00c7-46a6-a46a-d28110b7cd75",
-      "Name": "DocumentIDSberDev",
-      "Code": "DocumentIDMA",
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
-      "PreviousPropertyGuid": "1e065540-3153-4fcf-8e2c-2153f56aeb39",
-      "Versions": []
     }
   ],
   "PublicStructures": [],

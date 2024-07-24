@@ -10,6 +10,12 @@ namespace sberdev.SBContracts
   partial class ApprovalAssignmentServerHandlers
   {
 
+    public override void Created(Sungero.Domain.CreatedEventArgs e)
+    {
+      base.Created(e);
+      _obj.InvApprByTreasSberDev = false;
+    }
+
     public override void Saving(Sungero.Domain.SavingEventArgs e)
     {
       base.Saving(e);
@@ -34,6 +40,26 @@ namespace sberdev.SBContracts
       {
         _obj.InternalApprovalStateSberDev = accounting.LeadingDocument?.InternalApprovalState;
         _obj.ExternalApprovalStateSberDev = accounting.LeadingDocument?.ExternalApprovalState;
+      }
+      
+      if (accounting != null && incInv == null)
+      {
+        var signs = Signatures.Get(accounting.InvoiceSberDev?.LastVersion);
+        bool signFlag = false;
+        var treasurer = Users.GetAll().Where(u => u.Name.IndexOf("Казначей") > -1).FirstOrDefault();
+        if (signs != null && treasurer != null)
+          foreach (var sign in signs)
+        {
+          if ((sign.Signatory == treasurer || sign.SubstitutedUser == treasurer) && sign.SignatureType != SignatureType.NotEndorsing)
+          {
+            signFlag = true;
+            break;
+          }
+        }
+          if (signFlag)
+            _obj.InvApprByTreasSberDev = true;
+          else
+            _obj.InvApprByTreasSberDev = false;
       }
     }
 

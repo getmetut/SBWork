@@ -24,11 +24,13 @@ namespace sberdev.SBContracts
       {
         _obj.State.Properties.InternalApprovalStateSberDev.IsVisible = true;
         _obj.State.Properties.ExternalApprovalStateSberDev.IsVisible = true;
+        _obj.State.Properties.FDAApprByTreasSberDev.IsVisible = true;
       }
       else
       {
         _obj.State.Properties.InternalApprovalStateSberDev.IsVisible = false;
         _obj.State.Properties.ExternalApprovalStateSberDev.IsVisible = false;
+        _obj.State.Properties.FDAApprByTreasSberDev.IsVisible = false;
       }
       base.Showing(e);
     }
