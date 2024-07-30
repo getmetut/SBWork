@@ -86,7 +86,9 @@ namespace sberdev.SBContracts
 
     public virtual IQueryable<T> ProdCollectionPrBaseSberDevProductFiltering(IQueryable<T> query, Sungero.Domain.PropertyFilteringEventArgs e)
     {
-      var exep = _root.MVPBaseSberDev.ProductsCollection;
+      var exep = _root.MVPBaseSberDev?.ProductsCollection;
+      if (exep == null)
+        return query.Where(m => Equals(m.BusinessUnit, _root.BusinessUnit));
       List<SberContracts.IProductsAndDevices> exepQuery = new List<SberContracts.IProductsAndDevices>();
       foreach (var prod in exep)
         exepQuery.Add(prod.ExeptionProducts);
@@ -113,7 +115,9 @@ namespace sberdev.SBContracts
 
     public virtual IQueryable<T> ProdCollectionExBaseSberDevProductFiltering(IQueryable<T> query, Sungero.Domain.PropertyFilteringEventArgs e)
     {
-      var exep = _root.MVZBaseSberDev.ProductsCollection;
+      var exep = _root.MVZBaseSberDev?.ProductsCollection;
+      if (exep == null)
+        return query.Where(m => Equals(m.BusinessUnit, _root.BusinessUnit));
       List<SberContracts.IProductsAndDevices> exepQuery = new List<SberContracts.IProductsAndDevices>();
       foreach (var prod in exep)
         exepQuery.Add(prod.ExeptionProducts);

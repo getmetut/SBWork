@@ -21,7 +21,7 @@
     e.Id AS EDocId,
     e.Discriminator AS DocumentDiscriminator,
     e.RegNumber_Docflow_Sungero AS RegNumber,
-    du.Name AS DocumentKind,
+    dk.Name AS DocumentKind,
     e.PayTypeBaseSbe_SBContr_sberdev AS PayType,
     CASE
         WHEN e.AccTotalAmount_Docflow_Sungero > 0 THEN e.AccTotalAmount_Docflow_Sungero
@@ -74,8 +74,6 @@ LEFT JOIN
     sberdev_SberCon_MVZ m2 ON e.MVZBaseSberDe1_SBContr_sberdev = m2.Id OR e.MVPBaseSberDe1_SBContr_sberdev = m2.Id
 LEFT JOIN 
     Sungero_Commons_Currency cu ON e.ContrCurrency_Docflow_Sungero = cu.Id OR e.Currency_Docflow_Sungero = cu.Id
-LEFT JOIN 
-    Sungero_Docflow_DocumentGroup du ON e.DocumentGroup_Docflow_Sungero = du.Id
 LEFT JOIN 
     Sungero_Docflow_DocumentKind dk ON e.DocumentKind_Docflow_Sungero = dk.Id
 LEFT JOIN 
