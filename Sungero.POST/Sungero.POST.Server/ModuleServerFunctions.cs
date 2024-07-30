@@ -70,27 +70,33 @@ namespace Sungero.POST.Server
           ContractSt.PayTypeBaseSberDev = Doc.PayTypeBaseSberDev != null ? Doc.PayTypeBaseSberDev.Value.ToString() : "";
 
           List<Sungero.POST.Structures.Module.IStructProdCollection> ProdCollection = new List<Sungero.POST.Structures.Module.IStructProdCollection>();
-          foreach (var elem in Doc.ProdCollectionBaseSberDev)
+          if (Doc.ProdCollectionBaseSberDev.Count > 0)
           {
-            var newstr = Sungero.POST.Structures.Module.StructProdCollection.Create();
-            newstr.Product = elem.Product.Name.ToString();
-            ProdCollection.Add(newstr);
-          } 
+            foreach (var elem in Doc.ProdCollectionBaseSberDev)
+            {
+              var newstr = Sungero.POST.Structures.Module.StructProdCollection.Create();
+              newstr.Product = elem.Product.Name.ToString();
+              ProdCollection.Add(newstr);
+            } 
+          }
           ContractSt.ProdCollectionBaseSberDev = ProdCollection;
                 
           ContractSt.MarketDirectSberDev = Doc.MarketDirectSberDev != null ? Doc.MarketDirectSberDev.Name.ToString() : "";
         
           List<Sungero.POST.Structures.Module.IStructCalculation> Calculation = new List<Sungero.POST.Structures.Module.IStructCalculation>();
-          foreach (var elem in Doc.CalculationBaseSberDev)
+          if (Doc.CalculationBaseSberDev.Count > 0)
           {
-            var newstr2 = Sungero.POST.Structures.Module.StructCalculation.Create();
-            newstr2.AbsoluteCalc = elem.AbsoluteCalc.Value.ToString();
-            newstr2.AggregationCalc = elem.AggregationCalc.ToString();
-            newstr2.InterestCalc = elem.InterestCalc.Value.ToString();
-            newstr2.PercentCalc = elem.PercentCalc.Value.ToString();
-            newstr2.ProductCalc = elem.ProductCalc.Name.ToString();
-            Calculation.Add(newstr2);
-          } 
+            foreach (var elem in Doc.CalculationBaseSberDev)
+            {
+              var newstr2 = Sungero.POST.Structures.Module.StructCalculation.Create();
+              newstr2.AbsoluteCalc = elem.AbsoluteCalc.Value.ToString();
+              newstr2.AggregationCalc = elem.AggregationCalc.ToString();
+              newstr2.InterestCalc = elem.InterestCalc.Value.ToString();
+              newstr2.PercentCalc = elem.PercentCalc.Value.ToString();
+              newstr2.ProductCalc = elem.ProductCalc.Name.ToString();
+              Calculation.Add(newstr2);
+            } 
+          }
           ContractSt.CalculationBaseSberDev = Calculation;
         
           ContractSt.CalculationFlagBaseSberDev = Doc.CalculationFlagBaseSberDev != null ? Doc.CalculationFlagBaseSberDev.Value.ToString() : "";
