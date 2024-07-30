@@ -14,9 +14,139 @@ namespace Sungero.POST.Server
   
   public class ModuleFunctions
   {
+    
+    /// <summary>
+    /// Функция передачи актов выполненных работ
+    /// </summary>
+    [Public(WebApiRequestType = RequestType.Get)]
+    public List<Sungero.POST.Structures.Module.IStructContractStatement> ContractStatements(int iddoc)
+    {
+      var DocList = sberdev.SBContracts.ContractStatements.GetAll();
+      List<Sungero.POST.Structures.Module.IStructContractStatement> RequestElem = new List<Sungero.POST.Structures.Module.IStructContractStatement>(); //Structures.Module.StructContractList.Create();
+      if (iddoc == 0)
+      {
+        foreach (var Doc in DocList)
+        {
+          var ContractSt = Structures.Module.StructContractStatement.Create();
+          ContractSt.Id = Doc.Id != null ? Doc.Id.ToString() : "";
+          ContractSt.Name = Doc.Name != null ? Doc.Name.ToString() : "";
+          ContractSt.DocumentKind = Doc.DocumentKind != null ? Doc.DocumentKind.Name.ToString() : "";
+          ContractSt.DocumentGroup = Doc.DocumentGroup != null ? Doc.DocumentGroup.Name.ToString() : "";
+          ContractSt.Number = Doc.Number != null ? Doc.Number.ToString() : "";
+          ContractSt.Date = Doc.Date != null ? Doc.Date.Value.ToString() : "";
+          ContractSt.Counterparty = Doc.Counterparty != null ? Doc.Counterparty.ToString() : "";
+          ContractSt.Contact = Doc.Contact != null ? Doc.Contact.Name.ToString() : "";
+          ContractSt.CounterpartySignatory = Doc.CounterpartySignatory != null ? Doc.CounterpartySignatory.Name.ToString() : "";
+          ContractSt.LeadingDocument = Doc.LeadingDocument != null ? Doc.LeadingDocument.Name.ToString() : "";
+          ContractSt.BusinessUnit = Doc.BusinessUnit != null ? Doc.BusinessUnit.Name.ToString() : "";
+          ContractSt.Department = Doc.Department != null ? Doc.Department.Name.ToString() : "";
+          ContractSt.ResponsibleEmployee = Doc.ResponsibleEmployee != null ? Doc.ResponsibleEmployee.Name.ToString() : "";
+          ContractSt.OurSignatory = Doc.OurSignatory != null ? Doc.OurSignatory.Name.ToString() : "";
+          ContractSt.ExchangeState = Doc.ExchangeState != null ? Doc.ExchangeState.Value.ToString() : "";
+          ContractSt.Subject = Doc.Subject != null ? Doc.Subject.ToString() : "";
+          ContractSt.IsFormalized = Doc.IsFormalized != null ? Doc.IsFormalized.Value.ToString() : "";
+          ContractSt.IsAdjustment = Doc.IsAdjustment != null ? Doc.IsAdjustment.Value.ToString() : "";
+          ContractSt.Corrected = Doc.Corrected != null ? Doc.Corrected.Name.ToString() : "";
+          ContractSt.VerificationState = Doc.VerificationState != null ? Doc.VerificationState.Value.ToString() : "";
+          ContractSt.DocumentDate = Doc.DocumentDate != null ? Doc.DocumentDate.Value.ToString() : "";
+          ContractSt.OurSigningReason = Doc.OurSigningReason != null ? Doc.OurSigningReason.Name.ToString() : "";
+          ContractSt.PaperCount = Doc.PaperCount != null ? Doc.PaperCount.Value.ToString() : "";
+          ContractSt.StoredIn = Doc.StoredIn != null ? Doc.StoredIn.ToString() : "";
+          ContractSt.Topic = Doc.Topic != null ? Doc.Topic.Name.ToString() : "";
+          ContractSt.Subtopic = Doc.Subtopic != null ? Doc.Subtopic.Name.ToString() : "";
+          ContractSt.ManuallyCheckedSberDev = Doc.ManuallyCheckedSberDev != null ? Doc.ManuallyCheckedSberDev.Value.ToString() : "";
+          ContractSt.FormalizedServiceType = Doc.FormalizedServiceType != null ? Doc.FormalizedServiceType.Value.ToString() : "";
+          ContractSt.FormalizedFunction = Doc.FormalizedFunction != null ? Doc.FormalizedFunction.Value.ToString() : "";
+          ContractSt.IsRevision = Doc.IsRevision != null ? Doc.IsRevision.Value.ToString() : "";
+          ContractSt.CounterpartySigningReason = Doc.CounterpartySigningReason != null ? Doc.CounterpartySigningReason.ToString() : "";
+          ContractSt.PurchaseOrderNumber = Doc.PurchaseOrderNumber != null ? Doc.PurchaseOrderNumber.ToString() : "";
+          ContractSt.ContrTypeBaseSberDev = Doc.ContrTypeBaseSberDev != null ? Doc.ContrTypeBaseSberDev.Value.ToString() : "";
+          ContractSt.FrameworkBaseSberDev = Doc.FrameworkBaseSberDev != null ? Doc.FrameworkBaseSberDev.Value.ToString() : "";
+          ContractSt.AccDocSberDev = Doc.AccDocSberDev != null ? Doc.AccDocSberDev.Name.ToString() : "";
+          ContractSt.MVZBaseSberDev = Doc.MVZBaseSberDev != null ? Doc.MVZBaseSberDev.Name.ToString() : "";
+          ContractSt.MVPBaseSberDev = Doc.MVPBaseSberDev != null ? Doc.MVPBaseSberDev.Name.ToString() : "";
+          ContractSt.AccArtBaseSberDev = Doc.AccArtBaseSberDev != null ? Doc.AccArtBaseSberDev.Name.ToString() : "";
+          ContractSt.InvoiceSberDev = Doc.InvoiceSberDev != null ? Doc.InvoiceSberDev.Name.ToString() : "";
+          ContractSt.PayTypeBaseSberDev = Doc.PayTypeBaseSberDev != null ? Doc.PayTypeBaseSberDev.Value.ToString() : "";
+
+          List<Sungero.POST.Structures.Module.IStructProdCollection> ProdCollection = new List<Sungero.POST.Structures.Module.IStructProdCollection>();
+          foreach (var elem in Doc.ProdCollectionBaseSberDev)
+          {
+            var newstr = Sungero.POST.Structures.Module.StructProdCollection.Create();
+            newstr.Product = elem.Product.Name.ToString();
+            ProdCollection.Add(newstr);
+          } 
+          ContractSt.ProdCollectionBaseSberDev = ProdCollection;
+                
+          ContractSt.MarketDirectSberDev = Doc.MarketDirectSberDev != null ? Doc.MarketDirectSberDev.Name.ToString() : "";
+        
+          List<Sungero.POST.Structures.Module.IStructCalculation> Calculation = new List<Sungero.POST.Structures.Module.IStructCalculation>();
+          foreach (var elem in Doc.CalculationBaseSberDev)
+          {
+            var newstr2 = Sungero.POST.Structures.Module.StructCalculation.Create();
+            newstr2.AbsoluteCalc = elem.AbsoluteCalc.Value.ToString();
+            newstr2.AggregationCalc = elem.AggregationCalc.ToString();
+            newstr2.InterestCalc = elem.InterestCalc.Value.ToString();
+            newstr2.PercentCalc = elem.PercentCalc.Value.ToString();
+            newstr2.ProductCalc = elem.ProductCalc.Name.ToString();
+            Calculation.Add(newstr2);
+          } 
+          ContractSt.CalculationBaseSberDev = Calculation;
+        
+          ContractSt.CalculationFlagBaseSberDev = Doc.CalculationFlagBaseSberDev != null ? Doc.CalculationFlagBaseSberDev.Value.ToString() : "";
+          ContractSt.CalculationAmountBaseSberDev = Doc.CalculationAmountBaseSberDev != null ? Doc.CalculationAmountBaseSberDev.Value.ToString() : "";
+          ContractSt.CalculationDistributeBaseSberDev = Doc.CalculationDistributeBaseSberDev != null ? Doc.CalculationDistributeBaseSberDev.Value.ToString() : "";
+          ContractSt.CalculationResidualAmountBaseSberDev = Doc.CalculationResidualAmountBaseSberDev != null ? Doc.CalculationResidualAmountBaseSberDev.Value.ToString() : "";
+          ContractSt.NoticeSendBaseSberDev = Doc.NoticeSendBaseSberDev != null ? Doc.NoticeSendBaseSberDev.Value.ToString() : "";
+          ContractSt.BudItemBaseSberDev = Doc.BudItemBaseSberDev != null ? Doc.BudItemBaseSberDev.Name.ToString() : "";
+          ContractSt.MarketingSberDev = Doc.MarketingSberDev != null ? Doc.MarketingSberDev.Name.ToString() : "";
+          ContractSt.MarketingIDSberDev = Doc.MarketingIDSberDev != null ? Doc.MarketingIDSberDev.ToString() : "";
+          ContractSt.ModifiedSberDev = Doc.ModifiedSberDev != null ? Doc.ModifiedSberDev.Value.ToString() : "";
+          ContractSt.EstPaymentDateSberDev = Doc.EstPaymentDateSberDev != null ? Doc.EstPaymentDateSberDev.ToString() : "";
+          ContractSt.Author = Doc.Author != null ? Doc.Author.Name.ToString() : "";
+          ContractSt.Created = Doc.Created != null ? Doc.Created.Value.ToString() : "";
+          ContractSt.Modified = Doc.Modified != null ? Doc.Modified.Value.ToString() : "";
+          ContractSt.RegistrationNumber = Doc.RegistrationNumber != null ? Doc.RegistrationNumber.ToString() : "";
+          ContractSt.Index = Doc.Index != null ? Doc.Index.Value.ToString() : "";
+          ContractSt.RegistrationDate = Doc.RegistrationDate != null ? Doc.RegistrationDate.Value.ToString() : "";
+          ContractSt.DocumentRegister = Doc.DocumentRegister != null ? Doc.DocumentRegister.ToString() : "";
+          ContractSt.DeliveryMethod = Doc.DeliveryMethod != null ? Doc.DeliveryMethod.Name.ToString() : "";
+          ContractSt.IsReturnRequired = Doc.IsReturnRequired != null ? Doc.IsReturnRequired.Value.ToString() : "";
+          ContractSt.IsHeldByCounterParty = Doc.IsHeldByCounterParty != null ? Doc.IsHeldByCounterParty.Value.ToString() : "";
+          ContractSt.DeliveredTo = Doc.DeliveredTo != null ? Doc.DeliveredTo.Name.ToString() : "";
+          ContractSt.ReturnDeadline = Doc.ReturnDeadline != null ? Doc.ReturnDeadline.Value.ToString() : "";
+          ContractSt.ReturnDate = Doc.ReturnDate != null ? Doc.ReturnDate.Value.ToString() : "";
+          ContractSt.LifeCycleState = Doc.LifeCycleState != null ? Doc.LifeCycleState.Value.ToString() : "";
+          ContractSt.RegistrationState = Doc.RegistrationState != null ? Doc.RegistrationState.Value.ToString() : "";
+          ContractSt.InternalApprovalState = Doc.InternalApprovalState != null ? Doc.InternalApprovalState.Value.ToString() : "";
+          ContractSt.ExternalApprovalState = Doc.ExternalApprovalState != null ? Doc.ExternalApprovalState.Value.ToString() : "";
+          ContractSt.ExecutionState = Doc.ExecutionState != null ? Doc.ExecutionState.Value.ToString() : "";
+          ContractSt.ControlExecutionState = Doc.ControlExecutionState != null ? Doc.ControlExecutionState.Value.ToString() : "";
+          ContractSt.LocationState = Doc.LocationState != null ? Doc.LocationState.ToString() : "";
+          ContractSt.ResponsibleForReturnEmployee = Doc.ResponsibleForReturnEmployee != null ? Doc.ResponsibleForReturnEmployee.Name.ToString() : "";
+          ContractSt.ScheduledReturnDateFromCounterparty = Doc.ScheduledReturnDateFromCounterparty != null ? Doc.ScheduledReturnDateFromCounterparty.Value.ToString() : "";
+          ContractSt.Note = Doc.Note != null ? Doc.Note.ToString() : "";
+          ContractSt.Assignee = Doc.Assignee != null ? Doc.Assignee.Name.ToString() : "";
+          ContractSt.PreparedBy = Doc.PreparedBy != null ? Doc.PreparedBy.Name.ToString() : "";
+          ContractSt.TotalAmount = Doc.TotalAmount != null ? Doc.TotalAmount.Value.ToString() : "";
+          ContractSt.VatRate = Doc.VatRate != null ? Doc.VatRate.Name.ToString() : "";
+          ContractSt.VatAmount = Doc.VatAmount != null ? Doc.VatAmount.Value.ToString() : "";
+          ContractSt.NetAmount = Doc.NetAmount != null ? Doc.NetAmount.Value.ToString() : "";
+          ContractSt.Currency = Doc.Currency != null ? Doc.Currency.Name.ToString() : "";
+          
+          RequestElem.Add(ContractSt);
+        }
+        return RequestElem;
+      }
+      else
+      {
+        
+        return RequestElem;
+      }
+    }
 
     /// <summary>
-    /// 
+    /// Функция передачи допсоглашений
     /// </summary>
     [Public(WebApiRequestType = RequestType.Get)]
     public List<Structures.Module.IStructSupAgreement> SupAgreements(int iddoc)

@@ -6,7 +6,119 @@ using Sungero.CoreEntities;
 
 namespace Sungero.POST.Structures.Module
 {
-
+  /// <summary>
+  /// Структура Акта выполненных работ
+  /// </summary>
+  [Public]
+  partial class StructContractStatement
+  {
+    public string  Id  { get; set; }
+    public string  Name  { get; set; }
+    public string  DocumentKind  { get; set; }
+    public string  DocumentGroup  { get; set; }
+    public string  Number  { get; set; }
+    public string  Date  { get; set; }
+    public string  Counterparty  { get; set; }
+    public string  Contact  { get; set; }
+    public string  CounterpartySignatory  { get; set; }
+    public string  LeadingDocument  { get; set; }
+    public string  BusinessUnit  { get; set; }
+    public string  Department  { get; set; }
+    public string  ResponsibleEmployee  { get; set; }
+    public string  OurSignatory  { get; set; }
+    public string  ExchangeState  { get; set; }
+    public string  Subject  { get; set; }
+    public string  IsFormalized  { get; set; }
+    public string  IsAdjustment  { get; set; }
+    public string  Corrected  { get; set; }
+    public string  VerificationState  { get; set; }
+    public string  DocumentDate  { get; set; }
+    public string  OurSigningReason  { get; set; }
+    public string  PaperCount  { get; set; }
+    public string  StoredIn  { get; set; }
+    public string  Topic  { get; set; }
+    public string  Subtopic  { get; set; }
+    public string  ManuallyCheckedSberDev  { get; set; }
+    public string  FormalizedServiceType  { get; set; }
+    public string  FormalizedFunction  { get; set; }
+    public string  IsRevision  { get; set; }
+    public string  CounterpartySigningReason  { get; set; }
+    public string  PurchaseOrderNumber  { get; set; }
+    public string  ContrTypeBaseSberDev  { get; set; }
+    public string  FrameworkBaseSberDev  { get; set; }
+    public string  AccDocSberDev  { get; set; }
+    public string  MVZBaseSberDev  { get; set; }
+    public string  MVPBaseSberDev  { get; set; }
+    public string  AccArtBaseSberDev  { get; set; }
+    public string  InvoiceSberDev  { get; set; }
+    public string  PayTypeBaseSberDev  { get; set; }
+    public List<Sungero.POST.Structures.Module.IStructProdCollection>  ProdCollectionBaseSberDev  { get; set; }
+    public string  MarketDirectSberDev  { get; set; }
+    public List<Sungero.POST.Structures.Module.IStructCalculation>  CalculationBaseSberDev  { get; set; }
+    public string  CalculationFlagBaseSberDev  { get; set; }
+    public string  CalculationAmountBaseSberDev  { get; set; }
+    public string  CalculationDistributeBaseSberDev  { get; set; }
+    public string  CalculationResidualAmountBaseSberDev  { get; set; }
+    public string  NoticeSendBaseSberDev  { get; set; }
+    public string  BudItemBaseSberDev  { get; set; }
+    public string  MarketingSberDev  { get; set; }
+    public string  MarketingIDSberDev  { get; set; }
+    public string  ModifiedSberDev  { get; set; }
+    public string  EstPaymentDateSberDev  { get; set; }
+    public string  Author  { get; set; }
+    public string  Created  { get; set; }
+    public string  Modified  { get; set; }
+    public string  RegistrationNumber  { get; set; }
+    public string  Index  { get; set; }
+    public string  RegistrationDate  { get; set; }
+    public string  DocumentRegister  { get; set; }
+    public string  DeliveryMethod  { get; set; }
+    public string  IsReturnRequired  { get; set; }
+    public string  IsHeldByCounterParty  { get; set; }
+    public string  DeliveredTo  { get; set; }
+    public string  ReturnDeadline  { get; set; }
+    public string  ReturnDate  { get; set; }
+    public string  LifeCycleState  { get; set; }
+    public string  RegistrationState  { get; set; }
+    public string  InternalApprovalState  { get; set; }
+    public string  ExternalApprovalState  { get; set; }
+    public string  ExecutionState  { get; set; }
+    public string  ControlExecutionState  { get; set; }
+    public string  LocationState  { get; set; }
+    public string  ResponsibleForReturnEmployee  { get; set; }
+    public string  ScheduledReturnDateFromCounterparty  { get; set; }
+    public string  Note  { get; set; }
+    public string  Assignee  { get; set; }
+    public string  PreparedBy  { get; set; }
+    public string  TotalAmount  { get; set; }
+    public string  VatRate  { get; set; }
+    public string  VatAmount  { get; set; }
+    public string  NetAmount  { get; set; }
+    public string  Currency  { get; set; }
+  }
+  
+  /// <summary>
+  /// Структура списка Продуктов
+  /// </summary>
+  [Public]
+  partial class StructProdCollection
+  {
+    public string Product {get; set; }
+  }
+  
+  /// <summary>
+  /// Структура списка Калькуляций
+  /// </summary>
+  [Public]
+  partial class StructCalculation
+  {
+    public string AggregationCalc {get; set; }
+    public string ProductCalc {get; set; }
+    public string AbsoluteCalc {get; set; }
+    public string PercentCalc {get; set; }
+    public string InterestCalc {get; set; }
+  }
+    
   /// <summary>
   /// Структура допсоглашения
   /// </summary>

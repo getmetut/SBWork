@@ -12,6 +12,35 @@ namespace Sungero.Custom.Client
   {
 
     /// <summary>
+    /// Пересохранение Сотрудников
+    /// </summary>
+    public virtual void ReSaveEmpl()
+    {
+      var EmplList = Sungero.Company.Employees.GetAll().ToList();
+      string log = "";
+      foreach (var empl in EmplList)
+      {
+        try
+        {
+          var us = empl.Login;
+          if (us != null)
+          {
+            us.LoginName = us.LoginName + "&";
+            us.LoginName = us.LoginName.Replace("&","");
+            us.Save();
+          }
+          empl.Save();
+        }
+        catch (Exception e)
+        {
+          log += e.Message.ToString() + '\n';
+        }
+      }
+      if (log != "")
+        Dialogs.ShowMessage(log);
+    }
+
+    /// <summary>
     /// 
     /// </summary>
     public virtual void SearchDocDiadoc()

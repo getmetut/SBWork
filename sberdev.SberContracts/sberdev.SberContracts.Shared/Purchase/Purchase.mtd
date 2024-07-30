@@ -2521,7 +2521,7 @@
         "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
         "NameGuid": "ba316d61-626c-49ac-b6c7-1979effe0d47",
         "Name": "ActionButtonSDev",
-        "ActionGuid": "2ff15037-d938-4fe5-8b91-9f20ff1a3164",
+        "ActionGuid": "d021d43d-7949-4bdf-b0a0-4db25547f388",
         "Index": 51,
         "IsAncestorMetadata": true,
         "IsVisible": false,

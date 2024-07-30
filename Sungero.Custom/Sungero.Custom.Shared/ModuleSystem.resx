@@ -103,4 +103,10 @@
   <data name="JobDescription_8908cbb1c53f40bea450c1b7be88cac7" xml:space="preserve">
     <value>Фоновый процесс рассылки уведомлений по договорам с истекающим сроком действия</value>
   </data>
+  <data name="CoverAction_ReSaveUsers" xml:space="preserve">
+    <value>Пересохранение Сотрудников</value>
+  </data>
+  <data name="CoverDescription_ReSaveUsers" xml:space="preserve">
+    <value>Скрипт пересохранения сотрудников и пользователей</value>
+  </data>
 </root>

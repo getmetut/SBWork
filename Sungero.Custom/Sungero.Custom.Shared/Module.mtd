@@ -22,6 +22,14 @@
       },
       {
         "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
+        "NameGuid": "b74e4928-9ab4-4130-a225-5c4d6854645f",
+        "Name": "ReSaveUsers",
+        "FunctionName": "ReSaveEmpl",
+        "GroupId": "87590ec7-b390-4e15-8a60-3e53df37e634",
+        "PreviousItemGuid": "834e8694-3226-4436-a758-452216ea18f3"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
         "NameGuid": "bc62dc3f-85b9-4e02-8e0e-4b537e353870",
         "Name": "ReSaveKA",
         "FunctionName": "ReSaveKA",
@@ -406,7 +414,7 @@
   "SharedAssemblyName": "Sungero.Custom.Shared",
   "SharedNamespace": "Sungero.Custom.Shared",
   "SpecialFolders": [],
-  "Version": "0.1.0.74",
+  "Version": "0.1.0.77",
   "Widgets": [],
   "Versions": [
     {
