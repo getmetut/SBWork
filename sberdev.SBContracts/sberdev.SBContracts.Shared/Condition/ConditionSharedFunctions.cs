@@ -15,6 +15,10 @@ namespace sberdev.SBContracts.Shared
     {
       base.ChangePropertiesAccess();
       
+       var isProductUnit = _obj.ConditionType == ConditionType.ProductUnit;
+      _obj.State.Properties.ProductUnitSberDev.IsVisible = isProductUnit;
+      _obj.State.Properties.ProductUnitSberDev.IsRequired = isProductUnit;
+      
       var isEndorseFrom = _obj.ConditionType == ConditionType.EndorseFromSberDev || _obj.ConditionType == ConditionType.FCDApprBySberDev;
       _obj.State.Properties.EndorserSberDev.IsVisible = isEndorseFrom;
       _obj.State.Properties.EndorserSberDev.IsRequired = isEndorseFrom;
@@ -43,6 +47,9 @@ namespace sberdev.SBContracts.Shared
     public override void ClearHiddenProperties()
     {
       base.ClearHiddenProperties();
+      if(!_obj.State.Properties.ProductUnitSberDev.IsVisible)
+        _obj.ProductUnitSberDev.Clear();
+      
       if(!_obj.State.Properties.EndorserSberDev.IsVisible)
         _obj.EndorserSberDev = null;
       
@@ -68,6 +75,33 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      if (_obj.ConditionType == ConditionType.ProductUnit)
+      {
+        bool flag = false;
+        var acc = SBContracts.AccountingDocumentBases.As(document);
+        var contr = SBContracts.ContractualDocuments.As(document);
+        if (acc != null)
+        {
+          var products = acc.CalculationBaseSberDev.Select(c => c.ProductCalc).ToList();
+          products.Add(acc.ProdCollectionBaseSberDev.FirstOrDefault()?.Product);
+          var units = products.Select(p => p.ProductUnit).ToList();
+          foreach (var unit in _obj.ProductUnitSberDev.Select(p => p.ProductUnit).ToList())
+            if (units.Any(u => u == unit))
+              flag = true;
+        }
+        if (contr != null)
+        {
+          var products = contr.CalculationBaseSberDev.Select(c => c.ProductCalc).ToList();
+          products.Add(contr.ProdCollectionExBaseSberDev.FirstOrDefault()?.Product);
+          products.Add(contr.ProdCollectionPrBaseSberDev.FirstOrDefault()?.Product);
+          var units = products.Where(p => p != null).Select(p => p.ProductUnit).ToList();
+          foreach (var unit in _obj.ProductUnitSberDev.Select(p => p.ProductUnit).ToList())
+            if (units.Any(u => u == unit))
+              flag = true;
+        }
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
       if (_obj.ConditionType == ConditionType.EndorseFromSberDev)
       {
         var signInfos = Signatures.Get(document.LastVersion);
@@ -745,8 +779,10 @@ namespace sberdev.SBContracts.Shared
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.ProductUnit); // incoming invoice
       
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.AmountIsMore);
+      
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.EndorseFromSberDev); // purchase
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.FCDApprBySberDev); // incoming invoice

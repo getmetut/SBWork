@@ -15,6 +15,16 @@ namespace sberdev.SBContracts.Server
 
       using (TenantInfo.Culture.SwitchTo())
       {
+        if (_obj.ConditionType == ConditionType.ProductUnit)
+         {
+          string head = "В продуктах есть юнит:";
+          foreach (var dir in _obj.ProductUnitSberDev)
+            head += String.Format(" {0};", dir.ProductUnit.Name);
+          head = head.TrimEnd(';');
+          head += "?";
+          return head;
+        }
+        
         if (_obj.ConditionType == ConditionType.MarketDirect)
         {
           string head = "Направление маркетинга =";

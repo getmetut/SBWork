@@ -190,4 +190,10 @@
   <data name="Enum_ConditionType_EndorseFromSberDev" xml:space="preserve">
     <value>Есть согласование от</value>
   </data>
+  <data name="Enum_ConditionType_ProductUnit" xml:space="preserve">
+    <value>Бизнес юнит</value>
+  </data>
+  <data name="Property_ProductUnitSberDev" xml:space="preserve">
+    <value>Бизненс юнит</value>
+  </data>
 </root>
