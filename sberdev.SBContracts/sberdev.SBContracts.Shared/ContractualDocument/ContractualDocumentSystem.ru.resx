@@ -367,4 +367,37 @@
   <data name="Property_PurchComNumberSberDev" xml:space="preserve">
     <value>Номер ЗК</value>
   </data>
+  <data name="Property_AgentSaluteSberDev" xml:space="preserve">
+    <value>Представитель СалютДевайсы</value>
+  </data>
+  <data name="Property_AdressSberDev" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="Property_PhoneNumberSberDev" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
+  <data name="Property_EmailSberDev" xml:space="preserve">
+    <value>Ел. почта</value>
+  </data>
+  <data name="Property_DelPeriodSberDev" xml:space="preserve">
+    <value>Срок доставки</value>
+  </data>
+  <data name="Property_AmountPrepaySberDev" xml:space="preserve">
+    <value>Размер предоплаты (%)</value>
+  </data>
+  <data name="Property_DeadlinePrepaySberDev" xml:space="preserve">
+    <value>Срок вн. пердоплаты</value>
+  </data>
+  <data name="Property_AmountPostpaySberDev" xml:space="preserve">
+    <value>Размер постоплаты (%)</value>
+  </data>
+  <data name="Action_CreateBodyByPropertiesSberDev" xml:space="preserve">
+    <value>Создать версию по реквизитам</value>
+  </data>
+  <data name="Action_CreateBodyByPropertiesSberDevHint" xml:space="preserve">
+    <value>Действие создает новую версию основываясь на указанных в карточке реквизитах.</value>
+  </data>
+  <data name="Action_CreateBodyByPropertiesSberDevDescription" xml:space="preserve">
+    <value>Действие создает новую версию основываясь на указанных в карточке реквизитах.</value>
+  </data>
 </root>

@@ -32,6 +32,31 @@ namespace sberdev.SberContracts.Server
     
     public static void CreateRoles()
     {
+      var roleAH = Roles.GetAll(r => r.Sid == Constants.Module.AccDocsHandler).FirstOrDefault();
+      
+      if (roleAH == null)
+      {
+        roleAH = Roles.Create();
+        roleAH.Name = "Ответсвенный за фин. вх. документы";
+        roleAH.Description = "Участнику роли приходят задаания на обработку формализованых финансовых вх. документов.";
+        roleAH.Sid = Constants.Module.AccDocsHandler;
+        roleAH.IsSystem = false;
+        roleAH.RecipientLinks.AddNew().Member = Users.GetAll().Where(r => r.Id == 10).FirstOrDefault();
+        roleAH.IsSingleUser = true;
+        roleAH.Save();
+        InitializationLogger.Debug("Ответсвенный за фин. вх. документы");
+      }
+      else
+      {
+        roleAH.Name = "Ответсвенный за фин. вх. документы";
+        roleAH.Description = "Участнику роли приходят задаания на обработку формализованых финансовых вх. документов.";
+        roleAH.Sid = Constants.Module.AccDocsHandler;
+        roleAH.IsSystem = false;
+        roleAH.IsSingleUser = true;
+        roleAH.Save();
+        InitializationLogger.Debug("Ответсвенный за фин. вх. документы");
+      }
+      
       var roleAB = Roles.GetAll(r => r.Sid == Constants.Module.AdminButtonsUserRoleGuid).FirstOrDefault();
       
       if (roleAB == null)
@@ -229,6 +254,22 @@ namespace sberdev.SberContracts.Server
     public void CreateDocumentKinds()
     {
       // Создание вида документа «Гарантийное письмо».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Договор Xiongxin", "Договор Xiongxin",
+                                                                              Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
+                                                                              Sungero.Contracts.Server.SupAgreement.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },
+                                                                              Constants.Module.ContractXiongxin);
+      // Создание вида документа «Гарантийное письмо».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Дополнительное соглашение Xiongxin", "Доп. соглашение Xiongxin",
+                                                                              Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
+                                                                              Sungero.Contracts.Server.SupAgreement.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },
+                                                                              Constants.Module.SupAgreementXiongxin);
+      // Создание вида документа «Спецификация ПАО».
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Спецификация ПАО", "Спецификация ПАО",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
@@ -629,6 +670,7 @@ namespace sberdev.SberContracts.Server
       settingsNames.Add("Путь к папке с логами", "В текстовом параметре нужно указать путь к папке с логами.");
       settingsNames.Add("Путь к папке с договорами", "В текстовом параметре нужно указать путь к папке в которой будут храниться выгружаемые договора.");
       settingsNames.Add("Путь к папке с шаблонами", "В текстовом параметре нужно указать путь к папке в которой будут храниться шаблоны для автосоздоваемых типов документов.");
+      settingsNames.Add("ИД сущностей для договора Xiongxin", "1) Категория - С поставщиком 2) Контрагент - Xiongxin 3) Валюта - Юань 4) Способ доставки - По ел. почте 5) МВЗ - PROD 6) Статья упр. учета - Оплата товаров и услуг в составе себестоимости. Перечилслить ИД необходимых сущностей в текстовом параметре");
       foreach(var settingName in settingsNames)
       {
         var devSet = SBContracts.PublicFunctions.Module.Remote.GetDevSetting(settingName.Key);

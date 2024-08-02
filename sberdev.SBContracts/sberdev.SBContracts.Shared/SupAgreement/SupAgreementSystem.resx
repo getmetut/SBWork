@@ -58,27 +58,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_MVZOldSberDev" xml:space="preserve">
-    <value>MVZ</value>
-  </data>
-  <data name="Property_MVPOldSberDev" xml:space="preserve">
-    <value>MVP</value>
-  </data>
-  <data name="Property_AccArtPrOldSberDev" xml:space="preserve">
-    <value>Accounting articles (pr.)</value>
-  </data>
-  <data name="Property_BudItemOldSberDev" xml:space="preserve">
-    <value>Budget item</value>
-  </data>
-  <data name="Property_ContrTypeOldSberDev" xml:space="preserve">
-    <value>Contract type</value>
-  </data>
-  <data name="Enum_ContrTypeOldSberDev_Profitable" xml:space="preserve">
-    <value>Profitable</value>
-  </data>
-  <data name="Enum_ContrTypeOldSberDev_Expendable" xml:space="preserve">
-    <value>Expendable</value>
-  </data>
   <data name="ControlGroup_42612188cf984a66a4cc5c674787d208" xml:space="preserve">
     <value>Notes</value>
   </data>
@@ -271,38 +250,8 @@
   <data name="Control_fc50c88831554ff196e8ff7064894ead_EmptyText" xml:space="preserve">
     <value />
   </data>
-  <data name="Property_OriginalOldSberDev" xml:space="preserve">
-    <value>OriginalOldSberDev</value>
-  </data>
-  <data name="Property_Signing" xml:space="preserve">
-    <value>Signing method</value>
-  </data>
-  <data name="Enum_Signing_InElectron" xml:space="preserve">
-    <value>InElectron</value>
-  </data>
-  <data name="Enum_Signing_OnPaper" xml:space="preserve">
-    <value>OnPaper</value>
-  </data>
-  <data name="Property_DeliveryInfoOldSberDev" xml:space="preserve">
-    <value>Delivery info</value>
-  </data>
-  <data name="Property_ProdSberDevCollection" xml:space="preserve">
-    <value>Direction (pr.)</value>
-  </data>
   <data name="Property_DocumentGroup" xml:space="preserve">
     <value>Document group</value>
-  </data>
-  <data name="Property_NoticeSendOldSberDev" xml:space="preserve">
-    <value>NoticeSendOldSberDev</value>
-  </data>
-  <data name="Property_FrameworkOldSberDev" xml:space="preserve">
-    <value>FrameworkOldSberDev</value>
-  </data>
-  <data name="Property_AccArtExOldSberDev" xml:space="preserve">
-    <value>Accounting articles (ex.)</value>
-  </data>
-  <data name="Property_DirectionMVZ" xml:space="preserve">
-    <value>Direction (ex.)</value>
   </data>
   <data name="Resource_f0607051ea774af2b7966d11cd8a7374" xml:space="preserve">
     <value />
@@ -407,6 +356,12 @@
     <value>Specification PAO</value>
   </data>
   <data name="ControlGroup_6527ab75602845009be5e12e3355d156" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_d925af3a97174781a0e5bacf924c4ffb" xml:space="preserve">
+    <value>Xiongxin Contract</value>
+  </data>
+  <data name="ControlGroup_63d2c399b73c49bea20a3e651e2cd114" xml:space="preserve">
     <value />
   </data>
 </root>

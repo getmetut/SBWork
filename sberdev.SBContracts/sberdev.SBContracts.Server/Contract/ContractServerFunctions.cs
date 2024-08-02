@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -16,5 +16,10 @@ namespace sberdev.SBContracts.Server
       return UserInrole.Any();
     }
     
+    [Remote]
+    public void SetXiongxinContractProps(List<int> ids)
+    {
+      _obj.DocumentGroup = Sungero.Docflow.DocumentGroupBases.GetAll().Where(d => d.Id == ids[0]).FirstOrDefault();
+    }
   }
 }

@@ -2493,16 +2493,6 @@
       "PreviousPropertyGuid": "2401e562-195e-44e3-9a97-fff5e22f864a"
     }
   ],
-  "PublicConstants": [
-    {
-      "Name": "TemplateDocxName",
-      "ParentClasses": [
-        "Purchase"
-      ],
-      "TypeName": "System.String",
-      "Value": "\"//PurchaseTemplate.docx\""
-    }
-  ],
   "PublicStructures": [],
   "ResourcesKeys": [
     "DiscountError",

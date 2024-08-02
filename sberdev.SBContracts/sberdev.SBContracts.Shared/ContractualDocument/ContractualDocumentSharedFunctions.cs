@@ -68,15 +68,7 @@ namespace sberdev.SBContracts.Shared
         _obj.State.Properties.Currency.IsEnabled = true;
       }
       
-      if (_obj.DocumentKind.Name == "Счет-договор" || _obj.DocumentKind.Name == "Договор-оферта")
-      {
-        _obj.State.Properties.FrameworkBaseSberDev.IsVisible = false;
-      }
-      else
-      {
-        _obj.State.Properties.FrameworkBaseSberDev.IsVisible = true;
-      }
-      
+      ChangePropertiesAccessByKind();
       CancelRequiredPropeties();
     }
     #endregion
@@ -448,6 +440,59 @@ namespace sberdev.SBContracts.Shared
       {
         _obj.State.Properties.MarketDirectSberDev.IsRequired = false;
         _obj.State.Properties.PurchComNumberSberDev.IsRequired = false;
+      }
+    }
+    
+    public void ChangePropertiesAccessByKind()
+    {
+      if (_obj.DocumentKind == null)
+        return;
+      var name = _obj.DocumentKind.Name;
+      if (name == "Договор Xiongxin" || name == "Дополнительное соглашение Xiongxin")
+      {
+        _obj.State.Properties.AgentSaluteSberDev.IsVisible = true;
+        _obj.State.Properties.AgentSaluteSberDev.IsRequired = true;
+        _obj.State.Properties.DelPeriodSberDev.IsVisible = true;
+        _obj.State.Properties.DelPeriodSberDev.IsRequired = true;
+        _obj.State.Properties.AmountPrepaySberDev.IsVisible = true;
+        _obj.State.Properties.AmountPrepaySberDev.IsRequired = true;
+        _obj.State.Properties.AmountPostpaySberDev.IsVisible = true;
+        _obj.State.Properties.AmountPostpaySberDev.IsRequired = true;
+        _obj.State.Properties.DeadlinePrepaySberDev.IsVisible = true;
+        _obj.State.Properties.DeadlinePrepaySberDev.IsRequired = true;
+        _obj.State.Properties.AdressSberDev.IsVisible = true;
+        _obj.State.Properties.PhoneNumberSberDev.IsVisible = true;
+        _obj.State.Properties.EmailSberDev.IsVisible = true;
+        _obj.State.Properties.FrameworkBaseSberDev.IsEnabled = false;
+        _obj.State.Properties.ValidFrom.IsRequired = true;
+        _obj.State.Properties.ValidTill.IsRequired = true;
+      }
+      else
+      {
+        _obj.State.Properties.AgentSaluteSberDev.IsVisible = false;
+        _obj.State.Properties.AgentSaluteSberDev.IsRequired = false;
+        _obj.State.Properties.DelPeriodSberDev.IsVisible = false;
+        _obj.State.Properties.DelPeriodSberDev.IsRequired = false;
+        _obj.State.Properties.AmountPrepaySberDev.IsVisible = false;
+        _obj.State.Properties.AmountPrepaySberDev.IsRequired = false;
+        _obj.State.Properties.AmountPostpaySberDev.IsVisible = false;
+        _obj.State.Properties.AmountPostpaySberDev.IsRequired = false;
+        _obj.State.Properties.DeadlinePrepaySberDev.IsVisible = false;
+        _obj.State.Properties.DeadlinePrepaySberDev.IsRequired = false;
+        _obj.State.Properties.AdressSberDev.IsVisible = false;
+        _obj.State.Properties.PhoneNumberSberDev.IsVisible = false;
+        _obj.State.Properties.EmailSberDev.IsVisible = false;
+        _obj.State.Properties.FrameworkBaseSberDev.IsEnabled = true;
+        _obj.State.Properties.ValidFrom.IsRequired = false;
+        _obj.State.Properties.ValidTill.IsRequired = false;
+      }
+      if (name == "Счет-договор" || name == "Договор-оферта")
+      {
+        _obj.State.Properties.FrameworkBaseSberDev.IsVisible = false;
+      }
+      else
+      {
+        _obj.State.Properties.FrameworkBaseSberDev.IsVisible = true;
       }
     }
     

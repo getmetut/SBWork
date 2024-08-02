@@ -385,4 +385,43 @@
   <data name="ControlGroup_621a02080e7d4c27a03340b1a2f1e573" xml:space="preserve">
     <value>Условия оплаты</value>
   </data>
+  <data name="Property_AgentSaluteSberDev" xml:space="preserve">
+    <value>Agent SaluteDevices</value>
+  </data>
+  <data name="Property_AdressSberDev" xml:space="preserve">
+    <value>Adress</value>
+  </data>
+  <data name="Property_PhoneNumberSberDev" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="Property_EmailSberDev" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Property_DelPeriodSberDev" xml:space="preserve">
+    <value>Delivery period</value>
+  </data>
+  <data name="Property_AmountPrepaySberDev" xml:space="preserve">
+    <value>Amount of prepayment (%)</value>
+  </data>
+  <data name="Property_DeadlinePrepaySberDev" xml:space="preserve">
+    <value>Prepayment deadline (days)</value>
+  </data>
+  <data name="Property_AmountPostpaySberDev" xml:space="preserve">
+    <value>Post-payment amount (%)</value>
+  </data>
+  <data name="Action_CreateBodyByPropertiesSberDev" xml:space="preserve">
+    <value>Create a version using details</value>
+  </data>
+  <data name="Action_CreateBodyByPropertiesSberDevDescription" xml:space="preserve">
+    <value>The action creates a new version based on the details specified in the card.</value>
+  </data>
+  <data name="Action_CreateBodyByPropertiesSberDevHint" xml:space="preserve">
+    <value>The action creates a new version based on the details specified in the card.</value>
+  </data>
+  <data name="Action_CreateBodyByPropertiesSberDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_CreateBodyByPropertiesSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
 </root>

@@ -58,47 +58,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_MVZsberdevOldSberDev" xml:space="preserve">
-    <value>МВЗ</value>
-  </data>
-  <data name="Property_MVPsberdevOldSberDev" xml:space="preserve">
-    <value>МВП</value>
-  </data>
-  <data name="Property_AccArtsberdevOldSberDev" xml:space="preserve">
-    <value>Статья управленческого учета (дох.)</value>
-  </data>
-  <data name="Property_BudItemsberdevOldSberDev" xml:space="preserve">
-    <value>Статья бух. учета</value>
-  </data>
-  <data name="Property_ContrTypesberdevOldSberDev" xml:space="preserve">
-    <value>Тип договора</value>
-  </data>
-  <data name="Enum_ContrTypesberdevOldSberDev_Profitable" xml:space="preserve">
-    <value>Доходный</value>
-  </data>
-  <data name="Enum_ContrTypesberdevOldSberDev_Expendable" xml:space="preserve">
-    <value>Расходный</value>
-  </data>
-  <data name="Property_OriginalOldSberDev" xml:space="preserve">
-    <value>Оригинал</value>
-  </data>
-  <data name="Property_FrameworkOldSberDev" xml:space="preserve">
-    <value>Рамка/безденежный</value>
-  </data>
-  <data name="Property_Signing" xml:space="preserve">
-    <value>Способ подписания</value>
-  </data>
-  <data name="Enum_Signing_InElectron" xml:space="preserve">
-    <value>В электронном виде</value>
-  </data>
-  <data name="Enum_Signing_OnPaper" xml:space="preserve">
-    <value>На бумажном носителе</value>
-  </data>
   <data name="Property_Subject" xml:space="preserve">
     <value>Содержание(предмет договора)</value>
-  </data>
-  <data name="Property_DeliveryInfoOldSberDev" xml:space="preserve">
-    <value>Инф. о доставке</value>
   </data>
   <data name="Action_SendToTM" xml:space="preserve">
     <value>На согласование по регламенту</value>
@@ -109,23 +70,8 @@
   <data name="Action_SendToTMDescription" xml:space="preserve">
     <value>Отправить на согласование по регламенту</value>
   </data>
-  <data name="Property_ExitCommentOldSberDev" xml:space="preserve">
-    <value>Комментарий к выводу</value>
-  </data>
-  <data name="Property_CollectionProperty" xml:space="preserve">
-    <value>Направление (дох.)</value>
-  </data>
-  <data name="Property_NoticeSendOldSberDev" xml:space="preserve">
-    <value>NoticeSend</value>
-  </data>
   <data name="Control_a98a1ceb9b3b463ca4f2915a69f22714_DisplayValue" xml:space="preserve">
     <value>Заполнить из предыдущего договора</value>
-  </data>
-  <data name="Property_DirectionMVZ" xml:space="preserve">
-    <value>Направление (рас.)</value>
-  </data>
-  <data name="Property_AccArtMVZOldSberDev" xml:space="preserve">
-    <value>Статья управленческого учета (рас.)</value>
   </data>
   <data name="ControlGroup_2a0fe706f43843e4ac87aebb5872733b" xml:space="preserve">
     <value>Калькуляция</value>
@@ -399,5 +345,8 @@
   </data>
   <data name="Control_3a943c68b2a94559958f2a04f715cc6a_DisplayValue" xml:space="preserve">
     <value>Заполнить аналитики из документа</value>
+  </data>
+  <data name="ControlGroup_843934683fea4b7080a36bb676d03e95" xml:space="preserve">
+    <value>Договор Xiongxin</value>
   </data>
 </root>

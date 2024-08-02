@@ -21,6 +21,16 @@ namespace sberdev.SBContracts.Server
     
     #region Прочие функции
     
+    [Remote]
+    public void SetXiongxinProps(List<int>  ids)
+    {
+      _obj.Counterparty = Counterparties.GetAll().Where(c => c.Id == ids[1]).FirstOrDefault();
+      _obj.Currency = Sungero.Commons.Currencies.GetAll().Where(c => c.Id == ids[2]).FirstOrDefault();
+      _obj.DeliveryMethod = Sungero.Docflow.MailDeliveryMethods.GetAll().Where(c => c.Id == ids[3]).FirstOrDefault();
+      _obj.MVZBaseSberDev = MVZs.GetAll().Where(c => c.Id == ids[4]).FirstOrDefault();
+      _obj.AccArtExBaseSberDev = AccountingArticleses.GetAll().Where(c => c.Id == ids[5]).FirstOrDefault();
+    }
+    
     public override IQueryable<Sungero.Docflow.ISignatureSetting> GetSignatureSettingsQuery()
     {
       var query = base.GetSignatureSettingsQuery();

@@ -58,27 +58,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_MVZOldSberDev" xml:space="preserve">
-    <value>МВЗ</value>
-  </data>
-  <data name="Property_MVPOldSberDev" xml:space="preserve">
-    <value>МВП</value>
-  </data>
-  <data name="Property_AccArtPrOldSberDev" xml:space="preserve">
-    <value>Статья управленческого учета (дох.)</value>
-  </data>
-  <data name="Property_BudItemOldSberDev" xml:space="preserve">
-    <value>Статья бюджета</value>
-  </data>
-  <data name="Property_ContrTypeOldSberDev" xml:space="preserve">
-    <value>Тип договора</value>
-  </data>
-  <data name="Enum_ContrTypeOldSberDev_Profitable" xml:space="preserve">
-    <value>Доходный</value>
-  </data>
-  <data name="Enum_ContrTypeOldSberDev_Expendable" xml:space="preserve">
-    <value>Расходный</value>
-  </data>
   <data name="ControlGroup_42612188cf984a66a4cc5c674787d208" xml:space="preserve">
     <value>Примечание</value>
   </data>
@@ -271,35 +250,8 @@
   <data name="Control_fc50c88831554ff196e8ff7064894ead_EmptyText" xml:space="preserve">
     <value />
   </data>
-  <data name="Property_OriginalOldSberDev" xml:space="preserve">
-    <value>Оригинал</value>
-  </data>
-  <data name="Property_Signing" xml:space="preserve">
-    <value>Способ подписания</value>
-  </data>
-  <data name="Enum_Signing_InElectron" xml:space="preserve">
-    <value>В электронном виде</value>
-  </data>
-  <data name="Enum_Signing_OnPaper" xml:space="preserve">
-    <value>На бумажном носителе</value>
-  </data>
-  <data name="Property_DeliveryInfoOldSberDev" xml:space="preserve">
-    <value>Инф. о доставке</value>
-  </data>
-  <data name="Property_ProdSberDevCollection" xml:space="preserve">
-    <value>Направление (дох.)</value>
-  </data>
   <data name="Property_DocumentGroup" xml:space="preserve">
     <value>Категория</value>
-  </data>
-  <data name="Property_FrameworkOldSberDev" xml:space="preserve">
-    <value>Рамка/безденежный</value>
-  </data>
-  <data name="Property_AccArtExOldSberDev" xml:space="preserve">
-    <value>Статья управленческого учета (рас.)</value>
-  </data>
-  <data name="Property_DirectionMVZ" xml:space="preserve">
-    <value>Направление (рас.)</value>
   </data>
   <data name="Resource_f0607051ea774af2b7966d11cd8a7374" xml:space="preserve">
     <value />
@@ -399,5 +351,8 @@
   </data>
   <data name="ControlGroup_5803f78771fd42f08a04e3b8cab8e5b0" xml:space="preserve">
     <value>Спецификация ПАО</value>
+  </data>
+  <data name="ControlGroup_d925af3a97174781a0e5bacf924c4ffb" xml:space="preserve">
+    <value>Договор Xiongxin</value>
   </data>
 </root>

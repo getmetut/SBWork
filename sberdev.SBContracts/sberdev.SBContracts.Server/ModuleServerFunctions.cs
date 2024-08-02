@@ -567,17 +567,6 @@ namespace sberdev.SBContracts.Server
     #region Прочее
     
     /// <summary>
-    /// Проверяет существование контрагента по ИНН
-    /// </summary>
-    /// <param name="tin">ИНН</param>
-    /// <returns>Возварщает true если контрагент существует</returns>
-    [Public, Remote]
-    public bool IsExistCounterparty(string tin)
-    {
-      return Sungero.Parties.Counterparties.GetAll().Where(p => Equals(p.TIN, tin)).Any();
-    }
-    
-    /// <summary>
     /// Функция послыает запрос на удаление записи блокировки сушности в базу
     /// </summary>
     [Public, Remote]
@@ -587,6 +576,54 @@ namespace sberdev.SBContracts.Server
         Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand("delete from Sungero_System_Locks where EntityId = "
                                                                  + entity.Id.ToString() + " and EntityTypeGuid = '"
                                                                  + entity.GetEntityMetadata().GetOriginal().NameGuid.ToString() + "'");
+    }
+
+    public static string Transliterate(string russianText)
+    {
+      Dictionary<char, string> translitMap = new Dictionary<char, string>
+      {
+        {'а', "a"}, {'б', "b"}, {'в', "v"}, {'г', "g"}, {'д', "d"},
+        {'е', "e"}, {'ё', "yo"}, {'ж', "zh"}, {'з', "z"}, {'и', "i"},
+        {'й', "y"}, {'к', "k"}, {'л', "l"}, {'м', "m"}, {'н', "n"},
+        {'о', "o"}, {'п', "p"}, {'р', "r"}, {'с', "s"}, {'т', "t"},
+        {'у', "u"}, {'ф', "f"}, {'х', "kh"}, {'ц', "ts"}, {'ч', "ch"},
+        {'ш', "sh"}, {'щ', "shch"}, {'ы', "y"}, {'э', "e"}, {'ю', "yu"},
+        {'я', "ya"},
+        {'А', "A"}, {'Б', "B"}, {'В', "V"}, {'Г', "G"}, {'Д', "D"},
+        {'Е', "E"}, {'Ё', "Yo"}, {'Ж', "Zh"}, {'З', "Z"}, {'И', "I"},
+        {'Й', "Y"}, {'К', "K"}, {'Л', "L"}, {'М', "M"}, {'Н', "N"},
+        {'О', "O"}, {'П', "P"}, {'Р', "R"}, {'С', "S"}, {'Т', "T"},
+        {'У', "U"}, {'Ф', "F"}, {'Х', "Kh"}, {'Ц', "Ts"}, {'Ч', "Ch"},
+        {'Ш', "Sh"}, {'Щ', "Shch"}, {'Ы', "Y"}, {'Э', "E"}, {'Ю', "Yu"},
+        {'Я', "Ya"}
+      };
+      System.Text.StringBuilder translitText = new System.Text.StringBuilder();
+      string translitChar = null;
+
+      foreach (char c in russianText)
+      {
+        if (translitMap.TryGetValue(c, out translitChar))
+        {
+          translitText.Append(translitChar);
+        }
+        else
+        {
+          translitText.Append(c);
+        }
+      }
+
+      return translitText.ToString();
+    }
+
+    /// <summary>
+    /// Проверяет существование контрагента по ИНН
+    /// </summary>
+    /// <param name="tin">ИНН</param>
+    /// <returns>Возварщает true если контрагент существует</returns>
+    [Public, Remote]
+    public bool IsExistCounterparty(string tin)
+    {
+      return Sungero.Parties.Counterparties.GetAll().Where(p => Equals(p.TIN, tin)).Any();
     }
     
     /// <summary>
@@ -604,6 +641,93 @@ namespace sberdev.SBContracts.Server
       }
     }
 
+    /// <summary>
+    /// Функция переводит цифры в текст (до миллиона)
+    /// </summary>
+    /// <param name="number"></param>
+    /// <returns></returns>
+    public static string NumberToWords(int number)
+    {
+      string[] Units =
+      {
+        "ноль", "один", "два", "три", "четыре", "пять",
+        "шесть", "семь", "восемь", "девять", "десять",
+        "одиннадцать", "двенадцать", "тринадцать",
+        "четырнадцать", "пятнадцать", "шестнадцать",
+        "семнадцать", "восемнадцать", "девятнадцать"
+      };
+      string[] Tens =
+      {
+        "", "", "двадцать", "тридцать", "сорок",
+        "пятьдесят", "шестьдесят", "семьдесят",
+        "восемьдесят", "девяносто"
+      };
+      string[] Hundreds =
+      {
+        "", "сто", "двести", "триста", "четыреста",
+        "пятьсот", "шестьсот", "семьсот",
+        "восемьсот", "девятьсот"
+      };
+      string[] Thousands =
+      {
+        "", "тысяча", "две тысячи", "три тысячи", "четыре тысячи",
+        "пять тысяч", "шесть тысяч", "семь тысяч",
+        "восемь тысяч", "девять тысяч"
+      };
+      if (number == 0)
+        return Units[0];
+
+      if (number < 0)
+        return "минус " + NumberToWords(Math.Abs(number));
+
+      var words = new List<string>();
+
+      if (number / 1000 > 0)
+      {
+        words.Add(NumberToWords(number / 1000));
+        words.Add(GetThousandsWord(number / 1000));
+        number %= 1000;
+      }
+
+      if (number / 100 > 0)
+      {
+        words.Add(Hundreds[number / 100]);
+        number %= 100;
+      }
+
+      if (number / 10 > 1)
+      {
+        words.Add(Tens[number / 10]);
+        number %= 10;
+      }
+
+      if (number > 0)
+      {
+        words.Add(Units[number]);
+      }
+
+      return string.Join(" ", words);
+    }
+
+    private static string GetThousandsWord(int number)
+    {
+      
+      string[] Thousands =
+      {
+        "", "тысяча", "две тысячи", "три тысячи", "четыре тысячи",
+        "пять тысяч", "шесть тысяч", "семь тысяч",
+        "восемь тысяч", "девять тысяч"
+      };
+      
+      number %= 10;
+      switch (number)
+      {
+          case 1: return "тысяча";
+          case 4: return Thousands[number];
+          default: return "тысяч";
+      }
+    }
+
     
     #endregion
     
@@ -615,12 +739,31 @@ namespace sberdev.SBContracts.Server
     public void CreateBodyByProperties(IOfficialDocument doc)
     {
       string pathTemplate = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Путь к папке с шаблонами").Text;
-      Aspose.Words.Document body = new Aspose.Words.Document(pathTemplate + SberContracts.PublicConstants.Purchase.TemplateDocxName);
+      Aspose.Words.Document body = null;
       var typeName = doc.GetEntityTypeFullName();
       switch (typeName)
       {
         case "sberdev.SberContracts.Purchase":
+          body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.PurchaseTemplateDocxName);
           CreateBodyByPropertiesPurchase(SberContracts.Purchases.As(doc), body);
+          break;
+        case "sberdev.SBContracts.Contract":
+          if (doc.DocumentKind == null)
+            break;
+          if (doc.DocumentKind.Name == "Договор Xiongxin" )
+          {
+            body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.ContractXiongxinTemplateDocxName);
+            CreateBodyByPropertiesXiongxin(SBContracts.ContractualDocuments.As(doc), body);
+          }
+          break;
+        case "sberdev.SBContracts.SupAgreement":
+          if (doc.DocumentKind == null)
+            break;
+          if (doc.DocumentKind.Name == "Дополнительное соглашение Xiongxin")
+          {
+            body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.ContractXiongxinTemplateDocxName);
+            CreateBodyByPropertiesXiongxin(SBContracts.ContractualDocuments.As(doc), body);
+          }
           break;
       };
       
@@ -629,6 +772,58 @@ namespace sberdev.SBContracts.Server
       body.Save(pathNewDoc);
       doc.CreateVersionFrom(pathNewDoc);
       doc.Save();
+    }
+    
+    public void CreateBodyByPropertiesXiongxin(SBContracts.IContractualDocument contr, Aspose.Words.Document body)
+    {
+      if (contr.RegistrationNumber != null)
+        body.Range.Replace("[Number]", contr.RegistrationNumber);
+      else
+        body.Range.Replace("[Number]", "");
+      body.Range.Replace("[ValidFrom]", contr.ValidFrom.Value.ToShortDateString());
+      body.Range.Replace("[Agent]", contr.AgentSaluteSberDev.Name);
+      body.Range.Replace("[AgentTranslit]", Transliterate(contr.AgentSaluteSberDev.Name));
+      if (contr.PhoneNumberSberDev != null)
+        body.Range.Replace("[PhoneNumber]", contr.PhoneNumberSberDev);
+      else
+        body.Range.Replace("[PhoneNumber]", "");
+      if (contr.EmailSberDev != null)
+        body.Range.Replace("[Email]", contr.EmailSberDev);
+      else
+        body.Range.Replace("[Email]", "");
+      body.Range.Replace("[ShortCurrency]", contr.Currency.ShortName);
+      body.Range.Replace("[Currency]", contr.Currency.Name);
+      body.Range.Replace("[DelPeriodNumber]", contr.DelPeriodSberDev.Value.ToString());
+      string str = null;
+      body.Range.Replace("[DelPeriodText]", NumberToWords(contr.DelPeriodSberDev.Value));
+      body.Range.Replace("[AmountPostpayNumber]", contr.AmountPostpaySberDev.Value.ToString());
+      body.Range.Replace("[AmountPostpayText]", NumberToWords((int)contr.AmountPostpaySberDev.Value));
+      body.Range.Replace("[AmountPrepayNumber]", contr.AmountPrepaySberDev.Value.ToString());
+      body.Range.Replace("[AmountPrepayText]", NumberToWords((int)contr.AmountPrepaySberDev.Value));
+      body.Range.Replace("[DeadlinePrepayNumber]", contr.DeadlinePrepaySberDev.Value.ToString());
+      str = NumberToWords(contr.DeadlinePrepaySberDev.Value);
+      if (str != null)
+      body.Range.Replace("[DeadlinePrepayText]", str);
+      else
+        body.Range.Replace("[DeadlinePrepayText]", "");
+      body.Range.Replace("[ValidTill]", contr.ValidTill.Value.ToShortDateString());
+      var bank = contr.Counterparty.Bank;
+      if (bank != null)
+      {
+      body.Range.Replace("[BankName]", bank.Name);
+      body.Range.Replace("[BankBIC]", bank.BIC);
+      body.Range.Replace("[BankCode]", bank.Code);        
+      }
+      else
+        {
+      body.Range.Replace("[BankName]", "Не указан банк в карточке контрагента!");
+      body.Range.Replace("[BankBIC]", "Не указан банк в карточке контрагента!");
+      body.Range.Replace("[BankCode]", "Не указан банк в карточке контрагента!");        
+      }
+      if (contr.Counterparty.Account != null)
+      body.Range.Replace("[ACNumber]", contr.Counterparty.Account);
+      else
+        body.Range.Replace("[ACNumber]", "Не указан счет в карточке контрагента!");
     }
     
     public void CreateBodyByPropertiesPurchase(SberContracts.IPurchase purch, Aspose.Words.Document body)

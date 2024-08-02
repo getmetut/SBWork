@@ -291,6 +291,14 @@
       "Value": "new System.Guid(\"465bf65a-3e4c-4430-8bf5-557626a62c76\")"
     },
     {
+      "Name": "AccDocsHandler",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"c054a467-183b-44d5-87b1-c3e4e03c93ec\")"
+    },
+    {
       "Name": "AdminButtonsUserRoleGuid",
       "ParentClasses": [
         "Module"
@@ -305,6 +313,14 @@
       ],
       "TypeName": "System.Guid",
       "Value": "new System.Guid(\"4002a798-770a-4f55-8d42-4c8855ed3d2e\")"
+    },
+    {
+      "Name": "ContractXiongxin",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"c0e69cec-ce0d-41d5-8a87-92a648cb9f89\")"
     },
     {
       "Name": "CounterpartiesResponsibleRole",
@@ -393,6 +409,14 @@
       ],
       "TypeName": "System.Guid",
       "Value": "new System.Guid(\"fee545b2-0f1e-40da-8c9d-f7abd565c6cf\")"
+    },
+    {
+      "Name": "SupAgreementXiongxin",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"3d27eb22-af95-4cf8-8ddf-ddeb05941741\")"
     }
   ],
   "PublicFunctions": [

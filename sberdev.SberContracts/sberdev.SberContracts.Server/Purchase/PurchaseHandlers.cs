@@ -14,8 +14,6 @@ namespace sberdev.SberContracts
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
       //удаление базового обработчика
-      if (_obj.StagesPurchaseCollection.Select(p => p.Cost).Sum() != _obj.PurchaseAmount.Value)
-        e.AddError(sberdev.SberContracts.Purchases.Resources.AmountError);
     }
 
     public override void Created(Sungero.Domain.CreatedEventArgs e)

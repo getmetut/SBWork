@@ -17,7 +17,11 @@ namespace sberdev.SberContracts.Client
 
     public virtual bool CanCreateBodyByProperties(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      return !_obj.State.IsInserted;
+      bool flag = false;
+      var name = _obj.DocumentKind.Name;
+      if (name == "Договор Xiongxin" || name == "Дополнительное соглашение Xiongxin")
+        flag = true;
+      return !_obj.State.IsInserted && flag;
     }
 
     public virtual void SendToTM(Sungero.Domain.Client.ExecuteActionArgs e)

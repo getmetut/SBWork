@@ -30,6 +30,18 @@ namespace sberdev.SBContracts
   partial class ContractualDocumentSharedHandlers
   {
 
+    public virtual void AmountPrepaySberDevChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
+    {
+      if (e.NewValue > 100)
+        return;
+    }
+
+    public virtual void AmountPostpaySberDevChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
+    {
+      if (e.NewValue > 100)
+        return;
+    }
+
     public virtual void PurchComNumberSberDevChanged(Sungero.Domain.Shared.StringPropertyChangedEventArgs e)
     {
       if (e.NewValue != null && e.NewValue.Length == 4)
@@ -107,6 +119,13 @@ namespace sberdev.SBContracts
       {
         _obj.ModifiedSberDev = Calendar.Now;
         _obj.FrameworkBaseSberDev = false;
+      }
+      var name = e.NewValue.Name;
+      if (name == "Договор Xiongxin" || name == "Дополнительное соглашение Xiongxin")
+      {
+        List<int> ids = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("ИД сущностей для договора Xiongxin").Text.Split(',').Select(s => Int32.Parse(s)).ToList();
+        _obj.ContrTypeBaseSberDev = ContrTypeBaseSberDev.Expendable;
+        Functions.ContractualDocument.Remote.SetXiongxinProps(_obj, ids);
       }
     }
 
@@ -242,6 +261,12 @@ namespace sberdev.SBContracts
 
     public virtual void FrameworkBaseSberDevChanged(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
     {
+      var name = _obj.DocumentKind?.Name;
+      if (e.NewValue == true && (name == "Договор Xiongxin" || name == "Дополнительное соглашение Xiongxin"))
+      {
+       _obj.FrameworkBaseSberDev = false;
+       return;
+      }
       if (e.NewValue == true)
       {
         _obj.TotalAmount = null;
