@@ -65,7 +65,7 @@ namespace sberdev.SBContracts.Server
         }
         
         if (_obj.ConditionType == ConditionType.ContrType)
-          return ("Договор доходный?");
+          return ("Документ доходный?");
         
         if (_obj.ConditionType == ConditionType.PayType)
           return ("Постоплата?");

@@ -10,11 +10,14 @@ namespace sberdev.SBContracts.Server
   partial class ConditionFunctions
   {
     public override string GetConditionName()
-
     {
-
       using (TenantInfo.Culture.SwitchTo())
       {
+        if (_obj.ConditionType == ConditionType.Contrtype)
+        {
+          return "Документ доходный?";
+        }
+        
         if (_obj.ConditionType == ConditionType.ProductUnit)
          {
           string head = "В продуктах есть юнит:";

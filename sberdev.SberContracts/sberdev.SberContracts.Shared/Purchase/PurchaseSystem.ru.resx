@@ -451,13 +451,13 @@
   <data name="ControlGroup_7b6d1e42fce94ba7b486e15574065f1b" xml:space="preserve">
     <value>Краткая информация</value>
   </data>
-  <data name="Action_CreateBodyByProperties" xml:space="preserve">
+  <data name="Action_CreateBodyByPropertiesPurch" xml:space="preserve">
     <value>Создать версию по реквизитам</value>
   </data>
-  <data name="Action_CreateBodyByPropertiesHint" xml:space="preserve">
+  <data name="Action_CreateBodyByPropertiesPurchHint" xml:space="preserve">
     <value>Действие создает новую версию основываясь на указанных в карточке реквизитах.</value>
   </data>
-  <data name="Action_CreateBodyByPropertiesDescription" xml:space="preserve">
+  <data name="Action_CreateBodyByPropertiesPurchDescription" xml:space="preserve">
     <value>Действие создает новую версию основываясь на указанных в карточке реквизитах.</value>
   </data>
   <data name="Property_PrepaymentJustification" xml:space="preserve">

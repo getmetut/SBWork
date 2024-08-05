@@ -17,28 +17,26 @@ namespace sberdev.SBContracts.Server
     /// </summary>
     public void DistributeFormalizedDocument()
     {
+  //    if (!PublicFunctions.Module.IsSystemUser())
+   //     return;
       string[] accountingDiscriminants = {"a523a263-bc00-40f9-810d-f582bae2205d", "f2f5774d-5ca3-4725-b31d-ac618f6b8850",
         "58986e23-2b0a-4082-af37-bd1991bc6f7e", "f50c4d8a-56bc-43ef-bac3-856f57ca70be",
         "74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a", "58ad01fb-6805-426b-9152-4de16d83b258", "4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"};
-      var attachs = _obj.Attachments;
-      var emp = Roles.GetAll().Where(r => r.Sid == SberContracts.PublicConstants.Module.AccDocsHandler).FirstOrDefault().RecipientLinks.FirstOrDefault().Member;
-        foreach(var attach in attachs)
+      var attachs = _obj.AllAttachments;
+      var recip = Roles.GetAll().Where(r => r.Sid == SberContracts.PublicConstants.Module.AccDocsHandler).FirstOrDefault().RecipientLinks.FirstOrDefault().Member;
+      var emp = Sungero.Company.Employees.As(recip);
+      var task = ExchangeDocumentProcessingTasks.As(_obj.Task);
+      if (task.Addressee == emp || _obj.Addressee == emp)
+        return;
+      foreach(var attach in attachs)
       {
         string disc = attach.GetEntityMetadata().GetOriginal().NameGuid.ToString().ToLower();
         if (accountingDiscriminants.Contains(disc))
         {
-          if (Locks.TryLock(_obj))
-          {
-            _obj.Addressee = Sungero.Company.Employees.As(emp);
-            _obj.NewDeadline = _obj.Deadline.Value;
-            // Прокинуть новый срок и исполнителя в задачу.
-            var task = ExchangeDocumentProcessingTasks.As(_obj.Task);
-            task.Addressee = _obj.Addressee;
-            task.Deadline = _obj.NewDeadline;
-            task.Save();
-            _obj.Complete(SBContracts.ExchangeDocumentProcessingAssignment.Result.ReAddress);
-          }
-          Locks.Unlock(_obj);
+          _obj.Addressee = emp;
+          task.Addressee = _obj.Addressee;
+          task.Save();
+          _obj.Complete(SBContracts.ExchangeDocumentProcessingAssignment.Result.ReAddress);
           break;
         }
       }

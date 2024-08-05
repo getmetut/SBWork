@@ -196,4 +196,7 @@
   <data name="Property_ProductUnitSberDev" xml:space="preserve">
     <value>Product Unit</value>
   </data>
+  <data name="Enum_ConditionType_Contrtype" xml:space="preserve">
+    <value>Contract type</value>
+  </data>
 </root>

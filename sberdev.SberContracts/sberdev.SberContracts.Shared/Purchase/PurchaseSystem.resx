@@ -469,19 +469,19 @@
   <data name="ControlGroup_7b6d1e42fce94ba7b486e15574065f1b" xml:space="preserve">
     <value>Short information</value>
   </data>
-  <data name="Action_CreateBodyByProperties" xml:space="preserve">
+  <data name="Action_CreateBodyByPropertiesPurch" xml:space="preserve">
     <value>Create a version using details</value>
   </data>
-  <data name="Action_CreateBodyByPropertiesDescription" xml:space="preserve">
+  <data name="Action_CreateBodyByPropertiesPurchDescription" xml:space="preserve">
     <value>The action creates a new version based on the details specified in the card.</value>
   </data>
-  <data name="Action_CreateBodyByPropertiesHint" xml:space="preserve">
+  <data name="Action_CreateBodyByPropertiesPurchHint" xml:space="preserve">
     <value>The action creates a new version based on the details specified in the card.</value>
   </data>
-  <data name="Action_CreateBodyByPropertiesConfirmationMessage" xml:space="preserve">
+  <data name="Action_CreateBodyByPropertiesPurchConfirmationMessage" xml:space="preserve">
     <value />
   </data>
-  <data name="Action_CreateBodyByPropertiesConfirmationDescription" xml:space="preserve">
+  <data name="Action_CreateBodyByPropertiesPurchConfirmationDescription" xml:space="preserve">
     <value />
   </data>
   <data name="Enum_PaymentKind_Stagely" xml:space="preserve">

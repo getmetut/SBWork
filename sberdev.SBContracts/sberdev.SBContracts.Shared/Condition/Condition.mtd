@@ -518,6 +518,11 @@
           "NameGuid": "036fa169-7933-4401-b77b-5cd76824a224",
           "Name": "ProductUnit",
           "Code": "ProductUnit"
+        },
+        {
+          "NameGuid": "8beae4a2-10cd-436c-9c86-9f5476f56b2d",
+          "Name": "Contrtype",
+          "Code": "Contrtype"
         }
       ],
       "IsAncestorMetadata": true,

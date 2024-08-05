@@ -75,6 +75,13 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      if (_obj.ConditionType == ConditionType.Contrtype)
+      {
+        var acc = SBContracts.AccountingDocumentBases.As(document);
+        bool flag = acc.ContrTypeBaseSberDev == SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable;
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
       if (_obj.ConditionType == ConditionType.ProductUnit)
       {
         bool flag = false;
@@ -779,6 +786,9 @@ namespace sberdev.SBContracts.Shared
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      
+      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.Contrtype); // входящий счет
+      
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.ProductUnit); // incoming invoice
       
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.AmountIsMore);

@@ -14,7 +14,7 @@
     },
     {
       "NameGuid": "f017bc0a-24a2-4efb-ad9f-a2789f037a29",
-      "Name": "CreateBodyByProperties",
+      "Name": "CreateBodyByPropertiesPurch",
       "ActionArea": "Card",
       "GenerateHandler": true,
       "LargeIconName": "Action_CreateBodyByProperties_large_f017bc0a24a24efbad9fa2789f037a29.png",

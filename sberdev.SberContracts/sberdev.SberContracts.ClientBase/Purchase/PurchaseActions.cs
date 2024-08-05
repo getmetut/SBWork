@@ -9,13 +9,13 @@ namespace sberdev.SberContracts.Client
 {
   partial class PurchaseActions
   {
-    public virtual void CreateBodyByProperties(Sungero.Domain.Client.ExecuteActionArgs e)
+    public virtual void CreateBodyByPropertiesPurch(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       SBContracts.PublicFunctions.Module.Remote.CreateBodyByProperties(_obj);
       _obj.Save();
     }
 
-    public virtual bool CanCreateBodyByProperties(Sungero.Domain.Client.CanExecuteActionArgs e)
+    public virtual bool CanCreateBodyByPropertiesPurch(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
       bool flag = false;
       var name = _obj.DocumentKind.Name;

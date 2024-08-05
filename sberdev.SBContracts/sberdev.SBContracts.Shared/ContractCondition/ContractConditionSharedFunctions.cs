@@ -272,7 +272,7 @@ namespace sberdev.SBContracts.Shared
 
             Sungero.Docflow.Structures.ConditionBase.ConditionResult.
 
-            Create(contractual.ContrTypeBaseSberDev == sberdev.SBContracts.ContractualDocument.ContrTypeBaseSberDev.Profitable ,
+            Create(accounting.ContrTypeBaseSberDev == SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable ,
 
                    string.Empty);
 
@@ -769,6 +769,13 @@ namespace sberdev.SBContracts.Shared
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.ContrType);
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.ContrType);
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.ContrType); // упд
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.ContrType); // акт выполненых работ
+      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.ContrType); // исходящий счет
+      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.ContrType); // накладная
+      baseSupport["74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a"].Add(ConditionType.ContrType); // счет фактура полученный
+      baseSupport["f50c4d8a-56bc-43ef-bac3-856f57ca70be"].Add(ConditionType.ContrType); // счет фактура выставленный
+      
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.MarketDirect); // сontract statement
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.MarketDirect); // universal transfer document
       baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.MarketDirect); // waybill
