@@ -205,4 +205,10 @@
   <data name="FilterPanel_ContractAmount_740e089ef92844b48aa572cbb4ad9e5f" xml:space="preserve">
     <value>With amount</value>
   </data>
+  <data name="Property_FocusCheckedSberDev" xml:space="preserve">
+    <value>FocusChecked</value>
+  </data>
+  <data name="Property_FocusCheckedDateSberDev" xml:space="preserve">
+    <value>FocusCheckedDate</value>
+  </data>
 </root>

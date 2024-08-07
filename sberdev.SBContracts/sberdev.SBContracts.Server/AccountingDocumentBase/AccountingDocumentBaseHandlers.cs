@@ -4,6 +4,8 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using sberdev.SBContracts.AccountingDocumentBase;
+using Sungero.Metadata;
+using Sungero.Domain.Shared;
 
 namespace sberdev.SBContracts
 {
@@ -126,6 +128,8 @@ namespace sberdev.SBContracts
 
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
+      string disc = _obj.GetEntityMetadata().GetOriginal().NameGuid.ToString().ToLower();
+      _obj.CardURLSberDev = "https://directum.sberdevices.ru/DrxWeb/#/sat/card/" + disc + "/" + _obj.Id;
       _obj.ModifiedSberDev = Calendar.Now;
       _obj.FrameworkBaseSberDev = false;
       base.Created(e);

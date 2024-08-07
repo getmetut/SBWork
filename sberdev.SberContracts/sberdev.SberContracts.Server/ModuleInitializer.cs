@@ -420,6 +420,7 @@ namespace sberdev.SberContracts.Server
       CreateApprovalStageProvidePostalInformation();
       CreateAutoSetMetaIDStage();
       CreateAutoCreateInvoiceContractTaskStage();
+      CreateAutoSetFocusFlagStage();
     }
     
     /// <summary>
@@ -432,6 +433,20 @@ namespace sberdev.SberContracts.Server
         return;
       var stage = SberContracts.AutoStartInvoiceContractTasks.Create();
       stage.Name = "Создание карточки входящего счета из договора-оферты и старт его согласования";
+      stage.TimeoutInHours = 2;
+      stage.Save();
+    }
+    
+    /// <summary>
+    /// Создание сценария установки флага проверки маркеров Фокус
+    /// </summary>
+    public void CreateAutoSetFocusFlagStage()
+    {
+      InitializationLogger.DebugFormat("Init: Create stage for automatic set Focus flag.");
+      if (SberContracts.AutoSetFocusFlags.GetAll().Any())
+        return;
+      var stage = SberContracts.AutoSetFocusFlags.Create();
+      stage.Name = "Установка состояния \"Проверен\" для КА";
       stage.TimeoutInHours = 2;
       stage.Save();
     }

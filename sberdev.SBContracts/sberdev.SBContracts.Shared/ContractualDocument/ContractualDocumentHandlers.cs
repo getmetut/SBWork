@@ -30,6 +30,13 @@ namespace sberdev.SBContracts
   partial class ContractualDocumentSharedHandlers
   {
 
+    public override void CounterpartyChanged(Sungero.Docflow.Shared.ContractualDocumentBaseCounterpartyChangedEventArgs e)
+    {
+      base.CounterpartyChanged(e);
+      if (e.NewValue != e.OldValue && e.NewValue != null)
+      _obj.ConterpartyTINSberDev = e.NewValue.TIN;
+    }
+
     public virtual void AmountPrepaySberDevChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
     {
       if (e.NewValue > 100)

@@ -2592,7 +2592,7 @@
         "NameGuid": "e99945da-4237-44cf-918e-f9c662dc8fd3",
         "Name": "ToggleStrictRightsAndEncryption",
         "ActionGuid": "a04b557e-60ba-419d-9bd0-730e6b8c76ad",
-        "Index": 75,
+        "Index": 76,
         "IsAncestorMetadata": true,
         "Overridden": [
           "Index"
@@ -2601,11 +2601,23 @@
       },
       {
         "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "57a195c9-aab5-493c-a9bc-5011e93d599f",
+        "Name": "CreateBodyByPropertiesSberDevSberDev",
+        "ActionGuid": "241970a1-7876-4fdc-ada2-eee6ea0bac66",
+        "Index": 52,
+        "IsAncestorMetadata": true,
+        "IsVisible": false,
+        "Overridden": [
+          "IsVisible"
+        ],
+        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
         "NameGuid": "fd66cfd5-16d1-441c-9ca7-0ee74db2d442",
         "Name": "CreateBody",
         "ActionGuid": "f017bc0a-24a2-4efb-ad9f-a2789f037a29",
-        "ButtonSize": "Large",
-        "Index": 11,
+        "Index": 55,
         "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
       }
     ],

@@ -17,11 +17,7 @@ namespace sberdev.SberContracts.Client
 
     public virtual bool CanCreateBodyByPropertiesPurch(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      bool flag = false;
-      var name = _obj.DocumentKind.Name;
-      if (name == "Договор Xiongxin" || name == "Дополнительное соглашение Xiongxin")
-        flag = true;
-      return !_obj.State.IsInserted && flag;
+      return !_obj.State.IsInserted;
     }
 
     public virtual void SendToTM(Sungero.Domain.Client.ExecuteActionArgs e)

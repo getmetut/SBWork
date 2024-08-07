@@ -67,4 +67,7 @@
   <data name="Action_TransferBodySberDevDescription" xml:space="preserve">
     <value>Скопировать тело докумена с подписями в карточку по указанному ИД.</value>
   </data>
+  <data name="Property_ReadressedSberDev" xml:space="preserve">
+    <value>Readressed</value>
+  </data>
 </root>

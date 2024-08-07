@@ -164,6 +164,26 @@
       "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "f3253916-499d-4f30-8041-6aa47fb10fc8"
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "48aa3e2d-135d-41a3-8bf4-423deb2540c9",
+      "Name": "FocusCheckedSberDev",
+      "CanBeSearch": false,
+      "Code": "FocusChecked",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "95ef8e3f-deda-4b22-863b-4cfe3f9db746"
+    },
+    {
+      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "8040b198-5278-4621-b31c-cbe5632609f6",
+      "Name": "FocusCheckedDateSberDev",
+      "Code": "FocusCheckDate",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+      "PreviousPropertyGuid": "48aa3e2d-135d-41a3-8bf4-423deb2540c9"
     }
   ],
   "PublicFunctions": [

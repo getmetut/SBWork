@@ -96,6 +96,33 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      
+      if (_obj.ConditionType == ConditionType.IsNeedCheckCp)
+      {
+        var contr = SBContracts.ContractualDocuments.As(document);
+        if (contr == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
+        var cp = SBContracts.Counterparties.As(contr.Counterparty);
+        if (cp == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
+        if (PublicFunctions.Counterparty.CalculateTotalAmount(cp) > 500000)
+        {
+          if (cp.FocusCheckedSberDev.HasValue && cp.FocusCheckedDateSberDev.HasValue)
+          {
+            if (cp.FocusCheckedSberDev.Value && cp.FocusCheckedDateSberDev.Value.Year < Calendar.Now.Year)
+            {
+              return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(true, string.Empty);
+            }
+            else
+              return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
+          }
+          else
+            return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(true, string.Empty);
+        }
+        else
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
+      }
+      
       if (_obj.ConditionType == ConditionType.ProductUnit)
       {
         bool flag = false;
@@ -153,15 +180,6 @@ namespace sberdev.SBContracts.Shared
           }
         }
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
-      }
-      
-      if (_obj.ConditionType == ConditionType.IsNeedCheckCp)
-      {
-        var contr = SBContracts.ContractualDocuments.As(document);
-        if (contr != null && PublicFunctions.Counterparty.CalculateTotalAmount(SBContracts.Counterparties.As(contr.Counterparty)) > 500000)
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(true, string.Empty);
-        else
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
       }
       
       if (_obj.ConditionType == ConditionType.EndorseFromSberDev)

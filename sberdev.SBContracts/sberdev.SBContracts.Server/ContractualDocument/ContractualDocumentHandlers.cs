@@ -4,6 +4,8 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using sberdev.SBContracts.ContractualDocument;
+using Sungero.Metadata;
+using Sungero.Domain.Shared;
 
 namespace sberdev.SBContracts
 {
@@ -170,6 +172,8 @@ namespace sberdev.SBContracts
 
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
+      string disc = _obj.GetEntityMetadata().GetOriginal().NameGuid.ToString().ToLower();
+      _obj.CardURLSberDev = "https://directum.sberdevices.ru/DrxWeb/#/sat/card/" + disc + "/" + _obj.Id;
       _obj.ModifiedSberDev = Calendar.Now;
       _obj.OriginalBaseSberDev = false;
       _obj.FrameworkBaseSberDev = false;
@@ -198,11 +202,11 @@ namespace sberdev.SBContracts
         base.BeforeSave(e);
         Functions.ContractualDocument.BeforeSaveFunction(_obj);
       }
-      int year = Calendar.Now.Year % 100; // Получаем последние две цифры года
+   /*   int year = Calendar.Now.Year % 100; // Получаем последние две цифры года
       char symbol = 'Z';
       int sequenceNumber = int.Parse(_obj.Id.ToString()); // Пример порядкового номера
       string Num1C = $"{year:D2}{symbol:D}{sequenceNumber:D5}";
-      _obj.NumOrder1CUTSDev = Num1C;
+      _obj.NumOrder1CUTSDev = Num1C;*/
     }
   }
 }

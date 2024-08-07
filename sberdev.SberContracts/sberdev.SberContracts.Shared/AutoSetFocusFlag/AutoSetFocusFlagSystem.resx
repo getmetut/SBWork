@@ -58,46 +58,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_IsNeedComeback" xml:space="preserve">
-    <value>IsNeedComeback</value>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Установка состояния "Проверен" для КА</value>
   </data>
-  <data name="Property_NumberOfAttempsComeback" xml:space="preserve">
-    <value>NumberOfAttempsComeback</value>
+  <data name="AccusativeDisplayName" xml:space="preserve">
+    <value>Установку состояния "Проверен" для КА</value>
   </data>
-  <data name="Property_NeedComebackAgainAttachments" xml:space="preserve">
-    <value>NeedComebackAgainAttachments</value>
+  <data name="CollectionDisplayName" xml:space="preserve">
+    <value>Установки состояния "Проверен" для КА</value>
   </data>
-  <data name="Action_ShowCertInfo" xml:space="preserve">
-    <value>Информация по сертификатам</value>
-  </data>
-  <data name="Action_ShowCertInfoDescription" xml:space="preserve">
-    <value>Показывает информацию по сертификатам в диалоговых окнах</value>
-  </data>
-  <data name="Action_ShowCertInfoHint" xml:space="preserve">
-    <value>Показывает информацию по сертификатам в диалоговых окнах</value>
-  </data>
-  <data name="Action_ShowCertInfoConfirmationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Action_ShowCertInfoConfirmationDescription" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Action_TransferBodySberDev" xml:space="preserve">
-    <value>Body copy</value>
-  </data>
-  <data name="Action_TransferBodySberDevDescription" xml:space="preserve">
-    <value>Copy the body of the document with signatures to the card at the specified ID.</value>
-  </data>
-  <data name="Action_TransferBodySberDevHint" xml:space="preserve">
-    <value>Copy the body of the document with signatures to the card at the specified ID.</value>
-  </data>
-  <data name="Action_TransferBodySberDevConfirmationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Action_TransferBodySberDevConfirmationDescription" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Property_ReadressedSberDev" xml:space="preserve">
-    <value>Readressed</value>
+  <data name="AdditionalInfoTemplate" xml:space="preserve">
+    <value>Этап устанавливает флаг "Проверен" в стостоя ние true для контрагента из документа</value>
   </data>
 </root>

@@ -30,6 +30,13 @@ namespace sberdev.SBContracts
   partial class AccountingDocumentBaseSharedHandlers
   {
 
+    public override void CounterpartyChanged(Sungero.Docflow.Shared.AccountingDocumentBaseCounterpartyChangedEventArgs e)
+    {
+      base.CounterpartyChanged(e);
+      if (e.NewValue != e.OldValue && e.NewValue != null)
+      _obj.ConterpartyTINSberDev = e.NewValue.TIN;
+    }
+
     public virtual void AccDocSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseAccDocSberDevChangedEventArgs e)
     {
       if (Equals(e.NewValue, e.OldValue))
@@ -81,14 +88,9 @@ namespace sberdev.SBContracts
           if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Prepayment)
             SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
         }
-        
-        _obj.State.Properties.InvoiceSberDev.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.InvoiceSberDev, false);
-      }
-      else
-      {
-        _obj.State.Properties.InvoiceSberDev.HighlightColor = Colors.Common.White;
-      }
-      
+        _obj.State.Properties.InvoiceSberDev.HighlightColor = _obj.InvoiceSberDev.InternalApprovalState == SBContracts.OfficialDocument.InternalApprovalState.Signed ?
+          Colors.Common.White : Colors.Common.Red;
+      }      
     }
 
     public override void DocumentKindChanged(Sungero.Docflow.Shared.OfficialDocumentDocumentKindChangedEventArgs e)

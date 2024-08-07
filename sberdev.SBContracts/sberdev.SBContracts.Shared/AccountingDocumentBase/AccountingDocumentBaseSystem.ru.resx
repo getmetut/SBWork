@@ -373,4 +373,10 @@
   <data name="Enum_LifeCycleState_Obsolete" xml:space="preserve">
     <value>Устаревший</value>
   </data>
+  <data name="Property_CardURLSberDev" xml:space="preserve">
+    <value>URL карточки</value>
+  </data>
+  <data name="Property_ConterpartyTINSberDev" xml:space="preserve">
+    <value>ИНН контрагента</value>
+  </data>
 </root>

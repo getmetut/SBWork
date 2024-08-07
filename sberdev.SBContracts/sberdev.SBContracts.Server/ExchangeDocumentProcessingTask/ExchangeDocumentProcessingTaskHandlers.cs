@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
@@ -17,6 +17,7 @@ namespace sberdev.SBContracts
       _obj.IsNeedComeback = true;
       _obj.NeedComebackAgainAttachments = "";
       _obj.NumberOfAttempsComeback = 0;
+      _obj.ReadressedSberDev = false;
       base.Created(e);
     }
   }

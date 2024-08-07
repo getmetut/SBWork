@@ -1149,6 +1149,19 @@
   "Properties": [
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "cc53a990-5123-4f3a-b5ac-f3899be1f40a",
+      "Name": "Counterparty",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "91ac0e49-10fc-45a2-848a-0541e7fdd7cd",
       "Name": "DocumentKind",
       "HandledEvents": [
@@ -1651,6 +1664,28 @@
       "Code": "EstPaymentDate",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
       "PreviousPropertyGuid": "1bbd899a-c2d4-40e1-8c92-70ed67da6d2c"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "4a0d30e7-deaa-44bd-977c-ea84ab26b43d",
+      "Name": "ConterpartyTINSberDev",
+      "Code": "CpTINAcc",
+      "IsEnabled": false,
+      "IsVisibility": false,
+      "Length": 100,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "43eda876-5008-4dbd-a35a-0b1e030d8a72"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "b7562270-004a-4cde-a353-38b4c9c77688",
+      "Name": "CardURLSberDev",
+      "Code": "CardURLAcc",
+      "IsEnabled": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "4a0d30e7-deaa-44bd-977c-ea84ab26b43d",
+      "Versions": []
     }
   ],
   "PublicFunctions": [

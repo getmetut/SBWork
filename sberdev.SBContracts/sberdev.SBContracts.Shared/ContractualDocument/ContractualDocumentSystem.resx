@@ -238,8 +238,8 @@
   <data name="ControlGroup_519f2394febe4501adcaa34ee883d986" xml:space="preserve">
     <value>Company</value>
   </data>
-  <data name="ControlGroup_c18501e47af044de8ac7873abb63e9d6" xml:space="preserve">
-    <value>Условия оплаты</value>
+  <data name="Property_CardURLSberDev" xml:space="preserve">
+    <value>Card URL</value>
   </data>
   <data name="Resource_2ba45a3701c04b3e908a465e75956a24" xml:space="preserve">
     <value />
@@ -367,24 +367,6 @@
   <data name="Property_PurchComNumberSberDev" xml:space="preserve">
     <value>Purch. com. number</value>
   </data>
-  <data name="Property_ProductionOrderSDev" xml:space="preserve">
-    <value>Производственный заказ</value>
-  </data>
-  <data name="Property_DepositSDev" xml:space="preserve">
-    <value>Депозит %</value>
-  </data>
-  <data name="Property_BalanceSDev" xml:space="preserve">
-    <value>Баланс %</value>
-  </data>
-  <data name="Property_NumOrder1CUTSDev" xml:space="preserve">
-    <value>Номер заказа в 1С УТ</value>
-  </data>
-  <data name="Property_PaymentDaysBeforeSDev" xml:space="preserve">
-    <value>Оплата за дней до поставки</value>
-  </data>
-  <data name="ControlGroup_621a02080e7d4c27a03340b1a2f1e573" xml:space="preserve">
-    <value>Условия оплаты</value>
-  </data>
   <data name="Property_AgentSaluteSberDev" xml:space="preserve">
     <value>Agent SaluteDevices</value>
   </data>
@@ -398,13 +380,13 @@
     <value>Email</value>
   </data>
   <data name="Property_DelPeriodSberDev" xml:space="preserve">
-    <value>Delivery period</value>
+    <value>Delivery period (d.)</value>
   </data>
   <data name="Property_AmountPrepaySberDev" xml:space="preserve">
     <value>Amount of prepayment (%)</value>
   </data>
   <data name="Property_DeadlinePrepaySberDev" xml:space="preserve">
-    <value>Prepayment deadline (days)</value>
+    <value>Prepayment deadline (d.)</value>
   </data>
   <data name="Property_AmountPostpaySberDev" xml:space="preserve">
     <value>Post-payment amount (%)</value>
@@ -423,5 +405,8 @@
   </data>
   <data name="Action_CreateBodyByPropertiesSberDevConfirmationDescription" xml:space="preserve">
     <value />
+  </data>
+  <data name="Property_ConterpartyTINSberDev" xml:space="preserve">
+    <value>Conterparty TIN</value>
   </data>
 </root>
