@@ -15,15 +15,33 @@ namespace Sungero.POST.Server
   public class ModuleFunctions
   {
     
+    static DateTime? ParseDate(string dateString)
+    {
+        string[] dateFormats = {"yyyy-MM-dd","dd/MM/yyyy","MM/dd/yyyy","dd MMM yyyy","MMM dd, yyyy","yyyyMMdd","dd-MM-yyyy","MM-dd-yyyy","yyyy.MM.dd","dd.MM.yyyy"};
+        DateTime parsedDate;
+        bool success = DateTime.TryParseExact(dateString, dateFormats, 
+            CultureInfo.InvariantCulture, 
+            DateTimeStyles.None, out parsedDate);
+        if (success)
+          return parsedDate;
+
+        return null;
+    }
+    
     /// <summary>
     /// Функция передачи актов выполненных работ
     /// </summary>
-    [Public(WebApiRequestType = RequestType.Get)]
-    public List<Sungero.POST.Structures.Module.IStructContractStatement> ContractStatements(int iddoc)
+    [Public(WebApiRequestType = RequestType.Post)]
+    public List<Sungero.POST.Structures.Module.IStructContractStatement> ContractStatements(string till, string from)
     {
-      var DocList = sberdev.SBContracts.ContractStatements.GetAll();
+      Logger.Debug("1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+      DateTime TILL = ParseDate(till).Value;
+      DateTime FROM = ParseDate(from).Value;
+      Logger.Debug("2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222");
+      var DocList = sberdev.SBContracts.ContractStatements.GetAll(d => ((d.DocumentDate >= TILL) && (d.DocumentDate <= FROM)));
+      Logger.Debug("3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333");
       List<Sungero.POST.Structures.Module.IStructContractStatement> RequestElem = new List<Sungero.POST.Structures.Module.IStructContractStatement>(); //Structures.Module.StructContractList.Create();
-      if (iddoc == 0)
+      if (DocList.Count() > 0)
       {
         foreach (var Doc in DocList)
         {
@@ -75,7 +93,7 @@ namespace Sungero.POST.Server
             foreach (var elem in Doc.ProdCollectionBaseSberDev)
             {
               var newstr = Sungero.POST.Structures.Module.StructProdCollection.Create();
-              newstr.Product = elem.Product.Name.ToString();
+              newstr.Product = elem.Product != null ? elem.Product.Name.ToString() : "";
               ProdCollection.Add(newstr);
             } 
           }
@@ -89,11 +107,11 @@ namespace Sungero.POST.Server
             foreach (var elem in Doc.CalculationBaseSberDev)
             {
               var newstr2 = Sungero.POST.Structures.Module.StructCalculation.Create();
-              newstr2.AbsoluteCalc = elem.AbsoluteCalc.Value.ToString();
-              newstr2.AggregationCalc = elem.AggregationCalc.ToString();
-              newstr2.InterestCalc = elem.InterestCalc.Value.ToString();
-              newstr2.PercentCalc = elem.PercentCalc.Value.ToString();
-              newstr2.ProductCalc = elem.ProductCalc.Name.ToString();
+              newstr2.AbsoluteCalc = elem.AbsoluteCalc != null ? elem.AbsoluteCalc.Value.ToString() : "";
+              newstr2.AggregationCalc = elem.AggregationCalc != null ? elem.AggregationCalc.ToString() : "";
+              newstr2.InterestCalc = elem.InterestCalc != null ? elem.InterestCalc.Value.ToString() : "";
+              newstr2.PercentCalc = elem.PercentCalc != null ? elem.PercentCalc.Value.ToString() : "";
+              newstr2.ProductCalc = elem.ProductCalc != null ? elem.ProductCalc.Name.ToString() : "";
               Calculation.Add(newstr2);
             } 
           }
@@ -145,10 +163,7 @@ namespace Sungero.POST.Server
         return RequestElem;
       }
       else
-      {
-        
         return RequestElem;
-      }
     }
 
     /// <summary>
@@ -170,16 +185,30 @@ namespace Sungero.POST.Server
           StrSupAgreement.TotalAmount =  Doc.TotalAmount != null ? Doc.TotalAmount.Value.ToString()  : "";
           StrSupAgreement.ValidFrom =  Doc.ValidFrom != null ? Doc.ValidFrom.Value.ToString()  : "";
           StrSupAgreement.ValidTill =  Doc.ValidTill != null ? Doc.ValidTill.Value.ToString()  : "";
+          //StrSupAgreement.MVZOldSberDevSDev =  Doc.MVZOldSberDev != null ? Doc.MVZOldSberDev.ToString()  : "";
+          //StrSupAgreement.AccArtExOldSberDevSDev =  Doc.AccArtExOldSberDev != null ? Doc.AccArtExOldSberDev.ToString()  : "";
+          //StrSupAgreement.MVPOldSberDevSDev =  Doc.MVPOldSberDev != null ? Doc.MVPOldSberDev.ToString()  : "";
+          //StrSupAgreement.AccArtPrOldSberDevSDev =  Doc.AccArtPrOldSberDev != null ? Doc.AccArtPrOldSberDev.ToString()  : "";
+          //StrSupAgreement.BudItemOldSberDevSDev =  Doc.BudItemOldSberDev != null ? Doc.BudItemOldSberDev.ToString()  : "";
+          //StrSupAgreement.ContrTypeOldSberDevSDev =  Doc.ContrTypeOldSberDev != null ? Doc.ContrTypeOldSberDev.ToString()  : "";
+          //StrSupAgreement.OriginalOldSberDevSDev =  Doc.OriginalOldSberDev != null ? Doc.OriginalOldSberDev.ToString()  : "";
+          //StrSupAgreement.SigningSDev =  Doc.Signing != null ? Doc.Signing.Value.ToString()  : "";
+          //StrSupAgreement.DeliveryInfoOldSberDevSDev =  Doc.DeliveryInfoOldSberDev != null ? Doc.DeliveryInfoOldSberDev.ToString()  : "";
+          //StrSupAgreement.NoticeSendOldSberDevSDev =  Doc.NoticeSendOldSberDev != null ? Doc.NoticeSendOldSberDev.ToString()  : "";
+          //StrSupAgreement.FrameworkOldSberDevSDev =  Doc.FrameworkOldSberDev != null ? Doc.FrameworkOldSberDev.ToString()  : "";
           StrSupAgreement.SDSFSberDevSDev =  Doc.SDSFSberDev != null ? Doc.SDSFSberDev.ToString()  : "";
           StrSupAgreement.SRSberDevSDev =  Doc.SRSberDev != null ? Doc.SRSberDev.ToString()  : "";
           StrSupAgreement.GoogleDocsLinkSberDevSDev =  Doc.GoogleDocsLinkSberDev != null ? Doc.GoogleDocsLinkSberDev.ToString()  : "";
           StrSupAgreement.SubjectSpecificationSberDevSDev =  Doc.SubjectSpecificationSberDev != null ? Doc.SubjectSpecificationSberDev.ToString()  : "";
           StrSupAgreement.AccArtExBaseSberDev =  Doc.AccArtExBaseSberDev != null ? Doc.AccArtExBaseSberDev.Id.ToString()  : "";
+          //StrSupAgreement.AccArtExOldSberDev =  Doc.AccArtExOldSberDev != null ? Doc.AccArtExOldSberDev.Id.ToString()  : "";
           StrSupAgreement.AccArtPrBaseSberDev =  Doc.AccArtPrBaseSberDev != null ? Doc.AccArtPrBaseSberDev.Id.ToString()  : "";
+          //StrSupAgreement.AccArtPrOldSberDev =  Doc.AccArtPrOldSberDev != null ? Doc.AccArtPrOldSberDev.Id.ToString()  : "";
           StrSupAgreement.Assignee =  Doc.Assignee != null ? Doc.Assignee.Id.ToString()  : "";
           StrSupAgreement.AssociatedApplication =  Doc.AssociatedApplication != null ? Doc.AssociatedApplication.Id.ToString()  : "";
           StrSupAgreement.Author =  Doc.Author != null ? Doc.Author.Id.ToString()  : "";
           StrSupAgreement.BudItemBaseSberDev =  Doc.BudItemBaseSberDev != null ? Doc.BudItemBaseSberDev.Id.ToString()  : "";
+          //StrSupAgreement.BudItemOldSberDev =  Doc.BudItemOldSberDev != null ? Doc.BudItemOldSberDev.Id.ToString()  : "";
           StrSupAgreement.BusinessUnit =  Doc.BusinessUnit != null ? Doc.BusinessUnit.Id.ToString()  : "";
           StrSupAgreement.CalculationBaseSberDev = "";
           StrSupAgreement.CaseFile =  Doc.CaseFile != null ? Doc.CaseFile.Id.ToString()  : "";
@@ -198,7 +227,9 @@ namespace Sungero.POST.Server
           StrSupAgreement.MarketDirectSberDev =  Doc.MarketDirectSberDev != null ? Doc.MarketDirectSberDev.Id.ToString()  : "";
           StrSupAgreement.Milestones = "";
           StrSupAgreement.MVPBaseSberDev =  Doc.MVPBaseSberDev != null ? Doc.MVPBaseSberDev.Id.ToString()  : "";
+          //StrSupAgreement.MVPOldSberDev =  Doc.MVPOldSberDev != null ? Doc.MVPOldSberDev.Id.ToString()  : "";
           StrSupAgreement.MVZBaseSberDev =  Doc.MVZBaseSberDev != null ? Doc.MVZBaseSberDev.Id.ToString()  : "";
+          //StrSupAgreement.MVZOldSberDev =  Doc.MVZOldSberDev != null ? Doc.MVZOldSberDev.Id.ToString()  : "";
           StrSupAgreement.OurSignatory =  Doc.OurSignatory != null ? Doc.OurSignatory.Id.ToString()  : "";
           StrSupAgreement.OurSigningReason =  Doc.OurSigningReason != null ? Doc.OurSigningReason.Id.ToString()  : "";
           StrSupAgreement.Parameters = "";
@@ -230,16 +261,30 @@ namespace Sungero.POST.Server
           StrSupAgreement.TotalAmount =  Doc.TotalAmount != null ? Doc.TotalAmount.Value.ToString()  : "";
           StrSupAgreement.ValidFrom =  Doc.ValidFrom != null ? Doc.ValidFrom.Value.ToString()  : "";
           StrSupAgreement.ValidTill =  Doc.ValidTill != null ? Doc.ValidTill.Value.ToString()  : "";
+          //StrSupAgreement.MVZOldSberDevSDev =  Doc.MVZOldSberDev != null ? Doc.MVZOldSberDev.ToString()  : "";
+          //StrSupAgreement.AccArtExOldSberDevSDev =  Doc.AccArtExOldSberDev != null ? Doc.AccArtExOldSberDev.ToString()  : "";
+          //StrSupAgreement.MVPOldSberDevSDev =  Doc.MVPOldSberDev != null ? Doc.MVPOldSberDev.ToString()  : "";
+          //StrSupAgreement.AccArtPrOldSberDevSDev =  Doc.AccArtPrOldSberDev != null ? Doc.AccArtPrOldSberDev.ToString()  : "";
+          //StrSupAgreement.BudItemOldSberDevSDev =  Doc.BudItemOldSberDev != null ? Doc.BudItemOldSberDev.ToString()  : "";
+          //StrSupAgreement.ContrTypeOldSberDevSDev =  Doc.ContrTypeOldSberDev != null ? Doc.ContrTypeOldSberDev.ToString()  : "";
+          //StrSupAgreement.OriginalOldSberDevSDev =  Doc.OriginalOldSberDev != null ? Doc.OriginalOldSberDev.ToString()  : "";
+          //StrSupAgreement.SigningSDev =  Doc.Signing != null ? Doc.Signing.Value.ToString()  : "";
+          //StrSupAgreement.DeliveryInfoOldSberDevSDev =  Doc.DeliveryInfoOldSberDev != null ? Doc.DeliveryInfoOldSberDev.ToString()  : "";
+          //StrSupAgreement.NoticeSendOldSberDevSDev =  Doc.NoticeSendOldSberDev != null ? Doc.NoticeSendOldSberDev.ToString()  : "";
+          //StrSupAgreement.FrameworkOldSberDevSDev =  Doc.FrameworkOldSberDev != null ? Doc.FrameworkOldSberDev.ToString()  : "";
           StrSupAgreement.SDSFSberDevSDev =  Doc.SDSFSberDev != null ? Doc.SDSFSberDev.ToString()  : "";
           StrSupAgreement.SRSberDevSDev =  Doc.SRSberDev != null ? Doc.SRSberDev.ToString()  : "";
           StrSupAgreement.GoogleDocsLinkSberDevSDev =  Doc.GoogleDocsLinkSberDev != null ? Doc.GoogleDocsLinkSberDev.ToString()  : "";
           StrSupAgreement.SubjectSpecificationSberDevSDev =  Doc.SubjectSpecificationSberDev != null ? Doc.SubjectSpecificationSberDev.ToString()  : "";
           StrSupAgreement.AccArtExBaseSberDev =  Doc.AccArtExBaseSberDev != null ? Doc.AccArtExBaseSberDev.Id.ToString()  : "";
+          //StrSupAgreement.AccArtExOldSberDev =  Doc.AccArtExOldSberDev != null ? Doc.AccArtExOldSberDev.Id.ToString()  : "";
           StrSupAgreement.AccArtPrBaseSberDev =  Doc.AccArtPrBaseSberDev != null ? Doc.AccArtPrBaseSberDev.Id.ToString()  : "";
+          //StrSupAgreement.AccArtPrOldSberDev =  Doc.AccArtPrOldSberDev != null ? Doc.AccArtPrOldSberDev.Id.ToString()  : "";
           StrSupAgreement.Assignee =  Doc.Assignee != null ? Doc.Assignee.Id.ToString()  : "";
           StrSupAgreement.AssociatedApplication =  Doc.AssociatedApplication != null ? Doc.AssociatedApplication.Id.ToString()  : "";
           StrSupAgreement.Author =  Doc.Author != null ? Doc.Author.Id.ToString()  : "";
           StrSupAgreement.BudItemBaseSberDev =  Doc.BudItemBaseSberDev != null ? Doc.BudItemBaseSberDev.Id.ToString()  : "";
+          //StrSupAgreement.BudItemOldSberDev =  Doc.BudItemOldSberDev != null ? Doc.BudItemOldSberDev.Id.ToString()  : "";
           StrSupAgreement.BusinessUnit =  Doc.BusinessUnit != null ? Doc.BusinessUnit.Id.ToString()  : "";
           StrSupAgreement.CalculationBaseSberDev = "";
           StrSupAgreement.CaseFile =  Doc.CaseFile != null ? Doc.CaseFile.Id.ToString()  : "";
@@ -258,7 +303,9 @@ namespace Sungero.POST.Server
           StrSupAgreement.MarketDirectSberDev =  Doc.MarketDirectSberDev != null ? Doc.MarketDirectSberDev.Id.ToString()  : "";
           StrSupAgreement.Milestones = "";
           StrSupAgreement.MVPBaseSberDev =  Doc.MVPBaseSberDev != null ? Doc.MVPBaseSberDev.Id.ToString()  : "";
+          //StrSupAgreement.MVPOldSberDev =  Doc.MVPOldSberDev != null ? Doc.MVPOldSberDev.Id.ToString()  : "";
           StrSupAgreement.MVZBaseSberDev =  Doc.MVZBaseSberDev != null ? Doc.MVZBaseSberDev.Id.ToString()  : "";
+          //StrSupAgreement.MVZOldSberDev =  Doc.MVZOldSberDev != null ? Doc.MVZOldSberDev.Id.ToString()  : "";
           StrSupAgreement.OurSignatory =  Doc.OurSignatory != null ? Doc.OurSignatory.Id.ToString()  : "";
           StrSupAgreement.OurSigningReason =  Doc.OurSigningReason != null ? Doc.OurSigningReason.Id.ToString()  : "";
           StrSupAgreement.Parameters = "";
@@ -303,11 +350,14 @@ namespace Sungero.POST.Server
           StrContract.ValidFrom = Dog.RegistrationNumber != null ? Dog.RegistrationNumber.ToString() : "";
           StrContract.ValidTill = Dog.ValidTill != null ? Dog.ValidTill.Value.ToString() : "";
           StrContract.AccArtExBaseSberDev = Dog.AccArtExBaseSberDev != null ? Dog.AccArtExBaseSberDev.Id.ToString()  : "";
+          //StrContract.AccArtMVZOldSberDev = Dog.AccArtMVZOldSberDev != null ? Dog.AccArtMVZOldSberDev.Id.ToString()  : "";
           StrContract.AccArtPrBaseSberDev = Dog.AccArtPrBaseSberDev != null ? Dog.AccArtPrBaseSberDev.Id.ToString()  : "";
+          //StrContract.AccArtsberdevOldSberDev = Dog.AccArtsberdevOldSberDev != null ? Dog.AccArtsberdevOldSberDev.Id.ToString()  : "";
           StrContract.Assignee = Dog.Assignee != null ? Dog.Assignee.Id.ToString()  : "";
           StrContract.AssociatedApplication = Dog.AssociatedApplication != null ? Dog.AssociatedApplication.Id.ToString()  : "";
           StrContract.Author = Dog.Author != null ? Dog.Author.Id.ToString()  : "";
           StrContract.BudItemBaseSberDev = Dog.BudItemBaseSberDev != null ? Dog.BudItemBaseSberDev.Id.ToString()  : "";
+          //StrContract.BudItemsberdevOldSberDev = Dog.BudItemsberdevOldSberDev != null ? Dog.BudItemsberdevOldSberDev.Id.ToString()  : "";
           StrContract.BusinessUnit = Dog.BusinessUnit != null ? Dog.BusinessUnit.Id.ToString()  : "";
           StrContract.CalculationBaseSberDev = "";
           StrContract.CaseFile = Dog.CaseFile != null ? Dog.CaseFile.Id.ToString()  : "";
@@ -319,6 +369,7 @@ namespace Sungero.POST.Server
           StrContract.DeliveredTo = Dog.DeliveredTo != null ? Dog.DeliveredTo.Id.ToString()  : "";
           StrContract.DeliveryMethod = Dog.DeliveryMethod != null ? Dog.DeliveryMethod.Id.ToString()  : "";
           StrContract.Department = Dog.Department != null ? Dog.Department.Id.ToString()  : "";
+          //StrContract.DirectionMVZ = Dog.DirectionMVZ != null ? Dog.DirectionMVZ.ToString()  : "";
           StrContract.DocumentGroup = Dog.DocumentGroup != null ? Dog.DocumentGroup.Id.ToString()  : "";
           StrContract.DocumentKind = Dog.DocumentKind != null ? Dog.DocumentKind.Id.ToString()  : "";
           StrContract.DocumentRegister = Dog.DocumentRegister != null ? Dog.DocumentRegister.Id.ToString()  : "";
@@ -326,7 +377,9 @@ namespace Sungero.POST.Server
           StrContract.MarketDirectSberDev = Dog.MarketDirectSberDev != null ? Dog.MarketDirectSberDev.Id.ToString()  : "";
           StrContract.Milestones = "";
           StrContract.MVPBaseSberDev = Dog.MVPBaseSberDev != null ? Dog.MVPBaseSberDev.Id.ToString()  : "";
+          //StrContract.MVPsberdevOldSberDev = Dog.MVPsberdevOldSberDev != null ? Dog.MVPsberdevOldSberDev.Id.ToString()  : "";
           StrContract.MVZBaseSberDev = Dog.MVZBaseSberDev != null ? Dog.MVZBaseSberDev.Id.ToString()  : "";
+          //StrContract.MVZsberdevOldSberDev = Dog.MVZsberdevOldSberDev != null ? Dog.MVZsberdevOldSberDev.Id.ToString()  : "";
           StrContract.OurSignatory = Dog.OurSignatory != null ? Dog.OurSignatory.Id.ToString()  : "";
           StrContract.OurSigningReason = Dog.OurSigningReason != null ? Dog.OurSigningReason.Id.ToString()  : "";
           StrContract.Parameters = "";
@@ -359,11 +412,15 @@ namespace Sungero.POST.Server
           StrContract.TotalAmount = Dog.TotalAmount != null ? Dog.TotalAmount.ToString() : "";
           StrContract.ValidFrom = Dog.RegistrationNumber != null ? Dog.RegistrationNumber.ToString() : "";
           StrContract.ValidTill = Dog.ValidTill != null ? Dog.ValidTill.Value.ToString() : "";
+          StrContract.AccArtExBaseSberDev = Dog.AccArtExBaseSberDev != null ? Dog.AccArtExBaseSberDev.Id.ToString()  : "";
+          //StrContract.AccArtMVZOldSberDev = Dog.AccArtMVZOldSberDev != null ? Dog.AccArtMVZOldSberDev.Id.ToString()  : "";
           StrContract.AccArtPrBaseSberDev = Dog.AccArtPrBaseSberDev != null ? Dog.AccArtPrBaseSberDev.Id.ToString()  : "";
+          //StrContract.AccArtsberdevOldSberDev = Dog.AccArtsberdevOldSberDev != null ? Dog.AccArtsberdevOldSberDev.Id.ToString()  : "";
           StrContract.Assignee = Dog.Assignee != null ? Dog.Assignee.Id.ToString()  : "";
           StrContract.AssociatedApplication = Dog.AssociatedApplication != null ? Dog.AssociatedApplication.Id.ToString()  : "";
           StrContract.Author = Dog.Author != null ? Dog.Author.Id.ToString()  : "";
           StrContract.BudItemBaseSberDev = Dog.BudItemBaseSberDev != null ? Dog.BudItemBaseSberDev.Id.ToString()  : "";
+          //StrContract.BudItemsberdevOldSberDev = Dog.BudItemsberdevOldSberDev != null ? Dog.BudItemsberdevOldSberDev.Id.ToString()  : "";
           StrContract.BusinessUnit = Dog.BusinessUnit != null ? Dog.BusinessUnit.Id.ToString()  : "";
           StrContract.CalculationBaseSberDev = "";
           StrContract.CaseFile = Dog.CaseFile != null ? Dog.CaseFile.Id.ToString()  : "";
@@ -375,6 +432,7 @@ namespace Sungero.POST.Server
           StrContract.DeliveredTo = Dog.DeliveredTo != null ? Dog.DeliveredTo.Id.ToString()  : "";
           StrContract.DeliveryMethod = Dog.DeliveryMethod != null ? Dog.DeliveryMethod.Id.ToString()  : "";
           StrContract.Department = Dog.Department != null ? Dog.Department.Id.ToString()  : "";
+          //StrContract.DirectionMVZ = Dog.DirectionMVZ != null ? Dog.DirectionMVZ.ToString()  : "";
           StrContract.DocumentGroup = Dog.DocumentGroup != null ? Dog.DocumentGroup.Id.ToString()  : "";
           StrContract.DocumentKind = Dog.DocumentKind != null ? Dog.DocumentKind.Id.ToString()  : "";
           StrContract.DocumentRegister = Dog.DocumentRegister != null ? Dog.DocumentRegister.Id.ToString()  : "";
@@ -382,7 +440,9 @@ namespace Sungero.POST.Server
           StrContract.MarketDirectSberDev = Dog.MarketDirectSberDev != null ? Dog.MarketDirectSberDev.Id.ToString()  : "";
           StrContract.Milestones = "";
           StrContract.MVPBaseSberDev = Dog.MVPBaseSberDev != null ? Dog.MVPBaseSberDev.Id.ToString()  : "";
+          //StrContract.MVPsberdevOldSberDev = Dog.MVPsberdevOldSberDev != null ? Dog.MVPsberdevOldSberDev.Id.ToString()  : "";
           StrContract.MVZBaseSberDev = Dog.MVZBaseSberDev != null ? Dog.MVZBaseSberDev.Id.ToString()  : "";
+          //StrContract.MVZsberdevOldSberDev = Dog.MVZsberdevOldSberDev != null ? Dog.MVZsberdevOldSberDev.Id.ToString()  : "";
           StrContract.OurSignatory = Dog.OurSignatory != null ? Dog.OurSignatory.Id.ToString()  : "";
           StrContract.OurSigningReason = Dog.OurSigningReason != null ? Dog.OurSigningReason.Id.ToString()  : "";
           StrContract.Parameters = "";

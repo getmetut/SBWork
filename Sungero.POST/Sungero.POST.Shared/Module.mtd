@@ -238,14 +238,19 @@
       "Name": "ContractStatements",
       "Parameters": [
         {
-          "Name": "iddoc",
-          "ParameterType": "global::System.Int32",
-          "ParameterTypeFullName": "System.Int32"
+          "Name": "till",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "from",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
         }
       ],
       "ReturnType": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IStructContractStatement>",
       "ReturnTypeFullName": "System.Collections.Generic.List",
-      "WebApiRequestType": "Get"
+      "WebApiRequestType": "Post"
     },
     {
       "Name": "GetClosedDocs",
@@ -1767,7 +1772,7 @@
   "SharedAssemblyName": "Sungero.POST.Shared",
   "SharedNamespace": "Sungero.POST.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.163",
+  "Version": "0.0.1.167",
   "Widgets": [],
   "Versions": [
     {
