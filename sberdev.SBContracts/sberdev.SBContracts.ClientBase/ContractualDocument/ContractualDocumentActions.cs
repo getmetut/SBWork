@@ -21,7 +21,7 @@ namespace sberdev.SBContracts.Client
       if (_obj.DocumentKind == null)
         return !_obj.State.IsInserted && flag;
       var name = _obj.DocumentKind.Name;
-      if (name == "Договор Xiongxin" || name == "Дополнительное соглашение Xiongxin")
+      if (name == "Договор Xiongxin" || name == "Заказ Xiongxin")
         flag = true;
       return !_obj.State.IsInserted && flag;
     }

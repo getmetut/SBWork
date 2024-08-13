@@ -368,7 +368,7 @@
     <value>Purch. com. number</value>
   </data>
   <data name="Property_AgentSaluteSberDev" xml:space="preserve">
-    <value>Agent SaluteDevices</value>
+    <value>Our agent</value>
   </data>
   <data name="Property_AdressSberDev" xml:space="preserve">
     <value>Adress</value>
@@ -388,9 +388,6 @@
   <data name="Property_DeadlinePrepaySberDev" xml:space="preserve">
     <value>Prepayment deadline (d.)</value>
   </data>
-  <data name="Property_AmountPostpaySberDev" xml:space="preserve">
-    <value>Post-payment amount (%)</value>
-  </data>
   <data name="Action_CreateBodyByPropertiesSberDev" xml:space="preserve">
     <value>Create a version using details</value>
   </data>
@@ -406,7 +403,10 @@
   <data name="Action_CreateBodyByPropertiesSberDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
-  <data name="Property_ConterpartyTINSberDev" xml:space="preserve">
-    <value>Conterparty TIN</value>
+  <data name="Property_CounterpartyTINSberDev" xml:space="preserve">
+    <value>Counterparty TIN</value>
+  </data>
+  <data name="Property_CouterpartyTRRCSberDev" xml:space="preserve">
+    <value>Couterparty TRRC</value>
   </data>
 </root>

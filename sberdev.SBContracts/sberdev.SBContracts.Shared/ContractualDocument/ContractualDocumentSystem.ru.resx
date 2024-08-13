@@ -368,7 +368,7 @@
     <value>Номер ЗК</value>
   </data>
   <data name="Property_AgentSaluteSberDev" xml:space="preserve">
-    <value>Представитель СалютДевайсы</value>
+    <value>Наш представитель</value>
   </data>
   <data name="Property_AdressSberDev" xml:space="preserve">
     <value>Адрес</value>
@@ -388,9 +388,6 @@
   <data name="Property_DeadlinePrepaySberDev" xml:space="preserve">
     <value>Срок вн-я пердоплаты (дн.)</value>
   </data>
-  <data name="Property_AmountPostpaySberDev" xml:space="preserve">
-    <value>Размер постоплаты (%)</value>
-  </data>
   <data name="Action_CreateBodyByPropertiesSberDev" xml:space="preserve">
     <value>Создать версию по реквизитам</value>
   </data>
@@ -400,7 +397,10 @@
   <data name="Action_CreateBodyByPropertiesSberDevDescription" xml:space="preserve">
     <value>Действие создает новую версию основываясь на указанных в карточке реквизитах.</value>
   </data>
-  <data name="Property_ConterpartyTINSberDev" xml:space="preserve">
+  <data name="Property_CounterpartyTINSberDev" xml:space="preserve">
     <value>ИНН контрагента</value>
+  </data>
+  <data name="Property_CouterpartyTRRCSberDev" xml:space="preserve">
+    <value>КПП контрагента</value>
   </data>
 </root>

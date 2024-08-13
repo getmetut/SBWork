@@ -58,43 +58,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_Name" xml:space="preserve">
-    <value>Имя</value>
-  </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>МВЗ</value>
-  </data>
-  <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>МВЗ</value>
-  </data>
-  <data name="CollectionDisplayName" xml:space="preserve">
-    <value>МВЗ</value>
-  </data>
-  <data name="Property_BudgetOwner" xml:space="preserve">
-    <value>Владелец бюджета</value>
-  </data>
-  <data name="Property_ContrType" xml:space="preserve">
-    <value>Тип договора</value>
-  </data>
-  <data name="Enum_ContrType_Profitable" xml:space="preserve">
-    <value>Доходный</value>
-  </data>
-  <data name="Enum_ContrType_Expendable" xml:space="preserve">
-    <value>Расходный</value>
-  </data>
-  <data name="Property_MainMVZ" xml:space="preserve">
-    <value>Ведущее МВЗ\МВП</value>
-  </data>
-  <data name="Property_BusinessUnit" xml:space="preserve">
-    <value>Наша организация</value>
-  </data>
-  <data name="Property_CalculationIsWorking" xml:space="preserve">
-    <value>Включить блок калькуляции</value>
-  </data>
-  <data name="Property_ProductsCollection" xml:space="preserve">
-    <value>Не показывать продукты (направления)</value>
-  </data>
-  <data name="Property_CollectionEmplAcc" xml:space="preserve">
-    <value>Сотрудники с доступом к документам</value>
-  </data>
 </root>

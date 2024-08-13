@@ -97,4 +97,7 @@
   <data name="Property_ProductsCollection" xml:space="preserve">
     <value>Don't show products (directions)</value>
   </data>
+  <data name="Property_CollectionEmplAcc" xml:space="preserve">
+    <value>Employees with access to documents</value>
+  </data>
 </root>

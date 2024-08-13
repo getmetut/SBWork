@@ -33,17 +33,22 @@ namespace sberdev.SBContracts
     public override void CounterpartyChanged(Sungero.Docflow.Shared.ContractualDocumentBaseCounterpartyChangedEventArgs e)
     {
       base.CounterpartyChanged(e);
-      if (e.NewValue != e.OldValue && e.NewValue != null)
-      _obj.ConterpartyTINSberDev = e.NewValue.TIN;
+      if (e.NewValue != e.OldValue)
+      {
+        if (e.NewValue != null && SBContracts.Companies.Is(e.NewValue))
+        {
+          _obj.CounterpartyTINSberDev = e.NewValue.TIN;
+          _obj.CouterpartyTRRCSberDev = SBContracts.Companies.As(e.NewValue).TRRC;
+        }
+        else
+        {
+          _obj.CounterpartyTINSberDev = null;
+          _obj.CouterpartyTRRCSberDev = null;
+        }
+      }
     }
 
     public virtual void AmountPrepaySberDevChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
-    {
-      if (e.NewValue > 100)
-        return;
-    }
-
-    public virtual void AmountPostpaySberDevChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
     {
       if (e.NewValue > 100)
         return;

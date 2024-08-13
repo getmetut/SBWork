@@ -753,16 +753,16 @@ namespace sberdev.SBContracts.Server
           if (doc.DocumentKind.Name == "Договор Xiongxin" )
           {
             body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.ContractXiongxinTemplateDocxName);
-            CreateBodyByPropertiesXiongxin(SBContracts.ContractualDocuments.As(doc), body);
+            CreateBodyByPropertiesContractXiongxin(SBContracts.ContractualDocuments.As(doc), body);
           }
           break;
         case "sberdev.SBContracts.SupAgreement":
           if (doc.DocumentKind == null)
             break;
-          if (doc.DocumentKind.Name == "Дополнительное соглашение Xiongxin")
+          if (doc.DocumentKind.Name == "Заказ Xiongxin")
           {
-            body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.ContractXiongxinTemplateDocxName);
-            CreateBodyByPropertiesXiongxin(SBContracts.ContractualDocuments.As(doc), body);
+            body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.OrderXiongxinTemplateDocxName);
+            CreateBodyByPropertiesOrderXiongxin(SBContracts.SupAgreements.As(doc), body);
           }
           break;
       };
@@ -774,7 +774,63 @@ namespace sberdev.SBContracts.Server
       doc.Save();
     }
     
-    public void CreateBodyByPropertiesXiongxin(SBContracts.IContractualDocument contr, Aspose.Words.Document body)
+    public void CreateBodyByPropertiesOrderXiongxin(SBContracts.ISupAgreement order, Aspose.Words.Document body)
+    {
+      var contract = order.LeadingDocument;
+      if (contract.RegistrationNumber != null)
+        body.Range.Replace("[ContractNumber]", contract.RegistrationNumber);
+      else
+        body.Range.Replace("[ContractNumber]", "");
+      if (order.RegistrationNumber != null)
+        body.Range.Replace("[Number]", order.RegistrationNumber);
+      else
+        body.Range.Replace("[Number]", "");
+      var contrDate = contract.DocumentDate.Value;
+      body.Range.Replace("[ContractYear]", contrDate.Year.ToString());
+      body.Range.Replace("[ContractMonth]", contrDate.Month.ToString());
+      body.Range.Replace("[ContractDay]", contrDate.Day.ToString());
+      body.Range.Replace("[ContractDate]", contrDate.ToShortDateString());
+      var delDate = order.DeliveryDateSberDev.Value;
+      body.Range.Replace("[DeliveryYear]", delDate.Year.ToString());
+      body.Range.Replace("[DeliveryMonth]", delDate.Month.ToString());
+      body.Range.Replace("[DeliveryDay]", delDate.Day.ToString());
+      body.Range.Replace("[DeliveryDate]", delDate.ToShortDateString());
+      body.Range.Replace("[DeliveryConditionEn]", order.DelConditionEnSberDev);
+      body.Range.Replace("[DeliveryConditionCh]", order.DelConditionChSberDev);
+      body.Range.Replace("[Agent]", order.AgentSaluteSberDev.Name);
+      body.Range.Replace("[AgentTranslit]", Transliterate(order.AgentSaluteSberDev.Name));
+      
+      List<int> boldRows = new List<int>(){};
+      List<int> columnWidths = new List<int>(){10, 80, 30, 15, 15, 20};
+      boldRows.Add(0);
+      boldRows.Add(order.OrderXXTableSberDev.Count + 1);
+      string[,] table = new string[order.OrderXXTableSberDev.Count + 2, 6];
+      table[0, 0] = "/项目编 / № п/п.";
+      table[0, 1] = "描述 /Описание Товара";
+      table[0, 2] = "型号 / Модель";
+      table[0, 3] = "数量 / Количество";
+      table[0, 4] = "单价（人民币¥）/ Цена за ед. в Юанях";
+      table[0, 5] = "未税金额（人民币¥) / Общая стоимость в Юанях (без НДС)";
+      int counter = 1;
+      foreach (var elem in order.OrderXXTableSberDev)
+      {
+        table[counter, 0] = counter.ToString();
+        table[counter, 1] = elem.ProductDescrip;
+        table[counter, 2] = elem.Model;
+        table[counter, 3] = elem.Amount.Value.ToString();
+        table[counter, 4] = elem.UnitPrice.Value.ToString();
+        table[counter, 5] = (elem.Amount.Value * elem.UnitPrice.Value).ToString();
+        counter++;
+      }
+      table[order.OrderXXTableSberDev.Count + 1, 1] = "ИТОГО / TOTAL";
+      table[order.OrderXXTableSberDev.Count + 1, 3] = order.OrderXXTableSberDev.Select(p => p.Amount).Sum().ToString();
+      table[order.OrderXXTableSberDev.Count + 1, 5] = order.OrderXXTableSberDev.Select(p => p.Amount * p.UnitPrice).Sum().ToString();
+  //    var tableOrder = CreateTableByArray(body, table, boldRows, columnWidths);
+      ReplacePlaceholderWithTable(body, "[Table]", CreateTableByArray(body, table, boldRows, columnWidths));
+   //   tableOrder.AutoFit(Aspose.Words.Tables.AutoFitBehavior.FixedColumnWidths);
+    }
+    
+    public void CreateBodyByPropertiesContractXiongxin(SBContracts.IContractualDocument contr, Aspose.Words.Document body)
     {
       if (contr.RegistrationNumber != null)
         body.Range.Replace("[Number]", contr.RegistrationNumber);
@@ -796,32 +852,32 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[DelPeriodNumber]", contr.DelPeriodSberDev.Value.ToString());
       string str = null;
       body.Range.Replace("[DelPeriodText]", NumberToWords(contr.DelPeriodSberDev.Value));
-      body.Range.Replace("[AmountPostpayNumber]", contr.AmountPostpaySberDev.Value.ToString());
-      body.Range.Replace("[AmountPostpayText]", NumberToWords((int)contr.AmountPostpaySberDev.Value));
+      body.Range.Replace("[AmountPostpayNumber]", (100 - contr.AmountPrepaySberDev.Value).ToString());
+      body.Range.Replace("[AmountPostpayText]", NumberToWords((int)(100 - contr.AmountPrepaySberDev.Value)));
       body.Range.Replace("[AmountPrepayNumber]", contr.AmountPrepaySberDev.Value.ToString());
       body.Range.Replace("[AmountPrepayText]", NumberToWords((int)contr.AmountPrepaySberDev.Value));
       body.Range.Replace("[DeadlinePrepayNumber]", contr.DeadlinePrepaySberDev.Value.ToString());
       str = NumberToWords(contr.DeadlinePrepaySberDev.Value);
       if (str != null)
-      body.Range.Replace("[DeadlinePrepayText]", str);
+        body.Range.Replace("[DeadlinePrepayText]", str);
       else
         body.Range.Replace("[DeadlinePrepayText]", "");
       body.Range.Replace("[ValidTill]", contr.ValidTill.Value.ToShortDateString());
       var bank = contr.Counterparty.Bank;
       if (bank != null)
       {
-      body.Range.Replace("[BankName]", bank.Name);
-      body.Range.Replace("[BankBIC]", bank.BIC);
-      body.Range.Replace("[BankCode]", bank.Code);        
+        body.Range.Replace("[BankName]", bank.Name);
+        body.Range.Replace("[BankBIC]", bank.BIC);
+        body.Range.Replace("[BankCode]", bank.Code);
       }
       else
-        {
-      body.Range.Replace("[BankName]", "Не указан банк в карточке контрагента!");
-      body.Range.Replace("[BankBIC]", "Не указан банк в карточке контрагента!");
-      body.Range.Replace("[BankCode]", "Не указан банк в карточке контрагента!");        
+      {
+        body.Range.Replace("[BankName]", "Не указан банк в карточке контрагента!");
+        body.Range.Replace("[BankBIC]", "Не указан банк в карточке контрагента!");
+        body.Range.Replace("[BankCode]", "Не указан банк в карточке контрагента!");
       }
       if (contr.Counterparty.Account != null)
-      body.Range.Replace("[ACNumber]", contr.Counterparty.Account);
+        body.Range.Replace("[ACNumber]", contr.Counterparty.Account);
       else
         body.Range.Replace("[ACNumber]", "Не указан счет в карточке контрагента!");
     }
@@ -965,6 +1021,7 @@ namespace sberdev.SBContracts.Server
       
       #region Таблицы
       List<int> boldRows = new List<int>(){};
+      List<int> columnWidths = new List<int>(){100, 25, 25};
       boldRows.Add(0);
       boldRows.Add(purch.StagesPurchaseCollection.Count + 1);
       string[,] stages = new string[purch.StagesPurchaseCollection.Count + 2, 3];
@@ -982,9 +1039,10 @@ namespace sberdev.SBContracts.Server
       stages[purch.StagesPurchaseCollection.Count + 1, 0] = "ИТОГО длительность и стоимость реализации проекта";
       stages[purch.StagesPurchaseCollection.Count + 1, 1] = purch.StagesPurchaseCollection.Select(p => p.Cost).Sum().ToString();
       stages[purch.StagesPurchaseCollection.Count + 1, 2] = purch.StagesPurchaseCollection.Select(p => p.Duration).Sum().ToString();
-      ReplacePlaceholderWithTable(body, "[StagesPurchaseCollection]", CreateTableByArray(body, stages, boldRows));
+      ReplacePlaceholderWithTable(body, "[StagesPurchaseCollection]", CreateTableByArray(body, stages, boldRows, columnWidths));
       
       boldRows[1] = 0;
+      columnWidths = new List<int>(){90, 20, 20, 20};
       string[,] costAnalysis = new string[purch.CostAnalysisCollection.Count + 1, 4];
       costAnalysis[0, 0] = "Наименование работ/услуг";
       costAnalysis[0, 1] = "Цена по КП выбр. контр.";
@@ -1000,7 +1058,7 @@ namespace sberdev.SBContracts.Server
         counter++;
       }
       if (purch.CostAnalysisCollection.Count > 0)
-        ReplacePlaceholderWithTable(body, "[CostAnalysisCollection]", CreateTableByArray(body, costAnalysis, boldRows));
+        ReplacePlaceholderWithTable(body, "[CostAnalysisCollection]", CreateTableByArray(body, costAnalysis, boldRows, columnWidths));
       else
         body.Range.Replace("[CostAnalysisCollection]", "");
       #endregion
@@ -1094,7 +1152,7 @@ namespace sberdev.SBContracts.Server
       }
     }
     
-    static Aspose.Words.Tables.Table CreateTableByArray(Aspose.Words.Document doc, string[,] values, List<int> boldRows)
+    static Aspose.Words.Tables.Table CreateTableByArray(Aspose.Words.Document doc, string[,] values, List<int> boldRows, List<int> columnWidths)
     {
       // Создаем новую таблицу
       var table = new Aspose.Words.Tables.Table(doc);
@@ -1106,8 +1164,8 @@ namespace sberdev.SBContracts.Server
         for (int col = 0; col < values.GetLength(1); col++)
         {
           var cell = new Aspose.Words.Tables.Cell(doc);
-          cell.CellFormat.Width = 50;
-
+          cell.CellFormat.Width = columnWidths[col];
+          var dfd = columnWidths[col];
           // Создаем пустой параграф
           var paragraph = new Aspose.Words.Paragraph(doc);
 
@@ -1128,6 +1186,7 @@ namespace sberdev.SBContracts.Server
         }
         table.AppendChild(tableRow);
       }
+      table.AllowAutoFit = false;
       return table;
     }
 

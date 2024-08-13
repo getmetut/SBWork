@@ -268,6 +268,15 @@
       "EntityGuid": "c83dae80-532a-47a6-8404-97fe8a2cc722",
       "IsShowedInList": false,
       "PreviousPropertyGuid": "81add833-7c54-4794-9d10-171a042de405"
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "0cc10cca-97e2-44ca-becb-4c4fb2617058",
+      "Name": "CollectionEmplAcc",
+      "Code": "ColMVZEmpl",
+      "EntityGuid": "ee5492bb-4394-44ab-9b8e-832adde34a6b",
+      "IsShowedInList": false,
+      "PreviousPropertyGuid": "008ec51d-d50b-4882-b516-d1b76e266d9e"
     }
   ],
   "PublicStructures": [],

@@ -407,20 +407,20 @@
       "Value": "new System.Guid(\"908D8CDA-B8DD-4838-8336-61759B2090CD\")"
     },
     {
+      "Name": "OrderXiongxin",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"f22bbef8-9754-4963-8d60-21368432bf4b\")"
+    },
+    {
       "Name": "ProductStabGuid",
       "ParentClasses": [
         "Module"
       ],
       "TypeName": "System.Guid",
       "Value": "new System.Guid(\"fee545b2-0f1e-40da-8c9d-f7abd565c6cf\")"
-    },
-    {
-      "Name": "SupAgreementXiongxin",
-      "ParentClasses": [
-        "Module"
-      ],
-      "TypeName": "System.Guid",
-      "Value": "new System.Guid(\"3d27eb22-af95-4cf8-8ddf-ddeb05941741\")"
     }
   ],
   "PublicFunctions": [

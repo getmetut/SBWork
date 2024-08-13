@@ -353,6 +353,15 @@
     <value>Спецификация ПАО</value>
   </data>
   <data name="ControlGroup_d925af3a97174781a0e5bacf924c4ffb" xml:space="preserve">
-    <value>Договор Xiongxin</value>
+    <value>Заказ Xiongxin</value>
+  </data>
+  <data name="Property_DelConditionEnSberDev" xml:space="preserve">
+    <value>Усл-я поставки (англ.)</value>
+  </data>
+  <data name="Property_DeliveryDateSberDev" xml:space="preserve">
+    <value>Срок поставки</value>
+  </data>
+  <data name="Property_DelConditionChSberDev" xml:space="preserve">
+    <value>Усл-я поставки (кит.)</value>
   </data>
 </root>

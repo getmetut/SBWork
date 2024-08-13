@@ -391,10 +391,13 @@
   <data name="Enum_LifeCycleState_Obsolete" xml:space="preserve">
     <value>Obsolete</value>
   </data>
-  <data name="Property_ConterpartyTINSberDev" xml:space="preserve">
-    <value>Conterparty TIN</value>
+  <data name="Property_CounterpartyTINSberDev" xml:space="preserve">
+    <value>Counterparty TIN</value>
   </data>
   <data name="Property_CardURLSberDev" xml:space="preserve">
     <value>Card URL</value>
+  </data>
+  <data name="Property_CouterpartyTRRCSberDev" xml:space="preserve">
+    <value>Couterparty TRRC</value>
   </data>
 </root>

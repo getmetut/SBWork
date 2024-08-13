@@ -359,9 +359,21 @@
     <value />
   </data>
   <data name="ControlGroup_d925af3a97174781a0e5bacf924c4ffb" xml:space="preserve">
-    <value>Xiongxin Contract</value>
+    <value>Xiongxin order</value>
   </data>
-  <data name="ControlGroup_63d2c399b73c49bea20a3e651e2cd114" xml:space="preserve">
+  <data name="Property_DeliveryDateSberDev" xml:space="preserve">
+    <value>Delivery date</value>
+  </data>
+  <data name="Property_DelConditionEnSberDev" xml:space="preserve">
+    <value>Del. condition (en.)</value>
+  </data>
+  <data name="Property_OrderXXTableSberDev" xml:space="preserve">
+    <value>SupAgreXXTable</value>
+  </data>
+  <data name="Property_DelConditionChSberDev" xml:space="preserve">
+    <value>Del. condition (ch.)</value>
+  </data>
+  <data name="ControlGroup_14efaf9d8d3747f4bb0c9b70e3a3a8e4" xml:space="preserve">
     <value />
   </data>
 </root>

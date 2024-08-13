@@ -1265,10 +1265,10 @@
           "Name": "ControlGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 50.0
+              "Percentage": 54.73
             },
             {
-              "Percentage": 50.0
+              "Percentage": 43.56
             }
           ],
           "ColumnNumber": 0,
@@ -1312,19 +1312,6 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
           "ParentGuid": "9a9b91a8-7e9f-4890-82c4-a4fe0197b1d2",
           "PropertyGuid": "a7d3dfe0-8181-4409-a777-dac9ae0a6536",
-          "RowNumber": 1,
-          "RowSpan": 1,
-          "Settings": []
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "ab80bafa-2353-4c4a-b0dc-adae48b47d3d",
-          "Name": "AmountPostpaySberDevSberDev",
-          "ColumnNumber": 1,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
-          "ParentGuid": "9a9b91a8-7e9f-4890-82c4-a4fe0197b1d2",
-          "PropertyGuid": "8c86cb2e-5031-4b21-b106-ae0a1e7e8d1b",
           "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []

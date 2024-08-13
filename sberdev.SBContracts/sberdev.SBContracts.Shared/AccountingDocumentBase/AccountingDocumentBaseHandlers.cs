@@ -33,8 +33,19 @@ namespace sberdev.SBContracts
     public override void CounterpartyChanged(Sungero.Docflow.Shared.AccountingDocumentBaseCounterpartyChangedEventArgs e)
     {
       base.CounterpartyChanged(e);
-      if (e.NewValue != e.OldValue && e.NewValue != null)
-      _obj.ConterpartyTINSberDev = e.NewValue.TIN;
+      if (e.NewValue != e.OldValue)
+      {
+        if (e.NewValue != null && SBContracts.Companies.Is(e.NewValue))
+        {
+          _obj.CounterpartyTINSberDev = e.NewValue.TIN;
+          _obj.CouterpartyTRRCSberDev = SBContracts.Companies.As(e.NewValue).TRRC;
+        }
+        else
+        {
+          _obj.CounterpartyTINSberDev = null;
+          _obj.CouterpartyTRRCSberDev = null;
+        }
+      }
     }
 
     public virtual void AccDocSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseAccDocSberDevChangedEventArgs e)
@@ -90,7 +101,7 @@ namespace sberdev.SBContracts
         }
         _obj.State.Properties.InvoiceSberDev.HighlightColor = _obj.InvoiceSberDev.InternalApprovalState == SBContracts.OfficialDocument.InternalApprovalState.Signed ?
           Colors.Common.White : Colors.Common.Red;
-      }      
+      }
     }
 
     public override void DocumentKindChanged(Sungero.Docflow.Shared.OfficialDocumentDocumentKindChangedEventArgs e)

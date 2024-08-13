@@ -253,22 +253,22 @@ namespace sberdev.SberContracts.Server
     
     public void CreateDocumentKinds()
     {
-      // Создание вида документа «Гарантийное письмо».
+      // Создание вида документа «Договор Xiongxin».
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Договор Xiongxin", "Договор Xiongxin",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
-                                                                              Sungero.Contracts.Server.SupAgreement.ClassTypeGuid,
+                                                                              Sungero.Contracts.Server.Contract.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
                                                                                 Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },
                                                                               Constants.Module.ContractXiongxin);
-      // Создание вида документа «Гарантийное письмо».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Дополнительное соглашение Xiongxin", "Доп. соглашение Xiongxin",
+      // Создание вида документа «Заказ Xiongxin».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Заказ Xiongxin", "Заказ Xiongxin",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
                                                                               Sungero.Contracts.Server.SupAgreement.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
                                                                                 Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },
-                                                                              Constants.Module.SupAgreementXiongxin);
+                                                                              Constants.Module.OrderXiongxin);
       // Создание вида документа «Спецификация ПАО».
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Спецификация ПАО", "Спецификация ПАО",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,

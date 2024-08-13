@@ -376,7 +376,10 @@
   <data name="Property_CardURLSberDev" xml:space="preserve">
     <value>URL карточки</value>
   </data>
-  <data name="Property_ConterpartyTINSberDev" xml:space="preserve">
+  <data name="Property_CounterpartyTINSberDev" xml:space="preserve">
     <value>ИНН контрагента</value>
+  </data>
+  <data name="Property_CouterpartyTRRCSberDev" xml:space="preserve">
+    <value>КПП контрагента</value>
   </data>
 </root>

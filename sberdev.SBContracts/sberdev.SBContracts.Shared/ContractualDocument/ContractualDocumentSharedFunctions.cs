@@ -456,8 +456,6 @@ namespace sberdev.SBContracts.Shared
         _obj.State.Properties.DelPeriodSberDev.IsRequired = true;
         _obj.State.Properties.AmountPrepaySberDev.IsVisible = true;
         _obj.State.Properties.AmountPrepaySberDev.IsRequired = true;
-        _obj.State.Properties.AmountPostpaySberDev.IsVisible = true;
-        _obj.State.Properties.AmountPostpaySberDev.IsRequired = true;
         _obj.State.Properties.DeadlinePrepaySberDev.IsVisible = true;
         _obj.State.Properties.DeadlinePrepaySberDev.IsRequired = true;
         _obj.State.Properties.AdressSberDev.IsVisible = true;
@@ -475,8 +473,6 @@ namespace sberdev.SBContracts.Shared
         _obj.State.Properties.DelPeriodSberDev.IsRequired = false;
         _obj.State.Properties.AmountPrepaySberDev.IsVisible = false;
         _obj.State.Properties.AmountPrepaySberDev.IsRequired = false;
-        _obj.State.Properties.AmountPostpaySberDev.IsVisible = false;
-        _obj.State.Properties.AmountPostpaySberDev.IsRequired = false;
         _obj.State.Properties.DeadlinePrepaySberDev.IsVisible = false;
         _obj.State.Properties.DeadlinePrepaySberDev.IsRequired = false;
         _obj.State.Properties.AdressSberDev.IsVisible = false;

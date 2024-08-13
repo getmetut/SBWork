@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -22,6 +22,19 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.GoogleDocsLinkSberDev.IsVisible = specPAOFlag;
       _obj.State.Properties.GoogleDocsLinkSberDev.IsRequired = specPAOFlag;
       _obj.State.Properties.SubjectSpecificationSberDev.IsVisible = specPAOFlag;
+      
+      bool orderXXFlag = _obj.DocumentKind != null && _obj.DocumentKind.Name == "Заказ Xiongxin";
+      
+      _obj.State.Properties.DelConditionEnSberDev.IsVisible = orderXXFlag;
+      _obj.State.Properties.DelConditionEnSberDev.IsRequired = orderXXFlag;
+      _obj.State.Properties.OrderXXTableSberDev.IsVisible = orderXXFlag;
+      _obj.State.Properties.OrderXXTableSberDev.IsRequired = orderXXFlag;
+      _obj.State.Properties.DelConditionChSberDev.IsVisible = orderXXFlag;
+      _obj.State.Properties.DelConditionChSberDev.IsRequired = orderXXFlag;
+      _obj.State.Properties.DeliveryDateSberDev.IsVisible = orderXXFlag;
+      _obj.State.Properties.DeliveryDateSberDev.IsRequired = orderXXFlag;
+      _obj.State.Properties.AgentSaluteSberDev.IsVisible = orderXXFlag;
+      _obj.State.Properties.AgentSaluteSberDev.IsRequired = orderXXFlag;
     }
   }
 }

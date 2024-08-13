@@ -1668,11 +1668,11 @@
     {
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
       "NameGuid": "4a0d30e7-deaa-44bd-977c-ea84ab26b43d",
-      "Name": "ConterpartyTINSberDev",
+      "Name": "CounterpartyTINSberDev",
       "Code": "CpTINAcc",
       "IsEnabled": false,
       "IsVisibility": false,
-      "Length": 100,
+      "Length": 50,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "43eda876-5008-4dbd-a35a-0b1e030d8a72"
     },
@@ -1680,11 +1680,25 @@
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
       "NameGuid": "b7562270-004a-4cde-a353-38b4c9c77688",
       "Name": "CardURLSberDev",
+      "CanBeSearch": false,
       "Code": "CardURLAcc",
       "IsEnabled": false,
       "IsVisibility": false,
+      "Length": 100,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "4a0d30e7-deaa-44bd-977c-ea84ab26b43d",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "8e516513-58b6-478c-8a5f-e18e9c5e5bda",
+      "Name": "CouterpartyTRRCSberDev",
+      "Code": "CpTRRCAcc",
+      "IsEnabled": false,
+      "IsVisibility": false,
+      "Length": 50,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "b7562270-004a-4cde-a353-38b4c9c77688",
       "Versions": []
     }
   ],

@@ -349,6 +349,14 @@
       "Value": "\"2.5.4.7\""
     },
     {
+      "Name": "OrderXiongxinTemplateDocxName",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"//OrderXioxingTemplate.docx\""
+    },
+    {
       "Name": "OrganizationName",
       "ParentClasses": [
         "Module",
@@ -391,14 +399,6 @@
       ],
       "TypeName": "System.String",
       "Value": "\"2.5.4.9\""
-    },
-    {
-      "Name": "SupAgreementXiongxinTemplateDocxName",
-      "ParentClasses": [
-        "Module"
-      ],
-      "TypeName": "System.String",
-      "Value": "\"//SupAgreementXioxingTemplate.docx\""
     },
     {
       "Name": "Surname",
