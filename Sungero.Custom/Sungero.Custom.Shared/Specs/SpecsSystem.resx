@@ -133,4 +133,52 @@
   <data name="Property_Counterparty" xml:space="preserve">
     <value>Контрагент</value>
   </data>
+  <data name="Property_CalculationFlagBaseSberDev" xml:space="preserve">
+    <value>Calculation type</value>
+  </data>
+  <data name="Enum_CalculationFlagBaseSberDev_Percent" xml:space="preserve">
+    <value>Percent</value>
+  </data>
+  <data name="Enum_CalculationFlagBaseSberDev_Absolute" xml:space="preserve">
+    <value>Absolute amounts</value>
+  </data>
+  <data name="Property_CalculationDistributeBaseSberDev" xml:space="preserve">
+    <value>Distribute to</value>
+  </data>
+  <data name="Enum_CalculationDistributeBaseSberDev_Products" xml:space="preserve">
+    <value>ALL Products</value>
+  </data>
+  <data name="Enum_CalculationDistributeBaseSberDev_Licenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="Enum_CalculationDistributeBaseSberDev_Devices" xml:space="preserve">
+    <value>Devices</value>
+  </data>
+  <data name="Enum_CalculationDistributeBaseSberDev_ProductUnitsSberDev" xml:space="preserve">
+    <value>Product-units</value>
+  </data>
+  <data name="Enum_CalculationDistributeBaseSberDev_SelectedProds" xml:space="preserve">
+    <value>Selected products</value>
+  </data>
+  <data name="Enum_CalculationDistributeBaseSberDev_Tamplate" xml:space="preserve">
+    <value>Tamplate</value>
+  </data>
+  <data name="Property_CalculationResidualAmountBaseSberDev" xml:space="preserve">
+    <value>RESIDUAL:</value>
+  </data>
+  <data name="Property_CalculationBaseSberDev" xml:space="preserve">
+    <value>Calculation</value>
+  </data>
+  <data name="Property_CalculationAmountBaseSberDev" xml:space="preserve">
+    <value>TOTAL:</value>
+  </data>
+  <data name="ControlGroup_5417c876e5104b168313a528ba805106" xml:space="preserve">
+    <value>Калькуляция</value>
+  </data>
+  <data name="Control_488f2743984845d8b6b1ee230b140df4_DisplayValue" xml:space="preserve">
+    <value>Распределить</value>
+  </data>
+  <data name="Control_2caae234aacb452a9471f93c021c1dc9_DisplayValue" xml:space="preserve">
+    <value>Очистить таблицу</value>
+  </data>
 </root>

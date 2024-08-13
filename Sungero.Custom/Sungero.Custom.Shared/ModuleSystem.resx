@@ -109,4 +109,10 @@
   <data name="CoverDescription_ReSaveUsers" xml:space="preserve">
     <value>Скрипт пересохранения сотрудников и пользователей</value>
   </data>
+  <data name="JobDisplayName_6086c0a85ae44133ae443b56c3e55348" xml:space="preserve">
+    <value>Процесс редоставления прав на документы по признаку нахождения МВЗ</value>
+  </data>
+  <data name="JobDescription_6086c0a85ae44133ae443b56c3e55348" xml:space="preserve">
+    <value>Фоновый процесс редоставления прав на документы по признаку нахождения сотрудника в МВЗ</value>
+  </data>
 </root>

@@ -31,6 +31,24 @@
   ],
   "BaseGuid": "d795d1f6-45c1-4e5e-9677-b53fb7280c7e",
   "BlockIds": [],
+  "Blocks": [
+    {
+      "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "0cdbca3c-2ae0-4819-a6be-478770f6e897",
+      "Name": "SpecsClassicJob",
+      "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
+      "EntityType": "e4088257-a114-4f6f-9368-4217ba590509",
+      "Properties": []
+    },
+    {
+      "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "6c553734-fede-42fa-b781-2c69a25ef486",
+      "Name": "DoWorkSpec",
+      "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
+      "EntityType": "d2f3ca04-3b73-4285-a532-cbc011b958e0",
+      "Properties": []
+    }
+  ],
   "CanBeNavigationPropertyType": true,
   "CanBeSearch": false,
   "CreationAreaMetadata": {

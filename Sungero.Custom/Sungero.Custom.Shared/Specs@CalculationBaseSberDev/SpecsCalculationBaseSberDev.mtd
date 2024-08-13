@@ -1,0 +1,105 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "58b956dd-4ec7-4cec-b531-3095241fe099",
+  "Name": "SpecsCalculationBaseSberDev",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "SpecsCalculati",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e77043ab-b67c-487a-a6d4-ce105072b68f",
+      "Name": "Specs",
+      "CanBeSearch": false,
+      "Code": "EDoc",
+      "EntityGuid": "1ac4917b-556d-4743-8cb2-0fdd4c8976b3",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e82477a6-1ed2-4c4a-82ca-9a388b22091c",
+      "Name": "AggregationCalc",
+      "CanBeSearch": false,
+      "Code": "AggregationCal",
+      "IsEnabled": false,
+      "Length": 50,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "e77043ab-b67c-487a-a6d4-ce105072b68f",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "cb5b0816-e1b8-4b95-9746-fd7af33ae5e5",
+      "Name": "ProductCalc",
+      "CanBeSearch": false,
+      "Code": "ProductCalc",
+      "EntityGuid": "15fd6e99-dd3f-4959-98ff-c800852c6700",
+      "FlatListInStandaloneLookup": true,
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "e82477a6-1ed2-4c4a-82ca-9a388b22091c",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "52ac3508-858e-4e32-b892-b0949a6b0fdc",
+      "Name": "AbsoluteCalc",
+      "CanBeSearch": false,
+      "Code": "AbsoluteCalc",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "cb5b0816-e1b8-4b95-9746-fd7af33ae5e5",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "f1feca8b-d6b4-4f77-9438-50a6ff3d79eb",
+      "Name": "PercentCalc",
+      "CanBeSearch": false,
+      "Code": "PercentCalc",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "52ac3508-858e-4e32-b892-b0949a6b0fdc",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "2cb0d69b-04d9-4613-b6b5-17867724231e",
+      "Name": "InterestCalc",
+      "CanBeSearch": false,
+      "Code": "InterestCalc",
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "f1feca8b-d6b4-4f77-9438-50a6ff3d79eb",
+      "Versions": []
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "cbb5c358-b759-44e8-bd83-afac1da7a425",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "3675fc88-5b64-48fd-99c6-bd94401aeea9",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

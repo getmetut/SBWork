@@ -10,6 +10,53 @@ namespace Sungero.Custom.Server
   {
 
     /// <summary>
+    /// Процесс редоставления прав на документы по признаку нахождения МВЗ
+    /// </summary>
+    public virtual void JobAccesMVZ()
+    {
+      var MVZs = sberdev.SberContracts.MVZs.GetAll(m => m.Status == sberdev.SberContracts.MVZ.Status.Active).ToList();
+      if (MVZs.Count > 0)
+      {
+        foreach (var mvz in MVZs)
+        {
+          if (mvz.CollectionEmplAcc.Count > 0)
+          {            
+            foreach (var empl in mvz.CollectionEmplAcc)
+            {
+              var usr = empl.Employee;
+              
+              var DocsContractual = sberdev.SBContracts.ContractualDocuments.GetAll(c => ((c.MVZBaseSberDev == mvz) && (!c.AccessRights.CanRead(usr)))).ToList();
+              var DocsAccounting = sberdev.SBContracts.AccountingDocumentBases.GetAll(a => ((a.MVZBaseSberDev == mvz) && (!a.AccessRights.CanRead(usr)))).ToList(); 
+                        
+              if (DocsContractual.Count > 0)
+              {
+                foreach (var contr in DocsContractual)
+                {
+                  if (!contr.AccessRights.CanRead(usr))
+                  {
+                    contr.AccessRights.Grant(usr, DefaultAccessRightsTypes.Read);
+                    contr.Save();
+                  }
+                }
+              }
+              if (DocsAccounting.Count > 0)
+              {
+                foreach (var Accoun in DocsAccounting)
+                {
+                  if (!Accoun.AccessRights.CanRead(usr))
+                  {
+                    Accoun.AccessRights.Grant(usr, DefaultAccessRightsTypes.Read);
+                    Accoun.Save();
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /// <summary>
     /// Фоновый процесс рассылки уведомлений по договорам с истекающим сроком действия
     /// </summary>
     public virtual void ControlSkorContracts()

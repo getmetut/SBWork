@@ -212,8 +212,12 @@
       "PreviousItemId": "e4088257-a114-4f6f-9368-4217ba590509"
     },
     {
-      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "ItemId": "d2f3ca04-3b73-4285-a532-cbc011b958e0",
       "PreviousItemId": "2eb05867-1528-4015-ba70-37152be45871"
+    },
+    {
+      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "PreviousItemId": "d2f3ca04-3b73-4285-a532-cbc011b958e0"
     }
   ],
   "HandledEvents": [
@@ -238,6 +242,13 @@
     {
       "NameGuid": "8908cbb1-c53f-40be-a450-c1b7be88cac7",
       "Name": "ControlSkorContracts",
+      "GenerateHandler": true,
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T08:30:00"
+    },
+    {
+      "NameGuid": "6086c0a8-5ae4-4133-ae44-3b56c3e55348",
+      "Name": "JobAccesMVZ",
       "GenerateHandler": true,
       "MonthSchedule": "Monthly",
       "StartAt": "1753-01-01T08:30:00"
@@ -414,7 +425,7 @@
   "SharedAssemblyName": "Sungero.Custom.Shared",
   "SharedNamespace": "Sungero.Custom.Shared",
   "SpecialFolders": [],
-  "Version": "0.1.0.78",
+  "Version": "0.1.0.82",
   "Widgets": [],
   "Versions": [
     {

@@ -42,11 +42,15 @@ namespace SDev.BPCustom.Server.ContractualTaskBlocks
 
     public virtual void MonitoringBlockStart()
     {
-      var task = Sungero.Docflow.ApprovalTasks.CreateAsSubtask(_obj);        
+      var task = Sungero.Docflow.ApprovalTasks.CreateAsSubtask(_obj);  
+      var doc = _obj.BaseAttachments.ContractualDocuments.FirstOrDefault();
       task.DocumentGroup.OfficialDocuments.Add(_obj.BaseAttachments.ContractualDocuments.FirstOrDefault());
       task.Signatory = _obj.Signer;                
-      task.Author = _obj.Author;      
-      task.ApprovalRule = _block.ApprovalRule;     
+      task.Author = _obj.Author;
+      if (_block.ApprovalRule != null)
+        task.ApprovalRule = _block.ApprovalRule;
+      else
+        task.ApprovalRule = Sungero.Docflow.PublicFunctions.OfficialDocument.Remote.GetApprovalRules(doc).FirstOrDefault();        
       task.Save();
       task.Start();
 	    _block.SubTask = task;

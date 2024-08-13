@@ -103,4 +103,43 @@
   <data name="Control_a915c070568d4f08a7365fbdabe9e559_EmptyText" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_CalculationFlagBaseSberDev" xml:space="preserve">
+    <value>Вид расчета</value>
+  </data>
+  <data name="Enum_CalculationFlagBaseSberDev_Percent" xml:space="preserve">
+    <value>Процент</value>
+  </data>
+  <data name="Enum_CalculationFlagBaseSberDev_Absolute" xml:space="preserve">
+    <value>Абсолютные суммы</value>
+  </data>
+  <data name="Property_CalculationDistributeBaseSberDev" xml:space="preserve">
+    <value>Распределить на</value>
+  </data>
+  <data name="Enum_CalculationDistributeBaseSberDev_Products" xml:space="preserve">
+    <value>ВСЕ Продукты</value>
+  </data>
+  <data name="Enum_CalculationDistributeBaseSberDev_Devices" xml:space="preserve">
+    <value>Устройства</value>
+  </data>
+  <data name="Enum_CalculationDistributeBaseSberDev_Licenses" xml:space="preserve">
+    <value>Лицензии</value>
+  </data>
+  <data name="Enum_CalculationDistributeBaseSberDev_ProductUnitsSberDev" xml:space="preserve">
+    <value>Продукт-юниты</value>
+  </data>
+  <data name="Enum_CalculationDistributeBaseSberDev_SelectedProds" xml:space="preserve">
+    <value>Выбранные продукты</value>
+  </data>
+  <data name="Enum_CalculationDistributeBaseSberDev_Tamplate" xml:space="preserve">
+    <value>Шаблон</value>
+  </data>
+  <data name="Property_CalculationResidualAmountBaseSberDev" xml:space="preserve">
+    <value>ОСТАТОК:</value>
+  </data>
+  <data name="Property_CalculationBaseSberDev" xml:space="preserve">
+    <value>Калькуляция</value>
+  </data>
+  <data name="Property_CalculationAmountBaseSberDev" xml:space="preserve">
+    <value>ИТОГО:</value>
+  </data>
 </root>

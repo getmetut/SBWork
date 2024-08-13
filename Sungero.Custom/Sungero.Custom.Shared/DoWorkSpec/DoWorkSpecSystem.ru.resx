@@ -58,31 +58,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Согласование спецификации</value>
+  <data name="Enum_Result_Complete" xml:space="preserve">
+    <value>Доработано</value>
   </data>
-  <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Согласование спецификации</value>
+  <data name="Action_Complete" xml:space="preserve">
+    <value>Доработано</value>
   </data>
-  <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Согласования спецификаций</value>
+  <data name="Action_CompleteHint" xml:space="preserve">
+    <value>Выполнить с результатом "Доработано"</value>
   </data>
-  <data name="AttachmentGroup_BaseAttachmentsTitle" xml:space="preserve">
-    <value>Основные документы</value>
+  <data name="Action_CompleteConfirmationMessage" xml:space="preserve">
+    <value>Выполнить задание с результатом "Доработано"?</value>
   </data>
-  <data name="AttachmentGroup_BaseAttachmentsInformationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="AttachmentGroup_OtherAttachmentsTitle" xml:space="preserve">
-    <value>Сопровождающие документы</value>
-  </data>
-  <data name="AttachmentGroup_OtherAttachmentsInformationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Block_0cdbca3c2ae04819a6be478770f6e897" xml:space="preserve">
-    <value>Типовой блок согласования спецификации</value>
-  </data>
-  <data name="Block_6c553734fede42fab7812c69a25ef486" xml:space="preserve">
-    <value>На доработку</value>
+  <data name="Action_CompleteDescription" xml:space="preserve">
+    <value>Выполнение задания с результатом "Доработано"</value>
   </data>
 </root>

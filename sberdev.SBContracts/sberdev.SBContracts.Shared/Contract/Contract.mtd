@@ -1265,10 +1265,10 @@
           "Name": "ControlGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 54.73
+              "Percentage": 55.68
             },
             {
-              "Percentage": 43.56
+              "Percentage": 44.32
             }
           ],
           "ColumnNumber": 0,
