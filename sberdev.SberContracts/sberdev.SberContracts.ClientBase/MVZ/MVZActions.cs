@@ -18,7 +18,7 @@ namespace sberdev.SberContracts.Client
 
     public virtual void AddUserInMVZ(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-      var Dial = Dialogs.CreateInputDialog();
+      var Dial = Dialogs.CreateInputDialog("");
       var Empl = Dial.AddSelect("Укажите сотрудника",true,Sungero.Company.Employees.Null);
       if (Dial.Show() == DialogButtons.Ok)
       {
@@ -38,14 +38,14 @@ namespace sberdev.SberContracts.Client
 
     public virtual void DelUserInMVZ(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-      var dial = Dialogs.CreateInputDialog();
+      var dial = Dialogs.CreateInputDialog("");
       var empl = dial.AddSelect("Укажите сотрудника", true, Sungero.Company.Employees.Null);
       
       if (dial.Show() != DialogButtons.Ok)
         return;
 
       var empId = empl.Value?.Id ?? -1;
-      var employee = Sungero.Company.Employees.GetAll().FirstOrDefault(e => e.Id == empId);
+      var employee = Sungero.Company.Employees.GetAll().FirstOrDefault(emp => emp.Id == empId);
       
       if (employee == null)
         return;
