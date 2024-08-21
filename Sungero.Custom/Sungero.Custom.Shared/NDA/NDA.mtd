@@ -15,6 +15,7 @@
   ],
   "BaseGuid": "c0d4a2e6-8d3d-466f-823a-b4fdb7dd28c7",
   "CanBeNavigationPropertyType": true,
+  "CanBeSearch": true,
   "CreationAreaMetadata": {
     "NameGuid": "42cd5bb8-00ff-47d9-9b32-ef06ef9c5ef4",
     "Name": "CreationArea",
@@ -221,8 +222,13 @@
     "ShowingClient"
   ],
   "IconResourcesKeys": [],
+  "IsSelectableAsFolderContent": true,
   "OpenCardByDefaultInCollection": true,
   "OperationsClass": "",
+  "Overridden": [
+    "IsVisible",
+    "CanBeSearch"
+  ],
   "Properties": [
     {
       "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",

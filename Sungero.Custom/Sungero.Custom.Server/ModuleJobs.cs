@@ -37,6 +37,19 @@ namespace Sungero.Custom.Server
                     contr.AccessRights.Grant(usr, DefaultAccessRightsTypes.Read);
                     contr.Save();
                   }
+                  
+                  var Tasks = Sungero.Docflow.ApprovalTasks.GetAll(t => t.DocumentGroup.OfficialDocuments.FirstOrDefault() != null).Where(t => ((t.DocumentGroup.OfficialDocuments.FirstOrDefault() == contr) && (!t.AccessRights.CanRead(usr)))).ToList();
+                  if (Tasks.Count > 0)
+                  {
+                    foreach (var tsk in Tasks)
+                    {
+                      if (!tsk.AccessRights.CanRead(usr))
+                      {
+                        tsk.AccessRights.Grant(usr, DefaultAccessRightsTypes.Read);
+                        tsk.Save();
+                      }
+                    }
+                  } 
                 }
               }
               if (DocsAccounting.Count > 0)
