@@ -744,8 +744,17 @@ namespace sberdev.SBContracts.Server
       switch (typeName)
       {
         case "sberdev.SberContracts.Purchase":
-          body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.PurchaseTemplateDocxName);
-          CreateBodyByPropertiesPurchase(SberContracts.Purchases.As(doc), body);
+          var purch = SberContracts.Purchases.As(doc);
+          if (purch.PurchaseAmount > 500000)
+          {
+            body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.PurchaseTemplateDocxName);
+            CreateBodyByPropertiesPurchase(purch, body);
+          }
+          else
+          {
+            body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.PurchaseTemplateDocxName);
+            CreateBodyByPropertiesPurchaseShort(purch, body);
+          }
           break;
         case "sberdev.SBContracts.Contract":
           if (doc.DocumentKind == null)
@@ -774,6 +783,7 @@ namespace sberdev.SBContracts.Server
       doc.Save();
     }
     
+    #region Заказ Xiongxin
     public void CreateBodyByPropertiesOrderXiongxin(SBContracts.ISupAgreement order, Aspose.Words.Document body)
     {
       var contract = order.LeadingDocument;
@@ -825,11 +835,11 @@ namespace sberdev.SBContracts.Server
       table[order.OrderXXTableSberDev.Count + 1, 1] = "ИТОГО / TOTAL";
       table[order.OrderXXTableSberDev.Count + 1, 3] = order.OrderXXTableSberDev.Select(p => p.Amount).Sum().ToString();
       table[order.OrderXXTableSberDev.Count + 1, 5] = order.OrderXXTableSberDev.Select(p => p.Amount * p.UnitPrice).Sum().ToString();
-  //    var tableOrder = CreateTableByArray(body, table, boldRows, columnWidths);
-      ReplacePlaceholderWithTable(body, "[Table]", CreateTableByArray(body, table, boldRows, columnWidths));
-   //   tableOrder.AutoFit(Aspose.Words.Tables.AutoFitBehavior.FixedColumnWidths);
+      ReplacePlaceholderWithTable(body, "[Table]", CreateTableByArray(body, table, boldRows, columnWidths, "Times New Roman", 9));
     }
+    #endregion
     
+    #region Договор Xiongxin
     public void CreateBodyByPropertiesContractXiongxin(SBContracts.IContractualDocument contr, Aspose.Words.Document body)
     {
       if (contr.RegistrationNumber != null)
@@ -881,7 +891,9 @@ namespace sberdev.SBContracts.Server
       else
         body.Range.Replace("[ACNumber]", "Не указан счет в карточке контрагента!");
     }
+    #endregion
     
+    #region Закупка
     public void CreateBodyByPropertiesPurchase(SberContracts.IPurchase purch, Aspose.Words.Document body)
     {
       List<string> addendums = new List<string>();
@@ -1000,7 +1012,7 @@ namespace sberdev.SBContracts.Server
         body.Range.Replace("[NecessaryConclude]", "Дополнительное Соглашение к " + purch.LeadingDocument.Name + " от " + purch.LeadingDocument.DocumentDate.Value.Year.ToString() +" года");
       body.Range.Replace("[DepartmentPurchase]", purch.DepartmentPurchase.Name);
       
-      if (purch.TotalAmount != purch.PurchaseAmount)
+      if (purch.TotalAmount != null && purch.TotalAmount != purch.PurchaseAmount)
         body.Range.Replace("[TotalAmount]", "при этом общая стоимость договора составит " + purch.TotalAmount.Value.ToString() + (purch.VAT.Value ? "руб. с учетом НДС 20%" : "руб. без учета НДС 20%"));
       
       body.Range.Replace("[PurchaseKindExt]", GetPurchaseKindExt(purch.KindPurchase));
@@ -1039,7 +1051,7 @@ namespace sberdev.SBContracts.Server
       stages[purch.StagesPurchaseCollection.Count + 1, 0] = "ИТОГО длительность и стоимость реализации проекта";
       stages[purch.StagesPurchaseCollection.Count + 1, 1] = purch.StagesPurchaseCollection.Select(p => p.Cost).Sum().ToString();
       stages[purch.StagesPurchaseCollection.Count + 1, 2] = purch.StagesPurchaseCollection.Select(p => p.Duration).Sum().ToString();
-      ReplacePlaceholderWithTable(body, "[StagesPurchaseCollection]", CreateTableByArray(body, stages, boldRows, columnWidths));
+      ReplacePlaceholderWithTable(body, "[StagesPurchaseCollection]", CreateTableByArray(body, stages, boldRows, columnWidths, "Times New Roman", 12));
       
       boldRows[1] = 0;
       columnWidths = new List<int>(){90, 20, 20, 20};
@@ -1058,11 +1070,42 @@ namespace sberdev.SBContracts.Server
         counter++;
       }
       if (purch.CostAnalysisCollection.Count > 0)
-        ReplacePlaceholderWithTable(body, "[CostAnalysisCollection]", CreateTableByArray(body, costAnalysis, boldRows, columnWidths));
+        ReplacePlaceholderWithTable(body, "[CostAnalysisCollection]", CreateTableByArray(body, costAnalysis, boldRows, columnWidths, "Times New Roman", 12));
       else
         body.Range.Replace("[CostAnalysisCollection]", "");
       #endregion
     }
+    #endregion
+    
+    #region Закупка меньше 500к
+    public void CreateBodyByPropertiesPurchaseShort(SberContracts.IPurchase purch, Aspose.Words.Document body)
+    {
+      body.Range.Replace("[SubjectPurchase]", purch.SubjectPurchase);
+      body.Range.Replace("[TargetPurchase]", purch.TargetPurchase);
+      var budgetOwner = SBContracts.PublicFunctions.ContractualDocument.GetMVZBudgetOwner(purch);
+      if (budgetOwner != null)
+        body.Range.Replace("[BudgetOwner]", budgetOwner.Name);
+      else
+        body.Range.Replace("[BudgetOwner]", "Отсутствует");
+      string str = "";
+      if (purch.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Absolute)
+        foreach(var prod in purch.CalculationBaseSberDev)
+          str += prod.ProductCalc.Name + " - " + prod.AbsoluteCalc.ToString() + "\n";
+      if (purch.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent)
+        foreach(var prod in purch.CalculationBaseSberDev)
+          str += prod.ProductCalc + " - " + prod.InterestCalc.ToString() + "%\n";
+      body.Range.Replace("[Products]", str);
+      body.Range.Replace("[AccArt]", purch.AccArtExBaseSberDev.Name);
+      if (purch.MarketDirectSberDev != null)
+        body.Range.Replace("[MarketDirect]", purch.MarketDirectSberDev.Name);
+      else
+        body.Range.Replace("[MarketDirect]", "Отсутствует");
+      body.Range.Replace("[Amount]", purch.PurchaseAmount.Value.ToString() + " " + purch.Currency.ShortName + (purch.VAT.Value ? " с учетом НДС" : " без учсета НДС"));
+      body.Range.Replace("[Counterparty]", purch.Counterparty.Name);
+      body.Range.Replace("[ChooseCpJustif]", purch.ChooseCpJustif);
+      body.Range.Replace("[PaymentType]", SBContracts.PublicFunctions.Module.GetPaymentType(purch));
+    }
+    #endregion
     
     #region Вспомогателбные функции для построения документа
     
@@ -1152,7 +1195,7 @@ namespace sberdev.SBContracts.Server
       }
     }
     
-    static Aspose.Words.Tables.Table CreateTableByArray(Aspose.Words.Document doc, string[,] values, List<int> boldRows, List<int> columnWidths)
+    static Aspose.Words.Tables.Table CreateTableByArray(Aspose.Words.Document doc, string[,] values, List<int> boldRows, List<int> columnWidths, string font, byte fontSize)
     {
       // Создаем новую таблицу
       var table = new Aspose.Words.Tables.Table(doc);
@@ -1168,16 +1211,20 @@ namespace sberdev.SBContracts.Server
           var dfd = columnWidths[col];
           // Создаем пустой параграф
           var paragraph = new Aspose.Words.Paragraph(doc);
+          var run = new Run(doc, values[row, col] ?? "");
+
+          // Настройка шрифта и размера текста
+          run.Font.Name = font;
+          run.Font.Size = fontSize;
 
           // Добавляем текст в параграф
-          paragraph.AppendChild(new Run(doc, (values[row, col] == null ? "" : values[row, col])));
-
+          paragraph.AppendChild(run);
           // Если номер текущей строки содержится в списке boldRows, делаем текст жирным
           if (boldRows.Contains(row))
           {
-            foreach (Run run in paragraph.Runs)
+            foreach (Run r in paragraph.Runs)
             {
-              run.Font.Bold = true;
+              r.Font.Bold = true;
             }
           }
 

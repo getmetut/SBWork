@@ -22,7 +22,7 @@ namespace sberdev.SberContracts.Server
       if (budgetOwner != null)
         documentBlock.AddLabel("Владелец бюджета: " + budgetOwner.Name);
       else
-        documentBlock.AddLabel("Владелец бюджета: Отсутвует");
+        documentBlock.AddLabel("Владелец бюджета: Отсутствует");
       documentBlock.AddLineBreak();
       documentBlock.AddLabel("Продукты (валюта: " + _obj.Currency.DisplayValue + "): ");
       documentBlock.AddLineBreak();
@@ -35,17 +35,12 @@ namespace sberdev.SberContracts.Server
       if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Percent)
         foreach(var prod in _obj.CalculationBaseSberDev)
       {
-        documentBlock.AddLabel(prod.ProductCalc + " - " + prod.InterestCalc.ToString() + " ");
+        documentBlock.AddLabel(prod.ProductCalc + " - " + prod.InterestCalc.ToString() + "% ");
         documentBlock.AddLineBreak();
       }
       if (_obj.AccArtExBaseSberDev != null)
       {
-        documentBlock.AddLabel("Статья управленческого учета (рас.): " +  _obj.AccArtExBaseSberDev.Name);
-        documentBlock.AddLineBreak();
-      }
-      if (_obj.AccArtPrBaseSberDev != null)
-      {
-        documentBlock.AddLabel("Статья управленческого учета (дох.): " +  _obj.AccArtPrBaseSberDev.Name);
+        documentBlock.AddLabel("Статья управленческого учета: " +  _obj.AccArtExBaseSberDev.Name);
         documentBlock.AddLineBreak();
       }
       if (_obj.MarketDirectSberDev != null)
@@ -53,7 +48,7 @@ namespace sberdev.SberContracts.Server
         documentBlock.AddLabel("Направление маркетинга: " +  Hyperlinks.Get(_obj.MarketDirectSberDev));
         documentBlock.AddLineBreak();
       }
-      documentBlock.AddLabel("Общая сумма: " + GetTotalAmountDocumentSummary(_obj.TotalAmount) + (_obj.VAT.Value ? " с учетом НДС" : " без учсета НДС"));
+      documentBlock.AddLabel("Стоимость: " + _obj.PurchaseAmount + " " + _obj.Currency.ShortName + (_obj.VAT.Value ? " с учетом НДС" : " без учсета НДС"));
       documentBlock.AddLineBreak();
       documentBlock.AddLabel("Поставщик: " + Hyperlinks.Get(_obj.Counterparty));
       documentBlock.AddLineBreak();

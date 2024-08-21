@@ -214,4 +214,301 @@
   <data name="Property_Name1CSberDev" xml:space="preserve">
     <value>Наименование 1С</value>
   </data>
+  <data name="ControlGroup_df1dbb22faab484b9e190899b9ce2d04" xml:space="preserve">
+    <value>Counterparty rating</value>
+  </data>
+  <data name="Enum_AvgEmplSberDev_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Enum_AvgEmplSberDev_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Property_AvgEmplSberDev" xml:space="preserve">
+    <value>Low average number of employees</value>
+  </data>
+  <data name="Resource_11e983aa132044c0b15f8e591e67b029" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_95a10ae7233b4b84aca68a0f182bb2e5" xml:space="preserve">
+    <value>Markers Kontur.Focus</value>
+  </data>
+  <data name="Resource_11b8d3f084c24523bfca1fea50e056b5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_3de8f73534154739bc17e3d0d8503135" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_33223cbe0546496fa861ab62ad1b3142" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_adfd42d7109f46f2b71c5287993194ad" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_1068743f42684174a786857bd63c18ba" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ce5ff11653334ecf997d52ffef3c959c" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_223c62bc6aef4b4481e9962e0c2ee3fb" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_be5f804d8e2347a2a4a3b73a308028d1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_781b4b0d99654c679b488bdec08705d1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_4cce772272b84aeb9acd1fda579031b6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_4099d7edb30c4e23b5ef5f02906a58be" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_bc10b36d24f74cf98282992f51d84b64" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_bf1a5b44c4a542fdb880dab27c5a4c19" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_25a9fabe2bc2426db97ab89b46dd08c7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_502acc0a4eb946f6b69de635c513a28d" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_a714e64348c748ed8b822be03ba0cfa3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_a3af22b914f54efbae04f990c1f00bb9" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_6266bfafed2b481a9e8f2a49d52b7802" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_e81722018a064944b86bf30350a84ce1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_4753cf9a0992474b9d604cbd290d6b0d" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_22ad09131a3c496f8cb3b3f683554d1e" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_c519176b01384a8e9345e769c48d242e" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_540e88ccfeb34ef9a9dbc0c16ef19322" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_a3f01da378ce40f190bfa761b93536fb" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_28932e7c05f344d8a5f30c77dd8d7b8b" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_b9e84bd2c1864efea9fbd5f86ad5ca4b" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_0bf5f4f17baf41f7b15790edbf13d5a0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_e20dda6bd9f14781a9a0a6f2542b4206" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_fa7e78589ebb4668a30f6d1c4f659a4e" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_cc10007b30da42feb1a06f9d0e58d2fa" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_17bcfdc216ac4d5db1711dae415528bb" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_94c54595f30e4c7089ecc1807357175e" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_be7a6fdf430a453dabbe8faa7fcc35e0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_4603129d06ea47f5b982b4970d9a2af4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_7eb67e68c3364207a64287eeb031afa1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_4fd96b42a7644b8b8d3be81432248a9d" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_e49054c721814ba9bd576ec2dda5dfe1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_dcd8c96d7f6542d2b27f874704fcac9d" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_6e401d0b7f9d4ef1add1f6e9f24edb2c" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_00ab597c2f2a4a1682012f1a37e6fb64" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_88731a15404c4551b9e724c8fcbbd6c1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_38ea04f0c20b42cf8f06c837fd7bdc7b" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_8bee2dd52d89462482289070fa992eaf" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_60210d599ef041f09673c8480b63621d" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_88e988366fe94316ac77e408df6630f5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_32813c6f805043b8aa5ad3b1df48e79e" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_33ee5b6f546f4feca62e030a691e3915" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_1ba549ec94f8400f944568e005cbae7a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_e11d0b63d66143658cd41b439702b4a8" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_e3f1fc0a2a724a9eaac016eece2da8f8" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ddc04b0a2d2e4472ae16d3248c494f69" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_8ac440b70f6549639947dac30c7575f0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_5ee03eee8bbb4ce5ba20fbaea48fdef7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_0c64d80a241443d2a3ebe84ab98e54be" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_a81788c6b72a4dc7823e006f4f63a3cc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_57fffa9a85a7468eb0c5a8e7f7ce725c" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_7341cd0ebefa46e9ad0323a8ce9db330" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_50d7de8ba45741e5bf86261e3dc22328" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_4a4ebc79b13f4ed5aa83151c1acd8cb6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_2cd3ca86e907473387e5c886b10f607f" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_91a6d27f9c4040faaf3d77b1d30e03cf" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_a4aa13835b7f4c1d8e512bb56a79caec" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_2bab084401fd48b28b49750b0ac3646a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_32ea26d1dce542d28491869c2fa2b08b" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_29878b7d636e4b6aaa4ada05c3eef8c0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_da3c02ff4c6d46dfa27ec7b71edd6670" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_37e61030dae34b2181ab8e1746d6d551" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_a6edfd9efdfe49f5bebd00c3219ecd5e" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_725cf7d3a85543f0b91648d4383dd481" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_a2b65cc57ac1488a955fd145a8c70dc2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f5e79314b47e40129a358c8ebf039672" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_c2a10307c169493dbb821389a95e23c7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_bad6271da5d44e779d4dff8eef7745d9" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_3912e5f8a45a4e74995d19000d7ebf72" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_6e4711a1a06a4f6a8c837bd8f77cca8f" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_edd8c304c89744dc8462fc198eb05b3a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f709f197564e436a94d857ea25e9b07b" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f0cf046d43ab4ef1bdf5f656f3233509" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_114fff00a03e44eda0646ca49b8d4f2c" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_41ea9c52e01c461eade5ee812cd3fb23" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_fd13c2c4d3644b74b3c550af02aa13a4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_bdcff864a05e495291a41dc247e1ae69" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_fb0430d66ddd433685acacecebc41263" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_b6bec825c6504702892bd85ad5111622" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_46541d2bd278430d97a68b64d13060d9" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_26dd0a6200f04680bac581e59702b199" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_e173880ab5d049008f4546ae2866b37f" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_68553638df1746f59d83b78a2e04c4d7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_156abd1f18dd4664be83e62cbd13bb26" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_fbe801bc782f412daf6d4846ce74af4a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_32bf6d961a7a4714bd632f7f87ad387f" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_65c83978b64d40e2b18abe14cf955b89" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_3f253bd3590842ada686d2a20d22f389" xml:space="preserve">
+    <value />
+  </data>
 </root>

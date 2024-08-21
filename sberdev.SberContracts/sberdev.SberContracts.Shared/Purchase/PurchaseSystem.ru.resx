@@ -86,7 +86,7 @@
     <value />
   </data>
   <data name="Property_CommercialOffer" xml:space="preserve">
-    <value>Коммерческое предложение</value>
+    <value>Ком. предл.</value>
   </data>
   <data name="ControlGroup_519f2394febe4501adcaa34ee883d986" xml:space="preserve">
     <value>Наша сторона</value>
@@ -395,7 +395,7 @@
     <value>Скидка по итогу перег. (%)</value>
   </data>
   <data name="Property_UpgradedCommercialOffer" xml:space="preserve">
-    <value>Улучшенное ком. предложение</value>
+    <value>Улучш-ое ком. предл.</value>
   </data>
   <data name="Property_StagesPurchaseCollection" xml:space="preserve">
     <value>Стоимость и сроки этапов</value>
@@ -428,7 +428,7 @@
     <value>Не предусмотрен</value>
   </data>
   <data name="Property_DepartmentPurchase" xml:space="preserve">
-    <value>Подразделение, для которого закупка</value>
+    <value>Подразд-ие закупки</value>
   </data>
   <data name="Property_ServiceEndDate" xml:space="preserve">
     <value>Дата конца оказания услуг</value>

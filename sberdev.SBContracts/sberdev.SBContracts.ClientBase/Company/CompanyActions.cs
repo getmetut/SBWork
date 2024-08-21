@@ -7,8 +7,10 @@ using sberdev.SBContracts.Company;
 
 namespace sberdev.SBContracts.Client
 {
+
   partial class CompanyActions
   {
+
     public override void OpenOnDueDiligenceWebsite(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       string link = @"https://focus.kontur.ru/entity?query=" + _obj.PSRN;

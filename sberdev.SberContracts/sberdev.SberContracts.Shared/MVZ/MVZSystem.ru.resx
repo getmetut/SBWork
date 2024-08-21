@@ -97,4 +97,22 @@
   <data name="Property_CollectionEmplAcc" xml:space="preserve">
     <value>Сотрудники с доступом к документам</value>
   </data>
+  <data name="Action_AddUserInMVZ" xml:space="preserve">
+    <value>Добавить польз. в МВЗ</value>
+  </data>
+  <data name="Action_AddUserInMVZHint" xml:space="preserve">
+    <value>Добавить польз. в МВЗ</value>
+  </data>
+  <data name="Action_AddUserInMVZDescription" xml:space="preserve">
+    <value>Добавить польз. в МВЗ</value>
+  </data>
+  <data name="Action_DelUserInMVZ" xml:space="preserve">
+    <value>Удалить польз. из МВЗ</value>
+  </data>
+  <data name="Action_DelUserInMVZHint" xml:space="preserve">
+    <value>Удалить польз. из МВЗ</value>
+  </data>
+  <data name="Action_DelUserInMVZDescription" xml:space="preserve">
+    <value>Удалить польз. из МВЗ</value>
+  </data>
 </root>

@@ -1017,14 +1017,17 @@ namespace sberdev.SberContracts.Server
     public static void FillGeneralProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
     {
       doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev ;
-      doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
       if (docSelected.TotalAmount != null)
       {
         doc.TotalAmount = docSelected.TotalAmount;
         doc.Currency = docSelected.Currency;
       }
       doc.DeliveryMethod = docSelected.DeliveryMethod;
-      doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
+      if (!SberContracts.Purchases.Is(doc))
+      {
+        doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
+        doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
+      }
       doc.Counterparty = docSelected.Counterparty;
     }
     

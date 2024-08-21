@@ -1,0 +1,110 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "42264684-28bf-4959-866c-97b13d54e484",
+  "Name": "ConditionBase",
+  "BaseGuid": "af40ebe6-b150-4ece-868b-4f83a83a4222",
+  "CanBeNavigationPropertyType": true,
+  "CreationAreaMetadata": {
+    "NameGuid": "f7766750-eee2-4fcd-8003-5c06a90d1f44",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "b0125fbd-3b91-4dbb-914a-689276216404",
+    "Name": "FilterPanel",
+    "Controls": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "IconResourcesKeys": [],
+  "IsAbstract": true,
+  "LayeredFromGuid": "325a0811-c109-483d-bf57-3246eade5644",
+  "OperationsClass": "",
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "679c57e1-2e21-440b-91d1-101b6371e13b",
+      "Name": "Currencies",
+      "EntityGuid": "8ef8236d-df82-4c7f-aff2-a7cb6766150f",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e078276a-8b45-4ebc-a3cc-ebfdc3d8fd18",
+      "Name": "DocumentKinds",
+      "EntityGuid": "afabc7d8-c326-49b4-912d-49b24afa9772",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "5fff25cb-7584-43ca-83f0-2b3ed37f4bff",
+      "Name": "ConditionDocumentKinds",
+      "EntityGuid": "223db3b0-9868-4c46-96cf-5a412d85b991",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9aba844d-23da-4450-aaad-d3973b306044",
+      "Name": "DeliveryMethods",
+      "EntityGuid": "8f0a38fa-86ce-425d-a5f1-ed22400db032",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "d3c24534-3c10-40a8-91bf-26fe864da06b",
+      "Name": "Markers",
+      "EntityGuid": "a43d740a-11f9-4dbf-9166-97a76113e2e5",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "f774f284-23ab-430f-98d8-1a8f892b45e8",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "1d5bfce7-5dc2-4a18-bf63-812ceb0606a6",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

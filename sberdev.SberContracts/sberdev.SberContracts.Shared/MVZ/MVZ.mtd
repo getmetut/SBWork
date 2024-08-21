@@ -2,6 +2,28 @@
   "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
   "NameGuid": "d2061f28-0788-4291-9a87-3e2b87acd765",
   "Name": "MVZ",
+  "Actions": [
+    {
+      "NameGuid": "420a1ef5-51ee-4548-ad3f-36120b73a69e",
+      "Name": "AddUserInMVZ",
+      "ActionArea": "Collection",
+      "GenerateHandler": true,
+      "IsMultiSelectAction": true,
+      "LargeIconName": null,
+      "NeedRefreshCollectionAfterExecute": true,
+      "SmallIconName": null
+    },
+    {
+      "NameGuid": "1de622a4-4d0f-4f74-a65a-496ce5564444",
+      "Name": "DelUserInMVZ",
+      "ActionArea": "Collection",
+      "GenerateHandler": true,
+      "IsMultiSelectAction": true,
+      "LargeIconName": null,
+      "NeedRefreshCollectionAfterExecute": true,
+      "SmallIconName": null
+    }
+  ],
   "BaseGuid": "04581d26-0780-4cfd-b3cd-c2cafc5798b0",
   "CanBeNavigationPropertyType": true,
   "CanBeUsedInIntegration": true,
@@ -133,6 +155,19 @@
               "Value": "71765ff0-5fae-4893-939a-2e0da62c5c05"
             }
           ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "a6b67ab6-45fd-4236-b381-72da73706a01",
+          "Name": "CollectionEmplAcc",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.GridControlToChildCollectionBinder",
+          "ParentGuid": "ef21401d-5b57-4fe6-8569-852d6cac8ddb",
+          "PropertyGuid": "0cc10cca-97e2-44ca-becb-4c4fb2617058",
+          "RowNumber": 6,
+          "RowSpan": 1,
+          "Settings": []
         }
       ]
     }
@@ -295,7 +330,77 @@
     "NameGuid": "62e5e5da-babb-4c8b-8b42-ed4ae300af88",
     "Name": "RibbonCollection",
     "Categories": [],
-    "Elements": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "efe4a00f-bffb-41ce-8e5a-40162463bdea",
+        "Name": "CopyEntity",
+        "ActionGuid": "00fae4b6-935a-4047-831d-312fd3c02faf",
+        "DefaultIndexInQuickAccessToolBar": 20,
+        "Index": 22,
+        "IsAncestorMetadata": true,
+        "IsShowInContextMenu": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "b88b0a3a-c1ca-4f7f-80a0-336cd61c9c94"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "5133599e-202e-4a71-876e-45af52df2b7b",
+        "Name": "SetAccessRights",
+        "ActionGuid": "40975f07-51e4-46d4-80d7-6592cd03f66e",
+        "Index": 32,
+        "IsAncestorMetadata": true,
+        "IsShowInContextMenu": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "b88b0a3a-c1ca-4f7f-80a0-336cd61c9c94"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "36d11e82-ebe8-488c-8e3c-f81ee5469773",
+        "Name": "DeleteEntity",
+        "ActionGuid": "18cdb157-e89a-488b-8cea-bce6a63d0a13",
+        "Index": 42,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "b88b0a3a-c1ca-4f7f-80a0-336cd61c9c94"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "07eef63c-3d22-4643-900d-082310732f2c",
+        "Name": "DeleteEntities",
+        "ActionGuid": "9f70df4c-99a1-4c55-bbd8-dd6c7727a479",
+        "Index": 42,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "b88b0a3a-c1ca-4f7f-80a0-336cd61c9c94"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "da2ac603-061c-42fe-9acd-7bdf36a19ed1",
+        "Name": "AddUserInMVZ",
+        "ActionGuid": "420a1ef5-51ee-4548-ad3f-36120b73a69e",
+        "ButtonSize": "Large",
+        "Index": 11,
+        "ParentGuid": "b88b0a3a-c1ca-4f7f-80a0-336cd61c9c94"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "48660040-70b8-43df-b23c-bf3abc8e957f",
+        "Name": "DelUserInMVZ",
+        "ActionGuid": "1de622a4-4d0f-4f74-a65a-496ce5564444",
+        "ButtonSize": "Large",
+        "Index": 12,
+        "ParentGuid": "b88b0a3a-c1ca-4f7f-80a0-336cd61c9c94"
+      }
+    ],
     "Groups": [],
     "IsAncestorMetadata": true,
     "Pages": []

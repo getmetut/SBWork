@@ -84,7 +84,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
                 }
                 
                 //Начинаем перенос тел и подписей
-                var doc = Sungero.Content.ElectronicDocuments.GetAll(d => d.Id == Int32.Parse(idStr)).First();
+                var doc = Sungero.Content.ElectronicDocuments.GetAll(d => d.Id == Int64.Parse(idStr)).First();
                 if (!notExistExSign)
                 {
                   Stream strmCommon = incomingDoc.LastVersion.Body.Read();
@@ -156,6 +156,17 @@ namespace sberdev.SBContracts.Module.Exchange.Server
               Logger.Debug("Exchange. ComeBackBodies. Результат: Успешно. Карточка входящего документа: " + attach.Id
                            + "; Задача на обработку: " + task.Id);
               complitedDocs++;
+              
+              var doc = Sungero.Content.ElectronicDocuments.GetAll(d => d.Id == Int64.Parse(idStr)).First();
+              var notice = Sungero.Workflow.SimpleTasks.CreateWithNotices(String.Format("Документ от {0} вернулся в исходную карточку", task.Counterparty?.Name), task.Addressee);
+              notice.ActiveText = String.Format("Документ из задачи был автоматически возвращен в родную карточку. Необходимо завершить задание на контроль возврата");
+              notice.Attachments.Add(doc);
+              notice.Attachments.Add(task);
+              notice.Deadline = Calendar.UserNow.AddDays(3);
+              notice.Importance = Sungero.Workflow.SimpleTask.Importance.High;
+              notice.Save();
+              notice.Start();
+              Logger.Debug("Exchange. ComeBackBodies. Отправлено уведомление по вх. документу " + incomingDoc.Id);
             }
           }
           
