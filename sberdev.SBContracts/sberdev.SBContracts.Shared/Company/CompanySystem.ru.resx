@@ -215,7 +215,7 @@
     <value />
   </data>
   <data name="Property_AvgEmplSberDev" xml:space="preserve">
-    <value>Маленькая среднесписочная численность работников</value>
+    <value>Низкая среднесписочная численность работников</value>
   </data>
   <data name="ControlGroup_df1dbb22faab484b9e190899b9ce2d04" xml:space="preserve">
     <value>Рейтинг контрагента</value>
