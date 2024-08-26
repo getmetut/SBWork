@@ -89,8 +89,8 @@ namespace sberdev.SBContracts.Server
         _obj.NoLiquidAddress = noLiquidAddress;
       // Маленькая среднесписочная численность работников.
       var avgEmpl = analitycs?.Analytics?.Q7047 < 10 ? yes : no;
-      if (_obj.AvgEmplSberDev != avgEmpl)
-        _obj.AvgEmplSberDev = avgEmpl;
+      if (_obj.LowAvgHeadSberDev != avgEmpl)
+        _obj.LowAvgHeadSberDev = avgEmpl;
     }
   }
 }

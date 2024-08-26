@@ -4,6 +4,7 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using sberdev.SBContracts.Company;
+using Sungero.Domain.Shared;
 
 namespace sberdev.SBContracts.Shared
 {
@@ -35,7 +36,7 @@ namespace sberdev.SBContracts.Shared
         _obj.State.Properties.AccountingState, _obj.State.Properties.StateContracts, _obj.State.Properties.ActiveLicense, _obj.State.Properties.ActiveTrademark, _obj.State.Properties.RelOrgActiveArb,
         _obj.State.Properties.RelOrgActivePub, _obj.State.Properties.RelOrgOld, _obj.State.Properties.RelOrgAccount, _obj.State.Properties.MarkerQ2031ChangedDate,
         _obj.State.Properties.MarkerQ2032ChangedDate, _obj.State.Properties.MarkerQ2035ChangedDate, _obj.State.Properties.MarkerY3601B, _obj.State.Properties.MarkerQ2031, _obj.State.Properties.MarkerQ2035,
-        _obj.State.Properties.MarkerY3601BChangedDate, _obj.State.Properties.ArbPractice, _obj.State.Properties.RelOrgExecCases};
+        _obj.State.Properties.MarkerY3601BChangedDate, _obj.State.Properties.ArbPractice, _obj.State.Properties.RelOrgExecCases, _obj.State.Properties.LowAvgHeadSberDev};
       var props = _obj.State.Properties.ToList();
       foreach (var prop in props)
       {
@@ -44,6 +45,76 @@ namespace sberdev.SBContracts.Shared
         else
           prop.IsVisible = true;
       }
+    }
+    
+    public override void SetColorsForKFMarkers()
+    {
+      var settings = centrvd.KFIntegration.Module.Company.PublicFunctions.Module.Remote.GetKFMarkersSettings();
+      if (settings == null)
+        return;
+
+      var colorMap = new Dictionary<Nullable<Enumeration>, Color>
+      {
+        {centrvd.Integration.KFMarkersSettingMarkers.Color.Red, Colors.Common.Red},
+        {centrvd.Integration.KFMarkersSettingMarkers.Color.Yellow, Colors.Common.Yellow},
+        {centrvd.Integration.KFMarkersSettingMarkers.Color.Green, Colors.Common.Green}
+      };
+      var properties = _obj.State.Properties;
+      var propertyNames = settings.Markers.Any() ? settings.Markers.FirstOrDefault().NameAllowedItems.Items.Select(z => z.ToString()) : new List<string>();
+      foreach (var propertyName in propertyNames)
+        if (properties[propertyName] != null)
+          properties[propertyName].HighlightColor = GetHighlightColor(propertyName, colorMap, settings);
+        else
+          properties[propertyName + "SberDev"].HighlightColor = GetHighlightColor(propertyName, colorMap, settings);
+    }
+    
+    public override void SetColorsForKFMarkers(centrvd.Integration.IKFMarkersSetting settings)
+    {
+       if (settings == null)
+        return;
+
+      var colorMap = new Dictionary<Nullable<Enumeration>, Color>
+      {
+        {centrvd.Integration.KFMarkersSettingMarkers.Color.Red, Colors.Common.Red},
+        {centrvd.Integration.KFMarkersSettingMarkers.Color.Yellow, Colors.Common.Yellow},
+        {centrvd.Integration.KFMarkersSettingMarkers.Color.Green, Colors.Common.Green}
+      };
+      
+      var properties = _obj.State.Properties;
+      var propertyNames = settings.Markers.Any() ? settings.Markers.FirstOrDefault().NameAllowedItems.Items.Select(z => z.ToString()) : new List<string>();
+
+      foreach (var propertyName in propertyNames)
+        if (properties[propertyName] != null)
+          properties[propertyName].HighlightColor = GetHighlightColor(propertyName, colorMap, settings);
+        else
+          properties[propertyName + "SberDev"].HighlightColor = GetHighlightColor(propertyName, colorMap, settings);
+    
+    }
+    
+    /// <summary>
+    /// Получить цвет маркера.
+    /// </summary>
+    /// <param name="propertyName">Имя маркера.</param>
+    /// <param name="colorMap">Словарь соотношения значений и цветов.</param>
+    /// <param name="settings">Настройки маркеров Контур.Фокус.</param>
+    /// <returns>Цвет.</returns>
+    private Sungero.Core.Color GetHighlightColor(string propertyName, System.Collections.Generic.Dictionary<Nullable<Enumeration>, Color> colorMap, centrvd.Integration.IKFMarkersSetting settings)
+    {
+      var propertyValue = (Sungero.Core.Enumeration?)_obj
+        .GetType()
+        .GetFinalType()
+        .GetEntityMetadata()
+        .Properties
+        .FirstOrDefault(property => property.Name == propertyName)?
+        .GetValue(_obj);
+
+      var markerSetting = settings.Markers.FirstOrDefault(marker => marker.Name?.ToString() == propertyName && marker.Value == propertyValue);
+      Sungero.Core.Color highlightColor;
+
+      if (markerSetting != null && markerSetting.Color.HasValue && colorMap.TryGetValue(markerSetting.Color, out highlightColor))
+        return highlightColor;
+
+      return Colors.Empty;
     }
   }
 }

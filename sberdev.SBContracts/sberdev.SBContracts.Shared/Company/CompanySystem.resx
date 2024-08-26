@@ -217,13 +217,13 @@
   <data name="ControlGroup_df1dbb22faab484b9e190899b9ce2d04" xml:space="preserve">
     <value>Counterparty rating</value>
   </data>
-  <data name="Enum_AvgEmplSberDev_Yes" xml:space="preserve">
+  <data name="Enum_LowAvgHeadSberDev_Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
-  <data name="Enum_AvgEmplSberDev_No" xml:space="preserve">
+  <data name="Enum_LowAvgHeadSberDev_No" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="Property_AvgEmplSberDev" xml:space="preserve">
+  <data name="Property_LowAvgHeadSberDev" xml:space="preserve">
     <value>Low average headcount</value>
   </data>
   <data name="Resource_11e983aa132044c0b15f8e591e67b029" xml:space="preserve">

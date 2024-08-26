@@ -1871,8 +1871,8 @@
     {
       "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
       "NameGuid": "578abe8e-37c0-40cb-acf6-eaa31a1917b1",
-      "Name": "AvgEmplSberDev",
-      "Code": "AvgEmplSberDev",
+      "Name": "LowAvgHeadSberDev",
+      "Code": "LowAvgHeadSber",
       "DirectValues": [
         {
           "NameGuid": "8aa6c040-8e9a-4807-a813-fa4800c44c48",
