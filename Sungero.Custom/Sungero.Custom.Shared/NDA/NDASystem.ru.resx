@@ -85,4 +85,7 @@
   <data name="Action_SendForReview" xml:space="preserve">
     <value>Отправить на согласование по регламенту</value>
   </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>NDA / Соглашение об ЭДО</value>
+  </data>
 </root>
