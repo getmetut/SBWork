@@ -124,4 +124,13 @@
   <data name="Action_UnblockVersionSberDevConfirmationMessage" xml:space="preserve">
     <value>Вы уверены что хотите разблокировать последнюю версию документа?</value>
   </data>
+  <data name="Action_CreateSendVersionSberDev" xml:space="preserve">
+    <value>Экспортировать (отправка)</value>
+  </data>
+  <data name="Action_CreateSendVersionSberDevHint" xml:space="preserve">
+    <value>Конвертировать файл в PDF и записать ИД карточки документа в метаданные.</value>
+  </data>
+  <data name="Action_CreateSendVersionSberDevDescription" xml:space="preserve">
+    <value>Конвертировать файл в PDF и записать ИД карточки документа в метаданные.</value>
+  </data>
 </root>

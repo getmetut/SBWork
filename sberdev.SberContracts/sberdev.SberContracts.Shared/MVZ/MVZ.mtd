@@ -9,9 +9,9 @@
       "ActionArea": "Collection",
       "GenerateHandler": true,
       "IsMultiSelectAction": true,
-      "LargeIconName": null,
+      "LargeIconName": "Action_AddUserInMVZ_large_420a1ef551ee4548ad3f36120b73a69e.png",
       "NeedRefreshCollectionAfterExecute": true,
-      "SmallIconName": null
+      "SmallIconName": "Action_AddUserInMVZ_small_420a1ef551ee4548ad3f36120b73a69e.png"
     },
     {
       "NameGuid": "1de622a4-4d0f-4f74-a65a-496ce5564444",
@@ -19,9 +19,9 @@
       "ActionArea": "Collection",
       "GenerateHandler": true,
       "IsMultiSelectAction": true,
-      "LargeIconName": null,
+      "LargeIconName": "Action_DelUserInMVZ_large_1de622a44d0f4f74a65a496ce5564444.png",
       "NeedRefreshCollectionAfterExecute": true,
-      "SmallIconName": null
+      "SmallIconName": "Action_DelUserInMVZ_small_1de622a44d0f4f74a65a496ce5564444.png"
     }
   ],
   "BaseGuid": "04581d26-0780-4cfd-b3cd-c2cafc5798b0",

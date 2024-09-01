@@ -48,6 +48,16 @@ namespace sberdev.SBContracts.Client
 
   partial class OfficialDocumentActions
   {
+    public virtual void CreateSendVersionSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      SBContracts.PublicFunctions.Module.Remote.CreatePDFSetMetadataID(_obj);
+    }
+
+    public virtual bool CanCreateSendVersionSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
     public virtual void UnblockVersionSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       if (_obj.HasVersions == true)

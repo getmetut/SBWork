@@ -56,6 +56,7 @@ namespace sberdev.SberContracts.Client
         if (employeeAcc != null)
         {
           element.CollectionEmplAcc.Remove(employeeAcc);
+          element.Save();  
           break;
         }
       }
