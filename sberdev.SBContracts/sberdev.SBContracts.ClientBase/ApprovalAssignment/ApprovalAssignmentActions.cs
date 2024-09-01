@@ -29,10 +29,36 @@ namespace sberdev.SBContracts.Client
         Locks.Unlock(assign);
       }
     }
+
+    public virtual bool CanReAddressSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
+    public virtual void ReAddressSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      var dialog = Dialogs.CreateInputDialog(sberdev.SBContracts.ExchangeDocumentProcessingAssignments.Resources.ReAdressEmp);
+      dialog.Width = 200;
+      var emp = dialog.AddSelect(sberdev.SBContracts.ExchangeDocumentProcessingAssignments.Resources.Emp, true, Sungero.Company.Employees.Null);
+      if (dialog.Show() == DialogButtons.Ok)
+      {
+        foreach(var assign in _objs)
+        {
+          assign.Addressee = emp.Value;
+          var task = ApprovalTasks.As(assign.Task);
+          SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(assign);
+          SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(task);
+          task.Addressee = assign.Addressee;
+          task.Save();
+          assign.Complete(SBContracts.ApprovalAssignment.Result.Forward);
+        }
+      }
+    }
   }
 
   partial class ApprovalAssignmentActions
   {
+
 
     public virtual void UnblockAttachSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
@@ -79,7 +105,7 @@ namespace sberdev.SBContracts.Client
 
     public virtual bool CanAbortTask(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      return _obj.Task.Status == Sungero.Workflow.Task.Status.InProcess; 
+      return _obj.Task.Status == Sungero.Workflow.Task.Status.InProcess;
     }
 
     public virtual void AmountChangesberdev(Sungero.Domain.Client.ExecuteActionArgs e)
@@ -88,10 +114,10 @@ namespace sberdev.SBContracts.Client
 
       _obj.Complete(Result.Approved);
       e.CloseFormAfterAction = true;
-     //_obj.State.Controls.Control.Refresh();
-                                 
-          
-          
+      //_obj.State.Controls.Control.Refresh();
+      
+      
+      
     }
     
     public virtual bool CanAmountChangesberdev(Sungero.Domain.Client.CanExecuteActionArgs e)

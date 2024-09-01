@@ -208,4 +208,16 @@
   <data name="Action_ApproveSberDevConfirmationMessage" xml:space="preserve">
     <value>Вы хотите выполнить все выбранные задания?</value>
   </data>
+  <data name="Action_ReAddressSberDev" xml:space="preserve">
+    <value>Переадресовать</value>
+  </data>
+  <data name="Action_ReAddressSberDevHint" xml:space="preserve">
+    <value>Переадресовывает выбранные задания</value>
+  </data>
+  <data name="Action_ReAddressSberDevDescription" xml:space="preserve">
+    <value>Выберите задания что хотитие переадресовать. Затем укажите сотрудника и нажмите ОК.</value>
+  </data>
+  <data name="Action_ReAddressSberDevConfirmationMessage" xml:space="preserve">
+    <value>Вы хотите преадресовать задания выбраному сотруднику?</value>
+  </data>
 </root>

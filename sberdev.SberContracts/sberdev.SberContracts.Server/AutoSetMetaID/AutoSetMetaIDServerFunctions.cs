@@ -17,14 +17,13 @@ namespace sberdev.SberContracts.Server
       {
         try
         {
-          SBContracts.PublicFunctions.Module.Remote.SetMetadataID(doc);
+          SBContracts.PublicFunctions.Module.Remote.CreatePDFSetMetadataID(doc);
           return this.GetSuccessResult();
         }
         catch (Exception ex)
         {
           Logger.ErrorFormat("Этап сценария. Неуспешное завершение записи ИД карточки (" + doc.Id.ToString() + ") в метаданные. Причина: " +  ex.ToString(), approvalTask);
-          //  return this.GetRetryResult("Этап сценария. Неуспешное завершение записи ИД карточки (" + doc.Id.ToString() + ") в метаданные. Причина: " +  ex.ToString());
-           return this.GetSuccessResult();
+          return this.GetSuccessResult();
         }
       }
       else
