@@ -121,6 +121,16 @@ namespace Sungero.Custom.Server
         Role.IsSingleUser = false;
         Role.Save();
       }
+      if (Roles.GetAll(r => (r.Name == "Ответственный бухгалтер за Контрагентов")).Count() == 0)
+      {
+        var Role = Roles.Create();
+        Role.Name = "Включение сотрудника в список ответственных бухгалтеров за контрагентов";
+        Role.Status = Sungero.CoreEntities.Role.Status.Active;
+        Role.Description = "Программная роль для фильтрации сотрудников по ответственным бухгалтерам в карточке Контрагента.";
+        Role.IsSingleUser = false;
+        Role.Save();
+      }
+      
       if (Roles.GetAll(r => (r.Name == "Допуск к маркетинговым документам")).Count() == 0)
       {
         var Role = Roles.Create();

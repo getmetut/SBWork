@@ -13,6 +13,10 @@
     {
       "ItemId": "fa722da7-57f4-4998-88b9-fffe9abb1162",
       "PreviousItemId": "471e68ad-7f9d-43d7-b4db-93eb660cde7f"
+    },
+    {
+      "ItemId": "c52f4f9b-137b-42f8-a212-f4080b8de375",
+      "PreviousItemId": "fa722da7-57f4-4998-88b9-fffe9abb1162"
     }
   ],
   "IconResourcesKeys": [],
@@ -311,6 +315,49 @@
         "75d6c458-7725-4133-8ff4-848e16ec5bd3",
         "8724ada0-fa56-481d-b3d0-ae3e46ff3e31"
       ]
+    },
+    {
+      "NameGuid": "c52f4f9b-137b-42f8-a212-f4080b8de375",
+      "Name": "FromKASDev",
+      "DefaultContentType": "0c6c8db8-2736-4edf-9307-501ded428cb4",
+      "DisplayType": "Module",
+      "FilterPanel": {
+        "NameGuid": "a57b1e40-bd1c-4c79-99b8-19d09ac3efb5",
+        "Name": "FilterPanel",
+        "Controls": [
+          {
+            "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+            "NameGuid": "62ab50d6-4389-4b17-bbc4-000f8339d206",
+            "Name": "OtvSDev"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+            "NameGuid": "e77f9e0a-93c2-4e8a-84a9-0e10676cd9a1",
+            "Name": "OtvSDevFlagsListSDev",
+            "ParentGuid": "62ab50d6-4389-4b17-bbc4-000f8339d206"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "0e27874b-ef21-41d5-bdae-06bb40ae53d7",
+            "Name": "MySDev",
+            "IsSelected": true,
+            "ParentGuid": "e77f9e0a-93c2-4e8a-84a9-0e10676cd9a1"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "1c7ef8a6-fffe-4eab-af36-1df19fc2494c",
+            "Name": "AllSDev",
+            "ParentGuid": "e77f9e0a-93c2-4e8a-84a9-0e10676cd9a1",
+            "PreviousGuid": "0e27874b-ef21-41d5-bdae-06bb40ae53d7"
+          }
+        ]
+      },
+      "HandledEvents": [
+        "DataQueryServer"
+      ],
+      "IsShow": true,
+      "Kind": "Computable",
+      "NeedShowMarkedCount": false
     }
   ],
   "Version": "4.8.39.0",

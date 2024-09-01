@@ -6,6 +6,23 @@ using Sungero.CoreEntities;
 
 namespace Sungero.ATS.Module.Shell.Server
 {
+  partial class FromKASDevFolderHandlers
+  {
+
+    public virtual IQueryable<sberdev.SBContracts.IExchangeDocument> FromKASDevDataQuery(IQueryable<sberdev.SBContracts.IExchangeDocument> query)
+    {
+      if (_filter != null)
+      {
+        var ListDocKA = sberdev.SBContracts.ExchangeDocuments.GetAll(d => d.Counterparty != null).Where(d => sberdev.SBContracts.Counterparties.Get(d.Counterparty.Id).OtvBuchSDevSDev != null).
+          Where(d => sberdev.SBContracts.Counterparties.Get(d.Counterparty.Id).OtvBuchSDevSDev.Login == Users.Current.Login).ToList();
+          
+        if (_filter.MySDev == true)
+          query = query.Where(k => ListDocKA.Contains(k));
+      }
+      return query;
+    }
+  }
+
   partial class ApprovalFolderHandlers
   {
 

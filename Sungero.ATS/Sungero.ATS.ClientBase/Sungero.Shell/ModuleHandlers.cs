@@ -7,6 +7,7 @@ using Sungero.CoreEntities;
 namespace Sungero.ATS.Module.Shell.Client
 {
 
+
   partial class NoticesFolderHandlers
   {
 

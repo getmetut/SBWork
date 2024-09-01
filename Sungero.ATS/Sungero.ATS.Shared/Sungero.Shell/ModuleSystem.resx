@@ -79,4 +79,19 @@
   <data name="FilterPanel_CounterpartySDev_df3e414c2e114703805db30ad1c36a7a" xml:space="preserve">
     <value>Контрагент</value>
   </data>
+  <data name="sf_c52f4f9b_137b_42f8_a212_f4080b8de375" xml:space="preserve">
+    <value>От контрагентов</value>
+  </data>
+  <data name="FilterPanel_OtvSDev_62ab50d643894b17bbc4000f8339d206" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="FilterPanel_OtvSDevFlagsListSDev_e77f9e0a93c24e8a84a90e10676cd9a1" xml:space="preserve">
+    <value>Документы</value>
+  </data>
+  <data name="FilterPanel_MySDev_0e27874bef2141d5bdae06bb40ae53d7" xml:space="preserve">
+    <value>Только мои</value>
+  </data>
+  <data name="FilterPanel_AllSDev_1c7ef8a6fffe4eabaf361df19fc2494c" xml:space="preserve">
+    <value>Все неразобранные</value>
+  </data>
 </root>
