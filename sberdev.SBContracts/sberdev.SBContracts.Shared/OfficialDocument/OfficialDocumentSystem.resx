@@ -160,22 +160,4 @@
   <data name="Action_UnblockVersionSberDev" xml:space="preserve">
     <value>Unlock version</value>
   </data>
-  <data name="Property_SendVersionSberDev" xml:space="preserve">
-    <value>SendVersion</value>
-  </data>
-  <data name="Action_CreateSendVersionSberDev" xml:space="preserve">
-    <value>Export (sending)</value>
-  </data>
-  <data name="Action_CreateSendVersionSberDevDescription" xml:space="preserve">
-    <value>Convert the file to PDF and write the document card ID to the metadata.</value>
-  </data>
-  <data name="Action_CreateSendVersionSberDevHint" xml:space="preserve">
-    <value>Convert the file to PDF and write the document card ID to the metadata.</value>
-  </data>
-  <data name="Action_CreateSendVersionSberDevConfirmationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Action_CreateSendVersionSberDevConfirmationDescription" xml:space="preserve">
-    <value />
-  </data>
 </root>

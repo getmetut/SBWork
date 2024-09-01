@@ -1421,7 +1421,7 @@
           "NameGuid": "966f5464-efad-489f-8598-d48f1fdfe547",
           "Name": "PhonesSberDev",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
           "ParentGuid": "9e3df66a-01e8-408a-aa4c-a5c92a1227fb",
           "PropertyGuid": "fb72b196-fb7f-4ea9-b2ef-7212f205afe5",
@@ -1620,7 +1620,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "9e3df66a-01e8-408a-aa4c-a5c92a1227fb",
           "PropertyGuid": "78b9f52c-febf-4a73-89ae-c7a4723e3944",
-          "RowNumber": 0,
+          "RowNumber": 3,
           "RowSpan": 1,
           "Settings": [],
           "Versions": []
@@ -1784,6 +1784,19 @@
           "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "7c68541d-bb8f-4a62-a64e-a65400df7093",
+          "Name": "OtvBuchSDevSDev",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "9e3df66a-01e8-408a-aa4c-a5c92a1227fb",
+          "PropertyGuid": "9451e707-2572-4829-83a6-9698c6d3530e",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -1889,6 +1902,19 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "ebd512ce-b725-4e02-9fc9-c4ab3180b618",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9451e707-2572-4829-83a6-9698c6d3530e",
+      "Name": "OtvBuchSDev",
+      "Code": "OtvBuchSDev",
+      "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
+      "HandledEvents": [
+        "LookupServer",
+        "SearchDialogLookupServer"
+      ],
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "578abe8e-37c0-40cb-acf6-eaa31a1917b1"
     }
   ],
   "PublicStructures": [],

@@ -26,62 +26,6 @@ namespace sberdev.SBContracts.Server
     /// Записать ИД документа в метаданные документа
     /// </summary>
     [Public, Remote]
-    public void CreatePDFSetMetadataID(Sungero.Docflow.IOfficialDocument doc)
-    {
-      if (!doc.HasVersions)
-        return;
-
-      string guid1 = Guid.NewGuid().ToString();
-      string guid2 = Guid.NewGuid().ToString();
-      string guid3 = Guid.NewGuid().ToString();
-      string ext = "pdf"; // Всегда используем pdf для экспорта
-
-      string tempPdfPathCopy = $"C:\\TempDocs\\docDirectumTemp{guid3}.{ext}";
-      string tempPdfPath = $"C:\\TempDocs\\docDirectumTemp{guid1}.{ext}";
-      string tempPath = $"C:\\TempDocs\\docDirectum{guid2}.{doc.LastVersion.AssociatedApplication.Extension}";
-      // Конвертируем документ в PDF, если он не в PDF формате
-      if (doc.LastVersion.AssociatedApplication.Extension != "pdf")
-      {
-        doc.LastVersion.Export(tempPath);
-
-        Aspose.Words.Document docAsp = new Aspose.Words.Document(tempPath);
-        docAsp.Save(tempPdfPath, SaveFormat.Pdf);
-      }
-      else
-        doc.LastVersion.Export(tempPdfPath);
-
-      // Добавляем ИД в метаданные PDF
-      PdfReader reader = new PdfReader(tempPdfPath);
-      PdfReader.unethicalreading = true;
-      string idPdf = null;
-      if (reader.Info.TryGetValue("DirectumID", out idPdf) && idPdf != doc.Id.ToString())
-        reader.Info.Remove("DirectumID");
-      
-      iTextSharp.text.Document document = new iTextSharp.text.Document();
-      PdfCopy copy = new PdfCopy(document, new System.IO.FileStream(tempPdfPathCopy, System.IO.FileMode.Create));
-      document.Open();
-      copy.AddDocument(reader);
-      copy.Info.Put(new PdfName("DirectumID"), new PdfString(doc.Id.ToString()));
-      copy.Close();
-      document.Close();
-
-      reader.Close();
-
-      // Сохраняем PDF с ИД обратно в систему и возвращаем пользователю
-      doc.CreateVersionFrom(tempPdfPathCopy);
-      doc.Save();
-      var signInfos = Signatures.Get(doc.LastVersion);
-      foreach(var signInfo in signInfos)
-      {
-        var signaturesBytes = signInfo.GetDataSignature();
-        Signatures.Import(doc, signInfo.SignatureType, signInfo.SignatoryFullName, signaturesBytes, signInfo.SigningDate, doc.LastVersion);
-      }
-    }
-    
-    /// <summary>
-    /// Записать ИД документа в метаданные документа
-    /// </summary>
-    [Public, Remote]
     public void SetMetadataID(Sungero.Docflow.IOfficialDocument doc)
     {
       if (!doc.HasVersions)
@@ -644,14 +588,14 @@ namespace sberdev.SBContracts.Server
         {'о', "o"}, {'п', "p"}, {'р', "r"}, {'с', "s"}, {'т', "t"},
         {'у', "u"}, {'ф', "f"}, {'х', "kh"}, {'ц', "ts"}, {'ч', "ch"},
         {'ш', "sh"}, {'щ', "shch"}, {'ы', "y"}, {'э', "e"}, {'ю', "yu"},
-        {'я', "ya"}, {'ь', ""}, {'ъ', ""},
+        {'я', "ya"},
         {'А', "A"}, {'Б', "B"}, {'В', "V"}, {'Г', "G"}, {'Д', "D"},
         {'Е', "E"}, {'Ё', "Yo"}, {'Ж', "Zh"}, {'З', "Z"}, {'И', "I"},
         {'Й', "Y"}, {'К', "K"}, {'Л', "L"}, {'М', "M"}, {'Н', "N"},
         {'О', "O"}, {'П', "P"}, {'Р', "R"}, {'С', "S"}, {'Т', "T"},
         {'У', "U"}, {'Ф', "F"}, {'Х', "Kh"}, {'Ц', "Ts"}, {'Ч', "Ch"},
         {'Ш', "Sh"}, {'Щ', "Shch"}, {'Ы', "Y"}, {'Э', "E"}, {'Ю', "Yu"},
-        {'Я', "Ya"}, {'Ь', ""}, {'Ъ', ""}
+        {'Я', "Ya"}
       };
       System.Text.StringBuilder translitText = new System.Text.StringBuilder();
       string translitChar = null;
@@ -1163,7 +1107,7 @@ namespace sberdev.SBContracts.Server
     }
     #endregion
     
-    #region Вспомогательные функции для построения документа
+    #region Вспомогателбные функции для построения документа
     
     static void ReplacePlaceholderWithMarkedParagraphs(Aspose.Words.Document doc, string placeholder, List<string> texts, Aspose.Words.Lists.ListTemplate listTemplate)
     {

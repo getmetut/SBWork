@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -7,6 +7,50 @@ using sberdev.SBContracts.Company;
 
 namespace sberdev.SBContracts
 {
+  partial class CompanyOtvBuchSDevSearchPropertyFilteringServerHandler<T>
+  {
+
+    public virtual IQueryable<T> OtvBuchSDevSearchDialogFiltering(IQueryable<T> query, Sungero.Domain.PropertySearchDialogFilteringEventArgs e)
+    {
+      var OBrole = Roles.GetAll(r => r.Name == "Ответственный бухгалтер за Контрагентов").FirstOrDefault();
+      List<Sungero.CoreEntities.IRecipient> Userlist = new List<Sungero.CoreEntities.IRecipient>();
+      if (OBrole != null)
+      {
+        if (OBrole.RecipientLinks.Count > 0)
+        {
+          foreach (var elem in OBrole.RecipientLinks)
+          {
+              Userlist.Add(elem.Member);
+          }
+          query = query.Where(q => Userlist.Contains(q));
+        }
+      }
+      return query;
+    }
+  }
+
+  partial class CompanyOtvBuchSDevPropertyFilteringServerHandler<T>
+  {
+
+    public virtual IQueryable<T> OtvBuchSDevFiltering(IQueryable<T> query, Sungero.Domain.PropertyFilteringEventArgs e)
+    {
+      var OBrole = Roles.GetAll(r => r.Name == "Ответственный бухгалтер за Контрагентов").FirstOrDefault();
+      List<Sungero.CoreEntities.IRecipient> Userlist = new List<Sungero.CoreEntities.IRecipient>();
+      if (OBrole != null)
+      {
+        if (OBrole.RecipientLinks.Count > 0)
+        {
+          foreach (var elem in OBrole.RecipientLinks)
+          {
+              Userlist.Add(elem.Member);
+          }
+          query = query.Where(q => Userlist.Contains(q));
+        }
+      }
+      return query;
+    }
+  }
+
   partial class CompanyServerHandlers
   {
 

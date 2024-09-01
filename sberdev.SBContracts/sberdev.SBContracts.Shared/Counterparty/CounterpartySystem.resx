@@ -211,4 +211,7 @@
   <data name="Property_FocusCheckedDateSberDev" xml:space="preserve">
     <value>FocusCheckedDate</value>
   </data>
+  <data name="Property_OtvBuchSDevSDev" xml:space="preserve">
+    <value>Ответственный бухгалтер</value>
+  </data>
 </root>

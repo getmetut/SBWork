@@ -511,4 +511,7 @@
   <data name="Resource_3f253bd3590842ada686d2a20d22f389" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_OtvBuchSDev" xml:space="preserve">
+    <value>Ответственный бухгалтер</value>
+  </data>
 </root>

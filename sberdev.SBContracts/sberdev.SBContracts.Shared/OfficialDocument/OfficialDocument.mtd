@@ -141,15 +141,6 @@
       "NeedConfirmation": true,
       "SmallIconName": "Action_UnblockVersionSberDev_small_15e81d7d27454a8a95864f50df3fa3cc.png",
       "Versions": []
-    },
-    {
-      "NameGuid": "17cf1431-63c2-4655-a220-ba06a6048f4b",
-      "Name": "CreateSendVersionSberDev",
-      "ActionArea": "Card",
-      "GenerateHandler": true,
-      "LargeIconName": null,
-      "SmallIconName": null,
-      "Versions": []
     }
   ],
   "BaseGuid": "58cca102-1e97-4f07-b6ac-fd866a8b7cb1",
@@ -264,18 +255,6 @@
       "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "184ab537-5748-454f-8a9c-cdbdd506321e"
-    },
-    {
-      "$type": "Sungero.Metadata.BinaryDataPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "c5eb0e2f-4a68-436d-ae7d-b74230773c89",
-      "Name": "SendVersionSberDev",
-      "CanBeSearch": false,
-      "Code": "SendVersi",
-      "InterfaceOfComponentFullTypeName": "Sungero.Domain.Shared.IBinaryData, Sungero.Domain.Shared, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null",
-      "IsEnabled": false,
-      "IsShowedInList": false,
-      "IsVisibility": false,
-      "PreviousPropertyGuid": "1c3f277d-3762-46e4-a631-eff7244a31b2"
     }
   ],
   "PublicFunctions": [
@@ -371,7 +350,7 @@
         "$type": "Sungero.Metadata.RibbonStaticDropDownButtonMetadata, Sungero.Metadata",
         "NameGuid": "1b49aedf-b54e-43d8-b0ea-20ee3f732312",
         "Name": "AdministrationMenuSberDev",
-        "Index": 52,
+        "Index": 51,
         "LargeIconName": "Ribbon_AdministrationMenuSberDev_large_1b49aedfb54e43d8b0ea20ee3f732312.png",
         "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4",
         "SmallIconName": "Ribbon_AdministrationMenuSberDev_small_1b49aedfb54e43d8b0ea20ee3f732312.png"

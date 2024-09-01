@@ -524,20 +524,6 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "CreatePDFSetMetadataID",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "doc",
-          "ParameterType": "global::Sungero.Docflow.IOfficialDocument",
-          "ParameterTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
-    },
-    {
       "Name": "GetAccountingArticleStab",
       "Parameters": [
         {
@@ -841,7 +827,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "4.20.0.0",
+  "Version": "4.19.1.0",
   "Widgets": [],
   "Versions": [
     {

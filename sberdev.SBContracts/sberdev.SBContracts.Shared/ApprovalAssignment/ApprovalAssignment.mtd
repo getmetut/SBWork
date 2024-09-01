@@ -53,17 +53,6 @@
       "NeedRefreshCollectionAfterExecute": true,
       "SmallIconName": "Action_ApproveSberDevSberDev_small_fe829bb71b444b129f508d9f32a93436.png",
       "Versions": []
-    },
-    {
-      "NameGuid": "5a0ec82c-5d9e-4d14-b5c6-df4c6272069d",
-      "Name": "ReAddressSberDev",
-      "ActionArea": "Collection",
-      "GenerateHandler": true,
-      "IsMultiSelectAction": true,
-      "LargeIconName": "Action_ReAddressSberDevSberDev_large_5a0ec82c5d9e4d14b5c6df4c6272069d.png",
-      "NeedRefreshCollectionAfterExecute": true,
-      "SmallIconName": "Action_ReAddressSberDevSberDev_small_5a0ec82c5d9e4d14b5c6df4c6272069d.png",
-      "Versions": []
     }
   ],
   "AssociatedGuid": "d7041916-1429-42e2-869b-661edeef70e5",
@@ -613,54 +602,6 @@
         "ActionGuid": "fe829bb7-1b44-4b12-9f50-8d9f32a93436",
         "ButtonSize": "Large",
         "Index": 399,
-        "ParentGuid": "8414b29a-d426-4a50-98e1-cf685ffbab1d"
-      },
-      {
-        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
-        "NameGuid": "c88f0783-7aba-4d8b-8fb9-ec0e5065afb1",
-        "Name": "MarkReadUnread",
-        "ActionGuid": "8272dfa9-aa22-4081-b469-6c9cc1a79151",
-        "ButtonSize": "Large",
-        "Index": 501,
-        "IsAncestorMetadata": true,
-        "Overridden": [
-          "Index"
-        ],
-        "ParentGuid": "8414b29a-d426-4a50-98e1-cf685ffbab1d"
-      },
-      {
-        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
-        "NameGuid": "5502842f-39f0-4a6f-b842-4b272df0dc87",
-        "Name": "BulkMarkReadUnread",
-        "ActionGuid": "52a272f8-217e-44e3-a8de-7042a03e5b01",
-        "ButtonSize": "Large",
-        "Index": 501,
-        "IsAncestorMetadata": true,
-        "Overridden": [
-          "Index"
-        ],
-        "ParentGuid": "8414b29a-d426-4a50-98e1-cf685ffbab1d"
-      },
-      {
-        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
-        "NameGuid": "66d0567c-f239-45bd-9c85-6a0d481f6748",
-        "Name": "CreateSubtask",
-        "ActionGuid": "b31855f8-edd5-4560-82d3-a90a05c90506",
-        "ButtonSize": "Large",
-        "Index": 401,
-        "IsAncestorMetadata": true,
-        "Overridden": [
-          "Index"
-        ],
-        "ParentGuid": "8414b29a-d426-4a50-98e1-cf685ffbab1d"
-      },
-      {
-        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
-        "NameGuid": "464da244-b5c8-4445-8f50-0450d51b8266",
-        "Name": "ReAddressSberDevSberDev",
-        "ActionGuid": "5a0ec82c-5d9e-4d14-b5c6-df4c6272069d",
-        "ButtonSize": "Large",
-        "Index": 400,
         "ParentGuid": "8414b29a-d426-4a50-98e1-cf685ffbab1d"
       }
     ],
