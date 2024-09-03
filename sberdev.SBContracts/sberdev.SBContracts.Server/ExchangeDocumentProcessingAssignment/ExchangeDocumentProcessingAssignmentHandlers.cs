@@ -10,10 +10,15 @@ namespace sberdev.SBContracts
   partial class ExchangeDocumentProcessingAssignmentServerHandlers
   {
 
+    public override void AfterSave(Sungero.Domain.AfterSaveEventArgs e)
+    {
+      Functions.ExchangeDocumentProcessingAssignment.DistributeFormalizedDocument(_obj);
+      base.AfterSave(e);
+    }
+
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
       base.BeforeSave(e);
-    //  Functions.ExchangeDocumentProcessingAssignment.DistributeFormalizedDocument(_obj);
       string newNames = PublicFunctions.ExchangeDocumentProcessingAssignment.GetDocsNames(_obj);
       if (_obj.TaskDocsNamesSberDev != newNames)
         _obj.TaskDocsNamesSberDev = newNames;
