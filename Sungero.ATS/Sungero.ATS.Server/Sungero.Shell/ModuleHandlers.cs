@@ -11,14 +11,20 @@ namespace Sungero.ATS.Module.Shell.Server
 
     public virtual IQueryable<sberdev.SBContracts.IExchangeDocument> FromKASDevDataQuery(IQueryable<sberdev.SBContracts.IExchangeDocument> query)
     {
-      if (_filter != null)
-      {
-        var ListDocKA = sberdev.SBContracts.ExchangeDocuments.GetAll(d => d.Counterparty != null).Where(d => sberdev.SBContracts.Counterparties.Get(d.Counterparty.Id).OtvBuchSDevSDev != null).
-          Where(d => sberdev.SBContracts.Counterparties.Get(d.Counterparty.Id).OtvBuchSDevSDev.Login == Users.Current.Login).ToList();
+        var ListDocKA = sberdev.SBContracts.ExchangeDocuments.GetAll(d => d.Counterparty != null); // Sungero.Parties.Counterparty
+        var listCP = sberdev.SBContracts.Counterparties.GetAll(c => c.OtvBuchSDev != null); // Sungero.Parties.Counterparty
+        var filteredCounterparties = listCP.Where(c => c.OtvBuchSDev.Login == Users.Current.Login).Select(c => c.Id);
           
-        if (_filter.MySDev == true)
-          query = query.Where(k => ListDocKA.Contains(k));
-      }
+        if (listCP.Any())
+           ListDocKA = ListDocKA.Where(d => listCP.Contains(d.Counterparty));
+        
+        if (ListDocKA.Any())
+        {
+          if (_filter.MySDev == true)
+            query = query.Where(d => filteredCounterparties.Contains(d.Counterparty.Id));
+        }
+        else
+          query = query.Where(k => k.Name == "@#$%");
       return query;
     }
   }
