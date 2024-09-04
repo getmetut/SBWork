@@ -4,6 +4,8 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using sberdev.SBContracts.ExchangeDocumentProcessingTask;
+using Sungero.Metadata;
+using Sungero.Domain.Shared;
 
 namespace sberdev.SBContracts.Server
 {
@@ -32,7 +34,6 @@ namespace sberdev.SBContracts.Server
           }
         }
       }
-      base.Saving(e);
     }
   }
 }

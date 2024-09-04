@@ -6,8 +6,6 @@ using Sungero.Core;
 using Sungero.CoreEntities;
 using sberdev.SBContracts.ExchangeDocumentProcessingTask;
 using Sungero.Docflow;
-using Sungero.Metadata;
-using Sungero.Domain.Shared;
 
 namespace sberdev.SBContracts
 {
