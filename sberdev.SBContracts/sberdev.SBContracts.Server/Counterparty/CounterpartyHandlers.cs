@@ -8,10 +8,10 @@ using sberdev.SBContracts.ContractualDocument;
 
 namespace sberdev.SBContracts
 {
-  partial class CounterpartyOtvBuchSDevSDevSearchPropertyFilteringServerHandler<T>
+  partial class CounterpartyOtvBuchSberDevSearchPropertyFilteringServerHandler<T>
   {
 
-    public virtual IQueryable<T> OtvBuchSDevSDevSearchDialogFiltering(IQueryable<T> query, Sungero.Domain.PropertySearchDialogFilteringEventArgs e)
+    public virtual IQueryable<T> OtvBuchSberDevSearchDialogFiltering(IQueryable<T> query, Sungero.Domain.PropertySearchDialogFilteringEventArgs e)
     {
       var OBrole = Roles.GetAll(r => r.Name == "Ответственный бухгалтер за Контрагентов").FirstOrDefault();
       List<Sungero.CoreEntities.IRecipient> Userlist = new List<Sungero.CoreEntities.IRecipient>();
@@ -30,10 +30,10 @@ namespace sberdev.SBContracts
     }
   }
 
-  partial class CounterpartyOtvBuchSDevSDevPropertyFilteringServerHandler<T>
+  partial class CounterpartyOtvBuchSberDevPropertyFilteringServerHandler<T>
   {
 
-    public virtual IQueryable<T> OtvBuchSDevSDevFiltering(IQueryable<T> query, Sungero.Domain.PropertyFilteringEventArgs e)
+    public virtual IQueryable<T> OtvBuchSberDevFiltering(IQueryable<T> query, Sungero.Domain.PropertyFilteringEventArgs e)
     {
       var OBrole = Roles.GetAll(r => r.Name == "Ответственный бухгалтер за Контрагентов").FirstOrDefault();
       List<Sungero.CoreEntities.IRecipient> Userlist = new List<Sungero.CoreEntities.IRecipient>();

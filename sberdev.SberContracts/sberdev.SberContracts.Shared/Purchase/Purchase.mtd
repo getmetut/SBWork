@@ -2355,7 +2355,6 @@
       "NameGuid": "2bfdf35d-88d6-4f9d-bed1-0af7209250f6",
       "Name": "ServiceEndDate",
       "Code": "ServiceEndDate",
-      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
       "PreviousPropertyGuid": "5b2ad8e0-6121-4b04-ab5b-6b9f92e0ed09"
     },

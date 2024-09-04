@@ -59,9 +59,10 @@ namespace sberdev.SBContracts.Module.Exchange.Server
                            " Карточка входящего документа: " + attach.Id + "; Карточка родного документа: " + idStr + "; Задача на обработку: " + task.Id);
               if (Sungero.Content.ElectronicDocuments.GetAll().Where(d => Equals(d.Id.ToString(), idStr)).Any())
               {
-                var signInfos = Signatures.Get(incomingDoc.LastVersion);
-                var ourTins = PublicFunctions.Module.GetAllBuisnessUnitTINs();
-                bool notExistExSign = true;
+                var signInfos = Signatures.Get(incomingDoc);
+           //     var ourTins = PublicFunctions.Module.GetAllBuisnessUnitTINs(); 
+                bool existExSign = false;
+          //      bool existOurSign = false;
                 
                 //Проверяем есть ли подпись от ка
                 foreach (var signInfo in signInfos)
@@ -70,7 +71,8 @@ namespace sberdev.SBContracts.Module.Exchange.Server
                   {
                     var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(signInfo.GetDataSignature());
                     string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyOrgTIN(certificateInfo.SubjectInfo);
-                    notExistExSign = ourTins.Exists(t => t == tin);
+            //        existOurSign = ourTins.Exists(t => t == tin);
+                    existExSign = task.Counterparty.TIN == tin;
                   }
                   catch (Exception ex)
                   {
@@ -79,13 +81,13 @@ namespace sberdev.SBContracts.Module.Exchange.Server
                     continue;
                   }
                   
-                  if (!notExistExSign)
+                  if (existExSign)
                     break;
                 }
                 
                 //Начинаем перенос тел и подписей
                 var doc = Sungero.Content.ElectronicDocuments.GetAll(d => d.Id == Int64.Parse(idStr)).First();
-                if (!notExistExSign)
+                if (existExSign)
                 {
                   Stream strmCommon = incomingDoc.LastVersion.Body.Read();
                   Stream strmPublic = incomingDoc.LastVersion.PublicBody.Read();
@@ -156,9 +158,9 @@ namespace sberdev.SBContracts.Module.Exchange.Server
               Logger.Debug("Exchange. ComeBackBodies. Результат: Успешно. Карточка входящего документа: " + attach.Id
                            + "; Задача на обработку: " + task.Id);
               complitedDocs++;
-              
-              var doc = Sungero.Content.ElectronicDocuments.GetAll(d => d.Id == Int64.Parse(idStr)).First();
-              var notice = Sungero.Workflow.SimpleTasks.CreateWithNotices(String.Format("Документ от {0} вернулся в исходную карточку", task.Counterparty?.Name), task.Addressee);
+              var doc = SBContracts.OfficialDocuments.As(Sungero.Content.ElectronicDocuments.GetAll(d => d.Id == Int64.Parse(idStr)).First());
+              var clerk = Sungero.ExchangeCore.BusinessUnitBoxes.GetAll().Where(b => b.BusinessUnit == doc.BusinessUnit).FirstOrDefault()?.Responsible;
+              var notice = Sungero.Workflow.SimpleTasks.CreateWithNotices(String.Format("Документ от {0} вернулся в исходную карточку", task.Counterparty?.Name), task.Author, clerk);
               notice.ActiveText = String.Format("Документ из задачи был автоматически возвращен в родную карточку. Необходимо завершить задание на контроль возврата");
               notice.Attachments.Add(doc);
               notice.Attachments.Add(task);
@@ -183,33 +185,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
             task.IsNeedComeback = false;
             task.NeedComebackAgainAttachments = null;
             Logger.Error("Exchange. ComeBackBodies. Задача " + task.Id + " превысила максимальное количество попыток обработки и больше не будет обрабатываться");
-          }
-          
-          /*
-          // Отпарвляем уведомления о документах которые давно на согласовании
-          int[] noticeInAttemps = {200,300};
-          if (task.NumberOfAttempsComeback.HasValue && noticeInAttemps.Contains(task.NumberOfAttempsComeback.Value))
-          {
-            var iDsIncomingDocs = needComebackAgainAttachments.Split(new char[]{','}, StringSplitOptions.RemoveEmptyEntries).Select(id => Int32.Parse(id)).ToList();
-            var incomingDocs = Sungero.Docflow.OfficialDocuments.GetAll().Where(d => iDsIncomingDocs.Contains(Int32.Parse(d.Id.ToString())));
-            foreach (var incomingDoc in incomingDocs)
-            {
-              var idStr = PublicFunctions.Module.Remote.GetMetadataID(incomingDoc);
-              var doc = Sungero.Content.ElectronicDocuments.GetAll(e => e.Id == Int64.Parse(idStr)).FirstOrDefault();
-              if (doc != null)
-              {
-                var notice = Sungero.Workflow.SimpleTasks.CreateWithNotices(String.Format("Проверьте согласование документа от {0}", task.Created.Value.ToShortDateString()), doc.Author);
-                notice.ActiveText = String.Format("Проверьте согласования документов во вложении. Они были отправлены контрагенту, но до сих пор не подписаны им.");
-                notice.Attachments.Add(doc);
-                notice.Deadline = Calendar.UserNow.AddDays(3);
-                notice.Importance = Sungero.Workflow.SimpleTask.Importance.High;
-                notice.Save();
-                notice.Start();
-                Logger.Debug("Exchange. ComeBackBodies. Отправлено уведомление по вх. документу " + incomingDoc.Id);
-              }
-            }
-          }*/
-          
+          }          
           
           if (needComebackAgainAttachments.Length > 1)
             task.NeedComebackAgainAttachments = needComebackAgainAttachments.Substring(1);

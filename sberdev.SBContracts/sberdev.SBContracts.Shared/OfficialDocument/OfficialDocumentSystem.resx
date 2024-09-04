@@ -160,4 +160,7 @@
   <data name="Action_UnblockVersionSberDev" xml:space="preserve">
     <value>Unlock version</value>
   </data>
+  <data name="Property_BodyExtSberDev" xml:space="preserve">
+    <value>BodyExt</value>
+  </data>
 </root>

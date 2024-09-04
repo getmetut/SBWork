@@ -17,7 +17,7 @@ namespace sberdev.SberContracts.Server
       {
         try
         {
-          SBContracts.PublicFunctions.Module.Remote.CreatePDFSetMetadataID(doc);
+          SBContracts.PublicFunctions.Module.Remote.SetMetadataID(doc);
           return this.GetSuccessResult();
         }
         catch (Exception ex)

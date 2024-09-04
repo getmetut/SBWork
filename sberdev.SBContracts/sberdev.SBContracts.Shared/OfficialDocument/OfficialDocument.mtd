@@ -255,6 +255,19 @@
       "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "184ab537-5748-454f-8a9c-cdbdd506321e"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "2ad4b0b6-2e61-4d9e-8ecf-ca3c3335ed2b",
+      "Name": "BodyExtSberDev",
+      "CanBeSearch": false,
+      "Code": "BodyExtSberDev",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "Length": 10,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "1c3f277d-3762-46e4-a631-eff7244a31b2"
     }
   ],
   "PublicFunctions": [

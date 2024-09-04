@@ -6,11 +6,19 @@ using Sungero.Core;
 using Sungero.CoreEntities;
 using sberdev.SBContracts.ExchangeDocumentProcessingTask;
 using Sungero.Docflow;
+using Sungero.Metadata;
+using Sungero.Domain.Shared;
 
 namespace sberdev.SBContracts
 {
   partial class ExchangeDocumentProcessingTaskServerHandlers
   {
+
+    public override void Saving(Sungero.Domain.SavingEventArgs e)
+    {
+      Functions.ExchangeDocumentProcessingTask.DistributeFormalizedDocument(_obj);
+      base.Saving(e);
+    }
 
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {

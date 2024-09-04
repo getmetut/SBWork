@@ -327,8 +327,8 @@
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "c02d6685-e66c-4958-ac04-ddf574a6099c",
-      "Name": "OtvBuchSDevSDev",
-      "Code": "OtvBuchSDevSDe",
+      "Name": "OtvBuchSberDev",
+      "Code": "OtvBuchSberDev",
       "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
       "HandledEvents": [
         "LookupServer",

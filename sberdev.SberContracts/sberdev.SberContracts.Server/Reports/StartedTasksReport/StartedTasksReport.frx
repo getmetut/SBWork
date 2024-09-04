@@ -63,7 +63,7 @@ namespace FastReport
     <Total Name="TotalNumberTasks" Expression="[TableTotal.NumberTasks]" Evaluator="Data3"/>
   </Dictionary>
   <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
-    <DataBand Name="Data1" Top="21.57" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Guides="18.9" DataSource="Table">
+    <DataBand Name="Data1" Top="21.65" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" Guides="18.9" DataSource="Table">
       <TextObject Name="Text14" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.Created]" Font="Arial, 8pt"/>
       <TextObject Name="Text15" Left="66.15" Width="122.85" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.Performer]" Font="Arial, 8pt"/>
       <TextObject Name="Text19" Left="302.4" Width="37.8" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[Table.Days]" Font="Arial, 8pt">
@@ -94,7 +94,7 @@ namespace FastReport
     </DataBand>
   </ReportPage>
   <ReportPage Name="Page2" Watermark.Font="Arial, 60pt">
-    <DataBand Name="Data2" Top="21.57" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table1">
+    <DataBand Name="Data2" Top="21.65" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table1">
       <TextObject Name="Text3" Width="718.2" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TablePP.PP]" Font="Arial, 8pt"/>
       <DataHeaderBand Name="DataHeader2" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true">
         <TextObject Name="Text23" Width="718.2" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Раскрытия имен псевдо-пользователей" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
@@ -104,12 +104,12 @@ namespace FastReport
   <ReportPage Name="Page3" Watermark.Font="Arial, 60pt">
     <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true">
       <TextObject Name="Text27" Width="283.5" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Руководитель/Работник" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-      <TextObject Name="Text28" Left="283.5" Width="217.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Среднее кол-во дней по задачам" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text28" Left="283.5" Width="217.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Среднее кол-во дней на задние" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
       <TextObject Name="Text29" Left="500.85" Width="217.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Кол-во открытых заданий" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
     </ReportTitleBand>
-    <GroupHeaderBand Name="GroupHeader1" Top="21.57" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" KeepWithData="true" Condition="[TableTotal.Manager]">
+    <GroupHeaderBand Name="GroupHeader1" Top="21.65" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" KeepWithData="true" Condition="[TableTotal.Manager]">
       <TextObject Name="Text30" Width="718.2" Height="18.9" Border.Lines="All" Fill.Color="Gainsboro" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableTotal.Manager]" VertAlign="Center" Font="Arial, 8pt, style=Underline"/>
-      <DataBand Name="Data3" Top="43.13" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table2">
+      <DataBand Name="Data3" Top="43.31" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table2">
         <TextObject Name="Text37" Width="283.5" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableTotal.Performer]" VertAlign="Center" Font="Arial, 8pt"/>
         <TextObject Name="Text38" Left="283.5" Width="217.35" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TableTotal.AvarageDays]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt">
           <Formats>
@@ -125,7 +125,7 @@ namespace FastReport
         </TextObject>
       </DataBand>
     </GroupHeaderBand>
-    <ReportSummaryBand Name="ReportSummary1" Top="64.7" Width="718.2" Height="18.9">
+    <ReportSummaryBand Name="ReportSummary1" Top="64.96" Width="718.2" Height="18.9">
       <TextObject Name="Text34" Width="283.5" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Общий итог:" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
       <TextObject Name="Text35" Left="283.5" Width="217.35" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TotalAvarageDays]" HorzAlign="Right" VertAlign="Center" Font="Arial, 8pt, style=Bold">
         <Formats>

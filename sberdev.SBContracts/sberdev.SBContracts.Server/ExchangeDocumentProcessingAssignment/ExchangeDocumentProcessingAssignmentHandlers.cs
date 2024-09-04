@@ -12,7 +12,7 @@ namespace sberdev.SBContracts
 
     public override void AfterSave(Sungero.Domain.AfterSaveEventArgs e)
     {
-      Functions.ExchangeDocumentProcessingAssignment.DistributeFormalizedDocument(_obj);
+   //   Functions.ExchangeDocumentProcessingAssignment.DistributeFormalizedDocument(_obj);
       base.AfterSave(e);
     }
 

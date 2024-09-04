@@ -12,8 +12,8 @@ namespace Sungero.ATS.Module.Shell.Server
     public virtual IQueryable<sberdev.SBContracts.IExchangeDocument> FromKASDevDataQuery(IQueryable<sberdev.SBContracts.IExchangeDocument> query)
     {
         var ListDocKA = sberdev.SBContracts.ExchangeDocuments.GetAll(d => d.Counterparty != null); // Sungero.Parties.Counterparty
-        var listCP = sberdev.SBContracts.Counterparties.GetAll(c => c.OtvBuchSDev != null); // Sungero.Parties.Counterparty
-        var filteredCounterparties = listCP.Where(c => c.OtvBuchSDev.Login == Users.Current.Login).Select(c => c.Id);
+        var listCP = sberdev.SBContracts.Counterparties.GetAll(c => c.OtvBuchSberDev != null); // Sungero.Parties.Counterparty
+        var filteredCounterparties = listCP.Where(c => c.OtvBuchSberDev.Login == Users.Current.Login).Select(c => c.Id);
           
         if (listCP.Any())
            ListDocKA = ListDocKA.Where(d => listCP.Contains(d.Counterparty));

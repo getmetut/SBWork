@@ -182,6 +182,14 @@ namespace sberdev.SBContracts.Server
       }
     }
     
+    public static void SaveStreamToFile(System.IO.Stream inputStream, string filePath)
+    {
+      using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+      {
+        inputStream.CopyTo(fileStream);
+      }
+    }
+    
     /// <summary>
     /// Получить ИД документа из метаданных документа
     /// </summary>
@@ -190,12 +198,17 @@ namespace sberdev.SBContracts.Server
     {
       if (!doc.HasVersions)
         return null;
-      string ext = doc.LastVersion.AssociatedApplication.Extension;
+      var sbDoc = SBContracts.OfficialDocuments.As(doc);
+      string ext = sbDoc.BodyExtSberDev != null ? sbDoc.BodyExtSberDev : doc.LastVersion.AssociatedApplication.Extension;
       if (ext != "doc" && ext != "docx" && ext != "pdf")
         return null;
       string guid = Guid.NewGuid().ToString();
       string path = "C:\\TempDocs\\docDirectum" + guid + "." + ext;
-      doc.LastVersion.Export(path);
+      using (var fileStr = doc.LastVersion.Body.Read())
+      {
+        SaveStreamToFile(fileStr, path);
+      }
+      
       if (ext == "doc" || ext == "docx")
       {
         Aspose.Words.Document docAsp = new Aspose.Words.Document(path);
@@ -808,7 +821,7 @@ namespace sberdev.SBContracts.Server
           }
           else
           {
-            body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.PurchaseTemplateDocxName);
+            body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.PurchaseShortTemplateDocxName);
             CreateBodyByPropertiesPurchaseShort(purch, body);
           }
           break;
