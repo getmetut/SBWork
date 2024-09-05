@@ -94,4 +94,16 @@
   <data name="FilterPanel_AllSDev_1c7ef8a6fffe4eabaf361df19fc2494c" xml:space="preserve">
     <value>Все неразобранные</value>
   </data>
+  <data name="FilterPanel_DirectionSberDev_8b1b9632ccfc4a53aab553a43d2dbf8e" xml:space="preserve">
+    <value>Direction</value>
+  </data>
+  <data name="FilterPanel_IncomingSberDev_cfdfd720edfe45deb2ea64acce1f2214" xml:space="preserve">
+    <value>Incoming</value>
+  </data>
+  <data name="FilterPanel_OutgoingSberDev_d8cec3cc4a7b464ebec728a6bb1b738c" xml:space="preserve">
+    <value>Outgoing</value>
+  </data>
+  <data name="FilterPanel_AllSberDev_5be1911662154c088b700169acf018a7" xml:space="preserve">
+    <value>All</value>
+  </data>
 </root>

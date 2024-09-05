@@ -30,7 +30,6 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.OrderXXTableSberDev.IsVisible = orderXXFlag;
       _obj.State.Properties.OrderXXTableSberDev.IsRequired = orderXXFlag;
       _obj.State.Properties.DelConditionChSberDev.IsVisible = orderXXFlag;
-      _obj.State.Properties.DelConditionChSberDev.IsRequired = orderXXFlag;
       _obj.State.Properties.DeliveryDateSberDev.IsVisible = orderXXFlag;
       _obj.State.Properties.DeliveryDateSberDev.IsRequired = orderXXFlag;
       _obj.State.Properties.AgentSaluteSberDev.IsVisible = orderXXFlag;

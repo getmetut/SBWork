@@ -46,6 +46,7 @@
         "$type": "Sungero.Metadata.FilterDateRangeMetadata, Sungero.Metadata",
         "NameGuid": "aec35ec8-0f2b-49be-8ccf-1ad62f3293eb",
         "Name": "ContractDateRange",
+        "MasterControlId": "af6ff384-e58f-4686-92fe-e1cb10cc5663",
         "ParentGuid": "4ec0327e-53e0-4c87-bc83-7c5d86832659",
         "PreviousGuid": "1961715e-547e-4181-b0ef-f1a163a1bfbe"
       },
@@ -87,6 +88,7 @@
         "NameGuid": "740e089e-f928-44b4-8aa5-72cbb4ad9e5f",
         "Name": "ContractAmount",
         "IsMultiSelect": true,
+        "MasterControlId": "af6ff384-e58f-4686-92fe-e1cb10cc5663",
         "ParentGuid": "4ec0327e-53e0-4c87-bc83-7c5d86832659",
         "PreviousGuid": "aec35ec8-0f2b-49be-8ccf-1ad62f3293eb"
       },

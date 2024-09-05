@@ -7,6 +7,7 @@ using sberdev.SBContracts.ExchangeDocumentProcessingAssignment;
 
 namespace sberdev.SBContracts
 {
+
   partial class ExchangeDocumentProcessingAssignmentServerHandlers
   {
 

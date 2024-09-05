@@ -64,4 +64,16 @@
   <data name="FilterPanel_ReadSDev_f1ec276264804527845b27314242e142" xml:space="preserve">
     <value>Прочтенные</value>
   </data>
+  <data name="FilterPanel_DirectionSberDev_8b1b9632ccfc4a53aab553a43d2dbf8e" xml:space="preserve">
+    <value>Направление</value>
+  </data>
+  <data name="FilterPanel_IncomingSberDev_cfdfd720edfe45deb2ea64acce1f2214" xml:space="preserve">
+    <value>Входящие</value>
+  </data>
+  <data name="FilterPanel_OutgoingSberDev_d8cec3cc4a7b464ebec728a6bb1b738c" xml:space="preserve">
+    <value>Исходящие</value>
+  </data>
+  <data name="FilterPanel_AllSberDev_5be1911662154c088b700169acf018a7" xml:space="preserve">
+    <value>Все</value>
+  </data>
 </root>

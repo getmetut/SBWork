@@ -6,25 +6,39 @@ using Sungero.CoreEntities;
 
 namespace Sungero.ATS.Module.Shell.Server
 {
+  partial class ExchangeDocumentProcessingFolderHandlers
+  {
+
+    public override IQueryable<Sungero.Workflow.IAssignmentBase> ExchangeDocumentProcessingDataQuery(IQueryable<Sungero.Workflow.IAssignmentBase> query)
+    {
+      var filtred = base.ExchangeDocumentProcessingDataQuery(query);
+      if (_filter.IncomingSberDev)
+        filtred = query.Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p)).Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == true);
+      if (_filter.OutgoingSberDev)
+        filtred = query.Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p)).Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == false);
+      return filtred;
+    }
+  }
+
   partial class FromKASDevFolderHandlers
   {
 
     public virtual IQueryable<sberdev.SBContracts.IExchangeDocument> FromKASDevDataQuery(IQueryable<sberdev.SBContracts.IExchangeDocument> query)
     {
-        var ListDocKA = sberdev.SBContracts.ExchangeDocuments.GetAll(d => d.Counterparty != null); // Sungero.Parties.Counterparty
-        var listCP = sberdev.SBContracts.Counterparties.GetAll(c => c.OtvBuchSberDev != null); // Sungero.Parties.Counterparty
-        var filteredCounterparties = listCP.Where(c => c.OtvBuchSberDev.Login == Users.Current.Login).Select(c => c.Id);
-          
-        if (listCP.Any())
-           ListDocKA = ListDocKA.Where(d => listCP.Contains(d.Counterparty));
-        
-        if (ListDocKA.Any())
-        {
-          if (_filter.MySDev == true)
-            query = query.Where(d => filteredCounterparties.Contains(d.Counterparty.Id));
-        }
-        else
-          query = query.Where(k => k.Name == "@#$%");
+      var ListDocKA = sberdev.SBContracts.ExchangeDocuments.GetAll(d => d.Counterparty != null); // Sungero.Parties.Counterparty
+      var listCP = sberdev.SBContracts.Counterparties.GetAll(c => c.OtvBuchSberDev != null); // Sungero.Parties.Counterparty
+      var filteredCounterparties = listCP.Where(c => c.OtvBuchSberDev.Login == Users.Current.Login).Select(c => c.Id);
+      
+      if (listCP.Any())
+        ListDocKA = ListDocKA.Where(d => listCP.Contains(d.Counterparty));
+      
+      if (ListDocKA.Any())
+      {
+        if (_filter.MySDev == true)
+          query = query.Where(d => filteredCounterparties.Contains(d.Counterparty.Id));
+      }
+      else
+        query = query.Where(k => k.Name == "@#$%");
       return query;
     }
   }
@@ -65,7 +79,7 @@ namespace Sungero.ATS.Module.Shell.Server
 
     public override bool IsNoticesVisible()
     {
-      return false; 
+      return false;
     }
   }
 

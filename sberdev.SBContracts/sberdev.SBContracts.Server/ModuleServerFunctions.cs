@@ -1157,12 +1157,22 @@ namespace sberdev.SBContracts.Server
       else
         body.Range.Replace("[BudgetOwner]", "Отсутствует");
       string str = "";
-      if (purch.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Absolute)
-        foreach(var prod in purch.CalculationBaseSberDev)
-          str += prod.ProductCalc.Name + " - " + prod.AbsoluteCalc.ToString() + "\n";
-      if (purch.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent)
-        foreach(var prod in purch.CalculationBaseSberDev)
-          str += prod.ProductCalc + " - " + prod.InterestCalc.ToString() + "%\n";
+      var exProd = purch.ProdCollectionExBaseSberDev.FirstOrDefault()?.Product;
+      var prProd = purch.ProdCollectionPrBaseSberDev.FirstOrDefault()?.Product;
+      if (exProd?.Name == "General" || prProd?.Name == "General")
+      {
+        if (purch.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Absolute)
+          foreach(var prod in purch.CalculationBaseSberDev)
+            str += prod.ProductCalc.Name + " - " + prod.AbsoluteCalc.ToString() + "\n";
+        if (purch.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent)
+          foreach(var prod in purch.CalculationBaseSberDev)
+            str += prod.ProductCalc + " - " + prod.InterestCalc.ToString() + "%\n";
+      }
+      else
+      {
+        str += exProd?.Name;
+        str += prProd?.Name;
+      }
       body.Range.Replace("[Products]", str);
       body.Range.Replace("[AccArt]", purch.AccArtExBaseSberDev.Name);
       if (purch.MarketDirectSberDev != null)

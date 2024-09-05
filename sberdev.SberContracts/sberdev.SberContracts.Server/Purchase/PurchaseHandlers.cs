@@ -11,11 +11,6 @@ namespace sberdev.SberContracts
   partial class PurchaseServerHandlers
   {
 
-    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
-    {
-      //удаление базового обработчика
-    }
-
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       base.Created(e);

@@ -30,6 +30,67 @@
   "ResourcesKeys": [],
   "SpecialFolders": [
     {
+      "NameGuid": "1031e40e-2c3a-4964-92ce-92036cdcb3b9",
+      "Name": "ExchangeDocumentProcessing",
+      "DisplayType": "Inbox",
+      "FilterPanel": {
+        "NameGuid": "f803bb0d-d71e-4025-8ba7-da24cd4dd44a",
+        "Name": "FilterPanel",
+        "Controls": [
+          {
+            "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+            "NameGuid": "8b1b9632-ccfc-4a53-aab5-53a43d2dbf8e",
+            "Name": "DirectionSberDev",
+            "PreviousGuid": "18c779c3-34d9-4f86-8c7c-848dbeb5686b"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+            "NameGuid": "38919c24-d43f-49c9-b672-c6698539c096",
+            "Name": "DirectionSberDevFlagsListSberDev",
+            "ParentGuid": "8b1b9632-ccfc-4a53-aab5-53a43d2dbf8e"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "cfdfd720-edfe-45de-b2ea-64acce1f2214",
+            "Name": "IncomingSberDev",
+            "IsSelected": true,
+            "ParentGuid": "38919c24-d43f-49c9-b672-c6698539c096"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "d8cec3cc-4a7b-464e-bec7-28a6bb1b738c",
+            "Name": "OutgoingSberDev",
+            "ParentGuid": "38919c24-d43f-49c9-b672-c6698539c096",
+            "PreviousGuid": "cfdfd720-edfe-45de-b2ea-64acce1f2214"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "5be19116-6215-4c08-8b70-0169acf018a7",
+            "Name": "AllSberDev",
+            "ParentGuid": "38919c24-d43f-49c9-b672-c6698539c096",
+            "PreviousGuid": "d8cec3cc-4a7b-464e-bec7-28a6bb1b738c"
+          }
+        ],
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Controls"
+        ],
+        "Versions": []
+      },
+      "HandledEvents": [
+        "DataQueryServer"
+      ],
+      "IconPath": "ExchangeDocumentProcessing_1031e40e2c3a496492ce92036cdcb3b9.ico",
+      "IsAncestorMetadata": true,
+      "IsShow": true,
+      "NeedShowMarkedCount": true,
+      "Overridden": [
+        "FilterPanel",
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
+    {
       "NameGuid": "1440d1dc-6746-434a-908d-e596c2a1f849",
       "Name": "Approval",
       "DisplayType": "Outbox",
