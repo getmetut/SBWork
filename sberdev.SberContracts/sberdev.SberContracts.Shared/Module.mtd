@@ -223,6 +223,10 @@
     {
       "ItemId": "de1484bd-58ee-4c70-b265-67d9537230a9",
       "PreviousItemId": "638cd35a-526e-4888-89e0-4573fde27ec2"
+    },
+    {
+      "ItemId": "9cba8907-aa7e-4b16-b291-a18ae0fb6f3e",
+      "PreviousItemId": "de1484bd-58ee-4c70-b265-67d9537230a9"
     }
   ],
   "HandledEvents": [
@@ -295,7 +299,7 @@
       "Value": "new System.Guid(\"465bf65a-3e4c-4430-8bf5-557626a62c76\")"
     },
     {
-      "Name": "AccDocsHandler",
+      "Name": "AccDocsHandlerRoleGuid",
       "ParentClasses": [
         "Module"
       ],
@@ -333,6 +337,14 @@
       ],
       "TypeName": "System.Guid",
       "Value": "new System.Guid(\"C719C823-C4BD-4434-A34B-D7E83E524414\")"
+    },
+    {
+      "Name": "CpSyncConflictRoleGuid",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"d0fb1092-ed47-46b1-bb6c-536fb01068f6\")"
     },
     {
       "Name": "FACTypeGuid",

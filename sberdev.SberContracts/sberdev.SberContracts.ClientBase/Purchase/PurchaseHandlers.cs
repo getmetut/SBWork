@@ -10,6 +10,23 @@ namespace sberdev.SberContracts
   partial class PurchaseClientHandlers
   {
 
+    public virtual void MethodPurchaseValueInput(Sungero.Presentation.EnumerationValueInputEventArgs e)
+    {
+      if (e.NewValue == MethodPurchase.SeveralCP)
+        _obj.CostAnalysisCollection.Clear();
+    }
+
+    public virtual void ConcludedContractsKindValueInput(Sungero.Presentation.EnumerationValueInputEventArgs e)
+    {
+      if (e.NewValue == ConcludedContractsKind.No)
+        _obj.LeadingDocument = null;
+    }
+
+    public virtual void PurchaseAmountValueInput(Sungero.Presentation.DoubleValueInputEventArgs e)
+    {
+      // для срабатывания обновления формы
+    }
+
     public virtual void PrepaymentPercentValueInput(Sungero.Presentation.IntegerValueInputEventArgs e)
     {
       if (e.NewValue != e.OldValue && e.NewValue > 100)

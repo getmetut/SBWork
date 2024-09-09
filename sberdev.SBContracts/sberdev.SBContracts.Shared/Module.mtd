@@ -755,7 +755,7 @@
       "ReturnTypeFullName": "Sungero.Docflow.Structures.Module.ICertificateSubject"
     },
     {
-      "Name": "ParseCertificateSubjectOnlyOrgTIN",
+      "Name": "ParseCertificateSubjectOnlyTIN",
       "IsRemote": true,
       "Parameters": [
         {

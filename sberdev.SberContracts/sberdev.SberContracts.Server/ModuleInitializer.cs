@@ -32,14 +32,39 @@ namespace sberdev.SberContracts.Server
     
     public static void CreateRoles()
     {
-      var roleAH = Roles.GetAll(r => r.Sid == Constants.Module.AccDocsHandler).FirstOrDefault();
+      var roleSC = Roles.GetAll(r => r.Sid == Constants.Module.CpSyncConflictRoleGuid).FirstOrDefault();
+      
+      if (roleSC == null)
+      {
+        roleSC = Roles.Create();
+        roleSC.Name = "Ответсвенный за конфликты синхронизации контрагентов";
+        roleSC.Description = "Участнику роли приходят задания на решение конфликтов синхронизации контрагентов";
+        roleSC.Sid = Constants.Module.CpSyncConflictRoleGuid;
+        roleSC.IsSystem = false;
+        roleSC.RecipientLinks.AddNew().Member = Users.GetAll().Where(r => r.Id == 10).FirstOrDefault();
+        roleSC.IsSingleUser = true;
+        roleSC.Save();
+        InitializationLogger.Debug("Ответсвенный за фин. вх. документы");
+      }
+      else
+      {
+        roleSC.Name = "Ответсвенный за фин. вх. документы";
+        roleSC.Description = "Участнику роли приходят задания на обработку формализованых финансовых вх. документов.";
+        roleSC.Sid = Constants.Module.CpSyncConflictRoleGuid;
+        roleSC.IsSystem = false;
+        roleSC.IsSingleUser = true;
+        roleSC.Save();
+        InitializationLogger.Debug("Ответсвенный за фин. вх. документы");
+      }
+      
+      var roleAH = Roles.GetAll(r => r.Sid == Constants.Module.AccDocsHandlerRoleGuid).FirstOrDefault();
       
       if (roleAH == null)
       {
         roleAH = Roles.Create();
         roleAH.Name = "Ответсвенный за фин. вх. документы";
-        roleAH.Description = "Участнику роли приходят задаания на обработку формализованых финансовых вх. документов.";
-        roleAH.Sid = Constants.Module.AccDocsHandler;
+        roleAH.Description = "Участнику роли приходят задания на обработку формализованых финансовых вх. документов.";
+        roleAH.Sid = Constants.Module.AccDocsHandlerRoleGuid;
         roleAH.IsSystem = false;
         roleAH.RecipientLinks.AddNew().Member = Users.GetAll().Where(r => r.Id == 10).FirstOrDefault();
         roleAH.IsSingleUser = true;
@@ -49,8 +74,8 @@ namespace sberdev.SberContracts.Server
       else
       {
         roleAH.Name = "Ответсвенный за фин. вх. документы";
-        roleAH.Description = "Участнику роли приходят задаания на обработку формализованых финансовых вх. документов.";
-        roleAH.Sid = Constants.Module.AccDocsHandler;
+        roleAH.Description = "Участнику роли приходят задания на обработку формализованых финансовых вх. документов.";
+        roleAH.Sid = Constants.Module.AccDocsHandlerRoleGuid;
         roleAH.IsSystem = false;
         roleAH.IsSingleUser = true;
         roleAH.Save();

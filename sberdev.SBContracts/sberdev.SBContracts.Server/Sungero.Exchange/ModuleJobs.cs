@@ -60,9 +60,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
               if (Sungero.Content.ElectronicDocuments.GetAll().Where(d => Equals(d.Id.ToString(), idStr)).Any())
               {
                 var signInfos = Signatures.Get(incomingDoc);
-           //     var ourTins = PublicFunctions.Module.GetAllBuisnessUnitTINs(); 
                 bool existExSign = false;
-          //      bool existOurSign = false;
                 
                 //Проверяем есть ли подпись от ка
                 foreach (var signInfo in signInfos)
@@ -70,8 +68,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
                   try
                   {
                     var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(signInfo.GetDataSignature());
-                    string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyOrgTIN(certificateInfo.SubjectInfo);
-            //        existOurSign = ourTins.Exists(t => t == tin);
+                    string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyTIN(certificateInfo.SubjectInfo);
                     existExSign = task.Counterparty.TIN == tin;
                   }
                   catch (Exception ex)
@@ -94,27 +91,21 @@ namespace sberdev.SBContracts.Module.Exchange.Server
                   
                   if (strmCommon.Length > 0)
                   {
-                    doc.CreateVersionFrom(strmCommon, incomingDoc.LastVersion.AssociatedApplication.Extension);
+                    doc.CreateVersionFrom(strmCommon, SBContracts.ExchangeDocuments.As(incomingDoc).BodyExtSberDev);
                     if (strmPublic.Length > 0)
                       doc.LastVersion.PublicBody.Write(strmPublic);
                     doc.Save();
                     
                     Logger.Debug("Exchange. ComeBackBodies. Тело скопировано."
                                  + " Карточка входящего документа: " + attach.Id + "; Карточка родного документа: " + idStr + "; Задача на обработку: " + task.Id);
-                    if (signInfos.Any())
+                    foreach(var signInfo in signInfos)
                     {
-                      foreach(var signInfo in signInfos)
-                      {
-                        var signaturesBytes = signInfo.GetDataSignature();
-                        if (signInfo.IsExternal.HasValue && signInfo.IsExternal.Value)
-                          Signatures.Import(doc, signInfo.SignatureType, signInfo.SignatoryFullName, signaturesBytes, doc.LastVersion);
-                      }
-                      Logger.Debug("Exchange. ComeBackBodies. Подписи перенесены." +
-                                   " Карточка входящего документа: " + attach.Id + "; Карточка родного документа: " + idStr + "; Задача на обработку: " + task.Id);
+                      var signaturesBytes = signInfo.GetDataSignature();
+                      if (signInfo.IsExternal.HasValue && signInfo.IsExternal.Value)
+                        Signatures.Import(doc, signInfo.SignatureType, signInfo.SignatoryFullName, signaturesBytes, doc.LastVersion);
                     }
-                    else
-                      Logger.Debug("Exchange. ComeBackBodies. Подписи не перенесены. Причина: Входящий документ не имеет подписей"
-                                   + " Карточка входящего документа: " + attach.Id + "; Карточка родного документа: " + idStr + "; Задача на обработку: " + task.Id);
+                    Logger.Debug("Exchange. ComeBackBodies. Подписи перенесены." +
+                                 " Карточка входящего документа: " + attach.Id + "; Карточка родного документа: " + idStr + "; Задача на обработку: " + task.Id);
                   }
                   else
                   {
@@ -185,7 +176,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
             task.IsNeedComeback = false;
             task.NeedComebackAgainAttachments = null;
             Logger.Error("Exchange. ComeBackBodies. Задача " + task.Id + " превысила максимальное количество попыток обработки и больше не будет обрабатываться");
-          }          
+          }
           
           if (needComebackAgainAttachments.Length > 1)
             task.NeedComebackAgainAttachments = needComebackAgainAttachments.Substring(1);

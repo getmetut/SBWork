@@ -51,6 +51,8 @@ namespace sberdev.SberContracts.Shared
       
       bool isShortPurchase = _obj.PurchaseAmount.HasValue && _obj.PurchaseAmount < 500000;
       
+      _obj.State.Properties.InfoSubjectPurchase.IsRequired = !isShortPurchase;
+      _obj.State.Properties.InfoSubjectPurchase.IsVisible = !isShortPurchase;
       _obj.State.Properties.SubjectPurchaseGen.IsRequired = !isShortPurchase;
       _obj.State.Properties.SubjectPurchaseGen.IsVisible = !isShortPurchase;
       _obj.State.Properties.MethodPurchase.IsRequired = !isShortPurchase;
@@ -87,7 +89,6 @@ namespace sberdev.SberContracts.Shared
       _obj.State.Properties.CostAnalysisCollection.IsRequired = !isShortPurchase;
       _obj.State.Properties.Specification.IsVisible = !isShortPurchase;
       _obj.State.Properties.Necessary.IsVisible = !isShortPurchase;
-      _obj.State.Properties.InfoSubjectPurchase.IsVisible = !isShortPurchase;
       _obj.State.Properties.ScreenBusinessPlan.IsVisible = !isShortPurchase;
       _obj.State.Properties.UpgradedCommercialOffer.IsVisible = !isShortPurchase;
       _obj.State.Properties.NegotiationsDiscount.IsVisible = !isShortPurchase;

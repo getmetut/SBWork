@@ -2134,7 +2134,7 @@
         }
       ],
       "HandledEvents": [
-        "ChangedShared"
+        "ValueInputClient"
       ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "680ac078-d066-484b-899f-d34292e2db5e"
@@ -2325,7 +2325,7 @@
         }
       ],
       "HandledEvents": [
-        "ChangedShared"
+        "ValueInputClient"
       ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "e68cb142-1bea-46da-903e-c14ae8d30310"
@@ -2479,6 +2479,9 @@
       "NameGuid": "2401e562-195e-44e3-9a97-fff5e22f864a",
       "Name": "PurchaseAmount",
       "Code": "PurchaseAmount",
+      "HandledEvents": [
+        "ValueInputClient"
+      ],
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "c55a8acb-49fb-45b5-87ad-1988e3a29f4f"

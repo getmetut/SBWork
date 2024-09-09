@@ -450,7 +450,7 @@ namespace sberdev.SBContracts.Server
             if (sign.IsExternal.HasValue && sign.IsExternal.Value)
             {
               var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(sign.GetDataSignature());
-              string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyOrgTIN(certificateInfo.SubjectInfo);
+              string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyTIN(certificateInfo.SubjectInfo);
               if (Equals(tin, document.BusinessUnit.TIN) && (sign.IsValid || !isNeedValid))
                 flag = true;
             }
@@ -493,7 +493,7 @@ namespace sberdev.SBContracts.Server
               try
               {
                 var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(sign.GetDataSignature());
-                string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyOrgTIN(certificateInfo.SubjectInfo);
+                string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyTIN(certificateInfo.SubjectInfo);
                 if (Equals(tin, contractual.Counterparty.TIN) && (sign.IsValid || !isNeedValid))
                   flags[1] = true;
                 if (Equals(tin, contractual.BusinessUnit.TIN) && (sign.IsValid || !isNeedValid))
@@ -501,7 +501,7 @@ namespace sberdev.SBContracts.Server
               }
               catch (Exception ex)
               {
-                Logger.Error("Проверка подписи. Ошибка при извлечении сертификата: " + ex.ToString());
+           //     Logger.Error("Проверка подписи. Ошибка при извлечении сертификата: " + ex.ToString());
                 continue;
               }
             }
@@ -522,7 +522,7 @@ namespace sberdev.SBContracts.Server
               try
               {
                 var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(sign.GetDataSignature());
-                string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyOrgTIN(certificateInfo.SubjectInfo);
+                string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyTIN(certificateInfo.SubjectInfo);
                 if (Equals(tin, accounting.Counterparty.TIN) && (sign.IsValid || !isNeedValid))
                   flags[1] = true;
                 if (Equals(tin, accounting.BusinessUnit.TIN) && (sign.IsValid || !isNeedValid))
@@ -530,7 +530,7 @@ namespace sberdev.SBContracts.Server
               }
               catch (Exception ex)
               {
-                Logger.Error("Проверка подписи. Ошибка при извлечении сертификата: " + ex.ToString());
+          //      Logger.Error("Проверка подписи. Ошибка при извлечении сертификата: " + ex.ToString());
                 continue;
               }
             }
@@ -551,14 +551,16 @@ namespace sberdev.SBContracts.Server
     /// <param name="subjectInfo">Информация о владельце сертификата.</param>
     /// <returns>Структура с информацией о владельце сертификата.</returns>
     [Public, Remote]
-    public virtual string ParseCertificateSubjectOnlyOrgTIN(string subjectInfo)
+    public virtual string ParseCertificateSubjectOnlyTIN(string subjectInfo)
     {
       var subject = SBContracts.Functions.Module.GetOidValues(subjectInfo);
-      var tin = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.OrganizationTIN)).FirstOrDefault().Value;
+      var orgTin = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.OrganizationTIN)).FirstOrDefault().Value;
+      var tin = subject.Where(c => Equals(c.Key, Constants.Module.CertificateOid.TIN)).FirstOrDefault().Value;
+      if (!string.IsNullOrEmpty(orgTin))
+        return orgTin;
       if (!string.IsNullOrEmpty(tin))
         return tin;
-      else
-        return "";
+      return "";
     }
     
     /// <summary>

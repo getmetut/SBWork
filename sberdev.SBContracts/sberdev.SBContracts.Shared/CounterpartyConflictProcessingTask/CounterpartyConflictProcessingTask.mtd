@@ -21,6 +21,9 @@
     "IsAncestorMetadata": true,
     "Versions": []
   },
+  "HandledEvents": [
+    "SavingServer"
+  ],
   "IconResourcesKeys": [],
   "IsVisibleThreadText": true,
   "LayeredFromGuid": "03a51b42-a322-4574-90bb-212ea03ed71e",

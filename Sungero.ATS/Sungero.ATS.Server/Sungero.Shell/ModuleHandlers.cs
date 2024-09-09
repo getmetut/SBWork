@@ -12,13 +12,17 @@ namespace Sungero.ATS.Module.Shell.Server
     public override IQueryable<Sungero.Workflow.IAssignmentBase> ExchangeDocumentProcessingDataQuery(IQueryable<Sungero.Workflow.IAssignmentBase> query)
     {
       var filtred = base.ExchangeDocumentProcessingDataQuery(query);
-      if (_filter.IncomingSberDev)
-        filtred = query.Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p)).Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == true);
-      if (_filter.OutgoingSberDev)
-        filtred = query.Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p)).Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == false);
+      if (_filter != null)
+      {
+        if (_filter.IncomingSberDev)
+          filtred = query.Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p)).Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == true);
+        if (_filter.OutgoingSberDev)
+          filtred = query.Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p)).Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == false);
+      }
       return filtred;
     }
   }
+
 
   partial class FromKASDevFolderHandlers
   {

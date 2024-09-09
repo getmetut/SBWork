@@ -86,7 +86,9 @@
       "NeedShowMarkedCount": true,
       "Overridden": [
         "FilterPanel",
-        "HandledEvents"
+        "HandledEvents",
+        "NeedShowMarkedCount",
+        "IsViewSettingsByFolder"
       ],
       "Versions": []
     },

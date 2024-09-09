@@ -26,18 +26,25 @@ namespace sberdev.SberContracts.Server
       documentBlock.AddLineBreak();
       documentBlock.AddLabel("Продукты (валюта: " + _obj.Currency.DisplayValue + "): ");
       documentBlock.AddLineBreak();
-      if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Absolute)
-        foreach(var prod in _obj.CalculationBaseSberDev)
+      string str = "";
+      var exProd = _obj.ProdCollectionExBaseSberDev.FirstOrDefault()?.Product;
+      var prProd = _obj.ProdCollectionPrBaseSberDev.FirstOrDefault()?.Product;
+      if (exProd?.Name == "General" || prProd?.Name == "General")
       {
-        documentBlock.AddLabel(prod.ProductCalc + " - " + prod.AbsoluteCalc.ToString() + " ");
-        documentBlock.AddLineBreak();
+        if (_obj.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Absolute)
+          foreach(var prod in _obj.CalculationBaseSberDev)
+            str += prod.ProductCalc.Name + " - " + prod.AbsoluteCalc.ToString() + "\n";
+        if (_obj.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent)
+          foreach(var prod in _obj.CalculationBaseSberDev)
+            str += prod.ProductCalc + " - " + prod.InterestCalc.ToString() + "%\n";
       }
-      if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Percent)
-        foreach(var prod in _obj.CalculationBaseSberDev)
+      else
       {
-        documentBlock.AddLabel(prod.ProductCalc + " - " + prod.InterestCalc.ToString() + "% ");
-        documentBlock.AddLineBreak();
+        str += exProd?.Name;
+        str += prProd?.Name;
       }
+      documentBlock.AddLabel(str);
+      documentBlock.AddLineBreak();
       if (_obj.AccArtExBaseSberDev != null)
       {
         documentBlock.AddLabel("Статья управленческого учета: " +  _obj.AccArtExBaseSberDev.Name);
