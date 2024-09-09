@@ -22,8 +22,8 @@ namespace sberdev.SberContracts
         if (dialog.Show() == DialogButtons.Ok)
         {
           // Передача введенных значений в параметры beginDate, endDate
-          AccDocsProductReport.StartDate = startDate.Value.Value;
-          AccDocsProductReport.EndDate = endDate.Value.Value;
+          CompleteAssignsReport.StartDate = startDate.Value.Value;
+          CompleteAssignsReport.EndDate = endDate.Value.Value;
         }
         else
           e.Cancel = true;
