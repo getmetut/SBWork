@@ -1,3 +1,26 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <queries>
+  <query key="Query">
+    <mssql><![CDATA[select 
+    r2.Name as Performer,
+    r1.Name as CompletedBy,
+    count(a.Id) as TaskCount
+from Sungero_WF_Assignment a
+left join Sungero_Core_Recipient r1 on a.CompletedBy = r1.Id
+left join Sungero_Core_Recipient r2 on a.Performer = r2.Id
+where a.Status = 'Completed'
+and a.Discriminator != 'EF79164B-2CE7-451B-9BA6-EB59DD9A4A74'
+and a.Discriminator != 'BE83F002-C2C0-49DA-AFF5-B7F3BDDAABF7'
+and a.Discriminator != '32CE5B61-1BE2-4D61-B98A-37B99AFF3560'
+and a.Discriminator != '7D9F857C-9A46-4A16-89BF-0AA9C2E629D9'
+and a.Discriminator != 'DFE429F9-8BBE-4920-B911-FE278031315A'
+and a.Discriminator != '7D9816F6-1DEA-4718-84A5-1A413DF81145'
+and a.Discriminator != '3DAD0441-CD89-4928-B6FF-9B7DD7FC20CF'
+and a.Discriminator != '8724ADA0-FA56-481D-B3D0-AE3E46FF3E31'
+and a.Discriminator != '75D6C458-7725-4133-8FF4-848E16EC5BD3'
+and a.Discriminator != '4CA82B63-1B51-4AEF-A42B-57B7C97DAB64'
+and a.Discriminator != 'AB194340-550C-41C7-BADD-ADC2EE208741'
+and a.Created >= @startDate and a.Created <= @endDate
+group by r1.Name, r2.Name]]></mssql>
+  </query>
 </queries>

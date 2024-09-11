@@ -404,7 +404,7 @@
         "Overridden": [
           "PreviousItemGuid"
         ],
-        "PreviousItemGuid": "dd7b58fd-0b25-4341-a70e-189b2abd006d",
+        "PreviousItemGuid": "853f582b-fee7-4bc8-a061-9da218f11106",
         "Versions": []
       },
       {
@@ -423,6 +423,15 @@
         "GroupId": "bf7ec0bf-a0cd-4390-8e20-4071d2745ac9",
         "PreviousItemGuid": "ecc03cbf-3721-4cfe-bd4c-6bddc82dfc3a",
         "ReportId": "77fc00ff-f108-4acc-a384-fed225e47f9a"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "853f582b-fee7-4bc8-a061-9da218f11106",
+        "Name": "AssignmentsSberDev",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "bf7ec0bf-a0cd-4390-8e20-4071d2745ac9",
+        "PreviousItemGuid": "dd7b58fd-0b25-4341-a70e-189b2abd006d",
+        "ReportId": "9cba8907-aa7e-4b16-b291-a18ae0fb6f3e"
       },
       {
         "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",

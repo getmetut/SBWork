@@ -13,17 +13,14 @@ namespace sberdev.SberContracts
     {
       if (!CompleteAssignsReport.StartDate.HasValue && !CompleteAssignsReport.EndDate.HasValue)
       {
-        // Создание диалогового окна для запроса значений параметров
-        // beginDate, endDate
         var dialog = Dialogs.CreateInputDialog("Настройки отчета");
         var startDate = dialog.AddDate("От", true, Calendar.Now.AddMonths(-1));
         var endDate = dialog.AddDate("До", true, Calendar.UserNow);
         var recip = dialog.AddSelectMany("Пользователи", true, Sungero.Company.Employees.Null);
         if (dialog.Show() == DialogButtons.Ok)
         {
-          // Передача введенных значений в параметры beginDate, endDate
-          CompleteAssignsReport.StartDate = startDate.Value.Value;
-          CompleteAssignsReport.EndDate = endDate.Value.Value;
+          CompleteAssignsReport.StartDate = startDate.Value;
+          CompleteAssignsReport.EndDate = endDate.Value;
         }
         else
           e.Cancel = true;
