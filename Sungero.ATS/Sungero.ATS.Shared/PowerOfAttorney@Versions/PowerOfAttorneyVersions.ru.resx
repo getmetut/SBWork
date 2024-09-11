@@ -58,25 +58,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CoverAction_ChangeBusinessUnitFilteringCasheSberDev" xml:space="preserve">
-    <value>Change analytics filtering personal setting</value>
-  </data>
-  <data name="CoverDescription_ChangeBusinessUnitFilteringCasheSberDev" xml:space="preserve">
-    <value>Setting up filtering for analytics selection in the global search dialog box for "Our organization".</value>
-  </data>
-  <data name="CoverAction_MatrixPOASDev" xml:space="preserve">
-    <value>Матрицы распределения доверенностей</value>
-  </data>
-  <data name="CoverDescription_MatrixPOASDev" xml:space="preserve">
-    <value>Справочник распределения типов доверенностей, согласующих и полномочий</value>
-  </data>
-  <data name="sf_17da0a5e_4f34_4e65_86cd_1cc4d972b10d" xml:space="preserve">
-    <value>Реестр доверенностей</value>
-  </data>
-  <data name="CoverAction_ReestrPOADevSDev" xml:space="preserve">
-    <value>Реестр довереностей</value>
-  </data>
-  <data name="CoverDescription_ReestrPOADevSDev" xml:space="preserve">
-    <value>Реестр выпущенных доверенностей по нашим организациям</value>
-  </data>
 </root>

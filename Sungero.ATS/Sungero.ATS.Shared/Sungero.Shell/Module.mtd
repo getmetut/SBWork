@@ -15,6 +15,7 @@
       "PreviousItemId": "471e68ad-7f9d-43d7-b4db-93eb660cde7f"
     },
     {
+      "IsVisible": false,
       "ItemId": "c52f4f9b-137b-42f8-a212-f4080b8de375",
       "PreviousItemId": "fa722da7-57f4-4998-88b9-fffe9abb1162"
     }
@@ -69,6 +70,43 @@
             "Name": "AllSberDev",
             "ParentGuid": "38919c24-d43f-49c9-b672-c6698539c096",
             "PreviousGuid": "d8cec3cc-4a7b-464e-bec7-28a6bb1b738c"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+            "NameGuid": "eb4d1516-94f9-471f-9493-bc6664fe89d1",
+            "Name": "VirificatorsSDev",
+            "PreviousGuid": "8b1b9632-ccfc-4a53-aab5-53a43d2dbf8e"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterNavigationMetadata, Sungero.Metadata",
+            "NameGuid": "ea7e460d-cc0b-4889-b68b-121f7890e3f7",
+            "Name": "BuchKASDev",
+            "EntityGuid": "c612fc41-44a3-428b-a97c-433c333d78e9",
+            "HandledEvents": [
+              "FilteringServer"
+            ],
+            "ParentGuid": "eb4d1516-94f9-471f-9493-bc6664fe89d1"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+            "NameGuid": "5a6ef4af-4c0c-4ef9-9267-f7d5be079e97",
+            "Name": "VirificatorsSDevFlagsListSDev",
+            "ParentGuid": "eb4d1516-94f9-471f-9493-bc6664fe89d1",
+            "PreviousGuid": "ea7e460d-cc0b-4889-b68b-121f7890e3f7"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "ab76c865-cd62-405e-9f7f-51503ecb4f8e",
+            "Name": "YesSDev",
+            "ParentGuid": "5a6ef4af-4c0c-4ef9-9267-f7d5be079e97"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "648505f0-2143-4b68-90cf-21383fd1d58f",
+            "Name": "NoSDev",
+            "IsSelected": true,
+            "ParentGuid": "5a6ef4af-4c0c-4ef9-9267-f7d5be079e97",
+            "PreviousGuid": "ab76c865-cd62-405e-9f7f-51503ecb4f8e"
           }
         ],
         "IsAncestorMetadata": true,
@@ -86,9 +124,7 @@
       "NeedShowMarkedCount": true,
       "Overridden": [
         "FilterPanel",
-        "HandledEvents",
-        "NeedShowMarkedCount",
-        "IsViewSettingsByFolder"
+        "HandledEvents"
       ],
       "Versions": []
     },
@@ -418,7 +454,7 @@
       "HandledEvents": [
         "DataQueryServer"
       ],
-      "IsShow": true,
+      "IsShow": false,
       "Kind": "Computable",
       "NeedShowMarkedCount": false
     }

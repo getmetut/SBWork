@@ -58,25 +58,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CoverAction_ChangeBusinessUnitFilteringCasheSberDev" xml:space="preserve">
-    <value>Change analytics filtering personal setting</value>
+  <data name="Property_JobTitleSDev" xml:space="preserve">
+    <value>Должность</value>
   </data>
-  <data name="CoverDescription_ChangeBusinessUnitFilteringCasheSberDev" xml:space="preserve">
-    <value>Setting up filtering for analytics selection in the global search dialog box for "Our organization".</value>
+  <data name="Property_ObosnovanieSDev" xml:space="preserve">
+    <value>Для каких целей требуется доверенность</value>
   </data>
-  <data name="CoverAction_MatrixPOASDev" xml:space="preserve">
-    <value>Матрицы распределения доверенностей</value>
+  <data name="Property_SpecaSDev" xml:space="preserve">
+    <value>Спецпожелания</value>
   </data>
-  <data name="CoverDescription_MatrixPOASDev" xml:space="preserve">
-    <value>Справочник распределения типов доверенностей, согласующих и полномочий</value>
+  <data name="Resource_8d9071a44b964f96bc6f3ca2ceabed37" xml:space="preserve">
+    <value />
   </data>
-  <data name="sf_17da0a5e_4f34_4e65_86cd_1cc4d972b10d" xml:space="preserve">
-    <value>Реестр доверенностей</value>
+  <data name="Control_8d9071a44b964f96bc6f3ca2ceabed37_EmptyText" xml:space="preserve">
+    <value />
   </data>
-  <data name="CoverAction_ReestrPOADevSDev" xml:space="preserve">
-    <value>Реестр довереностей</value>
+  <data name="Resource_147049796d2e43fd9611faf96e8aa2f8" xml:space="preserve">
+    <value />
   </data>
-  <data name="CoverDescription_ReestrPOADevSDev" xml:space="preserve">
-    <value>Реестр выпущенных доверенностей по нашим организациям</value>
+  <data name="Resource_5e41dfa11ff1494ead2673aa9faaa41b" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_5e41dfa11ff1494ead2673aa9faaa41b_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_2d091121b05946c5b1ba7f133de69161" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_2d091121b05946c5b1ba7f133de69161_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_FirstOrDoubleSDev" xml:space="preserve">
+    <value>Продление ранней доверенности</value>
+  </data>
+  <data name="ControlGroup_d99757c1cc0944f8a9a2963f8ef582d2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_8729b97ad28b4289970fe7303da8a406" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_10148f1e68f24a5e9a7603b32b9b3229" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_b35f5aa8ad2a48d7bdac20daaa3d7d61" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_MatrixSDev" xml:space="preserve">
+    <value>Тип доверенности (матрица)</value>
   </data>
 </root>

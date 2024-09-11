@@ -115,4 +115,10 @@
   <data name="JobDescription_6086c0a85ae44133ae443b56c3e55348" xml:space="preserve">
     <value>Фоновый процесс редоставления прав на документы по признаку нахождения сотрудника в МВЗ</value>
   </data>
+  <data name="CoverAction_RemoveUserToReferences" xml:space="preserve">
+    <value>Замена пользователя в справочниках</value>
+  </data>
+  <data name="CoverDescription_RemoveUserToReferences" xml:space="preserve">
+    <value>Тестирование функции замены сотрудника по всем справочникам на начальника или иного сотрудника</value>
+  </data>
 </root>

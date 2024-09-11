@@ -28,12 +28,40 @@
     "NameGuid": "a52a7382-131e-4cb5-9a18-28898b8b1f49",
     "Actions": [
       {
+        "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
+        "NameGuid": "0a4913f7-5654-4c2a-bbc3-259ee12873ae",
+        "Name": "MatrixPOASDev",
+        "EntityTypeId": "b722de65-03c5-4ad2-9437-03c9f94c2750",
+        "GroupId": "741ff203-46fc-4676-b6d7-a474dd9fefa4",
+        "PreviousItemGuid": "b83fe3bf-b980-44c7-9b93-832c5296518d"
+      },
+      {
         "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
         "NameGuid": "39df6569-27c8-44d4-ad1a-0342bc66704c",
         "Name": "ChangeBusinessUnitFilteringCasheSberDev",
         "FunctionName": "DialogUpdateBusinessUnitFilteringCashe",
         "GroupId": "9778efad-0f26-4150-86b0-b539e9fa468f",
         "PreviousItemGuid": "9ebcf6d5-cd2e-4c6f-a110-9d5d304e3e9d"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
+        "NameGuid": "64a8f0bd-e209-4162-aa40-96199d5d9564",
+        "Name": "KFIntegrationSettings",
+        "FunctionName": "OpenKFIntegrationSettings",
+        "GroupId": "7ec69dba-e056-46e1-8b62-c3f460b22884",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "PreviousItemGuid"
+        ],
+        "PreviousItemGuid": "a51bcf80-d306-435d-b791-7b5bdd48432d"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverComputableFolderActionMetadata, Sungero.Metadata",
+        "NameGuid": "651064ba-7110-467e-b6dc-21b482138778",
+        "Name": "ReestrPOADevSDev",
+        "ComputableFolderId": "17da0a5e-4f34-4e65-86cd-1cc4d972b10d",
+        "GroupId": "81281d6c-7b93-42fa-bf28-103d0e3419e3",
+        "PreviousItemGuid": "98d80342-5bdb-4e88-9608-02ece218ea40"
       }
     ],
     "Groups": [],
@@ -44,7 +72,12 @@
     "Tabs": [],
     "Versions": []
   },
-  "ExplorerTreeOrder": [],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "17da0a5e-4f34-4e65-86cd-1cc4d972b10d",
+      "PreviousItemId": "b8aa8f84-7488-43c7-9e0d-7050eb5ea6af"
+    }
+  ],
   "IconResourcesKeys": [],
   "Importance": "Medium",
   "LayeredFromGuid": "d534e107-a54d-48ec-85ff-bc44d731a82f",
@@ -55,7 +88,22 @@
     "UnitFilteringTitle",
     "DialogUpdateBusinessUnitFilteringCasheBusinessUnit"
   ],
-  "SpecialFolders": [],
+  "SpecialFolders": [
+    {
+      "NameGuid": "17da0a5e-4f34-4e65-86cd-1cc4d972b10d",
+      "Name": "POAsSDev",
+      "DefaultContentType": "ac83925f-e119-4b9d-b55f-526fcff63e36",
+      "DisplayType": "Module",
+      "FilterPanel": {
+        "NameGuid": "3bf50884-96ae-4d10-86c5-548641b27471",
+        "Name": "FilterPanel",
+        "Controls": []
+      },
+      "IsShow": false,
+      "Kind": "Computable",
+      "NeedShowMarkedCount": false
+    }
+  ],
   "Version": "4.8.39.0",
   "Widgets": [],
   "Versions": [

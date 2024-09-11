@@ -106,4 +106,19 @@
   <data name="FilterPanel_AllSberDev_5be1911662154c088b700169acf018a7" xml:space="preserve">
     <value>All</value>
   </data>
+  <data name="FilterPanel_VirificatorsSDev_eb4d151694f9471f9493bc6664fe89d1" xml:space="preserve">
+    <value>Ответственные</value>
+  </data>
+  <data name="FilterPanel_BuchKASDev_ea7e460dcc0b4889b68b121f7890e3f7" xml:space="preserve">
+    <value>Ответственный за контрагента</value>
+  </data>
+  <data name="FilterPanel_VirificatorsSDevFlagsListSDev_5a6ef4af4c0c4ef99267f7d5be079e97" xml:space="preserve">
+    <value>Нераспределенные</value>
+  </data>
+  <data name="FilterPanel_YesSDev_ab76c865cd62405e9f7f51503ecb4f8e" xml:space="preserve">
+    <value>Показывать</value>
+  </data>
+  <data name="FilterPanel_NoSDev_648505f021434b6890cf21383fd1d58f" xml:space="preserve">
+    <value>Скрывать</value>
+  </data>
 </root>

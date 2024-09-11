@@ -9,6 +9,24 @@ namespace Sungero.ATS.Module.Shell.Server
   partial class ExchangeDocumentProcessingFolderHandlers
   {
 
+    public virtual IQueryable<Sungero.CoreEntities.IRecipient> ExchangeDocumentProcessingBuchKASDevFiltering(IQueryable<Sungero.CoreEntities.IRecipient> query)
+    {
+      var OBrole = Roles.GetAll(r => r.Name == "Ответственный бухгалтер за Контрагентов").FirstOrDefault();
+      List<Sungero.CoreEntities.IRecipient> Userlist = new List<Sungero.CoreEntities.IRecipient>();
+      if (OBrole != null)
+      {
+        if (OBrole.RecipientLinks.Count > 0)
+        {
+          foreach (var elem in OBrole.RecipientLinks)
+          {
+              Userlist.Add(elem.Member);
+          }
+          query = query.Where(q => Userlist.Contains(q));
+        }
+      }
+      return query;
+    }
+
     public override IQueryable<Sungero.Workflow.IAssignmentBase> ExchangeDocumentProcessingDataQuery(IQueryable<Sungero.Workflow.IAssignmentBase> query)
     {
       var filtred = base.ExchangeDocumentProcessingDataQuery(query);
@@ -19,10 +37,32 @@ namespace Sungero.ATS.Module.Shell.Server
         if (_filter.OutgoingSberDev)
           filtred = query.Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p)).Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == false);
       }
+      
+      if (_filter.BuchKASDev != null)
+      {
+        var listCP = sberdev.SBContracts.Counterparties.GetAll();
+        var filterdata = listCP.Select(c => c.Id);
+        if (_filter.NoSDev)
+        {
+          listCP = listCP.Where(c => c.OtvBuchSberDev != null); // Sungero.Parties.Counterparty
+          if (_filter.BuchKASDev != null)
+            filterdata = listCP.Where(c => c.OtvBuchSberDev.Id == _filter.BuchKASDev.Id).Select(c => c.Id);
+        }
+        else
+        {
+          filterdata = listCP.Where(c => ((c.OtvBuchSberDev.Id == _filter.BuchKASDev.Id) || (c.OtvBuchSberDev == null))).Select(c => c.Id);
+        }
+        
+        if (filterdata.Any())
+          filtred = filtred.Where(d => filterdata.Contains(sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(d.Task).Counterparty.Id));
+        else
+          filtred = filtred.Where(k => k.Subject == "@#$%");
+      }
+      
+      
       return filtred;
     }
   }
-
 
   partial class FromKASDevFolderHandlers
   {

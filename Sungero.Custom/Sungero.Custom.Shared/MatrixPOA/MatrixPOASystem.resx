@@ -58,25 +58,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CoverAction_ChangeBusinessUnitFilteringCasheSberDev" xml:space="preserve">
-    <value>Change analytics filtering personal setting</value>
+  <data name="Property_Name" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="CoverDescription_ChangeBusinessUnitFilteringCasheSberDev" xml:space="preserve">
-    <value>Setting up filtering for analytics selection in the global search dialog box for "Our organization".</value>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Матрица полномочий доверенностей</value>
   </data>
-  <data name="CoverAction_MatrixPOASDev" xml:space="preserve">
-    <value>Матрицы распределения доверенностей</value>
+  <data name="AccusativeDisplayName" xml:space="preserve">
+    <value>Матрицуполномочий доверенностей</value>
   </data>
-  <data name="CoverDescription_MatrixPOASDev" xml:space="preserve">
-    <value>Справочник распределения типов доверенностей, согласующих и полномочий</value>
+  <data name="CollectionDisplayName" xml:space="preserve">
+    <value>Матрицы полномочий доверенностей</value>
   </data>
-  <data name="sf_17da0a5e_4f34_4e65_86cd_1cc4d972b10d" xml:space="preserve">
-    <value>Реестр доверенностей</value>
+  <data name="Property_TypePOA" xml:space="preserve">
+    <value>Тип доверенности</value>
   </data>
-  <data name="CoverAction_ReestrPOADevSDev" xml:space="preserve">
-    <value>Реестр довереностей</value>
+  <data name="Property_Authority" xml:space="preserve">
+    <value>Основные полномочия</value>
   </data>
-  <data name="CoverDescription_ReestrPOADevSDev" xml:space="preserve">
-    <value>Реестр выпущенных доверенностей по нашим организациям</value>
+  <data name="Property_PeopleAccesPOA" xml:space="preserve">
+    <value>Кому разрешена выдача доверенности</value>
+  </data>
+  <data name="Property_Assignee" xml:space="preserve">
+    <value>Лицо согласующее данную доверенность</value>
+  </data>
+  <data name="Property_Mahineread" xml:space="preserve">
+    <value>Машиночитаемая доверенность для ЭДО</value>
+  </data>
+  <data name="Property_Representative" xml:space="preserve">
+    <value>Представитель</value>
   </data>
 </root>
