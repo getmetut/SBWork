@@ -9,7 +9,7 @@ using sberdev.SberContracts;
 namespace sberdev.SBContracts.Server
 {
   partial class AccountingDocumentBaseFunctions
-  {    
+  {
     #region Функции кнопок автозаполнения
     
     /// <summary>
@@ -55,7 +55,7 @@ namespace sberdev.SBContracts.Server
           cashe = sberdev.SberContracts.AnaliticsCasheGenerals.Create();
         else
           SberContracts.PublicFunctions.AnaliticsCasheGeneral.ClearByUser(cashe, Users.Current);
-          
+        
         
         cashe.ContrType = _obj.ContrTypeBaseSberDev;
         
@@ -181,14 +181,22 @@ namespace sberdev.SBContracts.Server
     
     #endregion
     
-  public override IQueryable<Sungero.Docflow.ISignatureSetting> GetSignatureSettingsQuery()
-  {
-    var query = base.GetSignatureSettingsQuery();
+    public override IQueryable<Sungero.Docflow.ISignatureSetting> GetSignatureSettingsQuery()
+    {
+      var query = base.GetSignatureSettingsQuery();
+      var sbQuery = query.Select(q => SBContracts.SignatureSettings.As(q));
+      var prod = _obj.ProdCollectionBaseSberDev.FirstOrDefault();
+      
+      if (prod != null && prod.Product.Name != "General")
+        sbQuery = sbQuery.Where(q => q.ProductsSberDev.Select(qq => qq.Product).Contains(prod.Product));
+      if (!sbQuery.Any())
+        sbQuery = query.Select(q => SBContracts.SignatureSettings.As(q));
+      
       if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable)
-        return query.Where(q => SBContracts.SignatureSettings.As(q).ExpendableSberDev.Value);
+        return sbQuery.Where(q => q.ExpendableSberDev.Value);
       if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
-        return query.Where(q => SBContracts.SignatureSettings.As(q).ProfitableSberDev.Value);
-      return query;
-  }
+        return sbQuery.Where(q => q.ProfitableSberDev.Value);
+      return sbQuery;
+    }
   }
 }

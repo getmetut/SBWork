@@ -2470,7 +2470,6 @@
           "Code": "SupAgreement"
         }
       ],
-      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "c69d02f3-7f15-4a24-88de-480d0058a0b1"
     },

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Core.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;Sungero.Domain.Shared&#13;&#10;Sungero.CoreEntities.Shared&#13;&#10;Sungero.Reporting.Shared&#13;&#10;CommonLibrary&#13;&#10;Sungero.Localization&#13;&#10;Sungero.Declension&#13;&#10;Sungero.Domain.Interfaces&#13;&#10;sberdev.SberContracts.Shared&#13;&#10;sberdev.SberContracts.Server" ReportInfo.CreatorVersion="2020.2.12.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using Sungero.Domain.Shared;
+using Sungero.CoreEntities;
+using Sungero.Core;
+using Resources = sberdev.SberContracts.Reports.Resources;
+
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+    public string TranslateType(string enumValue)
+    {
+      switch (enumValue.ToLower())
+      {
+        case &quot;cf8357c3-8266-490d-b75e-0bd3e46b1ae8&quot;:
+          return &quot;Вх. документ эл. обмена&quot;;
+        case &quot;9570e517-7ab7-4f23-a959-3652715efad3&quot;:
+          return &quot;Приказ&quot;;
+        case &quot;09584896-81e2-4c83-8f6c-70eb8321e1d0&quot;:
+          return &quot;Простой документ&quot;;
+        case &quot;58b9ed35-9c84-46cd-aa79-9b5ef5a82f5d&quot;:
+          return &quot;Приложение к документу&quot;;
+        case &quot;d1d2a452-7732-4ba8-b199-0a4dc78898ac&quot;:
+          return &quot;Исходящее письмо&quot;;
+        case &quot;d62141c7-715c-47bb-82b0-cf2ffbe8b6e7&quot;:
+          return &quot;NDA&quot;;
+        case &quot;bb4780ff-b2c3-4044-a390-e9e110791bf6&quot;:
+          return &quot;Протокол совещания&quot;;
+        case &quot;a523a263-bc00-40f9-810d-f582bae2205d&quot;:
+          return &quot;Входящий счет&quot;;
+        case &quot;f2f5774d-5ca3-4725-b31d-ac618f6b8850&quot;:
+          return &quot;Акт выполненных работ&quot;;
+        case &quot;58986e23-2b0a-4082-af37-bd1991bc6f7e&quot;:
+          return &quot;Универсальный передаточный документ&quot;;
+        case &quot;f50c4d8a-56bc-43ef-bac3-856f57ca70be&quot;:
+          return &quot;Счет-фактура выставленный&quot;;
+        case &quot;74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a&quot;:
+          return &quot;Счет-фактура полученный&quot;;
+        case &quot;58ad01fb-6805-426b-9152-4de16d83b258&quot;:
+          return &quot;Исходящий счет&quot;;
+        case &quot;4e81f9ca-b95a-4fd4-bf76-ea7176c215a7&quot;:
+          return &quot;Накладная&quot;;  
+        case &quot;f37c7e63-b134-4446-9b5b-f8811f6c9666&quot;:
+          return &quot;Договор&quot;;
+        case &quot;265f2c57-6a8a-4a15-833b-ca00e8047fa5&quot;:
+          return &quot;Доп. соглашение&quot;;
+        // Добавьте остальные значения
+        default:
+          return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
+      }
+    }
+  }
+}
+  </ScriptText>
+  <Dictionary>
+    <SungeroSqlDataConnection Name="Sungero_Connection" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties" ConnectionStringExpression="[SungeroConnectionString]">
+      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${Query}">
+        <Column Name="AvgApprovalTimeInWorkingDays" DataType="System.Int16" PropName="Column"/>
+        <Column Name="DocumentDiscriminator" DataType="System.String" PropName="Column1"/>
+        <CommandParameter Name="EndDate" DataType="6" IsDbType="true" Expression="[EndDate]"/>
+        <CommandParameter Name="StartDate" DataType="16" IsDbType="true" Expression="[StartDate]"/>
+        <CommandParameter Name="BusinessUnit" DataType="12" IsDbType="true" Expression="[BusinessUnit]"/>
+      </TableDataSource>
+    </SungeroSqlDataConnection>
+    <SungeroParameter Name="SungeroConnectionString" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties, DontShow" Id="f8aa6fb8-b14a-42ac-904f-ea26073827b2" IsRequired="false" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="EndDate" Id="c2ab57e7-a7ec-4bfa-bb26-531d8cd2eed1" IsRequired="false" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="StartDate" Id="31d83787-139f-4d57-840a-2f91cd1d3696" IsRequired="false" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="BusinessUnit" Id="9e7660ab-19ee-4f76-91bf-769e8c96a205" IsRequired="false" IsCollection="false" InternalDataType="System.Int64" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="140" RawPaperSize="0" Watermark.Font="Arial, 60pt">
+    <DataBand Name="Data1" Top="21.65" Width="453.6" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table">
+      <TextObject Name="Text6" Left="330.75" Width="122.85" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[Table.AvgApprovalTimeInWorkingDays]" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text7" Width="330.75" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[TranslateType([Table.DocumentDiscriminator])]" VertAlign="Center" Font="Arial, 8pt"/>
+      <DataHeaderBand Name="DataHeader1" Width="453.6" Height="18.9">
+        <TextObject Name="Text8" Width="330.75" Height="18.9" Border.Lines="All" Fill.Color="Gainsboro" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="Тип документа" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text3" Left="330.75" Width="122.85" Height="18.9" Border.Lines="All" Fill.Color="Gainsboro" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="Среднее время согл." VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+      </DataHeaderBand>
+    </DataBand>
+  </ReportPage>
+</Report>

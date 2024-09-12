@@ -224,8 +224,18 @@ namespace sberdev.SBContracts
     {
       base.LeadingDocumentChanged(e);
       if (e.NewValue != e.OldValue)
-      {
         _obj.ModifiedSberDev = Calendar.Now;
+      
+      if (e.NewValue != null)
+      {
+        
+        SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+        
+        var contract = SBContracts.ContractualDocuments.As(e.NewValue);
+        if (contract.DocumentKind.Name == "Договор Xiongxin")
+        {
+          _obj.AgentSaluteSberDev = contract.AgentSaluteSberDev;
+        }
       }
     }
 

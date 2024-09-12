@@ -59,6 +59,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Description" xml:space="preserve">
-    <value />
+    <value>The report shows the number of completed employee assignments broken down by substitutions for the specified period.</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Report on completed assignments (with substitution disclosure)</value>
   </data>
 </root>

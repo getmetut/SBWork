@@ -6,21 +6,22 @@ using Sungero.CoreEntities;
 
 namespace sberdev.SberContracts
 {
-  partial class CompleteAssignsReportClientHandlers
+  partial class AvgTimeCompletedTaskReportClientHandlers
   {
 
     public override void BeforeExecute(Sungero.Reporting.Client.BeforeExecuteEventArgs e)
     {
-      if (!CompleteAssignsReport.StartDate.HasValue && !CompleteAssignsReport.EndDate.HasValue)
+      if (!AvgTimeCompletedTaskReport.StartDate.HasValue && !AvgTimeCompletedTaskReport.EndDate.HasValue)
       {
         var dialog = Dialogs.CreateInputDialog("Настройки отчета");
         var startDate = dialog.AddDate("От", true, Calendar.Now.AddMonths(-1));
         var endDate = dialog.AddDate("До", true, Calendar.UserNow);
-    //    var recip = dialog.AddSelectMany("Пользователи", true, Sungero.Company.Employees.Null);
+        var bu = dialog.AddSelect("Наша организация", true, Sungero.Company.BusinessUnits.Null);
         if (dialog.Show() == DialogButtons.Ok)
         {
-          CompleteAssignsReport.StartDate = startDate.Value;
-          CompleteAssignsReport.EndDate = endDate.Value;
+          AvgTimeCompletedTaskReport.StartDate = startDate.Value;
+          AvgTimeCompletedTaskReport.EndDate = endDate.Value;
+          AvgTimeCompletedTaskReport.BusinessUnit = bu.Value.Id;
         }
         else
           e.Cancel = true;

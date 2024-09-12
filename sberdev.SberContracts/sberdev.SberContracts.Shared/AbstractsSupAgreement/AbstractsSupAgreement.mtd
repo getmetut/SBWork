@@ -1086,9 +1086,9 @@
       "Name": "LeadingDocument",
       "EntityGuid": "1d5473f7-1bfe-4c31-a1c0-b73d3f7dad89",
       "HandledEvents": [
-        "ChangedShared",
         "ValueInputClient",
-        "LookupServer"
+        "LookupServer",
+        "ChangedShared"
       ],
       "IsAncestorMetadata": true,
       "NeedPassEntityToLookupEvent": true,

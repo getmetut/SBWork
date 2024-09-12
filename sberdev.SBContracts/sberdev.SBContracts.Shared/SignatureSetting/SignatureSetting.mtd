@@ -456,28 +456,6 @@
           "Settings": []
         },
         {
-          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
-          "NameGuid": "6aa3e311-2e5a-48d9-8e35-029804a3ed96",
-          "Name": "ControlGroupSberDev",
-          "ColumnDefinitions": [
-            {
-              "Percentage": 9.13
-            },
-            {
-              "Percentage": 9.28
-            },
-            {
-              "Percentage": 81.59
-            }
-          ],
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "GroupType": "GroupBox",
-          "ParentGuid": "8a51dc61-e244-4e25-a9ec-af8a04220d16",
-          "RowNumber": 5,
-          "RowSpan": 1
-        },
-        {
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "cdd0f9f8-a4d9-4edf-a9b4-0379b89f1db1",
           "Name": "ExpendableSberDevSberDev",
@@ -515,6 +493,46 @@
           "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "991076f6-3fd1-4ea9-badc-737270f3b97d",
+          "Name": "ProductsSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
+          "ParentGuid": "8a51dc61-e244-4e25-a9ec-af8a04220d16",
+          "PropertyGuid": "5371dca5-4f21-4daf-8237-20965a03080f",
+          "RowNumber": 5,
+          "RowSpan": 2,
+          "Settings": [
+            {
+              "Name": "NavigationPropertyGuid",
+              "Value": "f751fc3f-af2a-4325-ac63-6e024ce6c125"
+            }
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
+          "NameGuid": "6aa3e311-2e5a-48d9-8e35-029804a3ed96",
+          "Name": "ControlGroupSberDev",
+          "ColumnDefinitions": [
+            {
+              "Percentage": 9.13
+            },
+            {
+              "Percentage": 9.28
+            },
+            {
+              "Percentage": 81.59
+            }
+          ],
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "GroupType": "GroupBox",
+          "ParentGuid": "437c0dee-c0eb-46ae-b930-23ca9a859fc1",
+          "RowNumber": 0,
+          "RowSpan": 1
         }
       ],
       "IsAncestorMetadata": true,
@@ -603,6 +621,15 @@
       "IsLoadEagerly": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "9de55af0-0813-4907-9a6d-3204485c96a4"
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "5371dca5-4f21-4daf-8237-20965a03080f",
+      "Name": "ProductsSberDev",
+      "Code": "SignSetProd",
+      "EntityGuid": "39630d3f-583f-4ae0-ae74-0b7bd0b328ea",
+      "IsShowedInList": false,
+      "PreviousPropertyGuid": "f5ff5848-7b34-4e13-81b0-ead414e4bd2b"
     }
   ],
   "PublicStructures": [],

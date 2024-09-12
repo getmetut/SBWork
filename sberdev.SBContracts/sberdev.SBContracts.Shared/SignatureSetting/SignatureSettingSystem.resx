@@ -181,4 +181,7 @@
   <data name="Property_ExpendProfitSberDev" xml:space="preserve">
     <value>Profitable-expendable</value>
   </data>
+  <data name="Property_ProductsSberDev" xml:space="preserve">
+    <value>Products</value>
+  </data>
 </root>

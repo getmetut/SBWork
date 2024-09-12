@@ -34,13 +34,24 @@ namespace sberdev.SBContracts.Server
     public override IQueryable<Sungero.Docflow.ISignatureSetting> GetSignatureSettingsQuery()
     {
       var query = base.GetSignatureSettingsQuery();
+      var sbQuery = query.Select(q => SBContracts.SignatureSettings.As(q));
+      var prodEx = _obj.ProdCollectionExBaseSberDev.FirstOrDefault();
+      var prodPr = _obj.ProdCollectionPrBaseSberDev.FirstOrDefault();
+      
+      if (prodEx != null && prodEx.Product.Name != "General")
+        sbQuery = sbQuery.Where(q => q.ProductsSberDev.Select(qq => qq.Product).Contains(prodEx.Product));
+      if (prodPr != null && prodPr.Product.Name != "General")
+        sbQuery = sbQuery.Where(q => q.ProductsSberDev.Select(qq => qq.Product).Contains(prodPr.Product));
+      if (!sbQuery.Any())
+        sbQuery = query.Select(q => SBContracts.SignatureSettings.As(q));
+      
       if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable)
-        return query.Where(q => SBContracts.SignatureSettings.As(q).ExpendableSberDev.Value);
+        return sbQuery.Where(q => q.ExpendableSberDev.Value);
       if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
-        return query.Where(q => SBContracts.SignatureSettings.As(q).ProfitableSberDev.Value);
+        return sbQuery.Where(q => q.ProfitableSberDev.Value);
       if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.ExpendProfitSberDev)
-        return query.Where(q => SBContracts.SignatureSettings.As(q).ExpendProfitSberDev.Value);
-      return query;
+        return sbQuery.Where(q => q.ExpendProfitSberDev.Value);
+      return sbQuery;
     }
     
     /// <summary>

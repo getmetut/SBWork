@@ -24,20 +24,5 @@ namespace sberdev.SBContracts
       else
         _obj.State.Properties.TotalAmount.HighlightColor = Colors.Empty;
     }
-
-    public override void LeadingDocumentChanged(Sungero.Docflow.Shared.OfficialDocumentLeadingDocumentChangedEventArgs e)
-    {
-      base.LeadingDocumentChanged(e);
-      if ( e.NewValue != null)
-      {
-        SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
-        
-        var contract = SBContracts.ContractualDocuments.As(e.NewValue);
-        if (contract.DocumentKind.Name == "Договор Xiongxin")
-        {
-          _obj.AgentSaluteSberDev = contract.AgentSaluteSberDev;
-        }
-      }
-    }
   }
 }

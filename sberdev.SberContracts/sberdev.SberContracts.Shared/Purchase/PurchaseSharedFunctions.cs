@@ -51,6 +51,8 @@ namespace sberdev.SberContracts.Shared
       
       bool isShortPurchase = _obj.PurchaseAmount.HasValue && _obj.PurchaseAmount < 500000;
       
+      _obj.State.Properties.NecessaryConclude.IsRequired = !isShortPurchase;
+      _obj.State.Properties.NecessaryConclude.IsVisible = !isShortPurchase;
       _obj.State.Properties.InfoSubjectPurchase.IsRequired = !isShortPurchase;
       _obj.State.Properties.InfoSubjectPurchase.IsVisible = !isShortPurchase;
       _obj.State.Properties.SubjectPurchaseGen.IsRequired = !isShortPurchase;

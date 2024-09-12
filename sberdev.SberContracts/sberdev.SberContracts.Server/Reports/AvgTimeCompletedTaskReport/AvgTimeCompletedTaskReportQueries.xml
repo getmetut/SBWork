@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<queries>
+  <query key="Query">
+    <mssql><![CDATA[WITH LastAssignment AS (
+    -- Определяем последнее задание для каждой задачи
+    SELECT 
+        ag.Task AS TaskId,
+        MAX(ag.Completed) AS LastCompleted
+    FROM 
+        Sungero_WF_Assignment ag
+    LEFT JOIN 
+        Sungero_WF_Task t ON ag.Task = t.Id
+    LEFT JOIN 
+        Sungero_WF_Attachment a ON a.Task = t.Id
+    INNER JOIN 
+        Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+    WHERE 
+        a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54'
+        AND e.BusinessUnit_Docflow_Sungero = @businessUnit
+        AND ag.Subject NOT LIKE '%Внести договор в учетную систему 1С БП%'
+        AND ag.Subject NOT LIKE '%Поставить договор на валютный банковский контроль%'
+        AND ag.Subject NOT LIKE '%Предоставление почтовой информации%'
+        AND ag.Subject NOT LIKE '%Распечатка и организация подписания%'
+        AND ag.Subject NOT LIKE '%Подготовка товаров на складе%'
+        AND ag.Subject NOT LIKE '%На исполнение%'
+        and ag.Discriminator != 'EF79164B-2CE7-451B-9BA6-EB59DD9A4A74'
+and ag.Discriminator != 'BE83F002-C2C0-49DA-AFF5-B7F3BDDAABF7'
+and ag.Discriminator != '32CE5B61-1BE2-4D61-B98A-37B99AFF3560'
+and ag.Discriminator != '7D9F857C-9A46-4A16-89BF-0AA9C2E629D9'
+and ag.Discriminator != 'DFE429F9-8BBE-4920-B911-FE278031315A'
+and ag.Discriminator != '7D9816F6-1DEA-4718-84A5-1A413DF81145'
+and ag.Discriminator != '3DAD0441-CD89-4928-B6FF-9B7DD7FC20CF'
+and ag.Discriminator != '8724ADA0-FA56-481D-B3D0-AE3E46FF3E31'
+and ag.Discriminator != '75D6C458-7725-4133-8FF4-848E16EC5BD3'
+and ag.Discriminator != '4CA82B63-1B51-4AEF-A42B-57B7C97DAB64'
+and ag.Discriminator != 'AB194340-550C-41C7-BADD-ADC2EE208741'
+and ag.Created >= @startDate and ag.Created <= @endDate
+        AND t.Status = 'Completed'
+    GROUP BY 
+        ag.Task
+)
+-- Вычисляем среднее время согласования в рабочих днях по типу документа
+SELECT 
+    e.Discriminator AS DocumentDiscriminator,
+    ROUND(
+        AVG(
+            DATEDIFF(DAY, t.Started, la.LastCompleted)
+            -- Вычитаем количество выходных (суббот и воскресений)
+            - (DATEDIFF(WEEK, t.Started, la.LastCompleted) * 2)
+            -- Учитываем неполные недели (если начало в выходной или завершение в выходной)
+            - CASE WHEN DATEPART(WEEKDAY, t.Started) = 7 THEN 1 ELSE 0 END
+            - CASE WHEN DATEPART(WEEKDAY, la.LastCompleted) = 1 THEN 1 ELSE 0 END
+        ), 2) AS AvgApprovalTimeInWorkingDays
+FROM 
+    LastAssignment la
+INNER JOIN 
+    Sungero_WF_Task t ON la.TaskId = t.Id
+INNER JOIN 
+    Sungero_WF_Attachment a ON a.Task = t.Id
+INNER JOIN 
+    Sungero_Content_EDoc e ON a.AttachmentId = e.Id
+WHERE 
+    a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54'
+    AND e.BusinessUnit_Docflow_Sungero = @businessUnit
+GROUP BY 
+    e.Discriminator;]]></mssql>
+  </query>
+</queries>

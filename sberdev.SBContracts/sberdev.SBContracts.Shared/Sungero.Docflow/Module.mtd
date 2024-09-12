@@ -404,7 +404,7 @@
         "Overridden": [
           "PreviousItemGuid"
         ],
-        "PreviousItemGuid": "853f582b-fee7-4bc8-a061-9da218f11106",
+        "PreviousItemGuid": "562c83cb-6141-41f7-818f-7492b6687050",
         "Versions": []
       },
       {
@@ -426,8 +426,17 @@
       },
       {
         "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "562c83cb-6141-41f7-818f-7492b6687050",
+        "Name": "ApprovalvalAvgTimeSberDev",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "bf7ec0bf-a0cd-4390-8e20-4071d2745ac9",
+        "PreviousItemGuid": "853f582b-fee7-4bc8-a061-9da218f11106",
+        "ReportId": "01183f10-af51-4496-a499-e35ca687c014"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
         "NameGuid": "853f582b-fee7-4bc8-a061-9da218f11106",
-        "Name": "AssignmentsSberDev",
+        "Name": "CompleteAssignmentsSberDev",
         "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
         "GroupId": "bf7ec0bf-a0cd-4390-8e20-4071d2745ac9",
         "PreviousItemGuid": "dd7b58fd-0b25-4341-a70e-189b2abd006d",

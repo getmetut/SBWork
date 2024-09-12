@@ -36,7 +36,6 @@ namespace Sungero.ATS.Module.Shell.Server
           filtred = query.Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p)).Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == true);
         if (_filter.OutgoingSberDev)
           filtred = query.Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p)).Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == false);
-      }
       
       if (_filter.BuchKASDev != null)
       {
@@ -57,6 +56,7 @@ namespace Sungero.ATS.Module.Shell.Server
           filtred = filtred.Where(d => filterdata.Contains(sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(d.Task).Counterparty.Id));
         else
           filtred = filtred.Where(k => k.Subject == "@#$%");
+      }
       }
       
       

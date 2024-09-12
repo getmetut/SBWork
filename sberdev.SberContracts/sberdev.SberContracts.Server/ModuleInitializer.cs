@@ -410,6 +410,7 @@ namespace sberdev.SberContracts.Server
     {
       InitializationLogger.Debug("Init: Выдача прав на Отчёты");
       var allUsers = Roles.AllUsers;
+      Reports.AccessRights.Grant(Reports.GetAvgTimeCompletedTaskReport().Info, allUsers, DefaultReportAccessRightsTypes.Execute);
       Reports.AccessRights.Grant(Reports.GetCompleteAssignsReport().Info, allUsers, DefaultReportAccessRightsTypes.Execute);
       Reports.AccessRights.Grant(Reports.GetPaidInvoiceReport().Info, allUsers, DefaultReportAccessRightsTypes.Execute);
       Reports.AccessRights.Grant(Reports.GetBudgetOwnerReport().Info, allUsers, DefaultReportAccessRightsTypes.Execute);

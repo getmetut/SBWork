@@ -1,7 +1,7 @@
 {
   "$type": "Sungero.Metadata.ReportMetadata, Sungero.Reporting.Shared",
-  "NameGuid": "9cba8907-aa7e-4b16-b291-a18ae0fb6f3e",
-  "Name": "CompleteAssignsReport",
+  "NameGuid": "01183f10-af51-4496-a499-e35ca687c014",
+  "Name": "AvgTimeCompletedTaskReport",
   "AssociatedGuid": "fb838405-d1d2-4edc-b1d5-3d9915540871",
   "BaseGuid": "cef9a810-3f30-4eca-9fe3-30992af0b818",
   "DataSources": [],
@@ -28,15 +28,21 @@
   ],
   "Parameters": [
     {
-      "NameGuid": "0ce8ce38-257a-4450-bbd2-fd8a8d2a3633",
+      "NameGuid": "c2ab57e7-a7ec-4bfa-bb26-531d8cd2eed1",
       "Name": "EndDate",
       "InternalDataTypeName": "System.DateTime",
       "IsSimpleDataType": true
     },
     {
-      "NameGuid": "6291da26-8987-4026-8997-2f60dd8f0392",
+      "NameGuid": "31d83787-139f-4d57-840a-2f91cd1d3696",
       "Name": "StartDate",
       "InternalDataTypeName": "System.DateTime",
+      "IsSimpleDataType": true
+    },
+    {
+      "NameGuid": "9e7660ab-19ee-4f76-91bf-769e8c96a205",
+      "Name": "BusinessUnit",
+      "InternalDataTypeName": "System.Int64",
       "IsSimpleDataType": true
     }
   ],

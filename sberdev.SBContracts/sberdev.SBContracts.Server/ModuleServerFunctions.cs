@@ -1165,10 +1165,10 @@ namespace sberdev.SBContracts.Server
       {
         if (purch.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Absolute)
           foreach(var prod in purch.CalculationBaseSberDev)
-            str += prod.ProductCalc.Name + " - " + prod.AbsoluteCalc.ToString() + "\n";
+            str += prod.ProductCalc.Name + " - " + prod.AbsoluteCalc.ToString() + " \n";
         if (purch.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent)
           foreach(var prod in purch.CalculationBaseSberDev)
-            str += prod.ProductCalc + " - " + prod.InterestCalc.ToString() + "%\n";
+            str += prod.ProductCalc + " - " + prod.InterestCalc.ToString() + "\n";
       }
       else
       {
@@ -1181,7 +1181,7 @@ namespace sberdev.SBContracts.Server
         body.Range.Replace("[MarketDirect]", purch.MarketDirectSberDev.Name);
       else
         body.Range.Replace("[MarketDirect]", "Отсутствует");
-      body.Range.Replace("[Amount]", purch.PurchaseAmount.Value.ToString() + " " + purch.Currency.ShortName + (purch.VAT.Value ? " с учетом НДС" : " без учсета НДС"));
+      body.Range.Replace("[Amount]", purch.PurchaseAmount.Value.ToString() + " " + purch.Currency.ShortName + (purch.VAT.Value ? " с учетом НДС" : " без учета НДС"));
       body.Range.Replace("[Counterparty]", purch.Counterparty.Name);
       body.Range.Replace("[ChooseCpJustif]", purch.ChooseCpJustif);
       body.Range.Replace("[PaymentType]", SBContracts.PublicFunctions.Module.GetPaymentType(purch));

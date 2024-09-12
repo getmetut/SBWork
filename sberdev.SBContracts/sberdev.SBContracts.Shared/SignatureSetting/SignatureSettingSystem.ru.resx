@@ -181,4 +181,7 @@
   <data name="Property_ExpendableSberDev" xml:space="preserve">
     <value>Раcходные</value>
   </data>
+  <data name="Property_ProductsSberDev" xml:space="preserve">
+    <value>Продукты</value>
+  </data>
 </root>
