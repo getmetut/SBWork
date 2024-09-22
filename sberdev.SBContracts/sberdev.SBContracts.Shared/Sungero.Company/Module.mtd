@@ -76,12 +76,6 @@
     {
       "ItemId": "17da0a5e-4f34-4e65-86cd-1cc4d972b10d",
       "PreviousItemId": "163d6b95-01e0-4da2-88b0-46ff0864a45d"
-    },
-    {
-      "IsAncestorMetadata": true,
-      "ItemId": "b8aa8f84-7488-43c7-9e0d-7050eb5ea6af",
-      "PreviousItemId": "17da0a5e-4f34-4e65-86cd-1cc4d972b10d",
-      "Versions": []
     }
   ],
   "IconResourcesKeys": [],
