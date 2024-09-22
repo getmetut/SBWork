@@ -32,5 +32,27 @@ namespace sberdev.SBContracts.Module.Integration.Server
       
       return totalParties.AsQueryable();
     }
+    
+    public override void SendCounterpartyReport()
+    {
+      var settings = centrvd.Integration.CounterpartyReportSettings.GetAll()
+        .Where(z => z.Status == centrvd.Integration.CounterpartyReportSetting.Status.Active);
+
+      foreach (var setting in settings)
+      {
+        var period = setting.Period == centrvd.Integration.CounterpartyReportSetting.Period.Daily ? 24 :
+          setting.Period == centrvd.Integration.CounterpartyReportSetting.Period.Monthly ? 168 : 720;
+        var markers = setting.Markers.Select(z => new Nullable<Enumeration>(new Enumeration(z.Marker.PropertyName)));
+        var companies = SBContracts.Companies.GetAll()
+          .Where(z => z.MarkersChanges.Any(x => markers.Contains(x.Name) &&
+                                           x.OldValue == setting.OldValue && x.NewValue == setting.NewValue)).ToList().
+          Where(z => z.MarkersChanges.Any(x => markers.Contains(x.Name) &&
+                                          x.OldValue == setting.OldValue && x.NewValue == setting.NewValue &&
+                                          x.ChangeDateTime.Value.AddHours(period) > Calendar.Now));
+        foreach (var company in companies)
+          company.FocusCheckedSberDev = false;
+      }
+      base.SendCounterpartyReport();
+    }
   }
 }

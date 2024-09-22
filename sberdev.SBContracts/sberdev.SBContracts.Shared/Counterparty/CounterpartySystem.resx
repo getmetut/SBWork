@@ -209,7 +209,7 @@
     <value>FocusChecked</value>
   </data>
   <data name="Property_FocusCheckedDateSberDev" xml:space="preserve">
-    <value>FocusCheckedDate</value>
+    <value>Last manual check</value>
   </data>
   <data name="Property_OtvBuchSberDev" xml:space="preserve">
     <value>Ответственный бухгалтер</value>

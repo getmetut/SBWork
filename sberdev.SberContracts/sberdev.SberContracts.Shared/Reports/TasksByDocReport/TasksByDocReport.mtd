@@ -39,6 +39,12 @@
       "InternalDataTypeName": "System.DateTime",
       "IsRequired": true,
       "IsSimpleDataType": true
+    },
+    {
+      "NameGuid": "56beac37-d241-4e77-9eff-d869a435ef8c",
+      "Name": "BusinessUnit",
+      "InternalDataTypeName": "System.Int64",
+      "IsSimpleDataType": true
     }
   ],
   "PublicStructures": [],

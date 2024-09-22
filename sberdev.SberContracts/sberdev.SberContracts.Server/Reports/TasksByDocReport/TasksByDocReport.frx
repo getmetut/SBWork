@@ -204,6 +204,7 @@ namespace FastReport
         <Column Name="TaskDiscriminator" DataType="System.String" PropName="Column"/>
         <CommandParameter Name="StartDate" DataType="6" IsDbType="true" Expression="[StartDate]"/>
         <CommandParameter Name="EndDate" DataType="6" IsDbType="true" Expression="[EndDate]"/>
+        <CommandParameter Name="BusinessUnit" DataType="12" IsDbType="true"/>
       </TableDataSource>
       <TableDataSource Name="Table1" Alias="TablePP" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${PPQuery}">
         <Column Name="PP" DataType="System.String" PropName="Column"/>
@@ -217,6 +218,7 @@ namespace FastReport
         <Column Name="AvgRwkAssigns" DataType="System.Double" PropName="Column3"/>
         <CommandParameter Name="StartDate" DataType="6" IsDbType="true" Expression="[StartDate]"/>
         <CommandParameter Name="EndDate" DataType="6" IsDbType="true" Expression="[EndDate]"/>
+        <CommandParameter Name="BusinessUnit" DataType="12" IsDbType="true"/>
       </TableDataSource>
       <TableDataSource Name="Table3" Alias="TableMetricsByDepartment" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${MetricsByDepartQuery}">
         <Column Name="InitiatorDepartment" DataType="System.String" PropName="Column"/>
@@ -225,11 +227,13 @@ namespace FastReport
         <Column Name="TaskCompletedInDeadline" DataType="System.Double" PropName="Column3"/>
         <CommandParameter Name="StartDate" DataType="6" IsDbType="true" Expression="[StartDate]"/>
         <CommandParameter Name="EndDate" DataType="6" IsDbType="true" Expression="[EndDate]"/>
+        <CommandParameter Name="BusinessUnit" DataType="12" IsDbType="true"/>
       </TableDataSource>
     </SungeroSqlDataConnection>
     <SungeroParameter Name="SungeroConnectionString" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties, DontShow" Id="c5b81ab6-ab88-472e-bc29-514d2e7bfb1a" IsRequired="false" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
     <SungeroParameter Name="StartDate" Id="be5577f6-8de0-4a37-9358-f14612cb90cb" IsRequired="true" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
     <SungeroParameter Name="EndDate" Id="44898b77-4e73-4584-a614-938acbfa9ff4" IsRequired="true" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="BusinessUnit" Id="56beac37-d241-4e77-9eff-d869a435ef8c" IsRequired="false" IsCollection="false" InternalDataType="System.Int64" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
   </Dictionary>
   <ReportPage Name="Page1" PaperWidth="550" RawPaperSize="0" Watermark.Font="Arial, 60pt">
     <DataBand Name="Data1" Top="21.65" Width="2003.4" Height="18.9" CanGrow="true" CanShrink="true" Guides="18.9" DataSource="Table">
@@ -327,7 +331,7 @@ namespace FastReport
     </DataBand>
   </ReportPage>
   <ReportPage Name="Page2" Watermark.Font="Arial, 60pt">
-    <DataBand Name="Data2" Top="22.23" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table1">
+    <DataBand Name="Data2" Top="21.65" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table1">
       <TextObject Name="Text3" Width="718.2" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[TablePP.PP]" Font="Arial, 8pt"/>
       <DataHeaderBand Name="DataHeader2" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true">
         <TextObject Name="Text23" Width="718.2" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Раскрытия имен псевдо-пользователей" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>

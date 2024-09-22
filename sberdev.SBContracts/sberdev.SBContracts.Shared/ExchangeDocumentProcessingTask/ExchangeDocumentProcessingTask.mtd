@@ -144,7 +144,11 @@
       "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
       "NameGuid": "b2552bde-bc83-4029-83ad-086152dd68fe",
       "Name": "ReadressedSberDev",
+      "CanBeSearch": false,
       "Code": "ReadressedSber",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "51d66be9-4601-4a7b-94ba-a0c05f368dc6",
       "Versions": []

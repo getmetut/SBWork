@@ -36,7 +36,7 @@ namespace sberdev.SberContracts.Server
             str += prod.ProductCalc.Name + " - " + prod.AbsoluteCalc.ToString() + "\n";
         if (_obj.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent)
           foreach(var prod in _obj.CalculationBaseSberDev)
-            str += prod.ProductCalc + " - " + prod.InterestCalc.ToString() + "%\n";
+            str += prod.ProductCalc + " - " + prod.InterestCalc.ToString() + "\n";
       }
       else
       {

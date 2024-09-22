@@ -218,14 +218,32 @@ namespace sberdev.SBContracts.Server
           return (string)prop.Value;
       }
       
-      if (ext == "pdf")
+      try
       {
-        PdfReader reader = new PdfReader(path);
-        PdfReader.unethicalreading = true;
-        var info = reader.Info;
-        if (info.ContainsKey("DirectumID"))
-          return info["DirectumID"];
-        reader.Close();
+        if (ext == "pdf")
+        {
+          PdfReader reader = new PdfReader(path);
+          PdfReader.unethicalreading = true;
+          var info = reader.Info;
+          if (info.ContainsKey("DirectumID"))
+            return info["DirectumID"];
+          reader.Close();
+        }
+      }
+      catch
+      {
+        ext = "docx";
+        guid = Guid.NewGuid().ToString();
+        path = "C:\\TempDocs\\docDirectum" + guid + "." + ext;
+        using (var fileStr = doc.LastVersion.Body.Read())
+        {
+          SaveStreamToFile(fileStr, path);
+        }
+        Aspose.Words.Document docAsp = new Aspose.Words.Document(path);
+        var props = docAsp.CustomDocumentProperties;
+        var prop = props.FirstOrDefault(p => p.Name == "DirectumID");
+        if (prop != null)
+          return (string)prop.Value;
       }
       
       return null;
@@ -501,7 +519,7 @@ namespace sberdev.SBContracts.Server
               }
               catch (Exception ex)
               {
-           //     Logger.Error("Проверка подписи. Ошибка при извлечении сертификата: " + ex.ToString());
+                //     Logger.Error("Проверка подписи. Ошибка при извлечении сертификата: " + ex.ToString());
                 continue;
               }
             }
@@ -530,7 +548,7 @@ namespace sberdev.SBContracts.Server
               }
               catch (Exception ex)
               {
-          //      Logger.Error("Проверка подписи. Ошибка при извлечении сертификата: " + ex.ToString());
+                //      Logger.Error("Проверка подписи. Ошибка при извлечении сертификата: " + ex.ToString());
                 continue;
               }
             }
@@ -877,7 +895,8 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[DeliveryDay]", delDate.Day.ToString());
       body.Range.Replace("[DeliveryDate]", delDate.ToShortDateString());
       body.Range.Replace("[DeliveryConditionEn]", order.DelConditionEnSberDev);
-      body.Range.Replace("[DeliveryConditionCh]", order.DelConditionChSberDev);
+      if (order.DelConditionChSberDev != null)
+        body.Range.Replace("[DeliveryConditionCh]", order.DelConditionChSberDev);
       body.Range.Replace("[Agent]", order.AgentSaluteSberDev.Name);
       body.Range.Replace("[AgentTranslit]", Transliterate(order.AgentSaluteSberDev.Name));
       
@@ -1084,8 +1103,21 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[DepartmentPurchase]", purch.DepartmentPurchase.Name);
       
       if (purch.TotalAmount != null && purch.TotalAmount != purch.PurchaseAmount)
-        body.Range.Replace("[TotalAmount]", "при этом общая стоимость договора составит " + purch.TotalAmount.Value.ToString() + (purch.VAT.Value ? "руб. с учетом НДС 20%" : "руб. без учета НДС 20%"));
+        body.Range.Replace("[TotalAmount]", ", при этом общая стоимость договора составит " + purch.TotalAmount.Value.ToString());
+      else
+        body.Range.Replace("[TotalAmount]", "");
       
+      var endDate = purch.ServiceEndDate.Value;
+      var startDate = purch.ServiceStartDate.Value;
+      int monthsDifference = ((endDate.Year - startDate.Year) * 12) + endDate.Month - startDate.Month;
+
+      // Если день начала больше дня конца, убираем 1 месяц
+      if (endDate.Day < startDate.Day)
+      {
+        monthsDifference--;
+      }
+      
+      body.Range.Replace("[DateDiff]", Math.Abs(monthsDifference).ToString());
       body.Range.Replace("[PurchaseKindExt]", GetPurchaseKindExt(purch.KindPurchase));
       body.Range.Replace("[ServiceStartDate]", purch.ServiceStartDate.Value.ToShortDateString());
       body.Range.Replace("[ServiceEndDate]", purch.ServiceEndDate.Value.ToShortDateString());

@@ -86,7 +86,18 @@ LEFT JOIN
     Sungero_Parties_Counterparty cp2 ON e.Counterparty_Docflow_Sungero = cp2.Id
 WHERE 
     a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54' and e.DocumentDate_Docflow_Sungero >= @startDate
-    and e.DocumentDate_Docflow_Sungero <= @endDate]]></mssql>
+    and e.DocumentDate_Docflow_Sungero <= @endDate
+    and ag.Discriminator != 'EF79164B-2CE7-451B-9BA6-EB59DD9A4A74'
+    and ag.Discriminator != 'BE83F002-C2C0-49DA-AFF5-B7F3BDDAABF7'
+    and ag.Discriminator != '32CE5B61-1BE2-4D61-B98A-37B99AFF3560'
+    and ag.Discriminator != '7D9F857C-9A46-4A16-89BF-0AA9C2E629D9'
+    and ag.Discriminator != 'DFE429F9-8BBE-4920-B911-FE278031315A'
+    and ag.Discriminator != '7D9816F6-1DEA-4718-84A5-1A413DF81145'
+    and ag.Discriminator != '3DAD0441-CD89-4928-B6FF-9B7DD7FC20CF'
+    and ag.Discriminator != '8724ADA0-FA56-481D-B3D0-AE3E46FF3E31'
+    and ag.Discriminator != '75D6C458-7725-4133-8FF4-848E16EC5BD3'
+    and ag.Discriminator != '4CA82B63-1B51-4AEF-A42B-57B7C97DAB64'
+    and ag.Discriminator != 'AB194340-550C-41C7-BADD-ADC2EE208741']]></mssql>
   </query>
   <query key="PPQuery">
     <mssql><![CDATA[WITH CTE as (
@@ -126,6 +137,17 @@ WHERE PP IS NOT NULL;]]></mssql>
                 MAX(ag.Created) AS MaxCreated
             FROM 
                 Sungero_WF_Assignment ag
+            where ag.Discriminator != 'EF79164B-2CE7-451B-9BA6-EB59DD9A4A74'
+            	and ag.Discriminator != 'BE83F002-C2C0-49DA-AFF5-B7F3BDDAABF7'
+            	and ag.Discriminator != '32CE5B61-1BE2-4D61-B98A-37B99AFF3560'
+            	and ag.Discriminator != '7D9F857C-9A46-4A16-89BF-0AA9C2E629D9'
+            	and ag.Discriminator != 'DFE429F9-8BBE-4920-B911-FE278031315A'
+            	and ag.Discriminator != '7D9816F6-1DEA-4718-84A5-1A413DF81145'
+            	and ag.Discriminator != '3DAD0441-CD89-4928-B6FF-9B7DD7FC20CF'
+            	and ag.Discriminator != '8724ADA0-FA56-481D-B3D0-AE3E46FF3E31'
+            	and ag.Discriminator != '75D6C458-7725-4133-8FF4-848E16EC5BD3'
+            	and ag.Discriminator != '4CA82B63-1B51-4AEF-A42B-57B7C97DAB64'
+            	and ag.Discriminator != 'AB194340-550C-41C7-BADD-ADC2EE208741'
             GROUP BY 
                 ag.Task
         ) AS LatestAssignment ON t.Id = LatestAssignment.Task
@@ -145,6 +167,7 @@ WHERE PP IS NOT NULL;]]></mssql>
                                 'ae03c598-ab50-4781-b1b2-968510b338b9')
         AND e.DocumentDate_Docflow_Sungero >= @startDate
         AND e.DocumentDate_Docflow_Sungero <= @endDate
+        AND e.BusinessUnit_Docflow_Sungero = @businessUnit
     GROUP BY 
         e.Discriminator
 ),
@@ -162,6 +185,17 @@ AvgAprTime AS (
                 MAX(ag.Created) AS MaxCreated
             FROM 
                 Sungero_WF_Assignment ag
+            where ag.Discriminator != 'EF79164B-2CE7-451B-9BA6-EB59DD9A4A74'
+            	and ag.Discriminator != 'BE83F002-C2C0-49DA-AFF5-B7F3BDDAABF7'
+            	and ag.Discriminator != '32CE5B61-1BE2-4D61-B98A-37B99AFF3560'
+            	and ag.Discriminator != '7D9F857C-9A46-4A16-89BF-0AA9C2E629D9'
+            	and ag.Discriminator != 'DFE429F9-8BBE-4920-B911-FE278031315A'
+            	and ag.Discriminator != '7D9816F6-1DEA-4718-84A5-1A413DF81145'
+            	and ag.Discriminator != '3DAD0441-CD89-4928-B6FF-9B7DD7FC20CF'
+            	and ag.Discriminator != '8724ADA0-FA56-481D-B3D0-AE3E46FF3E31'
+            	and ag.Discriminator != '75D6C458-7725-4133-8FF4-848E16EC5BD3'
+            	and ag.Discriminator != '4CA82B63-1B51-4AEF-A42B-57B7C97DAB64'
+            	and ag.Discriminator != 'AB194340-550C-41C7-BADD-ADC2EE208741'
             GROUP BY 
                 ag.Task
         ) AS LatestAssignment ON t.Id = LatestAssignment.Task
@@ -181,6 +215,7 @@ AvgAprTime AS (
                                     'ae03c598-ab50-4781-b1b2-968510b338b9')
         AND e.DocumentDate_Docflow_Sungero >= @startDate
         AND e.DocumentDate_Docflow_Sungero <= @endDate
+        AND e.BusinessUnit_Docflow_Sungero = @businessUnit
     GROUP BY 
         e.Discriminator
     HAVING 
@@ -203,6 +238,18 @@ AvgRwkAssigns AS (
         a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54'
         AND e.DocumentDate_Docflow_Sungero >= @startDate
         AND e.DocumentDate_Docflow_Sungero <= @endDate
+        AND e.BusinessUnit_Docflow_Sungero = @businessUnit
+        and ag.Discriminator != 'EF79164B-2CE7-451B-9BA6-EB59DD9A4A74'
+            	and ag.Discriminator != 'BE83F002-C2C0-49DA-AFF5-B7F3BDDAABF7'
+            	and ag.Discriminator != '32CE5B61-1BE2-4D61-B98A-37B99AFF3560'
+            	and ag.Discriminator != '7D9F857C-9A46-4A16-89BF-0AA9C2E629D9'
+            	and ag.Discriminator != 'DFE429F9-8BBE-4920-B911-FE278031315A'
+            	and ag.Discriminator != '7D9816F6-1DEA-4718-84A5-1A413DF81145'
+            	and ag.Discriminator != '3DAD0441-CD89-4928-B6FF-9B7DD7FC20CF'
+            	and ag.Discriminator != '8724ADA0-FA56-481D-B3D0-AE3E46FF3E31'
+            	and ag.Discriminator != '75D6C458-7725-4133-8FF4-848E16EC5BD3'
+            	and ag.Discriminator != '4CA82B63-1B51-4AEF-A42B-57B7C97DAB64'
+            	and ag.Discriminator != 'AB194340-550C-41C7-BADD-ADC2EE208741'
     GROUP BY 
         e.Discriminator
     HAVING 
@@ -247,6 +294,19 @@ LEFT JOIN
         a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54'
         AND e.DocumentDate_Docflow_Sungero >= @startDate
         AND e.DocumentDate_Docflow_Sungero <= @endDate
+        AND e.BusinessUnit_Docflow_Sungero = @businessUnit
+        and ag.Discriminator != 'EF79164B-2CE7-451B-9BA6-EB59DD9A4A74'
+            	and ag.Discriminator != 'BE83F002-C2C0-49DA-AFF5-B7F3BDDAABF7'
+            	and ag.Discriminator != '32CE5B61-1BE2-4D61-B98A-37B99AFF3560'
+            	and ag.Discriminator != '7D9F857C-9A46-4A16-89BF-0AA9C2E629D9'
+            	and ag.Discriminator != 'DFE429F9-8BBE-4920-B911-FE278031315A'
+            	and ag.Discriminator != '7D9816F6-1DEA-4718-84A5-1A413DF81145'
+            	and ag.Discriminator != '3DAD0441-CD89-4928-B6FF-9B7DD7FC20CF'
+            	and ag.Discriminator != '8724ADA0-FA56-481D-B3D0-AE3E46FF3E31'
+            	and ag.Discriminator != '75D6C458-7725-4133-8FF4-848E16EC5BD3'
+            	and ag.Discriminator != '4CA82B63-1B51-4AEF-A42B-57B7C97DAB64'
+            	and ag.Discriminator != 'AB194340-550C-41C7-BADD-ADC2EE208741'
+            	AND e.BusinessUnit_Docflow_Sungero = @businessUnit
     GROUP BY 
         r2.Name, t.Id
 ),
@@ -274,6 +334,17 @@ AvgApprovalTimeCTE AS (
                 MAX(ag.Created) AS MaxCreated
             FROM 
                 Sungero_WF_Assignment ag
+            where ag.Discriminator != 'EF79164B-2CE7-451B-9BA6-EB59DD9A4A74'
+            	and ag.Discriminator != 'BE83F002-C2C0-49DA-AFF5-B7F3BDDAABF7'
+            	and ag.Discriminator != '32CE5B61-1BE2-4D61-B98A-37B99AFF3560'
+            	and ag.Discriminator != '7D9F857C-9A46-4A16-89BF-0AA9C2E629D9'
+            	and ag.Discriminator != 'DFE429F9-8BBE-4920-B911-FE278031315A'
+            	and ag.Discriminator != '7D9816F6-1DEA-4718-84A5-1A413DF81145'
+            	and ag.Discriminator != '3DAD0441-CD89-4928-B6FF-9B7DD7FC20CF'
+            	and ag.Discriminator != '8724ADA0-FA56-481D-B3D0-AE3E46FF3E31'
+            	and ag.Discriminator != '75D6C458-7725-4133-8FF4-848E16EC5BD3'
+            	and ag.Discriminator != '4CA82B63-1B51-4AEF-A42B-57B7C97DAB64'
+            	and ag.Discriminator != 'AB194340-550C-41C7-BADD-ADC2EE208741'
             GROUP BY 
                 ag.Task
         ) AS LatestAssignment ON t.Id = LatestAssignment.Task
@@ -297,6 +368,7 @@ AvgApprovalTimeCTE AS (
                                     'ae03c598-ab50-4781-b1b2-968510b338b9')
         AND e.DocumentDate_Docflow_Sungero >= @startDate
         AND e.DocumentDate_Docflow_Sungero <= @endDate
+        AND e.BusinessUnit_Docflow_Sungero = @businessUnit
     GROUP BY 
         r2.Name
 ),
@@ -319,6 +391,17 @@ TaskCountsCTE AS (
                 MAX(ag.Created) AS MaxCreated
             FROM 
                 Sungero_WF_Assignment ag
+                where ag.Discriminator != 'EF79164B-2CE7-451B-9BA6-EB59DD9A4A74'
+            	and ag.Discriminator != 'BE83F002-C2C0-49DA-AFF5-B7F3BDDAABF7'
+            	and ag.Discriminator != '32CE5B61-1BE2-4D61-B98A-37B99AFF3560'
+            	and ag.Discriminator != '7D9F857C-9A46-4A16-89BF-0AA9C2E629D9'
+            	and ag.Discriminator != 'DFE429F9-8BBE-4920-B911-FE278031315A'
+            	and ag.Discriminator != '7D9816F6-1DEA-4718-84A5-1A413DF81145'
+            	and ag.Discriminator != '3DAD0441-CD89-4928-B6FF-9B7DD7FC20CF'
+            	and ag.Discriminator != '8724ADA0-FA56-481D-B3D0-AE3E46FF3E31'
+            	and ag.Discriminator != '75D6C458-7725-4133-8FF4-848E16EC5BD3'
+            	and ag.Discriminator != '4CA82B63-1B51-4AEF-A42B-57B7C97DAB64'
+            	and ag.Discriminator != 'AB194340-550C-41C7-BADD-ADC2EE208741'
             GROUP BY 
                 ag.Task
         ) AS LatestAssignment ON t.Id = LatestAssignment.Task
@@ -342,6 +425,7 @@ TaskCountsCTE AS (
                                     'ae03c598-ab50-4781-b1b2-968510b338b9')
         AND e.DocumentDate_Docflow_Sungero >= @startDate
         AND e.DocumentDate_Docflow_Sungero <= @endDate
+        AND e.BusinessUnit_Docflow_Sungero = @businessUnit
     GROUP BY 
         r2.Name
 ),

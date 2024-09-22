@@ -60,10 +60,10 @@ namespace sberdev.SBContracts.Module.Exchange.Server
               if (Sungero.Content.ElectronicDocuments.GetAll().Where(d => Equals(d.Id.ToString(), idStr)).Any())
               {
                 var signInfos = Signatures.Get(incomingDoc);
-                bool existExSign = false;
+                bool existExSign = task.IsIncoming.HasValue ? task.IsIncoming.Value : false;
                 
                 //Проверяем есть ли подпись от ка
-                foreach (var signInfo in signInfos)
+            /*    foreach (var signInfo in signInfos)
                 {
                   try
                   {
@@ -80,7 +80,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
                   
                   if (existExSign)
                     break;
-                }
+                }*/
                 
                 //Начинаем перенос тел и подписей
                 var doc = Sungero.Content.ElectronicDocuments.GetAll(d => d.Id == Int64.Parse(idStr)).First();
