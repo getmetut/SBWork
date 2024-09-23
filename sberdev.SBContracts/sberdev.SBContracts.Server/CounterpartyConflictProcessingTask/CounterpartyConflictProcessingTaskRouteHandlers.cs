@@ -15,7 +15,7 @@ namespace sberdev.SBContracts.Server
     {
       base.StartBlock3(e);
       e.Block.Performers.Clear();
-      e.Block.Performers.Add(Roles.GetAll().SingleOrDefault(n => n.Sid == sberdev.SberContracts.PublicConstants.Module.CpSyncConflictRoleGuid);
+      e.Block.Performers.Add(Roles.GetAll().Where(n => n.Sid == sberdev.SberContracts.PublicConstants.Module.CpSyncConflictRoleGuid).FirstOrDefault());
       
     }
 
