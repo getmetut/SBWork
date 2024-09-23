@@ -15,7 +15,13 @@ namespace sberdev.SBContracts.Shared
     {
       base.ChangePropertiesAccess();
       
-       var isProductUnit = _obj.ConditionType == ConditionType.ProductUnit;
+      var isPurchseAmount = _obj.ConditionType == ConditionType.PurchAmount;
+      _obj.State.Properties.PurchaseAmountSberDev.IsVisible = isPurchseAmount;
+      _obj.State.Properties.PurchaseAmountSberDev.IsRequired = isPurchseAmount;
+      _obj.State.Properties.AmountOperator.IsVisible = isPurchseAmount;
+      _obj.State.Properties.AmountOperator.IsRequired = isPurchseAmount;
+      
+      var isProductUnit = _obj.ConditionType == ConditionType.ProductUnit;
       _obj.State.Properties.ProductUnitSberDev.IsVisible = isProductUnit;
       _obj.State.Properties.ProductUnitSberDev.IsRequired = isProductUnit;
       
@@ -47,6 +53,12 @@ namespace sberdev.SBContracts.Shared
     public override void ClearHiddenProperties()
     {
       base.ClearHiddenProperties();
+      if(!_obj.State.Properties.PurchaseAmountSberDev.IsVisible)
+      {
+        _obj.PurchaseAmountSberDev = null;
+        _obj.AmountOperator = null;
+      }
+      
       if(!_obj.State.Properties.ProductUnitSberDev.IsVisible)
         _obj.ProductUnitSberDev.Clear();
       
@@ -75,6 +87,32 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      if (_obj.ConditionType == ConditionType.PurchAmount)
+      {
+        var purch = SberContracts.Purchases.As(document);
+        bool flag = false;
+        switch (_obj.AmountOperator.Value.Value)
+        {
+          case "GreaterOrEqual":
+            if (purch.PurchaseAmount >= _obj.PurchaseAmountSberDev)
+              flag = true;
+            break;
+          case "GreaterThan":
+            if (purch.PurchaseAmount > _obj.PurchaseAmountSberDev)
+              flag = true;
+            break;
+          case "LessOrEqual":
+            if (purch.PurchaseAmount <= _obj.PurchaseAmountSberDev)
+              flag = true;
+            break;
+          case "LessThan":
+            if (purch.PurchaseAmount < _obj.PurchaseAmountSberDev)
+              flag = true;
+            break;
+        }
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
       if (_obj.ConditionType == ConditionType.Contrtype)
       {
         var acc = SBContracts.AccountingDocumentBases.As(document);
@@ -786,6 +824,8 @@ namespace sberdev.SBContracts.Shared
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      
+      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.PurchAmount); // purchase
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.Contrtype); // входящий счет
       

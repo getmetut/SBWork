@@ -13,13 +13,28 @@ namespace sberdev.SBContracts.Server
     {
       using (TenantInfo.Culture.SwitchTo())
       {
+        if (_obj.ConditionType == ConditionType.PurchAmount)
+        {
+          switch (_obj.AmountOperator.Value.Value)
+          {
+            case "GreaterOrEqual":
+              return "Сумма закупки >= " + _obj.PurchaseAmountSberDev.Value.ToString();
+            case "GreaterThan":
+              return "Сумма закупки > " + _obj.PurchaseAmountSberDev.Value.ToString();
+            case "LessOrEqual":
+              return "Сумма закупки <= " + _obj.PurchaseAmountSberDev.Value.ToString();
+            case "LessThan":
+              return "Сумма закупки < " + _obj.PurchaseAmountSberDev.Value.ToString();
+          }
+        }
+        
         if (_obj.ConditionType == ConditionType.Contrtype)
         {
           return "Документ доходный?";
         }
         
         if (_obj.ConditionType == ConditionType.ProductUnit)
-         {
+        {
           string head = "В продуктах есть юнит:";
           foreach (var dir in _obj.ProductUnitSberDev)
             head += String.Format(" {0};", dir.ProductUnit.Name);
@@ -65,7 +80,7 @@ namespace sberdev.SBContracts.Server
           return ("Рамка/безденежный?");
         
         if (_obj.ConditionType == ConditionType.MVZ)
-        { 
+        {
           string text;
           text = "МВЗ = ";
           foreach (var str in _obj.MVZ )
@@ -75,7 +90,7 @@ namespace sberdev.SBContracts.Server
           return (text);
         }
         if (_obj.ConditionType == ConditionType.MVP)
-        { 
+        {
           string text;
           text = "МВП = ";
           foreach (var str in _obj.MVP )
@@ -86,7 +101,7 @@ namespace sberdev.SBContracts.Server
         }
         
         if (_obj.ConditionType == ConditionType.AccArts)
-        { 
+        {
           string text;
           text = "Статьи упр. учета = ";
           foreach (var str in _obj.AccountingArticles )
@@ -97,7 +112,7 @@ namespace sberdev.SBContracts.Server
         }
         
         if (_obj.ConditionType == ConditionType.BudgetItem)
-        { 
+        {
           string text;
           text = "Статьи бух. учета = ";
           foreach (var str in _obj.BudgetItem )

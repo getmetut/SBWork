@@ -48,13 +48,13 @@ namespace sberdev.SberContracts.Server
       }
       else
       {
-        roleSC.Name = "Ответсвенный за фин. вх. документы";
-        roleSC.Description = "Участнику роли приходят задания на обработку формализованых финансовых вх. документов.";
+        roleSC.Name = "Ответсвенный за конфликты синхронизации контрагентов";
+        roleSC.Description = "Участнику роли приходят задания на решение конфликтов синхронизации контрагентов.";
         roleSC.Sid = Constants.Module.CpSyncConflictRoleGuid;
         roleSC.IsSystem = false;
         roleSC.IsSingleUser = true;
         roleSC.Save();
-        InitializationLogger.Debug("Ответсвенный за фин. вх. документы");
+        InitializationLogger.Debug("Ответсвенный за конфликты синхронизации контрагентов");
       }
       
       var roleAH = Roles.GetAll(r => r.Sid == Constants.Module.AccDocsHandlerRoleGuid).FirstOrDefault();

@@ -68,10 +68,13 @@
           "Name": "Conditions",
           "ColumnDefinitions": [
             {
-              "Percentage": 38.0
+              "Percentage": 33.33
             },
             {
-              "Percentage": 62.0
+              "Percentage": 33.33
+            },
+            {
+              "Percentage": 33.33
             }
           ],
           "ColumnNumber": 0,
@@ -87,7 +90,7 @@
           "NameGuid": "97870de0-4625-44f5-8600-7bf1369a58fa",
           "Name": "Currencies",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 3,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectEditorToCollectionBinder",
           "ParentGuid": "f816fbaa-7167-4dd6-a62b-640f0f2350b6",
           "PropertyGuid": "679c57e1-2e21-440b-91d1-101b6371e13b",
@@ -117,10 +120,9 @@
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "697a3b0a-9ba4-4ab1-91af-3782e34eb744",
           "Name": "Amount",
-          "ColumnNumber": 1,
+          "ColumnNumber": 0,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
-          "HeaderLocation": "None",
           "ParentGuid": "f816fbaa-7167-4dd6-a62b-640f0f2350b6",
           "PropertyGuid": "3b0382dd-65f3-4f16-85d5-f6a79be8b134",
           "RowNumber": 3,
@@ -132,9 +134,10 @@
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "e0914b7d-0136-4507-8aa4-1357c79f8fcf",
           "Name": "AmountOperator",
-          "ColumnNumber": 0,
+          "ColumnNumber": 2,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "HeaderLocation": "None",
           "ParentGuid": "f816fbaa-7167-4dd6-a62b-640f0f2350b6",
           "PropertyGuid": "54c5c3cd-8c95-448f-ad3c-98d49e8b149d",
           "RowNumber": 3,
@@ -183,7 +186,7 @@
           "NameGuid": "332ca27f-2765-4111-8683-51f125c5e4e5",
           "Name": "Control",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 3,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
           "ParentGuid": "f816fbaa-7167-4dd6-a62b-640f0f2350b6",
           "PropertyGuid": "5fff25cb-7584-43ca-83f0-2b3ed37f4bff",
@@ -202,7 +205,7 @@
           "NameGuid": "ceb93395-64c6-407e-b1f0-de62a97a163c",
           "Name": "ApprovalRole",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 3,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "f816fbaa-7167-4dd6-a62b-640f0f2350b6",
           "PropertyGuid": "561d2396-b846-435f-9d55-0f09ad2f8b5d",
@@ -216,7 +219,7 @@
           "NameGuid": "82b7e04e-a6c5-4ddf-9a87-d483aa21c9aa",
           "Name": "RoleForComparison",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 3,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "f816fbaa-7167-4dd6-a62b-640f0f2350b6",
           "PropertyGuid": "e3ce660c-901d-44e1-a991-72b87edfec27",
@@ -230,7 +233,7 @@
           "NameGuid": "deff00cb-7996-4edf-8cdb-4ef5c54dad8a",
           "Name": "Recipient",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 3,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "f816fbaa-7167-4dd6-a62b-640f0f2350b6",
           "PropertyGuid": "f2cacde6-36d1-40b2-8c5e-21f1828abb38",
@@ -244,7 +247,7 @@
           "NameGuid": "6318ee53-c011-4559-95bf-6f1ed3bf7a1b",
           "Name": "DeliveryMethods",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 3,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectEditorToCollectionBinder",
           "ParentGuid": "f816fbaa-7167-4dd6-a62b-640f0f2350b6",
           "PropertyGuid": "9aba844d-23da-4450-aaad-d3973b306044",
@@ -263,7 +266,7 @@
           "NameGuid": "dc23a950-cad4-4a87-92b2-a651b0ced92e",
           "Name": "AddendaDocumentKind",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 3,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "f816fbaa-7167-4dd6-a62b-640f0f2350b6",
           "PropertyGuid": "608b0ff7-f187-48fe-80f7-232c4f0605f7",
@@ -399,7 +402,7 @@
           "NameGuid": "9063cf0a-b724-44b3-987c-b04c7e12f697",
           "Name": "ProductUnitSberDevSberDev",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 3,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
           "ParentGuid": "f816fbaa-7167-4dd6-a62b-640f0f2350b6",
           "PropertyGuid": "aa763053-0404-4dbf-a71a-5e879da4ab97",
@@ -411,6 +414,19 @@
               "Value": "c33754df-5af4-45ee-bb6f-5e0999380578"
             }
           ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "8655ded2-4131-460d-9a22-8f239790ecec",
+          "Name": "PurchaseAmountSberDevSberDev",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+          "ParentGuid": "f816fbaa-7167-4dd6-a62b-640f0f2350b6",
+          "PropertyGuid": "c6c42b93-94d3-4efc-82fe-8984d5774fe4",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -523,6 +539,11 @@
           "NameGuid": "8beae4a2-10cd-436c-9c86-9f5476f56b2d",
           "Name": "Contrtype",
           "Code": "Contrtype"
+        },
+        {
+          "NameGuid": "d4e769fa-c264-4f6b-9948-0e32e35ffe01",
+          "Name": "PurchAmount",
+          "Code": "PurchAmount"
         }
       ],
       "IsAncestorMetadata": true,
@@ -653,6 +674,14 @@
       "IsShowedInList": false,
       "PreviousPropertyGuid": "9bde6e4b-a450-447f-8006-7ec80136861a",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "c6c42b93-94d3-4efc-82fe-8984d5774fe4",
+      "Name": "PurchaseAmountSberDev",
+      "Code": "PurchaseAmount",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "aa763053-0404-4dbf-a71a-5e879da4ab97"
     }
   ],
   "PublicStructures": [],

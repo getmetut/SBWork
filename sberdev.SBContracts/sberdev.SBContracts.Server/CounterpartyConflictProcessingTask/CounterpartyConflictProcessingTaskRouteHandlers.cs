@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -15,7 +15,7 @@ namespace sberdev.SBContracts.Server
     {
       base.StartBlock3(e);
       e.Block.Performers.Clear();
-      e.Block.Performers.Add(Roles.GetAll().SingleOrDefault(n => n.Sid == sberdev.SberContracts.PublicConstants.Module.CounterpartiesResponsibleRole));
+      e.Block.Performers.Add(Roles.GetAll().SingleOrDefault(n => n.Sid == sberdev.SberContracts.PublicConstants.Module.CpSyncConflictRoleGuid);
       
     }
 

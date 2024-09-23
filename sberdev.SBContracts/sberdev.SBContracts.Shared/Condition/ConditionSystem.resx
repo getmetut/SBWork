@@ -199,4 +199,10 @@
   <data name="Enum_ConditionType_Contrtype" xml:space="preserve">
     <value>Contract type</value>
   </data>
+  <data name="Property_PurchaseAmountSberDev" xml:space="preserve">
+    <value>Purchase amount</value>
+  </data>
+  <data name="Enum_ConditionType_PurchAmount" xml:space="preserve">
+    <value>Purchase amount</value>
+  </data>
 </root>
