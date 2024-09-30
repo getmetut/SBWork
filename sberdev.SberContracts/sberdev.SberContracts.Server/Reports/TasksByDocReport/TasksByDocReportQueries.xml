@@ -294,7 +294,6 @@ LEFT JOIN
         a.[Group] = '08E1EF90-521F-41A1-A13F-C6F175007E54'
         AND e.DocumentDate_Docflow_Sungero >= @startDate
         AND e.DocumentDate_Docflow_Sungero <= @endDate
-        AND e.BusinessUnit_Docflow_Sungero = @businessUnit
         and ag.Discriminator != 'EF79164B-2CE7-451B-9BA6-EB59DD9A4A74'
             	and ag.Discriminator != 'BE83F002-C2C0-49DA-AFF5-B7F3BDDAABF7'
             	and ag.Discriminator != '32CE5B61-1BE2-4D61-B98A-37B99AFF3560'

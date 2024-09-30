@@ -204,7 +204,7 @@ namespace FastReport
         <Column Name="TaskDiscriminator" DataType="System.String" PropName="Column"/>
         <CommandParameter Name="StartDate" DataType="6" IsDbType="true" Expression="[StartDate]"/>
         <CommandParameter Name="EndDate" DataType="6" IsDbType="true" Expression="[EndDate]"/>
-        <CommandParameter Name="BusinessUnit" DataType="12" IsDbType="true"/>
+        <CommandParameter Name="BusinessUnit" DataType="12" IsDbType="true" Expression="[BusinessUnit]"/>
       </TableDataSource>
       <TableDataSource Name="Table1" Alias="TablePP" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${PPQuery}">
         <Column Name="PP" DataType="System.String" PropName="Column"/>
@@ -218,7 +218,7 @@ namespace FastReport
         <Column Name="AvgRwkAssigns" DataType="System.Double" PropName="Column3"/>
         <CommandParameter Name="StartDate" DataType="6" IsDbType="true" Expression="[StartDate]"/>
         <CommandParameter Name="EndDate" DataType="6" IsDbType="true" Expression="[EndDate]"/>
-        <CommandParameter Name="BusinessUnit" DataType="12" IsDbType="true"/>
+        <CommandParameter Name="BusinessUnit" DataType="12" IsDbType="true" Expression="[BusinessUnit]"/>
       </TableDataSource>
       <TableDataSource Name="Table3" Alias="TableMetricsByDepartment" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${MetricsByDepartQuery}">
         <Column Name="InitiatorDepartment" DataType="System.String" PropName="Column"/>
@@ -227,7 +227,7 @@ namespace FastReport
         <Column Name="TaskCompletedInDeadline" DataType="System.Double" PropName="Column3"/>
         <CommandParameter Name="StartDate" DataType="6" IsDbType="true" Expression="[StartDate]"/>
         <CommandParameter Name="EndDate" DataType="6" IsDbType="true" Expression="[EndDate]"/>
-        <CommandParameter Name="BusinessUnit" DataType="12" IsDbType="true"/>
+        <CommandParameter Name="BusinessUnit" DataType="12" IsDbType="true" Expression="[BusinessUnit]"/>
       </TableDataSource>
     </SungeroSqlDataConnection>
     <SungeroParameter Name="SungeroConnectionString" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties, DontShow" Id="c5b81ab6-ab88-472e-bc29-514d2e7bfb1a" IsRequired="false" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
