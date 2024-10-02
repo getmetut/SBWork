@@ -359,6 +359,14 @@
       "Value": "new System.Guid(\"0893C40D-0977-4D7D-AFBC-001AD20FD734\")"
     },
     {
+      "Name": "FakeSignContractRoleGuid",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"65bb3be1-cfbf-4d99-a88f-8fd0d4884a06\")"
+    },
+    {
       "Name": "FDTypeGuid",
       "ParentClasses": [
         "Module"
@@ -939,7 +947,7 @@
       "NeedShowMarkedCount": false
     }
   ],
-  "Version": "4.23.0.0",
+  "Version": "4.23.1.0",
   "Widgets": [],
   "Versions": [
     {

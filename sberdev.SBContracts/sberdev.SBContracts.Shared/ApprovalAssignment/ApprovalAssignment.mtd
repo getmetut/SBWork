@@ -543,8 +543,27 @@
       "Versions": []
     }
   ],
+  "PublicFunctions": [
+    {
+      "Name": "ShowPrepayMaturityDateDialog",
+      "Parameters": [
+        {
+          "Name": "approvalAssignment",
+          "ParameterType": "global::sberdev.SBContracts.IApprovalAssignment",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalAssignment, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "global::System.Nullable<global::System.DateTime>",
+      "ReturnTypeFullName": "System.Nullable"
+    }
+  ],
   "PublicStructures": [],
-  "ResourcesKeys": [],
+  "ResourcesKeys": [
+    "AdvancePaymentRepaymentPeriodDialog",
+    "AdvancePaymentRepaymentPeriod",
+    "AdvancePrepaymentDateError"
+  ],
   "RibbonCardMetadata": {
     "NameGuid": "400c72d7-88d5-4a75-ad29-afee0cdee8d3",
     "Name": "RibbonCard",

@@ -217,9 +217,6 @@
   <data name="Resource_670056d3a80d41c290537ace73f8c3e3" xml:space="preserve">
     <value />
   </data>
-  <data name="ControlGroup_81b5364c828342938d2ff05913c496f0" xml:space="preserve">
-    <value />
-  </data>
   <data name="Control_91cff7df37834f868122f6238e9ba7c0_EmptyText" xml:space="preserve">
     <value />
   </data>
@@ -273,5 +270,11 @@
   </data>
   <data name="Property_PaymentDueDate" xml:space="preserve">
     <value>Payment due date</value>
+  </data>
+  <data name="Property_PrepayMaturityDateSberDev" xml:space="preserve">
+    <value>Advance payment maturity date</value>
+  </data>
+  <data name="Property_UCNSberDev" xml:space="preserve">
+    <value>Unique contract number</value>
   </data>
 </root>

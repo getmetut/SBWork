@@ -9,6 +9,68 @@ namespace sberdev.SBContracts.Server
 {
   partial class ApprovalTaskFunctions
   {
+    /// <summary>
+    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
+    /// </summary>
+    public void OneTimeCompleteFunction(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
+    {
+      var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
+
+      if (stage == null) return;
+
+      var ourStage = sberdev.SBContracts.ApprovalStages.As(stage.Stage);
+      
+      if (ourStage == null) return;
+
+      if (ourStage.OneTime == true && ourStage.AllowSendToRework == false)
+      {
+        var isDone = _obj.DoneStage.Any(r => r.Stage == ourStage);
+
+        if (isDone)
+        {
+          e.Block.Performers.Clear();
+        }
+        else
+        {
+          var newStage = _obj.DoneStage.AddNew();
+          newStage.Stage = ourStage;
+        }
+
+        _obj.Save();
+      }
+    }
+    
+    /// <summary>
+    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
+    /// </summary>
+    public void OneTimeCompleteFunction(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
+    {
+      var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
+
+      if (stage == null) return;
+
+      var ourStage = sberdev.SBContracts.ApprovalStages.As(stage.Stage);
+      
+      if (ourStage == null) return;
+
+      if (ourStage.OneTime == true && ourStage.AllowSendToRework == false)
+      {
+        var isDone = _obj.DoneStage.Any(r => r.Stage == ourStage);
+
+        if (isDone)
+        {
+          e.Block.Performers.Clear();
+        }
+        else
+        {
+          var newStage = _obj.DoneStage.AddNew();
+          newStage.Stage = ourStage;
+        }
+
+        _obj.Save();
+      }
+    }
+    
     public override void UpdateDocumentApprovalState(Sungero.Docflow.IOfficialDocument document, Nullable<Enumeration> state)
     {
       var invoice = SBContracts.IncomingInvoices.As(document);

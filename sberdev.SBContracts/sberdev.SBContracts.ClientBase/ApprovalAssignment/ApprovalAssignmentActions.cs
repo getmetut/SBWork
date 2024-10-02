@@ -24,7 +24,7 @@ namespace sberdev.SBContracts.Client
       {
         if (Locks.TryLock(assign))
         {
-          assign.Complete(SBContracts.ApprovalCheckingAssignment.Result.Accept);
+          assign.Complete(SBContracts.ApprovalAssignment.Result.Approved);
         }
         Locks.Unlock(assign);
       }
@@ -77,6 +77,23 @@ namespace sberdev.SBContracts.Client
 
     public override void Approved(Sungero.Workflow.Client.ExecuteResultActionArgs e)
     {
+      
+      var stage = SBContracts.ApprovalStages.As(_obj.Stage);
+      var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      var invoice = SBContracts.IncomingInvoices.As(attach);
+      if (stage != null && invoice != null && stage.SidSberDev == SBContracts.PublicConstants.Docflow.ApprovalTask.AccountantDZKZStage
+          && invoice.Counterparty != null && invoice.Counterparty.Nonresident.HasValue && invoice.Counterparty.Nonresident.Value)
+      {
+        var date = PublicFunctions.ApprovalAssignment.ShowPrepayMaturityDateDialog(_obj);
+        if (date != null)
+        {
+          SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(invoice);
+          invoice.PrepayMaturityDateSberDev = date;
+          invoice.Save();
+        }
+        else
+          e.AddError(sberdev.SBContracts.ApprovalAssignments.Resources.AdvancePrepaymentDateError);;
+      }
       base.Approved(e);
     }
 

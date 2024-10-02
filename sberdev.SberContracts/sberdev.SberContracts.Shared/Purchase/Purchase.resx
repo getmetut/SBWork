@@ -97,4 +97,7 @@ Example 2: Due to the fact that ______ provided the best price offer at our requ
   <data name="SpecificationFAQname" xml:space="preserve">
     <value>Техническое задание</value>
   </data>
+  <data name="NecessaryConcludeError" xml:space="preserve">
+    <value>To conclude an Additional Agreement, an existing agreement must be specified in Section 1.5.</value>
+  </data>
 </root>

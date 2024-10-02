@@ -10,6 +10,12 @@ namespace sberdev.SberContracts
   partial class PurchaseClientHandlers
   {
 
+    public virtual void NecessaryConcludeValueInput(Sungero.Presentation.EnumerationValueInputEventArgs e)
+    {
+      if (_obj.LeadingDocument == null)
+        e.AddError(sberdev.SberContracts.Purchases.Resources.NecessaryConcludeError);
+    }
+
     public virtual void MethodPurchaseValueInput(Sungero.Presentation.EnumerationValueInputEventArgs e)
     {
       if (e.NewValue == MethodPurchase.SeveralCP)

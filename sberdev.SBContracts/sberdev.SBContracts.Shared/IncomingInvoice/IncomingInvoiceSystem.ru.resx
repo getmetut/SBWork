@@ -268,4 +268,10 @@
   <data name="Property_PaymentDueDate" xml:space="preserve">
     <value>Оплатить до</value>
   </data>
+  <data name="Property_PrepayMaturityDateSberDev" xml:space="preserve">
+    <value>Срок погашения аванса</value>
+  </data>
+  <data name="Property_UCNSberDev" xml:space="preserve">
+    <value>Уникальный номер контракта</value>
+  </data>
 </root>

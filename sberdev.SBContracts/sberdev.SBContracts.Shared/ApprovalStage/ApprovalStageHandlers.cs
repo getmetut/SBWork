@@ -10,6 +10,22 @@ namespace sberdev.SBContracts
   partial class ApprovalStageSharedHandlers
   {
 
+    public override void StageTypeChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      base.StageTypeChanged(e);
+      if (e.NewValue == StageType.Sign)
+        _obj.ConfirmSignSberDev = false;
+    }
+
+    public virtual void ConfirmSignSberDevChanged(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
+    {
+      if (e.NewValue == true)
+      {
+        _obj.IsConfirmSigning = false;
+        _obj.IsResultSubmission = false;
+      }
+    }
+
     public override void ApprovalRoleChanged(Sungero.Docflow.Shared.ApprovalStageApprovalRoleChangedEventArgs e)
     {
       base.ApprovalRoleChanged(e);

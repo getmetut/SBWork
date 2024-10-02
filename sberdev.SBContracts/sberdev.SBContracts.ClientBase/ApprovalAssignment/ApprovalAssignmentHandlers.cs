@@ -48,7 +48,7 @@ namespace sberdev.SBContracts
         _obj.State.Properties.ExternalApprovalStateSberDev.IsVisible = false;
       }
       
-      if ((!approvalStage.AmountChangesberdev.GetValueOrDefault()) || (!performer.IncludedIn( sberdev.SberContracts.PublicConstants.Module.KZTypeGuid)))
+      if ((!approvalStage.AmountChangesSberDev.GetValueOrDefault()) || (!performer.IncludedIn( sberdev.SberContracts.PublicConstants.Module.KZTypeGuid)))
       {e.HideAction(_obj.Info.Actions.AmountChangesberdev);}
       base.Showing(e);
     }

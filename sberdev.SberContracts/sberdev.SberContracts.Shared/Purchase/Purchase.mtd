@@ -2470,6 +2470,9 @@
           "Code": "SupAgreement"
         }
       ],
+      "HandledEvents": [
+        "ValueInputClient"
+      ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "c69d02f3-7f15-4a24-88de-480d0058a0b1"
     },
@@ -2502,7 +2505,8 @@
     "JustifChooseCpFAQ",
     "AmountError",
     "SpecificcationFAQ",
-    "SpecificationFAQname"
+    "SpecificationFAQname",
+    "NecessaryConcludeError"
   ],
   "RibbonCardMetadata": {
     "NameGuid": "e6ea4f05-6ef2-4cde-9daa-ea3631712fdb",

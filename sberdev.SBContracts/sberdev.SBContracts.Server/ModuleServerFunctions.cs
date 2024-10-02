@@ -1077,9 +1077,9 @@ namespace sberdev.SBContracts.Server
         body.Range.Replace("[ApprovalProjectContract]", "");
       
       if (purch.ConcludedContractsKind == SberContracts.Purchase.ConcludedContractsKind.Yes)
-        body.Range.Replace("[ConcludedContracts]", "а также с использованием информации из действующих договоров, например:\n" +
-                           "Согласно " + purch.LeadingDocument.Name + " (" + linkС + ") стоимость " + purch.SubjectPurchaseGen + " составляет "
-                           + purch.TotalAmount.Value.ToString() + " рублей без НДС, что соответствует среднерыночной стоимости.");
+        body.Range.Replace("[ConcludedContracts]", $"а также с использованием информации из действующих договоров, например: " +
+                           "Согласно {purch.LeadingDocument.Name} ({linkС}) стоимость {purch.SubjectPurchaseGen} составляет " +
+                           "{purch.TotalAmount.Value.ToString()} рублей [VAT], что соответствует среднерыночной стоимости.");
       if (purch.ConcludedContractsKind == SberContracts.Purchase.ConcludedContractsKind.NoChanges)
         body.Range.Replace("[ConcludedContracts]", "а также с использованием информации из действующих договоров, например:\n" +
                            "Указанная стоимость услуг остается неизменной с " + purch.LeadingDocument.DocumentDate + ", что подтверждено" + purch.LeadingDocument.Name

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -9,6 +9,7 @@ namespace sberdev.SBContracts.Server
 {
   partial class IncomingInvoiceFunctions
   {
+    
     public void SendNotice()
     {
       if (_obj.LocationState == "Получен через сервис обмена Диадок. Подписан обеими сторонами" && !_obj.NoticeSendBaseSberDev.GetValueOrDefault())

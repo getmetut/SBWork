@@ -11,6 +11,16 @@ namespace sberdev.SBContracts
   partial class IncomingInvoiceSharedHandlers
   {
 
+    public virtual void UCNSberDevChanged(Sungero.Domain.Shared.StringPropertyChangedEventArgs e)
+    {
+      if (e.NewValue != e.OldValue && e.NewValue != null)
+      {
+        var ucn = Functions.IncomingInvoice.CheckUCNProperty(_obj, e.NewValue);
+        if (ucn != null)
+          _obj.UCNSberDev = ucn;
+      }
+    }
+
     public virtual void NoNeedLeadingDocsChanged(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
     {
       //для срабатывания события обновления

@@ -58,8 +58,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_AmountChangesberdev" xml:space="preserve">
-    <value>Amount Change</value>
+  <data name="Property_SidSberDev" xml:space="preserve">
+    <value>Sid</value>
   </data>
   <data name="Resource_bd72e6f067304d9a8d7046e2b2c9ac0e" xml:space="preserve">
     <value />
@@ -192,5 +192,29 @@
   </data>
   <data name="Property_ProductUnitSberDev" xml:space="preserve">
     <value>Product unit</value>
+  </data>
+  <data name="Action_SetSidDevSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SetSidDevSberDevHint" xml:space="preserve">
+    <value>Set Sid</value>
+  </data>
+  <data name="Action_SetSidDevSberDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SetSidDevSberDevDescription" xml:space="preserve">
+    <value>Set Sid</value>
+  </data>
+  <data name="Action_SetSidDevSberDev" xml:space="preserve">
+    <value>Set Sid</value>
+  </data>
+  <data name="Property_AmountChangesSberDev" xml:space="preserve">
+    <value>Button "Amount changes"</value>
+  </data>
+  <data name="ControlGroup_b4de2fc302a4433bb13168edaa30af68" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_ConfirmSignSberDev" xml:space="preserve">
+    <value>Confirmation of signature (this stage is always performed by a specific employee)</value>
   </data>
 </root>

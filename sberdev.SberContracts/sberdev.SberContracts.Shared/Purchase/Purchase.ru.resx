@@ -97,4 +97,7 @@
   <data name="SpecificationFAQname" xml:space="preserve">
     <value>Техническое задание</value>
   </data>
+  <data name="NecessaryConcludeError" xml:space="preserve">
+    <value>Для заключения Дополнительного соглашения должен быть указан существующий договор в в разделе 1.5.</value>
+  </data>
 </root>

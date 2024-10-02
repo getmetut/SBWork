@@ -507,6 +507,32 @@
       "PreviousPropertyGuid": "a9c686f3-448b-4b1d-8f89-e4884f545791"
     }
   ],
+  "PublicConstants": [
+    {
+      "Name": "AccountantDZKZStage",
+      "ParentClasses": [
+        "ApprovalTask"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"24de0d9d-ed7e-44cd-a09f-9696abec0487\""
+    },
+    {
+      "Name": "CheckUCNStage",
+      "ParentClasses": [
+        "ApprovalTask"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"eb288d73-0b4a-4cf8-ad17-6b250bc2392c\""
+    },
+    {
+      "Name": "ContractCheckByClerkStage",
+      "ParentClasses": [
+        "ApprovalTask"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"7c1833f6-22da-460f-ab4c-6d510c5f6945\""
+    }
+  ],
   "PublicFunctions": [
     {
       "Name": "OldAnaliticsInDocument",

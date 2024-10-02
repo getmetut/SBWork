@@ -56,10 +56,10 @@ namespace sberdev.SBContracts
             break;
           }
         }
-          if (signFlag)
-            _obj.InvApprByTreasSberDev = true;
-          else
-            _obj.InvApprByTreasSberDev = false;
+        if (signFlag)
+          _obj.InvApprByTreasSberDev = true;
+        else
+          _obj.InvApprByTreasSberDev = false;
       }
     }
 

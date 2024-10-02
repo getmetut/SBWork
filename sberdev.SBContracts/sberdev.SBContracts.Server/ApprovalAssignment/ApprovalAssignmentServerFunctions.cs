@@ -11,6 +11,6 @@ using Sungero.Workflow;
 namespace sberdev.SBContracts.Server
 {
   partial class ApprovalAssignmentFunctions
-  { 
+  {
   }
 }

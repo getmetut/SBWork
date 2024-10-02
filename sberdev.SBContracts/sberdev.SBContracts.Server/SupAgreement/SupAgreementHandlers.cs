@@ -18,7 +18,8 @@ namespace sberdev.SBContracts
     public override void AfterSave(Sungero.Domain.AfterSaveEventArgs e)
     {
       base.AfterSave(e);
-      Sungero.Custom.PublicFunctions.Module.CreateSupInLiminInContract(_obj.LeadingDocument.Id, _obj.Id);
+      if (_obj.LeadingDocument != null)
+        Sungero.Custom.PublicFunctions.Module.CreateSupInLiminInContract(_obj.LeadingDocument.Id, _obj.Id);
     }
   }
 

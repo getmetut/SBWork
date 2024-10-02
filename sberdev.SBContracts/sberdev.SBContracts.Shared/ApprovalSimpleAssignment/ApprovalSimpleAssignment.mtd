@@ -5,6 +5,17 @@
   "AccessRightsMode": "Instance",
   "Actions": [
     {
+      "$type": "Sungero.Workflow.Shared.ExecutionResultActionMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "ed1007f2-937b-490d-9134-fde4e25bab1c",
+      "Name": "Complete",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ],
+      "Versions": []
+    },
+    {
       "NameGuid": "587a360c-3335-4cb3-83fe-94e782690805",
       "Name": "AbortTask",
       "ActionArea": "Card",
@@ -32,7 +43,6 @@
     "Versions": []
   },
   "HandledEvents": [
-    "BeforeCompleteServer",
     "BeforeSaveServer"
   ],
   "IconResourcesKeys": [],
@@ -77,8 +87,66 @@
       "Versions": []
     }
   ],
+  "PublicFunctions": [
+    {
+      "Name": "CheckUCNStageApprScript",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "approvalSimpleAssignment",
+          "ParameterType": "global::sberdev.SBContracts.IApprovalSimpleAssignment",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalSimpleAssignment, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "incInv",
+          "ParameterType": "global::sberdev.SBContracts.IIncomingInvoice",
+          "ParameterTypeFullName": "sberdev.SBContracts.IIncomingInvoice, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
+      "Name": "ContractCheckByClerkStageApprScript",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "approvalSimpleAssignment",
+          "ParameterType": "global::sberdev.SBContracts.IApprovalSimpleAssignment",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalSimpleAssignment, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "incInv",
+          "ParameterType": "global::sberdev.SBContracts.IIncomingInvoice",
+          "ParameterTypeFullName": "sberdev.SBContracts.IIncomingInvoice, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "ShowCheckUCNDialog",
+      "Parameters": [
+        {
+          "Name": "approvalSimpleAssignment",
+          "ParameterType": "global::sberdev.SBContracts.IApprovalSimpleAssignment",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalSimpleAssignment, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    }
+  ],
   "PublicStructures": [],
-  "ResourcesKeys": [],
+  "ResourcesKeys": [
+    "CheckUCNDialogTitle",
+    "CheckUCNDialogProp",
+    "CheckUCNErr",
+    "CheckUCNDialogLabel"
+  ],
   "RibbonCardMetadata": {
     "NameGuid": "85a6ea88-b460-4bae-a91d-14c664ffaaac",
     "Name": "RibbonCard",

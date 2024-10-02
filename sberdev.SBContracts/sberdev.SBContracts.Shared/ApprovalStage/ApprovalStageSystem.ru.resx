@@ -58,8 +58,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_AmountChangesberdev" xml:space="preserve">
-    <value>Кнопка "Сумма изменилась"</value>
+  <data name="Action_SetSidDevSberDevDescription" xml:space="preserve">
+    <value>Задать Sid</value>
   </data>
   <data name="Resource_bd72e6f067304d9a8d7046e2b2c9ac0e" xml:space="preserve">
     <value />
@@ -192,5 +192,17 @@
   </data>
   <data name="Property_ProductUnitSberDev" xml:space="preserve">
     <value>Бизнес юнит</value>
+  </data>
+  <data name="Action_SetSidDevSberDevHint" xml:space="preserve">
+    <value>Задать Sid</value>
+  </data>
+  <data name="Action_SetSidDevSberDev" xml:space="preserve">
+    <value>Задать Sid</value>
+  </data>
+  <data name="Property_AmountChangesSberDev" xml:space="preserve">
+    <value>Кнопка "Сумма изменилась"</value>
+  </data>
+  <data name="Property_ConfirmSignSberDev" xml:space="preserve">
+    <value>Подтверждение подписания (этап всегда выполняет определенный сотрудник)</value>
   </data>
 </root>

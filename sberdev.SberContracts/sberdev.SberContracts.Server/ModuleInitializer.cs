@@ -32,6 +32,31 @@ namespace sberdev.SberContracts.Server
     
     public static void CreateRoles()
     {
+      var roleFS = Roles.GetAll(r => r.Sid == Constants.Module.FakeSignContractRoleGuid).FirstOrDefault();
+      
+      if (roleFS == null)
+      {
+        roleFS = Roles.Create();
+        roleFS.Name = "Ответсвенный за подтверждение подписания дог. документов";
+        roleFS.Description = "Участник роли является исполнителем задания на Подтверждение подписания (фейк подписание).";
+        roleFS.Sid = Constants.Module.FakeSignContractRoleGuid;
+        roleFS.IsSystem = false;
+        roleFS.RecipientLinks.AddNew().Member = Users.GetAll().Where(r => r.Id == 10).FirstOrDefault();
+        roleFS.IsSingleUser = true;
+        roleFS.Save();
+        InitializationLogger.Debug("Ответсвенный за подтверждение подписания дог. документов");
+      }
+      else
+      {
+        roleFS.Name = "Ответсвенный за подтверждение подписания дог. документов";
+        roleFS.Description = "Участник роли является исполнителем задания на Подтверждение подписания (фейк подписание).";
+        roleFS.Sid = Constants.Module.FakeSignContractRoleGuid;
+        roleFS.IsSystem = false;
+        roleFS.IsSingleUser = true;
+        roleFS.Save();
+        InitializationLogger.Debug("Ответсвенный за подтверждение подписания дог. документов");
+      }
+      
       var roleSC = Roles.GetAll(r => r.Sid == Constants.Module.CpSyncConflictRoleGuid).FirstOrDefault();
       
       if (roleSC == null)

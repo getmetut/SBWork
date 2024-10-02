@@ -7,4 +7,5 @@ using sberdev.SBContracts.ApprovalSigningAssignment;
 
 namespace sberdev.SBContracts
 {
+
 }

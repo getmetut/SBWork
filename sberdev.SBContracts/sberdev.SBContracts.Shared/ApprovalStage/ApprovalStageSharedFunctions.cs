@@ -24,8 +24,8 @@ namespace sberdev.SBContracts.Shared
         baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerProd);
         baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerPrGe);
         baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerUnit);
+        baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.Signatory);
       }
-      
       return baseRoles;
     }
     
@@ -33,6 +33,7 @@ namespace sberdev.SBContracts.Shared
     {
       base.SetPropertiesVisibility();
       
+      var type = _obj.StageType;
       var properties = _obj.State.Properties;
       var isUnits = false;
       foreach (var role in _obj.ApprovalRoles)
@@ -51,6 +52,31 @@ namespace sberdev.SBContracts.Shared
         properties.ProductUnitSberDev.IsVisible = false;
         properties.ProductUnitSberDev.IsRequired = false;
       }
+      
+      properties.SidSberDev.IsEnabled = false;
+      bool isSign = type == StageType.Sign;
+      properties.ConfirmSignSberDev.IsVisible = isSign;
+      bool isConfirmSignSberDev = _obj.ConfirmSignSberDev.HasValue ? _obj.ConfirmSignSberDev.Value : false;
+      if (isSign)
+      {
+        properties.Assignee.IsVisible = isConfirmSignSberDev;
+        properties.Assignee.IsEnabled = isConfirmSignSberDev;
+        properties.IsConfirmSigning.IsVisible = !isConfirmSignSberDev;
+        properties.AssigneeType.IsVisible = !isConfirmSignSberDev;
+        properties.ApprovalRole.IsVisible = !isConfirmSignSberDev;
+      }
+    }
+    
+    public override void SetPropertiesAvailability()
+    {
+      base.SetPropertiesAvailability();
+      _obj.State.Properties.Assignee.IsEnabled = _obj.ConfirmSignSberDev.HasValue ? _obj.ConfirmSignSberDev.Value : false;
+    }
+    
+    public override void SetRequiredProperties()
+    {
+      base.SetRequiredProperties();
+      _obj.State.Properties.Assignee.IsRequired = _obj.ConfirmSignSberDev.HasValue ? _obj.ConfirmSignSberDev.Value : false;
     }
   }
 }

@@ -10,6 +10,16 @@ namespace sberdev.SBContracts
   partial class IncomingInvoiceClientHandlers
   {
 
+    public virtual void UCNSberDevValueInput(Sungero.Presentation.StringValueInputEventArgs e)
+    {
+      if (e.NewValue != e.OldValue && e.NewValue != null)
+      {
+        var ucn = Functions.IncomingInvoice.CheckUCNProperty(_obj, e.NewValue);
+        if (ucn == null)
+          e.AddError(sberdev.SBContracts.IncomingInvoices.Resources.CheckUCNErr);
+      }
+    }
+
     public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
     {
       base.Refresh(e);
