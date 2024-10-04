@@ -640,6 +640,19 @@
           "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "901319de-487d-47e3-8bda-cc4a96c5973d",
+          "Name": "AssigneeSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "f5e37b57-bc02-4551-9f84-68221a271e7a",
+          "PropertyGuid": "fc8f6afd-410e-4ea0-806b-3de8644fda3e",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -758,6 +771,17 @@
       ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "3f670101-7e10-4261-b9e2-03e7e269db75"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "fc8f6afd-410e-4ea0-806b-3de8644fda3e",
+      "Name": "AssigneeSberDev",
+      "Code": "AssigneeSberDe",
+      "EntityGuid": "c612fc41-44a3-428b-a97c-433c333d78e9",
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "b0834331-9276-48f0-bffe-42428ad577e0",
+      "Versions": []
     }
   ],
   "PublicStructures": [],

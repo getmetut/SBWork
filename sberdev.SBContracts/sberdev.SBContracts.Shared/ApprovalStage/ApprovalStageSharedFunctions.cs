@@ -31,6 +31,7 @@ namespace sberdev.SBContracts.Shared
     
     public override void SetPropertiesVisibility()
     {
+      
       base.SetPropertiesVisibility();
       
       var type = _obj.StageType;
@@ -55,28 +56,28 @@ namespace sberdev.SBContracts.Shared
       
       properties.SidSberDev.IsEnabled = false;
       bool isSign = type == StageType.Sign;
-      properties.ConfirmSignSberDev.IsVisible = isSign;
-      bool isConfirmSignSberDev = _obj.ConfirmSignSberDev.HasValue ? _obj.ConfirmSignSberDev.Value : false;
+      bool isConfirmSignSberDev = _obj.ConfirmSignSberDev.HasValue && _obj.ConfirmSignSberDev.Value;
       if (isSign)
       {
-        properties.Assignee.IsVisible = isConfirmSignSberDev;
-        properties.Assignee.IsEnabled = isConfirmSignSberDev;
-        properties.IsConfirmSigning.IsVisible = !isConfirmSignSberDev;
-        properties.AssigneeType.IsVisible = !isConfirmSignSberDev;
-        properties.ApprovalRole.IsVisible = !isConfirmSignSberDev;
+        properties.AssigneeSberDev.IsVisible = isConfirmSignSberDev;
+        properties.IsConfirmSigning.IsVisible = isConfirmSignSberDev ? false : properties.IsConfirmSigning.IsVisible;
+        properties.AssigneeType.IsVisible = isConfirmSignSberDev ? false : properties.AssigneeType.IsVisible;
+        properties.ApprovalRole.IsVisible = isConfirmSignSberDev ? false : properties.ApprovalRole.IsVisible;
       }
+      properties.ConfirmSignSberDev.IsVisible = isSign;
+      
     }
     
     public override void SetPropertiesAvailability()
     {
       base.SetPropertiesAvailability();
-      _obj.State.Properties.Assignee.IsEnabled = _obj.ConfirmSignSberDev.HasValue ? _obj.ConfirmSignSberDev.Value : false;
+      _obj.State.Properties.AssigneeSberDev.IsEnabled = _obj.ConfirmSignSberDev.HasValue && _obj.ConfirmSignSberDev.Value;
     }
     
     public override void SetRequiredProperties()
     {
       base.SetRequiredProperties();
-      _obj.State.Properties.Assignee.IsRequired = _obj.ConfirmSignSberDev.HasValue ? _obj.ConfirmSignSberDev.Value : false;
+      _obj.State.Properties.AssigneeSberDev.IsRequired = _obj.ConfirmSignSberDev.HasValue && _obj.ConfirmSignSberDev.Value;
     }
   }
 }

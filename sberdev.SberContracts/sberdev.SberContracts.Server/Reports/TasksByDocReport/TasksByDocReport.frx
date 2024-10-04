@@ -60,7 +60,11 @@ namespace FastReport
         case &quot;f37c7e63-b134-4446-9b5b-f8811f6c9666&quot;:
           return &quot;Договор&quot;;
         case &quot;265f2c57-6a8a-4a15-833b-ca00e8047fa5&quot;:
-          return &quot;Доп. соглашение&quot;;
+          return &quot;Доп. соглашение&quot;;  
+        case &quot;7aa8969f-f81d-462c-b0d8-761ccd59253f&quot;:
+          return &quot;Закупка&quot;;
+        case &quot;9d7a0ce3-e5c5-45b9-956d-7b26daedfdd2&quot;:
+          return &quot;Гарантийное письмо&quot;;
         // Добавьте остальные значения
         default:
           return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено

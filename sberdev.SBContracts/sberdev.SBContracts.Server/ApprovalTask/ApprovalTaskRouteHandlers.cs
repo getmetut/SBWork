@@ -20,13 +20,8 @@ namespace sberdev.SBContracts.Server
       if (stage.ConfirmSignSberDev == true)
       {
         e.Block.Performers.Clear();
-        e.Block.Performers.Add(stage.Assignee);
+        e.Block.Performers.Add(stage.AssigneeSberDev);
       }
-    }
-
-    public override void EndBlock6(Sungero.Docflow.Server.ApprovalAssignmentEndBlockEventArguments e)
-    {
-      base.EndBlock6(e);
     }
 
     public override void CompleteAssignment3(Sungero.Docflow.IApprovalManagerAssignment assignment, Sungero.Docflow.Server.ApprovalManagerAssignmentArguments e)
@@ -148,17 +143,17 @@ namespace sberdev.SBContracts.Server
       }
     }
 
-      public override void StartBlock31(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
-      {
-        base.StartBlock31(e);
-        Functions.ApprovalTask.OneTimeCompleteFunction(_obj, e);
-      }
-
-      public override void StartBlock30(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
-      {
-        base.StartBlock30(e);
-        Functions.ApprovalTask.OneTimeCompleteFunction(_obj, e);
-      }
-
+    public override void StartBlock31(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
+    {
+      base.StartBlock31(e);
+      Functions.ApprovalTask.OneTimeCompleteFunction(_obj, e);
     }
+
+    public override void StartBlock30(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
+    {
+      base.StartBlock30(e);
+      Functions.ApprovalTask.OneTimeCompleteFunction(_obj, e);
+    }
+
   }
+}

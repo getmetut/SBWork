@@ -544,6 +544,11 @@
           "NameGuid": "d4e769fa-c264-4f6b-9948-0e32e35ffe01",
           "Name": "PurchAmount",
           "Code": "PurchAmount"
+        },
+        {
+          "NameGuid": "3fe053ca-996d-429c-8aee-f230e74a82ad",
+          "Name": "EarlyProxy",
+          "Code": "EarlyProxy"
         }
       ],
       "IsAncestorMetadata": true,

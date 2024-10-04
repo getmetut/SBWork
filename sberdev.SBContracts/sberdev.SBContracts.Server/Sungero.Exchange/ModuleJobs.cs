@@ -15,7 +15,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
       var tasks = SBContracts.ExchangeDocumentProcessingTasks.GetAll().Where(t => t.IsNeedComeback == true).ToList();
       if (!tasks.Any())
       {
-        Logger.Debug("Exchange. ComeBackBodies. Нет задач на обработку");
+        Logger.Debug("Exchange. ComeBackBodies. Нет задач на обработку. ====================================================");
         return;
       }
 
@@ -27,14 +27,16 @@ namespace sberdev.SBContracts.Module.Exchange.Server
         if (attachs == null || !attachs.Any())
         {
           Logger.Error($"Exchange. ComeBackBodies. Задача {task.Id} не содержит вложений.");
-              task.IsNeedComeback = false;
+          task.IsNeedComeback = false;
+          task.Save();
           continue;
         }
         
         if (task.IsIncoming.HasValue && !task.IsIncoming.Value)
         {
           Logger.Error($"Exchange. ComeBackBodies. Задача {task.Id} для исходящих документов.");
-              task.IsNeedComeback = false;
+          task.IsNeedComeback = false;
+          task.Save();
           continue;
         }
 
@@ -85,13 +87,13 @@ namespace sberdev.SBContracts.Module.Exchange.Server
           {
             if (strmCommon.Length > 0)
             {
+              SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(doc);
               doc.CreateVersionFrom(strmCommon, incomingDoc.BodyExtSberDev);
               if (strmPublic.Length > 0)
               {
                 doc.LastVersion.PublicBody.Write(strmPublic);
                 doc.LastVersion.AssociatedApplication = incomingDoc.LastVersion.AssociatedApplication;
               }
-              SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(doc);
               doc.Save();
 
               foreach (var signInfo in signInfos)
@@ -123,6 +125,9 @@ namespace sberdev.SBContracts.Module.Exchange.Server
             }
           }
         }
+        
+        if (task.NeedComebackAgainAttachments == null)
+          task.IsNeedComeback = false;
 
         if (task.NumberOfAttempsComeback > 336)
         {

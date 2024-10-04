@@ -9,28 +9,6 @@ namespace sberdev.SBContracts.Client
 {
   partial class ApprovalSimpleAssignmentActions
   {
-    public override void Complete(Sungero.Workflow.Client.ExecuteResultActionArgs e)
-    {
-      var incInv = IncomingInvoices.As(_obj.DocumentGroup.OfficialDocuments.First());
-      var stage = SBContracts.ApprovalStages.GetAll().Where(s => s.Subject == _obj.StageSubject).FirstOrDefault();
-      
-      if  (stage == null || incInv == null)
-        return;
-      
-      if (stage.SidSberDev == Constants.Docflow.ApprovalTask.ContractCheckByClerkStage)
-        PublicFunctions.ApprovalSimpleAssignment.Remote.ContractCheckByClerkStageApprScript(_obj, incInv);
-      
-      if (stage.SidSberDev == Constants.Docflow.ApprovalTask.CheckUCNStage)
-        if (!PublicFunctions.ApprovalSimpleAssignment.Remote.CheckUCNStageApprScript(_obj, incInv))
-          e.AddError(sberdev.SBContracts.ApprovalSimpleAssignments.Resources.CheckUCNErr);
-      
-      base.Complete(e);
-    }
-
-    public override bool CanComplete(Sungero.Workflow.Client.CanExecuteResultActionArgs e)
-    {
-      return base.CanComplete(e);
-    }
 
     public virtual void AbortTask(Sungero.Domain.Client.ExecuteActionArgs e)
     {

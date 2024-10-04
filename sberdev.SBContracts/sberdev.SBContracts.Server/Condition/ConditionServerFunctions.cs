@@ -28,6 +28,11 @@ namespace sberdev.SBContracts.Server
           }
         }
         
+        if (_obj.ConditionType == ConditionType.EarlyProxy)
+        {
+          return "Продление ранней доверенности";
+        }
+        
         if (_obj.ConditionType == ConditionType.Contrtype)
         {
           return "Документ доходный?";

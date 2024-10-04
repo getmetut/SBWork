@@ -2327,6 +2327,7 @@
       "HandledEvents": [
         "ValueInputClient"
       ],
+      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "e68cb142-1bea-46da-903e-c14ae8d30310"
     },

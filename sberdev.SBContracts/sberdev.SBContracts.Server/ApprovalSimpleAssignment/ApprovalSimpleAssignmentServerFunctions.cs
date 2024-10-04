@@ -14,9 +14,8 @@ namespace sberdev.SBContracts.Server
     /// Механика этап согласования Проверить постановку договора на валютный банковский контроль
     /// </summary>       
     [Public, Remote]
-    public bool CheckUCNStageApprScript(SBContracts.IIncomingInvoice incInv)
+    public bool CheckUCNStageApprScript(SBContracts.IIncomingInvoice incInv, string ucn)
     {
-        string ucn = PublicFunctions.ApprovalSimpleAssignment.ShowCheckUCNDialog(_obj);
         if (ucn != null)
         {
           PublicFunctions.Module.Remote.UnblockCardByDatabase(incInv);

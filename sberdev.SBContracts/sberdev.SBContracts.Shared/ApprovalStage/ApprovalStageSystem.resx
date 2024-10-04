@@ -217,4 +217,7 @@
   <data name="Property_ConfirmSignSberDev" xml:space="preserve">
     <value>Confirmation of signature (this stage is always performed by a specific employee)</value>
   </data>
+  <data name="Property_AssigneeSberDev" xml:space="preserve">
+    <value>Employee/Role</value>
+  </data>
 </root>

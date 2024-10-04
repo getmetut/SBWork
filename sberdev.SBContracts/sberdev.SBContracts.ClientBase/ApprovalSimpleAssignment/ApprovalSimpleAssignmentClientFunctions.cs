@@ -15,7 +15,7 @@ namespace sberdev.SBContracts.Client
     {
       var dialog = Dialogs.CreateInputDialog(sberdev.SBContracts.ApprovalSimpleAssignments.Resources.CheckUCNDialogTitle);
       CommonLibrary.IStringDialogValue ucn = dialog.AddString(sberdev.SBContracts.ApprovalSimpleAssignments.Resources.CheckUCNDialogProp, true)
-        .WithPlaceholder("00000000/0000/0000/0/0").WithLabel(sberdev.SBContracts.ApprovalSimpleAssignments.Resources.CheckUCNDialogLabel);
+        .WithPlaceholder("00000000/0000/0000/0/0");
       ucn.SetOnValueChanged(u => {
                               if (u.NewValue == null || u.NewValue == u.OldValue)
                                 return;

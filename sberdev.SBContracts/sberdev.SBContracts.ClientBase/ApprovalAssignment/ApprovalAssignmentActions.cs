@@ -77,7 +77,6 @@ namespace sberdev.SBContracts.Client
 
     public override void Approved(Sungero.Workflow.Client.ExecuteResultActionArgs e)
     {
-      
       var stage = SBContracts.ApprovalStages.As(_obj.Stage);
       var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
       var invoice = SBContracts.IncomingInvoices.As(attach);

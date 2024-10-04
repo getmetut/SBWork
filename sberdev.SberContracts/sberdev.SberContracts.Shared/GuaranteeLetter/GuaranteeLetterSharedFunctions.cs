@@ -18,7 +18,8 @@ namespace sberdev.SberContracts.Shared
         _obj.State.Properties.AddendumDocument.IsRequired = true;
       else
         _obj.State.Properties.AddendumDocument.IsRequired = false;
-      
+      _obj.State.Properties.ExternalApprovalState.IsVisible = true;
+      _obj.State.Properties.ExternalApprovalState.IsEnabled = true;
     }
   }
 }

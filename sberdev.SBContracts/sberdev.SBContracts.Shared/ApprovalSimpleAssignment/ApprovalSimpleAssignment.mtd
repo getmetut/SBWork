@@ -5,17 +5,6 @@
   "AccessRightsMode": "Instance",
   "Actions": [
     {
-      "$type": "Sungero.Workflow.Shared.ExecutionResultActionMetadata, Sungero.Workflow.Shared",
-      "NameGuid": "ed1007f2-937b-490d-9134-fde4e25bab1c",
-      "Name": "Complete",
-      "GenerateHandler": true,
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "GenerateHandler"
-      ],
-      "Versions": []
-    },
-    {
       "NameGuid": "587a360c-3335-4cb3-83fe-94e782690805",
       "Name": "AbortTask",
       "ActionArea": "Card",
@@ -43,7 +32,8 @@
     "Versions": []
   },
   "HandledEvents": [
-    "BeforeSaveServer"
+    "BeforeSaveServer",
+    "BeforeCompleteServer"
   ],
   "IconResourcesKeys": [],
   "IsVisibleThreadText": true,
@@ -101,6 +91,11 @@
           "Name": "incInv",
           "ParameterType": "global::sberdev.SBContracts.IIncomingInvoice",
           "ParameterTypeFullName": "sberdev.SBContracts.IIncomingInvoice, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "ucn",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
         }
       ],
       "Placement": "Shared",

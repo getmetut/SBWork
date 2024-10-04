@@ -7,4 +7,5 @@ using sberdev.SBContracts.ApprovalCheckReturnAssignment;
 
 namespace sberdev.SBContracts
 {
+
 }

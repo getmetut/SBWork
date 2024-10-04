@@ -13,17 +13,16 @@ namespace sberdev.SBContracts
     public override void StageTypeChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
     {
       base.StageTypeChanged(e);
-      if (e.NewValue == StageType.Sign)
+      if (e.NewValue != StageType.Sign)
         _obj.ConfirmSignSberDev = false;
     }
 
     public virtual void ConfirmSignSberDevChanged(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
     {
       if (e.NewValue == true)
-      {
         _obj.IsConfirmSigning = false;
-        _obj.IsResultSubmission = false;
-      }
+      if (e.NewValue == false)
+        _obj.AssigneeSberDev = null;
     }
 
     public override void ApprovalRoleChanged(Sungero.Docflow.Shared.ApprovalStageApprovalRoleChangedEventArgs e)
