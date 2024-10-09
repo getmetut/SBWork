@@ -61,24 +61,6 @@
   <data name="Property_Subject" xml:space="preserve">
     <value>Subject</value>
   </data>
-  <data name="Action_SendToTM" xml:space="preserve">
-    <value>Send to TM</value>
-  </data>
-  <data name="Action_SendToTMDescription" xml:space="preserve">
-    <value>Send to TM</value>
-  </data>
-  <data name="Action_SendToTMHint" xml:space="preserve">
-    <value>Send to TM</value>
-  </data>
-  <data name="Action_SendToTMConfirmationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Action_SendToTMConfirmationDescription" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Ribbon_Group_528f5ad540ab4d49a2837d485e6b5f06" xml:space="preserve">
-    <value>Group</value>
-  </data>
   <data name="Property_GUID1C" xml:space="preserve">
     <value>GUID1C</value>
   </data>

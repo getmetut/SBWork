@@ -51,19 +51,6 @@ namespace sberdev.SBContracts.Client
     {
       return base.CanDeleteEntity(e);
     }
-
-
-    public virtual void SendToTM(Sungero.Domain.Client.ExecuteActionArgs e)
-    {
-      // Если по документу ранее были запущены задачи, то вывести соответствующий диалог.
-      if (! Sungero.Docflow.PublicFunctions.OfficialDocument.NeedCreateApprovalTask(_obj))
-        return;
-      
-      // Принудительно сохранить документ, чтобы сохранились связи. Иначе они не попадут в задачу.
-      _obj.Save();
-      
-      this.CreateApprovalTask(e);
-    }
     
     private void CreateApprovalTask(Sungero.Domain.Client.ExecuteActionArgs e)
     {
@@ -79,10 +66,6 @@ namespace sberdev.SBContracts.Client
         Dialogs.ShowMessage("Нет регламента для согласования", MessageType.Warning);
         throw new OperationCanceledException();
       }
-    }
-    public virtual bool CanSendToTM(Sungero.Domain.Client.CanExecuteActionArgs e)
-    {
-      return true;
     }
 
   }

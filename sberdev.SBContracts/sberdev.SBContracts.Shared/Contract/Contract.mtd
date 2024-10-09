@@ -43,14 +43,6 @@
         "GenerateHandler"
       ],
       "Versions": []
-    },
-    {
-      "NameGuid": "fb508aa5-205c-4e04-bcee-ac6b859b2962",
-      "Name": "SendToTM",
-      "ActionArea": "Card",
-      "GenerateHandler": true,
-      "LargeIconName": "Action_SendToTM_large_fb508aa5205c4e04bceeac6b859b2962.png",
-      "SmallIconName": "Action_SendToTM_small_fb508aa5205c4e04bceeac6b859b2962.png"
     }
   ],
   "BaseGuid": "f37c7e63-b134-4446-9b5b-f8811f6c9666",
@@ -1503,27 +1495,9 @@
         ],
         "ParentGuid": "f329dc86-efcb-484a-bdfd-999e6f96e971",
         "Versions": []
-      },
-      {
-        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
-        "NameGuid": "b6114242-9dab-41b9-b960-882f634f2245",
-        "Name": "SendToTM",
-        "ActionGuid": "fb508aa5-205c-4e04-bcee-ac6b859b2962",
-        "ButtonSize": "Large",
-        "Index": -1,
-        "ParentGuid": "528f5ad5-40ab-4d49-a283-7d485e6b5f06"
       }
     ],
-    "Groups": [
-      {
-        "NameGuid": "528f5ad5-40ab-4d49-a283-7d485e6b5f06",
-        "Name": "Group",
-        "IconName": null,
-        "Index": 32,
-        "ParentGuid": "21a31627-5f58-4416-8c4a-90f538ee2e57",
-        "SmallIconName": null
-      }
-    ],
+    "Groups": [],
     "IsAncestorMetadata": true,
     "Pages": [],
     "RibbonKind": "Card"

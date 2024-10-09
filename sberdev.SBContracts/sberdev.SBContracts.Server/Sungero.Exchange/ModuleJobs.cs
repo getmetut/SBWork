@@ -72,6 +72,13 @@ namespace sberdev.SBContracts.Module.Exchange.Server
             Logger.Error($"Exchange. ComeBackBodies. Не найден ИД родной карточки для вложения {attach.Id}");
             continue;
           }
+          
+          if (idStr == incomingDoc.Id.ToString())
+          {
+            Logger.Error($"Exchange. ComeBackBodies. ИД родной карточки совпадает с ИД вложения {attach.Id}");
+            continue;
+          }
+
 
           var doc = Sungero.Content.ElectronicDocuments.GetAll(d => d.Id.ToString() == idStr).FirstOrDefault();
           if (doc == null)
@@ -98,8 +105,25 @@ namespace sberdev.SBContracts.Module.Exchange.Server
 
               foreach (var signInfo in signInfos)
               {
-                if (signInfo.IsExternal == true)
-                  Signatures.Import(doc, signInfo.SignatureType, signInfo.SignatoryFullName, signInfo.GetDataSignature(), doc.LastVersion);
+                try
+                {
+                  if (signInfo.IsExternal == true)
+                  {
+                    // Попробуем импортировать подпись
+                    Signatures.Import(doc, signInfo.SignatureType, signInfo.SignatoryFullName, signInfo.GetDataSignature(), doc.LastVersion);
+                    Logger.Debug($"Подпись успешно импортирована для документа {doc.Id}");
+                  }
+                }
+                catch (InvalidOperationException ex)
+                {
+                  // Логируем исключение и продолжаем обработку
+                  Logger.Error($"Ошибка при импорте подписи для документа {doc.Id}: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                  // Логируем любые другие возможные исключения
+                  Logger.Error($"Непредвиденная ошибка при обработке подписи для документа {doc.Id}: {ex.Message}");
+                }
               }
 
               task.IsNeedComeback = false;

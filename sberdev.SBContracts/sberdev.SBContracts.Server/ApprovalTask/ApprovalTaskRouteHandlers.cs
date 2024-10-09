@@ -107,7 +107,7 @@ namespace sberdev.SBContracts.Server
     public override void CompleteAssignment31(Sungero.Docflow.IApprovalCheckingAssignment assignment, Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
     {
       var blok =  sberdev.SBContracts.ApprovalCheckingAssignments.As(assignment);
-      if ( blok.NeedAbort.GetValueOrDefault())
+      if (blok.NeedAbort.GetValueOrDefault())
       {
         _obj.AbortingReason = blok.AbortingReason;
         _obj.NeedAbort = true;
@@ -117,17 +117,15 @@ namespace sberdev.SBContracts.Server
       else
       {
         base.CompleteAssignment31(assignment, e);
-        var resJob = assignment.Result;
-        var nedRes = Sungero.Docflow.ApprovalCheckingAssignment.Result.ForRework;
-        if(resJob != nedRes)
-          Functions.ApprovalTask.OneTimeCompleteFunction(_obj, e);
+        if (assignment.Result == Sungero.Docflow.ApprovalCheckingAssignment.Result.Accept)
+          Functions.ApprovalTask.OneTimeCompleteAddFunction(_obj, e);
       }
     }
 
     public override void CompleteAssignment30(Sungero.Docflow.IApprovalSimpleAssignment assignment, Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
     {
       var blok =  sberdev.SBContracts.ApprovalSimpleAssignments.As(assignment);
-      if ( blok.NeedAbort.GetValueOrDefault())
+      if (blok.NeedAbort.GetValueOrDefault())
       {
         _obj.AbortingReason = blok.AbortingReason;
         _obj.NeedAbort = true;
@@ -135,24 +133,21 @@ namespace sberdev.SBContracts.Server
         _obj.Abort();
       }
       else
-      {
         base.CompleteAssignment30(assignment, e);
-        if (assignment.Result != Sungero.Docflow.FreeApprovalAssignment.Result.ForRework)
-          Functions.ApprovalTask.OneTimeCompleteFunction(_obj, e);
-        
-      }
+        if (assignment.Result == Sungero.Docflow.ApprovalSimpleAssignment.Result.Complete)
+          Functions.ApprovalTask.OneTimeCompleteAddFunction(_obj, e);
     }
 
     public override void StartBlock31(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
     {
       base.StartBlock31(e);
-      Functions.ApprovalTask.OneTimeCompleteFunction(_obj, e);
+      Functions.ApprovalTask.OneTimeCompleteClearFunction(_obj, e);
     }
 
     public override void StartBlock30(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
     {
       base.StartBlock30(e);
-      Functions.ApprovalTask.OneTimeCompleteFunction(_obj, e);
+      Functions.ApprovalTask.OneTimeCompleteClearFunction(_obj, e);
     }
 
   }

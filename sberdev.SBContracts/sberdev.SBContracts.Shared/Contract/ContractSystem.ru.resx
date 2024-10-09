@@ -61,15 +61,6 @@
   <data name="Property_Subject" xml:space="preserve">
     <value>Содержание(предмет договора)</value>
   </data>
-  <data name="Action_SendToTM" xml:space="preserve">
-    <value>На согласование по регламенту</value>
-  </data>
-  <data name="Action_SendToTMHint" xml:space="preserve">
-    <value>Отправить на согласование по регламенту</value>
-  </data>
-  <data name="Action_SendToTMDescription" xml:space="preserve">
-    <value>Отправить на согласование по регламенту</value>
-  </data>
   <data name="Control_a98a1ceb9b3b463ca4f2915a69f22714_DisplayValue" xml:space="preserve">
     <value>Заполнить из предыдущего договора</value>
   </data>

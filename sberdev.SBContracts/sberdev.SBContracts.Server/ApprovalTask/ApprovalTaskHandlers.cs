@@ -21,6 +21,8 @@ namespace sberdev.SBContracts
 
     public override void BeforeStart(Sungero.Workflow.Server.BeforeStartEventArgs e)
     {
+      // Чистим завершенные задачи
+      _obj.DoneStage.Clear();
       // Механика указания нового ответсвенного
       if (_obj.NewAuthorSDev != null)
         if (_obj.NewAuthorSDev.Login != null)

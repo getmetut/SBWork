@@ -30,6 +30,19 @@
     "IsAncestorMetadata": true,
     "Versions": []
   },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.StandaloneFormMetadata, Sungero.Metadata",
+      "NameGuid": "fa03f748-4397-42ef-bdc2-22119af7bf7f",
+      "Name": "Card",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ],
+      "Versions": []
+    }
+  ],
   "IconResourcesKeys": [],
   "IsAbstract": true,
   "LayeredFromGuid": "454df3c6-b850-47cf-897f-a10d767baa77",
@@ -91,14 +104,6 @@
     "Name": "RibbonCard",
     "Categories": [],
     "Elements": [
-      {
-        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
-        "NameGuid": "ba316d61-626c-49ac-b6c7-1979effe0d47",
-        "Name": "ActionButtonSDev",
-        "ActionGuid": "d021d43d-7949-4bdf-b0a0-4db25547f388",
-        "Index": 51,
-        "ParentGuid": "f3b0ddcd-9d1e-4ca3-8780-695ae25a9e8b"
-      },
       {
         "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
         "NameGuid": "ea790941-3252-4712-a51c-77c46eb77895",

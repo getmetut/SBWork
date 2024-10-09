@@ -12,7 +12,7 @@ namespace sberdev.SBContracts.Server
     /// <summary>
     /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
     /// </summary>
-    public void OneTimeCompleteFunction(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
+    public void OneTimeCompleteAddFunction(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
     {
       var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
 
@@ -22,20 +22,10 @@ namespace sberdev.SBContracts.Server
       
       if (ourStage == null) return;
 
-      if (ourStage.OneTime == true && ourStage.AllowSendToRework == false)
+      if (ourStage.OneTime == true)
       {
-        var isDone = _obj.DoneStage.Any(r => r.Stage == ourStage);
-
-        if (isDone)
-        {
-          e.Block.Performers.Clear();
-        }
-        else
-        {
-          var newStage = _obj.DoneStage.AddNew();
-          newStage.Stage = ourStage;
-        }
-
+        var newStage = _obj.DoneStage.AddNew();
+        newStage.Stage = ourStage;
         _obj.Save();
       }
     }
@@ -43,7 +33,7 @@ namespace sberdev.SBContracts.Server
     /// <summary>
     /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
     /// </summary>
-    public void OneTimeCompleteFunction(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
+    public void OneTimeCompleteClearFunction(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
     {
       var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
 
@@ -53,22 +43,46 @@ namespace sberdev.SBContracts.Server
       
       if (ourStage == null) return;
 
-      if (ourStage.OneTime == true && ourStage.AllowSendToRework == false)
+      if (ourStage.OneTime == true && _obj.DoneStage.Any(r => r.Stage == ourStage))
+        e.Block.Performers.Clear();
+    }
+    
+    /// <summary>
+    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
+    /// </summary>
+    public void OneTimeCompleteAddFunction(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
+    {
+      var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
+
+      if (stage == null) return;
+
+      var ourStage = sberdev.SBContracts.ApprovalStages.As(stage.Stage);
+      
+      if (ourStage == null) return;
+
+      if (ourStage.OneTime == true)
       {
-        var isDone = _obj.DoneStage.Any(r => r.Stage == ourStage);
-
-        if (isDone)
-        {
-          e.Block.Performers.Clear();
-        }
-        else
-        {
-          var newStage = _obj.DoneStage.AddNew();
-          newStage.Stage = ourStage;
-        }
-
+        var newStage = _obj.DoneStage.AddNew();
+        newStage.Stage = ourStage;
         _obj.Save();
       }
+    }
+    
+    /// <summary>
+    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
+    /// </summary>
+    public void OneTimeCompleteClearFunction(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
+    {
+      var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
+
+      if (stage == null) return;
+
+      var ourStage = sberdev.SBContracts.ApprovalStages.As(stage.Stage);
+      
+      if (ourStage == null) return;
+      
+      if (ourStage.OneTime == true && _obj.DoneStage.Any(r => r.Stage == ourStage))
+        e.Block.Performers.Clear();
     }
     
     public override void UpdateDocumentApprovalState(Sungero.Docflow.IOfficialDocument document, Nullable<Enumeration> state)
