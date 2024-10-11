@@ -126,6 +126,12 @@ namespace sberdev.SBContracts
   partial class AccountingDocumentBaseServerHandlers
   {
 
+    public override void Saving(Sungero.Domain.SavingEventArgs e)
+    {
+      Functions.AccountingDocumentBase.ReplaceProducts(_obj);
+      base.Saving(e);
+    }
+
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       string disc = _obj.GetEntityMetadata().GetOriginal().NameGuid.ToString().ToLower();
@@ -137,7 +143,6 @@ namespace sberdev.SBContracts
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
-      Functions.AccountingDocumentBase.ReplaceProducts(_obj);
       Functions.AccountingDocumentBase.CreateOrUpdateAnaliticsCashe(_obj);
       Functions.AccountingDocumentBase.CreateOrUpdateAnaliticsCasheGeneral(_obj);
       Functions.AccountingDocumentBase.CancelRequiredPropeties(_obj);
