@@ -1139,8 +1139,7 @@
     "BeforeSaveServer",
     "RefreshClient",
     "CreatedServer",
-    "ShowingClient",
-    "SavingServer"
+    "ShowingClient"
   ],
   "IconResourcesKeys": [],
   "IsAbstract": true,

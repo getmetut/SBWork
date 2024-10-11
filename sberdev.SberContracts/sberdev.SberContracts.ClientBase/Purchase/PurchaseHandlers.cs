@@ -12,7 +12,7 @@ namespace sberdev.SberContracts
 
     public virtual void NecessaryConcludeValueInput(Sungero.Presentation.EnumerationValueInputEventArgs e)
     {
-      if (e.NewValue == NecessaryConclude.SupAgreement && _obj.ConcludedContractsKind == ConcludedContractsKind.No)
+      if (_obj.LeadingDocument == null)
         e.AddError(sberdev.SberContracts.Purchases.Resources.NecessaryConcludeError);
     }
 

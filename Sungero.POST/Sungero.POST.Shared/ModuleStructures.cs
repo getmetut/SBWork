@@ -6,6 +6,51 @@ using Sungero.CoreEntities;
 
 namespace Sungero.POST.Structures.Module
 {
+
+  /// <summary>
+  /// Структура ответа при запросе из внешней системы
+  /// </summary>
+  [Public]
+  partial class StrucResult
+  {
+    public string document_type { get; set; } //": "", // тип договора
+    public string category { get; set; } // { get; set; } //": "", // категория договора
+    public string reg_no { get; set; } //": "", // регистрационный номер
+    public string name { get; set; } //": "", // Имя договора
+    public string counterparty_name { get; set; } //": "", //контрагент
+    public string date_document { get; set; } //": "", // Дата документа
+    public List<Sungero.POST.Structures.Module.IStructlistdoc> acts { get; set; } //"
+  }
+  
+  /// <summary>
+  /// Струтура акта
+  /// </summary>
+  [Public]
+  partial class Structlistdoc
+  {
+    public string acts_type { get; set; } //": "", // Вид документа
+    public string name { get; set; } //": "", // имя документа
+    public string act_no { get; set; } //": "", // Номер документа
+    public string date_act { get; set; } //": "", //Дата документа
+    public string total_amount { get; set; } //": "" //общая сумма
+    public bool include_VAT { get; set; } //": TRUE
+  }
+
+  /// <summary>
+  /// Структура получения данных по документам из внешних систем
+  /// </summary>
+  [Public]
+  partial class StructDog
+  {
+    public string  document_type  { get; set; } //": "", // Фильтр для получения договоров по типу
+    public string  document_kind  { get; set; } //": "", // Фильтр для получения договоров по виду
+    public string  receiver_cost_center  { get; set; } //"", // Фильтр для получения договоров по МВЗ
+    public string  reg_no  { get; set; } //": "", // Фильтр для получения информации по указанному договору
+    public string  start_date  { get; set; } //": "", // Фильтр для получения документов с датой от
+    public string  end_date  { get; set; } //": "", // Фильтр для получения документов с датой по
+    public string  counterparty_name  { get; set; } //": ["string"], // Фильтр для получения договоров по контрагенту
+    public string  status  { get; set; } //": "", //Статус действия договора
+  }
   /// <summary>
   /// Структура Акта выполненных работ
   /// </summary>
@@ -104,6 +149,109 @@ namespace Sungero.POST.Structures.Module
   partial class StructProdCollection
   {
     public string Product {get; set; }
+  }
+  
+  /// <summary>
+  /// Структура Счетов для 1С
+  /// </summary>
+  [Public]
+  partial class StructIncomingInvoices
+  {
+    public string CouterpartyTRRCSberDev {get; set; }
+    public string CardURLSberDev {get; set; }
+    public string CounterpartyTINSberDev {get; set; }
+    public string EstPaymentDateSberDev {get; set; }
+    public string CalcListSDev {get; set; }
+    public string ModifiedSberDev {get; set; }
+    public string MarketingIDSberDev {get; set; }
+    public string MarketingSberDev {get; set; }
+    public string BudItemBaseSberDev {get; set; }
+    public string NoticeSendBaseSberDev {get; set; }
+    public string CalculationResidualAmountBaseSberDev {get; set; }
+    public string CalculationDistributeBaseSberDev {get; set; }
+    public string CalculationAmountBaseSberDev {get; set; }
+    public string CalculationFlagBaseSberDev {get; set; }
+    //public string /------CalculationBaseSberDev {get; set; }
+    //public string AggregationCalc {get; set; }
+    //public string ProductCalc {get; set; }
+    //public string AbsoluteCalc {get; set; }
+    //public string PercentCalc {get; set; }
+    //public string InterestCalc {get; set; }
+    //public string ----------------------------- {get; set; }
+    public string MarketDirectSberDev {get; set; }
+    //public string =======ProdCollectionBaseSberDev {get; set; }
+    //public string Product {get; set; }
+    //public string ================================ {get; set; }
+    public string PayTypeBaseSberDev {get; set; }
+    public string InvoiceSberDev {get; set; }
+    public string AccArtBaseSberDev {get; set; }
+    public string MVPBaseSberDev {get; set; }
+    public string MVZBaseSberDev {get; set; }
+    public string AccDocSberDev {get; set; }
+    public string FrameworkBaseSberDev {get; set; }
+    public string ContrTypeBaseSberDev {get; set; }
+    public string PurchaseOrderNumber {get; set; }
+    public string NetAmount {get; set; }
+    public string VatAmount {get; set; }
+    public string VatRate {get; set; }
+    public string CounterpartySigningReason {get; set; }
+    public string IsFormalizedSignatoryEmpty {get; set; }
+    public string IsRevision {get; set; }
+    public string FormalizedFunction {get; set; }
+    public string FormalizedServiceType {get; set; }
+    public string BodyExtSberDev {get; set; }
+    public string ManuallyCheckedSberDev {get; set; }
+    public string Subtopic {get; set; }
+    public string Topic {get; set; }
+    public string StoredIn {get; set; }
+    public string AddendaPaperCount {get; set; }
+    public string ExternalId {get; set; }
+    public string OurSigningReason {get; set; }
+    public string DocumentDate {get; set; }
+    public string PaymentDateSberDevSDev {get; set; }
+    public string NoNeedLeadingDocsSDev {get; set; }
+    public string ContractStatementSDev {get; set; }
+    public string DeliveryInfoSDev {get; set; }
+    public string OriginalSDev {get; set; }
+    public string PayTypeSDev {get; set; }
+    public string PaymentDueDate {get; set; }
+    public string Corrected {get; set; }
+    public string IsAdjustment {get; set; }
+    public string BusinessUnitBox {get; set; }
+    public string BuyerSignatureId {get; set; }
+    public string SellerSignatureId {get; set; }
+    public string BuyerTitleId {get; set; }
+    public string SellerTitleId {get; set; }
+    public string IsFormalized {get; set; }
+    public string ExchangeState {get; set; }
+    public string Contract {get; set; }
+    public string Created {get; set; }
+    public string Author {get; set; }
+    public string Currency {get; set; }
+    public string TotalAmount {get; set; }
+    public string Date {get; set; }
+    public string Number {get; set; }
+    public string Assignee {get; set; }
+    public string PreparedBy {get; set; }
+    public string DocumentGroup {get; set; }
+    public string Note {get; set; }
+    public string Subject {get; set; }
+    public string CounterpartySignatory {get; set; }
+    public string LeadingDocument {get; set; }
+    public string OurSignatory {get; set; }
+    public string ResponsibleEmployee {get; set; }
+    public string Department {get; set; }
+    public string BusinessUnit {get; set; }
+    public string Counterparty {get; set; }
+    public string DocumentKind {get; set; }
+    public string LifeCycleState {get; set; }
+    public string RegistrationState {get; set; }
+    public string ReturnDate {get; set; }
+    public string DeliveredTo {get; set; }
+    public string RegistrationNumber {get; set; }
+    public string Name {get; set; }
+    public string Id {get; set; }
+
   }
   
   /// <summary>

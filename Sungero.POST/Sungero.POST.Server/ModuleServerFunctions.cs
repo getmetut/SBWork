@@ -29,17 +29,207 @@ namespace Sungero.POST.Server
     }
     
     /// <summary>
+    /// Функция передачи актов по документам из внешнего запроса
+    /// </summary>
+    [Public(WebApiRequestType = RequestType.Post)]
+    public List<Sungero.POST.Structures.Module.IStrucResult> ContractActsRequest(string  str_document_type,
+                                                                                  string  str_document_kind,
+                                                                                  string  str_receiver_cost_center,
+                                                                                  string  str_reg_no,
+                                                                                  string  str_start_date,
+                                                                                  string  str_end_date,
+                                                                                  string  str_counterparty_name,
+                                                                                  string  str_status)
+    {
+      Sungero.POST.Structures.Module.IStructDog StructDog = Sungero.POST.Structures.Module.StructDog.Create();
+      StructDog.document_type = str_document_type;
+      StructDog.document_kind = str_document_kind;
+      StructDog.receiver_cost_center = str_receiver_cost_center;
+      StructDog.reg_no = str_reg_no;
+      StructDog.start_date = str_start_date;
+      StructDog.end_date = str_end_date;
+      StructDog.counterparty_name = str_counterparty_name;
+      StructDog.status = str_status;
+      
+      
+      List<Sungero.POST.Structures.Module.IStrucResult> Resultat = new List<Sungero.POST.Structures.Module.IStrucResult>();
+      var ContractList = sberdev.SBContracts.Contracts.GetAll();
+      Logger.Debug("Начало отбора документов типа Договор. Собрано: " + ContractList.Count().ToString());
+        long document_kind = long.Parse("0");
+        if (StructDog.document_kind != "") 
+          document_kind = long.Parse(StructDog.document_kind);
+        
+        DateTime start_date = DateTime.MinValue;
+        if (StructDog.start_date != "")
+        {
+          start_date = ParseDate(StructDog.start_date).Value;
+          ContractList = ContractList.Where(c => c.RegistrationDate.HasValue).Where(c => c.RegistrationDate > start_date);
+        }
+        Logger.Debug("Применен фильтр по дате регистрации Начало. Собрано: " + ContractList.Count().ToString());    
+        DateTime end_date = DateTime.MaxValue;
+        if (StructDog.end_date != "")
+        {
+          end_date = ParseDate(StructDog.end_date).Value;
+          ContractList = ContractList.Where(c => c.RegistrationDate.HasValue).Where(c => c.RegistrationDate < end_date);
+        }
+        Logger.Debug("Применен фильтр по дате регистрации Конец. Собрано: " + ContractList.Count().ToString());
+        string reg_no = "";
+        if (StructDog.reg_no != "") 
+        {
+          reg_no = StructDog.reg_no;
+          ContractList = ContractList.Where(c => c.RegistrationNumber == reg_no);
+        }
+        Logger.Debug("Применен фильтр по номеру регистрации. Собрано: " + ContractList.Count().ToString());
+        if (StructDog.receiver_cost_center != "") // Фильтр для получения договоров по МВЗ
+          ContractList = ContractList.Where(c => c.MVZBaseSberDev != null).Where(c => c.MVZBaseSberDev.Name == StructDog.receiver_cost_center);
+        Logger.Debug("Применен фильтр по МВЗ. Собрано: " + ContractList.Count().ToString());
+        if (StructDog.counterparty_name != "")  // Фильтр для получения договоров по контрагенту
+          ContractList = ContractList.Where(c => c.Counterparty != null).Where(c => sberdev.SBContracts.Companies.Get(c.Counterparty.Id).Name1CSberDev == StructDog.counterparty_name);
+        Logger.Debug("Применен фильтр по наименованию контрагента. Собрано: " + ContractList.Count().ToString());
+        if (StructDog.status != "") //Статус действия договора
+          ContractList = ContractList.Where(c => c.LifeCycleState.Value.ToString() == StructDog.status);
+        Logger.Debug("Применен фильтр по статусу договора. ФИНАЛЬНЫЙ ФИЛЬТР. Собрано: " + ContractList.Count().ToString());
+        if (ContractList.Count() > 0)
+        {
+            foreach (var elem in ContractList)
+            {
+              Logger.Debug("Начало работы с документом: " + elem.Name.ToString());
+              var Struct = Sungero.POST.Structures.Module.StrucResult.Create();
+              Struct.category = elem.DocumentGroup != null ? elem.DocumentGroup.Name.ToString() : "Нет категории";
+              Struct.counterparty_name = elem.Counterparty != null ? elem.Counterparty.Name.ToString() : "Не указан";
+              Struct.date_document = elem.RegistrationDate != null ? elem.RegistrationDate.Value.ToString() : "";
+              Struct.name = elem.Name.ToString(); 
+              Struct.reg_no = elem.RegistrationNumber != null ? elem.RegistrationNumber.ToString() : "";
+              Logger.Debug("Собраны первичные данные по документу: " + elem.Name.ToString());
+              List<Sungero.POST.Structures.Module.IStructlistdoc> acts = new List<Sungero.POST.Structures.Module.IStructlistdoc>();
+              if (StructDog.document_type != "") // "УПД" / "Договора" / "Акты"
+              { 
+                var Related = elem.Relations.GetRelated();
+                var RelatedFrom = elem.Relations.GetRelatedFrom();
+                Logger.Debug("Найдено связанных документов: " + Related.Count().ToString() + " + " + RelatedFrom.Count().ToString());
+              #region УПД
+                if (StructDog.document_type == "УПД")
+                {
+                  Related = Related.Where(d => Sungero.FinancialArchive.UniversalTransferDocuments.Is(d));
+                  RelatedFrom = RelatedFrom.Where(d => Sungero.FinancialArchive.UniversalTransferDocuments.Is(d));
+                  Logger.Debug("Отбор по УПД: " + Related.Count().ToString() + " + " + RelatedFrom.Count().ToString());
+                }        
+              #endregion
+              #region Договора
+              
+              if (StructDog.document_type == "Договора")
+              {
+                Related = Related.Where(d => Sungero.Docflow.ContractualDocumentBases.Is(d));
+                RelatedFrom = RelatedFrom.Where(d => Sungero.Docflow.ContractualDocumentBases.Is(d));
+                Logger.Debug("Отбор по договорам: " + Related.Count().ToString() + " + " + RelatedFrom.Count().ToString());
+              } 
+              #endregion
+              #region Акты
+      
+              if (StructDog.document_type == "Акты")
+              {
+                Related = Related.Where(d => sberdev.SBContracts.AccountingDocumentBases.Is(d));
+                RelatedFrom = RelatedFrom.Where(d => sberdev.SBContracts.AccountingDocumentBases.Is(d));
+                Logger.Debug("Отбор по актам: " + Related.Count().ToString() + " + " + RelatedFrom.Count().ToString());
+              }           
+              #endregion
+              if (Related.Count() > 0)
+              {
+                Logger.Debug("Начало отбора связанных документов. ");
+                foreach (var str in Related)
+                {
+                  Sungero.POST.Structures.Module.IStructlistdoc doc = Sungero.POST.Structures.Module.Structlistdoc.Create();
+                  if (Sungero.Docflow.ContractualDocumentBases.Is(str))
+                  {
+                    var tempDoc = Sungero.Docflow.ContractualDocumentBases.As(str);
+                    doc.act_no = tempDoc.RegistrationNumber != null ? tempDoc.RegistrationNumber.ToString() : "Нет данных";
+                    doc.acts_type = tempDoc.DocumentKind.Name.ToString();
+                    doc.date_act = tempDoc.RegistrationDate != null ? tempDoc.RegistrationDate.ToString() : "Нет данных";
+                    doc.total_amount = tempDoc.TotalAmount != null ? tempDoc.TotalAmount.ToString() : "Не указана";
+                    doc.name = tempDoc.Name.ToString();
+                    doc.include_VAT = true;     
+                  }
+                  if (Sungero.FinancialArchive.UniversalTransferDocuments.Is(str))
+                  {
+                    var tempDoc2 = Sungero.FinancialArchive.UniversalTransferDocuments.As(str);
+                    doc.act_no = tempDoc2.RegistrationNumber != null ? tempDoc2.RegistrationNumber.ToString() : "Нет данных";
+                    doc.acts_type = tempDoc2.DocumentKind.Name.ToString();
+                    doc.date_act = tempDoc2.RegistrationDate != null ? tempDoc2.RegistrationDate.ToString() : "Нет данных";
+                    doc.total_amount = tempDoc2.TotalAmount != null ? tempDoc2.TotalAmount.ToString() : "Не указана";
+                    doc.name = tempDoc2.Name.ToString();
+                    doc.include_VAT = true;     
+                  }
+                  if (sberdev.SBContracts.AccountingDocumentBases.Is(str))
+                  {
+                    var tempDoc3 = sberdev.SBContracts.AccountingDocumentBases.As(str);
+                    doc.act_no = tempDoc3.RegistrationNumber != null ? tempDoc3.RegistrationNumber.ToString() : "Нет данных";
+                    doc.acts_type = tempDoc3.DocumentKind.Name.ToString();
+                    doc.date_act = tempDoc3.RegistrationDate != null ? tempDoc3.RegistrationDate.ToString() : "Нет данных";
+                    doc.total_amount = tempDoc3.TotalAmount != null ? tempDoc3.TotalAmount.ToString() : "Не указана";
+                    doc.name = tempDoc3.Name.ToString();
+                    doc.include_VAT = true;     
+                  }
+                  acts.Add(doc);
+                }
+              }
+              if (RelatedFrom.Count() > 0)
+              {
+                foreach (var str in RelatedFrom)
+                {
+                  Sungero.POST.Structures.Module.IStructlistdoc docf = Sungero.POST.Structures.Module.Structlistdoc.Create();
+                  if (Sungero.Docflow.ContractualDocumentBases.Is(str))
+                  {
+                    var tempDocm = Sungero.Docflow.ContractualDocumentBases.As(str);
+                    docf.act_no = tempDocm.RegistrationNumber != null ? tempDocm.RegistrationNumber.ToString() : "Нет данных";
+                    docf.acts_type = tempDocm.DocumentKind.Name.ToString();
+                    docf.date_act = tempDocm.RegistrationDate != null ? tempDocm.RegistrationDate.ToString() : "Нет данных";
+                    docf.total_amount = tempDocm.TotalAmount != null ? tempDocm.TotalAmount.ToString() : "Не указана";
+                    docf.name = tempDocm.Name.ToString();
+                    docf.include_VAT = true;     
+                  }
+                  if (Sungero.FinancialArchive.UniversalTransferDocuments.Is(str))
+                  {
+                    var tempDocm2 = Sungero.FinancialArchive.UniversalTransferDocuments.As(str);
+                    docf.act_no = tempDocm2.RegistrationNumber != null ? tempDocm2.RegistrationNumber.ToString() : "Нет данных";
+                    docf.acts_type = tempDocm2.DocumentKind.Name.ToString();
+                    docf.date_act = tempDocm2.RegistrationDate != null ? tempDocm2.RegistrationDate.ToString() : "Нет данных";
+                    docf.total_amount = tempDocm2.TotalAmount != null ? tempDocm2.TotalAmount.ToString() : "Не указана";
+                    docf.name = tempDocm2.Name.ToString();
+                    docf.include_VAT = true;     
+                  }
+                  if (sberdev.SBContracts.AccountingDocumentBases.Is(str))
+                  {
+                    var tempDocm3 = sberdev.SBContracts.AccountingDocumentBases.As(str);
+                    docf.act_no = tempDocm3.RegistrationNumber != null ? tempDocm3.RegistrationNumber.ToString() : "Нет данных";
+                    docf.acts_type = tempDocm3.DocumentKind.Name.ToString();
+                    docf.date_act = tempDocm3.RegistrationDate != null ? tempDocm3.RegistrationDate.ToString() : "Нет данных";
+                    docf.total_amount = tempDocm3.TotalAmount != null ? tempDocm3.TotalAmount.ToString() : "Не указана";
+                    docf.name = tempDocm3.Name.ToString();
+                    docf.include_VAT = true;     
+                  }
+                  acts.Add(docf);
+                }
+              }
+              Struct.acts = acts; 
+              Logger.Debug("Занесение связанного документа: " + Struct.name.ToString());
+              Resultat.Add(Struct);
+            }
+          Logger.Debug("Завершение обработки связанных документов. ");              
+          }
+        }
+        Logger.Debug("Завершение работы скрипта"); 
+        return Resultat;
+    }
+    
+    /// <summary>
     /// Функция передачи актов выполненных работ
     /// </summary>
     [Public(WebApiRequestType = RequestType.Post)]
     public List<Sungero.POST.Structures.Module.IStructContractStatement> ContractStatements(string till, string from)
     {
-      Logger.Debug("1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
       DateTime TILL = ParseDate(till).Value;
       DateTime FROM = ParseDate(from).Value;
-      Logger.Debug("2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222");
       var DocList = sberdev.SBContracts.ContractStatements.GetAll(d => ((d.DocumentDate >= TILL) && (d.DocumentDate <= FROM)));
-      Logger.Debug("3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333");
       List<Sungero.POST.Structures.Module.IStructContractStatement> RequestElem = new List<Sungero.POST.Structures.Module.IStructContractStatement>(); //Structures.Module.StructContractList.Create();
       if (DocList.Count() > 0)
       {
@@ -838,5 +1028,18 @@ namespace Sungero.POST.Server
       } 
     }
     #endregion
+    /*
+    #region Выгрузка по счетам
+    /// <summary>
+    /// Выгрузка счетов для 1С
+    /// </summary>
+    /// <param name="GUIDRX">ID Договора</param>
+    [Public(WebApiRequestType = RequestType.Post)]
+    public Structures.Module.IFormatRequest loadIncomingInvoices(string GUIDRX)
+    {
+      
+    }
+    #endregion
+    */
   }
 }

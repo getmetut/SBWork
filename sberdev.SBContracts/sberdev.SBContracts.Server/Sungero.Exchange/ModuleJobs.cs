@@ -130,7 +130,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
               Logger.Debug($"Exchange. ComeBackBodies. Тело и подписи вложения {attach.Id} перенесены.");
               
               var clerk = Sungero.ExchangeCore.BusinessUnitBoxes.GetAll().FirstOrDefault(b => b.BusinessUnit == SBContracts.OfficialDocuments.As(doc).BusinessUnit)?.Responsible;
-              var notice = Sungero.Workflow.SimpleTasks.CreateWithNotices($"Документ от {task.Counterparty?.Name} вернулся в исходную карточку", doc.Author, clerk);
+              var notice = Sungero.Workflow.SimpleTasks.CreateWithNotices($"Документ от {task.Counterparty?.Name} вернулся в исходную карточку", task.Author, clerk);
               notice.ActiveText = "Документ был автоматически возвращен. Необходимо завершить задание на контроль возврата.";
               notice.Attachments.Add(doc);
               notice.Attachments.Add(task);
