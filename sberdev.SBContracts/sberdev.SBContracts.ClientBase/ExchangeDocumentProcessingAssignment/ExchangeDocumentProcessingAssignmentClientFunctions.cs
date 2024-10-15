@@ -12,6 +12,5 @@ namespace sberdev.SBContracts.Client
   {
 
     
-    
   }
 }

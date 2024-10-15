@@ -69,6 +69,19 @@
     "IsAncestorMetadata": true,
     "Versions": []
   },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.WorkflowEntityStandaloneFormMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "e0de95d5-b9a6-4bbc-ac00-8fe44115acf6",
+      "Name": "Card",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ],
+      "Versions": []
+    }
+  ],
   "HandledEvents": [
     "BeforeCompleteServer",
     "BeforeSaveServer",
@@ -130,6 +143,44 @@
       ],
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "ReadressAssign",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "exchangeDocumentProcessingAssignment",
+          "ParameterType": "global::sberdev.SBContracts.IExchangeDocumentProcessingAssignment",
+          "ParameterTypeFullName": "sberdev.SBContracts.IExchangeDocumentProcessingAssignment, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "emp",
+          "ParameterType": "global::Sungero.Company.IEmployee",
+          "ParameterTypeFullName": "Sungero.Company.IEmployee, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "RestartTask",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "exchangeDocumentProcessingAssignment",
+          "ParameterType": "global::sberdev.SBContracts.IExchangeDocumentProcessingAssignment",
+          "ParameterTypeFullName": "sberdev.SBContracts.IExchangeDocumentProcessingAssignment, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "emp",
+          "ParameterType": "global::Sungero.Company.IEmployee",
+          "ParameterTypeFullName": "Sungero.Company.IEmployee, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [],

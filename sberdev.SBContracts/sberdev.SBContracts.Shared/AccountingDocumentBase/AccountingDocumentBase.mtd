@@ -1756,6 +1756,20 @@
       "ReturnTypeFullName": "Sungero.CoreEntities.IUser, Sungero.Domain.Shared"
     },
     {
+      "Name": "ReplaceProducts",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "accountingDocumentBase",
+          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
+          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
       "Name": "ShowContractChangedDialog",
       "Parameters": [
         {

@@ -68,6 +68,7 @@ namespace sberdev.SBContracts.Server
     /// <summary>
     /// Если выбрано много продуктов заменяет их одним - "General"
     /// </summary>
+    [Public, Remote]
     public void ReplaceProducts()
     {
       if (_obj.ProdCollectionExBaseSberDev.Count > 1)

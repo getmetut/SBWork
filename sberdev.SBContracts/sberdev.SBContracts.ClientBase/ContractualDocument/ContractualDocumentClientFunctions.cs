@@ -36,7 +36,10 @@ namespace sberdev.SBContracts.Client
     public void DistributeTo()
     {
       if (_obj.CalculationDistributeBaseSberDev != null)
+      {
         SberContracts.PublicFunctions.Module.Remote.DistributeToCalculation(_obj);
+        PublicFunctions.ContractualDocument.Remote.ReplaceProducts(_obj);
+      }
       else
         Dialogs.ShowMessage(sberdev.SBContracts.Resources.NotSelectedDistribution, MessageType.Error);
     }

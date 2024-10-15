@@ -1761,6 +1761,20 @@
       "Placement": "Shared",
       "ReturnType": "global::Sungero.CoreEntities.IUser",
       "ReturnTypeFullName": "Sungero.CoreEntities.IUser, Sungero.Domain.Shared"
+    },
+    {
+      "Name": "ReplaceProducts",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "contractualDocument",
+          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [],

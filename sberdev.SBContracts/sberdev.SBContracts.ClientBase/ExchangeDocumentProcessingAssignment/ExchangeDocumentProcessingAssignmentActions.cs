@@ -25,18 +25,17 @@ namespace sberdev.SBContracts.Client
       {
         foreach(var assign in _objs)
         {
-          if (Locks.TryLock(assign))
+          PublicFunctions.Module.Remote.UnblockCardByDatabase(assign);
+          if (assign.Status == Status.InProcess)
           {
-            assign.Addressee = emp.Value;
-            assign.NewDeadline = Calendar.AddWorkingDays(assign.Deadline.Value, 2);
-            // Прокинуть новый срок и исполнителя в задачу.
-            var task = ExchangeDocumentProcessingTasks.As(assign.Task);
-            task.Addressee = assign.Addressee;
-            task.Deadline = assign.NewDeadline;
-            task.Save();
-            assign.Complete(SBContracts.ExchangeDocumentProcessingAssignment.Result.ReAddress);
+            PublicFunctions.ExchangeDocumentProcessingAssignment.Remote.ReadressAssign(assign, emp.Value);
+            continue;
           }
-          Locks.Unlock(assign);
+          if (assign.Status == Status.Completed)
+          {
+            PublicFunctions.ExchangeDocumentProcessingAssignment.Remote.RestartTask(assign, emp.Value);
+            continue;
+          }
         }
       }
     }
@@ -44,6 +43,7 @@ namespace sberdev.SBContracts.Client
 
   partial class ExchangeDocumentProcessingAssignmentActions
   {
+
 
 
     public virtual void AbortTask(Sungero.Domain.Client.ExecuteActionArgs e)

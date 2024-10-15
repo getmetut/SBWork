@@ -13,6 +13,48 @@ namespace sberdev.SBContracts.Server
   {
 
     /// <summary>
+    /// Функция рестартует задачу на нужного работника
+    /// </summary>
+    [Public, Remote]
+    public void RestartTask(Sungero.Company.IEmployee emp)
+    {
+      var task = ExchangeDocumentProcessingTasks.As(_obj.Task);
+      var newTask = ExchangeDocumentProcessingTasks.Create();
+     /* newTask.Subject = task.Subject;
+      newTask.Deadline = task.Deadline;
+      newTask.Addressee = emp;
+      newTask.Box = task.Box;
+      newTask.Counterparty = task.Counterparty;*/
+      newTask.CopyPropertiesFrom(task);
+      newTask.Status = Sungero.Exchange.ReceiptNotificationSendingTask.Status.Draft;
+      var needSign = task.NeedSigning.All;
+      var dontNeedSign = task.DontNeedSigning.All;
+      foreach(var doc in needSign)
+        newTask.NeedSigning.All.Add(doc);
+      foreach(var doc in dontNeedSign)
+        newTask.DontNeedSigning.All.Add(doc);
+      newTask.Start();
+      task.Abort();
+    }
+    
+    /// <summary>
+    /// Функция переадресовывает задание на нужного работника
+    /// </summary>
+    /// <param name="emp"></param>
+    [Public, Remote]
+    public void ReadressAssign(Sungero.Company.IEmployee emp)
+    {
+      _obj.Addressee = emp;
+      _obj.NewDeadline = Calendar.AddWorkingDays(_obj.Deadline.Value, 2);
+      // Прокинуть новый срок и исполнителя в задачу.
+      var task = ExchangeDocumentProcessingTasks.As(_obj.Task);
+      task.Addressee = _obj.Addressee;
+      task.Deadline = _obj.NewDeadline;
+      task.Save();
+      _obj.Complete(SBContracts.ExchangeDocumentProcessingAssignment.Result.ReAddress);
+    }
+
+    /// <summary>
     /// Переадресовывает формалиованый документ
     /// </summary>
     public void DistributeFormalizedDocument()
