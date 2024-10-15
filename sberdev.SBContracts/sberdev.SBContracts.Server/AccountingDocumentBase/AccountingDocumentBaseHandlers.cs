@@ -9,6 +9,15 @@ using Sungero.Domain.Shared;
 
 namespace sberdev.SBContracts
 {
+  partial class AccountingDocumentBaseConvertingFromServerHandler
+  {
+
+    public override void ConvertingFrom(Sungero.Domain.ConvertingFromEventArgs e)
+    {
+      base.ConvertingFrom(e);
+    }
+  }
+
 
   partial class AccountingDocumentBaseLeadingDocumentPropertyFilteringServerHandler<T>
   {

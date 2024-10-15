@@ -386,20 +386,28 @@ namespace sberdev.SberContracts.Server
     /// <param name="doc">Документ</param>
     /// <returns></returns>
     [Public]
-    public IProductsAndDevices GetOrCreateGeneralProduct( SBContracts.IOfficialDocument doc)
+    public IProductsAndDevices GetOrCreateGeneralProduct(SBContracts.IOfficialDocument doc)
     {
-      var genProd = ProductsAndDeviceses.GetAll(p => p.BusinessUnit == doc.BusinessUnit && p.Name == "General").First();
+      var genProd = ProductsAndDeviceses.GetAll(p => p.BusinessUnit == doc.BusinessUnit && p.Name == "General").FirstOrDefault();
+      
       if (genProd == null)
       {
         var newGenProd = ProductsAndDeviceses.Create();
         newGenProd.BusinessUnit = doc.BusinessUnit;
         newGenProd.Name = "General";
+        
+        // Сохранение перед возвратом сущности
         newGenProd.Save();
+        
+        // Возвращаем сущность
         return newGenProd;
       }
       else
+      {
         return genProd;
+      }
     }
+
     
     /// <summary>
     /// Получить все цифры после указанного тега
@@ -783,6 +791,7 @@ namespace sberdev.SberContracts.Server
         {
           if (cashe.ContrType != null)
           {
+            accounting.PayTypeBaseSberDev = cashe.PayTypeBaseSberDev;
             accounting.ContrTypeBaseSberDev = cashe.ContrType;
             accounting.AccArtBaseSberDev= cashe.AccArt;
             accounting.MVZBaseSberDev = cashe.MVZ;
@@ -853,6 +862,7 @@ namespace sberdev.SberContracts.Server
         
         if (accounting != null)
         {
+          accounting.PayTypeBaseSberDev = cashe.PayTypeBaseSberDev;
           if (cashe.ContrType.HasValue)
           {
             accounting.ProdCollectionBaseSberDev.Clear();
@@ -1385,6 +1395,7 @@ namespace sberdev.SberContracts.Server
     [Public, Remote]
     public static void FillGeneralProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IAccountingDocumentBase docSelected)
     {
+      doc.PayTypeBaseSberDev = docSelected.PayTypeBaseSberDev;
       doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
       doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
       if (docSelected.TotalAmount != null)

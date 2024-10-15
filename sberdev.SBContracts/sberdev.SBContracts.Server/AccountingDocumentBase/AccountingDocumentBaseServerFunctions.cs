@@ -24,7 +24,7 @@ namespace sberdev.SBContracts.Server
         {
           cashe = sberdev.SberContracts.AnaliticsCashes.Create();
         }
-        
+        cashe.PayTypeBaseSberDev = _obj.PayTypeBaseSberDev;
         cashe.ContrType = _obj.ContrTypeBaseSberDev;
         cashe.AccArt = _obj.AccArtBaseSberDev;
         cashe.MVZ = _obj.MVZBaseSberDev;
@@ -58,7 +58,7 @@ namespace sberdev.SBContracts.Server
         
         
         cashe.ContrType = _obj.ContrTypeBaseSberDev;
-        
+        cashe.PayTypeBaseSberDev = _obj.PayTypeBaseSberDev;
         if (cashe.ContrType == SberContracts.AnaliticsCasheGeneral.ContrType.Profitable)
         {
           cashe.MVP = _obj.MVPBaseSberDev;

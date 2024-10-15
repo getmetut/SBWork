@@ -223,6 +223,27 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "534ec544-5b72-4667-9580-3dc48f1a7a88",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "2cfd4bc8-59e8-4617-8574-f1a712b7dd6d",
+      "Name": "PayTypeBaseSberDev",
+      "Code": "PayTypeBaseSbe",
+      "DirectValues": [
+        {
+          "NameGuid": "730c2f7e-139c-4011-b57f-6899ba8ea5ff",
+          "Name": "Prepayment",
+          "Code": "Prepayment"
+        },
+        {
+          "NameGuid": "56ca38ce-729f-4d42-8b6e-7cfc90ca273d",
+          "Name": "Postpay",
+          "Code": "Postpay"
+        }
+      ],
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "45602bd3-3143-45b0-a7cd-4cf5222a346f",
+      "Versions": []
     }
   ],
   "PublicFunctions": [

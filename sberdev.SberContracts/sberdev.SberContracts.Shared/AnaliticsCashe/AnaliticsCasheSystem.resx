@@ -130,4 +130,13 @@
   <data name="Property_MarkDirection" xml:space="preserve">
     <value>MarkDirection</value>
   </data>
+  <data name="Property_PayTypeBaseSberDev" xml:space="preserve">
+    <value>Pay type</value>
+  </data>
+  <data name="Enum_PayTypeBaseSberDev_Prepayment" xml:space="preserve">
+    <value>Prepayment</value>
+  </data>
+  <data name="Enum_PayTypeBaseSberDev_Postpay" xml:space="preserve">
+    <value>Postpay</value>
+  </data>
 </root>

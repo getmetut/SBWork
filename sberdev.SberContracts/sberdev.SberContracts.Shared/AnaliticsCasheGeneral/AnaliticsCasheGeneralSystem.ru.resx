@@ -70,4 +70,13 @@
   <data name="DisplayName" xml:space="preserve">
     <value>AnaliticsCasheGeneral</value>
   </data>
+  <data name="Property_PayTypeBaseSberDev" xml:space="preserve">
+    <value>Тип оплаты</value>
+  </data>
+  <data name="Enum_PayTypeBaseSberDev_Prepayment" xml:space="preserve">
+    <value>Предоплата</value>
+  </data>
+  <data name="Enum_PayTypeBaseSberDev_Postpay" xml:space="preserve">
+    <value>Постоплата</value>
+  </data>
 </root>
