@@ -16,16 +16,16 @@ namespace sberdev.SberContracts.Server
         return this.GetErrorResult("Не найден документ.");
       try
       {
-        SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(document);
         var contractual = SBContracts.ContractualDocuments.As(document);
         if (contractual == null)
           return this.GetErrorResult("Документ не является договором.");
         var cp = SBContracts.Counterparties.As(contractual.Counterparty);
         if (cp == null)
           return this.GetErrorResult("В документе не указан контрагент.");
+        SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(cp);
         cp.FocusCheckedSberDev = true;
         cp.FocusCheckedDateSberDev = Calendar.Now;
-        contractual.Save();
+        cp.Save();
         return this.GetSuccessResult();
       }
       catch (Exception ex)

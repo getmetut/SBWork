@@ -9,6 +9,7 @@ namespace sberdev.SBContracts.Client
 {
   partial class ApprovalTaskFunctions
   {
+    
     [Public]
     public bool ShowConfirmationAmountDialog()
     {

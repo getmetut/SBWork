@@ -9,6 +9,8 @@ namespace sberdev.SBContracts.Client
 {
   partial class ApprovalTaskActions
   {
+
+
     public override void Start(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       var doc = _obj.DocumentGroup.OfficialDocuments.First();

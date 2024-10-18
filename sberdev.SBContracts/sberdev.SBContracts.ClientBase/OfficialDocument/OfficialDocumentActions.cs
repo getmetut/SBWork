@@ -48,6 +48,17 @@ namespace sberdev.SBContracts.Client
 
   partial class OfficialDocumentActions
   {
+    public virtual void SetCommentSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      Functions.OfficialDocument.Remote.SetPublicComment(_obj, Functions.OfficialDocument.PublicCommentDialog(_obj));
+    }
+
+    public virtual bool CanSetCommentSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return Users.Current.IncludedIn(PublicFunctions.Module.Remote.GetGroup("Администраторы"))
+        || Sungero.Company.Employees.Current.IncludedIn(Roles.GetAll(r => r.Sid == SberContracts.PublicConstants.Module.AdminButtonsUserRoleGuid).FirstOrDefault());
+    }
+
     public virtual void UnblockVersionSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       if (_obj.HasVersions == true)

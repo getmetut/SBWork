@@ -28,6 +28,7 @@ namespace sberdev.SBContracts
             e.AddError(sberdev.SBContracts.ApprovalSimpleAssignments.Resources.CheckUCNErr);
         }
       base.BeforeComplete(e);
+      PublicFunctions.OfficialDocument.Remote.ClearPublicComment(SBContracts.OfficialDocuments.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault()));
     }
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)

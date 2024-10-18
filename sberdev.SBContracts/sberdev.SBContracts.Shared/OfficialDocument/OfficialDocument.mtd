@@ -141,6 +141,15 @@
       "NeedConfirmation": true,
       "SmallIconName": "Action_UnblockVersionSberDev_small_15e81d7d27454a8a95864f50df3fa3cc.png",
       "Versions": []
+    },
+    {
+      "NameGuid": "d7afae31-1b02-46ea-9cad-6e4ce6ab672a",
+      "Name": "SetCommentSberDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_SetCommentSberDevSberDev_large_d7afae311b0246ea9cad6e4ce6ab672a.png",
+      "SmallIconName": "Action_SetCommentSberDevSberDev_small_d7afae311b0246ea9cad6e4ce6ab672a.png",
+      "Versions": []
     }
   ],
   "BaseGuid": "58cca102-1e97-4f07-b6ac-fd866a8b7cb1",
@@ -172,6 +181,9 @@
       ],
       "Versions": []
     }
+  ],
+  "HandledEvents": [
+    "ShowingClient"
   ],
   "IconResourcesKeys": [],
   "IsAbstract": true,
@@ -268,9 +280,37 @@
       "Length": 10,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "1c3f277d-3762-46e4-a631-eff7244a31b2"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "3ea7d448-ffe8-4099-8acc-bd4702125f61",
+      "Name": "PublicCommentSberDev",
+      "CanBeSearch": false,
+      "Code": "PublicCommentS",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "Length": 1000,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "2ad4b0b6-2e61-4d9e-8ecf-ca3c3335ed2b",
+      "Versions": []
     }
   ],
   "PublicFunctions": [
+    {
+      "Name": "ClearPublicComment",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "officialDocument",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
     {
       "Name": "NullingManuallyChecked",
       "IsRemote": true,
@@ -407,6 +447,26 @@
         "ActionGuid": "15e81d7d-2745-4a8a-9586-4f50df3fa3cc",
         "Index": 4,
         "ParentGuid": "1b49aedf-b54e-43d8-b0ea-20ee3f732312"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "e99945da-4237-44cf-918e-f9c662dc8fd3",
+        "Name": "ToggleStrictRightsAndEncryption",
+        "ActionGuid": "a04b557e-60ba-419d-9bd0-730e6b8c76ad",
+        "Index": 75,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "47ddd865-23d8-4c48-ba0b-80da8279d73d",
+        "Name": "SetCommentSberDevSberDev",
+        "ActionGuid": "d7afae31-1b02-46ea-9cad-6e4ce6ab672a",
+        "Index": 52,
+        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
       }
     ],
     "Groups": [],

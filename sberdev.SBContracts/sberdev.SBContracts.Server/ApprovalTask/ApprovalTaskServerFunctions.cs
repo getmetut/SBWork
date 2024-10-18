@@ -8,11 +8,11 @@ using sberdev.SBContracts.ApprovalTask;
 namespace sberdev.SBContracts.Server
 {
   partial class ApprovalTaskFunctions
-  {
+  {    
     /// <summary>
     /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
     /// </summary>
-    public void OneTimeCompleteAddFunction(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
+    public void OneTimeCompleteAdd(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
     {
       var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
 
@@ -33,7 +33,7 @@ namespace sberdev.SBContracts.Server
     /// <summary>
     /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
     /// </summary>
-    public void OneTimeCompleteClearFunction(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
+    public void OneTimeCompleteClear(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
     {
       var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
 
@@ -50,7 +50,7 @@ namespace sberdev.SBContracts.Server
     /// <summary>
     /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
     /// </summary>
-    public void OneTimeCompleteAddFunction(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
+    public void OneTimeCompleteAdd(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
     {
       var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
 
@@ -71,7 +71,7 @@ namespace sberdev.SBContracts.Server
     /// <summary>
     /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
     /// </summary>
-    public void OneTimeCompleteClearFunction(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
+    public void OneTimeCompleteClear(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
     {
       var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
 

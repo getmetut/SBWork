@@ -64,7 +64,7 @@ namespace sberdev.SBContracts.Server
         }
         
         if (_obj.ConditionType == ConditionType.FCDApprBySberDev)
-          return String.Format("Есть согласование на счете от {0}?", _obj.EndorserSberDev.Name);
+          return String.Format("Есть согласование на КЗД от {0}?", _obj.EndorserSberDev.Name);
         
         if (_obj.ConditionType == ConditionType.ContractSigned)
           return "Договор подписан?";

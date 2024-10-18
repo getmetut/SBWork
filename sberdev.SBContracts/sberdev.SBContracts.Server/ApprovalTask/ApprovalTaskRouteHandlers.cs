@@ -99,11 +99,6 @@ namespace sberdev.SBContracts.Server
       sberdev.SberContracts.PublicFunctions.Module.Remote.LinkDocs(_obj);
     }
 
-    public override void EndBlock3(Sungero.Docflow.Server.ApprovalManagerAssignmentEndBlockEventArguments e)
-    {
-      base.EndBlock3(e);
-    }
-
     public override void CompleteAssignment31(Sungero.Docflow.IApprovalCheckingAssignment assignment, Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
     {
       var blok =  sberdev.SBContracts.ApprovalCheckingAssignments.As(assignment);
@@ -118,7 +113,7 @@ namespace sberdev.SBContracts.Server
       {
         base.CompleteAssignment31(assignment, e);
         if (assignment.Result == Sungero.Docflow.ApprovalCheckingAssignment.Result.Accept)
-          Functions.ApprovalTask.OneTimeCompleteAddFunction(_obj, e);
+          Functions.ApprovalTask.OneTimeCompleteAdd(_obj, e);
       }
     }
 
@@ -135,19 +130,19 @@ namespace sberdev.SBContracts.Server
       else
         base.CompleteAssignment30(assignment, e);
         if (assignment.Result == Sungero.Docflow.ApprovalSimpleAssignment.Result.Complete)
-          Functions.ApprovalTask.OneTimeCompleteAddFunction(_obj, e);
+          Functions.ApprovalTask.OneTimeCompleteAdd(_obj, e);
     }
 
     public override void StartBlock31(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
     {
       base.StartBlock31(e);
-      Functions.ApprovalTask.OneTimeCompleteClearFunction(_obj, e);
+      Functions.ApprovalTask.OneTimeCompleteClear(_obj, e);
     }
 
     public override void StartBlock30(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
     {
       base.StartBlock30(e);
-      Functions.ApprovalTask.OneTimeCompleteClearFunction(_obj, e);
+      Functions.ApprovalTask.OneTimeCompleteClear(_obj, e);
     }
 
   }

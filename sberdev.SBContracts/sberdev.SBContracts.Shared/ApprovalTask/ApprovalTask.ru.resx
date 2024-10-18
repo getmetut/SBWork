@@ -76,4 +76,10 @@
   <data name="NotConfirmedPurchAmount" xml:space="preserve">
     <value>Вы не подтвердили общую сумму закупки по проекту.</value>
   </data>
+  <data name="PublicCommentDialogTitle" xml:space="preserve">
+    <value>Введите комментарий</value>
+  </data>
+  <data name="PublicCommentDialogProp" xml:space="preserve">
+    <value>Текст</value>
+  </data>
 </root>

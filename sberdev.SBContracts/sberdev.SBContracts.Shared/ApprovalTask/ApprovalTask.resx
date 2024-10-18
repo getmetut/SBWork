@@ -79,4 +79,10 @@
   <data name="NotConfirmedPurchAmount" xml:space="preserve">
     <value>You have not confirmed the total purchase amount for the project.</value>
   </data>
+  <data name="PublicCommentDialogTitle" xml:space="preserve">
+    <value>Text comment</value>
+  </data>
+  <data name="PublicCommentDialogProp" xml:space="preserve">
+    <value>Text</value>
+  </data>
 </root>

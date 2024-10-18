@@ -10,6 +10,32 @@ namespace sberdev.SBContracts.Server
 {
   partial class OfficialDocumentFunctions
   {
+    /// <summary>
+    /// Сбрасываем статус соглаосвания (комментарий) в документе
+    /// </summary>
+    [Remote, Public]
+    public void ClearPublicComment()
+    {
+      if (_obj != null && _obj.PublicCommentSberDev != null)
+      {
+        PublicFunctions.Module.Remote.UnblockCardByDatabase(_obj);
+        _obj.PublicCommentSberDev = null;
+        _obj.Save();
+      }
+    }
+    
+    /// <summary>
+    /// Функция устанавливает комментарий в документе (статус)
+    /// </summary>
+    [Remote]
+    public void SetPublicComment(string text)
+    {
+      if (text != "")
+      {
+        _obj.PublicCommentSberDev = "Статус по задаче: " + text;
+        _obj.Save();
+      }
+    }
     
     /// <summary>
     /// Переносит тело с подписями по ид

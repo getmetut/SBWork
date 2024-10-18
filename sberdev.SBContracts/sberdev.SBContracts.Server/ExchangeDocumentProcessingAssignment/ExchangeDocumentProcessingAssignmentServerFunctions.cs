@@ -22,10 +22,10 @@ namespace sberdev.SBContracts.Server
       var newTask = ExchangeDocumentProcessingTasks.Create();
      /* newTask.Subject = task.Subject;
       newTask.Deadline = task.Deadline;
-      newTask.Addressee = emp;
       newTask.Box = task.Box;
       newTask.Counterparty = task.Counterparty;*/
       newTask.CopyPropertiesFrom(task);
+      newTask.Addressee = emp;
       newTask.Status = Sungero.Exchange.ReceiptNotificationSendingTask.Status.Draft;
       var needSign = task.NeedSigning.All;
       var dontNeedSign = task.DontNeedSigning.All;

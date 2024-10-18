@@ -166,4 +166,19 @@
   <data name="Control_a8720170834a4475a20091eaba0644b6_EmptyText" xml:space="preserve">
     <value>Если ответственный за задачу отличается от Автора - укажите его в этом поле</value>
   </data>
+  <data name="Action_SSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SSberDevHint" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SSberDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SSberDevDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SSberDev" xml:space="preserve">
+    <value />
+  </data>
 </root>

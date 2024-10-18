@@ -10,16 +10,10 @@ namespace sberdev.SBContracts
   partial class ApprovalManagerAssignmentServerHandlers
   {
 
-    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
-    {
-      base.BeforeSave(e);
-      var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
-  //    _obj.DocumentIDSberDev = attach?.Id.ToString();
-    }
-
     public override void BeforeComplete(Sungero.Workflow.Server.BeforeCompleteEventArgs e)
     {
       base.BeforeComplete(e);
+      PublicFunctions.OfficialDocument.Remote.ClearPublicComment(SBContracts.OfficialDocuments.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault()));
       if (_obj.NeedAbort.GetValueOrDefault())
       {
         e.Result = sberdev.SberContracts.Resources.NotApprove;

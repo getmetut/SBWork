@@ -32,8 +32,7 @@
     "Versions": []
   },
   "HandledEvents": [
-    "BeforeCompleteServer",
-    "BeforeSaveServer"
+    "BeforeCompleteServer"
   ],
   "IconResourcesKeys": [],
   "IsVisibleThreadText": true,

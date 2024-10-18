@@ -124,4 +124,16 @@
   <data name="Action_UnblockVersionSberDevConfirmationMessage" xml:space="preserve">
     <value>Вы уверены что хотите разблокировать последнюю версию документа?</value>
   </data>
+  <data name="Property_PublicCommentSberDev" xml:space="preserve">
+    <value>Комментарий к задаче</value>
+  </data>
+  <data name="Action_SetCommentSberDev" xml:space="preserve">
+    <value>Прокомментировать</value>
+  </data>
+  <data name="Action_SetCommentSberDevHint" xml:space="preserve">
+    <value>Напишите комментарий в задаче который будет виден всем.</value>
+  </data>
+  <data name="Action_SetCommentSberDevDescription" xml:space="preserve">
+    <value>Напишите комментарий в задаче который будет виден всем.</value>
+  </data>
 </root>
