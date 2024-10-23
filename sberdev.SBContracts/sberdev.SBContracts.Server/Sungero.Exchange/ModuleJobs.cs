@@ -32,13 +32,13 @@ namespace sberdev.SBContracts.Module.Exchange.Server
           continue;
         }
         
-        if (task.IsIncoming.HasValue && !task.IsIncoming.Value)
+      /*  if (task.IsIncoming.HasValue && !task.IsIncoming.Value)
         {
           Logger.Error($"Exchange. ComeBackBodies. Задача {task.Id} для исходящих документов.");
           task.IsNeedComeback = false;
           task.Save();
           continue;
-        }
+        }*/
 
         if (task.NumberOfAttempsComeback > 0)
         {

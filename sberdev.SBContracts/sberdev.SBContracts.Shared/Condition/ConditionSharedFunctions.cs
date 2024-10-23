@@ -87,6 +87,30 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      if (_obj.ConditionType == ConditionType.SameAttorney)
+      {
+        var power = Sungero.ATS.PowerOfAttorneys.As(document);
+        bool flag = Functions.Condition.Remote.CheckSameAttorney(_obj, power);
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
+      if (_obj.ConditionType == ConditionType.InitIsAttorney)
+      {
+        var power = Sungero.ATS.PowerOfAttorneys.As(document);
+        bool flag = task.Author == Sungero.CoreEntities.Users.As(power.IssuedTo);
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
+      if (_obj.ConditionType == ConditionType.MRP)
+      {
+        var power = Sungero.ATS.PowerOfAttorneys.As(document);
+        var matrix = power.MatrixSDev;
+        bool flag = false;
+        if (matrix != null)
+          flag = matrix.Mahineread.HasValue ? matrix.Mahineread.Value : false;
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
       if (_obj.ConditionType == ConditionType.EarlyProxy)
       {
         var power = Sungero.ATS.PowerOfAttorneys.As(document);
@@ -832,6 +856,9 @@ namespace sberdev.SBContracts.Shared
     {
       var baseSupport = base.GetSupportedConditions();
       
+      baseSupport["be859f9b-7a04-4f07-82bc-441352bce627"].Add(ConditionType.SameAttorney);
+      baseSupport["be859f9b-7a04-4f07-82bc-441352bce627"].Add(ConditionType.InitIsAttorney);
+      baseSupport["be859f9b-7a04-4f07-82bc-441352bce627"].Add(ConditionType.MRP);
       baseSupport["be859f9b-7a04-4f07-82bc-441352bce627"].Add(ConditionType.EarlyProxy); // power of attorney
       
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.PurchAmount); // purchase

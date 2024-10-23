@@ -208,4 +208,13 @@
   <data name="Enum_ConditionType_EarlyProxy" xml:space="preserve">
     <value>Признак ранней доверенности</value>
   </data>
+  <data name="Enum_ConditionType_MRP" xml:space="preserve">
+    <value>Машиночитаемая доверенность</value>
+  </data>
+  <data name="Enum_ConditionType_InitIsAttorney" xml:space="preserve">
+    <value>Инициатор и поверенный одно лицо</value>
+  </data>
+  <data name="Enum_ConditionType_SameAttorney" xml:space="preserve">
+    <value>Подобная доверенность выдавалась раньше</value>
+  </data>
 </root>

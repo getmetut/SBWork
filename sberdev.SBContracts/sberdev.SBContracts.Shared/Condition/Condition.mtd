@@ -549,6 +549,21 @@
           "NameGuid": "3fe053ca-996d-429c-8aee-f230e74a82ad",
           "Name": "EarlyProxy",
           "Code": "EarlyProxy"
+        },
+        {
+          "NameGuid": "33259ac4-33f8-408b-92af-3e0cc8355670",
+          "Name": "MRP",
+          "Code": "MRP"
+        },
+        {
+          "NameGuid": "279544c5-c574-4d8f-a1bd-87358781acaa",
+          "Name": "InitIsAttorney",
+          "Code": "InitIsAttorney"
+        },
+        {
+          "NameGuid": "d5e2af3d-1bd2-44fb-b74c-3757d0864e00",
+          "Name": "SameAttorney",
+          "Code": "SameAttorney"
         }
       ],
       "IsAncestorMetadata": true,

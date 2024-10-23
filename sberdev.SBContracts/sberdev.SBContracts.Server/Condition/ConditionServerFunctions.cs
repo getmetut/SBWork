@@ -9,6 +9,18 @@ namespace sberdev.SBContracts.Server
 {
   partial class ConditionFunctions
   {
+
+    /// <summary>
+    /// 
+    /// </summary>   
+    [Remote]
+    public bool CheckSameAttorney(Sungero.ATS.IPowerOfAttorney power)
+    {
+      return Sungero.ATS.PowerOfAttorneys.GetAll().Any(p => p.IssuedTo == power.IssuedTo &&
+                                                       p.MatrixSDev == power.MatrixSDev &&
+                                                       p.AgentType == power.AgentType);
+    }
+    
     public override string GetConditionName()
     {
       using (TenantInfo.Culture.SwitchTo())
@@ -26,6 +38,21 @@ namespace sberdev.SBContracts.Server
             case "LessThan":
               return "Сумма закупки < " + _obj.PurchaseAmountSberDev.Value.ToString();
           }
+        }
+        
+        if (_obj.ConditionType == ConditionType.SameAttorney)
+        {
+          return "Подобная доверенность выдавалась раньше?";
+        }
+        
+        if (_obj.ConditionType == ConditionType.MRP)
+        {
+          return "Инициатор и поверенный одно лицо?";
+        }
+        
+        if (_obj.ConditionType == ConditionType.MRP)
+        {
+          return "Матрица - МЧД?";
         }
         
         if (_obj.ConditionType == ConditionType.EarlyProxy)

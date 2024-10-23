@@ -208,4 +208,13 @@
   <data name="Enum_ConditionType_EarlyProxy" xml:space="preserve">
     <value>Sign of early power of attorney</value>
   </data>
+  <data name="Enum_ConditionType_MRP" xml:space="preserve">
+    <value>Machine-readable power of attorney</value>
+  </data>
+  <data name="Enum_ConditionType_InitIsAttorney" xml:space="preserve">
+    <value>Initiator and attorney same person</value>
+  </data>
+  <data name="Enum_ConditionType_SameAttorney" xml:space="preserve">
+    <value>A similar power of attorney was issued before</value>
+  </data>
 </root>
