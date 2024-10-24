@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
-using sberdev.SberContracts.BudgetOwnerRole;
+using sberdev.SberContracts.CustomAppovalRole;
 
 namespace sberdev.SberContracts.Server
 {
-  partial class BudgetOwnerRoleFunctions
+  partial class CustomAppovalRoleFunctions
   {
     [Public]
     public override List<Sungero.Company.IEmployee> GetRolePerformers(Sungero.Docflow.IApprovalTask task)
     {
       #region BudgetOwnerMark
-      if (_obj.Type == SberContracts.BudgetOwnerRole.Type.BudgetOwnerMark)
+      if (_obj.Type == SberContracts.CustomAppovalRole.Type.BudgetOwnerMark)
       {
         var document = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
         var contract = SBContracts.ContractualDocuments.As(document);
@@ -80,7 +80,7 @@ namespace sberdev.SberContracts.Server
       #endregion
       
       #region BudgetOwnerPrGe
-      if (_obj.Type == SberContracts.BudgetOwnerRole.Type.BudgetOwnerPrGe)
+      if (_obj.Type == SberContracts.CustomAppovalRole.Type.BudgetOwnerPrGe)
       {
         var document = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
         var contract = SBContracts.ContractualDocuments.As(document);
@@ -136,7 +136,7 @@ namespace sberdev.SberContracts.Server
     public override Sungero.Company.IEmployee GetRolePerformer(Sungero.Docflow.IApprovalTask task)
     {
       #region BudgetOwner
-      if (_obj.Type == SberContracts.BudgetOwnerRole.Type.BudgetOwner)
+      if (_obj.Type == SberContracts.CustomAppovalRole.Type.BudgetOwner)
       {
         var document = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
         var contract = SBContracts.ContractualDocuments.As(document);
@@ -188,7 +188,7 @@ namespace sberdev.SberContracts.Server
       #endregion
       
       #region BudgetOwnerMVP
-      if (_obj.Type == SberContracts.BudgetOwnerRole.Type.BudgetOwnerMVP)
+      if (_obj.Type == SberContracts.CustomAppovalRole.Type.BudgetOwnerMVP)
       {
         var document = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
         var contract = SBContracts.ContractualDocuments.As(document);
@@ -232,7 +232,7 @@ namespace sberdev.SberContracts.Server
       #endregion
       
       #region BudgetOwnerMVZ
-      if (_obj.Type == SberContracts.BudgetOwnerRole.Type.BudgetOwnerMVZ)
+      if (_obj.Type == SberContracts.CustomAppovalRole.Type.BudgetOwnerMVZ)
       {
         var document = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
         var contract = SBContracts.ContractualDocuments.As(document);
@@ -276,11 +276,27 @@ namespace sberdev.SberContracts.Server
       #endregion
       
       #region BudgetOwnerUnit
-      if (_obj.Type == SberContracts.BudgetOwnerRole.Type.BudgetOwnerUnit)
+      if (_obj.Type == SberContracts.CustomAppovalRole.Type.BudgetOwnerUnit)
       {
         var stage = task.ApprovalRule.Stages.Where(s => s.Number == task.StageNumber).FirstOrDefault();
         if (stage != null)
           return SBContracts.ApprovalStages.As(stage.Stage)?.ProductUnitSberDev?.Responsible;
+      }
+      #endregion
+      
+      #region Attorney
+      if (_obj.Type == SberContracts.CustomAppovalRole.Type.Attorney)
+      {
+        var attorney = Sungero.ATS.PowerOfAttorneys.As(task.DocumentGroup.OfficialDocuments.FirstOrDefault());
+        return attorney?.IssuedTo;
+      }
+      #endregion
+      
+      #region AttorneyManager
+      if (_obj.Type == SberContracts.CustomAppovalRole.Type.AttorneyManager)
+      {
+        var attorney = Sungero.ATS.PowerOfAttorneys.As(task.DocumentGroup.OfficialDocuments.FirstOrDefault());
+        return attorney?.IssuedTo?.Department?.Manager;
       }
       #endregion
       

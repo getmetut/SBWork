@@ -59,13 +59,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DisplayName" xml:space="preserve">
-    <value>Роль "Владелец бюджета"</value>
+    <value>CustomAppovalRoles</value>
   </data>
   <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Роль "Владелец бюджета"</value>
+    <value>CustomAppovalRoles</value>
   </data>
   <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Роль "Владелец бюджета"</value>
+    <value>CustomAppovalRoles</value>
   </data>
   <data name="Enum_Type_BudgetOwner" xml:space="preserve">
     <value>Владелец бюджета</value>
@@ -90,5 +90,11 @@
   </data>
   <data name="Enum_Type_BudgetOwnerUnit" xml:space="preserve">
     <value>Владелец бюджета Бизнес юнит</value>
+  </data>
+  <data name="Enum_Type_Attorney" xml:space="preserve">
+    <value>Поверенный</value>
+  </data>
+  <data name="Enum_Type_AttorneyManager" xml:space="preserve">
+    <value>Руководитель поверенного</value>
   </data>
 </root>

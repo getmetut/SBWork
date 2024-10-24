@@ -1,7 +1,7 @@
 {
   "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
   "NameGuid": "497fb0f7-b0bc-42ca-8eeb-65dda301863b",
-  "Name": "BudgetOwnerRole",
+  "Name": "CustomAppovalRole",
   "BaseGuid": "3445f357-1435-4444-9f24-a56a752fc471",
   "CanBeNavigationPropertyType": true,
   "CreationAreaMetadata": {
@@ -65,6 +65,16 @@
           "NameGuid": "6390680d-3149-402b-a215-bbbd6f40dca1",
           "Name": "BudgetOwnerUnit",
           "Code": "BudgetOwnerUnit"
+        },
+        {
+          "NameGuid": "615e3e59-19fd-47db-8964-e4da789d9a20",
+          "Name": "Attorney",
+          "Code": "Attorney"
+        },
+        {
+          "NameGuid": "1140aa70-0a05-4ac6-ba78-595c84ece2cf",
+          "Name": "AttorneyManager",
+          "Code": "AttorneyManager"
         }
       ],
       "IsAncestorMetadata": true,
@@ -79,9 +89,9 @@
       "Name": "GetRolePerformers",
       "Parameters": [
         {
-          "Name": "budgetOwnerRole",
-          "ParameterType": "global::sberdev.SberContracts.IBudgetOwnerRole",
-          "ParameterTypeFullName": "sberdev.SberContracts.IBudgetOwnerRole, Sungero.Domain.Interfaces"
+          "Name": "customAppovalRole",
+          "ParameterType": "global::sberdev.SberContracts.ICustomAppovalRole",
+          "ParameterTypeFullName": "sberdev.SberContracts.ICustomAppovalRole, Sungero.Domain.Interfaces"
         },
         {
           "Name": "task",

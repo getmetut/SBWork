@@ -31,7 +31,7 @@ namespace sberdev.SberContracts.Server
     #region Роли
     
     public static void CreateRoles()
-    {      
+    {
       var roleSC = Roles.GetAll(r => r.Sid == Constants.Module.CpSyncConflictRoleGuid).FirstOrDefault();
       
       if (roleSC == null)
@@ -240,21 +240,23 @@ namespace sberdev.SberContracts.Server
     // </summary>
     public static void CreateApprovalRoles()
     {
-      var roles = BudgetOwnerRoles.GetAll();
+      var roles = CustomAppovalRoles.GetAll();
       List<Enumeration> customRoles = new List<Enumeration>{
-        sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwner,
-        sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerMVP,
-        sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerMVZ,
-        sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerMark,
-        sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerProd,
-        sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerPrGe,
-        sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerUnit};
+        sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwner,
+        sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerMVP,
+        sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerMVZ,
+        sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerMark,
+        sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerProd,
+        sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerPrGe,
+        sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerUnit,
+        sberdev.SberContracts.CustomAppovalRole.Type.Attorney,
+        sberdev.SberContracts.CustomAppovalRole.Type.AttorneyManager};
       foreach (var customRole in customRoles)
       {
         var role = roles.FirstOrDefault(r => r.Type.Value == customRole);
         if (role == null)
         {
-          role = BudgetOwnerRoles.Create();
+          role = CustomAppovalRoles.Create();
           role.Type = customRole;
           role.Description = customRole.Value;
           role.Save();
@@ -370,7 +372,7 @@ namespace sberdev.SberContracts.Server
 
       SberContracts.AccountingArticleses.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Read);
       SberContracts.BudgetItems.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Read);
-      SberContracts.BudgetOwnerRoles.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Read);
+      SberContracts.CustomAppovalRoles.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Read);
       SberContracts.MVZs.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Read);
       SberContracts.ProductsAndDeviceses.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Read);
       SberContracts.AnaliticsCashes.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.FullAccess);
@@ -386,7 +388,7 @@ namespace sberdev.SberContracts.Server
       SberContracts.MarketingDirections.AccessRights.Save();
       SberContracts.AccountingArticleses.AccessRights.Save();
       SberContracts.BudgetItems.AccessRights.Save();
-      SberContracts.BudgetOwnerRoles.AccessRights.Save();
+      SberContracts.CustomAppovalRoles.AccessRights.Save();
       SberContracts.MVZs.AccessRights.Save();
       SberContracts.ProductsAndDeviceses.AccessRights.Save();
       SberContracts.AnaliticsCashes.AccessRights.Save();

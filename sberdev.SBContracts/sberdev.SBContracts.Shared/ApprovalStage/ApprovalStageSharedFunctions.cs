@@ -17,14 +17,16 @@ namespace sberdev.SBContracts.Shared
           _obj.StageType == Sungero.Docflow.ApprovalStage.StageType.SimpleAgr ||
           _obj.StageType == Sungero.Docflow.ApprovalStage.StageType.Notice)
       {
-        baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwner);
-        baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerMVP);
-        baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerMVZ);
-        baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerMark);
-        baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerProd);
-        baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerPrGe);
-        baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerUnit);
-        baseRoles.Add(sberdev.SberContracts.BudgetOwnerRole.Type.Signatory);
+        baseRoles.Add(sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwner);
+        baseRoles.Add(sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerMVP);
+        baseRoles.Add(sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerMVZ);
+        baseRoles.Add(sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerMark);
+        baseRoles.Add(sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerProd);
+        baseRoles.Add(sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerPrGe);
+        baseRoles.Add(sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerUnit);
+        baseRoles.Add(sberdev.SberContracts.CustomAppovalRole.Type.Signatory);
+        baseRoles.Add(sberdev.SberContracts.CustomAppovalRole.Type.Attorney);
+        baseRoles.Add(sberdev.SberContracts.CustomAppovalRole.Type.AttorneyManager);
       }
       return baseRoles;
     }
@@ -39,10 +41,10 @@ namespace sberdev.SBContracts.Shared
       var isUnits = false;
       foreach (var role in _obj.ApprovalRoles)
       {
-        if (role.ApprovalRole.Type == sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerUnit)
+        if (role.ApprovalRole.Type == sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerUnit)
           isUnits = true;
       }
-      var isUnit = _obj.ApprovalRole != null ? _obj.ApprovalRole.Type == sberdev.SberContracts.BudgetOwnerRole.Type.BudgetOwnerUnit : false;
+      var isUnit = _obj.ApprovalRole != null ? _obj.ApprovalRole.Type == sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerUnit : false;
       if (isUnit || isUnits)
       {
         properties.ProductUnitSberDev.IsVisible = true;

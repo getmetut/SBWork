@@ -45,7 +45,7 @@ namespace sberdev.SBContracts.Server
           return "Подобная доверенность выдавалась раньше?";
         }
         
-        if (_obj.ConditionType == ConditionType.MRP)
+        if (_obj.ConditionType == ConditionType.InitIsAttorney)
         {
           return "Инициатор и поверенный одно лицо?";
         }

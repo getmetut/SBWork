@@ -13,20 +13,20 @@ namespace sberdev.SBContracts.Server
     {
       List<IRecipient> recipients = base.GetStageRecipients(task, additionalApprovers);
       
-      var role = _obj.ApprovalRoles.Where(x => x.ApprovalRole.Type == SberContracts.BudgetOwnerRole.Type.BudgetOwnerMark)
-        .Select(x => SberContracts.BudgetOwnerRoles.As(x.ApprovalRole))
+      var role = _obj.ApprovalRoles.Where(x => x.ApprovalRole.Type == SberContracts.CustomAppovalRole.Type.BudgetOwnerMark)
+        .Select(x => SberContracts.CustomAppovalRoles.As(x.ApprovalRole))
         .Where(x => x != null).SingleOrDefault();
       if (role!= null)
       {
-        recipients.AddRange(SberContracts.PublicFunctions.BudgetOwnerRole.GetRolePerformers(role, task));
+        recipients.AddRange(SberContracts.PublicFunctions.CustomAppovalRole.GetRolePerformers(role, task));
       }
       
-      role = _obj.ApprovalRoles.Where(x => x.ApprovalRole.Type == SberContracts.BudgetOwnerRole.Type.BudgetOwnerPrGe)
-        .Select(x => SberContracts.BudgetOwnerRoles.As(x.ApprovalRole))
+      role = _obj.ApprovalRoles.Where(x => x.ApprovalRole.Type == SberContracts.CustomAppovalRole.Type.BudgetOwnerPrGe)
+        .Select(x => SberContracts.CustomAppovalRoles.As(x.ApprovalRole))
         .Where(x => x != null).SingleOrDefault();
       if (role!= null)
       {
-        recipients.AddRange(SberContracts.PublicFunctions.BudgetOwnerRole.GetRolePerformers(role, task));
+        recipients.AddRange(SberContracts.PublicFunctions.CustomAppovalRole.GetRolePerformers(role, task));
       }
       
       return recipients;
