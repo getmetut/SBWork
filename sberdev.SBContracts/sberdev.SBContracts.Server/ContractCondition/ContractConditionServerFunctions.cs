@@ -124,20 +124,6 @@ namespace sberdev.SBContracts.Server
           text += "?";
           return text;
         }
-
-        if (_obj.ConditionType == ConditionType.BudgetItem)
-        {
-          string text;
-          text = "Статьи бюджета = ";
-          foreach (var str in _obj.BudgetItem )
-          {
-            text = text + str.BudgetItem.Name + ", ";
-          }
-          text = text.TrimEnd(',');
-          text += "?";
-          return text;
-        }
-
       }
 
       return base.GetConditionName();

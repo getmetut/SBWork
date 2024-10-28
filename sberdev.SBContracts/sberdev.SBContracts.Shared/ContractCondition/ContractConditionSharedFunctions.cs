@@ -15,7 +15,7 @@ namespace sberdev.SBContracts.Shared
     public override void ChangePropertiesAccess()
     {
       base.ChangePropertiesAccess();
-
+      
       var isProductUnit = _obj.ConditionType == ConditionType.ProductUnit;
       _obj.State.Properties.ProductUnitSberDev.IsVisible = isProductUnit;
       _obj.State.Properties.ProductUnitSberDev.IsRequired = isProductUnit;
@@ -26,29 +26,19 @@ namespace sberdev.SBContracts.Shared
       
       var isContrType = _obj.ConditionType == ConditionType.ContrCategory;
       _obj.State.Properties.ContrCategorysberdev.IsVisible = isContrType;
-
       _obj.State.Properties.ContrCategorysberdev.IsRequired = isContrType;
-      
       
       var isMVP = _obj.ConditionType == ConditionType.MVP;
       _obj.State.Properties.MVP.IsVisible = isMVP;
-
       _obj.State.Properties.MVP.IsRequired = isMVP;
       
       var isMVZ = _obj.ConditionType == ConditionType.MVZ;
       _obj.State.Properties.MVZ.IsVisible = isMVZ;
-
       _obj.State.Properties.MVZ.IsRequired = isMVZ;
       
       var isAccoutnAticle = _obj.ConditionType == ConditionType.AccountAticles;
       _obj.State.Properties.AccountingArticles.IsVisible = isAccoutnAticle;
-
       _obj.State.Properties.AccountingArticles.IsRequired = isAccoutnAticle;
-      
-      var isBudgetItem = _obj.ConditionType == ConditionType.BudgetItem;
-      _obj.State.Properties.BudgetItem.IsVisible = isBudgetItem;
-
-      _obj.State.Properties.BudgetItem.IsRequired = isBudgetItem;
       
       var isInitiatorsDepartment = _obj.ConditionType == ConditionType.InitiatorsDepartment;
       _obj.State.Properties.InitiatorsDepartment.IsVisible = isInitiatorsDepartment;
@@ -82,9 +72,6 @@ namespace sberdev.SBContracts.Shared
       
       if (!_obj.State.Properties.AccountingArticles.IsVisible)
         _obj.AccountingArticles.Clear();
-      
-      if (!_obj.State.Properties.BudgetItem.IsVisible)
-        _obj.BudgetItem.Clear();
       
       if (!_obj.State.Properties.MarketDirectSberDev.IsVisible)
         _obj.MarketDirectSberDev.Clear();
@@ -637,104 +624,6 @@ namespace sberdev.SBContracts.Shared
         }
       }
       
-      if (_obj.ConditionType == ConditionType.BudgetItem )
-
-      {
-        var find = false;
-        var contract = SBContracts.Contracts.As(document);
-        if (contract != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.BudgetItem )
-          {
-            if (contract.AccArtPrBaseSberDev.BudgetItem == str.BudgetItem)
-            {
-              ContrFind = true;
-            }
-          }
-          return
-            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
-                   string.Empty);
-        }
-        var supAgr = SBContracts.SupAgreements.As(document);
-        if (supAgr != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.BudgetItem )
-          {
-            if (supAgr.AccArtPrBaseSberDev.BudgetItem == str.BudgetItem)
-            {
-              ContrFind = true;
-            }
-          }
-          return
-            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
-                   string.Empty);
-        }
-        var incInv = SBContracts.IncomingInvoices.As(document);
-        if (incInv != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.BudgetItem )
-          {
-            if (incInv.AccArtBaseSberDev.BudgetItem == str.BudgetItem)
-            {
-              ContrFind = true;
-            }
-          }
-          return
-            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
-                   string.Empty);
-        }
-        var contState = SBContracts.ContractStatements.As(document);
-        if (contState != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.BudgetItem )
-          {
-            if (contState.AccArtBaseSberDev.BudgetItem == str.BudgetItem)
-            {
-              ContrFind = true;
-            }
-          }
-          return
-            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
-                   string.Empty);
-        }
-        if ( find != true )
-        {
-          var mainContract = SBContracts.Contracts.GetAll(e=> e.Id == document.LeadingDocument.Id).FirstOrDefault();
-          if (mainContract != null)
-          {
-            var ContrFind = false;
-            foreach (var str in _obj.BudgetItem )
-            {
-              if (mainContract.AccArtPrBaseSberDev.BudgetItem == str.BudgetItem)
-              {
-                ContrFind = true;
-              }
-            }
-            return
-              Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-              Create(ContrFind,
-                     string.Empty);
-          }
-          else
-          {
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-              Create(null, "Условие не может быть вычислено. Не заполнена статья бух. учета договора.");
-          }
-        }
-      }
-      
       if (_obj.ConditionType == ConditionType.Framework )
       {
         var contract = SBContracts.ContractualDocuments.As(document);
@@ -835,10 +724,6 @@ namespace sberdev.SBContracts.Shared
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.AccountAticles);
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.AccountAticles);
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.AccountAticles);
-      
-      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.BudgetItem);
-      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.BudgetItem);
-      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.BudgetItem);
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.Framework); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.Framework); // sup agreement

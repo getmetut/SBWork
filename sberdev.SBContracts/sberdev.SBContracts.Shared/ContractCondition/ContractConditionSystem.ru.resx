@@ -79,9 +79,6 @@
   <data name="Property_MVZ" xml:space="preserve">
     <value>МВЗ</value>
   </data>
-  <data name="Property_BudgetItem" xml:space="preserve">
-    <value>Статьи бух. учета</value>
-  </data>
   <data name="Enum_ConditionType_MVP" xml:space="preserve">
     <value>МВП</value>
   </data>
@@ -89,10 +86,7 @@
     <value>МВЗ</value>
   </data>
   <data name="Enum_ConditionType_AccountAticles" xml:space="preserve">
-    <value>Статьи упр. учета</value>
-  </data>
-  <data name="Enum_ConditionType_BudgetItem" xml:space="preserve">
-    <value>Статьи бух. учета</value>
+    <value>Статья управленческого учета</value>
   </data>
   <data name="Enum_ConditionType_Framework" xml:space="preserve">
     <value>Рамка/безденежный</value>

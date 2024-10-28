@@ -15,6 +15,10 @@ namespace sberdev.SBContracts.Shared
     {
       base.ChangePropertiesAccess();
       
+      var isInitiatorsDepartment = _obj.ConditionType == ConditionType.InitDepart;
+      _obj.State.Properties.InitiatorsDepartmentSberDev.IsVisible = isInitiatorsDepartment;
+      _obj.State.Properties.InitiatorsDepartmentSberDev.IsRequired = isInitiatorsDepartment;
+      
       var isPurchseAmount = _obj.ConditionType == ConditionType.PurchAmount;
       _obj.State.Properties.PurchaseAmountSberDev.IsVisible = isPurchseAmount;
       _obj.State.Properties.PurchaseAmountSberDev.IsRequired = isPurchseAmount;
@@ -41,10 +45,6 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.AccountingArticles.IsVisible = isAccoutnAticle;
       _obj.State.Properties.AccountingArticles.IsRequired = isAccoutnAticle;
       
-      var isBudgetItem = _obj.ConditionType == ConditionType.BudgetItem;
-      _obj.State.Properties.BudgetItem.IsVisible = isBudgetItem;
-      _obj.State.Properties.BudgetItem.IsRequired = isBudgetItem;
-      
       var isMarketDirect = _obj.ConditionType == ConditionType.MarketDirect;
       _obj.State.Properties.MarketDirectSberDev.IsVisible = isMarketDirect;
       _obj.State.Properties.MarketDirectSberDev.IsRequired = isMarketDirect;
@@ -58,6 +58,9 @@ namespace sberdev.SBContracts.Shared
         _obj.PurchaseAmountSberDev = null;
         _obj.AmountOperator = null;
       }
+      
+      if(!_obj.State.Properties.InitiatorsDepartmentSberDev.IsVisible)
+        _obj.InitiatorsDepartmentSberDev.Clear();
       
       if(!_obj.State.Properties.ProductUnitSberDev.IsVisible)
         _obj.ProductUnitSberDev.Clear();
@@ -74,9 +77,6 @@ namespace sberdev.SBContracts.Shared
       if (!_obj.State.Properties.AccountingArticles.IsVisible)
         _obj.AccountingArticles.Clear();
       
-      if (!_obj.State.Properties.BudgetItem.IsVisible)
-        _obj.BudgetItem.Clear();
-      
       if (!_obj.State.Properties.MarketDirectSberDev.IsVisible)
         _obj.MarketDirectSberDev.Clear();
     }
@@ -87,6 +87,17 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      
+      if (_obj.ConditionType == ConditionType.InitDepart)
+      {
+        bool flag = false;
+        var initDep = Sungero.Company.Employees.As(task.Author).Department;
+        foreach (var dep in _obj.InitiatorsDepartmentSberDev)
+          if (dep.InitiatorsDepartment == initDep)
+            flag = true;
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      
       if (_obj.ConditionType == ConditionType.SameAttorney)
       {
         var power = Sungero.ATS.PowerOfAttorneys.As(document);
@@ -617,86 +628,6 @@ namespace sberdev.SBContracts.Shared
         }
       }
       
-      if (_obj.ConditionType == ConditionType.BudgetItem)
-      {
-        var find = false;
-        var outLetter = SBContracts.OutgoingLetters.As(document);
-        if (outLetter != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.BudgetItem )
-          {
-            if (outLetter.AccArt.BudgetItem == str.BudgetItem)
-            {
-              ContrFind = true;
-            }
-          }
-          return
-            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
-                   string.Empty);
-        }
-        var IncLetter = SBContracts.IncomingLetters.As(document);
-        if (IncLetter != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.BudgetItem )
-          {
-            if (IncLetter.AccArt.BudgetItem == str.BudgetItem)
-            {
-              ContrFind = true;
-            }
-          }
-          return
-            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
-                   string.Empty);
-        }
-        var incInv = SBContracts.IncomingInvoices.As(document);
-        if (incInv != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.BudgetItem )
-          {
-            if (incInv.AccArtBaseSberDev.BudgetItem == str.BudgetItem)
-            {
-              ContrFind = true;
-            }
-          }
-          return
-            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-            Create(ContrFind,
-                   string.Empty);
-        }
-        
-        if ( find != true )
-        {
-          var mainContract = SBContracts.Contracts.GetAll(e=> e.Id == document.LeadingDocument.Id).FirstOrDefault();
-          if (mainContract != null)
-          {
-            var ContrFind = false;
-            foreach (var str in _obj.BudgetItem )
-            {
-              if (mainContract.AccArtPrBaseSberDev.BudgetItem == str.BudgetItem)
-              {
-                ContrFind = true;
-              }
-            }
-            return
-              Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-              Create(ContrFind,
-                     string.Empty);
-          }
-          else
-          {
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-              Create(null, "Условие не может быть вычислено. Не заполнена статья бух. учета документа.");
-          }
-        }
-      }
       if (_obj.ConditionType == ConditionType.ActExists)
       {
         // Исходящее письмо
@@ -856,6 +787,8 @@ namespace sberdev.SBContracts.Shared
     {
       var baseSupport = base.GetSupportedConditions();
       
+      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.InitDepart); // входящий счет
+      
       baseSupport["be859f9b-7a04-4f07-82bc-441352bce627"].Add(ConditionType.SameAttorney);
       baseSupport["be859f9b-7a04-4f07-82bc-441352bce627"].Add(ConditionType.InitIsAttorney);
       baseSupport["be859f9b-7a04-4f07-82bc-441352bce627"].Add(ConditionType.MRP);
@@ -907,10 +840,6 @@ namespace sberdev.SBContracts.Shared
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.AccArts); // входящий счет
       baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.AccArts); // исходящее письмо
       baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.AccArts); // Входящее письмо
-      
-      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.BudgetItem); // входящий счет
-      baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.BudgetItem); // исходящее письмо
-      baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.BudgetItem); // Входящее письмо
 
       baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.ActExists); // исходящее письмо
       baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.DeviceExists); // исходящее письмо

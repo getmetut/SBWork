@@ -71,10 +71,7 @@
     <value>MVP</value>
   </data>
   <data name="Enum_ConditionType_AccArts" xml:space="preserve">
-    <value>Accounting articles</value>
-  </data>
-  <data name="Enum_ConditionType_BudgetItem" xml:space="preserve">
-    <value>Budget Item</value>
+    <value>Accounting article</value>
   </data>
   <data name="Property_MVZ" xml:space="preserve">
     <value>MVZ</value>
@@ -84,9 +81,6 @@
   </data>
   <data name="Property_AccountingArticles" xml:space="preserve">
     <value>Accounting Articles</value>
-  </data>
-  <data name="Property_BudgetItem" xml:space="preserve">
-    <value>Budget Item </value>
   </data>
   <data name="ControlGroup_ea6e809515f5491fbad41de51b5f5473" xml:space="preserve">
     <value />
@@ -216,5 +210,11 @@
   </data>
   <data name="Enum_ConditionType_SameAttorney" xml:space="preserve">
     <value>A similar power of attorney was issued before</value>
+  </data>
+  <data name="Enum_ConditionType_InitDepart" xml:space="preserve">
+    <value>Initiator's department</value>
+  </data>
+  <data name="Property_InitiatorsDepartmentSberDev" xml:space="preserve">
+    <value>Initiator's department</value>
   </data>
 </root>

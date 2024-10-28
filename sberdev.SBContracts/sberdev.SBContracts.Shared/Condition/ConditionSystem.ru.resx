@@ -71,16 +71,10 @@
     <value>МВП</value>
   </data>
   <data name="Enum_ConditionType_AccArts" xml:space="preserve">
-    <value>Статьи управленческого учета</value>
-  </data>
-  <data name="Enum_ConditionType_BudgetItem" xml:space="preserve">
-    <value>Статьи бух. учета</value>
+    <value>Статья управленческого учета</value>
   </data>
   <data name="Property_AccountingArticles" xml:space="preserve">
     <value>Статьи управленческого учета</value>
-  </data>
-  <data name="Property_BudgetItem" xml:space="preserve">
-    <value>Статьи бух. учета</value>
   </data>
   <data name="Property_MVP" xml:space="preserve">
     <value>МВП</value>
@@ -216,5 +210,11 @@
   </data>
   <data name="Enum_ConditionType_SameAttorney" xml:space="preserve">
     <value>Подобная доверенность выдавалась раньше</value>
+  </data>
+  <data name="Enum_ConditionType_InitDepart" xml:space="preserve">
+    <value>Подразделение инициатора</value>
+  </data>
+  <data name="Property_InitiatorsDepartmentSberDev" xml:space="preserve">
+    <value>Подразделение инициатора</value>
   </data>
 </root>

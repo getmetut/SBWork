@@ -79,9 +79,6 @@
   <data name="Property_AccountingArticles" xml:space="preserve">
     <value>AccountingArticles</value>
   </data>
-  <data name="Property_BudgetItem" xml:space="preserve">
-    <value>Budget Item</value>
-  </data>
   <data name="Enum_ConditionType_MVP" xml:space="preserve">
     <value>MVP</value>
   </data>
@@ -90,9 +87,6 @@
   </data>
   <data name="Enum_ConditionType_AccountAticles" xml:space="preserve">
     <value>Accountings aticles</value>
-  </data>
-  <data name="Enum_ConditionType_BudgetItem" xml:space="preserve">
-    <value>Budget items</value>
   </data>
   <data name="Enum_ConditionType_Framework" xml:space="preserve">
     <value>Framework</value>

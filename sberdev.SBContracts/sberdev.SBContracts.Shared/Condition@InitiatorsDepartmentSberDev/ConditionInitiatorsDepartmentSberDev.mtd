@@ -1,39 +1,40 @@
 {
   "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
-  "NameGuid": "efaea6eb-3428-49ba-811e-fa76c771e20f",
-  "Name": "ContractConditionBudgetItem",
+  "NameGuid": "9a8ea2f3-02df-47c1-baed-2cece8018bee",
+  "Name": "ConditionInitiatorsDepartmentSberDev",
   "AccessRightsMode": "NoRight",
   "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
   "CanBeNavigationPropertyType": true,
-  "Code": "BudgetItem",
+  "Code": "ConditionIniti",
   "ExtraSearchProperties": [],
   "IsChildEntity": true,
   "Properties": [
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "db713bad-4bb8-46dc-a3d6-9f49148f8d0f",
-      "Name": "ContractCondition",
+      "NameGuid": "40c8a7de-7c05-4b1c-b22a-989f66f5aacc",
+      "Name": "Condition",
       "CanBeSearch": false,
       "Code": "Condition",
-      "EntityGuid": "44341736-9090-45b2-a82c-60e30e83cd10",
+      "EntityGuid": "872e5f84-aa00-4d4c-8272-acaafe2662b4",
       "IsReferenceToRootEntity": true,
       "IsShowedInList": false
     },
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "a6f61cfd-10aa-44dd-b593-5fdefffea4f0",
-      "Name": "BudgetItem",
+      "NameGuid": "e8a3a42f-ce8e-4654-a10c-c1d24d69ce7a",
+      "Name": "InitiatorsDepartment",
       "CanBeSearch": false,
-      "Code": "BudgetItem",
-      "EntityGuid": "96fbe538-caac-4f77-98cd-c66002b69f07",
+      "Code": "InitiatorsDepa",
+      "EntityGuid": "61b1c19f-26e2-49a5-b3d3-0d3618151e12",
       "FlatListInStandaloneLookup": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
-      "PreviousPropertyGuid": "db713bad-4bb8-46dc-a3d6-9f49148f8d0f"
+      "PreviousPropertyGuid": "40c8a7de-7c05-4b1c-b22a-989f66f5aacc",
+      "Versions": []
     }
   ],
   "PublicStructures": [],
   "RibbonCardMetadata": {
-    "NameGuid": "8bae16c5-f602-4e36-92ae-681703e89613",
+    "NameGuid": "5495d032-e61c-43e7-8ff1-e23143e059f5",
     "Name": "RibbonCard",
     "Categories": [],
     "Elements": [],
@@ -43,7 +44,7 @@
     "RibbonKind": "Card"
   },
   "RibbonCollectionMetadata": {
-    "NameGuid": "29ca8b7c-3126-4e04-82b0-cd747406e01d",
+    "NameGuid": "0651536b-ebd9-4449-b588-6339a7638084",
     "Name": "RibbonCollection",
     "Categories": [],
     "Elements": [],

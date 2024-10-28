@@ -110,24 +110,6 @@
         },
         {
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "cd308753-9040-4170-a4b6-ae0650e63bb5",
-          "Name": "BudgetItem",
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
-          "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
-          "PropertyGuid": "c47cce48-1f3a-43b6-9763-51967d7db7ff",
-          "RowNumber": 5,
-          "RowSpan": 1,
-          "Settings": [
-            {
-              "Name": "NavigationPropertyGuid",
-              "Value": "a6f61cfd-10aa-44dd-b593-5fdefffea4f0"
-            }
-          ]
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "97489484-e099-4bd0-a09f-cc14b92e7b82",
           "Name": "InitiatorsDepartment",
           "ColumnNumber": 0,
@@ -135,7 +117,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "a2e0ef16-51e7-4331-bada-f669ad9e33a2",
-          "RowNumber": 6,
+          "RowNumber": 5,
           "RowSpan": 1,
           "Settings": [
             {
@@ -153,7 +135,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "5d5f557a-caac-48df-a800-e57c5172db2b",
-          "RowNumber": 7,
+          "RowNumber": 6,
           "RowSpan": 1,
           "Settings": [
             {
@@ -171,7 +153,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "dadd87e0-5e88-41f5-ae98-29aee61a7be0",
-          "RowNumber": 8,
+          "RowNumber": 7,
           "RowSpan": 1,
           "Settings": []
         },
@@ -250,11 +232,6 @@
           "NameGuid": "775ad0a6-6f11-450b-aa9d-77b7d0903a81",
           "Name": "AccountAticles",
           "Code": "AccountAticles"
-        },
-        {
-          "NameGuid": "37426593-e7b3-443b-99b3-61ae7742555a",
-          "Name": "BudgetItem",
-          "Code": "BudgetItem"
         },
         {
           "NameGuid": "e4f3f78b-9b18-4e5c-bf7c-80a74ebbb430",
@@ -379,21 +356,12 @@
     },
     {
       "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "c47cce48-1f3a-43b6-9763-51967d7db7ff",
-      "Name": "BudgetItem",
-      "Code": "BudgetItem",
-      "EntityGuid": "efaea6eb-3428-49ba-811e-fa76c771e20f",
-      "IsShowedInList": false,
-      "PreviousPropertyGuid": "1f73eb15-515d-4e02-b5fe-abd662381a66"
-    },
-    {
-      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
       "NameGuid": "a2e0ef16-51e7-4331-bada-f669ad9e33a2",
       "Name": "InitiatorsDepartment",
       "Code": "InitDepartCond",
       "EntityGuid": "01a588ab-3c9d-47c5-84d7-e5dd83c345ce",
       "IsShowedInList": false,
-      "PreviousPropertyGuid": "c47cce48-1f3a-43b6-9763-51967d7db7ff"
+      "PreviousPropertyGuid": "1f73eb15-515d-4e02-b5fe-abd662381a66"
     },
     {
       "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",

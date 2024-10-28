@@ -25,6 +25,16 @@ namespace sberdev.SBContracts.Server
     {
       using (TenantInfo.Culture.SwitchTo())
       {
+        if (_obj.ConditionType == ConditionType.InitDepart)
+        {
+          string head = "Подразделение инициатора согласования =";
+          foreach (var dep in _obj.InitiatorsDepartmentSberDev)
+            head += String.Format(" {0};", dep.InitiatorsDepartment.Name);
+          head = head.TrimEnd(';');
+          head += "?";
+          return head;
+        }
+        
         if (_obj.ConditionType == ConditionType.PurchAmount)
         {
           switch (_obj.AmountOperator.Value.Value)
@@ -139,17 +149,6 @@ namespace sberdev.SBContracts.Server
           foreach (var str in _obj.AccountingArticles )
           {
             text = text + str.AccountingArticles.Name + "; ";
-          }
-          return (text);
-        }
-        
-        if (_obj.ConditionType == ConditionType.BudgetItem)
-        {
-          string text;
-          text = "Статьи бух. учета = ";
-          foreach (var str in _obj.BudgetItem )
-          {
-            text = text + str.BudgetItem.Name + "; ";
           }
           return (text);
         }
