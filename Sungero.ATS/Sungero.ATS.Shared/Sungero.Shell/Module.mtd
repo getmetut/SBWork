@@ -18,6 +18,10 @@
       "IsVisible": false,
       "ItemId": "c52f4f9b-137b-42f8-a212-f4080b8de375",
       "PreviousItemId": "fa722da7-57f4-4998-88b9-fffe9abb1162"
+    },
+    {
+      "ItemId": "780b62c6-1e7d-4ebf-8878-8e3f252ca358",
+      "PreviousItemId": "c52f4f9b-137b-42f8-a212-f4080b8de375"
     }
   ],
   "IconResourcesKeys": [],
@@ -457,6 +461,22 @@
       "IsShow": false,
       "Kind": "Computable",
       "NeedShowMarkedCount": false
+    },
+    {
+      "NameGuid": "780b62c6-1e7d-4ebf-8878-8e3f252ca358",
+      "Name": "NewsSDev",
+      "DefaultContentType": "55065882-8b9b-4223-8dde-7a5b0b555202",
+      "DisplayType": "Inbox",
+      "FilterPanel": {
+        "NameGuid": "4ecbea4b-a265-40c4-ab85-b722cdd262f5",
+        "Name": "FilterPanel",
+        "Controls": []
+      },
+      "IconPath": "NewsSDev_780b62c61e7d4ebf88788e3f252ca358.ico",
+      "IsShow": true,
+      "Kind": "Computable",
+      "NeedShowMarkedCount": true,
+      "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17"
     }
   ],
   "Version": "4.8.39.0",

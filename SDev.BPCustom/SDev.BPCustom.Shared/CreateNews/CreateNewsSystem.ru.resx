@@ -58,25 +58,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="sf_fa722da7_57f4_4998_88b9_fffe9abb1162" xml:space="preserve">
-    <value>Уведомления</value>
+  <data name="Resource_035869ed2baa4573bdfe9e4f5e10c4b3" xml:space="preserve">
+    <value />
   </data>
-  <data name="FilterPanel_ReadSDev_f1ec276264804527845b27314242e142" xml:space="preserve">
-    <value>Прочтенные</value>
+  <data name="Control_035869ed2baa4573bdfe9e4f5e10c4b3_EmptyText" xml:space="preserve">
+    <value />
   </data>
-  <data name="FilterPanel_DirectionSberDev_8b1b9632ccfc4a53aab553a43d2dbf8e" xml:space="preserve">
-    <value>Направление</value>
+  <data name="Resource_74e85eafe5944dc5b4724e791948b781" xml:space="preserve">
+    <value />
   </data>
-  <data name="FilterPanel_IncomingSberDev_cfdfd720edfe45deb2ea64acce1f2214" xml:space="preserve">
-    <value>Входящие</value>
-  </data>
-  <data name="FilterPanel_OutgoingSberDev_d8cec3cc4a7b464ebec728a6bb1b738c" xml:space="preserve">
-    <value>Исходящие</value>
-  </data>
-  <data name="FilterPanel_AllSberDev_5be1911662154c088b700169acf018a7" xml:space="preserve">
-    <value>Все</value>
-  </data>
-  <data name="sf_780b62c6_1e7d_4ebf_8878_8e3f252ca358" xml:space="preserve">
-    <value>Новости</value>
+  <data name="Control_74e85eafe5944dc5b4724e791948b781_EmptyText" xml:space="preserve">
+    <value />
   </data>
 </root>

@@ -58,25 +58,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="sf_fa722da7_57f4_4998_88b9_fffe9abb1162" xml:space="preserve">
-    <value>Уведомления</value>
-  </data>
-  <data name="FilterPanel_ReadSDev_f1ec276264804527845b27314242e142" xml:space="preserve">
-    <value>Прочтенные</value>
-  </data>
-  <data name="FilterPanel_DirectionSberDev_8b1b9632ccfc4a53aab553a43d2dbf8e" xml:space="preserve">
-    <value>Направление</value>
-  </data>
-  <data name="FilterPanel_IncomingSberDev_cfdfd720edfe45deb2ea64acce1f2214" xml:space="preserve">
-    <value>Входящие</value>
-  </data>
-  <data name="FilterPanel_OutgoingSberDev_d8cec3cc4a7b464ebec728a6bb1b738c" xml:space="preserve">
-    <value>Исходящие</value>
-  </data>
-  <data name="FilterPanel_AllSberDev_5be1911662154c088b700169acf018a7" xml:space="preserve">
-    <value>Все</value>
-  </data>
-  <data name="sf_780b62c6_1e7d_4ebf_8878_8e3f252ca358" xml:space="preserve">
+  <data name="DisplayName" xml:space="preserve">
     <value>Новости</value>
+  </data>
+  <data name="AccusativeDisplayName" xml:space="preserve">
+    <value>Новости</value>
+  </data>
+  <data name="CollectionDisplayName" xml:space="preserve">
+    <value>Новости</value>
+  </data>
+  <data name="Property_TypeNews" xml:space="preserve">
+    <value>Новость о</value>
+  </data>
+  <data name="Resource_c9c4beefec5b4b3796d4959c17991279" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_c9c4beefec5b4b3796d4959c17991279_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_45c3f7afea6f40948e21e643b6358f4a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_45c3f7afea6f40948e21e643b6358f4a_EmptyText" xml:space="preserve">
+    <value />
   </data>
 </root>

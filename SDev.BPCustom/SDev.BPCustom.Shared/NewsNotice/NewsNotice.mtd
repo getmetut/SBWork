@@ -1,0 +1,188 @@
+{
+  "$type": "Sungero.Metadata.NoticeMetadata, Sungero.Workflow.Shared",
+  "NameGuid": "55065882-8b9b-4223-8dde-7a5b0b555202",
+  "Name": "NewsNotice",
+  "AccessRightsMode": "Instance",
+  "AssociatedGuid": "b984b2e5-e606-46c0-95c0-279c404892f5",
+  "BaseGuid": "ef79164b-2ce7-451b-9ba6-eb59dd9a4a74",
+  "CanBeNavigationPropertyType": true,
+  "CreationAreaMetadata": {
+    "NameGuid": "5fe997cb-7fc0-4c74-a663-73af56c7c4f2",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "8b3cedfe-01e2-47a9-b77d-3a7d6ad7904f",
+    "Name": "FilterPanel",
+    "Controls": [],
+    "IsAncestorMetadata": true
+  },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.WorkflowEntityStandaloneFormMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "ecbb8ca4-ef38-446a-b0dd-6b2d0e15edf6",
+      "Name": "Card",
+      "Controls": [
+        {
+          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
+          "NameGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "Name": "ControlGroup",
+          "ColumnDefinitions": [
+            {
+              "Percentage": 50.0
+            },
+            {
+              "Percentage": 50.0
+            }
+          ],
+          "IsAncestorMetadata": true,
+          "Overridden": [
+            "Controls",
+            "ColumnDefinitions"
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "c9c4beef-ec5b-4b37-96d4-959c17991279",
+          "Name": "AuthorControl",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "PropertyGuid": "51a65ccf-9098-46d5-a853-c9a7f7e95d28",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "45c3f7af-ea6f-4094-8e21-e643b6358f4a",
+          "Name": "PerformerControl",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "PropertyGuid": "4d924904-9c82-4187-ac18-b3620cf6ec87",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "a2298072-5f35-40f0-87cb-2bbf2da6dc61",
+          "Name": "TypeNews",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
+          "ParentGuid": "49173647-6272-4459-ab15-867c0b3c85a2",
+          "PropertyGuid": "35a1eb4a-b412-4293-9d3e-952ca27530db",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "Height",
+              "Value": 60
+            }
+          ]
+        }
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ]
+    }
+  ],
+  "IconName": "NewsNotice.ico",
+  "IconResourcesKeys": [],
+  "IntegrationServiceName": "BPCustomNewsNotice",
+  "IsSelectableAsFolderContent": true,
+  "IsVisibleThreadText": true,
+  "NeverLinkToParentWhenCreated": true,
+  "OperationsClass": "",
+  "Overridden": [
+    "IconName",
+    "NeedWriteHistory"
+  ],
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "51a65ccf-9098-46d5-a853-c9a7f7e95d28",
+      "Name": "Author",
+      "CanBeSearch": false,
+      "IsAncestorMetadata": true,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "Overridden": [
+        "IsVisibility",
+        "IsQuickSearchAllowed",
+        "CanBeSearch",
+        "IsShowedInList"
+      ]
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "4d924904-9c82-4187-ac18-b3620cf6ec87",
+      "Name": "Performer",
+      "CanBeSearch": false,
+      "IsAncestorMetadata": true,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "Overridden": [
+        "IsShowedInList",
+        "CanBeSearch",
+        "IsVisibility"
+      ]
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "35a1eb4a-b412-4293-9d3e-952ca27530db",
+      "Name": "TypeNews",
+      "Code": "TypeNews",
+      "Length": 999,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "cfdeb53d-17ff-4944-b0f6-9c60c26a7d3d",
+      "Versions": []
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "a1707f14-c3f9-40bf-9e73-dfc68550d35c",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "d07ce37d-374a-4fc7-aded-8f2fe641f849",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "NoticeMetadata",
+      "Number": 1
+    },
+    {
+      "Type": "AssignmentBaseMetadata",
+      "Number": 2
+    },
+    {
+      "Type": "WorkflowEntityMetadata",
+      "Number": 2
+    },
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}
