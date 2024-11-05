@@ -20,10 +20,11 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.InitiatorsDepartmentSberDev.IsRequired = isInitiatorsDepartment;
       
       var isPurchseAmount = _obj.ConditionType == ConditionType.PurchAmount;
+      var isTotalAmount = _obj.ConditionType == ConditionType.AmountIsMore;
       _obj.State.Properties.PurchaseAmountSberDev.IsVisible = isPurchseAmount;
       _obj.State.Properties.PurchaseAmountSberDev.IsRequired = isPurchseAmount;
-      _obj.State.Properties.AmountOperator.IsVisible = isPurchseAmount;
-      _obj.State.Properties.AmountOperator.IsRequired = isPurchseAmount;
+      _obj.State.Properties.AmountOperator.IsVisible = isPurchseAmount || isTotalAmount;
+      _obj.State.Properties.AmountOperator.IsRequired = isPurchseAmount || isTotalAmount;
       
       var isProductUnit = _obj.ConditionType == ConditionType.ProductUnit;
       _obj.State.Properties.ProductUnitSberDev.IsVisible = isProductUnit;
@@ -87,6 +88,16 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      if (_obj.ConditionType == ConditionType.IsProdPurchase)
+      {
+        bool flag = false;
+        var purch = SberContracts.Purchases.As(document);
+        if (purch != null)
+          flag = purch.MVZBaseSberDev?.ProductionPurchase
+            ?? purch.MVPBaseSberDev?.ProductionPurchase
+            ?? false;
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
       
       if (_obj.ConditionType == ConditionType.InitDepart)
       {
@@ -786,6 +797,7 @@ namespace sberdev.SBContracts.Shared
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.IsProdPurchase); // purchase
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.InitDepart); // входящий счет
       

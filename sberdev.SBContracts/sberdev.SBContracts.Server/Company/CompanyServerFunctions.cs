@@ -28,15 +28,11 @@ namespace sberdev.SBContracts.Server
       var moratorium = counterpartyInfo.Moratorium;
       
       // Значительная сумма арбитражных дел в качестве ответчика.
-      var caseAmountTo =  isLegalEntity ? (analitycs?.Analytics?.S2001 > (analitycs?.Analytics?.S6004 / 10) &&
-                                           analitycs?.Analytics?.S2001 > egrDetails?.UL?.StatedCapital?.Sum &&
-                                           analitycs?.Analytics?.S2001 > 50000000 ? yes : no) : no;
+      var caseAmountTo =  isLegalEntity ? (analitycs?.Analytics?.S2001 > 50000000 ? yes : no) : no;
       if (_obj.CaseAmountTo != caseAmountTo)
         _obj.CaseAmountTo = caseAmountTo;
       // Значительная сумма исполнительных производств.
-      var execCaseAmount = isLegalEntity ? (analitycs?.Analytics?.S1001 > (analitycs?.Analytics?.S6004 / 10) &&
-                                            analitycs?.Analytics?.S1001 > egrDetails?.UL?.StatedCapital?.Sum &&
-                                            analitycs?.Analytics?.S1001 > 50000000 ? yes : no) : no;
+      var execCaseAmount = isLegalEntity ? (analitycs?.Analytics?.S1001 > 50000000 ? yes : no) : no;
       if (_obj.ExecCaseAmount != execCaseAmount)
         _obj.ExecCaseAmount = execCaseAmount;
       // Значительное количество связанных организаций найдены в особых реестрах ФНС.

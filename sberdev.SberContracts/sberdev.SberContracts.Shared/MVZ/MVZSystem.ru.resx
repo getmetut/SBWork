@@ -115,4 +115,7 @@
   <data name="Action_DelUserInMVZDescription" xml:space="preserve">
     <value>Удалить польз. из МВЗ</value>
   </data>
+  <data name="Property_ProductionPurchase" xml:space="preserve">
+    <value>Производственная закупка</value>
+  </data>
 </root>

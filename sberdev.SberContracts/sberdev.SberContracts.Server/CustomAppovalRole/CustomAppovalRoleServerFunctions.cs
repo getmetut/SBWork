@@ -300,6 +300,18 @@ namespace sberdev.SberContracts.Server
       }
       #endregion
       
+      #region BudgetOwnerMark
+      if (_obj.Type == SberContracts.CustomAppovalRole.Type.BudgetOwnerMark)
+      {
+        var accounting = SBContracts.AccountingDocumentBases.As(task.DocumentGroup.OfficialDocuments.FirstOrDefault());
+        var contractual = SBContracts.ContractualDocuments.As(task.DocumentGroup.OfficialDocuments.FirstOrDefault());
+        if (accounting != null)
+          return accounting.MarketDirectSberDev?.BudgetOwner;
+        if (contractual != null)
+          return contractual.MarketDirectSberDev?.BudgetOwner;
+      }
+      #endregion
+      
       return base.GetRolePerformer(task);
     }
   }

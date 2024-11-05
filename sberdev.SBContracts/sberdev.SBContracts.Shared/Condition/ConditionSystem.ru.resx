@@ -217,4 +217,7 @@
   <data name="Property_InitiatorsDepartmentSberDev" xml:space="preserve">
     <value>Подразделение инициатора</value>
   </data>
+  <data name="Enum_ConditionType_IsProdPurchase" xml:space="preserve">
+    <value>Производственная закупка</value>
+  </data>
 </root>

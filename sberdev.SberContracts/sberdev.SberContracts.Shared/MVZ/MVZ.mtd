@@ -168,6 +168,19 @@
           "RowNumber": 6,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "4ee03e59-36aa-429c-8e09-a79c5cdb81ad",
+          "Name": "ProductionPurchase",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+          "ParentGuid": "ef21401d-5b57-4fe6-8569-852d6cac8ddb",
+          "PropertyGuid": "b5f362d3-5673-4121-86a4-2acd35ac8ae9",
+          "RowNumber": 4,
+          "RowSpan": 1,
+          "Settings": []
         }
       ]
     }
@@ -312,6 +325,14 @@
       "EntityGuid": "ee5492bb-4394-44ab-9b8e-832adde34a6b",
       "IsShowedInList": false,
       "PreviousPropertyGuid": "008ec51d-d50b-4882-b516-d1b76e266d9e"
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "b5f362d3-5673-4121-86a4-2acd35ac8ae9",
+      "Name": "ProductionPurchase",
+      "Code": "ProductionPurc",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "0cc10cca-97e2-44ca-becb-4c4fb2617058"
     }
   ],
   "PublicStructures": [],

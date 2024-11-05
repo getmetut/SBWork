@@ -65,12 +65,12 @@ namespace sberdev.SBContracts.Shared
         if (properties[propertyName] != null)
           properties[propertyName].HighlightColor = GetHighlightColor(propertyName, colorMap, settings);
         else
-          properties[propertyName + "SberDev"].HighlightColor = GetHighlightColor(propertyName, colorMap, settings);
+          properties[propertyName + "SberDev"].HighlightColor = GetHighlightColor(propertyName + "SberDev", colorMap, settings);
     }
     
     public override void SetColorsForKFMarkers(centrvd.Integration.IKFMarkersSetting settings)
     {
-       if (settings == null)
+      if (settings == null)
         return;
 
       var colorMap = new Dictionary<Nullable<Enumeration>, Color>
@@ -87,8 +87,8 @@ namespace sberdev.SBContracts.Shared
         if (properties[propertyName] != null)
           properties[propertyName].HighlightColor = GetHighlightColor(propertyName, colorMap, settings);
         else
-          properties[propertyName + "SberDev"].HighlightColor = GetHighlightColor(propertyName, colorMap, settings);
-    
+          properties[propertyName + "SberDev"].HighlightColor = GetHighlightColor(propertyName + "SberDev", colorMap, settings);
+      
     }
     
     /// <summary>
@@ -107,8 +107,10 @@ namespace sberdev.SBContracts.Shared
         .Properties
         .FirstOrDefault(property => property.Name == propertyName)?
         .GetValue(_obj);
-
-      var markerSetting = settings.Markers.FirstOrDefault(marker => marker.Name?.ToString() == propertyName && marker.Value == propertyValue);
+      
+      var markerSetting = SBContracts.KFMarkersSettings.As(settings).Markers.FirstOrDefault(marker => (marker.Name?.ToString() == propertyName
+                                                                                                       || marker.Name?.ToString() == propertyName.Replace("SberDev", ""))
+                                                                                            && marker.Value == propertyValue);
       Sungero.Core.Color highlightColor;
 
       if (markerSetting != null && markerSetting.Color.HasValue && colorMap.TryGetValue(markerSetting.Color, out highlightColor))

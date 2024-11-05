@@ -564,6 +564,11 @@
           "NameGuid": "9223d546-ef5b-44d5-9205-75f901d55526",
           "Name": "InitDepart",
           "Code": "InitDepart"
+        },
+        {
+          "NameGuid": "21a4f7f8-2fc1-4297-975f-3f4ede812d1e",
+          "Name": "IsProdPurchase",
+          "Code": "IsProdPurchase"
         }
       ],
       "IsAncestorMetadata": true,

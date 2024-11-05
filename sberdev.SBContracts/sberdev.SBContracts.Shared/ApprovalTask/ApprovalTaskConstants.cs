@@ -11,5 +11,7 @@ namespace sberdev.SBContracts.Constants.Docflow
     public const string ContractCheckByClerkStage = "7c1833f6-22da-460f-ab4c-6d510c5f6945"; // этап согласования Проверка договорных документов Делопроизводителем
     [Sungero.Core.Public]
     public const string CheckUCNStage = "eb288d73-0b4a-4cf8-ad17-6b250bc2392c"; // этап согласования Проверить постановку договора на валютный банковский контроль
+    [Sungero.Core.Public]
+    public const string SignApproveStage = "3236816c-cb3c-467a-bd50-12fd0accab6a"; // этап согласования-подписания
   }
 }

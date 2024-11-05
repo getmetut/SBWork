@@ -11,6 +11,18 @@ namespace sberdev.SBContracts.Server
   partial class ApprovalTaskRouteHandlers
   {
 
+    public override void StartBlock6(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
+    {
+      base.StartBlock6(e);
+      var stage = SBContracts.ApprovalStages.As(e.Block.Stage);
+      if (stage?.SidSberDev == PublicConstants.Docflow.ApprovalTask.SignApproveStage)
+      {
+        var approvers = Sungero.Docflow.PublicFunctions.ApprovalStage.Remote.GetStagePerformers(_obj, stage);
+        foreach (var approver in approvers)
+          e.Block.Performers.Add(approver);
+      }
+    }
+
     public override void StartBlock9(Sungero.Docflow.Server.ApprovalSigningAssignmentArguments e)
     {
       base.StartBlock9(e);
@@ -129,8 +141,8 @@ namespace sberdev.SBContracts.Server
       }
       else
         base.CompleteAssignment30(assignment, e);
-        if (assignment.Result == Sungero.Docflow.ApprovalSimpleAssignment.Result.Complete)
-          Functions.ApprovalTask.OneTimeCompleteAdd(_obj, e);
+      if (assignment.Result == Sungero.Docflow.ApprovalSimpleAssignment.Result.Complete)
+        Functions.ApprovalTask.OneTimeCompleteAdd(_obj, e);
     }
 
     public override void StartBlock31(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
