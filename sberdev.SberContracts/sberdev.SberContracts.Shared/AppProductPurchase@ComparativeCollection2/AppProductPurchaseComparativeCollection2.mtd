@@ -1,0 +1,123 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "f39b4e44-00b3-4759-af56-c6366bb30236",
+  "Name": "AppProductPurchaseComparativeCollection2",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "CompAppPP2",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e4c6ed43-d739-4d26-9323-afeb6d2028c0",
+      "Name": "AppProductPurchase",
+      "CanBeSearch": false,
+      "Code": "EDoc",
+      "EntityGuid": "50114491-2005-49ad-b0d6-49c695c44b8d",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "4b213e6c-f2e7-498d-ace7-4f906ffeb7e0",
+      "Name": "Number",
+      "CanBeSearch": false,
+      "Code": "Number",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "e4c6ed43-d739-4d26-9323-afeb6d2028c0"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "3f7f78d8-f560-42f9-8a0c-2869cdbd5945",
+      "Name": "Product",
+      "CanBeSearch": false,
+      "Code": "Product",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "4b213e6c-f2e7-498d-ace7-4f906ffeb7e0",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "2f56b8bc-a8a6-4e29-aa90-22f3f8524753",
+      "Name": "PriceUnit",
+      "CanBeSearch": false,
+      "Code": "PriceUnit",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "3f7f78d8-f560-42f9-8a0c-2869cdbd5945",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "7ba3c559-a501-43fe-ba74-a7c1f9195a57",
+      "Name": "PaymentTerms",
+      "CanBeSearch": false,
+      "Code": "PaymentTerms",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "2f56b8bc-a8a6-4e29-aa90-22f3f8524753",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9e4ae27a-d958-467d-93e6-f353c69409fd",
+      "Name": "DeliveryPer",
+      "CanBeSearch": false,
+      "Code": "DeliveryPer",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "7ba3c559-a501-43fe-ba74-a7c1f9195a57",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "3cf8d9ee-aad5-499c-a853-bcc95c7d6b42",
+      "Name": "Advantages",
+      "CanBeSearch": false,
+      "Code": "Advantages",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "9e4ae27a-d958-467d-93e6-f353c69409fd",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "76ddd004-eec9-42e4-80ef-be0b35d0b57d",
+      "Name": "Risks",
+      "CanBeSearch": false,
+      "Code": "Risks",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "3cf8d9ee-aad5-499c-a853-bcc95c7d6b42",
+      "Versions": []
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "3ad803db-7d77-4b1a-a294-ca50dd5e391d",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "73b6e263-c11a-4439-aba0-991227a71356",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

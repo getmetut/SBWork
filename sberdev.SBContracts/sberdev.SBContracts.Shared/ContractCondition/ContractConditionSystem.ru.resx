@@ -193,4 +193,7 @@
   <data name="Property_ProductUnitSberDev" xml:space="preserve">
     <value>Бизненс юнит</value>
   </data>
+  <data name="Enum_ConditionType_IsProdPurchase" xml:space="preserve">
+    <value>Производственная закупка</value>
+  </data>
 </root>

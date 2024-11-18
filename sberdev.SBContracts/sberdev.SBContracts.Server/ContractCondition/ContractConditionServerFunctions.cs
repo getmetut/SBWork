@@ -22,6 +22,10 @@ namespace sberdev.SBContracts.Server
           head += "?";
           return head;
         }
+        if (_obj.ConditionType == ConditionType.IsProdPurchase)
+        {
+          return "Производственная закупка?";
+        }
         
         if (_obj.ConditionType == ConditionType.IsPrepayment)
           return "Тип оплаты = предоплата?";

@@ -434,6 +434,19 @@
         "ReportId": "01183f10-af51-4496-a499-e35ca687c014"
       },
       {
+        "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
+        "NameGuid": "6e18bde3-cb7c-4415-bb10-548f74b56b7a",
+        "Name": "ContractCategories",
+        "EntityTypeId": "440f5d07-fc96-4894-9e40-df83aaf5fd92",
+        "GroupId": "a45c2480-9775-4f34-a8f2-aa91c233d04f",
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "EntityTypeId"
+        ],
+        "PreviousItemGuid": "63522c3b-80b7-475a-8fae-5fb26acd11ba",
+        "Versions": []
+      },
+      {
         "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
         "NameGuid": "853f582b-fee7-4bc8-a061-9da218f11106",
         "Name": "CompleteAssignmentsSberDev",

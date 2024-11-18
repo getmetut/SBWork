@@ -312,6 +312,22 @@ namespace sberdev.SberContracts.Server
       }
       #endregion
       
+      #region BudgetOwnerPrGe
+      if (_obj.Type == SberContracts.CustomAppovalRole.Type.BudgetOwnerPrGe)
+      {
+        var accounting = SBContracts.AccountingDocumentBases.As(task.DocumentGroup.OfficialDocuments.FirstOrDefault());
+        var contractual = SBContracts.ContractualDocuments.As(task.DocumentGroup.OfficialDocuments.FirstOrDefault());
+        if (accounting != null)
+          return accounting.ProdCollectionBaseSberDev.FirstOrDefault()?.Product.BudgetOwnerGeneral;
+        if (contractual != null)
+        {
+          return contractual.ProdCollectionExBaseSberDev.FirstOrDefault()?.Product.BudgetOwnerGeneral;
+          return contractual.ProdCollectionPrBaseSberDev.FirstOrDefault()?.Product.BudgetOwnerGeneral;
+        }
+      }
+      
+      #endregion
+      
       return base.GetRolePerformer(task);
     }
   }

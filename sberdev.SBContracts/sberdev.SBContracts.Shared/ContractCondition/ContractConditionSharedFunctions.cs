@@ -83,6 +83,16 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      if (_obj.ConditionType == ConditionType.IsProdPurchase)
+      {
+        bool flag = false;
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        if (contractual != null)
+          flag = contractual.MVZBaseSberDev?.ProductionPurchase
+            ?? contractual.MVPBaseSberDev?.ProductionPurchase
+            ?? false;
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
       
       if (_obj.ConditionType == ConditionType.IsNeedCheckCp)
       {
@@ -653,6 +663,8 @@ namespace sberdev.SBContracts.Shared
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.IsProdPurchase); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.IsProdPurchase); // sup agreement
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.ProductUnit); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.ProductUnit); // sup agreement

@@ -201,8 +201,12 @@
       "PreviousItemId": "e87ea225-f001-4dfe-a5d2-dc195e01dd85"
     },
     {
-      "ItemId": "ea461a5e-67b1-448f-9e88-225bafbf3705",
+      "ItemId": "50114491-2005-49ad-b0d6-49c695c44b8d",
       "PreviousItemId": "b8b5c0eb-bbb3-4519-8b10-60352431e252"
+    },
+    {
+      "ItemId": "ea461a5e-67b1-448f-9e88-225bafbf3705",
+      "PreviousItemId": "50114491-2005-49ad-b0d6-49c695c44b8d"
     },
     {
       "ItemId": "8fc24fb9-3645-4ff8-ac1a-f4f416ac4076",
@@ -317,6 +321,14 @@
       ],
       "TypeName": "System.Guid",
       "Value": "new System.Guid(\"c48e6195-7f93-4e1b-98cf-293d2a2c862d\")"
+    },
+    {
+      "Name": "AppProductPurchaseGuid",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"5f15d0c0-c0e3-42df-b869-7aa26ae26a5e\")"
     },
     {
       "Name": "BusinessControlerRoleGuid",
@@ -947,7 +959,7 @@
       "NeedShowMarkedCount": false
     }
   ],
-  "Version": "4.26.0.0",
+  "Version": "4.27.0.0",
   "Widgets": [],
   "Versions": [
     {

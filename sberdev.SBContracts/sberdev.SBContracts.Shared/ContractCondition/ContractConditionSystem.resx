@@ -193,4 +193,7 @@
   <data name="Property_ProductUnitSberDev" xml:space="preserve">
     <value>Product Unit</value>
   </data>
+  <data name="Enum_ConditionType_IsProdPurchase" xml:space="preserve">
+    <value>Production purchase</value>
+  </data>
 </root>

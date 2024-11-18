@@ -1033,7 +1033,7 @@ namespace sberdev.SberContracts.Server
         doc.Currency = docSelected.Currency;
       }
       doc.DeliveryMethod = docSelected.DeliveryMethod;
-      if (!SberContracts.Purchases.Is(doc))
+      if (!SberContracts.Purchases.Is(doc) && !SberContracts.AppProductPurchases.Is(doc))
       {
         doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
         doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;

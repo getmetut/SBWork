@@ -49,6 +49,10 @@ namespace sberdev.SBContracts.Server
               return "Сумма закупки < " + _obj.PurchaseAmountSberDev.Value.ToString();
           }
         }
+        if (_obj.ConditionType == ConditionType.IsProdPurchase)
+        {
+          return "Производственная закупка?";
+        }
         
         if (_obj.ConditionType == ConditionType.SameAttorney)
         {

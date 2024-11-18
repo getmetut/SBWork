@@ -277,6 +277,11 @@
           "NameGuid": "25596300-3a93-469a-9ec4-fafb7171a556",
           "Name": "ProductUnit",
           "Code": "ProductUnit"
+        },
+        {
+          "NameGuid": "ff984cdd-ac9e-4d49-b74d-9ae00250b66f",
+          "Name": "IsProdPurchase",
+          "Code": "IsProdPurchase"
         }
       ],
       "IsAncestorMetadata": true,
