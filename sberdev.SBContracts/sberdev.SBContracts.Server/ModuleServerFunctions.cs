@@ -863,6 +863,10 @@ namespace sberdev.SBContracts.Server
             CreateBodyByPropertiesOrderXiongxin(SBContracts.SupAgreements.As(doc), body);
           }
           break;
+          case "sberdev.SberContracts.AppProductPurchase":
+            body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.AppProductPurchaseTemplateDocxName);
+            CreateBodyByPropertiesOrderXiongxin(SberContracts.AppProductPurchases.As(doc), body);
+          break;
       };
       
       var gPath = Guid.NewGuid().ToString();
@@ -1219,6 +1223,35 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[PaymentType]", SBContracts.PublicFunctions.Module.GetPaymentType(purch));
     }
     #endregion
+    
+    public void CreateBodyByPropertiesAppProductPurchase(SberContracts.IAppProductPurchase purch, Aspose.Words.Document body)
+    {
+       body.Range.Replace("[Contract]", );
+       body.Range.Replace("[FlagNDA]", );
+       body.Range.Replace("[CPContacts]", );
+       body.Range.Replace("[PlanDelDate]", );
+       body.Range.Replace("[ProdPeriod]", );
+       body.Range.Replace("[Deposit]", );
+       body.Range.Replace("[DepositDays]", );
+       body.Range.Replace("[Balance]", );
+       body.Range.Replace("[BalanceDays]", );
+       body.Range.Replace("[AgencyScheme]", );
+       body.Range.Replace("[Incoterms]", );
+       body.Range.Replace("[PlanDelDate]", );
+       body.Range.Replace("[PickupAddress]", );
+       body.Range.Replace("[PlanDelType]", );
+       body.Range.Replace("[Counterparty1]", );
+       body.Range.Replace("[Counterparty2]", );
+       body.Range.Replace("[Counterparty3]", );
+       body.Range.Replace("[]", );
+       body.Range.Replace("[]", );
+       body.Range.Replace("[]", );
+       body.Range.Replace("[]", );
+       body.Range.Replace("[]", );
+       body.Range.Replace("[]", );
+       body.Range.Replace("[]", );
+       body.Range.Replace("[]", );
+    }
     
     #region Вспомогательные функции для построения документа
     

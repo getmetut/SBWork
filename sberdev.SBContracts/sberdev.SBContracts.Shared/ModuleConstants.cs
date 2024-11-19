@@ -6,6 +6,8 @@ namespace sberdev.SBContracts.Constants
   public static class Module
   {
     [Public]
+    public const string AppProductPurchaseTemplateDocxName = "//AppProductPurchaseTemplate.docx";
+    [Public]
     public const string PurchaseShortTemplateDocxName = "//PurchaseShortTemplate.docx";
     [Public]
     public const string PurchaseTemplateDocxName = "//PurchaseTemplate.docx";

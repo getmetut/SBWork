@@ -24,7 +24,7 @@ namespace sberdev.SberContracts.Shared
       
       int cpNum = 0;
       if (_obj.CpNumber.HasValue)
-        cpNum = Int32.Parse(_obj.CpNumber.Value.ToString());
+        cpNum = Int32.Parse(_obj.CpNumber.Value.Value);
       
       var properties = _obj.State.Properties;
       var collections = new List<Sungero.Domain.Shared.IPropertyState>()
@@ -38,7 +38,7 @@ namespace sberdev.SberContracts.Shared
       for (int i = 0; i < collections.Count; i++)
       {
         collections[i].IsRequired = i < cpNum;
-        collections[i].IsEnabled = i < cpNum;
+        collections[i].IsVisible = i < cpNum;
       }
 
     }

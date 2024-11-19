@@ -286,6 +286,14 @@
   ],
   "PublicConstants": [
     {
+      "Name": "AppProductPurchaseTemplateDocxName",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"//AppProductPurchaseTemplate.docx\""
+    },
+    {
       "Name": "CommonName",
       "ParentClasses": [
         "Module",
