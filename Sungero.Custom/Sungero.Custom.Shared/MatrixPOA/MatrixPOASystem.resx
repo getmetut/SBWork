@@ -62,13 +62,13 @@
     <value>Name</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Матрица полномочий доверенностей</value>
+    <value>Тип доверенность (матрица)</value>
   </data>
   <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Матрицуполномочий доверенностей</value>
+    <value>Тип доверенность (матрицу)</value>
   </data>
   <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Матрицы полномочий доверенностей</value>
+    <value>Типы доверенностей (матрицы)</value>
   </data>
   <data name="Property_TypePOA" xml:space="preserve">
     <value>Тип доверенности</value>
@@ -83,9 +83,18 @@
     <value>Лицо согласующее данную доверенность</value>
   </data>
   <data name="Property_Mahineread" xml:space="preserve">
-    <value>Машиночитаемая доверенность для ЭДО</value>
+    <value>Требуется выпуск машиночитаемой доверенности для ЭДО</value>
   </data>
   <data name="Property_Representative" xml:space="preserve">
     <value>Представитель</value>
+  </data>
+  <data name="Enum_TypePOA_Paper" xml:space="preserve">
+    <value>На бумажном носителе (Письменная доверенность)</value>
+  </data>
+  <data name="Enum_TypePOA_M4D" xml:space="preserve">
+    <value>Машиночитаемая доверенность (Электронная доверенность)</value>
+  </data>
+  <data name="Enum_TypePOA_Mix" xml:space="preserve">
+    <value>МЧД/На бумажном носителе (Комбинированная)</value>
   </data>
 </root>

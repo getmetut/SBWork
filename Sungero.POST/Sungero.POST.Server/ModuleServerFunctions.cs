@@ -928,7 +928,8 @@ namespace Sungero.POST.Server
         return ListStruct2;
       } 
     }
-    // <summary>
+    
+    /// <summary>
     /// Тестовая функция для проверки коннекта
     /// </summary>
     /// <param name="inputstring">Тестовая строка</param>
@@ -1028,18 +1029,119 @@ namespace Sungero.POST.Server
       } 
     }
     #endregion
-    /*
+    
     #region Выгрузка по счетам
     /// <summary>
     /// Выгрузка счетов для 1С
     /// </summary>
     /// <param name="GUIDRX">ID Договора</param>
     [Public(WebApiRequestType = RequestType.Post)]
-    public Structures.Module.IFormatRequest loadIncomingInvoices(string GUIDRX)
+    public List<Structures.Module.IStructIncomingInvoices> loadIncomingInvoices(string DateStart, string DateStop)
     {
+      var LstII = sberdev.SBContracts.IncomingInvoices.GetAll(i => i.LifeCycleState == sberdev.SBContracts.IncomingInvoice.LifeCycleState.Active).ToList();
+      List<Structures.Module.IStructIncomingInvoices> FullList = new List<Sungero.POST.Structures.Module.IStructIncomingInvoices>();
+      if (DateStart != "")
+        LstII = LstII.Where(i => i.Created >= ParseDate(DateStart)).ToList();
       
+      if (DateStop != "")
+        LstII = LstII.Where(i => i.Created < ParseDate(DateStop)).ToList(); 
+      
+      if (LstII.Count > 0)
+      {
+        foreach (var elem in LstII)
+        {
+          var str = Structures.Module.StructIncomingInvoices.Create();
+          str.CouterpartyTRRCSberDev = elem.CouterpartyTRRCSberDev != null ? elem.CouterpartyTRRCSberDev.ToString() : "";
+          str.CardURLSberDev = elem.CardURLSberDev != null ? elem.CardURLSberDev.ToString() : "";;
+          str.CounterpartyTINSberDev = elem.CounterpartyTINSberDev != null ? elem.CounterpartyTINSberDev.ToString() : "";
+          str.EstPaymentDateSberDev = elem.EstPaymentDateSberDev != null ? elem.EstPaymentDateSberDev.ToString() : "";
+          str.CalcListSDev = elem.CalcListSDev != null ? elem.CalcListSDev.ToString() : "";
+          str.ModifiedSberDev = elem.ModifiedSberDev != null ? elem.ModifiedSberDev.ToString() : "";
+          str.MarketingIDSberDev = elem.MarketingIDSberDev != null ? elem.MarketingIDSberDev.ToString() : "";
+          str.MarketingSberDev = elem.MarketingSberDev != null ? elem.MarketingSberDev.Name.ToString() : "";
+          str.BudItemBaseSberDev = elem.BudItemBaseSberDev != null ? elem.BudItemBaseSberDev.Name.ToString() : "";
+          str.NoticeSendBaseSberDev = elem.NoticeSendBaseSberDev != null ? elem.NoticeSendBaseSberDev.Value.ToString() : "";
+          str.CalculationResidualAmountBaseSberDev = elem.CalculationResidualAmountBaseSberDev != null ? elem.CalculationResidualAmountBaseSberDev.Value.ToString() : "";
+          str.CalculationDistributeBaseSberDev = elem.CalculationDistributeBaseSberDev != null ? elem.CalculationDistributeBaseSberDev.Value.ToString() : "";
+          str.CalculationAmountBaseSberDev = elem.CalculationAmountBaseSberDev != null ? elem.CalculationAmountBaseSberDev.Value.ToString() : "";
+          str.CalculationFlagBaseSberDev = elem.CalculationFlagBaseSberDev != null ? elem.CalculationFlagBaseSberDev.Value.ToString() : "";
+          str.MarketDirectSberDev = elem.MarketDirectSberDev != null ? elem.MarketDirectSberDev.Name.ToString() : "";
+          str.PayTypeBaseSberDev = elem.PayTypeBaseSberDev != null ? elem.PayTypeBaseSberDev.Value.ToString() : "";
+          str.InvoiceSberDev = elem.InvoiceSberDev != null ? elem.InvoiceSberDev.Name.ToString() : "";
+          str.AccArtBaseSberDev = elem.AccArtBaseSberDev != null ? elem.AccArtBaseSberDev.Name.ToString() : "";
+          str.MVPBaseSberDev = elem.MVPBaseSberDev != null ? elem.MVPBaseSberDev.Name.ToString() : "";
+          str.MVZBaseSberDev = elem.MVZBaseSberDev != null ? elem.MVZBaseSberDev.Name.ToString() : "";          
+          str.AccDocSberDev = elem.AccDocSberDev != null ? elem.AccDocSberDev.Name.ToString() : "";
+          str.FrameworkBaseSberDev = elem.FrameworkBaseSberDev != null ? elem.FrameworkBaseSberDev.Value.ToString() : "";
+          str.ContrTypeBaseSberDev = elem.ContrTypeBaseSberDev != null ? elem.ContrTypeBaseSberDev.Value.ToString() : "";
+          str.PurchaseOrderNumber = elem.PurchaseOrderNumber != null ? elem.PurchaseOrderNumber.ToString() : "";
+          str.NetAmount = elem.NetAmount != null ? elem.NetAmount.Value.ToString() : "";
+          str.VatAmount = elem.VatAmount != null ? elem.VatAmount.Value.ToString() : "";
+          str.VatRate = elem.VatRate != null ? elem.VatRate.Name.ToString() : "";
+          str.CounterpartySigningReason = elem.CounterpartySigningReason != null ? elem.CounterpartySigningReason.ToString() : "";
+          str.IsFormalizedSignatoryEmpty = elem.IsFormalizedSignatoryEmpty != null ? elem.IsFormalizedSignatoryEmpty.Value.ToString() : "";
+          str.IsRevision = elem.IsRevision != null ? elem.IsRevision.Value.ToString() : "";          
+          str.FormalizedFunction = elem.FormalizedFunction != null ? elem.FormalizedFunction.Value.ToString() : "";
+          str.FormalizedServiceType = elem.FormalizedServiceType != null ? elem.FormalizedServiceType.Value.ToString() : "";
+          str.BodyExtSberDev = elem.BodyExtSberDev != null ? elem.BodyExtSberDev.ToString() : "";
+          str.ManuallyCheckedSberDev = elem.ManuallyCheckedSberDev != null ? elem.ManuallyCheckedSberDev.Value.ToString() : "";
+          str.Subtopic = elem.Subtopic != null ? elem.Subtopic.Name.ToString() : "" ;
+          str.Topic = elem.Topic != null ? elem.Topic.Name.ToString() : "";
+          str.StoredIn = elem.StoredIn != null ? elem.StoredIn.ToString() : "";
+          str.AddendaPaperCount = elem.AddendaPaperCount != null ? elem.AddendaPaperCount.Value.ToString() : "";
+          str.ExternalId = elem.ExternalId != null ? elem.ExternalId.ToString() : "";
+          str.OurSigningReason = elem.OurSigningReason != null ? elem.OurSigningReason.Name.ToString() : "";
+          str.DocumentDate = elem.DocumentDate != null ? elem.DocumentDate.Value.ToString() : "";
+          str.PaymentDateSberDevSDev = elem.PaymentDateSberDev != null ? elem.PaymentDateSberDev.Value.ToString() : "";          
+          str.NoNeedLeadingDocsSDev = elem.NoNeedLeadingDocs != null ? elem.NoNeedLeadingDocs.Value.ToString() : "";
+          str.ContractStatementSDev = elem.ContractStatement != null ? elem.ContractStatement.Name.ToString() : "";
+          str.DeliveryInfoSDev = elem.DeliveryInfo != null ? elem.DeliveryInfo.ToString() : "";          
+          str.OriginalSDev = elem.Original != null ? elem.Original.Value.ToString() : "";
+          str.PayTypeSDev = elem.PayType != null ? elem.PayType.Value.ToString() : "";
+          str.PaymentDueDate = elem.PaymentDueDate != null ? elem.PaymentDueDate.Value.ToString() : "";
+          str.Corrected = elem.Corrected != null ? elem.Corrected.Name.ToString() : "";
+          str.IsAdjustment = elem.IsAdjustment != null ? elem.IsAdjustment.Value.ToString() : "";
+          str.BusinessUnitBox = elem.BusinessUnitBox != null ? elem.BusinessUnitBox.Name.ToString() : "";
+          str.BuyerSignatureId = elem.BuyerSignatureId != null ? elem.BuyerSignatureId.Value.ToString() : "";
+          str.SellerSignatureId = elem.SellerSignatureId != null ? elem.SellerSignatureId.Value.ToString() : "";
+          str.BuyerTitleId = elem.BuyerTitleId != null ? elem.BuyerTitleId.Value.ToString() : "";
+          str.SellerTitleId = elem.SellerTitleId != null ? elem.SellerTitleId.Value.ToString() : "";
+          str.IsFormalized = elem.Topic != null ? elem.Topic.Name.ToString() : "";
+          str.ExchangeState = elem.ExchangeState != null ? elem.ExchangeState.Value.ToString() : "";
+          str.Contract = elem.Contract != null ? elem.Contract.Name.ToString() : "";
+          str.Created = elem.Created != null ? elem.Created.Value.ToString() : "";
+          str.Author = elem.Author != null ? elem.Author.Name.ToString() : "";
+          str.Currency = elem.Currency != null ? elem.Currency.Name.ToString() : "";
+          str.TotalAmount = elem.TotalAmount != null ? elem.TotalAmount.Value.ToString() : "";
+          str.Date = elem.Date != null ? elem.Date.Value.ToString() : "";
+          str.Number = elem.Number != null ? elem.Number.ToString() : "";
+          str.Assignee = elem.Assignee != null ? elem.Assignee.Name.ToString() : "";
+          str.PreparedBy = elem.PreparedBy != null ? elem.PreparedBy.Name.ToString() : "";
+          str.DocumentGroup = elem.DocumentGroup != null ? elem.DocumentGroup.Name.ToString() : "";
+          str.Note = elem.Note != null ? elem.Note.ToString() : "";
+          str.Subject = elem.Subject != null ? elem.Subject.ToString() : "";          
+          str.CounterpartySignatory = elem.CounterpartySignatory != null ? elem.CounterpartySignatory.Name.ToString() : "";
+          str.LeadingDocument = elem.LeadingDocument != null ? elem.LeadingDocument.Name.ToString() : "";
+          str.OurSignatory = elem.OurSignatory != null ? elem.OurSignatory.Name.ToString() : "";
+          str.ResponsibleEmployee = elem.ResponsibleEmployee != null ? elem.ResponsibleEmployee.Name.ToString() : "";
+          str.Department = elem.Department != null ? elem.Department.Name.ToString() : "";
+          str.BusinessUnit = elem.BusinessUnit != null ? elem.BusinessUnit.Name.ToString() : "";
+          str.Counterparty = elem.Counterparty != null ? elem.Counterparty.Name.ToString() : "";
+          str.DocumentKind = elem.DocumentKind != null ? elem.DocumentKind.Name.ToString() : "";
+          str.LifeCycleState = elem.LifeCycleState != null ? elem.LifeCycleState.Value.ToString() : "";
+          str.RegistrationState = elem.RegistrationState != null ? elem.RegistrationState.Value.ToString() : "";
+          str.ReturnDate = elem.ReturnDate != null ? elem.ReturnDate.Value.ToString() : "";
+          str.DeliveredTo = elem.DeliveredTo != null ? elem.DeliveredTo.Name.ToString() : "";
+          str.RegistrationNumber = elem.RegistrationNumber != null ? elem.RegistrationNumber.ToString() : "";
+          str.Name = elem.Name.ToString();
+          str.Id = elem.Id.ToString();
+
+          FullList.Add(str);
+        }
+      }
+      
+      return FullList;
     }
     #endregion
-    */
   }
 }

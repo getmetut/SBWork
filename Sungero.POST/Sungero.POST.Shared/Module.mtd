@@ -333,6 +333,24 @@
       "WebApiRequestType": "Post"
     },
     {
+      "Name": "loadIncomingInvoices",
+      "Parameters": [
+        {
+          "Name": "DateStart",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "DateStop",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IStructIncomingInvoices>",
+      "ReturnTypeFullName": "System.Collections.Generic.List",
+      "WebApiRequestType": "Post"
+    },
+    {
       "Name": "PostMarcetingDocuments",
       "Parameters": [
         {
@@ -2373,7 +2391,7 @@
   "SharedAssemblyName": "Sungero.POST.Shared",
   "SharedNamespace": "Sungero.POST.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.179",
+  "Version": "0.0.1.185",
   "Widgets": [],
   "Versions": [
     {

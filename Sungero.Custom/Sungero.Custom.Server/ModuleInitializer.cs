@@ -112,6 +112,18 @@ namespace Sungero.Custom.Server
         Role.IsSingleUser = false;
         Role.Save();
       }
+      
+      
+      if (Roles.GetAll(r => (r.Name == "Доступ к персональным данным")).Count() == 0)
+      {
+        var Role = Roles.Create();
+        Role.Name = "Доступ к персональным данным";
+        Role.Status = Sungero.CoreEntities.Role.Status.Active;
+        Role.Description = "Программная роль для доступа к персональным данным";
+        Role.IsSingleUser = false;
+        Role.Save();
+      }  
+        
       if (Roles.GetAll(r => (r.Name == "Доступ к обложке Отчеты")).Count() == 0)
       {
         var Role = Roles.Create();

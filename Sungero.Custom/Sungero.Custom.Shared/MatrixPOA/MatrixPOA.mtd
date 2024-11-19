@@ -56,7 +56,7 @@
           "Name": "TypePOA",
           "ColumnNumber": 0,
           "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
           "ParentGuid": "eb7f047e-17dc-4735-9047-9d6fea99a171",
           "PropertyGuid": "233b0b1a-58a6-49b2-854c-13c7991fafc8",
           "RowNumber": 1,
@@ -163,15 +163,32 @@
       "PreviousPropertyGuid": "1dcedc29-5140-4770-ac92-eabc212326a1"
     },
     {
-      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
       "NameGuid": "233b0b1a-58a6-49b2-854c-13c7991fafc8",
       "Name": "TypePOA",
       "Code": "TypePOA",
+      "DirectValues": [
+        {
+          "NameGuid": "6799fe92-e09c-4698-9657-b026ec96a2e3",
+          "Name": "Paper",
+          "Code": "Paper"
+        },
+        {
+          "NameGuid": "5b0ecb63-a741-43a5-8fb3-05f339dd7ace",
+          "Name": "M4D",
+          "Code": "M4D"
+        },
+        {
+          "NameGuid": "0201f10b-7a81-424e-8b55-4692c1b3d797",
+          "Name": "Mix",
+          "Code": "Mix"
+        }
+      ],
       "HandledEvents": [
         "ChangedShared"
       ],
       "IsRequired": true,
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "39a9eb35-572e-4d4d-a659-68e651d7bf9a"
     },
     {
@@ -210,6 +227,7 @@
       "HandledEvents": [
         "ChangedShared"
       ],
+      "IsEnabled": false,
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "66c5af0b-c83b-4e1f-8480-bff979683b28"

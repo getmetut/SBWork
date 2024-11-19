@@ -104,6 +104,21 @@
     <value />
   </data>
   <data name="Property_MatrixSDev" xml:space="preserve">
-    <value>Тип доверенности (матрица)</value>
+    <value>Форма доверенности</value>
+  </data>
+  <data name="Property_PDSeriesSDev" xml:space="preserve">
+    <value>Серия</value>
+  </data>
+  <data name="Property_PDNumberSDev" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="Property_PDRegistrationSDev" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="Property_PDInfoSDev" xml:space="preserve">
+    <value>Информация о документе</value>
+  </data>
+  <data name="ControlGroup_14190e59d9db4b37945239c44dd4800a" xml:space="preserve">
+    <value>Персональные данные</value>
   </data>
 </root>

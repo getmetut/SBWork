@@ -58,40 +58,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Resource_8d9071a44b964f96bc6f3ca2ceabed37" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_8d9071a44b964f96bc6f3ca2ceabed37_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_147049796d2e43fd9611faf96e8aa2f8" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_5e41dfa11ff1494ead2673aa9faaa41b" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_5e41dfa11ff1494ead2673aa9faaa41b_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_2d091121b05946c5b1ba7f133de69161" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_2d091121b05946c5b1ba7f133de69161_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_d99757c1cc0944f8a9a2963f8ef582d2" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_8729b97ad28b4289970fe7303da8a406" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_10148f1e68f24a5e9a7603b32b9b3229" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_b35f5aa8ad2a48d7bdac20daaa3d7d61" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Property_MatrixSDev" xml:space="preserve">
-    <value>Форма доверенности</value>
+  <data name="Property_DocKindsStringSDev" xml:space="preserve">
+    <value>Связанные виды документов</value>
   </data>
 </root>

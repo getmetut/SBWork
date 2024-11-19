@@ -9,7 +9,6 @@ namespace Sungero.Custom.Shared
 {
   partial class MatrixPOAFunctions
   {
-
     /// <summary>
     /// Обновление формы, формиование имени
     /// </summary>
@@ -18,10 +17,20 @@ namespace Sungero.Custom.Shared
     {
       string name = "";
       if (_obj.TypePOA != null)
-        name += _obj.TypePOA.ToString();
+      {
+        if (_obj.TypePOA == Custom.MatrixPOA.TypePOA.Paper)
+          name += "На бумажном носителе (Письменная доверенность)";
+        if (_obj.TypePOA == Custom.MatrixPOA.TypePOA.M4D)
+          name += "Машиночитаемая доверенность (Электронная доверенность)";
+        if (_obj.TypePOA == Custom.MatrixPOA.TypePOA.Mix)
+          name += "МЧД/На бумажном носителе (Комбинированная)";
+      }
       
       if (_obj.Mahineread.HasValue)
-        name += _obj.Mahineread.Value ? " (МЧД)" : "";
+      {
+        if (_obj.TypePOA == Custom.MatrixPOA.TypePOA.Mix)
+          name += _obj.Mahineread.Value ? " (МЧД)" : "";
+      }
       
       if (_obj.Name != name)
         _obj.Name = name;

@@ -14,6 +14,7 @@ namespace Sungero.ATS
     {
       base.Created(e);
       _obj.FirstOrDoubleSDev = false;
+      _obj.LifeCycleState = PowerOfAttorney.LifeCycleState.Draft;
     }
   }
 

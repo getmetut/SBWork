@@ -10,5 +10,10 @@ namespace Sungero.ATS
   partial class PowerOfAttorneyClientHandlers
   {
 
+    public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
+    {
+      base.Showing(e);
+    }
+
   }
 }
