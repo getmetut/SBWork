@@ -63,15 +63,14 @@
       "Versions": []
     },
     {
-      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
       "NameGuid": "9e4ae27a-d958-467d-93e6-f353c69409fd",
       "Name": "DeliveryPer",
       "CanBeSearch": false,
       "Code": "DeliveryPer",
       "IsRequired": true,
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
-      "PreviousPropertyGuid": "7ba3c559-a501-43fe-ba74-a7c1f9195a57",
-      "Versions": []
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+      "PreviousPropertyGuid": "7ba3c559-a501-43fe-ba74-a7c1f9195a57"
     },
     {
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
@@ -91,6 +90,16 @@
       "Code": "Risks",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "3cf8d9ee-aad5-499c-a853-bcc95c7d6b42",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "1c510f4d-9d21-4472-ad61-d7e62117011d",
+      "Name": "Quantity",
+      "CanBeSearch": false,
+      "Code": "Quantity",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "76ddd004-eec9-42e4-80ef-be0b35d0b57d",
       "Versions": []
     }
   ],
