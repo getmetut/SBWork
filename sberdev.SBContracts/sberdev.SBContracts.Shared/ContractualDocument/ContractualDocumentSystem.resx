@@ -409,4 +409,7 @@
   <data name="Property_CouterpartyTRRCSberDev" xml:space="preserve">
     <value>Couterparty TRRC</value>
   </data>
+  <data name="Property_ProdCollectionStringSDev" xml:space="preserve">
+    <value>Продукты документа</value>
+  </data>
 </root>

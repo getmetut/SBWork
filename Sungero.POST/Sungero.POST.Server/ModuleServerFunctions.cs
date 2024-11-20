@@ -1036,9 +1036,19 @@ namespace Sungero.POST.Server
     /// </summary>
     /// <param name="GUIDRX">ID Договора</param>
     [Public(WebApiRequestType = RequestType.Post)]
-    public List<Structures.Module.IStructIncomingInvoices> loadIncomingInvoices(string DateStart, string DateStop)
+    public List<Structures.Module.IStructIncomingInvoices> loadIncomingInvoices(string DateStart, string DateStop, string Status) // Status = InPayRegister ( In the payment register )
     {
-      var LstII = sberdev.SBContracts.IncomingInvoices.GetAll(i => i.LifeCycleState == sberdev.SBContracts.IncomingInvoice.LifeCycleState.Active).ToList();
+      var LstII = sberdev.SBContracts.IncomingInvoices.GetAll().ToList();
+      if (Status == "InPayRegister")
+        LstII = LstII.Where(i => i.LifeCycleState == sberdev.SBContracts.IncomingInvoice.LifeCycleState.InPayRegister).ToList();
+      else
+      {
+        if (Status == "Paid")
+          LstII = LstII.Where(i => i.LifeCycleState == sberdev.SBContracts.IncomingInvoice.LifeCycleState.Paid).ToList();
+        else
+          LstII = LstII.Where(i => i.LifeCycleState == sberdev.SBContracts.IncomingInvoice.LifeCycleState.Active).ToList();
+      }
+        
       List<Structures.Module.IStructIncomingInvoices> FullList = new List<Sungero.POST.Structures.Module.IStructIncomingInvoices>();
       if (DateStart != "")
         LstII = LstII.Where(i => i.Created >= ParseDate(DateStart)).ToList();
@@ -1052,7 +1062,7 @@ namespace Sungero.POST.Server
         {
           var str = Structures.Module.StructIncomingInvoices.Create();
           str.CouterpartyTRRCSberDev = elem.CouterpartyTRRCSberDev != null ? elem.CouterpartyTRRCSberDev.ToString() : "";
-          str.CardURLSberDev = elem.CardURLSberDev != null ? elem.CardURLSberDev.ToString() : "";;
+          str.CardURLSberDev = elem.CardURLSberDev != null ? elem.CardURLSberDev.ToString() : "";
           str.CounterpartyTINSberDev = elem.CounterpartyTINSberDev != null ? elem.CounterpartyTINSberDev.ToString() : "";
           str.EstPaymentDateSberDev = elem.EstPaymentDateSberDev != null ? elem.EstPaymentDateSberDev.ToString() : "";
           str.CalcListSDev = elem.CalcListSDev != null ? elem.CalcListSDev.ToString() : "";

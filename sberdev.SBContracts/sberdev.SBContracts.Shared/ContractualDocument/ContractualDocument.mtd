@@ -1652,6 +1652,16 @@
       "Length": 50,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "a045b92c-75d6-46d5-8a61-4432e5cce6e7"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "f7cde39e-7e3d-44b2-8bd6-bac4571b8770",
+      "Name": "ProdCollectionStringSDev",
+      "Code": "ProdCollection",
+      "IsEnabled": false,
+      "Length": 1000,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "8c3bc1e6-7211-412e-bc6a-51b327589a99"
     }
   ],
   "PublicFunctions": [

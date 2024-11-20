@@ -344,6 +344,11 @@
           "Name": "DateStop",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "Status",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
         }
       ],
       "ReturnType": "global::System.Collections.Generic.List<global::Sungero.POST.Structures.Module.IStructIncomingInvoices>",
@@ -2391,7 +2396,7 @@
   "SharedAssemblyName": "Sungero.POST.Shared",
   "SharedNamespace": "Sungero.POST.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.185",
+  "Version": "0.0.1.186",
   "Widgets": [],
   "Versions": [
     {

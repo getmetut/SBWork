@@ -187,6 +187,33 @@ namespace sberdev.SBContracts
       if (error != "")
         e.AddError(error);
       
+      if ((_obj.ProdCollectionExBaseSberDev.Count > 0) || (_obj.ProdCollectionPrBaseSberDev.Count > 0))
+      {
+        string prod = "";
+        if (_obj.ProdCollectionExBaseSberDev.Count > 0)
+        {
+          foreach (var str in _obj.ProdCollectionExBaseSberDev)
+          {
+            if (str.Product != null)
+              prod += str.Product.Name.ToString() + ";";
+          }
+        }
+        if (_obj.ProdCollectionPrBaseSberDev.Count > 0)
+        {
+          foreach (var strp in _obj.ProdCollectionPrBaseSberDev)
+          {
+            if (strp.Product != null)
+              prod += strp.Product.Name.ToString() + ";";
+          }
+        }
+          
+        if (prod.EndsWith(";")) 
+            prod = prod.Substring(0, prod.Length - 1);
+        
+        if (_obj.ProdCollectionStringSDev != prod)
+          _obj.ProdCollectionStringSDev = prod;
+      }
+      
       if (_obj.CalculationBaseSberDev.Count > 0)
       {
         if (_obj.CalculationAmountBaseSberDev == _obj.TotalAmount)
