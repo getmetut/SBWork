@@ -1281,17 +1281,17 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[AccArt]", purch.AccArtExBaseSberDev.Name);
       body.Range.Replace("[MVZ]", purch.MVZBaseSberDev.Name);
       
-      // Таблица продуктов
+      #region Таблица продуктов
       // Настройки таблицы
       var boldRows = new List<int> { 0, purch.PurchasesCollection.Count + 1 };
-      var columnWidths = new List<int> { 10, 90, 15, 15, 15, 20 };
+      var columnWidths = new List<int> { 10, 95, 10, 15, 20, 15 };
 
       // Инициализация таблицы
       int rowCount = purch.PurchasesCollection.Count + 2;
       string[,] purchTable = new string[rowCount, 6];
 
       // Заполнение заголовка таблицы
-      string[] headers = { "№", "Наименование закупаемой продукции", "Цена за ед.", "Кол-во, шт.", "Стоимость, с НДС /без НДС", "Валюта закупки" };
+      string[] headers = { "№", "Наименование закупаемой продукции", "Цена за ед.", "Кол-во, шт.", "Полн. стоим.", "Валюта закупки" };
       for (int i = 0; i < headers.Length; i++)
         purchTable[0, i] = headers[i];
 
@@ -1319,28 +1319,29 @@ namespace sberdev.SBContracts.Server
         "[PurchTable]",
         CreateTableByArray(body, purchTable, boldRows, columnWidths, "Times New Roman", 10)
        );
-      /*
-            // Таблица ресипиентов
+      #endregion
+      
+      #region Таблица ресипиентов
       // Настройки таблицы
       boldRows = new List<int> { 0};
       columnWidths = new List<int> { 10, 40, 60 };
 
       // Инициализация таблицы
       rowCount = purch.ParticipantsCollection.Count + 1;
-      table = new string[rowCount, 3];
+      recipTable = new string[rowCount, 3];
 
       // Заполнение заголовка таблицы
       string[] headers1 = { "№", "Наименование компании", "Контакты"};
       for (int i = 0; i < headers1.Length; i++)
-        table[0, i] = headers1[i];
+        recipTable[0, i] = headers1[i];
 
       // Заполнение строк данных
-      int counter = 1;
+      counter = 1;
       foreach (var elem in purch.ParticipantsCollection)
       {
-        table[counter, 0] = counter.ToString();
-        table[counter, 1] = elem.Counterparty;
-        table[counter, 2] = elem.Contacts;
+        recipTable[counter, 0] = counter.ToString();
+        recipTable[counter, 1] = elem.Counterparty;
+        recipTable[counter, 2] = elem.Contacts;
         counter++;
       }
       
@@ -1348,15 +1349,48 @@ namespace sberdev.SBContracts.Server
       ReplacePlaceholderWithTable(
         body,
         "[RecipTable]",
-        CreateTableByArray(body, table, boldRows, columnWidths, "Times New Roman", 10)
+        CreateTableByArray(body, recipTable, boldRows, columnWidths, "Times New Roman", 10)
        );
+      #endregion
+      
+      #region Таблица контрагент1
+      // Настройки таблицы
+      boldRows = new List<int> { 0, purch.ComparativeCollection1.Count + 1};
+      columnWidths = new List<int> { 7, 30, 7, 10, 15, 15, 10, 25, 25 };
 
-      /* body.Range.Replace("[]", );
-      body.Range.Replace("[]", );
-      body.Range.Replace("[]", );
-      body.Range.Replace("[]", );
-      body.Range.Replace("[]", );
-      body.Range.Replace("[]", );*/
+      // Инициализация таблицы
+      rowCount = purch.ComparativeCollection1.Count + 1;
+      string[,] CP1Table = new string[rowCount, 10];
+
+      // Заполнение заголовка таблицы
+      string[] headers2 = { "№", "Наименование продукта", "Кол-во", "Цена за шт, без НДС", "Сумма, без НДС", "Условия оплаты"
+          , "Срок поставки", "Преимущества", "Риски" };
+      for (int i = 0; i < headers2.Length; i++)
+        CP1Table[0, i] = headers2[i];
+
+      // Заполнение строк данных
+      counter = 1;
+      foreach (var elem in purch.ComparativeCollection1)
+      {
+        CP1Table[counter, 0] = counter.ToString();
+        CP1Table[counter, 1] = elem.Product;
+        CP1Table[counter, 2] = elem.Quantity.Value.ToString();
+        CP1Table[counter, 3] = elem.PriceUnit.Value.ToString();
+        CP1Table[counter, 4] = (elem.PriceUnit.Value * elem.Quantity.Value).ToString();
+        CP1Table[counter, 5] = elem.PaymentTerms;
+        CP1Table[counter, 2] = elem.DeliveryPer.Value.ToShortDateString();
+        CP1Table[counter, 3] = elem.Advantages;
+        CP1Table[counter, 4] = elem.Risks;
+        counter++;
+      }
+      // Вставка таблицы в документ
+      ReplacePlaceholderWithTable(
+        body,
+        "[CP1Table]",
+        CreateTableByArray(body, CP1Table, boldRows, columnWidths, "Times New Roman", 10)
+       );
+      #endregion
+      
     }
     #endregion
     

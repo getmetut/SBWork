@@ -76,4 +76,7 @@
   <data name="Property_PaymentTerms" xml:space="preserve">
     <value>Условия оплаты</value>
   </data>
+  <data name="Property_Quantity" xml:space="preserve">
+    <value>Кол-во</value>
+  </data>
 </root>

@@ -62,13 +62,13 @@
       "PreviousPropertyGuid": "7c00bbfd-8b93-4d13-bc0c-65d0b1618916"
     },
     {
-      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
       "NameGuid": "2715065b-04c9-4d5b-b61c-4ea360bf8815",
       "Name": "DeliveryPer",
       "CanBeSearch": false,
       "Code": "DeliveryPer",
       "IsRequired": true,
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
       "PreviousPropertyGuid": "702c5834-055c-4199-a791-8cf79521c72d"
     },
     {
@@ -88,6 +88,15 @@
       "Code": "Risks",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "e63b13c1-11db-4eca-8b52-487284a19d75"
+    },
+    {
+      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "7690739c-fa89-46b0-8bd5-a61a0becfab4",
+      "Name": "Quantity",
+      "CanBeSearch": false,
+      "Code": "Quantity",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "d1491d9c-79eb-4ca6-9022-d76673f77da8"
     }
   ],
   "PublicStructures": [],
