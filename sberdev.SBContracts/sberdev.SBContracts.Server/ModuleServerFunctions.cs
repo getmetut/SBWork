@@ -20,6 +20,12 @@ namespace sberdev.SBContracts.Server
   public class ModuleFunctions
   {
     
+    [Public]
+    public string GetPaymentType(SberContracts.IPurchase purch)
+    {
+      return GetPaymentKind(purch.PaymentKind) + (purch.PrepaymentPercent != null ? " c " + purch.PrepaymentPercent.ToString() + " % авансом" : "");
+    }
+    
     #region Разные геты и сеты
     
     /// <summary>
@@ -863,9 +869,9 @@ namespace sberdev.SBContracts.Server
             CreateBodyByPropertiesOrderXiongxin(SBContracts.SupAgreements.As(doc), body);
           }
           break;
-          case "sberdev.SberContracts.AppProductPurchase":
-            body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.AppProductPurchaseTemplateDocxName);
-            CreateBodyByPropertiesOrderXiongxin(SberContracts.AppProductPurchases.As(doc), body);
+        case "sberdev.SberContracts.AppProductPurchase":
+          body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.AppProductPurchaseTemplateDocxName);
+          CreateBodyByPropertiesAppProductPurchase(SberContracts.AppProductPurchases.As(doc), body);
           break;
       };
       
@@ -1220,38 +1226,139 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[Amount]", purch.PurchaseAmount.Value.ToString() + " " + purch.Currency.ShortName + (purch.VAT.Value ? " с учетом НДС" : " без учета НДС"));
       body.Range.Replace("[Counterparty]", purch.Counterparty.Name);
       body.Range.Replace("[ChooseCpJustif]", purch.ChooseCpJustif);
-      body.Range.Replace("[PaymentType]", SBContracts.PublicFunctions.Module.GetPaymentType(purch));
+      body.Range.Replace("[PaymentType]", GetPaymentType(purch));
     }
     #endregion
     
+    #region Заявка нп производ. закупку
     public void CreateBodyByPropertiesAppProductPurchase(SberContracts.IAppProductPurchase purch, Aspose.Words.Document body)
     {
-       body.Range.Replace("[Contract]", );
-       body.Range.Replace("[FlagNDA]", );
-       body.Range.Replace("[CPContacts]", );
-       body.Range.Replace("[PlanDelDate]", );
-       body.Range.Replace("[ProdPeriod]", );
-       body.Range.Replace("[Deposit]", );
-       body.Range.Replace("[DepositDays]", );
-       body.Range.Replace("[Balance]", );
-       body.Range.Replace("[BalanceDays]", );
-       body.Range.Replace("[AgencyScheme]", );
-       body.Range.Replace("[Incoterms]", );
-       body.Range.Replace("[PlanDelDate]", );
-       body.Range.Replace("[PickupAddress]", );
-       body.Range.Replace("[PlanDelType]", );
-       body.Range.Replace("[Counterparty1]", );
-       body.Range.Replace("[Counterparty2]", );
-       body.Range.Replace("[Counterparty3]", );
-       body.Range.Replace("[]", );
-       body.Range.Replace("[]", );
-       body.Range.Replace("[]", );
-       body.Range.Replace("[]", );
-       body.Range.Replace("[]", );
-       body.Range.Replace("[]", );
-       body.Range.Replace("[]", );
-       body.Range.Replace("[]", );
+      var contractText = purch.LeadingDocument != null
+        ? $"{purch.LeadingDocument.RegistrationNumber ?? "Не зарегистрирован"}, {purch.LeadingDocument.DocumentDate?.ToShortDateString()}"
+        : "Договор не указан";
+      body.Range.Replace("[Contract]", contractText);
+      
+      body.Range.Replace("[FlagNDA]", purch.FlagNDA.Value ? "Есть" : "Нет");
+
+      var cpContactsText = $"Телефон: {purch.PhoneNumberSberDev ?? "Нет"}\n" +
+        $"Email: {purch.EmailSberDev ?? "Нет"}" +
+        $"{(purch.CPContactComment != null ? $"\nКомментарий: {purch.CPContactComment}" : "")}";
+      body.Range.Replace("[CPContacts]", cpContactsText);
+
+      body.Range.Replace("[PlanDelDate]", purch.PlanDelDate.Value.ToShortDateString());
+      
+      var prodPeriodText = purch.ProdPeriod.Value.ToShortDateString() +
+        $"{(purch.ProdPeriodComment != null ? $"\nКомментарий: {purch.ProdPeriodComment}" : "")}";
+      body.Range.Replace("[ProdPeriod]", prodPeriodText);
+      
+      body.Range.Replace("[Deposit]", purch.Deposit.ToString());
+      body.Range.Replace("[DepositDays]",  $"{(purch.DepositDays > 0 ? $"в течении {purch.DepositDays} р. д." : "")}");
+      body.Range.Replace("[Balance]", purch.Balance.ToString());
+      body.Range.Replace("[BalanceDays]", $"{(purch.BalanceDays > 0 ? $"в течении {purch.BalanceDays} р. д." : "")}");
+      body.Range.Replace("[AgencyScheme]", purch.AgencyScheme.Value ? "Есть" : "Нет");
+      body.Range.Replace("[Incoterms]", purch.Incoterms.Value.Value);
+      body.Range.Replace("[PickupAddress]", purch.PickupAddress != null ? purch.PickupAddress : "Не указан");
+      body.Range.Replace("[PlanDelType]", purch.PlanDelType.Value.Value);
+      body.Range.Replace("[Counterparty1]", purch.Counterparty1 != null ? purch.Counterparty1 : "");
+      body.Range.Replace("[Counterparty2]", purch.Counterparty2 != null ? purch.Counterparty2 : "");
+      body.Range.Replace("[Counterparty3]", purch.Counterparty3 != null ? purch.Counterparty3 : "");
+      body.Range.Replace("[Responsible]", purch.ResponsibleEmployee.Name);
+      string str = "";
+      var exProd = purch.ProdCollectionExBaseSberDev.FirstOrDefault()?.Product;
+      if (exProd?.Name == "General")
+      {
+        if (purch.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Absolute)
+          foreach(var prod in purch.CalculationBaseSberDev)
+            str += prod.ProductCalc.Name + " - " + prod.AbsoluteCalc.ToString() + "\n";
+        if (purch.CalculationFlagBaseSberDev == SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent)
+          foreach(var prod in purch.CalculationBaseSberDev)
+            str += prod.ProductCalc + " - " + prod.InterestCalc.ToString() + "\n";
+      }
+      else
+        str += exProd?.Name;
+      
+      body.Range.Replace("[Products]", str);
+      body.Range.Replace("[AccArt]", purch.AccArtExBaseSberDev.Name);
+      body.Range.Replace("[MVZ]", purch.MVZBaseSberDev.Name);
+      
+      // Таблица продуктов
+      // Настройки таблицы
+      var boldRows = new List<int> { 0, purch.PurchasesCollection.Count + 1 };
+      var columnWidths = new List<int> { 10, 90, 15, 15, 15, 20 };
+
+      // Инициализация таблицы
+      int rowCount = purch.PurchasesCollection.Count + 2;
+      string[,] purchTable = new string[rowCount, 6];
+
+      // Заполнение заголовка таблицы
+      string[] headers = { "№", "Наименование закупаемой продукции", "Цена за ед.", "Кол-во, шт.", "Стоимость, с НДС /без НДС", "Валюта закупки" };
+      for (int i = 0; i < headers.Length; i++)
+        purchTable[0, i] = headers[i];
+
+      // Заполнение строк данных
+      int counter = 1;
+      foreach (var elem in purch.PurchasesCollection)
+      {
+        purchTable[counter, 0] = counter.ToString();
+        purchTable[counter, 1] = elem.Product;
+        purchTable[counter, 2] = elem.PriceUnit?.Value.ToString();
+        purchTable[counter, 3] = elem.Quantity?.Value.ToString();
+        purchTable[counter, 4] = (elem.PriceUnit?.Value * elem.Quantity?.Value)?.ToString();
+        purchTable[counter, 5] = elem.Currency?.ShortName;
+        counter++;
+      }
+
+      // Заполнение итоговой строки
+      purchTable[rowCount - 1, 1] = "ИТОГО / TOTAL";
+      purchTable[rowCount - 1, 3] = purch.PurchasesCollection.Sum(p => p.Quantity?.Value ?? 0).ToString();
+      purchTable[rowCount - 1, 4] = purch.PurchasesCollection.Sum(p => (p.PriceUnit?.Value ?? 0) * (p.Quantity?.Value ?? 0)).ToString();
+
+      // Вставка таблицы в документ
+      ReplacePlaceholderWithTable(
+        body,
+        "[PurchTable]",
+        CreateTableByArray(body, table, boldRows, columnWidths, "Times New Roman", 10)
+       );
+      
+            // Таблица ресипиентов
+      // Настройки таблицы
+      boldRows = new List<int> { 0};
+      columnWidths = new List<int> { 10, 40, 60 };
+
+      // Инициализация таблицы
+      rowCount = purch.ParticipantsCollection.Count + 1;
+      table = new string[rowCount, 3];
+
+      // Заполнение заголовка таблицы
+      string[] headers1 = { "№", "Наименование компании", "Контакты"};
+      for (int i = 0; i < headers1.Length; i++)
+        table[0, i] = headers1[i];
+
+      // Заполнение строк данных
+      int counter = 1;
+      foreach (var elem in purch.ParticipantsCollection)
+      {
+        table[counter, 0] = counter.ToString();
+        table[counter, 1] = elem.Counterparty;
+        table[counter, 2] = elem.Contacts;
+        counter++;
+      }
+      
+      // Вставка таблицы в документ
+      ReplacePlaceholderWithTable(
+        body,
+        "[RecipTable]",
+        CreateTableByArray(body, table, boldRows, columnWidths, "Times New Roman", 10)
+       );
+
+      /* body.Range.Replace("[]", );
+      body.Range.Replace("[]", );
+      body.Range.Replace("[]", );
+      body.Range.Replace("[]", );
+      body.Range.Replace("[]", );
+      body.Range.Replace("[]", );*/
     }
+    #endregion
     
     #region Вспомогательные функции для построения документа
     
@@ -1419,12 +1526,6 @@ namespace sberdev.SBContracts.Server
         return "оказания услуг";
       else
         return "выполнения работ";
-    }
-    
-    [Public]
-    public string GetPaymentType(SberContracts.IPurchase purch)
-    {
-      return GetPaymentKind(purch.PaymentKind) + (purch.PrepaymentPercent != null ? " c " + purch.PrepaymentPercent.ToString() + " % авансом" : "");
     }
     
     string GetPaymentKind(Enumeration? kind)

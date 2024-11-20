@@ -3,6 +3,18 @@
   "NameGuid": "50114491-2005-49ad-b0d6-49c695c44b8d",
   "Name": "AppProductPurchase",
   "AccessRightsMode": "Both",
+  "Actions": [
+    {
+      "NameGuid": "241970a1-7876-4fdc-ada2-eee6ea0bac66",
+      "Name": "CreateBodyByPropertiesSberDev",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ],
+      "Versions": []
+    }
+  ],
   "BaseGuid": "178d3053-5516-4f14-9f3d-4d75e3f352d4",
   "CanBeNavigationPropertyType": true,
   "CreationAreaMetadata": {
@@ -1386,7 +1398,7 @@
       "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
       "NameGuid": "3b85d792-ee17-4e9c-8f63-66e94017891d",
       "Name": "ProdPeriod",
-      "Code": "ProdPeriod1",
+      "Code": "ProdPeriodA",
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
       "PreviousPropertyGuid": "f8f4faaf-9f49-4dd7-b8e2-9fd2753adef2",
@@ -1407,6 +1419,10 @@
       "NameGuid": "dd435ab0-8f87-4556-8abb-097e225cc65a",
       "Name": "Deposit",
       "Code": "Deposit",
+      "HandledEvents": [
+        "ChangedShared",
+        "ValueInputClient"
+      ],
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "ee22260c-19dc-4cd0-99f7-e7669ba7b400"
@@ -1425,6 +1441,7 @@
       "NameGuid": "f5639b9e-129d-4e66-942a-b9093c32d07e",
       "Name": "DepositDays",
       "Code": "DepositDays",
+      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "dd435ab0-8f87-4556-8abb-097e225cc65a"
     },
@@ -1433,6 +1450,7 @@
       "NameGuid": "a470eb28-76d4-477e-a39e-d4368ac6d3f8",
       "Name": "BalanceDays",
       "Code": "BalanceDays",
+      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "7cf09734-0d93-4957-8a8a-5564a00f788f",
       "Versions": []
@@ -1534,6 +1552,7 @@
       "HandledEvents": [
         "AddedShared"
       ],
+      "IsRequired": true,
       "IsShowedInList": false,
       "PreviousPropertyGuid": "55cf7fb5-643b-41be-86ac-77af6e77f97f"
     },
@@ -1554,6 +1573,7 @@
       "HandledEvents": [
         "AddedShared"
       ],
+      "IsRequired": true,
       "IsShowedInList": false,
       "PreviousPropertyGuid": "e003d9c1-995b-4906-b818-bd234ab0010c"
     },
@@ -1651,7 +1671,9 @@
     }
   ],
   "PublicStructures": [],
-  "ResourcesKeys": [],
+  "ResourcesKeys": [
+    "DepsitError"
+  ],
   "RibbonCardMetadata": {
     "NameGuid": "ce84894b-3201-40f6-9d86-c29413754041",
     "Name": "RibbonCard",

@@ -170,5 +170,10 @@ namespace sberdev.SberContracts
 partial class AppProductPurchaseSharedHandlers
 {
 
+    public virtual void DepositChanged(Sungero.Domain.Shared.IntegerPropertyChangedEventArgs e)
+    {
+      _obj.Balance = 100 - e.NewValue;
+    }
+
 }
 }

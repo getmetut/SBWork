@@ -60,16 +60,6 @@
       "PreviousPropertyGuid": "ba610a74-d0f0-419c-9bf7-6eee3fa5a78b"
     },
     {
-      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "7ba23a01-9f06-42b0-9caa-25c00e6177c9",
-      "Name": "PriceTotal",
-      "CanBeSearch": false,
-      "Code": "PriceTotal",
-      "IsRequired": true,
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
-      "PreviousPropertyGuid": "689fa337-7326-49bb-97c6-d4d6baedf7ca"
-    },
-    {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "7ddedcf0-e9ff-41a9-878b-4193d8b014e0",
       "Name": "Currency",

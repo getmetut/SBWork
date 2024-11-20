@@ -15,5 +15,11 @@ namespace sberdev.SberContracts
       
     }
 
+    public virtual void DepositValueInput(Sungero.Presentation.IntegerValueInputEventArgs e)
+    {
+      if (e.NewValue > 100)
+        e.AddError(sberdev.SberContracts.AppProductPurchases.Resources.DepsitError);
+    }
+
   }
 }

@@ -22,16 +22,24 @@ namespace sberdev.SberContracts.Shared
       _obj.State.Properties.EmailSberDev.IsVisible = true;
       _obj.State.Properties.PhoneNumberSberDev.IsVisible = true;
       
+      var numberMapping = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+      {
+        { "one", 1 },
+        { "two", 2 },
+        { "three", 3 }
+      };
+
       int cpNum = 0;
       if (_obj.CpNumber.HasValue)
-        cpNum = Int32.Parse(_obj.CpNumber.Value.Value);
+        numberMapping.TryGetValue(_obj.CpNumber.Value.Value.ToLower(), out cpNum);
+      cpNum *= 2;
       
       var properties = _obj.State.Properties;
       var collections = new List<Sungero.Domain.Shared.IPropertyState>()
       {
-        properties.ComparativeCollection1,
-        properties.ComparativeCollection2,
-        properties.ComparativeCollection3
+        properties.ComparativeCollection1, properties.Counterparty1,
+        properties.ComparativeCollection2, properties.Counterparty2,
+        properties.ComparativeCollection3, properties.Counterparty3
       };
 
       // Установим значения для каждой коллекции в зависимости от cpNum

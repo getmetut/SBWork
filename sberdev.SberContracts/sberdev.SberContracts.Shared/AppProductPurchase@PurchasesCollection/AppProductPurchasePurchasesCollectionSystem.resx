@@ -70,9 +70,6 @@
   <data name="Property_Quantity" xml:space="preserve">
     <value>Quantity, pcs.</value>
   </data>
-  <data name="Property_PriceTotal" xml:space="preserve">
-    <value>Price, with VAT / without VAT</value>
-  </data>
   <data name="Property_Currency" xml:space="preserve">
     <value>Currency</value>
   </data>
