@@ -98,6 +98,7 @@
       "Name": "Quantity",
       "CanBeSearch": false,
       "Code": "Quantity",
+      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "76ddd004-eec9-42e4-80ef-be0b35d0b57d",
       "Versions": []

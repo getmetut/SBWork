@@ -517,6 +517,14 @@
       "Value": "\"24de0d9d-ed7e-44cd-a09f-9696abec0487\""
     },
     {
+      "Name": "CheckingCPStage",
+      "ParentClasses": [
+        "ApprovalTask"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"e08081d4-ec20-4f56-bf43-534e3f01cdff\""
+    },
+    {
       "Name": "CheckUCNStage",
       "ParentClasses": [
         "ApprovalTask"
@@ -542,6 +550,40 @@
     }
   ],
   "PublicFunctions": [
+    {
+      "Name": "GetStageBySid",
+      "Parameters": [
+        {
+          "Name": "approvalTask",
+          "ParameterType": "global::sberdev.SBContracts.IApprovalTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "sid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::sberdev.SBContracts.IApprovalStage",
+      "ReturnTypeFullName": "sberdev.SBContracts.IApprovalStage, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "IsNecessaryStage",
+      "Parameters": [
+        {
+          "Name": "approvalTask",
+          "ParameterType": "global::sberdev.SBContracts.IApprovalTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "sid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
     {
       "Name": "OldAnaliticsInDocument",
       "Parameters": [

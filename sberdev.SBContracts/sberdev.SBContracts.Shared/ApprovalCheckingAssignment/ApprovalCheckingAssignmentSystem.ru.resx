@@ -190,4 +190,7 @@
   <data name="Action_ApproveSberDevConfirmationMessage" xml:space="preserve">
     <value>Вы хотите выполнить все выбранные задания?</value>
   </data>
+  <data name="Property_ReadressSberDev" xml:space="preserve">
+    <value>Переадресовать</value>
+  </data>
 </root>

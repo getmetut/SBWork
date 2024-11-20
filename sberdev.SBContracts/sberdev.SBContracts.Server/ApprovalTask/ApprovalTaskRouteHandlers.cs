@@ -149,6 +149,7 @@ namespace sberdev.SBContracts.Server
     {
       base.StartBlock31(e);
       Functions.ApprovalTask.OneTimeCompleteClear(_obj, e);
+      Functions.ApprovalTask.SetReadressPerformer(_obj, e);
     }
 
     public override void StartBlock30(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)

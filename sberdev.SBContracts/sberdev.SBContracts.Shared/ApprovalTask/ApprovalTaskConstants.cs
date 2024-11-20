@@ -6,6 +6,8 @@ namespace sberdev.SBContracts.Constants.Docflow
   public static class ApprovalTask
   {
     [Sungero.Core.Public]
+    public const string CheckingCPStage = "e08081d4-ec20-4f56-bf43-534e3f01cdff"; // "Этап проверки ка на благонадежность
+    [Sungero.Core.Public]
     public const string AccountantDZKZStage = "24de0d9d-ed7e-44cd-a09f-9696abec0487"; // этап согласования Бухгалтер ДЗ КЗ
     [Sungero.Core.Public]
     public const string ContractCheckByClerkStage = "7c1833f6-22da-460f-ab4c-6d510c5f6945"; // этап согласования Проверка договорных документов Делопроизводителем

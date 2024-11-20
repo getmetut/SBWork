@@ -14,7 +14,6 @@ using Sungero.Metadata;
 using Sungero.Domain.Shared;
 using sberdev.SBContracts.OfficialDocument;
 
-
 namespace sberdev.SBContracts.Server
 {
   public class ModuleFunctions
@@ -1284,14 +1283,14 @@ namespace sberdev.SBContracts.Server
       #region Таблица продуктов
       // Настройки таблицы
       var boldRows = new List<int> { 0, purch.PurchasesCollection.Count + 1 };
-      var columnWidths = new List<int> { 10, 95, 10, 15, 20, 15 };
+      var columnWidths = new List<int> { 10, 80, 15, 20, 25, 15 };
 
       // Инициализация таблицы
       int rowCount = purch.PurchasesCollection.Count + 2;
       string[,] purchTable = new string[rowCount, 6];
 
       // Заполнение заголовка таблицы
-      string[] headers = { "№", "Наименование закупаемой продукции", "Цена за ед.", "Кол-во, шт.", "Полн. стоим.", "Валюта закупки" };
+      string[] headers = { "№", "Наименование продукции", "Цена за ед.", "Кол-во, шт.", "Полн. стоим.", "Валюта" };
       for (int i = 0; i < headers.Length; i++)
         purchTable[0, i] = headers[i];
 
@@ -1328,7 +1327,7 @@ namespace sberdev.SBContracts.Server
 
       // Инициализация таблицы
       rowCount = purch.ParticipantsCollection.Count + 1;
-      recipTable = new string[rowCount, 3];
+      string[,] recipTable = new string[rowCount, 3];
 
       // Заполнение заголовка таблицы
       string[] headers1 = { "№", "Наименование компании", "Контакты"};
@@ -1353,44 +1352,83 @@ namespace sberdev.SBContracts.Server
        );
       #endregion
       
-      #region Таблица контрагент1
-      // Настройки таблицы
-      boldRows = new List<int> { 0, purch.ComparativeCollection1.Count + 1};
-      columnWidths = new List<int> { 7, 30, 7, 10, 15, 15, 10, 25, 25 };
+      #region Таблицы по контрагентам
+      // Настройки таблиц
+      boldRows = new List<int> { 0 }; // Общая настройка для всех таблиц
+      columnWidths = new List<int> { 5, 25, 7, 10, 15, 15, 20, 20, 20 };
+      string[] headers3 = { "№", "Наименование продукта", "Кол-во", "Цена за шт, без НДС", "Сумма, без НДС", "Условия оплаты",
+        "Срок поставки", "Преимущества", "Риски" };
 
-      // Инициализация таблицы
-      rowCount = purch.ComparativeCollection1.Count + 1;
-      string[,] CP1Table = new string[rowCount, 10];
-
-      // Заполнение заголовка таблицы
-      string[] headers2 = { "№", "Наименование продукта", "Кол-во", "Цена за шт, без НДС", "Сумма, без НДС", "Условия оплаты"
-          , "Срок поставки", "Преимущества", "Риски" };
-      for (int i = 0; i < headers2.Length; i++)
-        CP1Table[0, i] = headers2[i];
-
-      // Заполнение строк данных
-      counter = 1;
-      foreach (var elem in purch.ComparativeCollection1)
+      // Определение количества таблиц
+      var numberMapping = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
       {
-        CP1Table[counter, 0] = counter.ToString();
-        CP1Table[counter, 1] = elem.Product;
-        CP1Table[counter, 2] = elem.Quantity.Value.ToString();
-        CP1Table[counter, 3] = elem.PriceUnit.Value.ToString();
-        CP1Table[counter, 4] = (elem.PriceUnit.Value * elem.Quantity.Value).ToString();
-        CP1Table[counter, 5] = elem.PaymentTerms;
-        CP1Table[counter, 2] = elem.DeliveryPer.Value.ToShortDateString();
-        CP1Table[counter, 3] = elem.Advantages;
-        CP1Table[counter, 4] = elem.Risks;
-        counter++;
+        { "one", 1 },
+        { "two", 2 },
+        { "three", 3 }
+      };
+
+      int tableCount = 0;
+      numberMapping.TryGetValue(purch.CpNumber.Value.Value.ToLower(), out tableCount);
+
+      // Генерация таблиц
+      for (int tableIndex = 1; tableIndex <= tableCount; tableIndex++)
+      {
+        // Получение коллекции для текущей таблицы
+        var collectionProperty = typeof(SberContracts.IAppProductPurchase).GetProperty($"ComparativeCollection{tableIndex}");
+        if (collectionProperty == null)
+          throw new InvalidOperationException($"Не найдено свойство ComparativeCollection{tableIndex}");
+
+        var comparativeCollection = (IEnumerable<object>)collectionProperty.GetValue(purch);
+        if (comparativeCollection == null)
+          throw new InvalidOperationException($"Свойство ComparativeCollection{tableIndex} имеет значение null");
+
+        // Инициализация таблицы
+        rowCount = comparativeCollection.Count() + 1;
+        string[,] tableData = new string[rowCount, headers3.Length];
+
+        // Заполнение заголовка таблицы
+        for (int i = 0; i < headers3.Length; i++)
+          tableData[0, i] = headers3[i];
+
+        // Заполнение строк данных
+        counter = 1;
+        foreach (var elem in comparativeCollection)
+        {
+          var product = elem.GetType().GetProperty("Product")?.GetValue(elem, null).ToString();
+          var quantity = (int?)elem.GetType().GetProperty("Quantity")?.GetValue(elem, null);
+          var priceUnit = (double?)elem.GetType().GetProperty("PriceUnit")?.GetValue(elem, null);
+          var paymentTerms = elem.GetType().GetProperty("PaymentTerms")?.GetValue(elem, null)?.ToString();
+          var deliveryPer = (DateTime)elem.GetType().GetProperty("DeliveryPer")?.GetValue(elem, null);
+          var advantages = elem.GetType().GetProperty("Advantages")?.GetValue(elem, null)?.ToString();
+          var risks = elem.GetType().GetProperty("Risks")?.GetValue(elem, null)?.ToString();
+
+          tableData[counter, 0] = counter.ToString();
+          tableData[counter, 1] = product;
+          tableData[counter, 2] = quantity.ToString();
+          tableData[counter, 3] = priceUnit.ToString();
+          tableData[counter, 4] = (priceUnit.GetValueOrDefault() * quantity.GetValueOrDefault()).ToString();
+          tableData[counter, 5] = paymentTerms;
+          tableData[counter, 6] = deliveryPer.ToShortDateString();
+          tableData[counter, 7] = advantages;
+          tableData[counter, 8] = risks;
+          counter++;
+        }
+
+        // Вставка таблицы в документ
+        string placeholder = $"[CP{tableIndex}Table]";
+        ReplacePlaceholderWithTable(
+          body,
+          placeholder,
+          CreateTableByArray(body, tableData, boldRows, columnWidths, "Times New Roman", 10)
+         );
       }
-      // Вставка таблицы в документ
-      ReplacePlaceholderWithTable(
-        body,
-        "[CP1Table]",
-        CreateTableByArray(body, CP1Table, boldRows, columnWidths, "Times New Roman", 10)
-       );
-      #endregion
       
+      for (int i = tableCount; tableCount <= 3; i++)
+      {
+        string placeholder = $"[CP{i}Table]";
+        body.Range.Replace(placeholder, "");
+      }
+      #endregion
     }
     #endregion
     

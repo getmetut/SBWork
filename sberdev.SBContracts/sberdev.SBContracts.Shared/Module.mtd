@@ -263,11 +263,6 @@
       "Scope": "Both"
     },
     {
-      "NameGuid": "796a610f-7934-42a1-8c8b-f4e269446f56",
-      "Name": "NPOI",
-      "Scope": "Both"
-    },
-    {
       "NameGuid": "9879878f-2b3b-4cfc-96aa-2e783dae36cb",
       "Name": "AsposeWords",
       "Scope": "Both"

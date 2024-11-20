@@ -13,25 +13,19 @@ namespace sberdev.SBContracts
     public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
     {
       var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      
+      var IsCheckingCPStage = PublicFunctions.ApprovalTask.IsNecessaryStage(SBContracts.ApprovalTasks.As(_obj.Task), PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
+      _obj.State.Properties.ReadressSberDev.IsVisible = IsCheckingCPStage;
+      
       var incInv = SBContracts.IncomingInvoices.As(attach);
-      if (incInv != null)
-        _obj.State.Properties.PaymentDueDateSberDev.IsVisible = true;
-      else
-        _obj.State.Properties.PaymentDueDateSberDev.IsVisible = false;
+      _obj.State.Properties.PaymentDueDateSberDev.IsVisible = incInv != null;
       
       var accounting = SBContracts.AccountingDocumentBases.As(attach);
-      if (accounting != null)
-      {
-        _obj.State.Properties.InternalApprovalStateSberDev.IsVisible = true;
-        _obj.State.Properties.ExternalApprovalStateSberDev.IsVisible = true;
-        _obj.State.Properties.FDAApprByTreasSberDev.IsVisible = true;
-      }
-      else
-      {
-        _obj.State.Properties.InternalApprovalStateSberDev.IsVisible = false;
-        _obj.State.Properties.ExternalApprovalStateSberDev.IsVisible = false;
-        _obj.State.Properties.FDAApprByTreasSberDev.IsVisible = false;
-      }
+      bool accFlag = accounting != null;
+      _obj.State.Properties.InternalApprovalStateSberDev.IsVisible = accFlag;
+      _obj.State.Properties.ExternalApprovalStateSberDev.IsVisible = accFlag;
+      _obj.State.Properties.FDAApprByTreasSberDev.IsVisible = accFlag;
+      
       base.Showing(e);
     }
   }
