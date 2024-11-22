@@ -121,4 +121,10 @@
   <data name="CoverDescription_RemoveUserToReferences" xml:space="preserve">
     <value>Тестирование функции замены сотрудника по всем справочникам на начальника или иного сотрудника</value>
   </data>
+  <data name="CoverAction_UpdateContractualDoc" xml:space="preserve">
+    <value>Обновление (пересохранение) всех договорных документов</value>
+  </data>
+  <data name="CoverDescription_UpdateContractualDoc" xml:space="preserve">
+    <value>Функция обновления всех договоров с целью обновления данных в карточке по новой логике</value>
+  </data>
 </root>

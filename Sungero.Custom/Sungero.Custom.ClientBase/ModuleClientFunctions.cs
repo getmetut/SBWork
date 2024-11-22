@@ -12,6 +12,29 @@ namespace Sungero.Custom.Client
   {
 
     /// <summary>
+    /// Обновление (пересохранение) всех договорных документов
+    /// </summary>
+    public virtual void UpdateContractualDoc()
+    {
+      var Exc = sberdev.SBContracts.ContractualDocuments.GetAll(d => ((d.ProdCollectionExBaseSberDev.Count > 0) || (d.ProdCollectionExBaseSberDev.Count > 0))).ToList();
+      string Res = "";
+      foreach (var elem in Exc)	
+      {
+        try
+        {
+          elem.Note += " ";
+          elem.Save();
+          Res += "+";
+        }
+        catch
+        {
+          Res += "-";
+        }
+      }
+      Dialogs.ShowMessage(Res);
+    }
+
+    /// <summary>
     /// Замена пользователя в справочниках
     /// </summary>
     public virtual void RemoveUserToReferences()

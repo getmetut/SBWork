@@ -50,6 +50,14 @@
         "FunctionName": "RemoveUserToReferences",
         "GroupId": "87590ec7-b390-4e15-8a60-3e53df37e634",
         "PreviousItemGuid": "b74e4928-9ab4-4130-a225-5c4d6854645f"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
+        "NameGuid": "e7287762-117a-496d-98a1-6d5a97bb8aaf",
+        "Name": "UpdateContractualDoc",
+        "FunctionName": "UpdateContractualDoc",
+        "GroupId": "87590ec7-b390-4e15-8a60-3e53df37e634",
+        "PreviousItemGuid": "d5400d9d-e39d-4731-8b48-fde868e9ca19"
       }
     ],
     "Background": null,
@@ -437,7 +445,7 @@
   "SharedAssemblyName": "Sungero.Custom.Shared",
   "SharedNamespace": "Sungero.Custom.Shared",
   "SpecialFolders": [],
-  "Version": "0.1.0.108",
+  "Version": "0.1.0.109",
   "Widgets": [],
   "Versions": [
     {
