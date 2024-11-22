@@ -1258,9 +1258,6 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[Incoterms]", purch.Incoterms.Value.Value);
       body.Range.Replace("[PickupAddress]", purch.PickupAddress != null ? purch.PickupAddress : "Не указан");
       body.Range.Replace("[PlanDelType]", purch.PlanDelType.Value.Value);
-      body.Range.Replace("[Counterparty1]", purch.Counterparty1 != null ? purch.Counterparty1 : "");
-      body.Range.Replace("[Counterparty2]", purch.Counterparty2 != null ? purch.Counterparty2 : "");
-      body.Range.Replace("[Counterparty3]", purch.Counterparty3 != null ? purch.Counterparty3 : "");
       body.Range.Replace("[Responsible]", purch.ResponsibleEmployee.Name);
       string str = "";
       var exProd = purch.ProdCollectionExBaseSberDev.FirstOrDefault()?.Product;
@@ -1283,7 +1280,7 @@ namespace sberdev.SBContracts.Server
       #region Таблица продуктов
       // Настройки таблицы
       var boldRows = new List<int> { 0, purch.PurchasesCollection.Count + 1 };
-      var columnWidths = new List<int> { 10, 80, 15, 20, 25, 15 };
+      var columnWidths = new List<int> { 10, 80, 20, 15, 25, 15 };
 
       // Инициализация таблицы
       int rowCount = purch.PurchasesCollection.Count + 2;
@@ -1421,12 +1418,16 @@ namespace sberdev.SBContracts.Server
           placeholder,
           CreateTableByArray(body, tableData, boldRows, columnWidths, "Times New Roman", 10)
          );
+        
+        var cpProp = typeof(SberContracts.IAppProductPurchase).GetProperty($"Counterparty{tableIndex}");
+        string cpPropValue = (string)cpProp.GetValue(purch);
+        body.Range.Replace($"[Counterparty{tableIndex}]", cpPropValue);
       }
       
-      for (int i = tableCount; tableCount <= 3; i++)
+      for (int i = tableCount; i <= 3; i++)
       {
-        string placeholder = $"[CP{i}Table]";
-        body.Range.Replace(placeholder, "");
+        body.Range.Replace($"[CP{i}Table]", "");
+        body.Range.Replace($"[Counterparty{i}]", "");
       }
       #endregion
     }

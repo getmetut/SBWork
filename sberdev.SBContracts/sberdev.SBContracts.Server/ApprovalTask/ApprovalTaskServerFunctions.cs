@@ -13,15 +13,11 @@ namespace sberdev.SBContracts.Server
     {
       if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.ReadressStage))
       {
+        e.Block.Performers.Clear();
         var lastAssign = GetLastTaskAssigment(_obj, null);
-        var typeedAssign = SBContracts.ApprovalCheckingAssignments.As(lastAssign);
-        if (typeedAssign?.ReadressSberDev != null)
-        {
-          e.Block.Performers.Clear();
-          e.Block.Performers.Add(typeedAssign.ReadressSberDev);
-        }
-        else
-          e.Block.Performers.Clear();
+        var typedAssign = SBContracts.ApprovalCheckingAssignments.As(lastAssign);
+        if (typedAssign?.ReadressSberDev != null)
+          e.Block.Performers.Add(typedAssign.ReadressSberDev);
       }
     }
     
