@@ -14,9 +14,6 @@ namespace sberdev.SBContracts
     {
       var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
       
-      var IsCheckingCPStage = PublicFunctions.ApprovalTask.IsNecessaryStage(SBContracts.ApprovalTasks.As(_obj.Task), PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
-      _obj.State.Properties.ReadressSberDev.IsVisible = IsCheckingCPStage;
-      
       var incInv = SBContracts.IncomingInvoices.As(attach);
       _obj.State.Properties.PaymentDueDateSberDev.IsVisible = incInv != null;
       

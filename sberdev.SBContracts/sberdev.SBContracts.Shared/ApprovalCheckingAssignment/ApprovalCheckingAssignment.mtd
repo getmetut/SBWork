@@ -298,19 +298,6 @@
           "RowNumber": 2,
           "RowSpan": 1,
           "Settings": []
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "0f0dec3b-8192-43d6-852f-32c15d4c05a6",
-          "Name": "ReadressSberDevSberDev",
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
-          "ParentGuid": "43776330-0528-4f2a-8e5b-6e1c8d5161c6",
-          "PropertyGuid": "676b92dd-362d-4692-93ca-024fdfe2fd1d",
-          "RowNumber": 2,
-          "RowSpan": 1,
-          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -476,17 +463,6 @@
       "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "0ce7a08a-0b66-4977-a4c5-4b5aa07a66dd"
-    },
-    {
-      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "676b92dd-362d-4692-93ca-024fdfe2fd1d",
-      "Name": "ReadressSberDev",
-      "CanBeSearch": false,
-      "Code": "ReadressSberDe",
-      "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
-      "IsShowedInList": false,
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
-      "PreviousPropertyGuid": "cb1d50cd-fcbf-4da0-9763-4ac95a6308c2"
     }
   ],
   "PublicStructures": [],

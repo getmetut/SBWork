@@ -220,4 +220,7 @@
   <data name="Action_ReAddressSberDevConfirmationMessage" xml:space="preserve">
     <value>Вы хотите преадресовать задания выбраному сотруднику?</value>
   </data>
+  <data name="Property_NeedFinanceSberDev" xml:space="preserve">
+    <value>Необходим отдел финансов</value>
+  </data>
 </root>

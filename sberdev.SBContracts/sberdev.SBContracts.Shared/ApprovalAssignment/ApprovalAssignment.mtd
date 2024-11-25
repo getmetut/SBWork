@@ -358,6 +358,19 @@
           "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "5f986df8-3fd0-4314-b3af-e99dd61e5cce",
+          "Name": "NeedFinanceSberDevSberDev",
+          "ColumnNumber": 2,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+          "ParentGuid": "4e94e189-a746-4492-a435-b8a937e0e8fc",
+          "PropertyGuid": "58457428-1edd-4504-8c35-e6e4883daaa1",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -541,6 +554,16 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "abd99dd5-04e0-4bac-8a4f-5e623796084d",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "58457428-1edd-4504-8c35-e6e4883daaa1",
+      "Name": "NeedFinanceSberDev",
+      "CanBeSearch": false,
+      "Code": "NeedFinanceSbe",
+      "IsShowedInList": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "f93d4bee-17e2-4a2b-8bc6-c4536dee68bd"
     }
   ],
   "PublicFunctions": [

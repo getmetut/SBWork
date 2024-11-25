@@ -13,44 +13,39 @@ namespace sberdev.SBContracts
     public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
     {
       var approvalStage = sberdev.SBContracts.ApprovalStages.As(_obj.Stage);
+      var isCheckingCPStage = PublicFunctions.ApprovalTask.IsNecessaryStage(SBContracts.ApprovalTasks.As(_obj.Task), PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
+      _obj.State.Properties.NeedFinanceSberDev.IsVisible = isCheckingCPStage;
+
       var performer = Users.As(_obj.Performer);
-      if (approvalStage.Name == "Казначей ПП")
+      bool isTreasuryStage = approvalStage.Name == "Казначей ПП";
+
+      _obj.State.Properties.NonContractInvoiceCounterSberDev.IsVisible = isTreasuryStage;
+      _obj.State.Properties.NonContractInvoiceCounterMoreSberDev.IsVisible = isTreasuryStage;
+      _obj.State.Properties.InvApprByTreasSberDev.IsVisible = isTreasuryStage;
+
+      if (isTreasuryStage)
       {
-        _obj.State.Properties.NonContractInvoiceCounterSberDev.IsVisible = true;
-        _obj.State.Properties.NonContractInvoiceCounterMoreSberDev.IsVisible = true;
-        _obj.State.Properties.InvApprByTreasSberDev.IsVisible = true;
-        if (_obj.NonContractInvoiceCounterSberDev > 3)
-        {
-          _obj.State.Properties.NonContractInvoiceCounterSberDev.HighlightColor = Colors.Common.Red;
-        }
-        else
-        {
-          _obj.State.Properties.NonContractInvoiceCounterSberDev.HighlightColor = Colors.Empty;
-        }
+        _obj.State.Properties.NonContractInvoiceCounterSberDev.HighlightColor =
+          _obj.NonContractInvoiceCounterSberDev > 3 ? Colors.Common.Red : Colors.Empty;
       }
-      else
-      {
-        _obj.State.Properties.NonContractInvoiceCounterSberDev.IsVisible = false;
-        _obj.State.Properties.NonContractInvoiceCounterMoreSberDev.IsVisible = false;
-        _obj.State.Properties.InvApprByTreasSberDev.IsVisible = false;
-      }
-      
+
       var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
       var accounting = SBContracts.AccountingDocumentBases.As(attach);
-      if (accounting != null)
+      bool hasAccounting = accounting != null;
+
+      _obj.State.Properties.InternalApprovalStateSberDev.IsVisible = hasAccounting;
+      _obj.State.Properties.ExternalApprovalStateSberDev.IsVisible = hasAccounting;
+
+      bool shouldHideAmountChangeAction = !approvalStage.AmountChangesSberDev.GetValueOrDefault() ||
+        !performer.IncludedIn(sberdev.SberContracts.PublicConstants.Module.KZTypeGuid);
+
+      if (shouldHideAmountChangeAction)
       {
-        _obj.State.Properties.InternalApprovalStateSberDev.IsVisible = true;
-        _obj.State.Properties.ExternalApprovalStateSberDev.IsVisible = true;
+        e.HideAction(_obj.Info.Actions.AmountChangesberdev);
       }
-      else
-      {
-        _obj.State.Properties.InternalApprovalStateSberDev.IsVisible = false;
-        _obj.State.Properties.ExternalApprovalStateSberDev.IsVisible = false;
-      }
-      
-      if ((!approvalStage.AmountChangesSberDev.GetValueOrDefault()) || (!performer.IncludedIn( sberdev.SberContracts.PublicConstants.Module.KZTypeGuid)))
-      {e.HideAction(_obj.Info.Actions.AmountChangesberdev);}
+
       base.Showing(e);
+
     }
 
   }

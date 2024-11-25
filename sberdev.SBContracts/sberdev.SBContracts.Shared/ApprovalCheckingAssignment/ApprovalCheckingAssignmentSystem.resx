@@ -205,7 +205,4 @@
   <data name="Action_ApproveSberDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
-  <data name="Property_ReadressSberDev" xml:space="preserve">
-    <value>Readress to</value>
-  </data>
 </root>

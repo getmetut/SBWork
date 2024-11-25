@@ -15,9 +15,9 @@ namespace sberdev.SBContracts.Server
       {
         e.Block.Performers.Clear();
         var lastAssign = GetLastTaskAssigment(_obj, null);
-        var typedAssign = SBContracts.ApprovalCheckingAssignments.As(lastAssign);
-        if (typedAssign?.ReadressSberDev != null)
-          e.Block.Performers.Add(typedAssign.ReadressSberDev);
+        var typedAssign = SBContracts.ApprovalAssignments.As(lastAssign);
+        if (typedAssign?.NeedFinanceSberDev == false)
+          e.Block.Performers.Clear();
       }
     }
     
