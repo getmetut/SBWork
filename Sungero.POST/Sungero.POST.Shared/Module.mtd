@@ -41,6 +41,15 @@
       },
       {
         "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "32ad3e3e-924d-44e8-ab96-ad11c4059f1e",
+        "Name": "AccDocsProductReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "44aef9d1-19e8-426f-a4dc-2d5f8e2f03f8",
+        "PreviousItemGuid": "b2df8579-eb74-42fd-8ad3-d4ab7d09f99b",
+        "ReportId": "ef8aad9a-8709-4b9e-9876-bfdd72102167"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
         "NameGuid": "384bae96-a191-434a-a647-373877c11361",
         "Name": "AcquaintanceReport",
         "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
@@ -144,6 +153,15 @@
         "GroupId": "44aef9d1-19e8-426f-a4dc-2d5f8e2f03f8",
         "PreviousItemGuid": "e9d1c38c-6436-4587-8362-e7c3332eca14",
         "ReportId": "aaccef11-d184-4225-9861-2e6578ae54de"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
+        "NameGuid": "b2df8579-eb74-42fd-8ad3-d4ab7d09f99b",
+        "Name": "ContrDocsProductReport",
+        "CoverActionPresenterTypeName": "Sungero.Reporting.Client.CoverReportActionPresenter, Sungero.Reporting.Client",
+        "GroupId": "44aef9d1-19e8-426f-a4dc-2d5f8e2f03f8",
+        "PreviousItemGuid": "7de0dbe2-6a51-40ba-b405-eea557d088eb",
+        "ReportId": "638cd35a-526e-4888-89e0-4573fde27ec2"
       },
       {
         "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
@@ -2396,7 +2414,7 @@
   "SharedAssemblyName": "Sungero.POST.Shared",
   "SharedNamespace": "Sungero.POST.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.186",
+  "Version": "0.0.1.190",
   "Widgets": [],
   "Versions": [
     {

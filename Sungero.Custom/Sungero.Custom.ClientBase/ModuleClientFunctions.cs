@@ -16,15 +16,27 @@ namespace Sungero.Custom.Client
     /// </summary>
     public virtual void UpdateContractualDoc()
     {
-      var Exc = sberdev.SBContracts.ContractualDocuments.GetAll(d => ((d.ProdCollectionExBaseSberDev.Count > 0) || (d.ProdCollectionExBaseSberDev.Count > 0))).ToList();
+      var Exc = sberdev.SBContracts.ContractualDocuments.GetAll().ToList();
       string Res = "";
       foreach (var elem in Exc)	
       {
         try
         {
-          elem.Note += " ";
-          elem.Save();
-          Res += "+";
+          if ((sberdev.SBContracts.Contracts.Is(elem)) || (sberdev.SBContracts.SupAgreements.Is(elem)))
+          {
+            if (elem.ProdCollectionPrBaseSberDev.Count > 0)
+            {
+              elem.Note += " ";
+              elem.Save();
+              Res += "+";
+            }
+            if (elem.ProdCollectionExBaseSberDev.Count > 0)
+            {
+              elem.Note += " ";
+              elem.Save();
+              Res += "+";
+            }
+          }
         }
         catch
         {

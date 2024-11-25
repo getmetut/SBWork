@@ -178,4 +178,16 @@
   <data name="CoverDescription_OutgoingDocumentsReport" xml:space="preserve">
     <value>Список всех зарегистрированных документов, относящихся к исходящему документопотоку.</value>
   </data>
+  <data name="CoverAction_ContrDocsProductReport" xml:space="preserve">
+    <value>Отчет по договорным документам</value>
+  </data>
+  <data name="CoverDescription_ContrDocsProductReport" xml:space="preserve">
+    <value>Отчет по всем договорным документам. Со списком продуктов.</value>
+  </data>
+  <data name="CoverAction_AccDocsProductReport" xml:space="preserve">
+    <value>Отчет по финансовым документам</value>
+  </data>
+  <data name="CoverDescription_AccDocsProductReport" xml:space="preserve">
+    <value>Отчет по финансовым документам. Со списком продуктов.</value>
+  </data>
 </root>
