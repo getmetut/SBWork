@@ -12,22 +12,21 @@ namespace sberdev.SBContracts.Module.Docflow.Server
     public override void Initializing(Sungero.Domain.ModuleInitializingEventArgs e)
     {
       base.Initializing(e);
+      CreateRelationTypes();
     }
     public static void CreateRelationTypes()
-    {/*
-            // Закупка к документу.
-      var addendum = CreateRelationType(Constants.Module.PurchaseRelationName, "Закупки Название источника",
-                                        "Закупки Название назначения", "Закупки Описание источника",
-                                        "Закупки Описание назначения", true, false, false, true);
-      addendum.Mapping.Clear();
-      var addendumRow = addendum.Mapping.AddNew();
-      addendumRow.Source = SberContracts.Purchases.Info;
-      addendumRow.Target = SungeroContent.ElectronicDocuments.Info;
-      addendumRow = addendum.Mapping.AddNew();
-      addendumRow.Source = Content.ElectronicDocuments.Info;
-      addendumRow.Target = Docflow.Addendums.Info;
-      addendumRow.RelatedProperty = SberContracts.Addendums.Info.Properties.LeadingDocument;
-      addendum.Save();*/
+    {
+      InitializationLogger.Debug("Init: Create custom relation types.");
+      // Закупка к документу.
+      var purchase = CreateRelationType(Constants.Module.PurchaseRelationName, sberdev.SBContracts.Module.Docflow.Resources.PurchaseRelationNameSource,
+                                        sberdev.SBContracts.Module.Docflow.Resources.PurchaseRelationNameTarget, sberdev.SBContracts.Module.Docflow.Resources.PurchaseRelationDicripSource,
+                                        sberdev.SBContracts.Module.Docflow.Resources.PurchaseRelationDiscrp, true, false, false, true);
+      purchase.Mapping.Clear();
+      var purchaseRow = addendum.Mapping.AddNew();
+      purchaseRow.Target = SberContracts.AbstractsSupAgreements.Info;
+      purchaseRow.Source = SBContracts.ContractualDocuments.Info;
+      purchaseRow.RelatedProperty = SberContracts.Purchases.Info.Properties.LeadingDocument;
+      purchase.Save();
     }
   }
 }

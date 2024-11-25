@@ -10,6 +10,13 @@ namespace sberdev.SberContracts
   partial class PurchaseSharedHandlers
   {
 
+    public override void LeadingDocumentChanged(Sungero.Docflow.Shared.OfficialDocumentLeadingDocumentChangedEventArgs e)
+    {
+      base.LeadingDocumentChanged(e);
+      _obj.ModifiedSberDev = Calendar.Now;
+     _obj.Relations.AddFromOrUpdate("Purchase", e.OldValue, e.NewValue);
+    }
+
     public virtual void SpecificationChanged(sberdev.SberContracts.Shared.PurchaseSpecificationChangedEventArgs e)
     {
       if (Equals(e.NewValue, e.OldValue))

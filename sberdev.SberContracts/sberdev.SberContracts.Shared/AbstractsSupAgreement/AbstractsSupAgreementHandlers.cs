@@ -13,12 +13,15 @@ namespace sberdev.SberContracts
     public override void LeadingDocumentChanged(Sungero.Docflow.Shared.OfficialDocumentLeadingDocumentChangedEventArgs e)
     {
       base.LeadingDocumentChanged(e);
+      if (Equals(e.NewValue, e.OldValue))
+        return;
       FillName();
-      _obj.Relations.AddFromOrUpdate("SupAgreement", e.OldValue, e.NewValue);
     }
 
     public virtual void AddendumDocumentChanged(sberdev.SberContracts.Shared.AbstractsSupAgreementAddendumDocumentChangedEventArgs e)
     {
+      if (Equals(e.NewValue, e.OldValue))
+        return;
       _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
     }
 

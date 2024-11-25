@@ -170,6 +170,13 @@ namespace sberdev.SberContracts
 partial class AppProductPurchaseSharedHandlers
 {
 
+    public override void LeadingDocumentChanged(Sungero.Docflow.Shared.OfficialDocumentLeadingDocumentChangedEventArgs e)
+    {
+      base.LeadingDocumentChanged(e);
+      _obj.ModifiedSberDev = Calendar.Now;
+     _obj.Relations.AddFromOrUpdate("Purchase", e.OldValue, e.NewValue);
+    }
+
     public virtual void DepositChanged(Sungero.Domain.Shared.IntegerPropertyChangedEventArgs e)
     {
       _obj.Balance = 100 - e.NewValue;

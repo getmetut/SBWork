@@ -560,7 +560,12 @@
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "sberdev.SBContracts.Module.Docflow",
-  "ResourcesKeys": [],
+  "ResourcesKeys": [
+    "PurchaseRelationNameSource",
+    "PurchaseRelationNameTarget",
+    "PurchaseRelationDicripSource",
+    "PurchaseRelationDiscrp"
+  ],
   "SpecialFolders": [],
   "Version": "4.8.39.0",
   "Widgets": [],

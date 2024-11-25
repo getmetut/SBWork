@@ -58,4 +58,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="PurchaseRelationNameSource" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="PurchaseRelationNameTarget" xml:space="preserve">
+    <value>Purchases</value>
+  </data>
+  <data name="PurchaseRelationDicripSource" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="PurchaseRelationDiscrp" xml:space="preserve">
+    <value>Purchases</value>
+  </data>
 </root>
