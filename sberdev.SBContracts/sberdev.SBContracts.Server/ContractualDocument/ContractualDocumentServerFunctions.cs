@@ -31,6 +31,20 @@ namespace sberdev.SBContracts.Server
       _obj.AccArtExBaseSberDev = AccountingArticleses.GetAll().Where(c => c.Id == ids[5]).FirstOrDefault();
     }
     
+    public override List<Sungero.Docflow.IApprovalRuleBase> GetApprovalRules()
+    {
+      var query = base.GetApprovalRules();
+      var sbQuery = query.Select(q => SBContracts.ContractsApprovalRules.As(q));
+      
+      if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable)
+        return sbQuery.Where(q => q.ExpendableSberDev == true).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
+      if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
+        return sbQuery.Where(q => q.ProfitableSberDev == true).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
+      if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.ExpendProfitSberDev)
+        return sbQuery.Where(q => q.ExpendProfitSberDev == true).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
+      return query;
+    }
+    
     public override IQueryable<Sungero.Docflow.ISignatureSetting> GetSignatureSettingsQuery()
     {
       var query = base.GetSignatureSettingsQuery();
@@ -46,11 +60,11 @@ namespace sberdev.SBContracts.Server
         sbQuery = query.Select(q => SBContracts.SignatureSettings.As(q));
       
       if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable)
-        return sbQuery.Where(q => q.ExpendableSberDev.Value);
+        return sbQuery.Where(q => q.ExpendableSberDev == true);
       if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
-        return sbQuery.Where(q => q.ProfitableSberDev.Value);
+        return sbQuery.Where(q => q.ProfitableSberDev == true);
       if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.ExpendProfitSberDev)
-        return sbQuery.Where(q => q.ExpendProfitSberDev.Value);
+        return sbQuery.Where(q => q.ExpendProfitSberDev == true);
       return sbQuery;
     }
     
