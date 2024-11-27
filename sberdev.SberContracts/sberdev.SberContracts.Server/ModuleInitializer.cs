@@ -57,31 +57,6 @@ namespace sberdev.SberContracts.Server
         InitializationLogger.Debug("Ответсвенный за конфликты синхронизации контрагентов");
       }
       
-      var roleAH = Roles.GetAll(r => r.Sid == Constants.Module.AccDocsHandlerRoleGuid).FirstOrDefault();
-      
-      if (roleAH == null)
-      {
-        roleAH = Roles.Create();
-        roleAH.Name = "Ответсвенный за фин. вх. документы";
-        roleAH.Description = "Участнику роли приходят задания на обработку формализованых финансовых вх. документов.";
-        roleAH.Sid = Constants.Module.AccDocsHandlerRoleGuid;
-        roleAH.IsSystem = false;
-        roleAH.RecipientLinks.AddNew().Member = Users.GetAll().Where(r => r.Id == 10).FirstOrDefault();
-        roleAH.IsSingleUser = true;
-        roleAH.Save();
-        InitializationLogger.Debug("Ответсвенный за фин. вх. документы");
-      }
-      else
-      {
-        roleAH.Name = "Ответсвенный за фин. вх. документы";
-        roleAH.Description = "Участнику роли приходят задания на обработку формализованых финансовых вх. документов.";
-        roleAH.Sid = Constants.Module.AccDocsHandlerRoleGuid;
-        roleAH.IsSystem = false;
-        roleAH.IsSingleUser = true;
-        roleAH.Save();
-        InitializationLogger.Debug("Ответсвенный за фин. вх. документы");
-      }
-      
       var roleAB = Roles.GetAll(r => r.Sid == Constants.Module.AdminButtonsUserRoleGuid).FirstOrDefault();
       
       if (roleAB == null)

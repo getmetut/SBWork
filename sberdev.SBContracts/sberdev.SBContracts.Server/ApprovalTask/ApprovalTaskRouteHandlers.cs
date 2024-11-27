@@ -14,13 +14,8 @@ namespace sberdev.SBContracts.Server
     public override void StartBlock6(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
     {
       base.StartBlock6(e);
-      var stage = SBContracts.ApprovalStages.As(e.Block.Stage);
-      if (stage?.SidSberDev == PublicConstants.Docflow.ApprovalTask.SignApproveStage)
-      {
-        var approvers = Sungero.Docflow.PublicFunctions.ApprovalStage.Remote.GetStagePerformers(_obj, stage);
-        foreach (var approver in approvers)
-          e.Block.Performers.Add(approver);
-      }
+      Functions.ApprovalTask.SetSignApproveStagePerfomer(_obj, e);
+      Functions.ApprovalTask.OneTimeCompleteClear(_obj, e);
     }
 
     public override void StartBlock9(Sungero.Docflow.Server.ApprovalSigningAssignmentArguments e)
@@ -47,10 +42,7 @@ namespace sberdev.SBContracts.Server
         _obj.Abort();
       }
       else
-      {
         base.CompleteAssignment3(assignment, e);
-      }
-      
     }
 
     public override void CompleteAssignment6(Sungero.Docflow.IApprovalAssignment assignment, Sungero.Docflow.Server.ApprovalAssignmentArguments e)
@@ -67,42 +59,10 @@ namespace sberdev.SBContracts.Server
       {
         base.CompleteAssignment6(assignment, e);
         if (blok.AmountChanges.GetValueOrDefault())
-        {
-          var document = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
-          
-          var contract = SBContracts.Contracts.As(document);
-          if (contract!= null)
-          {
-            sberdev.SberContracts.IMVZ mvz = null;
-            if (contract.MVZBaseSberDev != null)
-            { mvz = sberdev.SberContracts.MVZs.GetAll().Where(l => l.Id == contract.MVZBaseSberDev.Id ).First();
-              
-            }
-            else
-            { mvz = sberdev.SberContracts.MVZs.GetAll().Where(l => l.Id == contract.MVPBaseSberDev.Id ).First();
-              
-            }
-            if (mvz != null)
-            {
-              var operation = new Enumeration("AddApprover");
-              blok.Forward(mvz.BudgetOwner, ForwardingLocation.Next, Calendar.Today.AddWorkingDays(2));
-              blok.History.Write(operation, operation, Sungero.Company.PublicFunctions.Employee.GetShortName(mvz.BudgetOwner, false));
-              
-              var task = ApprovalTasks.As(_obj);
-              var approvalAsg = ApprovalAssignments.As(_obj);
-              if (task != null && approvalAsg != null)
-              {
-                var approver = task.AddApproversExpanded.AddNew();
-                approver.Approver = mvz.BudgetOwner;
-                task.Save();
-                
-              }
-              
-              
-            }}
-        }
+          Functions.ApprovalTask.AddMVZApprovers(_obj, e, blok);
+        if (assignment.Result == Sungero.Docflow.ApprovalAssignment.Result.Approved)
+          Functions.ApprovalTask.OneTimeCompleteAdd(_obj, e);
       }
-      
     }
 
     public override void Script26Execute()
@@ -148,8 +108,8 @@ namespace sberdev.SBContracts.Server
     public override void StartBlock31(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
     {
       base.StartBlock31(e);
+      Functions.ApprovalTask.SetSupStagePerformer(_obj, e);
       Functions.ApprovalTask.OneTimeCompleteClear(_obj, e);
-      Functions.ApprovalTask.SetReadressPerformer(_obj, e);
     }
 
     public override void StartBlock30(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)

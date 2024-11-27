@@ -9,9 +9,54 @@ namespace sberdev.SBContracts.Server
 {
   partial class ApprovalTaskFunctions
   {
-    public void SetReadressPerformer(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
+    public void AddMVZApprovers(Sungero.Docflow.Server.ApprovalAssignmentArguments e, SBContracts.IApprovalAssignment blok)
     {
-      if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.ReadressStage))
+      var document = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      
+      var contract = SBContracts.Contracts.As(document);
+      if (contract!= null)
+      {
+        sberdev.SberContracts.IMVZ mvz = null;
+        
+        if (contract.MVZBaseSberDev != null)
+          mvz = sberdev.SberContracts.MVZs.GetAll().Where(l => l.Id == contract.MVZBaseSberDev.Id ).First();
+        else
+          mvz = sberdev.SberContracts.MVZs.GetAll().Where(l => l.Id == contract.MVPBaseSberDev.Id ).First();
+        
+        if (mvz != null)
+        {
+          var operation = new Enumeration("AddApprover");
+          blok.Forward(mvz.BudgetOwner, ForwardingLocation.Next, Calendar.Today.AddWorkingDays(2));
+          blok.History.Write(operation, operation, Sungero.Company.PublicFunctions.Employee.GetShortName(mvz.BudgetOwner, false));
+          
+          var task = ApprovalTasks.As(_obj);
+          var approvalAsg = ApprovalAssignments.As(_obj);
+          if (task != null && approvalAsg != null)
+          {
+            var approver = task.AddApproversExpanded.AddNew();
+            approver.Approver = mvz.BudgetOwner;
+            task.Save();
+          }
+        }
+      }
+    }
+    
+    public void SetSignApproveStagePerfomer(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
+    {
+      var stage = GetStage();
+      if (stage == null)
+        return;
+      if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.SignApproveStage))
+      {
+        var approvers = Sungero.Docflow.PublicFunctions.ApprovalStage.Remote.GetStagePerformers(_obj, GetStage());
+        foreach (var approver in approvers)
+          e.Block.Performers.Add(approver);
+      }
+    }
+    
+    public void SetSupStagePerformer(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
+    {
+      if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.SupplementalStage))
       {
         e.Block.Performers.Clear();
         var lastAssign = GetLastTaskAssigment(_obj, null);
@@ -21,6 +66,11 @@ namespace sberdev.SBContracts.Server
       }
     }
     
+    /// <summary>
+    /// Определить тот ли ето этап что нужен
+    /// </summary>
+    /// <param name="sid">Sid</param>
+    /// <returns></returns>
     [Public]
     public bool IsNecessaryStage(string sid)
     {
@@ -29,14 +79,17 @@ namespace sberdev.SBContracts.Server
         .Any(s => s.Number == _obj.StageNumber && SBContracts.ApprovalStages.As(s.Stage).SidSberDev == sid);
     }
     
+    /// <summary>
+    /// Определить текущий этап
+    /// </summary>
+    /// <returns></returns>
     [Public]
-    public SBContracts.IApprovalStage GetStageBySid(string sid)
+    public SBContracts.IApprovalStage GetStage()
     {
-      return SBContracts.ApprovalStages.As(_obj.ApprovalRule.Stages
-                                           .Where(s => s.Stage != null)
-                                           .FirstOrDefault(s => s.Number == _obj.StageNumber && SBContracts.ApprovalStages.As(s.Stage).SidSberDev == sid));
+      return SBContracts.ApprovalStages.As(_obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber));
     }
     
+    #region Механика "Выполнять один раз"
     /// <summary>
     /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
     /// </summary>
@@ -113,6 +166,45 @@ namespace sberdev.SBContracts.Server
         e.Block.Performers.Clear();
     }
     
+    /// <summary>
+    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
+    /// </summary>
+    public void OneTimeCompleteAdd(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
+    {
+      var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
+
+      if (stage == null) return;
+
+      var ourStage = sberdev.SBContracts.ApprovalStages.As(stage.Stage);
+      
+      if (ourStage == null) return;
+
+      if (ourStage.OneTime == true)
+      {
+        var newStage = _obj.DoneStage.AddNew();
+        newStage.Stage = ourStage;
+        _obj.Save();
+      }
+    }
+    
+    /// <summary>
+    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
+    /// </summary>
+    public void OneTimeCompleteClear(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
+    {
+      var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
+
+      if (stage == null) return;
+
+      var ourStage = sberdev.SBContracts.ApprovalStages.As(stage.Stage);
+      
+      if (ourStage == null) return;
+      
+      if (ourStage.OneTime == true && _obj.DoneStage.Any(r => r.Stage == ourStage))
+        e.Block.Performers.Clear();
+    }
+    #endregion
+    
     public override void UpdateDocumentApprovalState(Sungero.Docflow.IOfficialDocument document, Nullable<Enumeration> state)
     {
       var invoice = SBContracts.IncomingInvoices.As(document);
@@ -121,7 +213,7 @@ namespace sberdev.SBContracts.Server
     }
     
     /// <summary>
-    /// Функция направля
+    /// Функция создания и отправки задачи по настройке Диадока
     /// </summary>
     /// <param name="doc"></param>
     public void SendDiadocSettingsTask(Sungero.Docflow.IOfficialDocument doc)
@@ -165,6 +257,8 @@ namespace sberdev.SBContracts.Server
         if (contractual.AccArtExBaseSberDev != null && contractual.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed)
           flag = true;
         if (contractual.AccArtPrBaseSberDev != null && contractual.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Closed)
+          flag = true;
+        if (contractual.MarketDirectSberDev != null && contractual.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Closed)
           flag = true;
         foreach (var prod in contractual.ProdCollectionExBaseSberDev)
           if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Closed)

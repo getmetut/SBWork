@@ -14,6 +14,8 @@ namespace sberdev.SberContracts.Constants
     [Sungero.Core.PublicAttribute]
     public static readonly Guid FakeSignContractRoleGuid =  Guid.Parse("65bb3be1-cfbf-4d99-a88f-8fd0d4884a06");
     [Sungero.Core.PublicAttribute]
+    public static readonly Guid AccDocsHandlerGFRoleGuid =  Guid.Parse("b592491a-057c-4568-9d80-83e23e8b9edf");
+    [Sungero.Core.PublicAttribute]
     public static readonly Guid AccDocsHandlerRoleGuid =  Guid.Parse("c054a467-183b-44d5-87b1-c3e4e03c93ec");
     [Sungero.Core.PublicAttribute]
     public static readonly Guid CpSyncConflictRoleGuid =  Guid.Parse("d0fb1092-ed47-46b1-bb6c-536fb01068f6");

@@ -541,35 +541,30 @@
       "Value": "\"7c1833f6-22da-460f-ab4c-6d510c5f6945\""
     },
     {
-      "Name": "ReadressStage",
-      "ParentClasses": [
-        "ApprovalTask"
-      ],
-      "TypeName": "System.String",
-      "Value": "\"55d13a81-9812-42e9-ab13-08f849fed4bd\""
-    },
-    {
       "Name": "SignApproveStage",
       "ParentClasses": [
         "ApprovalTask"
       ],
       "TypeName": "System.String",
       "Value": "\"3236816c-cb3c-467a-bd50-12fd0accab6a\""
+    },
+    {
+      "Name": "SupplementalStage",
+      "ParentClasses": [
+        "ApprovalTask"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"55d13a81-9812-42e9-ab13-08f849fed4bd\""
     }
   ],
   "PublicFunctions": [
     {
-      "Name": "GetStageBySid",
+      "Name": "GetStage",
       "Parameters": [
         {
           "Name": "approvalTask",
           "ParameterType": "global::sberdev.SBContracts.IApprovalTask",
           "ParameterTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "sid",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
         }
       ],
       "ReturnType": "global::sberdev.SBContracts.IApprovalStage",
