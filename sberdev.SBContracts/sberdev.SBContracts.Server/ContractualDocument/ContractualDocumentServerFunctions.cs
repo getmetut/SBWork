@@ -34,14 +34,17 @@ namespace sberdev.SBContracts.Server
     public override List<Sungero.Docflow.IApprovalRuleBase> GetApprovalRules()
     {
       var query = base.GetApprovalRules();
-      var sbQuery = query.Select(q => SBContracts.ContractsApprovalRules.As(q));
-      
-      if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable)
-        return sbQuery.Where(q => q.ExpendableSberDev == true).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
-      if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
-        return sbQuery.Where(q => q.ProfitableSberDev == true).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
-      if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.ExpendProfitSberDev)
-        return sbQuery.Where(q => q.ExpendProfitSberDev == true).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
+      if (SBContracts.SupAgreements.Is(_obj) || SBContracts.Contracts.Is(_obj))
+      {
+        var sbQuery = query.Select(q => SBContracts.ContractsApprovalRules.As(q));
+        
+        if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable)
+          return sbQuery.Where(q => q.ExpendableSberDev == true).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
+        if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
+          return sbQuery.Where(q => q.ProfitableSberDev == true).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
+        if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.ExpendProfitSberDev)
+          return sbQuery.Where(q => q.ExpendProfitSberDev == true).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
+      }
       return query;
     }
     
