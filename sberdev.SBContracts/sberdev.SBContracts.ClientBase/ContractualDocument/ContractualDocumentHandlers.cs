@@ -10,6 +10,12 @@ namespace sberdev.SBContracts
   partial class ContractualDocumentClientHandlers
   {
 
+    public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
+    {
+      base.Showing(e);
+      PublicFunctions.ContractualDocument.UpdateCard(_obj);
+    }
+
     public virtual void PurchComNumberSberDevValueInput(Sungero.Presentation.StringValueInputEventArgs e)
     {
       if (e.NewValue != null)
@@ -86,6 +92,7 @@ namespace sberdev.SBContracts
       base.Refresh(e);
       Functions.ContractualDocument.SetPropertiesAccess(_obj);
       Functions.ContractualDocument.HighlightClosedAnalitics(_obj);
+      PublicFunctions.ContractualDocument.UpdateCard(_obj);
     }
 
   }

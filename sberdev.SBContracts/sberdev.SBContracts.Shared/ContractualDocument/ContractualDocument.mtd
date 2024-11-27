@@ -990,6 +990,19 @@
           "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "8e8ac755-f7fa-4c06-9d8f-81802c119161",
+          "Name": "NMASDevSDevSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "73e9df7c-895e-4811-b3d5-76c6f95b87aa",
+          "PropertyGuid": "506fb40e-b019-4b18-898a-cbccca8a839d",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -1004,7 +1017,8 @@
   "HandledEvents": [
     "RefreshClient",
     "BeforeSaveServer",
-    "CreatedServer"
+    "CreatedServer",
+    "ShowingClient"
   ],
   "IconResourcesKeys": [],
   "IsAbstract": true,
@@ -1662,6 +1676,17 @@
       "Length": 1000,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "8c3bc1e6-7211-412e-bc6a-51b327589a99"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "506fb40e-b019-4b18-898a-cbccca8a839d",
+      "Name": "NMASDevSDev",
+      "Code": "NMASDevSDev",
+      "EntityGuid": "c0b3d9f5-8bf1-432d-beff-bab90ab3e880",
+      "FlatListInStandaloneLookup": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "f7cde39e-7e3d-44b2-8bd6-bac4571b8770",
+      "Versions": []
     }
   ],
   "PublicFunctions": [
@@ -1775,6 +1800,19 @@
     {
       "Name": "ReplaceProducts",
       "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "contractualDocument",
+          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "UpdateCard",
       "Parameters": [
         {
           "Name": "contractualDocument",

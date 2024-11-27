@@ -493,6 +493,32 @@ namespace sberdev.SBContracts.Shared
     }
     
     /// <summary>
+    /// Обновление карточки докуента и открытие реквизитов по логике запроса и условий
+    /// </summary>
+    [Public]
+    public void UpdateCard()
+    {
+      bool NMVisible = false;
+      if (_obj.AccArtExBaseSberDev != null)
+      {
+        if (_obj.AccArtExBaseSberDev.NMA != null)
+        {
+          if (_obj.AccArtExBaseSberDev.NMA.Value)
+            NMVisible = true;
+        }
+      }
+      if (_obj.AccArtPrBaseSberDev != null)
+      {
+        if (_obj.AccArtPrBaseSberDev.NMA != null)
+        {
+          if (_obj.AccArtPrBaseSberDev.NMA.Value)
+            NMVisible = true;
+        }
+      } 
+      _obj.State.Properties.NMASDevSDev.IsVisible = NMVisible;
+    }
+    
+    /// <summary>
     /// Функция возвращает текст ошибки, если в каком либо поле выбраны заглушки
     /// </summary>
     [Public]

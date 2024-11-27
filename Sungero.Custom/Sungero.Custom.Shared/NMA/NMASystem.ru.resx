@@ -59,30 +59,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Property_Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Accounting articles</value>
-  </data>
-  <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Accounting articles</value>
-  </data>
-  <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Accounting articles</value>
-  </data>
-  <data name="Property_BudgetItem" xml:space="preserve">
-    <value>Budget Item</value>
-  </data>
-  <data name="Property_ContrType" xml:space="preserve">
-    <value>Contract type</value>
-  </data>
-  <data name="Enum_ContrType_Profitable" xml:space="preserve">
-    <value>Profitable</value>
-  </data>
-  <data name="Enum_ContrType_Expendable" xml:space="preserve">
-    <value>Expendable</value>
-  </data>
-  <data name="Property_NMA" xml:space="preserve">
-    <value>НМА</value>
+    <value>Имя</value>
   </data>
 </root>

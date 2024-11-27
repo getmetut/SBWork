@@ -412,4 +412,7 @@
   <data name="Property_ProdCollectionStringSDev" xml:space="preserve">
     <value>Продукты документа</value>
   </data>
+  <data name="Property_NMASDevSDev" xml:space="preserve">
+    <value>Объекты НМА в 1С</value>
+  </data>
 </root>

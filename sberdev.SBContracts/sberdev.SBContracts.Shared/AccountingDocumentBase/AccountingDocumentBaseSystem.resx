@@ -400,4 +400,7 @@
   <data name="Property_CouterpartyTRRCSberDev" xml:space="preserve">
     <value>Couterparty TRRC</value>
   </data>
+  <data name="Property_NMASDev" xml:space="preserve">
+    <value>Объекты НМА в 1С</value>
+  </data>
 </root>

@@ -8,7 +8,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">None</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">490.4,-2.80000000000001</property>
+            <property name="Location">490.4,-107</property>
             <property name="Size">220,250</property>
           </property>
           <property name="AllowMoveColumnToDropArea">false</property>
@@ -30,7 +30,7 @@
             <property name="Name">AccountingDocumentBase_CalculationBaseSberDev_AggregationCalc</property>
             <property name="FieldName">AggregationCalc</property>
             <property name="VisibleIndex">0</property>
-            <property name="Width">41</property>
+            <property name="Width">100</property>
             <property name="ActualWidth">13*</property>
           </property>
           <property name="Item2" isnull="true" iskey="true">
@@ -38,7 +38,7 @@
             <property name="Name">AccountingDocumentBase_CalculationBaseSberDev_ProductCalc</property>
             <property name="FieldName">ProductCalc</property>
             <property name="VisibleIndex">1</property>
-            <property name="Width">41</property>
+            <property name="Width">169</property>
             <property name="ActualWidth">22*</property>
           </property>
           <property name="Item3" isnull="true" iskey="true">
@@ -46,7 +46,7 @@
             <property name="Name">AccountingDocumentBase_CalculationBaseSberDev_AbsoluteCalc</property>
             <property name="FieldName">AbsoluteCalc</property>
             <property name="VisibleIndex">2</property>
-            <property name="Width">41</property>
+            <property name="Width">116</property>
             <property name="ActualWidth">15*</property>
           </property>
           <property name="Item4" isnull="true" iskey="true">
@@ -54,7 +54,7 @@
             <property name="Name">AccountingDocumentBase_CalculationBaseSberDev_PercentCalc</property>
             <property name="FieldName">PercentCalc</property>
             <property name="VisibleIndex">3</property>
-            <property name="Width">41</property>
+            <property name="Width">100</property>
             <property name="ActualWidth">13*</property>
           </property>
           <property name="Item5" isnull="true" iskey="true">
@@ -62,7 +62,7 @@
             <property name="Name">AccountingDocumentBase_CalculationBaseSberDev_InterestCalc</property>
             <property name="FieldName">InterestCalc</property>
             <property name="VisibleIndex">4</property>
-            <property name="Width">41</property>
+            <property name="Width">139</property>
             <property name="ActualWidth">18*</property>
           </property>
         </property>
