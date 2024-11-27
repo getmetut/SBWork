@@ -1171,7 +1171,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
           "PropertyGuid": "ddbd8560-adc3-4bc1-ad49-26faf831886f",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1184,7 +1184,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
           "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
           "PropertyGuid": "824b3207-54d4-4429-91e9-2b1b318f74c1",
-          "RowNumber": 4,
+          "RowNumber": 5,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1305,6 +1305,19 @@
           "ParentGuid": "9a9b91a8-7e9f-4890-82c4-a4fe0197b1d2",
           "PropertyGuid": "a7d3dfe0-8181-4409-a777-dac9ae0a6536",
           "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "c9d495fc-24dd-43b7-8830-19e44d1c39d8",
+          "Name": "ControlSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
+          "PropertyGuid": "506fb40e-b019-4b18-898a-cbccca8a839d",
+          "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
         }

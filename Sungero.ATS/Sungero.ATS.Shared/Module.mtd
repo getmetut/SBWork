@@ -57,11 +57,6 @@
     {
       "NameGuid": "fa722da7-57f4-4998-88b9-fffe9abb1162",
       "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17"
-    },
-    {
-      "NameGuid": "780b62c6-1e7d-4ebf-8878-8e3f252ca358",
-      "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17",
-      "PreviousGuid": "fa722da7-57f4-4998-88b9-fffe9abb1162"
     }
   ],
   "Overridden": [
@@ -77,7 +72,7 @@
   "SharedAssemblyName": "Sungero.ATS.Shared",
   "SharedNamespace": "Sungero.ATS.Shared",
   "SpecialFolders": [],
-  "Version": "0.1.0.114",
+  "Version": "0.1.0.116",
   "Widgets": [],
   "Versions": [
     {

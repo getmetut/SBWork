@@ -1173,7 +1173,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
           "PropertyGuid": "ddbd8560-adc3-4bc1-ad49-26faf831886f",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1184,7 +1184,7 @@
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
-          "RowNumber": 4,
+          "RowNumber": 5,
           "RowSpan": 1
         },
         {
@@ -1299,6 +1299,19 @@
           "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "31c71a8a-2f7e-4984-ae01-330bfebd39b4",
+          "Name": "NMASDevSDevSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
+          "PropertyGuid": "506fb40e-b019-4b18-898a-cbccca8a839d",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -1313,7 +1326,8 @@
   "HandledEvents": [
     "AfterSaveServer",
     "RefreshClient",
-    "BeforeSaveServer"
+    "BeforeSaveServer",
+    "ShowingClient"
   ],
   "IconResourcesKeys": [],
   "LayeredFromGuid": "265f2c57-6a8a-4a15-833b-ca00e8047fa5",
