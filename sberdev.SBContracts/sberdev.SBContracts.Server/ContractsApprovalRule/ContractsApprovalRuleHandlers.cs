@@ -16,6 +16,7 @@ namespace sberdev.SBContracts
       _obj.ExpendableSberDev = false;
       _obj.ExpendProfitSberDev = false;
       _obj.ProfitableSberDev = false;
+      _obj.TypicalSberDev = false;
     }
   }
 

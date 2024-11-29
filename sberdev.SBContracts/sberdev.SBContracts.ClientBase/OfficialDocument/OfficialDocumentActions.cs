@@ -14,7 +14,7 @@ namespace sberdev.SBContracts.Client
   {
     public override void CreateDocumentFromVersion(Sungero.Domain.Client.ExecuteChildCollectionActionArgs e)
     {
-      PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(SBContracts.OfficialDocuments.As(_obj.ElectronicDocument));
+      //PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(SBContracts.OfficialDocuments.As(_obj.ElectronicDocument));
       base.CreateDocumentFromVersion(e);
     }
 
@@ -30,7 +30,7 @@ namespace sberdev.SBContracts.Client
 
     public override void CreateVersion(Sungero.Domain.Client.ExecuteChildCollectionActionArgs e)
     {
-      PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(SBContracts.OfficialDocuments.As(_obj.ElectronicDocument));
+      //PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(SBContracts.OfficialDocuments.As(_obj.ElectronicDocument));
       base.CreateVersion(e);
     }
 
@@ -89,7 +89,7 @@ namespace sberdev.SBContracts.Client
       if (id != null)
         Dialogs.ShowMessage(id);
       else
-        Dialogs.ShowMessage("А нету тут метаданных братан");
+        Dialogs.ShowMessage("Метаданные отсутвуют");
     }
 
     public virtual bool CanGetMetadataSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
@@ -148,13 +148,13 @@ namespace sberdev.SBContracts.Client
 
     public override void ImportInLastVersion(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-      PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
+      //PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
       base.ImportInLastVersion(e);
     }
 
     public override void ImportInNewVersion(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-      PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
+      //PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
       base.ImportInNewVersion(e);
     }
 
@@ -178,13 +178,13 @@ namespace sberdev.SBContracts.Client
 
     public override void ScanInNewVersion(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-      PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
+      //PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
       base.ScanInNewVersion(e);
     }
 
     public override void CreateFromScanner(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-      PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
+      //PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
       base.CreateFromScanner(e);
     }
 
@@ -199,7 +199,7 @@ namespace sberdev.SBContracts.Client
 
     public override void CreateFromFile(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-      PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
+      //PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
       base.CreateFromFile(e);
     }
 
@@ -214,7 +214,7 @@ namespace sberdev.SBContracts.Client
 
     public override void CreateVersionFromLastVersion(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-      PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
+      //PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
       base.CreateVersionFromLastVersion(e);
     }
 
@@ -229,7 +229,7 @@ namespace sberdev.SBContracts.Client
 
     public override void CreateFromTemplate(Sungero.Domain.Client.ExecuteActionArgs e)
     {
-      PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
+      //PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
       base.CreateFromTemplate(e);
     }
 

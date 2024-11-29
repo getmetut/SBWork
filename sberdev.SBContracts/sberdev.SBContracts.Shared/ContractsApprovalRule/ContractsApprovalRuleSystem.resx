@@ -82,4 +82,7 @@
   <data name="ControlGroup_b83a1c0233cc4f2a907f5fb23b789ad7" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_TypicalSberDev" xml:space="preserve">
+    <value>Typical</value>
+  </data>
 </root>

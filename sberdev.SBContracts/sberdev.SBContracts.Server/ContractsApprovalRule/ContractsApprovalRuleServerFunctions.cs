@@ -24,9 +24,20 @@ namespace sberdev.SBContracts.Server
                                                 // Проверяем соответствие новых булевых свойств
                                                 return sbRule.ExpendableSberDev == _obj.ExpendableSberDev &&
                                                   sbRule.ProfitableSberDev == _obj.ProfitableSberDev &&
-                                                  sbRule.ExpendProfitSberDev == _obj.ExpendProfitSberDev;
+                                                  sbRule.ExpendProfitSberDev == _obj.ExpendProfitSberDev &&
+                                                  sbRule.TypicalSberDev == _obj.TypicalSberDev ;
                                               }).ToList();
       return conflictedRules;
+    }
+    
+    public override Sungero.Docflow.IApprovalRuleBase GetOrCreateNextVersion()
+    {
+      var version = SBContracts.ContractsApprovalRules.As(base.GetOrCreateNextVersion());
+      version.TypicalSberDev = _obj.TypicalSberDev;
+      version.ExpendableSberDev = _obj.ExpendableSberDev;
+      version.ExpendProfitSberDev = _obj.ExpendProfitSberDev;
+      version.ProfitableSberDev = _obj.ProfitableSberDev;
+      return version;
     }
   }
 }

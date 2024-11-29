@@ -79,4 +79,7 @@
   <data name="Resource_ec7f0895be664781827329002bcb6004" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_TypicalSberDev" xml:space="preserve">
+    <value>Типовой</value>
+  </data>
 </root>

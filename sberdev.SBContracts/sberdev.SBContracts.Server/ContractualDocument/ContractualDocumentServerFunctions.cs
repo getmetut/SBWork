@@ -39,11 +39,13 @@ namespace sberdev.SBContracts.Server
         var sbQuery = query.Select(q => SBContracts.ContractsApprovalRules.As(q));
         
         if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable)
-          return sbQuery.Where(q => q.ExpendableSberDev == true).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
+          sbQuery = sbQuery.Where(q => q.ExpendableSberDev == true);
         if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
-          return sbQuery.Where(q => q.ProfitableSberDev == true).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
+          sbQuery = sbQuery.Where(q => q.ProfitableSberDev == true);
         if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.ExpendProfitSberDev)
-          return sbQuery.Where(q => q.ExpendProfitSberDev == true).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
+          sbQuery = sbQuery.Where(q => q.ExpendProfitSberDev == true);
+        
+        return sbQuery.Where(q => q.TypicalSberDev == _obj.IsStandard).Select(q => Sungero.Docflow.ApprovalRuleBases.As(q)).ToList();
       }
       return query;
     }

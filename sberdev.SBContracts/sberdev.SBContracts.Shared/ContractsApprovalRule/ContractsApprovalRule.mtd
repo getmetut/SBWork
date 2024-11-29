@@ -2,6 +2,18 @@
   "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
   "NameGuid": "4686c83c-0720-4430-9c01-89f6e5149d27",
   "Name": "ContractsApprovalRule",
+  "Actions": [
+    {
+      "NameGuid": "c2f699e1-cecf-458b-bfe0-0b2efea4b94c",
+      "Name": "CreateVersion",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ],
+      "Versions": []
+    }
+  ],
   "BaseGuid": "dcbf9c6f-9bb6-4b61-b501-db35df320207",
   "CanBeNavigationPropertyType": true,
   "CreationAreaMetadata": {
@@ -118,13 +130,16 @@
           "Name": "ContrTypeSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 10.81
+              "Percentage": 7.83
             },
             {
-              "Percentage": 11.31
+              "Percentage": 8.25
             },
             {
-              "Percentage": 77.88
+              "Percentage": 13.68
+            },
+            {
+              "Percentage": 67.07
             }
           ],
           "ColumnNumber": 0,
@@ -168,6 +183,19 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
           "ParentGuid": "b83a1c02-33cc-4f2a-907f-5fb23b789ad7",
           "PropertyGuid": "8dbd5424-10bf-4854-93b6-d67b4dfefe82",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "bc1a65ec-5da7-44d5-a4b6-436769e62c43",
+          "Name": "TypedSberDevSberDev",
+          "ColumnNumber": 3,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+          "ParentGuid": "b83a1c02-33cc-4f2a-907f-5fb23b789ad7",
+          "PropertyGuid": "de2d0fd9-eb94-4ac5-8f29-fbef6d6986bb",
           "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
@@ -292,6 +320,16 @@
       "IsLoadEagerly": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "f0d00d04-19d3-47f8-834c-56d78dea6158",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "de2d0fd9-eb94-4ac5-8f29-fbef6d6986bb",
+      "Name": "TypicalSberDev",
+      "Code": "TypicalCR",
+      "IsLoadEagerly": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "8dbd5424-10bf-4854-93b6-d67b4dfefe82",
       "Versions": []
     }
   ],

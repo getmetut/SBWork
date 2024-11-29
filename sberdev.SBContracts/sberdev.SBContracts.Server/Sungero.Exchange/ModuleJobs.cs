@@ -32,7 +32,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
           continue;
         }
         
-      /*  if (task.IsIncoming.HasValue && !task.IsIncoming.Value)
+        /*  if (task.IsIncoming.HasValue && !task.IsIncoming.Value)
         {
           Logger.Error($"Exchange. ComeBackBodies. Задача {task.Id} для исходящих документов.");
           task.IsNeedComeback = false;
@@ -88,6 +88,12 @@ namespace sberdev.SBContracts.Module.Exchange.Server
           }
 
           var signInfos = Signatures.Get(incomingDoc);
+          if (signInfos.Count() < 2)
+          {
+            Logger.Debug($"Exchange. ComeBackBodies. В документе {attach.Id} меньше двух подписей.");
+            task.NumberOfAttempsComeback++;
+            task.NeedComebackAgainAttachments += $",{incomingDoc.Id}";
+          }
           
           using (var strmCommon = incomingDoc.LastVersion.Body.Read())
             using (var strmPublic = incomingDoc.LastVersion.PublicBody.Read())
