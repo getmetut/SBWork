@@ -130,16 +130,16 @@
           "Name": "ContrTypeSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 7.83
+              "Percentage": 8.09
             },
             {
-              "Percentage": 8.25
+              "Percentage": 8.52
             },
             {
-              "Percentage": 13.68
+              "Percentage": 14.13
             },
             {
-              "Percentage": 67.07
+              "Percentage": 69.27
             }
           ],
           "ColumnNumber": 0,
