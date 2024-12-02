@@ -116,6 +116,13 @@
       "GenerateHandler": true,
       "MonthSchedule": "Monthly",
       "TimePeriod": 30
+    },
+    {
+      "NameGuid": "a08d8af8-c16b-4d1d-b128-5566eb08f4c9",
+      "Name": "FinishOutcomingExchTasksSberDev",
+      "GenerateHandler": true,
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T07:00:00"
     }
   ],
   "LayeredFromGuid": "cec41b99-da21-422f-9332-0fbc423e95c0",

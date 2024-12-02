@@ -67,4 +67,10 @@
   <data name="JobDisplayName_a050e9dcac0a40c2a3227f1832e53f36" xml:space="preserve">
     <value>Electronic exchange. Send document receipt notifications</value>
   </data>
+  <data name="JobDisplayName_a08d8af8c16b4d1db1285566eb08f4c9" xml:space="preserve">
+    <value>Electronic exchange. Completion of tasks on outgoing</value>
+  </data>
+  <data name="JobDescription_a08d8af8c16b4d1db1285566eb08f4c9" xml:space="preserve">
+    <value>The process completes tasks on outgoing documents.</value>
+  </data>
 </root>

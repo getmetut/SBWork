@@ -9,6 +9,20 @@ namespace sberdev.SBContracts.Module.Exchange.Server
 {
   partial class ModuleJobs
   {
+    
+    public virtual void FinishOutcomingExchTasksSberDev()
+    {
+      Logger.Debug("Exchange. FinishOutcomingExchTasksSberDev. Фоновый процесс запущен. ====================================================");
+      var tasks = SBContracts.ExchangeDocumentProcessingTasks.GetAll().Where(t => t.Status == ExchangeDocumentProcessingTask.Status.InProcess
+                                                                             && t.IsNeedComeback == false && t.IsIncoming == false).ToList();
+      foreach(var task in tasks)
+      {
+        Logger.Debug($"Exchange. FinishOutcomingExchTasksSberDev. Задача {task.Id} прекращена");
+        task.Abort();
+      }
+      Logger.Debug("Exchange. FinishOutcomingExchTasksSberDev. Фоновый процесс завершен. ====================================================");
+    }
+    
     public virtual void ComeBackBodies()
     {
       Logger.Debug("Exchange. ComeBackBodies. Фоновый процесс запущен. ====================================================");

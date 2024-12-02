@@ -19,7 +19,7 @@ namespace Sungero.ATS.Module.Shell.Server
         {
           foreach (var elem in OBrole.RecipientLinks)
           {
-              Userlist.Add(elem.Member);
+            Userlist.Add(elem.Member);
           }
           query = query.Where(q => Userlist.Contains(q));
         }
@@ -30,13 +30,16 @@ namespace Sungero.ATS.Module.Shell.Server
     public override IQueryable<Sungero.Workflow.IAssignmentBase> ExchangeDocumentProcessingDataQuery(IQueryable<Sungero.Workflow.IAssignmentBase> query)
     {
       var filtred = base.ExchangeDocumentProcessingDataQuery(query);
-      if (_filter != null)
+      if (_filter != null && (_filter.IncomingSberDev || _filter.OutgoingSberDev))
       {
-        if (_filter.IncomingSberDev)
-          filtred = query.Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p)).Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == true);
-        if (_filter.OutgoingSberDev)
-          filtred = query.Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p)).Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == false);
+        bool isIncoming = _filter.IncomingSberDev;
+        
+        filtred = query
+          .Where(q => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.Is(q))
+          .Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p))
+          .Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == isIncoming);
       }
+
       if (_filter != null)
       {
         if (_filter.BuchKASDev != null)

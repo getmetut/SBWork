@@ -67,4 +67,10 @@
   <data name="JobDisplayName_a050e9dcac0a40c2a3227f1832e53f36" xml:space="preserve">
     <value>Электронный обмен. Отправка извещений о получении документов</value>
   </data>
+  <data name="JobDisplayName_a08d8af8c16b4d1db1285566eb08f4c9" xml:space="preserve">
+    <value>Электронный обмен. Завершение задач по исходящим</value>
+  </data>
+  <data name="JobDescription_a08d8af8c16b4d1db1285566eb08f4c9" xml:space="preserve">
+    <value>Процесс завершает задачи по иходящим документам.</value>
+  </data>
 </root>
