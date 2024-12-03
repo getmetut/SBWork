@@ -32,8 +32,10 @@ namespace sberdev.SBContracts.Module.Exchange.Server
         Logger.Debug("Exchange. ComeBackBodies. Нет задач на обработку. ====================================================");
         return;
       }
+      
+      Par
 
-      foreach (var task in tasks)
+        foreach (var task in tasks)
       {
         Logger.Debug($"Exchange. ComeBackBodies. Процесс по задаче {task.Id}");
 
@@ -70,15 +72,18 @@ namespace sberdev.SBContracts.Module.Exchange.Server
             continue;
           }
 
-          string idStr;
-          try
+          string idStr = incomingDoc.ParentDocIDSberDev;
+          if (string.IsNullOrEmpty(idStr))
           {
-            idStr = PublicFunctions.Module.Remote.GetMetadataID(incomingDoc);
-          }
-          catch (Exception ex)
-          {
-            Logger.Error($"Exchange. ComeBackBodies. Exchange. Ошибка извлечения метаданных у вложения {attach.Id}: {ex.Message}");
-            continue;
+            try
+            {
+              idStr = PublicFunctions.Module.Remote.GetMetadataID(incomingDoc);
+            }
+            catch (Exception ex)
+            {
+              Logger.Error($"Exchange. ComeBackBodies. Exchange. Ошибка извлечения метаданных у вложения {attach.Id}: {ex.Message}");
+              continue;
+            }
           }
 
           if (string.IsNullOrEmpty(idStr))
@@ -87,12 +92,15 @@ namespace sberdev.SBContracts.Module.Exchange.Server
             continue;
           }
           
+          PublicFunctions.Module.Remote.UnblockCardByDatabase(incomingDoc);
+          incomingDoc.ParentDocIDSberDev = idStr;
+          incomingDoc.Save();
+          
           if (idStr == incomingDoc.Id.ToString())
           {
             Logger.Error($"Exchange. ComeBackBodies. ИД родной карточки совпадает с ИД вложения {attach.Id}");
             continue;
           }
-
 
           var doc = Sungero.Content.ElectronicDocuments.GetAll(d => d.Id.ToString() == idStr).FirstOrDefault();
           if (doc == null)
@@ -146,7 +154,6 @@ namespace sberdev.SBContracts.Module.Exchange.Server
                 }
               }
 
-              task.IsNeedComeback = false;
               Logger.Debug($"Exchange. ComeBackBodies. Тело и подписи вложения {attach.Id} перенесены.");
               
               var clerk = Sungero.ExchangeCore.BusinessUnitBoxes.GetAll().FirstOrDefault(b => b.BusinessUnit == SBContracts.OfficialDocuments.As(doc).BusinessUnit)?.Responsible;
@@ -174,7 +181,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
         if (task.NeedComebackAgainAttachments == null)
           task.IsNeedComeback = false;
 
-        if (task.NumberOfAttempsComeback > 336)
+        if (task.NumberOfAttempsComeback > 259200)
         {
           task.IsNeedComeback = false;
           task.NeedComebackAgainAttachments = null;

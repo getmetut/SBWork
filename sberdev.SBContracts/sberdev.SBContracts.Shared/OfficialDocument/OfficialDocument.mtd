@@ -294,6 +294,16 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "2ad4b0b6-2e61-4d9e-8ecf-ca3c3335ed2b",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "fd239c42-c921-47e7-bf9e-ace020fff245",
+      "Name": "ParentDocIDSberDev",
+      "Code": "ParentDocID",
+      "IsVisibility": false,
+      "Length": 20,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "3ea7d448-ffe8-4099-8acc-bd4702125f61"
     }
   ],
   "PublicFunctions": [

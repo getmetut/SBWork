@@ -115,7 +115,7 @@
       "Daily": "Repeat",
       "GenerateHandler": true,
       "MonthSchedule": "Monthly",
-      "TimePeriod": 30
+      "TimePeriod": 60
     },
     {
       "NameGuid": "a08d8af8-c16b-4d1d-b128-5566eb08f4c9",

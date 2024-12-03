@@ -136,4 +136,7 @@
   <data name="Action_SetCommentSberDevDescription" xml:space="preserve">
     <value>Напишите комментарий в задаче который будет виден всем.</value>
   </data>
+  <data name="Property_ParentDocIDSberDev" xml:space="preserve">
+    <value>Ид родительского документа</value>
+  </data>
 </root>
