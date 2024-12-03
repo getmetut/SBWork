@@ -62,6 +62,23 @@ namespace sberdev.SBContracts
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
+      if (_obj.State.IsInserted)        
+      {
+        bool err = false;
+        if (_obj.Account == null)
+           err = true;
+        else
+        {
+          if (_obj.Account.Length < 5)
+            err = true;
+        }
+        if (err)
+        {
+          _obj.State.Properties.Account.HighlightColor = Colors.Common.Red;
+            e.AddError("Необходимо заполнить Счет в банковских реквизитах!");
+        }
+      }
+      
       var checkDuplicatesErrorText = Sungero.Parties.PublicFunctions.Counterparty.GetCounterpartyDuplicatesErrorText(_obj);
       if (!string.IsNullOrWhiteSpace(checkDuplicatesErrorText))
         e.AddError(checkDuplicatesErrorText, _obj.Info.Actions.ShowDuplicates);

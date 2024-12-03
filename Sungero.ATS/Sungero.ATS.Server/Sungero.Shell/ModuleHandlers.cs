@@ -19,7 +19,7 @@ namespace Sungero.ATS.Module.Shell.Server
         {
           foreach (var elem in OBrole.RecipientLinks)
           {
-            Userlist.Add(elem.Member);
+              Userlist.Add(elem.Member);
           }
           query = query.Where(q => Userlist.Contains(q));
         }
@@ -39,7 +39,6 @@ namespace Sungero.ATS.Module.Shell.Server
           .Select(p => sberdev.SBContracts.ExchangeDocumentProcessingAssignments.As(p))
           .Where(e => sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(e.Task).IsIncoming == isIncoming);
       }
-
       if (_filter != null)
       {
         if (_filter.BuchKASDev != null)
