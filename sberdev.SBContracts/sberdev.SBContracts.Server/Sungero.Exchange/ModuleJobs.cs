@@ -33,9 +33,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
         return;
       }
       
-      Par
-
-        foreach (var task in tasks)
+      foreach (var task in tasks)
       {
         Logger.Debug($"Exchange. ComeBackBodies. Процесс по задаче {task.Id}");
 
