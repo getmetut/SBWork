@@ -505,6 +505,15 @@
       "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "a9c686f3-448b-4b1d-8f89-e4884f545791"
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "46c5a983-f0cc-4c22-9af5-e9921579b4ac",
+      "Name": "SubstitutePerformersSentToReworkSberDev",
+      "Code": "SubPerfRewk",
+      "EntityGuid": "8c9ed591-7085-430a-9e33-d58593158e67",
+      "IsShowedInList": false,
+      "PreviousPropertyGuid": "00ea5117-b90f-4d20-9445-f0eee2a6c103"
     }
   ],
   "PublicConstants": [

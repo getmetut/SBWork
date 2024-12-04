@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -11,12 +11,24 @@ namespace sberdev.SBContracts.Module.ContractsUI.Server
 
     public override IQueryable<Sungero.Contracts.IContractualDocument> ContractsListDataQuery(IQueryable<Sungero.Contracts.IContractualDocument> query)
     {
-      if (!Users.Current.IncludedIn( sberdev.SberContracts.PublicConstants.Module.FACTypeGuid) && !Users.Current.IncludedIn( Roles.Administrators))
-          {
-        var MVZ = SberContracts.MVZs.GetAll().Where(l => l.BudgetOwner == Sungero.Company.Employees.As(Users.Current));
-        query = query.Cast<sberdev.SBContracts.IContract>().Where(r => (r.Department == Sungero.Company.Employees.As(Users.Current).Department) || (  r.MVZBaseSberDev != null && MVZ != null && r.MVZBaseSberDev == MVZ ) || (  r.MVPBaseSberDev != null && MVZ != null && r.MVPBaseSberDev == MVZ ))
-          .Cast<Sungero.Contracts.IContractualDocument>(); //.GetAll().Where(d => d.Login == Users.Current.Login).First().Department);
-          }
+      /*
+      if (!Users.Current.IncludedIn(sberdev.SberContracts.PublicConstants.Module.FACTypeGuid) &&
+          !Users.Current.IncludedIn(Roles.Administrators))
+      {
+        var currentEmployee = Sungero.Company.Employees.As(Users.Current);
+        var currentDepartment = currentEmployee?.Department;
+        var mvzList = SberContracts.MVZs.GetAll()
+          .Where(l => l.BudgetOwner == currentEmployee)
+          .ToList();
+
+        query = query.Cast<sberdev.SBContracts.IContractualDocument>()
+          .Where(r =>
+                 r.Department == currentDepartment ||
+                 (r.MVZBaseSberDev != null && mvzList.Contains(r.MVZBaseSberDev)) ||
+                 (r.MVPBaseSberDev != null && mvzList.Contains(r.MVPBaseSberDev)))
+          .Cast<Sungero.Contracts.IContractualDocument>();
+      }*/
+
       
       return base.ContractsListDataQuery(query);
     }

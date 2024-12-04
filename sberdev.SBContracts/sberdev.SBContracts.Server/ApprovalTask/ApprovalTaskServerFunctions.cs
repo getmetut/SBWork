@@ -41,6 +41,14 @@ namespace sberdev.SBContracts.Server
       }
     }
     
+    public void SaveComplitedBy(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
+    {
+      /*if (e.Block.Res
+      var lastAssign = SBContracts.ApprovalAssignments.As(GetLastTaskAssigment(_obj, null));
+      if (lastAssign.CompletedBy != null)
+        e.Block.*/
+    }
+    
     public void SetSignApproveStagePerfomer(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
     {
       var stage = GetStage();

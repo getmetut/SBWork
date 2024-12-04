@@ -11,6 +11,12 @@ namespace sberdev.SBContracts.Server
   partial class ApprovalTaskRouteHandlers
   {
 
+    public override void StartBlock5(Sungero.Docflow.Server.ApprovalReworkAssignmentArguments e)
+    {
+      base.StartBlock5(e);
+      
+    }
+
     public override void StartBlock6(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
     {
       base.StartBlock6(e);

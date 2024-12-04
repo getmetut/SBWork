@@ -75,6 +75,19 @@
     "IsAncestorMetadata": true,
     "Versions": []
   },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.WorkflowEntityStandaloneFormMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "fc58f11f-d34e-4455-898f-d5e9b85ee919",
+      "Name": "Card",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ],
+      "Versions": []
+    }
+  ],
   "IconResourcesKeys": [],
   "IsVisibleThreadText": true,
   "LayeredFromGuid": "040862cd-a46f-4366-b068-e659c7acaea6",

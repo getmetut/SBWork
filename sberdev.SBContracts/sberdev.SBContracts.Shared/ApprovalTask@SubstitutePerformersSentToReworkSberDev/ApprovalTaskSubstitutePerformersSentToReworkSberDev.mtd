@@ -1,0 +1,49 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "8c9ed591-7085-430a-9e33-d58593158e67",
+  "Name": "ApprovalTaskSubstitutePerformersSentToReworkSberDev",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "SubPerfRewk",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "4fa7c695-4704-4ce3-b3c8-bcd2f900c227",
+      "Name": "ApprovalTask",
+      "CanBeSearch": false,
+      "Code": "Task",
+      "EntityGuid": "d7041916-1429-42e2-869b-661edeef70e5",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "3b6ffee9-29ee-493b-9e9e-cb542a03f00a",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "3f659bc2-89e2-40ca-9a5b-006a0e9c5f8d",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

@@ -56,9 +56,15 @@ namespace sberdev.SBContracts.Module.Exchange.Server
 
         if (task.NumberOfAttempsComeback > 0)
         {
-          var idsDocs = task.NeedComebackAgainAttachments?.Split(',').Select(int.Parse).ToList() ?? new List<int>();
+          var idsDocs = task.NeedComebackAgainAttachments?
+                .Split(',')
+                .Where(s => !string.IsNullOrWhiteSpace(s)) // Фильтруем пустые строки
+                .Select(int.Parse)
+                .ToList();
+
           attachs = attachs.Where(a => idsDocs.Contains((int)a.Id)).ToList();
         }
+        
         task.NeedComebackAgainAttachments = null;
 
         foreach (var attach in attachs)
@@ -113,6 +119,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
             Logger.Debug($"Exchange. ComeBackBodies. В документе {attach.Id} меньше двух подписей.");
             task.NumberOfAttempsComeback++;
             task.NeedComebackAgainAttachments += $",{incomingDoc.Id}";
+            continue;
           }
           
           using (var strmCommon = incomingDoc.LastVersion.Body.Read())
