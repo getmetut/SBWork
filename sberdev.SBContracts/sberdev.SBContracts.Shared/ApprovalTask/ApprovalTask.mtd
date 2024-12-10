@@ -472,9 +472,11 @@
       "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
       "NameGuid": "bef078b6-7786-4b0c-9080-c88eaed9fad2",
       "Name": "DoneStage",
-      "Code": "ApprovalTaskDo",
+      "Code": "ATaskDoneSt",
       "EntityGuid": "9fee74b0-e44e-457d-9b06-9d91d12186fe",
+      "IsEnabled": false,
       "IsShowedInList": false,
+      "IsVisibility": false,
       "PreviousPropertyGuid": "cb876dee-5969-4f02-8dd1-aa6fefcfb357"
     },
     {
@@ -526,6 +528,14 @@
       "Value": "\"24de0d9d-ed7e-44cd-a09f-9696abec0487\""
     },
     {
+      "Name": "CancelApproveSkipStage",
+      "ParentClasses": [
+        "ApprovalTask"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"3236816c-cb3c-467a-bd50-12fd0accab6a\""
+    },
+    {
       "Name": "CheckingCPStage",
       "ParentClasses": [
         "ApprovalTask"
@@ -548,14 +558,6 @@
       ],
       "TypeName": "System.String",
       "Value": "\"7c1833f6-22da-460f-ab4c-6d510c5f6945\""
-    },
-    {
-      "Name": "SignApproveStage",
-      "ParentClasses": [
-        "ApprovalTask"
-      ],
-      "TypeName": "System.String",
-      "Value": "\"3236816c-cb3c-467a-bd50-12fd0accab6a\""
     },
     {
       "Name": "SupplementalStage",

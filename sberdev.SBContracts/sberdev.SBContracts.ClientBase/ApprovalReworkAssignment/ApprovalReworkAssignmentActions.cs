@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -12,7 +12,7 @@ namespace sberdev.SBContracts.Client
     public virtual void Reapprov(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       var task = sberdev.SBContracts.ApprovalTasks.Get(_obj.Task.Id);
-        task.DoneStage.Clear();
+      task.DoneStage.Clear();
       task.Save();
       foreach (var str in _obj.Approvers)
       {

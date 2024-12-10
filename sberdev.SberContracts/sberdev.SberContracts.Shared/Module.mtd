@@ -4,20 +4,6 @@
   "Name": "SberContracts",
   "AsyncHandlers": [
     {
-      "NameGuid": "36bd9456-fc87-459f-b286-365451bdc997",
-      "Name": "AddStageToTask",
-      "DelayPeriod": 15,
-      "DelayStrategy": "RegularDelayStrategy",
-      "IsHandlerGenerated": true,
-      "Parameters": [
-        {
-          "NameGuid": "115c80d2-e443-477a-90d7-aba4f5f3013b",
-          "Name": "taskId",
-          "ParameterType": "Integer"
-        }
-      ]
-    },
-    {
       "NameGuid": "04e5249b-a2a8-480b-a3b1-ca5f3884d58f",
       "Name": "DeleteContractById",
       "DelayPeriod": 15,

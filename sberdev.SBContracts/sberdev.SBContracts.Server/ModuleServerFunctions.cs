@@ -1031,7 +1031,7 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[CreatedDay]", nowDate.Day.ToString());
       body.Range.Replace("[CreatedMonth]", PublicFunctions.Module.GetMonthGenetiveName(nowDate.Month));
       body.Range.Replace("[CreatedYear]", nowDate.Year.ToString());
-      body.Range.Replace("[MethodPurchase]", purch.MethodPurchase.Value.Value);
+      body.Range.Replace("[MethodPurchase]", GetMethodPurchase(purch.MethodPurchase.Value));
       body.Range.Replace("[PurchaseAmount]", purch.PurchaseAmount.ToString());
       body.Range.Replace("[MVZ]", purch.MVZBaseSberDev != null ? purch.MVZBaseSberDev.Name : purch.MVPBaseSberDev.Name);
       
@@ -1065,6 +1065,7 @@ namespace sberdev.SBContracts.Server
       else
       {
         body.Range.Replace("[ScreenBusinessPlan]", "");
+        body.Range.Replace("[ScreenBusinessPlanText]", "");
       }
       
       if (purch.NegotiationsDiscount.HasValue)
@@ -1087,8 +1088,8 @@ namespace sberdev.SBContracts.Server
       
       if (purch.ConcludedContractsKind == SberContracts.Purchase.ConcludedContractsKind.Yes)
         body.Range.Replace("[ConcludedContracts]", $"а также с использованием информации из действующих договоров, например: " +
-                           "Согласно {purch.LeadingDocument.Name} ({linkС}) стоимость {purch.SubjectPurchaseGen} составляет " +
-                           "{purch.TotalAmount.Value.ToString()} рублей [VAT], что соответствует среднерыночной стоимости.");
+                           $"Согласно {purch.LeadingDocument.Name} ({linkС}) стоимость {purch.SubjectPurchaseGen} составляет " +
+                           $"{purch.TotalAmount.Value.ToString()} рублей [VAT], что соответствует среднерыночной стоимости.");
       if (purch.ConcludedContractsKind == SberContracts.Purchase.ConcludedContractsKind.NoChanges)
         body.Range.Replace("[ConcludedContracts]", "а также с использованием информации из действующих договоров, например:\n" +
                            "Указанная стоимость услуг остается неизменной с " + purch.LeadingDocument.DocumentDate + ", что подтверждено" + purch.LeadingDocument.Name
@@ -1612,6 +1613,14 @@ namespace sberdev.SBContracts.Server
       if (kind.Value == SberContracts.Purchase.PaymentKind.Stagely)
         return "поэтапно ";
       return "";
+    }
+    
+    string GetMethodPurchase(Enumeration? kind)
+    {
+      if (kind.Value == SberContracts.Purchase.MethodPurchase.OneCP)
+        return "Единственный поставщик";
+      else
+        return "Запрос предложений";
     }
     
     #endregion

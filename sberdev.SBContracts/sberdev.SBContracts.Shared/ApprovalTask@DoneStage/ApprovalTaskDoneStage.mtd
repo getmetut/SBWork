@@ -5,7 +5,7 @@
   "AccessRightsMode": "NoRight",
   "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
   "CanBeNavigationPropertyType": true,
-  "Code": "ApprovalTaskDo",
+  "Code": "ATaskDoneSt",
   "ExtraSearchProperties": [],
   "IsChildEntity": true,
   "Properties": [
@@ -27,8 +27,24 @@
       "Code": "Stage",
       "EntityGuid": "41e9be92-a238-4834-bf66-5c37605155dc",
       "FlatListInStandaloneLookup": true,
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "6bc35d47-aa6f-4ac9-9f61-bdbababb1e75"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "1aa68247-e04e-4179-91cd-2af6e23faf91",
+      "Name": "Performer",
+      "CanBeSearch": false,
+      "Code": "Performer",
+      "EntityGuid": "c612fc41-44a3-428b-a97c-433c333d78e9",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "86c36e82-6aa7-44f0-957c-3c05151e751a"
     }
   ],
   "PublicStructures": [],

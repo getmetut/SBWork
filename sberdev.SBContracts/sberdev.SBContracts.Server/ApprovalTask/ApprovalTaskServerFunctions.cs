@@ -28,33 +28,152 @@ namespace sberdev.SBContracts.Server
           var operation = new Enumeration("AddApprover");
           blok.Forward(mvz.BudgetOwner, ForwardingLocation.Next, Calendar.Today.AddWorkingDays(2));
           blok.History.Write(operation, operation, Sungero.Company.PublicFunctions.Employee.GetShortName(mvz.BudgetOwner, false));
-          
+          /*
           var task = ApprovalTasks.As(_obj);
-          var approvalAsg = ApprovalAssignments.As(_obj);
+          var approvalAsg = ApprovalAssignments.As(_obj); //
           if (task != null && approvalAsg != null)
           {
             var approver = task.AddApproversExpanded.AddNew();
             approver.Approver = mvz.BudgetOwner;
             task.Save();
-          }
+          }*/
         }
       }
     }
     
-    public void SaveComplitedBy(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
+    /// <summary>
+    /// Часть механизма переадресации задания на замещающего что отправил на доработку
+    /// Записывает в задачу пользователя что выполнил задание по замещению и замещающего
+    /// </summary>
+    /// <param name="assigment"></param>
+    public void SaveSubstitutePerformer(Sungero.Workflow.IAssignment assignment)
     {
-      /*if (e.Block.Res
-      var lastAssign = SBContracts.ApprovalAssignments.As(GetLastTaskAssigment(_obj, null));
-      if (lastAssign.CompletedBy != null)
-        e.Block.*/
+      if (assignment.CompletedBy != null)
+      {
+        var elem = _obj.SubstitutePerformersSentToReworkSberDev.AddNew();
+        elem.Performer = Sungero.Company.Employees.As(assignment.Performer);
+        elem.Substitute = Sungero.Company.Employees.As(assignment.CompletedBy);
+        elem.IsProcessed = false;
+      }
     }
     
-    public void SetSignApproveStagePerfomer(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
+    /// <summary>
+    /// Часть механизма переадресации задания на замещающего что отправил на доработку
+    /// Если найден иполнитель найден в списке, ставит вместо него замещающего
+    /// </summary>
+    /// <param name="assigment"></param>
+    public void SetSubstitutePerformer(Sungero.Workflow.IAssignment assignment)
+    {
+      var collection = _obj.SubstitutePerformersSentToReworkSberDev;
+      var match = collection.FirstOrDefault(elem => elem.Performer == assignment.Performer);
+      if (match != null)
+        assignment.Performer = match.Substitute;
+    }
+    
+    /// <summary>
+    /// Часть механизма переадресации задания на замещающего что отправил на доработку
+    /// Удаляет запись о замещающем из списка
+    /// </summary>
+    /// <param name="assigment"></param>
+    public bool MarkSubstitutePerformerAsProcessed(Sungero.Workflow.IAssignment assignment)
+    {
+      var collection = _obj.SubstitutePerformersSentToReworkSberDev;
+      var match = collection.FirstOrDefault(elem => elem.Substitute == assignment.Performer);
+      if (match != null)
+      {
+        var doneStage = _obj.DoneStage.AddNew();
+        doneStage.Performer = match.Performer;
+        doneStage.Stage = GetStage();
+        match.IsProcessed = true;
+        return false;
+      }
+      else
+        return true;
+    }
+    
+    /// <summary>
+    /// Часть механизма переадресации задания на замещающего что отправил на доработку
+    /// Удаляет все записи со статусом IsProcessed = true.
+    /// </summary>
+    public void CleanupProcessedSubstitutePerformers()
+    {
+      var collection = _obj.SubstitutePerformersSentToReworkSberDev;
+      var processedRecords = collection.Where(elem => elem.IsProcessed == true).ToList();
+      foreach (var record in processedRecords)
+      {
+        collection.Remove(record);
+      }
+    }
+    
+    /// <summary>
+    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
+    /// Сохраняем информацию о том что нужно пропустить
+    /// </summary>
+    public void SaveOneTimeCompletePerformer(Sungero.Workflow.IAssignment assignment)
+    {
+      var stage = GetStage();
+
+      if (stage == null) return;
+
+      if (stage.OneTime == true)
+      {
+        var newStage = _obj.DoneStage.AddNew();
+        newStage.Stage = stage;
+        newStage.Performer = assignment.Performer;
+      }
+    }
+    
+    /// <summary>
+    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
+    /// Удаляем исполнителей этапа
+    /// </summary>
+    public void RemoveOneTimeCompletePerformers(object arguments)
     {
       var stage = GetStage();
       if (stage == null)
         return;
-      if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.SignApproveStage))
+
+      if (_obj.DoneStage.Any(s => s.Stage == stage))
+      {
+        // Получаем коллекцию исполнителей через рефлексию
+        var blockProperty = arguments.GetType().GetProperty("Block");
+        if (blockProperty == null)
+          throw new InvalidOperationException("Свойство Block не найдено.");
+
+        var block = blockProperty.GetValue(arguments);
+        var performersProperty = block?.GetType().GetProperty("Performers");
+        if (performersProperty == null)
+          throw new InvalidOperationException("Свойство Performers не найдено.");
+
+        var performersCollection = performersProperty.GetValue(block) as ICollection<IRecipient>;
+        if (performersCollection == null)
+          throw new InvalidOperationException("Свойство Performers имеет некорректный формат.");
+
+        // Получаем DoneStage через прямой доступ
+        var needRemovePerformers = _obj.DoneStage
+          .Where(r => r.Stage == stage)
+          .Select(s => s.Performer)
+          .ToList();
+
+        // Удаляем исполнителей через рефлексию
+        foreach (var performer in needRemovePerformers)
+        {
+          if (performer != null)
+            performersCollection.Remove(performer);
+        }
+      }
+    }
+
+    /// <summary>
+    /// Функция для того чтобы убарть скип согласования
+    /// </summary>
+    /// <param name="e"></param>
+    public void CancelApproveSkip(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
+    {
+      var stage = GetStage();
+      if (stage == null)
+        return;
+      if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.CancelApproveSkipStage))
       {
         var approvers = Sungero.Docflow.PublicFunctions.ApprovalStage.Remote.GetStagePerformers(_obj, GetStage());
         foreach (var approver in approvers)
@@ -72,6 +191,13 @@ namespace sberdev.SBContracts.Server
         if (typedAssign?.NeedFinanceSberDev == false)
           e.Block.Performers.Clear();
       }
+    }
+    
+    public override void UpdateDocumentApprovalState(Sungero.Docflow.IOfficialDocument document, Nullable<Enumeration> state)
+    {
+      var invoice = SBContracts.IncomingInvoices.As(document);
+      if (invoice == null)
+        base.UpdateDocumentApprovalState(document, state);
     }
     
     /// <summary>
@@ -94,130 +220,7 @@ namespace sberdev.SBContracts.Server
     [Public]
     public SBContracts.IApprovalStage GetStage()
     {
-      return SBContracts.ApprovalStages.As(_obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber));
-    }
-    
-    #region Механика "Выполнять один раз"
-    /// <summary>
-    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
-    /// </summary>
-    public void OneTimeCompleteAdd(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
-    {
-      var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
-
-      if (stage == null) return;
-
-      var ourStage = sberdev.SBContracts.ApprovalStages.As(stage.Stage);
-      
-      if (ourStage == null) return;
-
-      if (ourStage.OneTime == true)
-      {
-        var newStage = _obj.DoneStage.AddNew();
-        newStage.Stage = ourStage;
-        _obj.Save();
-      }
-    }
-    
-    /// <summary>
-    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
-    /// </summary>
-    public void OneTimeCompleteClear(Sungero.Docflow.Server.ApprovalSimpleAssignmentArguments e)
-    {
-      var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
-
-      if (stage == null) return;
-
-      var ourStage = sberdev.SBContracts.ApprovalStages.As(stage.Stage);
-      
-      if (ourStage == null) return;
-
-      if (ourStage.OneTime == true && _obj.DoneStage.Any(r => r.Stage == ourStage))
-        e.Block.Performers.Clear();
-    }
-    
-    /// <summary>
-    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
-    /// </summary>
-    public void OneTimeCompleteAdd(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
-    {
-      var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
-
-      if (stage == null) return;
-
-      var ourStage = sberdev.SBContracts.ApprovalStages.As(stage.Stage);
-      
-      if (ourStage == null) return;
-
-      if (ourStage.OneTime == true)
-      {
-        var newStage = _obj.DoneStage.AddNew();
-        newStage.Stage = ourStage;
-        _obj.Save();
-      }
-    }
-    
-    /// <summary>
-    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
-    /// </summary>
-    public void OneTimeCompleteClear(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
-    {
-      var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
-
-      if (stage == null) return;
-
-      var ourStage = sberdev.SBContracts.ApprovalStages.As(stage.Stage);
-      
-      if (ourStage == null) return;
-      
-      if (ourStage.OneTime == true && _obj.DoneStage.Any(r => r.Stage == ourStage))
-        e.Block.Performers.Clear();
-    }
-    
-    /// <summary>
-    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
-    /// </summary>
-    public void OneTimeCompleteAdd(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
-    {
-      var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
-
-      if (stage == null) return;
-
-      var ourStage = sberdev.SBContracts.ApprovalStages.As(stage.Stage);
-      
-      if (ourStage == null) return;
-
-      if (ourStage.OneTime == true)
-      {
-        var newStage = _obj.DoneStage.AddNew();
-        newStage.Stage = ourStage;
-        _obj.Save();
-      }
-    }
-    
-    /// <summary>
-    /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
-    /// </summary>
-    public void OneTimeCompleteClear(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
-    {
-      var stage = _obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber);
-
-      if (stage == null) return;
-
-      var ourStage = sberdev.SBContracts.ApprovalStages.As(stage.Stage);
-      
-      if (ourStage == null) return;
-      
-      if (ourStage.OneTime == true && _obj.DoneStage.Any(r => r.Stage == ourStage))
-        e.Block.Performers.Clear();
-    }
-    #endregion
-    
-    public override void UpdateDocumentApprovalState(Sungero.Docflow.IOfficialDocument document, Nullable<Enumeration> state)
-    {
-      var invoice = SBContracts.IncomingInvoices.As(document);
-      if (invoice == null)
-        base.UpdateDocumentApprovalState(document, state);
+      return SBContracts.ApprovalStages.As(_obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber)?.Stage);
     }
     
     /// <summary>

@@ -18,6 +18,47 @@
       "EntityGuid": "d7041916-1429-42e2-869b-661edeef70e5",
       "IsReferenceToRootEntity": true,
       "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "148bd442-caa4-4045-a48c-42f86f39e57a",
+      "Name": "Performer",
+      "CanBeSearch": false,
+      "Code": "Performer",
+      "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsSortingAllowed": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "4fa7c695-4704-4ce3-b3c8-bcd2f900c227"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "4d28945a-cf9b-4079-be43-032565b2b0a0",
+      "Name": "Substitute",
+      "CanBeSearch": false,
+      "Code": "Substitute",
+      "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsSortingAllowed": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "148bd442-caa4-4045-a48c-42f86f39e57a",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "c0d71bcf-d318-4bee-b7cc-a044056b481e",
+      "Name": "IsProcessed",
+      "CanBeSearch": false,
+      "Code": "IsProcessed",
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "4d28945a-cf9b-4079-be43-032565b2b0a0",
+      "Versions": []
     }
   ],
   "PublicStructures": [],
