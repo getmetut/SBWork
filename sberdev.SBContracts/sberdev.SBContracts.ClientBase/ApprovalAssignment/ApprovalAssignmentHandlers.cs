@@ -13,11 +13,12 @@ namespace sberdev.SBContracts
     public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
     {
       var approvalStage = sberdev.SBContracts.ApprovalStages.As(_obj.Stage);
-      var isCheckingCPStage = PublicFunctions.ApprovalTask.IsNecessaryStage(SBContracts.ApprovalTasks.As(_obj.Task), PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
+      var task = SBContracts.ApprovalTasks.As(_obj.Task);
+      bool isCheckingCPStage = PublicFunctions.ApprovalTask.IsNecessaryStage(task, PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
       _obj.State.Properties.NeedFinanceSberDev.IsVisible = isCheckingCPStage;
 
       var performer = Users.As(_obj.Performer);
-      bool isTreasuryStage = approvalStage.Name == "Казначей ПП";
+      bool isTreasuryStage = PublicFunctions.ApprovalTask.IsNecessaryStage(task, PublicConstants.Docflow.ApprovalTask.TreasuryStage);
 
       _obj.State.Properties.NonContractInvoiceCounterSberDev.IsVisible = isTreasuryStage;
       _obj.State.Properties.NonContractInvoiceCounterMoreSberDev.IsVisible = isTreasuryStage;
@@ -40,9 +41,7 @@ namespace sberdev.SBContracts
         !performer.IncludedIn(sberdev.SberContracts.PublicConstants.Module.KZTypeGuid);
 
       if (shouldHideAmountChangeAction)
-      {
         e.HideAction(_obj.Info.Actions.AmountChangesberdev);
-      }
 
       base.Showing(e);
 

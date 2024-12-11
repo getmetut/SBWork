@@ -17,5 +17,7 @@ namespace sberdev.SBContracts.Constants.Docflow
     public const string CheckUCNStage = "eb288d73-0b4a-4cf8-ad17-6b250bc2392c"; // этап согласования Проверить постановку договора на валютный банковский контроль (вызывает диалоговое окно)
     [Sungero.Core.Public]
     public const string CancelApproveSkipStage = "3236816c-cb3c-467a-bd50-12fd0accab6a"; // убирает скип согласования
+    [Sungero.Core.Public]
+    public const string TreasuryStage = "9326c1f6-1a79-452c-9e13-63b0ba7d978a"; // этап Казначей ПП (показывает поля по внедоговрными счетами и согласованию счета казначеем)
   }
 }

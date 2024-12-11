@@ -22,6 +22,23 @@ namespace sberdev.SBContracts
       base.Saving(e);
       var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
       _obj.DocumentIDSberDev = attach?.Id.ToString();
+      
+      var accounting = SBContracts.AccountingDocumentBases.As(attach);
+      if (accounting != null)
+      {
+        _obj.InternalApprovalStateSberDev = accounting.LeadingDocument?.InternalApprovalState;
+        _obj.ExternalApprovalStateSberDev = accounting.LeadingDocument?.ExternalApprovalState;
+        _obj.MVZSberDev = accounting.MVZBaseSberDev ?? accounting.MVPBaseSberDev;
+        _obj.AccArtSberDev = accounting.AccArtBaseSberDev;
+      }
+      
+      var contractual = SBContracts.ContractualDocuments.As(attach);
+      if (contractual != null)
+      {
+        _obj.MVZSberDev = contractual.MVZBaseSberDev ?? contractual.MVPBaseSberDev;
+        _obj.AccArtSberDev = contractual.AccArtExBaseSberDev ?? contractual.AccArtPrBaseSberDev;
+      }
+      
       var incInv = SBContracts.IncomingInvoices.As(attach);
       if (incInv != null)
       {
@@ -34,13 +51,6 @@ namespace sberdev.SBContracts
         }
         else
           _obj.NonContractInvoiceCounterSberDev = 0;
-      }
-      
-      var accounting = SBContracts.AccountingDocumentBases.As(attach);
-      if (accounting != null)
-      {
-        _obj.InternalApprovalStateSberDev = accounting.LeadingDocument?.InternalApprovalState;
-        _obj.ExternalApprovalStateSberDev = accounting.LeadingDocument?.ExternalApprovalState;
       }
       
       if (accounting != null && incInv == null)

@@ -244,4 +244,10 @@
   <data name="Property_NeedFinanceSberDev" xml:space="preserve">
     <value>Need finance department</value>
   </data>
+  <data name="Property_MVZSberDev" xml:space="preserve">
+    <value>MVZ/P</value>
+  </data>
+  <data name="Property_AccArtSberDev" xml:space="preserve">
+    <value>Accounting article</value>
+  </data>
 </root>

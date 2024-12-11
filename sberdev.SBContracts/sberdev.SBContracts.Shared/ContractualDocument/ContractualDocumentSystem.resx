@@ -80,10 +80,10 @@
     <value>Product (ex.)</value>
   </data>
   <data name="Property_AccArtExBaseSberDev" xml:space="preserve">
-    <value>Accounting articles (ex.)</value>
+    <value>Accounting article (ex.)</value>
   </data>
   <data name="Property_AccArtPrBaseSberDev" xml:space="preserve">
-    <value>Accounting articles (pr.)</value>
+    <value>Accounting article (pr.)</value>
   </data>
   <data name="Property_FrameworkBaseSberDev" xml:space="preserve">
     <value>Framework</value>

@@ -564,6 +564,28 @@
       "IsShowedInList": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "f93d4bee-17e2-4a2b-8bc6-c4536dee68bd"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "a4bf24c3-125c-44fe-ad39-647099dd47af",
+      "Name": "MVZSberDev",
+      "Code": "MVZSberDev",
+      "EntityGuid": "d2061f28-0788-4291-9a87-3e2b87acd765",
+      "FlatListInStandaloneLookup": true,
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "58457428-1edd-4504-8c35-e6e4883daaa1"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "60530de4-24ea-4b1b-900d-7783c80e62f8",
+      "Name": "AccArtSberDev",
+      "Code": "AccArtSberDev",
+      "EntityGuid": "ae7ba26e-131b-4d4c-a3d9-de9d456178af",
+      "FlatListInStandaloneLookup": true,
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "a4bf24c3-125c-44fe-ad39-647099dd47af"
     }
   ],
   "PublicFunctions": [

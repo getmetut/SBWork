@@ -106,7 +106,9 @@
       "Name": "Name",
       "Code": "Name",
       "IsDisplayValue": true,
+      "IsEnabled": false,
       "IsQuickSearchAllowed": true,
+      "Length": 500,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "1dcedc29-5140-4770-ac92-eabc212326a1"
     },
@@ -123,6 +125,7 @@
       "NameGuid": "5ab6daca-b9fd-4de6-90e7-7772ffc63fc5",
       "Name": "Text",
       "Code": "Text",
+      "Length": 500,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "0ee9795f-17f6-4a61-8594-8a650b7e0190"
     },
@@ -131,7 +134,8 @@
       "NameGuid": "db41fc1f-7378-4ecd-903c-5c4983c5a619",
       "Name": "Discription",
       "Code": "Discription",
-      "Length": 500,
+      "IsEnabled": false,
+      "Length": 1000,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "5ab6daca-b9fd-4de6-90e7-7772ffc63fc5"
     }

@@ -566,6 +566,14 @@
       ],
       "TypeName": "System.String",
       "Value": "\"55d13a81-9812-42e9-ab13-08f849fed4bd\""
+    },
+    {
+      "Name": "TreasuryStage",
+      "ParentClasses": [
+        "ApprovalTask"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"9326c1f6-1a79-452c-9e13-63b0ba7d978a\""
     }
   ],
   "PublicFunctions": [
