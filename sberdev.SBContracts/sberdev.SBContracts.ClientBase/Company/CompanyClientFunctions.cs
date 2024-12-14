@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -48,6 +48,11 @@ namespace sberdev.SBContracts.Client
       {
         _obj.Name1CSberDev = ModifyCompanyName(_obj.Name);
       }
+      
+      if (_obj.HeadCompany != null)
+        _obj.State.Properties.HeadOrgSDev.IsEnabled = false;
+      else
+        _obj.State.Properties.HeadOrgSDev.IsEnabled = true;
     }
     
     static string ModifyCompanyName(string companyName)

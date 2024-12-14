@@ -514,4 +514,7 @@
   <data name="Property_OtvBuchSDev" xml:space="preserve">
     <value>Ответственный бухгалтер</value>
   </data>
+  <data name="Property_HeadOrgSDev" xml:space="preserve">
+    <value>Головная организация</value>
+  </data>
 </root>

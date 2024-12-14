@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -9,6 +9,29 @@ namespace sberdev.SBContracts
 {
   partial class CompanySharedHandlers
   {
+
+    public override void HeadCompanyChanged(Sungero.Parties.Shared.CompanyBaseHeadCompanyChangedEventArgs e)
+    {
+      base.HeadCompanyChanged(e);
+      if (e.NewValue != null)
+        _obj.HeadOrgSDev = false;
+    }
+
+    public virtual void HeadOrgSDevChanged(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
+    {
+      if (e.NewValue != null)
+      {
+        if (e.NewValue == true)
+        {
+          var HeadOrg = sberdev.SBContracts.Companies.GetAll(c => c.HeadOrgSDev.HasValue).Where(c => ((c.TIN == _obj.TIN) && (c.HeadOrgSDev == true))).FirstOrDefault();
+          if (HeadOrg != null)
+          {
+            PublicFunctions.Module.ShowInfoMessage("Для данного ИНН уже существует головная организация: " + HeadOrg.Name.ToString());
+            _obj.HeadOrgSDev = false;
+          }
+        }
+      }
+    }
 
     public override void NameChanged(Sungero.Domain.Shared.StringPropertyChangedEventArgs e)
     {

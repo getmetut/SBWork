@@ -1797,6 +1797,19 @@
           "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "22d82d35-7073-4838-a005-2c591d2054cd",
+          "Name": "HeadOrgSDevSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+          "ParentGuid": "3f799999-a20c-41d2-b4a6-4d6d71ced770",
+          "PropertyGuid": "133a690f-43ca-4267-8e47-5eedbe9ea0d7",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -1816,6 +1829,19 @@
   "LayeredFromGuid": "593e143c-616c-4d95-9457-fd916c4aa7f8",
   "OperationsClass": "",
   "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "8e14d1b1-02b8-466c-aed8-a69a4d95c0fa",
+      "Name": "HeadCompany",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
     {
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
       "NameGuid": "2cf3151f-b0f9-4cdb-8213-61415a488de3",
@@ -1915,6 +1941,17 @@
       ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "578abe8e-37c0-40cb-acf6-eaa31a1917b1"
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "133a690f-43ca-4267-8e47-5eedbe9ea0d7",
+      "Name": "HeadOrgSDev",
+      "Code": "HeadOrgSDev",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "9451e707-2572-4829-83a6-9698c6d3530e"
     }
   ],
   "PublicStructures": [],

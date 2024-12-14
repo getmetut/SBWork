@@ -58,6 +58,7 @@ namespace sberdev.SBContracts
     {
       base.Created(e);
       _obj.IPSberDev = false;
+      _obj.HeadOrgSDev = false;
     }
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
@@ -77,6 +78,19 @@ namespace sberdev.SBContracts
           _obj.State.Properties.Account.HighlightColor = Colors.Common.Red;
             e.AddError("Необходимо заполнить Счет в банковских реквизитах!");
         }
+        
+        if (_obj.HeadCompany == null)
+        {
+          if (_obj.HeadOrgSDev.HasValue)
+          {
+            if (!_obj.HeadOrgSDev.Value)
+              e.AddError("Добавление филиала без указания головной организации - запрещано.");
+          }
+          else
+          {
+            e.AddError("Добавление филиала без указания головной организации - запрещано.");
+          }
+        }               
       }
       
       var checkDuplicatesErrorText = Sungero.Parties.PublicFunctions.Counterparty.GetCounterpartyDuplicatesErrorText(_obj);
