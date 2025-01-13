@@ -14,7 +14,7 @@ namespace sberdev.SberContracts
     {
       base.Created(e);
       _obj.FlagNDA = false;
-      _obj.AgencyScheme = false;
+      _obj.FlagVAT = false;
       _obj.ContrTypeBaseSberDev = ContrTypeBaseSberDev.Expendable;
     }
   }

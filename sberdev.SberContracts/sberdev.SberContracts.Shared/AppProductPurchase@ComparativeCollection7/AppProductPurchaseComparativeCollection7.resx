@@ -58,16 +58,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_Number" xml:space="preserve">
-    <value>№</value>
-  </data>
-  <data name="Property_Product" xml:space="preserve">
-    <value>Name of the purchased product</value>
-  </data>
-  <data name="Property_PriceUnit" xml:space="preserve">
-    <value>Price per unit</value>
-  </data>
-  <data name="Property_Quantity" xml:space="preserve">
-    <value>Quantity, pcs.</value>
-  </data>
 </root>

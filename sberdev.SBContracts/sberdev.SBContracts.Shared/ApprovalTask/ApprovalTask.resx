@@ -85,4 +85,7 @@
   <data name="PublicCommentDialogProp" xml:space="preserve">
     <value>Text</value>
   </data>
+  <data name="LeadocSignErr" xml:space="preserve">
+    <value>The accompanying agreement does not have a signature from the counterparty or from our organization</value>
+  </data>
 </root>

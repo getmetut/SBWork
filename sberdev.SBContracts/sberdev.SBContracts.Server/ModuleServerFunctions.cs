@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -1027,7 +1028,7 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[CPName]", purch.Counterparty.Name);
       body.Range.Replace("[SubjectPurchase]", purch.SubjectPurchase);
       body.Range.Replace("[SubjectPurchaseGen]", purch.SubjectPurchaseGen);
-      var nowDate = Calendar.Now;
+      var nowDate = Sungero.Core.Calendar.Now;
       body.Range.Replace("[CreatedDay]", nowDate.Day.ToString());
       body.Range.Replace("[CreatedMonth]", PublicFunctions.Module.GetMonthGenetiveName(nowDate.Month));
       body.Range.Replace("[CreatedYear]", nowDate.Year.ToString());
@@ -1238,9 +1239,10 @@ namespace sberdev.SBContracts.Server
         : "Договор не указан";
       body.Range.Replace("[Contract]", contractText);
       
-      body.Range.Replace("[FlagNDA]", purch.FlagNDA.Value ? "Есть" : "Нет");
+      body.Range.Replace("[NDA]", purch.NDA != null ? $"https://directum.sberdevices.ru/DrxWeb/#/sat/card/d62141c7-715c-47bb-82b0-cf2ffbe8b6e7/{purch.NDA.Id}" : "NDA не указан");
 
-      var cpContactsText = $"Телефон: {purch.PhoneNumberSberDev ?? "Нет"}\n" +
+      var cpContactsText = $"ФИО: {purch.AgentCP ?? "Нет"}" +
+        $" Телефон: {purch.PhoneNumberSberDev ?? "Нет"}\n" +
         $"Email: {purch.EmailSberDev ?? "Нет"}" +
         $"{(purch.CPContactComment != null ? $"\nКомментарий: {purch.CPContactComment}" : "")}";
       body.Range.Replace("[CPContacts]", cpContactsText);
@@ -1252,13 +1254,27 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[ProdPeriod]", prodPeriodText);
       
       body.Range.Replace("[Deposit]", purch.Deposit.ToString());
-      body.Range.Replace("[DepositDays]",  $"{(purch.DepositDays > 0 ? $"в течении {purch.DepositDays} р. д." : "")}");
+      body.Range.Replace("[DepositDays]",  $"{(purch.DepositDays > 0 ? $"% в течении {purch.DepositDays} р. д." : "")}");
       body.Range.Replace("[Balance]", purch.Balance.ToString());
-      body.Range.Replace("[BalanceDays]", $"{(purch.BalanceDays > 0 ? $"в течении {purch.BalanceDays} р. д." : "")}");
-      body.Range.Replace("[AgencyScheme]", purch.AgencyScheme.Value ? "Есть" : "Нет");
+      body.Range.Replace("[BalanceDays]", $"{(purch.BalanceDays > 0 ? $"% в течении {purch.BalanceDays} р. д." : "")}");
+      body.Range.Replace("[AgencyScheme]", purch.FlagAgencyScheme.Value ? "Агентская схема" : "Счет в ВТБ");
+      if (purch.FlagAgencyScheme.Value)
+      {
+        body.Range.Replace("[AgencyContract]", $"https://directum.sberdevices.ru/DrxWeb/#/sat/card/f37c7e63-b134-4446-9b5b-f8811f6c9666/{purch.NDA.Id}");
+        body.Range.Replace("[AgencyPercent]", $"{purch.AgencyPercent.Value.ToString()}%");
+        body.Range.Replace("[AgencyPayDate]", purch.AgencyPayDate.Value.ToShortDateString());
+        body.Range.Replace("[AgencyFlagPAO]", purch.AgencyFlagPAO.Value ? "Да" : "Нет");
+      }
+      else
+      {
+        body.Range.Replace("[AgencyContract]", "Счет в ВТБ");
+        body.Range.Replace("[AgencyPercent]", "Счет в ВТБ");
+        body.Range.Replace("[AgencyPayDate]", "Счет в ВТБ");
+        body.Range.Replace("[AgencyFlagPAO]", "Счет в ВТБ");
+      }
       body.Range.Replace("[Incoterms]", purch.Incoterms.Value.Value);
       body.Range.Replace("[PickupAddress]", purch.PickupAddress != null ? purch.PickupAddress : "Не указан");
-      body.Range.Replace("[PlanDelType]", purch.PlanDelType.Value.Value);
+      body.Range.Replace("[PlanDelType]", SberContracts.PublicFunctions.AppProductPurchase.TranslatePlanDelType(purch, purch.PlanDelType.Value.Value));
       body.Range.Replace("[Responsible]", purch.ResponsibleEmployee.Name);
       string str = "";
       var exProd = purch.ProdCollectionExBaseSberDev.FirstOrDefault()?.Product;
@@ -1288,7 +1304,7 @@ namespace sberdev.SBContracts.Server
       string[,] purchTable = new string[rowCount, 6];
 
       // Заполнение заголовка таблицы
-      string[] headers = { "№", "Наименование продукции", "Цена за ед.", "Кол-во, шт.", "Полн. стоим.", "Валюта" };
+      string[] headers = { "№", "Наименование продукции", "Цена за ед. " + (purch.FlagVAT.Value ? "с НДС" : "без НДС"), "Кол-во, шт.", "Полн. стоим.", "Валюта" };
       for (int i = 0; i < headers.Length; i++)
         purchTable[0, i] = headers[i];
 
@@ -1301,7 +1317,7 @@ namespace sberdev.SBContracts.Server
         purchTable[counter, 2] = elem.PriceUnit.Value.ToString();
         purchTable[counter, 3] = elem.Quantity.Value.ToString();
         purchTable[counter, 4] = (elem.PriceUnit.Value * elem.Quantity.Value).ToString();
-        purchTable[counter, 5] = elem.Currency?.ShortName;
+        purchTable[counter, 5] = purch.Currency?.ShortName;
         counter++;
       }
 
@@ -1362,7 +1378,11 @@ namespace sberdev.SBContracts.Server
       {
         { "one", 1 },
         { "two", 2 },
-        { "three", 3 }
+        { "three", 3 },
+        { "four", 4 },
+        { "five", 5 },
+        { "six", 6 },
+        { "seven", 7 },
       };
 
       int tableCount = 0;
@@ -1425,11 +1445,30 @@ namespace sberdev.SBContracts.Server
         body.Range.Replace($"[Counterparty{tableIndex}]", cpPropValue);
       }
       
-      for (int i = tableCount; i <= 3; i++)
+      for (int i = tableCount; i <= 7; i++)
       {
-        body.Range.Replace($"[CP{i}Table]", "");
-        body.Range.Replace($"[Counterparty{i}]", "");
+        string placeholderTable = $"[CP{i}Table]";
+        string placeholderCounterparty = $"[Counterparty{i}]";
+
+        // Проходим по всем секциям документа
+        foreach (Aspose.Words.Section section in body.Sections)
+        {
+          // Получаем тело секции
+          Body sectionBody = section.Body;
+
+          // Проходим по всем абзацам в теле секции
+          foreach (Aspose.Words.Paragraph paragraph in sectionBody.Paragraphs)
+          {
+            // Если текст абзаца содержит плейсхолдер, удаляем абзац
+            if (paragraph.Range.Text.Contains(placeholderTable) || paragraph.Range.Text.Contains(placeholderCounterparty))
+            {
+              paragraph.Remove();
+            }
+          }
+        }
       }
+
+
       #endregion
     }
     #endregion

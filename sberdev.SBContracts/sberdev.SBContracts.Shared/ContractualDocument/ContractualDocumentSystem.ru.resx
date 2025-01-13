@@ -377,7 +377,7 @@
     <value>Номер телефона</value>
   </data>
   <data name="Property_EmailSberDev" xml:space="preserve">
-    <value>Ел. почта</value>
+    <value>Эл. почта</value>
   </data>
   <data name="Property_DelPeriodSberDev" xml:space="preserve">
     <value>Срок доставки (дн.)</value>

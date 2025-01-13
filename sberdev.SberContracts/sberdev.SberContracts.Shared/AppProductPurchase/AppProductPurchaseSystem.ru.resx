@@ -334,7 +334,7 @@
   <data name="Resource_fc27e9e143f54bbfb327f375f540ab7a" xml:space="preserve">
     <value />
   </data>
-  <data name="Property_AgencyScheme" xml:space="preserve">
+  <data name="Property_FlagAgencyScheme" xml:space="preserve">
     <value>Агентская схема</value>
   </data>
   <data name="ControlGroup_0cdd0c8f79bf43998c9936776efedc57" xml:space="preserve">
@@ -357,5 +357,53 @@
   </data>
   <data name="CollectionDisplayName" xml:space="preserve">
     <value>Заявки на производ. закупку</value>
+  </data>
+  <data name="Property_AgentCP" xml:space="preserve">
+    <value>ФИО менеджера</value>
+  </data>
+  <data name="Property_AgencyPercent" xml:space="preserve">
+    <value>Процент агента</value>
+  </data>
+  <data name="Property_FlagVTB" xml:space="preserve">
+    <value>Счет в ВТБ</value>
+  </data>
+  <data name="Property_AgencyContract" xml:space="preserve">
+    <value>Договор с агентом</value>
+  </data>
+  <data name="Property_AgencyPayDate" xml:space="preserve">
+    <value>Срок оплаты аг.</value>
+  </data>
+  <data name="Property_AgencyFlagPAO" xml:space="preserve">
+    <value>Необходима заявка на оплату через ПАО</value>
+  </data>
+  <data name="ControlGroup_2e902bd913584feeb911892b21cf945d" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_FlagVAT" xml:space="preserve">
+    <value>Цена за ед. с НДС</value>
+  </data>
+  <data name="Property_Counterparty4" xml:space="preserve">
+    <value>Контрагент 4</value>
+  </data>
+  <data name="Property_Counterparty5" xml:space="preserve">
+    <value>Контрагент 5</value>
+  </data>
+  <data name="Property_Counterparty6" xml:space="preserve">
+    <value>Контрагент 6</value>
+  </data>
+  <data name="Property_Counterparty7" xml:space="preserve">
+    <value>Контрагент 7</value>
+  </data>
+  <data name="Property_ComparativeCollection4" xml:space="preserve">
+    <value>Сравнительная таблица ценовых предложений</value>
+  </data>
+  <data name="Property_ComparativeCollection5" xml:space="preserve">
+    <value>Сравнительная таблица ценовых предложений</value>
+  </data>
+  <data name="Property_ComparativeCollection6" xml:space="preserve">
+    <value>Сравнительная таблица ценовых предложений</value>
+  </data>
+  <data name="Property_ComparativeCollection7" xml:space="preserve">
+    <value>Сравнительная таблица ценовых предложений</value>
   </data>
 </root>

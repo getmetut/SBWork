@@ -58,18 +58,6 @@
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "ba610a74-d0f0-419c-9bf7-6eee3fa5a78b"
-    },
-    {
-      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "7ddedcf0-e9ff-41a9-878b-4193d8b014e0",
-      "Name": "Currency",
-      "CanBeSearch": false,
-      "Code": "Currency",
-      "EntityGuid": "ffc2629f-dc30-4106-a3ce-c402ae7d32b9",
-      "FlatListInStandaloneLookup": true,
-      "IsRequired": true,
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
-      "PreviousPropertyGuid": "7ba23a01-9f06-42b0-9caa-25c00e6177c9"
     }
   ],
   "PublicStructures": [],

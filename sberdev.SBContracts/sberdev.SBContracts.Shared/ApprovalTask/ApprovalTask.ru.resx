@@ -82,4 +82,7 @@
   <data name="PublicCommentDialogProp" xml:space="preserve">
     <value>Текст</value>
   </data>
+  <data name="LeadocSignErr" xml:space="preserve">
+    <value>У сопутствующего договора отсутствует подпись от контрагента или от нашей организации</value>
+  </data>
 </root>

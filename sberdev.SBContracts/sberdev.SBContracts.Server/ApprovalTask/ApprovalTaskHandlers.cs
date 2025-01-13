@@ -76,6 +76,15 @@ namespace sberdev.SBContracts
           counter.Counter++;
         }
       }
+      
+      // Мезаника проверки договора в Заявке на закупку
+      var appProdPurch = SberContracts.AppProductPurchases.As(document);
+      if (appProdPurch != null)
+      {
+        bool flag = SBContracts.PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(appProdPurch.LeadingDocument);
+        if (!flag)
+          e.AddError(sberdev.SBContracts.ApprovalTasks.Resources.LeadocSignErr);
+      }
     }
 
     public override void BeforeAbort(Sungero.Workflow.Server.BeforeAbortEventArgs e)

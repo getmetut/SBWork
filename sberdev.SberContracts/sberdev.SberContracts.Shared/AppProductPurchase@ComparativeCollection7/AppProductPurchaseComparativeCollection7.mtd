@@ -1,0 +1,135 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "43899744-4eae-4489-b0d1-5984ed37e7cb",
+  "Name": "AppProductPurchaseComparativeCollection7",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "CompAppPP7",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "cb688a10-7e7f-4ce4-bef7-01dabf278e35",
+      "Name": "AppProductPurchase",
+      "CanBeSearch": false,
+      "Code": "EDoc",
+      "EntityGuid": "50114491-2005-49ad-b0d6-49c695c44b8d",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "d9288320-8ad7-4448-81fa-0db6466abe14",
+      "Name": "Number",
+      "CanBeSearch": false,
+      "Code": "Number",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "cb688a10-7e7f-4ce4-bef7-01dabf278e35",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "56ad5309-50ce-4508-b516-bb35d577f23a",
+      "Name": "Product",
+      "CanBeSearch": false,
+      "Code": "Product",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "d9288320-8ad7-4448-81fa-0db6466abe14",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "120b97ec-6803-439e-bc61-b1dc20cf8472",
+      "Name": "PriceUnit",
+      "CanBeSearch": false,
+      "Code": "PriceUnit",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "56ad5309-50ce-4508-b516-bb35d577f23a",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "bedec29d-34d2-49d7-a255-bbcbd759bdd2",
+      "Name": "PaymentTerms",
+      "CanBeSearch": false,
+      "Code": "PaymentTerms",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "120b97ec-6803-439e-bc61-b1dc20cf8472",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "998e5061-a00f-44ea-9fee-cb3770a20f98",
+      "Name": "DeliveryPer",
+      "CanBeSearch": false,
+      "Code": "DeliveryPer",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+      "PreviousPropertyGuid": "bedec29d-34d2-49d7-a255-bbcbd759bdd2",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "84e345cb-ade7-4419-8da8-4783a5bb44ef",
+      "Name": "Advantages",
+      "CanBeSearch": false,
+      "Code": "Advantages",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "998e5061-a00f-44ea-9fee-cb3770a20f98",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e65e8dcc-5aa1-4d16-bcf7-fcb080aa621c",
+      "Name": "Risks",
+      "CanBeSearch": false,
+      "Code": "Risks",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "84e345cb-ade7-4419-8da8-4783a5bb44ef",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "2833d4e6-caef-459c-b720-b47f6e84282b",
+      "Name": "Quantity",
+      "CanBeSearch": false,
+      "Code": "Quantity",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "e65e8dcc-5aa1-4d16-bcf7-fcb080aa621c",
+      "Versions": []
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "9db084b9-ebf4-4f16-baa2-4cdce0b4afe8",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "e2859b06-7592-46dd-b583-245361bc9606",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

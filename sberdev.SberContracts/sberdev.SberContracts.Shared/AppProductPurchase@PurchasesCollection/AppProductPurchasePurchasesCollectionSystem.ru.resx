@@ -64,9 +64,6 @@
   <data name="Property_Quantity" xml:space="preserve">
     <value>Кол-во, шт.</value>
   </data>
-  <data name="Property_Currency" xml:space="preserve">
-    <value>Валюта</value>
-  </data>
   <data name="Property_Product" xml:space="preserve">
     <value>Наименование закупаемой продукции</value>
   </data>

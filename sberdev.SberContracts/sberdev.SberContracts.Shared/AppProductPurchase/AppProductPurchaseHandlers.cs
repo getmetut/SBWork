@@ -7,6 +7,130 @@ using sberdev.SberContracts.AppProductPurchase;
 
 namespace sberdev.SberContracts
 {
+  partial class AppProductPurchaseComparativeCollection7SharedCollectionHandlers
+  {
+
+    public virtual void ComparativeCollection7Added(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
+    {
+      var col = _obj.ComparativeCollection7;
+      
+      if (col.Count > 0)
+      {
+        // Собираем все существующие номера
+        var existingNumbers = col
+          .Where(item => item.Number.HasValue)
+          .Select(item => item.Number.Value)
+          .OrderBy(num => num)
+          .ToList();
+
+        // Находим первый пропущенный номер
+        int missingNumber = 1;
+        foreach (var number in existingNumbers)
+        {
+          if (number != missingNumber)
+            break;
+          missingNumber++;
+        }
+
+        // Присваиваем первый пропущенный номер последнему элементу коллекции
+        col.Last().Number = missingNumber;
+      }
+    }
+  }
+
+  partial class AppProductPurchaseComparativeCollection6SharedCollectionHandlers
+  {
+
+    public virtual void ComparativeCollection6Added(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
+    {
+      var col = _obj.ComparativeCollection6;
+      
+      if (col.Count > 0)
+      {
+        // Собираем все существующие номера
+        var existingNumbers = col
+          .Where(item => item.Number.HasValue)
+          .Select(item => item.Number.Value)
+          .OrderBy(num => num)
+          .ToList();
+
+        // Находим первый пропущенный номер
+        int missingNumber = 1;
+        foreach (var number in existingNumbers)
+        {
+          if (number != missingNumber)
+            break;
+          missingNumber++;
+        }
+
+        // Присваиваем первый пропущенный номер последнему элементу коллекции
+        col.Last().Number = missingNumber;
+      }
+    }
+  }
+
+  partial class AppProductPurchaseComparativeCollection5SharedCollectionHandlers
+  {
+
+    public virtual void ComparativeCollection5Added(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
+    {
+      var col = _obj.ComparativeCollection5;
+      
+      if (col.Count > 0)
+      {
+        // Собираем все существующие номера
+        var existingNumbers = col
+          .Where(item => item.Number.HasValue)
+          .Select(item => item.Number.Value)
+          .OrderBy(num => num)
+          .ToList();
+
+        // Находим первый пропущенный номер
+        int missingNumber = 1;
+        foreach (var number in existingNumbers)
+        {
+          if (number != missingNumber)
+            break;
+          missingNumber++;
+        }
+
+        // Присваиваем первый пропущенный номер последнему элементу коллекции
+        col.Last().Number = missingNumber;
+      }
+    }
+  }
+
+  partial class AppProductPurchaseComparativeCollection4SharedCollectionHandlers
+  {
+
+    public virtual void ComparativeCollection4Added(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
+    {
+      var col = _obj.ComparativeCollection4;
+      
+      if (col.Count > 0)
+      {
+        // Собираем все существующие номера
+        var existingNumbers = col
+          .Where(item => item.Number.HasValue)
+          .Select(item => item.Number.Value)
+          .OrderBy(num => num)
+          .ToList();
+
+        // Находим первый пропущенный номер
+        int missingNumber = 1;
+        foreach (var number in existingNumbers)
+        {
+          if (number != missingNumber)
+            break;
+          missingNumber++;
+        }
+
+        // Присваиваем первый пропущенный номер последнему элементу коллекции
+        col.Last().Number = missingNumber;
+      }
+    }
+  }
+
   partial class AppProductPurchaseComparativeCollection3SharedCollectionHandlers
   {
 
@@ -99,7 +223,6 @@ namespace sberdev.SberContracts
         // Присваиваем первый пропущенный номер последнему элементу коллекции
         col.Last().Number = missingNumber;
       }
-      
     }
   }
 
@@ -167,14 +290,20 @@ namespace sberdev.SberContracts
 
   }
 
-partial class AppProductPurchaseSharedHandlers
-{
+  partial class AppProductPurchaseSharedHandlers
+  {
+
+    public virtual void AgencyContractChanged(sberdev.SberContracts.Shared.AppProductPurchaseAgencyContractChangedEventArgs e)
+    {
+      _obj.ModifiedSberDev = Calendar.Now;
+      _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
+    }
 
     public override void LeadingDocumentChanged(Sungero.Docflow.Shared.OfficialDocumentLeadingDocumentChangedEventArgs e)
     {
       base.LeadingDocumentChanged(e);
       _obj.ModifiedSberDev = Calendar.Now;
-     _obj.Relations.AddFromOrUpdate("Purchase", e.OldValue, e.NewValue);
+      _obj.Relations.AddFromOrUpdate("Purchase", e.OldValue, e.NewValue);
     }
 
     public virtual void DepositChanged(Sungero.Domain.Shared.IntegerPropertyChangedEventArgs e)
@@ -182,5 +311,5 @@ partial class AppProductPurchaseSharedHandlers
       _obj.Balance = 100 - e.NewValue;
     }
 
-}
+  }
 }

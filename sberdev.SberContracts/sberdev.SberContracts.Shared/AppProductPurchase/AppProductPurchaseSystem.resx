@@ -82,7 +82,7 @@
   <data name="Property_BalanceDays" xml:space="preserve">
     <value>Within (w. d.)</value>
   </data>
-  <data name="Property_AgencyScheme" xml:space="preserve">
+  <data name="Property_FlagAgencyScheme" xml:space="preserve">
     <value>Agency scheme</value>
   </data>
   <data name="Enum_AgencyScheme_Yes" xml:space="preserve">
@@ -124,8 +124,8 @@
   <data name="Property_PurchasesCollection" xml:space="preserve">
     <value>List of purchased products</value>
   </data>
-  <data name="Property_VAT" xml:space="preserve">
-    <value>VAT</value>
+  <data name="Property_FlagVAT" xml:space="preserve">
+    <value>Price per unit with VAT</value>
   </data>
   <data name="Property_ParticipantsCollection" xml:space="preserve">
     <value>Potential participants in the procurement procedure</value>
@@ -384,5 +384,74 @@
   </data>
   <data name="CollectionDisplayName" xml:space="preserve">
     <value>Applications for prod. purchase</value>
+  </data>
+  <data name="Property_NDA" xml:space="preserve">
+    <value>NDA</value>
+  </data>
+  <data name="ControlGroup_9f314bf8201246979f3b3b41f4bad6ad" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_3d9c0592d6ce4fb296002e9a0783b6fb" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_AgentCP" xml:space="preserve">
+    <value>Full name of the manager</value>
+  </data>
+  <data name="Property_AgencyContract" xml:space="preserve">
+    <value>Agent contract</value>
+  </data>
+  <data name="Property_AgencyPercent" xml:space="preserve">
+    <value>Agent percent</value>
+  </data>
+  <data name="Property_FlagVTB" xml:space="preserve">
+    <value>VTB account</value>
+  </data>
+  <data name="Property_AgencyPayDate" xml:space="preserve">
+    <value>Ag. payment date</value>
+  </data>
+  <data name="Property_AgencyFlagPAO" xml:space="preserve">
+    <value>An application for payment via PJSC is required</value>
+  </data>
+  <data name="ControlGroup_406fc4d56ae447039f75d0b5f2ee0160" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_2e902bd913584feeb911892b21cf945d" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Enum_CpNumber_Four" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="Enum_CpNumber_Five" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="Enum_CpNumber_Six" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="Enum_CpNumber_Seven" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="Property_Counterparty4" xml:space="preserve">
+    <value>Counterparty 4</value>
+  </data>
+  <data name="Property_Counterparty5" xml:space="preserve">
+    <value>Counterparty 5</value>
+  </data>
+  <data name="Property_Counterparty6" xml:space="preserve">
+    <value>Counterparty 6</value>
+  </data>
+  <data name="Property_Counterparty7" xml:space="preserve">
+    <value>Counterparty 7</value>
+  </data>
+  <data name="Property_ComparativeCollection4" xml:space="preserve">
+    <value>Comparative table of price offers</value>
+  </data>
+  <data name="Property_ComparativeCollection5" xml:space="preserve">
+    <value>Comparative table of price offers</value>
+  </data>
+  <data name="Property_ComparativeCollection6" xml:space="preserve">
+    <value>Comparative table of price offers</value>
+  </data>
+  <data name="Property_ComparativeCollection7" xml:space="preserve">
+    <value>Comparative table of price offers</value>
   </data>
 </root>
