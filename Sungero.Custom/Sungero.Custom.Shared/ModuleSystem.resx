@@ -127,4 +127,10 @@
   <data name="CoverDescription_UpdateContractualDoc" xml:space="preserve">
     <value>Функция обновления всех договоров с целью обновления данных в карточке по новой логике</value>
   </data>
+  <data name="JobDisplayName_824238d418db4acfaa6b855a6eb167da" xml:space="preserve">
+    <value>Процесс поиска и расстановки Головных и дочерних организаций</value>
+  </data>
+  <data name="JobDescription_824238d418db4acfaa6b855a6eb167da" xml:space="preserve">
+    <value>Процесс поиска и расстановки уровней подчиненности среди организаций</value>
+  </data>
 </root>

@@ -236,12 +236,12 @@
       "PreviousItemId": "d2f3ca04-3b73-4285-a532-cbc011b958e0"
     },
     {
-      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "ItemId": "c0b3d9f5-8bf1-432d-beff-bab90ab3e880",
       "PreviousItemId": "b722de65-03c5-4ad2-9437-03c9f94c2750"
     },
     {
-      "ItemId": "c0b3d9f5-8bf1-432d-beff-bab90ab3e880",
-      "PreviousItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a"
+      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "PreviousItemId": "c0b3d9f5-8bf1-432d-beff-bab90ab3e880"
     }
   ],
   "HandledEvents": [
@@ -273,6 +273,13 @@
     {
       "NameGuid": "6086c0a8-5ae4-4133-ae44-3b56c3e55348",
       "Name": "JobAccesMVZ",
+      "GenerateHandler": true,
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T08:30:00"
+    },
+    {
+      "NameGuid": "824238d4-18db-4acf-aa6b-855a6eb167da",
+      "Name": "JobHeadOrg",
       "GenerateHandler": true,
       "MonthSchedule": "Monthly",
       "StartAt": "1753-01-01T08:30:00"
@@ -449,7 +456,7 @@
   "SharedAssemblyName": "Sungero.Custom.Shared",
   "SharedNamespace": "Sungero.Custom.Shared",
   "SpecialFolders": [],
-  "Version": "0.1.0.120",
+  "Version": "0.1.0.123",
   "Widgets": [],
   "Versions": [
     {
