@@ -377,6 +377,13 @@ namespace sberdev.SBContracts.Server
     
     #region Сертификаты и подписи
 
+    [Public]
+    public System.Collections.Generic.IEnumerable<Sungero.Domain.Shared.ISignature> GetSignatures(Sungero.Domain.Shared.IEntity entity)
+    {
+      var signs = Signatures.Get(entity);
+      return signs;
+    }
+    
     /// <summary>
     /// Функция возвращает красный цвет если документ не подписан с двух сторон
     /// </summary>

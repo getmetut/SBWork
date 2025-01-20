@@ -14,7 +14,5 @@ namespace sberdev.SBContracts.Structures.Module
   {
     public string Name { get; set; }
     public string Message { get; set; }
-
-
   }
 }

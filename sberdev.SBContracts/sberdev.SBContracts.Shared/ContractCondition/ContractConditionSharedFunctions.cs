@@ -165,7 +165,7 @@ namespace sberdev.SBContracts.Shared
         var inv = acc.InvoiceSberDev;
         if (inv != null && inv.HasVersions)
         {
-          var signInfos = Signatures.Get(inv.LastVersion);
+          var signInfos = PublicFunctions.Module.GetSignatures(inv.LastVersion);
           foreach (var signInfo in signInfos)
           {
             if (signInfo.IsValid && (signInfo.SubstitutedUser == _obj.EndorserSberDev
@@ -181,7 +181,7 @@ namespace sberdev.SBContracts.Shared
       
       if (_obj.ConditionType == ConditionType.EndorseFromSberDev)
       {
-        var signInfos = Signatures.Get(document.LastVersion);
+        var signInfos = PublicFunctions.Module.GetSignatures(document.LastVersion);
         bool flag = false;
         foreach (var singInfo in signInfos)
         {
@@ -221,7 +221,7 @@ namespace sberdev.SBContracts.Shared
       {
         var acc = SBContracts.AccountingDocumentBases.As(document);
         var contr = SBContracts.ContractualDocuments.As(document);
-        var firstApprove = Signatures.Get(document.LastVersion).FirstOrDefault();
+        var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).FirstOrDefault();
         if (firstApprove == null)
           return
             Sungero.Docflow.Structures.ConditionBase.ConditionResult.

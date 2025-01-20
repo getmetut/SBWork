@@ -9,7 +9,6 @@ namespace sberdev.SBContracts.Server
 {
   partial class ConditionFunctions
   {
-
     /// <summary>
     /// 
     /// </summary>   

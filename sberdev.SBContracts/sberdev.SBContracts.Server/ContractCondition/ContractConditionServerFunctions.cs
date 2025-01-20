@@ -8,13 +8,13 @@ using sberdev.SBContracts.ContractCondition;
 namespace sberdev.SBContracts.Server
 {
   partial class ContractConditionFunctions
-  {
+  {    
     public override string GetConditionName()
     {
       using (TenantInfo.Culture.SwitchTo())
       {
         if (_obj.ConditionType == ConditionType.ProductUnit)
-         {
+        {
           string head = "В продуктах есть юнит:";
           foreach (var dir in _obj.ProductUnitSberDev)
             head += String.Format(" {0};", dir.ProductUnit.Name);

@@ -715,6 +715,11 @@ namespace sberdev.SberContracts.Server
     
     #region Функции кнопок заполнения свойств в карточках
     
+    /// <summary>
+    /// Заполнить из предыдущего документа такого же типа (не стал дорабатывать так как это чисто моя инициатива)
+    /// </summary>
+    /// <param name="doc">Документ который заполняется</param>
+    /// <param name="usr">Пользователь (для получения кэша)</param>
     [Public, Remote]
     public static void FillFromCasheSrv(Sungero.Docflow.IOfficialDocument doc , IUser usr)
     {
@@ -813,6 +818,11 @@ namespace sberdev.SberContracts.Server
       }
     }
     
+    /// <summary>
+    /// Заполнить из любого предыдущего документа
+    /// </summary>
+    /// <param name="doc">Документ который заполняется</param>
+    /// <param name="usr">Пользователь (для получения кэша)</param>
     [Public, Remote]
     public static void FillFromCasheGeneralSrv(Sungero.Docflow.IOfficialDocument doc , IUser usr)
     {
@@ -926,6 +936,11 @@ namespace sberdev.SberContracts.Server
       }
     }
     
+    /// <summary>
+    /// Заполнить из любого выбранного документа
+    /// </summary>
+    /// <param name="doc">Документ который заполняется</param>
+    /// <param name="docSelected">Документ из которого идут данные</param>
     [Public, Remote]
     public static void FillFromDocumentSrv(Sungero.Docflow.IOfficialDocument doc, Sungero.Docflow.IOfficialDocument docSelected)
     {
@@ -934,7 +949,7 @@ namespace sberdev.SberContracts.Server
       var contractualSelected = SBContracts.ContractualDocuments.As(docSelected);
       var accountingSelected = SBContracts.AccountingDocumentBases.As(docSelected);
       
-      #region Договорной документ
+      #region Заполняется Договорной документ
       
       if (contractual != null)
       {
@@ -967,7 +982,7 @@ namespace sberdev.SberContracts.Server
       
       #endregion
       
-      #region Финансовый документ
+      #region Заполняется Финансовый документ
       if (accounting != null)
       {
         if (contractualSelected != null)
