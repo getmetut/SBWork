@@ -1812,6 +1812,19 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "ShowOldProductsCalcWarning",
+      "Parameters": [
+        {
+          "Name": "contractualDocument",
+          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "UpdateCard",
       "Parameters": [
         {

@@ -1031,6 +1031,7 @@ namespace sberdev.SBContracts.Server
       else
         body.Range.Replace("[UpgradedCommercialOffer]", "");
       
+      body.Range.Replace("[Currency]", purch.Currency.ShortName);
       body.Range.Replace("[KindPurchase]", GetPurchaseKind(purch.KindPurchase));
       body.Range.Replace("[CPName]", purch.Counterparty.Name);
       body.Range.Replace("[SubjectPurchase]", purch.SubjectPurchase);
@@ -1097,7 +1098,7 @@ namespace sberdev.SBContracts.Server
       if (purch.ConcludedContractsKind == SberContracts.Purchase.ConcludedContractsKind.Yes)
         body.Range.Replace("[ConcludedContracts]", $"а также с использованием информации из действующих договоров, например: " +
                            $"Согласно {purch.LeadingDocument.Name} ({linkС}) стоимость {purch.SubjectPurchaseGen} составляет " +
-                           $"{purch.TotalAmount.Value.ToString()} рублей [VAT], что соответствует среднерыночной стоимости.");
+                           $"{purch.TotalAmount.Value.ToString()} {purch.Currency.ShortName} [VAT], что соответствует среднерыночной стоимости.");
       if (purch.ConcludedContractsKind == SberContracts.Purchase.ConcludedContractsKind.NoChanges)
         body.Range.Replace("[ConcludedContracts]", "а также с использованием информации из действующих договоров, например:\n" +
                            "Указанная стоимость услуг остается неизменной с " + purch.LeadingDocument.DocumentDate + ", что подтверждено" + purch.LeadingDocument.Name
@@ -1121,7 +1122,7 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[DepartmentPurchase]", purch.DepartmentPurchase.Name);
       
       if (purch.TotalAmount != null && purch.TotalAmount != purch.PurchaseAmount)
-        body.Range.Replace("[TotalAmount]", ", при этом общая стоимость договора составит " + purch.TotalAmount.Value.ToString());
+        body.Range.Replace("[TotalAmount]", $", при этом общая стоимость договора составит {purch.TotalAmount.Value.ToString()} {purch.Currency.ShortName}");
       else
         body.Range.Replace("[TotalAmount]", "");
       

@@ -147,9 +147,12 @@ namespace sberdev.SBContracts
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
       Functions.AccountingDocumentBase.ReplaceProducts(_obj);
+      Functions.AccountingDocumentBase.CancelRequiredPropeties(_obj);
+      string errOldProdCalc = PublicFunctions.AccountingDocumentBase.ShowOldProductsCalcWarning(_obj);
+      if (errOldProdCalc != "")
+        e.AddError(errOldProdCalc);
       Functions.AccountingDocumentBase.CreateOrUpdateAnaliticsCashe(_obj);
       Functions.AccountingDocumentBase.CreateOrUpdateAnaliticsCasheGeneral(_obj);
-      Functions.AccountingDocumentBase.CancelRequiredPropeties(_obj);
       _obj.CalcListSDev = PublicFunctions.AccountingDocumentBase.GetCalculationString(_obj);
       var error = Functions.AccountingDocumentBase.BanToSaveForStabs(_obj);
       if (error != "")

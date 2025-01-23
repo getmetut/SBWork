@@ -1806,6 +1806,19 @@
       "ReturnTypeFullName": "System.String"
     },
     {
+      "Name": "ShowOldProductsCalcWarning",
+      "Parameters": [
+        {
+          "Name": "accountingDocumentBase",
+          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
+          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "UpdateCard",
       "Parameters": [
         {

@@ -598,20 +598,6 @@
         },
         {
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "57371953-b26b-4bba-a41a-206167b12046",
-          "Name": "CurrencySberDev",
-          "ColumnNumber": 1,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
-          "ParentGuid": "73e9df7c-895e-4811-b3d5-76c6f95b87aa",
-          "PropertyGuid": "ca562f2d-d3c7-448f-a648-b858e8d2fb2a",
-          "RowNumber": 2,
-          "RowSpan": 1,
-          "Settings": [],
-          "Versions": []
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "ebca0b01-7fba-4bb8-be2c-2aab0cbd5311",
           "Name": "DepartmentSberDev",
           "ColumnNumber": 1,
@@ -1757,10 +1743,13 @@
           "Name": "ControlGroup",
           "ColumnDefinitions": [
             {
-              "Percentage": 63.08
+              "Percentage": 36.41
             },
             {
-              "Percentage": 36.92
+              "Percentage": 41.87
+            },
+            {
+              "Percentage": 18.32
             }
           ],
           "ColumnNumber": 0,
@@ -1786,7 +1775,7 @@
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "c3f888c9-6f95-4d5b-a9ee-187f4824073b",
           "Name": "VAT",
-          "ColumnNumber": 1,
+          "ColumnNumber": 2,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
           "ParentGuid": "a3543d4a-a1db-4b82-840a-416560223e71",
@@ -1794,6 +1783,20 @@
           "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "57371953-b26b-4bba-a41a-206167b12046",
+          "Name": "CurrencySberDev",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "a3543d4a-a1db-4b82-840a-416560223e71",
+          "PropertyGuid": "ca562f2d-d3c7-448f-a648-b858e8d2fb2a",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": [],
+          "Versions": []
         }
       ],
       "IsAncestorMetadata": true,

@@ -183,6 +183,9 @@ namespace sberdev.SBContracts
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
       Functions.ContractualDocument.CancelRequiredPropeties(_obj);
+      string errOldProdCalc = PublicFunctions.ContractualDocument.ShowOldProductsCalcWarning(_obj);
+      if (errOldProdCalc != "")
+        e.AddError(errOldProdCalc);
       var error = Functions.ContractualDocument.BanToSaveForStabs(_obj);
       if (error != "")
         e.AddError(error);
