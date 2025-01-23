@@ -17,6 +17,7 @@ namespace Sungero.ATS.Client
     {
       var types = base.GetTypesAvailableForChange();
       types.Add(Custom.NDAs.Info);
+      types.Add(sberdev.SberContracts.OtherContractDocuments.Info);
       return types;
     }
 

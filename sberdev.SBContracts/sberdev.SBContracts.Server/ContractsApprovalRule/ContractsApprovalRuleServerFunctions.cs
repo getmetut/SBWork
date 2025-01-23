@@ -73,7 +73,6 @@ namespace sberdev.SBContracts.Server
     }
 
     // Универсальный метод, чтобы получить «сравниваемое» значение
-    // в зависимости от типа условия. В одном месте собираем все Case.
     private object GetComparableValue(SBContracts.IContractCondition contractCondition)
     {
       if (contractCondition.ConditionType == SBContracts.ContractCondition.ConditionType.ProductUnit)

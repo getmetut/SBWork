@@ -92,7 +92,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
 
           if (string.IsNullOrEmpty(idStr))
           {
-            Logger.Error($"Exchange. ComeBackBodies. Не найден ИД родной карточки для вложения {attach.Id}");
+            Logger.Debug($"Exchange. ComeBackBodies. Не найден ИД родной карточки для вложения {attach.Id}");
             continue;
           }
           
@@ -102,7 +102,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
           
           if (idStr == incomingDoc.Id.ToString())
           {
-            Logger.Error($"Exchange. ComeBackBodies. ИД родной карточки совпадает с ИД вложения {attach.Id}");
+            Logger.Debug($"Exchange. ComeBackBodies. ИД родной карточки совпадает с ИД вложения {attach.Id}");
             continue;
           }
 
@@ -190,7 +190,7 @@ namespace sberdev.SBContracts.Module.Exchange.Server
         {
           task.IsNeedComeback = false;
           task.NeedComebackAgainAttachments = null;
-          Logger.Error($"Exchange. ComeBackBodies. Задача {task.Id} больше не обрабатывается, превышено количество попыток.");
+          Logger.Debug($"Exchange. ComeBackBodies. Задача {task.Id} больше не обрабатывается, превышено количество попыток.");
         }
 
         task.Save();
