@@ -18,6 +18,29 @@
   ],
   "BaseGuid": "d795d1f6-45c1-4e5e-9677-b53fb7280c7e",
   "BlockIds": [],
+  "Blocks": [
+    {
+      "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "b455d5bf-49c6-4c59-952d-da0e3b641e65",
+      "Name": "BaseFreedom",
+      "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
+      "EntityType": "7d573c8e-3953-4bec-8e3f-9782de8985cf",
+      "HandledEvents": [
+        "BaseFreedomStartAssignment"
+      ],
+      "Properties": []
+    },
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "e2a016fb-7e84-480c-bfe3-2d799792c602",
+      "Name": "SendNotification",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "SendNotificationExecute"
+      ],
+      "Properties": []
+    }
+  ],
   "CanBeNavigationPropertyType": true,
   "CanBeSearch": false,
   "CreationAreaMetadata": {
@@ -147,6 +170,16 @@
       "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "e5e944f2-e530-487a-a480-b111c31fa70e"
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "a744bb2b-67f7-434f-98fe-6616109770b5",
+      "Name": "AssignyEmpl",
+      "Code": "FreedomicTaskA",
+      "EntityGuid": "57ed4010-6c1b-4190-851d-5895ceda9b8a",
+      "IsShowedInList": false,
+      "PreviousPropertyGuid": "3364c324-c4c4-4ccb-a81c-53653255a022",
+      "Versions": []
     }
   ],
   "PublicStructures": [],

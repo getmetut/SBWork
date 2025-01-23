@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+  <ViewName>Default</ViewName>
+  <Collectiondc44deb8266f4904aee67214bbda1184 FormGuid="e0de95d5-b9a6-4bbc-ac00-8fe44115acf6">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">-220,-2</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="2">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">BaseFreedom_AssignyEmpl_Employee</property>
+            <property name="FieldName">Employee</property>
+            <property name="VisibleIndex">0</property>
+            <property name="Width">110920</property>
+            <property name="ActualWidth">11800*</property>
+          </property>
+          <property name="Item2" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">BaseFreedom_AssignyEmpl_DogDocument</property>
+            <property name="FieldName">DogDocument</property>
+            <property name="VisibleIndex">1</property>
+            <property name="Width">147580</property>
+            <property name="ActualWidth">15700*</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collectiondc44deb8266f4904aee67214bbda1184>
+</settings>

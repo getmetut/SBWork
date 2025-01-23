@@ -1,0 +1,72 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "3dedd797-6a25-4018-825d-2dd300a6c4bd",
+  "Name": "BaseFreedomAssignyEmpl",
+  "AccessRightsMode": "NoRight",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "BaseFreedomAss",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "cb82fc8d-d04d-428b-8f87-501a7f99bc53",
+      "Name": "BaseFreedom",
+      "CanBeSearch": false,
+      "Code": "Assignment",
+      "EntityGuid": "7d573c8e-3953-4bec-8e3f-9782de8985cf",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "4cb60166-f1d4-4e7a-b2e8-5714e63d40ef",
+      "Name": "Employee",
+      "CanBeSearch": false,
+      "Code": "Employee",
+      "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "cb82fc8d-d04d-428b-8f87-501a7f99bc53"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "213724f1-3ec6-42c4-8155-8db6c7edb201",
+      "Name": "DogDocument",
+      "CanBeSearch": false,
+      "Code": "DogDocument",
+      "EntityGuid": "59079f7f-a326-4947-bbd6-0ae6dfb5f59b",
+      "FlatListInStandaloneLookup": true,
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "4cb60166-f1d4-4e7a-b2e8-5714e63d40ef"
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "86cffe96-01f8-47fd-af5e-144767873cf7",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "56b1a593-5e02-4496-9a68-41fec3fdbcd8",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

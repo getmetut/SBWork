@@ -58,49 +58,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Enum_Result_Complete" xml:space="preserve">
+    <value>Ответственные назначены</value>
+  </data>
+  <data name="Action_Complete" xml:space="preserve">
+    <value>Ответственные назначены</value>
+  </data>
+  <data name="Action_CompleteHint" xml:space="preserve">
+    <value>Complete with Result "Ответственные назначены"</value>
+  </data>
+  <data name="Action_CompleteConfirmationMessage" xml:space="preserve">
+    <value>Complete the assignment with result "Ответственные назначены"?</value>
+  </data>
+  <data name="Action_CompleteDescription" xml:space="preserve">
+    <value>Complete the assignment with result "Ответственные назначены"</value>
+  </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Задача-уведомление</value>
+    <value>Задание на распределение</value>
   </data>
   <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Задачу-уведомление</value>
+    <value>Задание на распределение</value>
   </data>
   <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Задачи-уведомления</value>
-  </data>
-  <data name="Property_Employee" xml:space="preserve">
-    <value>Получатель уведомления</value>
-  </data>
-  <data name="Resource_035869ed2baa4573bdfe9e4f5e10c4b3" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_035869ed2baa4573bdfe9e4f5e10c4b3_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_74e85eafe5944dc5b4724e791948b781" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_74e85eafe5944dc5b4724e791948b781_EmptyText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Resource_679cef60166e482cbfa7a1ec861f0263" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Control_679cef60166e482cbfa7a1ec861f0263_EmptyText" xml:space="preserve">
-    <value>Specify observers…</value>
-  </data>
-  <data name="AttachmentGroup_OtherAttachmentTitle" xml:space="preserve">
-    <value>Вложения</value>
-  </data>
-  <data name="AttachmentGroup_OtherAttachmentInformationMessage" xml:space="preserve">
-    <value />
+    <value>Задания на распределение</value>
   </data>
   <data name="Property_AssignyEmpl" xml:space="preserve">
     <value>Распределение ответственных по договорным документам</value>
   </data>
-  <data name="Block_b455d5bf49c64c59952dda0e3b641e65" xml:space="preserve">
-    <value>Распределение договоров</value>
+  <data name="Enum_Result_ExecResult" xml:space="preserve">
+    <value>Отмена рассылки</value>
   </data>
-  <data name="Block_e2a016fb7e84480cbfe32d799792c602" xml:space="preserve">
-    <value>Рассылка уведомлений</value>
+  <data name="Action_ExecResult" xml:space="preserve">
+    <value>Отмена рассылки</value>
+  </data>
+  <data name="Action_ExecResultHint" xml:space="preserve">
+    <value>Complete with Result "Отмена рассылки"</value>
+  </data>
+  <data name="Action_ExecResultConfirmationMessage" xml:space="preserve">
+    <value>Complete the assignment with result "Отмена рассылки"?</value>
+  </data>
+  <data name="Action_ExecResultDescription" xml:space="preserve">
+    <value>Complete the assignment with result "Отмена рассылки"</value>
+  </data>
+  <data name="Resource_c9c4beefec5b4b3796d4959c17991279" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_c9c4beefec5b4b3796d4959c17991279_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_45c3f7afea6f40948e21e643b6358f4a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_45c3f7afea6f40948e21e643b6358f4a_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ad03c4af7bfe4967aa2cdaa3265bdbe3" xml:space="preserve">
+    <value />
   </data>
 </root>

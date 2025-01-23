@@ -242,6 +242,14 @@
     {
       "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
       "PreviousItemId": "c0b3d9f5-8bf1-432d-beff-bab90ab3e880"
+    },
+    {
+      "ItemId": "7d573c8e-3953-4bec-8e3f-9782de8985cf",
+      "PreviousItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a"
+    },
+    {
+      "ItemId": "cb01a902-1431-4361-a6ea-3eeb9f2bedba",
+      "PreviousItemId": "7d573c8e-3953-4bec-8e3f-9782de8985cf"
     }
   ],
   "HandledEvents": [
@@ -456,7 +464,7 @@
   "SharedAssemblyName": "Sungero.Custom.Shared",
   "SharedNamespace": "Sungero.Custom.Shared",
   "SpecialFolders": [],
-  "Version": "0.1.0.123",
+  "Version": "0.1.0.124",
   "Widgets": [],
   "Versions": [
     {
