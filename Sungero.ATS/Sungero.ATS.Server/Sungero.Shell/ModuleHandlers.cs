@@ -6,6 +6,7 @@ using Sungero.CoreEntities;
 
 namespace Sungero.ATS.Module.Shell.Server
 {
+
   partial class ExchangeDocumentProcessingFolderHandlers
   {
 

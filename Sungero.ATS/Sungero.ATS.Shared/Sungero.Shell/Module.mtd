@@ -22,13 +22,21 @@
     {
       "ItemId": "780b62c6-1e7d-4ebf-8878-8e3f252ca358",
       "PreviousItemId": "c52f4f9b-137b-42f8-a212-f4080b8de375"
+    },
+    {
+      "ItemId": "ab4423db-191c-4d14-b179-1863a23976eb",
+      "PreviousItemId": "780b62c6-1e7d-4ebf-8878-8e3f252ca358"
     }
   ],
   "IconResourcesKeys": [],
   "Importance": "Low",
+  "IsVisible": false,
   "LayeredFromGuid": "fcc573ab-5f4e-4b20-88e8-7b1e11a7a59a",
   "NeedResetAppliedCache": true,
   "NeedResetTags": true,
+  "Overridden": [
+    "IsVisible"
+  ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "Sungero.ATS.Module.Shell",
