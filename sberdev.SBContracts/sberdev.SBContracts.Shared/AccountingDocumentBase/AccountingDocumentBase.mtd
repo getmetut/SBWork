@@ -1814,7 +1814,7 @@
           "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
         }
       ],
-      "Placement": "Client",
+      "Placement": "Shared",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
     },

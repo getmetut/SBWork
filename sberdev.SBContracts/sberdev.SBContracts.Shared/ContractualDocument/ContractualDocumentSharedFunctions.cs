@@ -262,6 +262,24 @@ namespace sberdev.SBContracts.Shared
     #region Разные по аналитикам
     
     [Public]
+    public string ShowOldProductsCalcWarning()
+    {
+      List<SberContracts.IProductsAndDevices> old = new List<SberContracts.IProductsAndDevices>();
+      foreach (var prod in _obj.CalculationBaseSberDev)
+        if (prod.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Closed)
+          old.Add(prod.ProductCalc);
+      if (old.Any())
+      {
+        string err = "";
+        foreach (var prod in old)
+          err += prod.Name + ", ";
+        return "Необходимо заменить устаревшие продукты в калькуляции: " + err.Substring(0, err.Length - 2);
+      }
+      else
+        return "";
+    }
+    
+    [Public]
     public void ApplyAnaliticSetup(SberContracts.IAnaticsSetup analiticSetup)
     {
       if ( _obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
@@ -514,7 +532,7 @@ namespace sberdev.SBContracts.Shared
           if (_obj.AccArtPrBaseSberDev.NMA.Value)
             NMVisible = true;
         }
-      } 
+      }
       _obj.State.Properties.NMASDevSDev.IsVisible = NMVisible;
     }
     

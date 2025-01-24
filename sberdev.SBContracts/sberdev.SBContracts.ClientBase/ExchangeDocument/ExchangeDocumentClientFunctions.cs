@@ -12,12 +12,13 @@ namespace sberdev.SBContracts.Client
 
     /// <summary>
     /// Перекрытие доступных к выбору типов документов для смены типа
-    /// </summary>       
+    /// </summary>
     public override List<Sungero.Domain.Shared.IEntityInfo> GetTypesAvailableForChange()
     {
-       var BaseTaskList = base.GetTypesAvailableForChange();
-       BaseTaskList.Add(Sungero.Custom.NDAs.Info);
-       return BaseTaskList;
+      var types = base.GetTypesAvailableForChange();
+      types.Add(Sungero.Custom.NDAs.Info);
+      types.Add(sberdev.SberContracts.OtherContractDocuments.Info);
+      return types;
     }
 
   }

@@ -1743,13 +1743,13 @@
           "Name": "ControlGroup",
           "ColumnDefinitions": [
             {
-              "Percentage": 36.41
+              "Percentage": 37.69
             },
             {
-              "Percentage": 41.87
+              "Percentage": 43.34
             },
             {
-              "Percentage": 18.32
+              "Percentage": 18.96
             }
           ],
           "ColumnNumber": 0,

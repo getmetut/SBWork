@@ -1820,7 +1820,7 @@
           "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
         }
       ],
-      "Placement": "Client",
+      "Placement": "Shared",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
     },
