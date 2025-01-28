@@ -559,12 +559,9 @@ namespace sberdev.SBContracts.Shared
       }
       if (_obj.ConditionType == ConditionType.AccArts)
       {
-        
-        var find = false;
         var outLetter = SBContracts.OutgoingLetters.As(document);
         if (outLetter != null)
         {
-          find = true;
           var ContrFind = false;
           foreach (var str in _obj.AccountingArticles )
           {
@@ -581,7 +578,6 @@ namespace sberdev.SBContracts.Shared
         var IncLetter = SBContracts.IncomingLetters.As(document);
         if (IncLetter != null)
         {
-          find = true;
           var ContrFind = false;
           foreach (var str in _obj.AccountingArticles )
           {
@@ -595,14 +591,14 @@ namespace sberdev.SBContracts.Shared
             Create(ContrFind,
                    string.Empty);
         }
-        var incInv = SBContracts.IncomingInvoices.As(document);
-        if (incInv != null)
+        
+        var acc = SBContracts.AccountingDocumentBases.As(document);
+        if (acc != null)
         {
-          find = true;
           var ContrFind = false;
           foreach (var str in _obj.AccountingArticles )
           {
-            if (incInv.AccArtBaseSberDev == str.AccountingArticles)
+            if (acc.AccArtBaseSberDev == str.AccountingArticles)
             {
               ContrFind = true;
             }
@@ -613,30 +609,22 @@ namespace sberdev.SBContracts.Shared
                    string.Empty);
         }
         
-        if ( find != true )
+        var leadDoc = SBContracts.ContractualDocuments.As(document.LeadingDocument);
+        if (leadDoc != null)
         {
-          var mainContract = SBContracts.Contracts.GetAll(e=> e.Id == document.LeadingDocument.Id).FirstOrDefault();
-          if (mainContract != null)
-          {
-            var ContrFind = false;
-            foreach (var str in _obj.AccountingArticles )
-            {
-              if (mainContract.AccArtPrBaseSberDev == str.AccountingArticles)
-              {
-                ContrFind = true;
-              }
-            }
-            return
-              Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-              Create(ContrFind,
-                     string.Empty);
-          }
-          else
-          {
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult.
-              Create(null, "Условие не может быть вычислено. Не заполнена статья управленческого учета документа.");
-          }
+          var ContrFind = false;
+          foreach (var str in _obj.AccountingArticles )
+            if (leadDoc.AccArtExBaseSberDev == str.AccountingArticles
+                || leadDoc.AccArtPrBaseSberDev == str.AccountingArticles)
+              ContrFind = true;
+          return
+            Sungero.Docflow.Structures.ConditionBase.ConditionResult.
+            Create(ContrFind,
+                   string.Empty);
         }
+        else
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.
+            Create(null, "Условие не может быть вычислено. Не заполнена статья управленческого учета документа.");
       }
       
       if (_obj.ConditionType == ConditionType.ActExists)
@@ -852,6 +840,12 @@ namespace sberdev.SBContracts.Shared
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.AccArts); // входящий счет
       baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.AccArts); // исходящее письмо
       baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.AccArts); // Входящее письмо
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.AccArts); // упд
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.AccArts); // акт выполненых работ
+      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.AccArts); // исходящий счет
+      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.AccArts); // накладная
+      baseSupport["74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a"].Add(ConditionType.AccArts); // счет фактура полученный
+      baseSupport["f50c4d8a-56bc-43ef-bac3-856f57ca70be"].Add(ConditionType.AccArts); // счет фактура выставленный
 
       baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.ActExists); // исходящее письмо
       baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.DeviceExists); // исходящее письмо

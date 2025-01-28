@@ -88,4 +88,10 @@
   <data name="CoverAction_ApprovalvalAvgTimeSberDev" xml:space="preserve">
     <value>Среднее время согласования документов</value>
   </data>
+  <data name="JobDescription_c8b6a264c04d4916bbeceede8bb3f60d" xml:space="preserve">
+    <value>Процесс просматривает задания на контроль возврата. Если заданию больше {Системные настройки. Настройки фп "Рассылка подзадач о контроле возврата". Текстовый параметр 1} дней, он отсылает подзадача инициатору задачи. Если еще { Текстовый параметр 2} дней нет ответа от инициатора, подзадачи ликвидируется.</value>
+  </data>
+  <data name="JobDisplayName_c8b6a264c04d4916bbeceede8bb3f60d" xml:space="preserve">
+    <value>Документооборот. Рассылка подзадач о контроле возврата</value>
+  </data>
 </root>
