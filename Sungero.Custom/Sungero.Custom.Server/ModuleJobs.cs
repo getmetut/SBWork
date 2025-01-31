@@ -3,11 +3,70 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
+using System.IO;
 
 namespace Sungero.Custom.Server
 {
   public class ModuleJobs
   {
+
+    /// <summary>
+    /// Фоновый професс сбора отчета по заданиям "Проконтролируйте возврат"
+    /// </summary>
+    public virtual void JobControlFeedback()
+    {
+      var Jobs = Sungero.Workflow.Assignments.GetAll(j => ((j.Created >= Sungero.Core.Calendar.BeginningOfWeek(Sungero.Core.Calendar.AddWorkingDays(Sungero.Core.Calendar.Now,-2))) && (j.Subject.Contains("Проконтролируйте возврат")))).ToArray();
+      if (Jobs.Count() > 0)
+      {
+        string Data = "Тип|Тема|От|Срок|Инициатор|Исполнитель|e-mail|Руководитель|e-mail";
+        foreach (var job in Jobs)
+        {
+          Data += '\n' + "Контроль возврата";
+          Data += "|" + job.Subject.ToString();
+          Data += "|" + job.Created.ToString();
+          Data += "|" + (job.Deadline.HasValue ? job.Deadline.ToString() : "Без срока");
+          Data += "|" + (job.Author != null ? job.Author.Name.ToString() : "");
+          Data += "|" + (job.Performer != null ? job.Performer.Name.ToString() : "");
+          var Performer = Sungero.Company.Employees.GetAll(r => r.Login == job.Performer.Login).FirstOrDefault();
+          if (Performer != null)
+          {
+            Data += "|" + (Performer.Email != null ? Performer.Email.ToString() : "");
+            Data += "|" + (Performer.Department.Manager != null ? Performer.Department.Manager.ToString() : "Не указан в подразделении");
+            Data += "|" + (Performer.Department.Manager != null ? (Performer.Department.Manager.Email != null ? Performer.Department.Manager.Email.ToString() : "Нет") : "Нет");
+          }
+          Data = Data.Replace(';',':');
+        }
+        Data = Data.Replace('|',';');
+        string TekDat = Sungero.Core.Calendar.Now.ToString();
+        TekDat = TekDat.Replace(':', '-').Replace('.', '-').Replace(' ', '_');
+        string filePath = @"C:\temp\Report_" + TekDat + ".csv";
+        try
+        {
+          File.WriteAllText(filePath, Data, new System.Text.UTF8Encoding(true));
+          var doc = Sungero.Docflow.SimpleDocuments.CreateFrom(filePath);          
+          doc.DocumentKind = Sungero.Docflow.DocumentKinds.GetAll(d => d.Name == "Простой документ").FirstOrDefault();
+          doc.Subject = "Отчет Контроль возврата на " + Sungero.Core.Calendar.Now.ToString();
+          doc.Name = "Отчет Контроль возврата на " + Sungero.Core.Calendar.Now.ToString();
+          doc.Save();
+          
+          var mintask = Custom.NotiffDocContracts.Create();
+          var Isp = Logins.GetAll(l => l.LoginName == "delopp").FirstOrDefault();
+          if (Isp != null)
+            mintask.Employee = Sungero.Company.Employees.GetAll(empl => empl.Login == Isp).FirstOrDefault();
+          else
+            mintask.Employee = Sungero.Company.Employees.Get(long.Parse("431"));
+          
+          mintask.BaseAttachment.ElectronicDocuments.Add(doc);
+          mintask.Subject = "Отчет Контроль возврата на " + Sungero.Core.Calendar.Now.ToString();
+          mintask.Start();
+        }
+        catch (Exception ex)
+        {
+          Logger.Debug("Возникла проблема в фоновом процессе: " + ex.Message.ToString());
+        }
+        
+      }
+    }
 
     /// <summary>
     /// Процесс поиска и расстановки уровней подчиненности среди организаций

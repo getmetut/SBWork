@@ -68,7 +68,7 @@
     <value>Выполнить с результатом "Ответственные назначены"</value>
   </data>
   <data name="Action_CompleteConfirmationMessage" xml:space="preserve">
-    <value>Выполнить задание с результатом "Выполнить"?</value>
+    <value>Выполнить задание с результатом "Ответственные назначены"?</value>
   </data>
   <data name="Action_CompleteDescription" xml:space="preserve">
     <value>Выполнение задания с результатом "Ответственные назначены"</value>

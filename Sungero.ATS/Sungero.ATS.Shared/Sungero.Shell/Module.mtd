@@ -22,10 +22,6 @@
     {
       "ItemId": "780b62c6-1e7d-4ebf-8878-8e3f252ca358",
       "PreviousItemId": "c52f4f9b-137b-42f8-a212-f4080b8de375"
-    },
-    {
-      "ItemId": "ab4423db-191c-4d14-b179-1863a23976eb",
-      "PreviousItemId": "780b62c6-1e7d-4ebf-8878-8e3f252ca358"
     }
   ],
   "IconResourcesKeys": [],
@@ -183,7 +179,14 @@
       "NeedShowMarkedCount": false,
       "Overridden": [
         "FilterPanel",
-        "HandledEvents"
+        "HandledEvents",
+        "SupportedDescendantsTypes"
+      ],
+      "SupportedDescendantsTypes": [
+        "d7041916-1429-42e2-869b-661edeef70e5",
+        "11523f66-213c-4e22-8e6c-8baf268a5574",
+        "100950d0-03d2-44f0-9e31-f9c8dfdf3829",
+        "77f43035-9f23-4a19-9882-5a6a2cd5c9c7"
       ],
       "Versions": []
     },
@@ -222,9 +225,13 @@
         "SupportedDescendantsTypes"
       ],
       "SupportedDescendantsTypes": [
+        "903298be-dd28-4da6-9682-1a898041342b",
+        "9f7d9bb0-720f-456f-94a2-339896bea245",
+        "7472da69-451f-4724-887c-1b3ca87934ab",
         "0aac549f-452c-4b6f-9f30-ffdeb328617e",
         "02977b7d-fcd5-4c0a-b7b2-a2a87df6c246",
         "0c5a665f-4ec8-4d40-87fd-605c74df1383",
+        "7d573c8e-3953-4bec-8e3f-9782de8985cf",
         "3a6caaff-6636-4edd-8e77-89d2fdfd451d",
         "102f3750-ce9f-45c0-8e69-a6c7c7a88f4a",
         "38bd47eb-ecd8-4823-b84e-c53fbd083eb5",
@@ -256,6 +263,7 @@
         "6b6ab7f9-408b-417f-82df-24631d8167f1",
         "0a8cb025-1657-495d-aa5e-e982898df156",
         "923b52ef-d0eb-4b24-9e95-e1172404118b",
+        "d2f3ca04-3b73-4285-a532-cbc011b958e0",
         "040862cd-a46f-4366-b068-e659c7acaea6",
         "593ff79e-38b4-4903-b20e-9e08cfea6307"
       ],

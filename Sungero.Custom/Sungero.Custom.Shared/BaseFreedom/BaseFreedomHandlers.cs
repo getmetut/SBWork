@@ -7,6 +7,7 @@ using Sungero.Custom.BaseFreedom;
 
 namespace Sungero.Custom
 {
+
   partial class BaseFreedomSharedHandlers
   {
 

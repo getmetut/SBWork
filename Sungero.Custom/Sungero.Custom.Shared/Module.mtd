@@ -291,6 +291,15 @@
       "GenerateHandler": true,
       "MonthSchedule": "Monthly",
       "StartAt": "1753-01-01T08:30:00"
+    },
+    {
+      "NameGuid": "9df10bc0-5572-4997-be66-6d0bc1df270a",
+      "Name": "JobControlFeedback",
+      "DaysOfWeekSchedule": "Monday",
+      "GenerateHandler": true,
+      "Monthly": "Weekly",
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T08:30:00"
     }
   ],
   "Libraries": [
@@ -464,7 +473,7 @@
   "SharedAssemblyName": "Sungero.Custom.Shared",
   "SharedNamespace": "Sungero.Custom.Shared",
   "SpecialFolders": [],
-  "Version": "0.1.0.127",
+  "Version": "0.1.0.131",
   "Widgets": [],
   "Versions": [
     {

@@ -71,7 +71,7 @@
     <value>Все уведомления</value>
   </data>
   <data name="FilterPanel_OnlyReadSDev_9ee674619ef54e3687dfa040e71daead" xml:space="preserve">
-    <value>Только не прочтенные</value>
+    <value>Только непрочтенные</value>
   </data>
   <data name="FilterPanel_FilterSDev_2bab7cb68fbc40e6bfe66a85673d7249" xml:space="preserve">
     <value>Фильтрация по реквизиту</value>
@@ -123,5 +123,44 @@
   </data>
   <data name="sf_780b62c6_1e7d_4ebf_8878_8e3f252ca358" xml:space="preserve">
     <value>Новости</value>
+  </data>
+  <data name="sf_0d61168d_1ae5_4570_a42e_bdd5f3b07b02" xml:space="preserve">
+    <value>To review</value>
+  </data>
+  <data name="sf_a353a121_f96e_4842_8b80_bf77d074a0c2" xml:space="preserve">
+    <value>To accept</value>
+  </data>
+  <data name="sf_35d23c5e_9106_4068_bc3a_46b471928fa0" xml:space="preserve">
+    <value>To print</value>
+  </data>
+  <data name="sf_aee5f0a0_8a5f_422f_bc40_e98db38e94ca" xml:space="preserve">
+    <value>To register</value>
+  </data>
+  <data name="sf_83d1dcdf_fb2c_4cd9_9246_e57d641b0a48" xml:space="preserve">
+    <value>To verification</value>
+  </data>
+  <data name="sf_471e68ad_7f9d_43d7_b4db_93eb660cde7f" xml:space="preserve">
+    <value>To Get Acquainted</value>
+  </data>
+  <data name="sf_1031e40e_2c3a_4964_92ce_92036cdcb3b9" xml:space="preserve">
+    <value>From Counterparties</value>
+  </data>
+  <data name="sf_1440d1dc_6746_434a_908d_e596c2a1f849" xml:space="preserve">
+    <value>Approval</value>
+  </data>
+  <data name="sf_669ff039_2f05_4eb3_9d6a_049dafee948f" xml:space="preserve">
+    <value>To sign</value>
+  </data>
+  <data name="sf_852ea6a2_304e_48d1_88e5_1bcbb1fb69a2" xml:space="preserve">
+    <value>To approve</value>
+  </data>
+  <data name="sf_a584ebf5_f9b3_4e41_b7cf_15d8c2f96844" xml:space="preserve">
+    <value>To rework</value>
+  </data>
+  <data name="sf_1ead1abe_1b7e_4833_9e01_ee7f8404537a" xml:space="preserve">
+    <value>To process</value>
+  </data>
+  <data name="sf_ae3b3ff0_73ac_4590_961c_adf4579d59de" xml:space="preserve">
+    <value>Notices</value>
   </data>
 </root>
