@@ -100,12 +100,6 @@ namespace sberdev.SBContracts
     {
       base.BeforeSave(e);
     }
-
-    public override void Created(Sungero.Domain.CreatedEventArgs e)
-    {
-      base.Created(e);
-      _obj.DiadocIsSetSberDev = false;
-    }
   }
 
 }

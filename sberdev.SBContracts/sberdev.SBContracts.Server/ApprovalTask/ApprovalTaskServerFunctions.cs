@@ -9,6 +9,19 @@ namespace sberdev.SBContracts.Server
 {
   partial class ApprovalTaskFunctions
   {
+    public void ChangeNameCheckCPStage(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
+    {
+      bool isCheckingCPStage = PublicFunctions.ApprovalTask.IsNecessaryStage(_obj, PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
+      if (isCheckingCPStage)
+      {
+        var contract = SBContracts.ContractualDocuments.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault());
+        if (contract.Counterparty == null)
+          return;
+        e.Block.Subject = $"Проверьте \"{contract.Counterparty.Name}\" на благонадежность";
+        e.Block.ThreadSubject = $"Проверьте \"{contract.Counterparty.Name}\" на благонадежность";
+      }
+    }
+    
     public void AddMVZApprovers(Sungero.Docflow.Server.ApprovalAssignmentArguments e, SBContracts.IApprovalAssignment blok)
     {
       var document = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
@@ -41,6 +54,7 @@ namespace sberdev.SBContracts.Server
       }
     }
     
+    #region Переадресация задания на замещающего
     /// <summary>
     /// Часть механизма переадресации задания на замещающего что отправил на доработку
     /// Записывает в задачу пользователя что выполнил задание по замещению и замещающего
@@ -105,6 +119,10 @@ namespace sberdev.SBContracts.Server
       }
     }
     
+    #endregion
+    
+    #region Выполнять один раз
+    
     /// <summary>
     /// Механика пропуска этапа если выбран флажок "Выполнять один раз" в этапе согласования
     /// Сохраняем информацию о том что нужно пропустить
@@ -163,7 +181,10 @@ namespace sberdev.SBContracts.Server
         }
       }
     }
-
+    #endregion
+    
+    #region Прочие функции используемые в событиях схемы задачи
+    
     /// <summary>
     /// Функция для того чтобы убарть скип согласования
     /// </summary>
@@ -181,6 +202,10 @@ namespace sberdev.SBContracts.Server
       }
     }
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="e"></param>
     public void SetSupStagePerformer(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
     {
       if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.SupplementalStage))
@@ -192,6 +217,7 @@ namespace sberdev.SBContracts.Server
           e.Block.Performers.Clear();
       }
     }
+    #endregion
     
     public override void UpdateDocumentApprovalState(Sungero.Docflow.IOfficialDocument document, Nullable<Enumeration> state)
     {
@@ -235,13 +261,11 @@ namespace sberdev.SBContracts.Server
         cp = SBContracts.Counterparties.As(contr.Counterparty);
       else
         return;
-      if (doc.DeliveryMethod == null)
+      if (doc.DeliveryMethod.Id != 1)
         return;
-      if (cp.DiadocIsSetSberDev.Value ||  doc.DeliveryMethod.Id != 1)
+      if (cp.Nonresident == true)
         return;
-      if (cp.Nonresident.HasValue && cp.Nonresident.Value)
-        return;
-      if (cp.CanExchange.HasValue && cp.CanExchange.Value)
+      if (cp.CanExchange == true)
         return;
       var task = SberContracts.DiadocSettingsTasks.Create();
       task.Counterparty = cp;

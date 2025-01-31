@@ -548,8 +548,9 @@
       "NameGuid": "c8b6a264-c04d-4916-bbec-eede8bb3f60d",
       "Name": "SendCheckReturnNotificationsSberDev",
       "GenerateHandler": true,
+      "Monthly": "WorkingDays",
       "MonthSchedule": "Monthly",
-      "StartAt": "1753-01-01T09:00:00"
+      "StartAt": "1753-01-01T11:00:00"
     }
   ],
   "LayeredFromGuid": "df83a2ea-8d43-4ec4-a34a-2e61863014df",

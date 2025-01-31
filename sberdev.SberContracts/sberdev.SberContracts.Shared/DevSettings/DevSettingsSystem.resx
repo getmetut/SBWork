@@ -79,4 +79,7 @@
   <data name="Property_Discription" xml:space="preserve">
     <value>Discription</value>
   </data>
+  <data name="Property_Counterparties" xml:space="preserve">
+    <value>Counterparties</value>
+  </data>
 </root>

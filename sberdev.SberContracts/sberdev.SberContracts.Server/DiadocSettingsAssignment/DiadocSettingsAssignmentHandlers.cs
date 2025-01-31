@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -22,13 +22,7 @@ namespace sberdev.SberContracts
 
     public override void BeforeComplete(Sungero.Workflow.Server.BeforeCompleteEventArgs e)
     {
-      if (Locks.TryLock(_obj.Counterparty))
-      {
-        SBContracts.Counterparties.As(_obj.Counterparty).DiadocIsSetSberDev = true;
-        _obj.Counterparty.Save();
-        Locks.Unlock(_obj.Counterparty);
-      }
-      else
+      if (_obj.Counterparty.CanExchange != true)
         e.AddError(sberdev.SberContracts.DiadocSettingsAssignments.Resources.ErrorBlockCa);
     }
   }

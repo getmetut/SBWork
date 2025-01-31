@@ -63,14 +63,14 @@
         <Bounds>
           <Location>
             <X>5</X>
-            <Y>-47.5</Y>
+            <Y>-49.900000000000006</Y>
           </Location>
           <Size>
             <Width>48</Width>
             <Height>48</Height>
           </Size>
           <X>5</X>
-          <Y>-47.5</Y>
+          <Y>-49.900000000000006</Y>
           <Width>48</Width>
           <Height>48</Height>
         </Bounds>
@@ -118,11 +118,15 @@
           <X>29</X>
           <Y>40.5</Y>
         </EndPoint>
-        <OriginAnchor>-1</OriginAnchor>
+        <OriginAnchor>3</OriginAnchor>
         <Points>
           <Point>
             <X>29</X>
-            <Y>0.5</Y>
+            <Y>-1.9000000000000057</Y>
+          </Point>
+          <Point>
+            <X>29</X>
+            <Y>40.5</Y>
           </Point>
           <Point>
             <X>29</X>
@@ -131,7 +135,7 @@
         </Points>
         <StartPoint>
           <X>29</X>
-          <Y>0.5</Y>
+          <Y>-1.9000000000000057</Y>
         </StartPoint>
       </EdgeLayout>
       <EdgeLayout>

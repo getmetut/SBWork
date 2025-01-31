@@ -448,6 +448,24 @@
   ],
   "PublicFunctions": [
     {
+      "Name": "CalculateBusinessDays",
+      "Parameters": [
+        {
+          "Name": "startDate",
+          "ParameterType": "global::System.DateTime",
+          "ParameterTypeFullName": "System.DateTime"
+        },
+        {
+          "Name": "endDate",
+          "ParameterType": "global::System.DateTime",
+          "ParameterTypeFullName": "System.DateTime"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Int32",
+      "ReturnTypeFullName": "System.Int32"
+    },
+    {
       "Name": "CheckDepartmentApproval",
       "Parameters": [
         {

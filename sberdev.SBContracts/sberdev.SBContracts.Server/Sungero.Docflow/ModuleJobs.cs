@@ -10,45 +10,63 @@ namespace sberdev.SBContracts.Module.Docflow.Server
   {
 
     /// <summary>
-    /// 
+    /// Отправляет уведомления по контролю возврата заданий. Создаёт подзадачи для инициаторов согласования и прекращает их при отсутствии ответа.
     /// </summary>
     public virtual void SendCheckReturnNotificationsSberDev()
-    {/*
-      var devSet = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Настройка рассылки подзадач по контролю возврата").Text.Split(',');
-      int period1, period2;
-      if (!int.TryParse(devSet[0], out period1) || !int.TryParse(devSet[1], out period2))
+    {
+      var devSet = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Настройка рассылки подзадач по контролю возврата");
+      var exeptCPList = devSet.Counterparties.Select(c => c.Counterparty).ToList();
+      var devSetArr = devSet.Text.Split(',');
+      
+      int periodAssign, periodTask, periodNotification;
+      if (!int.TryParse(devSetArr[0], out periodAssign) || !int.TryParse(devSetArr[1], out periodTask) || !int.TryParse(devSetArr[1], out periodNotification))
         throw new ArgumentException("Укажите корректные значениея в текстовом параметре. Модуль Договоры -> Системные настройки -> Настройка рассылки подзадач по контролю возврата");
-      var thresholdDate = Calendar.AddWorkingDays(Calendar.Now, -period1);
+      
+      var thresholdDateAssign = Calendar.AddWorkingDays(Calendar.Now, -periodAssign);
+      var thresholdDateTask = Calendar.AddWorkingDays(Calendar.Now, -periodTask);
       var assigns = SBContracts.ApprovalCheckReturnAssignments.GetAll().Where(a => a.Status == SBContracts.ApprovalCheckReturnAssignment.Status.InProcess
-                                                                              && a.Created.Value <= thresholdDate
-                                                                              && a.IsCheckReturnNotificationSendedSberDev != true);
+                                                                              && a.Created.Value <= thresholdDateAssign);
       foreach (var assign in assigns)
       {
-        if (assign.Subtasks.Any())
+        var doc = assign.DocumentGroup.OfficialDocuments.FirstOrDefault();
+        var accounting = SBContracts.AccountingDocumentBases.As(doc);
+        var contractual = SBContracts.ContractualDocuments.As(doc);
+        
+        if (exeptCPList.Contains(accounting?.Counterparty) || exeptCPList.Contains(contractual?.Counterparty))
+          continue;
+        
+        SberContracts.ICheckDocumentSignTask subtask = assign.Subtasks.Select(s => SberContracts.CheckDocumentSignTasks.As(s)).LastOrDefault();
+        
+        if (subtask == null)
         {
-          var subtask = assign.Subtasks.Last();
-      //    SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(subtask);
-          thresholdDate = Calendar.AddWorkingDays(Calendar.Now, -period2);
-          if (subtask.Created.Value <= thresholdDate)
-          {
-            subtask.Abort();
-            SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(assign);
-            assign.IsCheckReturnNotificationSendedSberDev = true;
-            assign.Save();
-          }
+          Functions.Module.SendCheckDocumentSignTask(assign);
+          continue;
         }
-        else
+
+        if (subtask.Status != SberContracts.CheckDocumentSignTask.Status.InProcess)
         {
-          var subtask = SberContracts.CheckCounterpartyDocumentReturns.CreateAsSubtask(assign);
-          subtask.Author = assign.Performer;
-          subtask.Subject = "Напомнить о подписании";
-          subtask.ActiveText = "Просим напомнить к/а о подписании документа. В случае отсутствия подписанного с двух сторон документа," +
-            " через 1 неделю подзадача переадресуется обратно Делопроизводителю";
-          var route = subtask.RouteSteps.AddNew();
-          route.Performer = assign.Task.Author;
-          subtask.Start();
+          if (subtask.Deadline.Value <= thresholdDateAssign)
+            Functions.Module.SendCheckDocumentSignTask(assign);
+          continue;
         }
-      }*/
+        
+        if (subtask.Deadline.Value <= Calendar.Now)
+        {
+          subtask.Abort();
+          assign.Save();
+          continue;
+        }
+
+        int subtaskAgeDays = PublicFunctions.Module.CalculateBusinessDays(subtask.Created.Value, Calendar.Now);
+        if (subtaskAgeDays / periodNotification != subtask.ReminderCount && subtask.Status == SberContracts.CheckDocumentSignTask.Status.InProcess)
+        {
+          Functions.Module.SendCheckDocumentSignNotification(subtask);
+          SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(subtask);
+          subtask.ReminderCount++;
+          subtask.Save();
+        }
+
+      }
     }
 
   }

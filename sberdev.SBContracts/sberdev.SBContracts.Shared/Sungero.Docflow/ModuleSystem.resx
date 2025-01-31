@@ -89,9 +89,9 @@
     <value>The report shows the average time for document approval by type.</value>
   </data>
   <data name="JobDisplayName_c8b6a264c04d4916bbeceede8bb3f60d" xml:space="preserve">
-    <value>Dockflow. Subtask distribution on return control</value>
+    <value>Dockflow. Sending out subtasks on return control and notifications on them</value>
   </data>
   <data name="JobDescription_c8b6a264c04d4916bbeceede8bb3f60d" xml:space="preserve">
-    <value>The process reviews the tasks for return control. If the task is more than {System settings. FP settings "Sending subtasks about return control". Text parameter 1} days old, it sends the subtask to the task initiator. If there is no response from the initiator for another {Text parameter 2} days, the subtask is liquidated.</value>
+    <value>The process reviews tasks for return control. If the task is more than {System settings. Settings of the FP "Sending subtasks about return control". Text parameter 1} days old, it sends the subtask to the task initiator. If there is no response from the initiator for another {Text parameter 2} days, the subtask is liquidated. Every {Text parameter 3} days, a notification will be sent for the created subtask</value>
   </data>
 </root>

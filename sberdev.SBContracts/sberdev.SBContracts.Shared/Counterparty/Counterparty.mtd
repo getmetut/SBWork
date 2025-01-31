@@ -288,7 +288,6 @@
     }
   ],
   "HandledEvents": [
-    "CreatedServer",
     "FilteringServer",
     "BeforeSaveServer"
   ],
@@ -310,18 +309,6 @@
     },
     {
       "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "95ef8e3f-deda-4b22-863b-4cfe3f9db746",
-      "Name": "DiadocIsSetSberDev",
-      "CanBeSearch": false,
-      "Code": "DiadocIsSet",
-      "IsEnabled": false,
-      "IsShowedInList": false,
-      "IsVisibility": false,
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
-      "PreviousPropertyGuid": "f3253916-499d-4f30-8041-6aa47fb10fc8"
-    },
-    {
-      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
       "NameGuid": "48aa3e2d-135d-41a3-8bf4-423deb2540c9",
       "Name": "FocusCheckedSberDev",
       "CanBeSearch": false,
@@ -330,7 +317,7 @@
       "IsShowedInList": false,
       "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
-      "PreviousPropertyGuid": "95ef8e3f-deda-4b22-863b-4cfe3f9db746"
+      "PreviousPropertyGuid": "3ae9dd96-2ff5-4954-8561-d033cb7b31e9"
     },
     {
       "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",

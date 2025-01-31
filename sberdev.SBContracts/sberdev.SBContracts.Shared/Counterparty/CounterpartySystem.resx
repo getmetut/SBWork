@@ -58,9 +58,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_DiadocIsSetSberDev" xml:space="preserve">
-    <value>Diadoc is set</value>
-  </data>
   <data name="Resource_df687b306ddd439d8abc8262e3a8ba92" xml:space="preserve">
     <value />
   </data>

@@ -8,6 +8,29 @@ namespace sberdev.SBContracts.Module.Docflow.Server
 {
   partial class ModuleFunctions
   {
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void SendCheckDocumentSignTask(Sungero.Workflow.IAssignmentBase assign)
+    {
+      var subtask = SberContracts.CheckDocumentSignTasks.CreateAsSubtask(assign);
+      subtask.Author = assign.Performer;
+      subtask.Subject = "Напомнить о подписании";
+      subtask.ActiveText = "Просим напомнить к/а о подписании документа. В случае отсутствия подписанного с двух сторон документа," +
+        " через 1 неделю подзадача переадресуется обратно Делопроизводителю";
+      subtask.Performer = assign.Task.Author;
+      subtask.Start();
+    }
+    
+    public void SendCheckDocumentSignNotification(SberContracts.ICheckDocumentSignTask task)
+    {
+      var notice = SberContracts.CheckDocumentSignNotifications.Create(task);
+      notice.Performer = task.Performer;
+      notice.Subject = "Не забудьте напомнить к/а о подписании документа";
+      notice.Save();
+    }
+    
     public override bool GeneratePublicBodyForExchangeDocument(Sungero.Docflow.IOfficialDocument document, long versionId, Nullable<Enumeration> exchangeState, Nullable<DateTime> startTime)
     {
       SBContracts.OfficialDocuments.As(document).BodyExtSberDev = document.LastVersion.AssociatedApplication.Extension;

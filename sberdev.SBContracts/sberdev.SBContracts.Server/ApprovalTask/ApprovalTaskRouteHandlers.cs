@@ -15,6 +15,7 @@ namespace sberdev.SBContracts.Server
       base.StartBlock6(e);
       Functions.ApprovalTask.RemoveOneTimeCompletePerformers(_obj, e);
       Functions.ApprovalTask.CancelApproveSkip(_obj, e);
+      Functions.ApprovalTask.ChangeNameCheckCPStage(_obj, e);
     }
 
     public override void StartAssignment6(Sungero.Docflow.IApprovalAssignment assignment, Sungero.Docflow.Server.ApprovalAssignmentArguments e)
