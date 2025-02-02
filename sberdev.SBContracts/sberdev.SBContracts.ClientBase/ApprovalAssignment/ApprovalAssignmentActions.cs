@@ -58,7 +58,17 @@ namespace sberdev.SBContracts.Client
 
   partial class ApprovalAssignmentActions
   {
+    public virtual void DirectToFinanceSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      _obj.IsNeedSupStageSberDev = true;
+      _obj.Complete(SBContracts.ApprovalAssignment.Result.Approved);
+      e.CloseFormAfterAction = true;
+    }
 
+    public virtual bool CanDirectToFinanceSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return PublicFunctions.ApprovalTask.IsNecessaryStage(SBContracts.ApprovalTasks.As(_obj.Task), PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
+    }
 
     public virtual void UnblockAttachSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
@@ -130,10 +140,6 @@ namespace sberdev.SBContracts.Client
 
       _obj.Complete(Result.Approved);
       e.CloseFormAfterAction = true;
-      //_obj.State.Controls.Control.Refresh();
-      
-      
-      
     }
     
     public virtual bool CanAmountChangesberdev(Sungero.Domain.Client.CanExecuteActionArgs e)

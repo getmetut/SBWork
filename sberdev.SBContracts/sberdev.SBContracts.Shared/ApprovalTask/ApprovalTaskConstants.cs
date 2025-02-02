@@ -6,7 +6,7 @@ namespace sberdev.SBContracts.Constants.Docflow
   public static class ApprovalTask
   {
     [Sungero.Core.Public]
-    public const string SupplementalStage = "55d13a81-9812-42e9-ab13-08f849fed4bd"; // "Этап дополнительный (сейчас если NeedFinance == false то этап пропускается)
+    public const string SupplementalStage = "55d13a81-9812-42e9-ab13-08f849fed4bd"; // "Этап дополнительный (сейчас если IsNeedSupStageSberDev == false то этап пропускается)
     [Sungero.Core.Public]
     public const string CheckingCPStage = "e08081d4-ec20-4f56-bf43-534e3f01cdff"; // "Этап проверки ка на благонадежность (показывает поле NeedFinance в карточке)
     [Sungero.Core.Public]

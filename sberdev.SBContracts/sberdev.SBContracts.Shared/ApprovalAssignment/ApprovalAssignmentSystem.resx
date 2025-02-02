@@ -241,13 +241,28 @@
   <data name="Action_ReAddressSberDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
-  <data name="Property_NeedFinanceSberDev" xml:space="preserve">
-    <value>Need finance department</value>
+  <data name="Property_IsNeedSupStageSberDev" xml:space="preserve">
+    <value>IsNeedSupStage</value>
   </data>
   <data name="Property_MVZSberDev" xml:space="preserve">
     <value>MVZ/P</value>
   </data>
   <data name="Property_AccArtSberDev" xml:space="preserve">
     <value>Accounting article</value>
+  </data>
+  <data name="Action_DirectToFinanceSberDev" xml:space="preserve">
+    <value>Direct to Finance</value>
+  </data>
+  <data name="Action_DirectToFinanceSberDevDescription" xml:space="preserve">
+    <value>Complete the assignment with this result if additional verification of the counterparty by the finance department is required</value>
+  </data>
+  <data name="Action_DirectToFinanceSberDevHint" xml:space="preserve">
+    <value>Send the assignment to check the counterparty to the finance department</value>
+  </data>
+  <data name="Action_DirectToFinanceSberDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_DirectToFinanceSberDevConfirmationDescription" xml:space="preserve">
+    <value />
   </data>
 </root>

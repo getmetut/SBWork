@@ -210,10 +210,9 @@ namespace sberdev.SBContracts.Server
     {
       if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.SupplementalStage))
       {
-        e.Block.Performers.Clear();
         var lastAssign = GetLastTaskAssigment(_obj, null);
         var typedAssign = SBContracts.ApprovalAssignments.As(lastAssign);
-        if (typedAssign?.NeedFinanceSberDev == false)
+        if (typedAssign?.IsNeedSupStageSberDev == false)
           e.Block.Performers.Clear();
       }
     }

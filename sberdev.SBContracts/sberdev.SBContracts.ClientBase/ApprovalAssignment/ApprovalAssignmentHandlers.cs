@@ -14,8 +14,6 @@ namespace sberdev.SBContracts
     {
       var approvalStage = sberdev.SBContracts.ApprovalStages.As(_obj.Stage);
       var task = SBContracts.ApprovalTasks.As(_obj.Task);
-      bool isCheckingCPStage = PublicFunctions.ApprovalTask.IsNecessaryStage(task, PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
-      _obj.State.Properties.NeedFinanceSberDev.IsVisible = isCheckingCPStage;
 
       var performer = Users.As(_obj.Performer);
       bool isTreasuryStage = PublicFunctions.ApprovalTask.IsNecessaryStage(task, PublicConstants.Docflow.ApprovalTask.TreasuryStage);

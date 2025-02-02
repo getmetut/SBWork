@@ -14,7 +14,7 @@ namespace sberdev.SBContracts
     {
       base.Created(e);
       _obj.InvApprByTreasSberDev = false;
-      _obj.NeedFinanceSberDev = false;
+      _obj.IsNeedSupStageSberDev = false;
     }
 
     public override void Saving(Sungero.Domain.SavingEventArgs e)

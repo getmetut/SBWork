@@ -220,13 +220,22 @@
   <data name="Action_ReAddressSberDevConfirmationMessage" xml:space="preserve">
     <value>Вы хотите преадресовать задания выбраному сотруднику?</value>
   </data>
-  <data name="Property_NeedFinanceSberDev" xml:space="preserve">
-    <value>Необходим отдел финансов</value>
+  <data name="Property_IsNeedSupStageSberDev" xml:space="preserve">
+    <value>IsNeedSupStage</value>
   </data>
   <data name="Property_MVZSberDev" xml:space="preserve">
     <value>МВЗ/П</value>
   </data>
   <data name="Property_AccArtSberDev" xml:space="preserve">
     <value>Статья упр. учета</value>
+  </data>
+  <data name="Action_DirectToFinanceSberDev" xml:space="preserve">
+    <value>Направить финансам</value>
+  </data>
+  <data name="Action_DirectToFinanceSberDevDescription" xml:space="preserve">
+    <value>Выполните задание с этим результатом, если необходима доп. проверка к\а отделом финансов</value>
+  </data>
+  <data name="Action_DirectToFinanceSberDevHint" xml:space="preserve">
+    <value>Направить задание на проверку к\а отделу финансов</value>
   </data>
 </root>
