@@ -22,8 +22,8 @@ namespace sberdev.SberContracts
 
     public override void BeforeComplete(Sungero.Workflow.Server.BeforeCompleteEventArgs e)
     {
-      if (_obj.Counterparty.CanExchange != true)
-        e.AddError(sberdev.SberContracts.DiadocSettingsAssignments.Resources.ErrorBlockCa);
+     // if (_obj.Counterparty.CanExchange != true)
+      //  e.AddError("Электронный обмен с контрагентом не установлен");
     }
   }
 }

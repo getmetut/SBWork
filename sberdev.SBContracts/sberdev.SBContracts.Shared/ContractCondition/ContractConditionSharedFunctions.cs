@@ -588,6 +588,7 @@ namespace sberdev.SBContracts.Shared
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.ProductUnit); // сontract statement
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.ProductUnit); // universal transfer document
       baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.ProductUnit); // waybill
+      baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.ProductUnit); // other contractual document
       
       baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.IsPrepayment); // other contractual document
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.IsPrepayment); // сontract statement
@@ -619,6 +620,7 @@ namespace sberdev.SBContracts.Shared
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.MarketDirect); // сontract statement
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.MarketDirect); // universal transfer document
       baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.MarketDirect); // waybill
+      baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.MarketDirect); // other contractual document
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.MarketDirect); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.MarketDirect); // sup agreement
@@ -628,6 +630,7 @@ namespace sberdev.SBContracts.Shared
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.DocumentChanged); // сontract statement
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.DocumentChanged); // universal transfer document
       baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.DocumentChanged); // waybill
+      baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.DocumentChanged); // other contractual document
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.ContrCategory); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.ContrCategory); // sup agreement
@@ -645,6 +648,7 @@ namespace sberdev.SBContracts.Shared
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.MVP); // сontract statement
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.MVP); // universal transfer document
       baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.MVP); // waybill
+      baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.MVP); // other contractual document
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.InitiatorsDepartment);
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.InitiatorsDepartment);
@@ -657,6 +661,7 @@ namespace sberdev.SBContracts.Shared
       baseSupport["74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a"].Add(ConditionType.AccountAticles); // счет фактура полученный
       baseSupport["f50c4d8a-56bc-43ef-bac3-856f57ca70be"].Add(ConditionType.AccountAticles); // счет фактура выставленный
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.AccountAticles); // упд
+      baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.AccountAticles); // other contractual document
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.Framework); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.Framework); // sup agreement
