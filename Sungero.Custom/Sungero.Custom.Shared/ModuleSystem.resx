@@ -139,4 +139,10 @@
   <data name="JobDescription_9df10bc055724997be666d0bc1df270a" xml:space="preserve">
     <value>Фоновый професс сбора отчета по заданиям "Проконтролируйте возврат" с уведомлением делопроизводителей</value>
   </data>
+  <data name="CoverAction_AddAccesToUser" xml:space="preserve">
+    <value>Функция выдачи прав на задачи и документы по Подразделению</value>
+  </data>
+  <data name="CoverDescription_AddAccesToUser" xml:space="preserve">
+    <value>Функция проверки выдачи прав на задачи и документы по признаку причастности к подразделению автора</value>
+  </data>
 </root>

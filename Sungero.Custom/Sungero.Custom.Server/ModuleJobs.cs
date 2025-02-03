@@ -58,6 +58,7 @@ namespace Sungero.Custom.Server
           
           mintask.BaseAttachment.ElectronicDocuments.Add(doc);
           mintask.Subject = "Отчет Контроль возврата на " + Sungero.Core.Calendar.Now.ToString();
+          mintask.Save();
           mintask.Start();
         }
         catch (Exception ex)
