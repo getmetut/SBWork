@@ -14,6 +14,14 @@
     "Actions": [
       {
         "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
+        "NameGuid": "3f3cb2c3-bf94-44bc-9bdb-249d88c3289b",
+        "Name": "TestCanRead",
+        "FunctionName": "TestCanRead",
+        "GroupId": "87590ec7-b390-4e15-8a60-3e53df37e634",
+        "PreviousItemGuid": "43d1433f-c82d-4547-a9b7-04fabd19cfeb"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
         "NameGuid": "43d1433f-c82d-4547-a9b7-04fabd19cfeb",
         "Name": "AddAccesToUser",
         "FunctionName": "AddAccesToUser",
@@ -481,7 +489,7 @@
   "SharedAssemblyName": "Sungero.Custom.Shared",
   "SharedNamespace": "Sungero.Custom.Shared",
   "SpecialFolders": [],
-  "Version": "0.1.0.132",
+  "Version": "0.1.0.144",
   "Widgets": [],
   "Versions": [
     {
