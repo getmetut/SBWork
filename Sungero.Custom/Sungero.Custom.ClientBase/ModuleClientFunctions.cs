@@ -12,39 +12,6 @@ namespace Sungero.Custom.Client
   {
 
     /// <summary>
-    /// Тестирование доступности на чтение задач по ИД
-    /// </summary>
-    public virtual void TestCanRead()
-    {
-      var Dial = Dialogs.CreateInputDialog("Укажите вводные данные для тестирования");
-      var Inpt = Dial.AddSelect("Укажите сотрудника",true,Sungero.Company.Employees.Null);
-      var Podr = Dial.AddString("Укажите ИД Задачи",true);
-      if (Dial.Show() == DialogButtons.Ok)
-      {
-        var us = Sungero.Company.Employees.Get(Inpt.Value.Id);
-        long Idtask = long.Parse(Podr.Value);
-        string log = Calendar.Now.ToString() + '\n';
-        var Task = Sungero.Workflow.Tasks.Get(Idtask);
-        if (Task.AccessRights.CanRead(us))
-          log += "Task.AccessRights.CanRead(us): Вернул TRUE" + '\n';
-        else
-          log += "Task.AccessRights.CanRead(us): Вернул FALSE" + '\n';
-        
-        if (Task.AccessRights.CanGrant(DefaultAccessRightsTypes.Read))
-          log += "Task.AccessRights.CanGrant(Read): Вернул TRUE" + '\n';
-        else
-          log += "Task.AccessRights.CanGrant(Read): Вернул FALSE" + '\n';
-        
-        if (Task.AccessRights.IsGranted(DefaultAccessRightsTypes.Read, us))
-          log += "Task.AccessRights.IsGranted(Read, us): Вернул TRUE" + '\n';
-        else
-          log += "Task.AccessRights.IsGranted(Read, us): Вернул FALSE" + '\n';
-        
-        Dialogs.ShowMessage(log);
-      }
-    }
-
-    /// <summary>
     /// Функция выдачи прав на задачи и документы по Подразделению
     /// </summary>
     public virtual void AddAccesToUser()
@@ -52,98 +19,30 @@ namespace Sungero.Custom.Client
       var Dial = Dialogs.CreateInputDialog("Укажите вводные данные для тестирования");
       var Inpt = Dial.AddSelect("Укажите сотрудника",true,Sungero.Company.Employees.Null);
       var Podr = Dial.AddSelect("Выберите подразделение",true,Sungero.Company.Departments.Null);
-      var DogContr = Dial.AddBoolean("Отработать только договорные документы",false);
       if (Dial.Show() == DialogButtons.Ok)
       {
         var us = Sungero.Company.Employees.Get(Inpt.Value.Id);
-        //Dialogs.ShowMessage("Выбран пользователь: " + us.Name + '\n' + "Выбрано подразделение: " + Sungero.Company.Departments.Get(Podr.Value.Id).Name);
         string log = Calendar.Now.ToString() + '\n';
         var Departament = Sungero.Company.Departments.Get(Podr.Value.Id);
         if (Departament.RecipientLinks.Count > 0)
         {
           foreach (var elem in Departament.RecipientLinks)
           {
-            var Contractualdocs = sberdev.SBContracts.ContractualDocuments.GetAll(t => t.Author.Login == Sungero.Company.Employees.Get(elem.Member.Id).Login).ToArray();
-            Contractualdocs = Contractualdocs.Where(t => t.AccessRights.IsGranted(DefaultAccessRightsTypes.Read, us)).ToArray();
-            if (Contractualdocs.Count() > 0)
-            {              
-              foreach (var doc in Contractualdocs)
-              {
-                log += "В работе Документ: (" + doc.Id.ToString() + ") " + doc.Name + '\n';
-                try
-                  {
-                doc.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
-                doc.Save();
-                log += "Выданы права на просмотр: (" + doc.Id.ToString() + ")" + '\n';
-                }
-                catch (Exception t)
-                {
-                  log += "Проблема: (" + t.Message.ToString() + ")" + '\n';
-                }
-              }
-            }
-            if ((Sungero.Company.Employees.GetAll(r => r.Id == elem.Member.Id).FirstOrDefault() != null) && (!DogContr.Value.Value))
+            log += "В работе ресипиент: " + elem.DisplayValue + '\n';
+            var Tasks = Sungero.Workflow.Tasks.GetAll(t => ((t.Author.Id == elem.Id) && (!t.AccessRights.CanRead(us)))).ToArray();
+            if (Tasks.Count() > 0)
             {
-              log += "В обработке автор: " + Sungero.Company.Employees.Get(elem.Member.Id).Name + '\n';
-              var Tasks = Sungero.Workflow.Tasks.GetAll(t => t.Author.Login == Sungero.Company.Employees.Get(elem.Member.Id).Login).ToArray();
-              Tasks = Tasks.Where(t => t.AccessRights.IsGranted(DefaultAccessRightsTypes.Read, us)).ToArray();
-              if (Tasks.Count() > 0)
+              foreach (var task in Tasks)
               {
-                foreach (var task in Tasks)
+                log += "В работе Задача: " + task.Subject + '\n';
+                task.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
+                if (task.Attachments.Count > 0)
                 {
-                  log += "В работе Задача: (" + task.Id.ToString() + ") " + task.Subject + '\n';
-                  try
+                  foreach (var attach in task.Attachments)
                   {
-                    if (!task.AccessRights.CanRead(us))
-                    {
-                      task.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
-                      task.Save();
-                      log += "Выданы права на просмотр: (" + task.Id.ToString() + ")" + '\n';
-                    }
-                    else
-                    {
-                      log += "Контроль прав не пройден! Проверяем, Может права уже выданы?" + '\n';
-                      if (task.AccessRights.IsGranted(DefaultAccessRightsTypes.Read, us))
-                      {
-                        log += "Система уверена, что уже выданы. Похер - выдадим принудительно!" + '\n';
-                        task.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
-                        task.Save();
-                      }
-                      else
-                      {
-                        log += "Система понимает, что НЕ выданы. И не выдает, зараза..." + '\n';
-                      }
-                    }
-                  }
-                  catch (Exception f)
-                  {
-                    log += "Ошибка при выдаче прав на задачу: " + f.Message.ToString() + '\n';
-                  }
-                  if (task.Attachments.Count > 0)
-                  {
-                    foreach (var attach in task.Attachments)
-                    {
-                      if (!attach.AccessRights.CanRead(us))
-                      {
-                        log += "В работе вложение: (" + attach.Id.ToString() + ") " + attach.DisplayValue + '\n';
-                        try
-                        {
-                          
-                          attach.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
-                          attach.Save();
-                          log += "Выданы права на просмотр: (" + attach.Id.ToString() + ")" + '\n';
-                          
-                        }
-                        catch (Exception e)
-                        {
-                          log += "Ошибка при выдаче прав на документ: " + e.Message.ToString() + '\n';
-                        }
-                      }
-                      else
-                      {
-                        log += "Контроль прав не пройден!" + '\n';
-                      }
-                    }
+                    log += "В работе вложение: " + attach.DisplayValue + '\n';
+                    if (!attach.AccessRights.CanRead(us))
+                      attach.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
                   }
                 }
               }

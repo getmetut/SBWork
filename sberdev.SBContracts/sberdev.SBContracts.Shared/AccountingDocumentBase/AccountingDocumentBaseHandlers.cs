@@ -37,38 +37,8 @@ namespace sberdev.SBContracts
       {
         if (e.NewValue != null && SBContracts.Companies.Is(e.NewValue))
         {
-          if ((SBContracts.Companies.As(e.NewValue).HeadOrgSDev != true) && (!SBContracts.PublicFunctions.Module.IsSystemUser()))
-          {
-            string TINNew = SBContracts.Companies.As(e.NewValue).TIN;
-            var ListOrgTrue = sberdev.SBContracts.Companies.GetAll(c => c.HeadOrgSDev.HasValue).Where(c => c.HeadOrgSDev == true).ToArray();
-            if (ListOrgTrue.Count() > 0)
-            {
-              foreach (var elem in ListOrgTrue)
-              {
-                if (elem.TIN != null)
-                {
-                  var OtherOrg = sberdev.SBContracts.Companies.GetAll(c => ((c.TIN == TINNew) && (c.HeadCompany != elem) && (c.Id != e.NewValue.Id))).ToArray();
-                  if (OtherOrg.Count() > 0)
-                  {
-                    foreach (var othorg in OtherOrg)
-                    {
-                      _obj.Counterparty = othorg;
-                    }
-                  }
-                }
-              }
-            }
-            else
-            {
-              _obj.CounterpartyTINSberDev = e.NewValue.TIN;
-              _obj.CouterpartyTRRCSberDev = SBContracts.Companies.As(e.NewValue).TRRC;
-            }
-          }
-          else
-          {
-            _obj.CounterpartyTINSberDev = e.NewValue.TIN;
-            _obj.CouterpartyTRRCSberDev = SBContracts.Companies.As(e.NewValue).TRRC;
-          }
+          _obj.CounterpartyTINSberDev = e.NewValue.TIN;
+          _obj.CouterpartyTRRCSberDev = SBContracts.Companies.As(e.NewValue).TRRC;
         }
         else
         {

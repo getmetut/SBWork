@@ -145,10 +145,4 @@
   <data name="CoverDescription_AddAccesToUser" xml:space="preserve">
     <value>Функция проверки выдачи прав на задачи и документы по признаку причастности к подразделению автора</value>
   </data>
-  <data name="CoverAction_TestCanRead" xml:space="preserve">
-    <value>Тестирование доступности на чтение задач по ИД</value>
-  </data>
-  <data name="CoverDescription_TestCanRead" xml:space="preserve">
-    <value>Тестирование доступности на чтение задач по ИД для конкретного пользователя с целью поиска подходящего алгоритма</value>
-  </data>
 </root>

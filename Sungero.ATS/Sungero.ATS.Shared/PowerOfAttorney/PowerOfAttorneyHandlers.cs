@@ -14,10 +14,7 @@ namespace Sungero.ATS
     {
       base.IssuedToChanged(e);
       if (e.NewValue != null)
-      {
-        if (e.NewValue.JobTitle != null)
-          _obj.JobTitleSDev = e.NewValue.JobTitle.Name.ToString();
-      }
+        _obj.JobTitleSDev = e.NewValue.JobTitle.Name.ToString();
       else
         _obj.JobTitleSDev = null;
     }
