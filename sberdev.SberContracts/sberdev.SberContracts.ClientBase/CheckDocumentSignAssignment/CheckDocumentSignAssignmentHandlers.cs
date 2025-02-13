@@ -7,8 +7,4 @@ using sberdev.SberContracts.CheckDocumentSignAssignment;
 
 namespace sberdev.SberContracts
 {
-  partial class CheckDocumentSignAssignmentClientHandlers
-  {
-
-  }
 }

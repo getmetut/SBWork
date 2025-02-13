@@ -59,7 +59,7 @@
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
-          "RowNumber": 5,
+          "RowNumber": 6,
           "RowSpan": 1,
           "Versions": []
         },
@@ -243,7 +243,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
-          "RowNumber": 6,
+          "RowNumber": 7,
           "RowSpan": 1,
           "Versions": []
         },
@@ -795,6 +795,136 @@
           "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
           "PropertyGuid": "e5d2905f-3cb2-44fc-898a-72caeb11a85f",
           "RowNumber": 4,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
+          "NameGuid": "9fda0641-64ce-4a2a-990f-f6cbfe6954d2",
+          "Name": "CalculationGroupSberDev",
+          "ColumnDefinitions": [
+            {
+              "Percentage": 33.33
+            },
+            {
+              "Percentage": 33.33
+            },
+            {
+              "Percentage": 33.33
+            }
+          ],
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "GroupType": "WithTitleNoBorder",
+          "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
+          "RowNumber": 5,
+          "RowSpan": 1
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "90707d56-37a2-4a27-9041-002a8d7af177",
+          "Name": "CalculationBaseSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 3,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.GridControlToChildCollectionBinder",
+          "HeaderLocation": "None",
+          "ParentGuid": "9fda0641-64ce-4a2a-990f-f6cbfe6954d2",
+          "PropertyGuid": "b36eb529-3e77-4983-8cd0-58f37c0c2bb7",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "0bcd3a3d-c970-447b-8a2a-c4fe4beafb3f",
+          "Name": "CalculationDistributeBaseSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "ParentGuid": "9fda0641-64ce-4a2a-990f-f6cbfe6954d2",
+          "PropertyGuid": "f3ad03c6-f5ae-49cd-8f2b-18aa33a8ce19",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "226c0c0d-038e-46e5-a118-5672cbfa7473",
+          "Name": "CalculationFlagBaseSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "ParentGuid": "9fda0641-64ce-4a2a-990f-f6cbfe6954d2",
+          "PropertyGuid": "810f1a32-256c-4861-a62c-0452a8669b31",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "f2536d0a-d23c-4e96-a1e4-cf12ef7dd73b",
+          "Name": "CalculationAmountBaseSberDevSberDev",
+          "ColumnNumber": 2,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+          "ParentGuid": "9fda0641-64ce-4a2a-990f-f6cbfe6954d2",
+          "PropertyGuid": "22c8b43f-e095-48e1-80fd-a03ee369772b",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "e524bbed-e153-403e-bb74-e25baac35859",
+          "Name": "CalculationResidualAmountBaseSberDevSberDev",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+          "ParentGuid": "9fda0641-64ce-4a2a-990f-f6cbfe6954d2",
+          "PropertyGuid": "9c941bb7-ee1d-4c57-a466-aad678b5f390",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.HyperlinkControlMetadata, Sungero.Metadata",
+          "NameGuid": "b3b05d4e-7e22-4108-be37-f0812f658421",
+          "Name": "ControlSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.HyperlinkToSourceBinder",
+          "FunctionName": "ClearCalculation",
+          "HeaderLocation": "None",
+          "ParentGuid": "9fda0641-64ce-4a2a-990f-f6cbfe6954d2",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.HyperlinkControlMetadata, Sungero.Metadata",
+          "NameGuid": "cc37fdc1-e9e7-41e6-80d7-ec1b555457a1",
+          "Name": "Control1SberDev",
+          "ColumnNumber": 2,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.HyperlinkToSourceBinder",
+          "FunctionName": "ShowCalculationInstruction",
+          "HeaderLocation": "None",
+          "ParentGuid": "9fda0641-64ce-4a2a-990f-f6cbfe6954d2",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.HyperlinkControlMetadata, Sungero.Metadata",
+          "NameGuid": "a92a0412-d0c4-4556-923e-cb5931656d93",
+          "Name": "Control2SberDev",
+          "ColumnNumber": 2,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.HyperlinkToSourceBinder",
+          "FunctionName": "DistributeTo",
+          "HeaderLocation": "None",
+          "ParentGuid": "9fda0641-64ce-4a2a-990f-f6cbfe6954d2",
+          "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
         }

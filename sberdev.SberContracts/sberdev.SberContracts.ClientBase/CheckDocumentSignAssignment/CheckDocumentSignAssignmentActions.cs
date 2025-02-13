@@ -17,7 +17,7 @@ namespace sberdev.SberContracts.Client
 
     public virtual bool CanExtendDeadline(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      return true;
+      return _obj.Status == CheckDocumentSignAssignment.Status.InProcess;
     }
 
 

@@ -235,4 +235,16 @@
   <data name="Control_f69b211929d2492b852710ead7668863_DisplayValue" xml:space="preserve">
     <value>Fill analytics from document</value>
   </data>
+  <data name="ControlGroup_9fda064164ce4a2a990ff6cbfe6954d2" xml:space="preserve">
+    <value>Calculation</value>
+  </data>
+  <data name="Control_b3b05d4e7e224108be37f0812f658421_DisplayValue" xml:space="preserve">
+    <value>Clear table</value>
+  </data>
+  <data name="Control_cc37fdc1e9e741e680d7ec1b555457a1_DisplayValue" xml:space="preserve">
+    <value>Instruction</value>
+  </data>
+  <data name="Control_a92a0412d0c44556923ecb5931656d93_DisplayValue" xml:space="preserve">
+    <value>Distribute</value>
+  </data>
 </root>

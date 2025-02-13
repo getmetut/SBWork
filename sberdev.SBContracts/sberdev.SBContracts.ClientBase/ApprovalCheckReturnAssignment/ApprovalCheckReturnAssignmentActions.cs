@@ -20,6 +20,12 @@ namespace sberdev.SBContracts.Client
         document.InternalApprovalState = Sungero.Docflow.OfficialDocument.InternalApprovalState.Signed;
         document.ExternalApprovalState = Sungero.Docflow.OfficialDocument.ExternalApprovalState.Signed;
       }
+      if (_obj.HasSubtasksInProcess == true)
+      {
+        var targerSutasks = _obj.Subtasks.Where(s => SberContracts.CheckDocumentSignTasks.Is(s));
+        foreach (var subtask in targerSutasks)
+          subtask.Abort();
+      }
     }
 
     public override bool CanSigned(Sungero.Workflow.Client.CanExecuteResultActionArgs e)
