@@ -220,4 +220,10 @@
   <data name="Enum_ConditionType_IsProdPurchase" xml:space="preserve">
     <value>Production purchase</value>
   </data>
+  <data name="Enum_ConditionType_Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Property_ProductsSberDev" xml:space="preserve">
+    <value>Products</value>
+  </data>
 </root>

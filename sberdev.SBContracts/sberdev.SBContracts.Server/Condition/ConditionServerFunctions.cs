@@ -24,6 +24,16 @@ namespace sberdev.SBContracts.Server
     {
       using (TenantInfo.Culture.SwitchTo())
       {
+        if (_obj.ConditionType == ConditionType.Product)
+        {
+          string head = "Документ по любому из продуктов:";
+          foreach (var prod in _obj.ProductsSberDev)
+            head += String.Format(" {0};", prod.Product.Name);
+          head = head.TrimEnd(';');
+          head += "?";
+          return head;
+        }
+        
         if (_obj.ConditionType == ConditionType.InitDepart)
         {
           string head = "Подразделение инициатора согласования =";

@@ -322,6 +322,19 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "GetDocumentProducts",
+      "Parameters": [
+        {
+          "Name": "officialDocument",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::sberdev.SberContracts.IProductsAndDevices>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
       "Name": "NullingManuallyChecked",
       "IsRemote": true,
       "Parameters": [

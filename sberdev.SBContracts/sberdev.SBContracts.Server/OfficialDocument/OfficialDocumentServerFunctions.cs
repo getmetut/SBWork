@@ -9,7 +9,7 @@ using System.IO;
 namespace sberdev.SBContracts.Server
 {
   partial class OfficialDocumentFunctions
-  {
+  {    
     /// <summary>
     /// Сбрасываем статус соглаосвания (комментарий) в документе
     /// </summary>

@@ -16,66 +16,38 @@ namespace sberdev.SberContracts.Server
       if (_obj.Type == SberContracts.CustomAppovalRole.Type.BudgetOwnerMark)
       {
         var document = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
+        var resultGroup = new List<Sungero.Company.IEmployee>();
+        var products = SBContracts.PublicFunctions.OfficialDocument.GetDocumentProducts(SBContracts.OfficialDocuments.As(document));
+        
         var contract = SBContracts.ContractualDocuments.As(document);
-        List<Sungero.Company.IEmployee> group = new List<Sungero.Company.IEmployee>();
-        if (contract != null)
+        if (contract?.MarketDirectSberDev != null)
         {
-          if (contract.MarketDirectSberDev != null)
+          var markDir = contract.MarketDirectSberDev;
+          if (markDir.BudgetOwner == null)
           {
-            var markDir = contract.MarketDirectSberDev;
-            if (markDir.BudgetOwner == null)
-            {
-              if (contract.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Expendable ||
-                  contract.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.ExpendProfitSberDev)
-              {
-                if (contract.ProdCollectionExBaseSberDev.FirstOrDefault().Product.Name == "General")
-                {
-                  foreach (var prod in contract.CalculationBaseSberDev)
-                    group.Add(prod.ProductCalc.BudgetOwner);
-                }
-                else
-                  group.Add(contract.ProdCollectionExBaseSberDev.FirstOrDefault().Product.BudgetOwner);
-              }
-              else
-              {
-                if (contract.ProdCollectionPrBaseSberDev.FirstOrDefault().Product.Name == "General")
-                {
-                  foreach (var prod in contract.CalculationBaseSberDev)
-                    group.Add(prod.ProductCalc.BudgetOwner);
-                }
-                else
-                  group.Add(contract.ProdCollectionPrBaseSberDev.FirstOrDefault().Product.BudgetOwner);
-              }
-            }
-            else
-              group.Add(markDir.BudgetOwner);
+            foreach (var product in products)
+              if (product != null && product.BudgetOwnerGeneral != null)
+                resultGroup.Add(product.BudgetOwnerGeneral);
           }
+          else
+            resultGroup.Add(markDir.BudgetOwner);
         }
         
         var acc = SBContracts.AccountingDocumentBases.As(document);
-        if (acc != null)
+        if (acc?.MarketDirectSberDev != null)
         {
-          if (acc.MarketDirectSberDev != null)
+          var markDir = acc.MarketDirectSberDev;
+          if (markDir.BudgetOwner == null)
           {
-            var markDir = acc.MarketDirectSberDev;
-            if (markDir.BudgetOwner == null)
-            {
-              if (acc.ProdCollectionBaseSberDev.FirstOrDefault().Product.Name == "General")
-              {
-                foreach (var prod in acc.CalculationBaseSberDev)
-                  group.Add(prod.ProductCalc.BudgetOwner);
-              }
-              else
-                group.Add(acc.ProdCollectionBaseSberDev.FirstOrDefault().Product.BudgetOwner);
-              
-            }
-            else
-              group.Add(markDir.BudgetOwner);
-            
+            foreach (var product in products)
+              if (product != null && product.BudgetOwnerGeneral != null)
+                resultGroup.Add(product.BudgetOwnerGeneral);
           }
+          else
+            resultGroup.Add(markDir.BudgetOwner);
         }
         
-        return group.Distinct().ToList();
+        return resultGroup.Distinct().ToList();
       }
       #endregion
       
@@ -83,50 +55,16 @@ namespace sberdev.SberContracts.Server
       if (_obj.Type == SberContracts.CustomAppovalRole.Type.BudgetOwnerPrGe)
       {
         var document = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
-        var contract = SBContracts.ContractualDocuments.As(document);
-        List<Sungero.Company.IEmployee> group = new List<Sungero.Company.IEmployee>();
-        if (contract != null)
+        var resultGroup = new List<Sungero.Company.IEmployee>();
+        var products = SBContracts.PublicFunctions.OfficialDocument.GetDocumentProducts(SBContracts.OfficialDocuments.As(document));
+        foreach (var product in products)
         {
-          if (contract.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Expendable ||
-              contract.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.ExpendProfitSberDev)
-          {
-            if (contract.ProdCollectionExBaseSberDev.FirstOrDefault().Product.Name == "General")
-            {
-              if (contract.CalculationBaseSberDev.Count > 0)
-                foreach (var prod in contract.CalculationBaseSberDev)
-                  group.Add(prod.ProductCalc.BudgetOwnerGeneral);
-            }
-            else
-              group.Add(contract.ProdCollectionExBaseSberDev.FirstOrDefault().Product.BudgetOwnerGeneral);
-          }
-          else
-          {
-            if (contract.ProdCollectionPrBaseSberDev.FirstOrDefault().Product.Name == "General")
-            {
-              if (contract.CalculationBaseSberDev.Count > 0)
-                foreach (var prod in contract.CalculationBaseSberDev)
-                  group.Add(prod.ProductCalc.BudgetOwnerGeneral);
-            }
-            else
-              group.Add(contract.ProdCollectionPrBaseSberDev.FirstOrDefault().Product.BudgetOwnerGeneral);
-          }
+          if (product != null && product.BudgetOwnerGeneral != null)
+            resultGroup.Add(product.BudgetOwnerGeneral);
         }
-        
-        var acc = SBContracts.AccountingDocumentBases.As(document);
-        if (acc != null)
-        {
-          if (acc.ProdCollectionBaseSberDev.FirstOrDefault().Product.Name == "General")
-          {
-            if (acc.CalculationBaseSberDev.Count > 0)
-              foreach (var prod in acc.CalculationBaseSberDev)
-                group.Add(prod.ProductCalc.BudgetOwnerGeneral);
-          }
-          else
-            group.Add(acc.ProdCollectionBaseSberDev.FirstOrDefault().Product.BudgetOwnerGeneral);
-        }
-        
-        return group.Distinct().ToList();
+        return resultGroup.Distinct().ToList();
       }
+
       
       #endregion
       

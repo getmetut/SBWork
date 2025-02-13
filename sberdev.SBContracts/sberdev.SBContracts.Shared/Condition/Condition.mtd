@@ -80,7 +80,7 @@
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "ParentGuid": "0b8b5e67-c616-452a-9613-e31f30901639",
-          "RowNumber": 1,
+          "RowNumber": 2,
           "RowSpan": 1,
           "SharedNestedGroupsAlignment": true,
           "Versions": []
@@ -111,7 +111,7 @@
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "ParentGuid": "0b8b5e67-c616-452a-9613-e31f30901639",
-          "RowNumber": 2,
+          "RowNumber": 3,
           "RowSpan": 1,
           "SharedNestedGroupsAlignment": true,
           "Versions": []
@@ -153,7 +153,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "0b8b5e67-c616-452a-9613-e31f30901639",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Versions": []
         },
@@ -427,6 +427,24 @@
               "Value": "e8a3a42f-ce8e-4654-a10c-c1d24d69ce7a"
             }
           ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "580d7779-7f78-4ef8-8d87-96b373c9d6f6",
+          "Name": "ProductsSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
+          "ParentGuid": "0b8b5e67-c616-452a-9613-e31f30901639",
+          "PropertyGuid": "071a2e45-f8ba-4cd7-bd60-f165400d3840",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "NavigationPropertyGuid",
+              "Value": "0f7fd0b7-0515-451d-86c7-df02763d24d7"
+            }
+          ]
         }
       ],
       "IsAncestorMetadata": true,
@@ -569,6 +587,11 @@
           "NameGuid": "21a4f7f8-2fc1-4297-975f-3f4ede812d1e",
           "Name": "IsProdPurchase",
           "Code": "IsProdPurchase"
+        },
+        {
+          "NameGuid": "5de3e67b-4863-457d-9be6-7d455730b99d",
+          "Name": "Product",
+          "Code": "Product"
         }
       ],
       "IsAncestorMetadata": true,
@@ -708,6 +731,15 @@
       "IsShowedInList": false,
       "PreviousPropertyGuid": "c6c42b93-94d3-4efc-82fe-8984d5774fe4",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "071a2e45-f8ba-4cd7-bd60-f165400d3840",
+      "Name": "ProductsSberDev",
+      "Code": "CondProd",
+      "EntityGuid": "ffb4e20d-4263-4a85-9188-303983c24cc7",
+      "IsShowedInList": false,
+      "PreviousPropertyGuid": "4e212324-b8b0-4d90-993d-16061a0662d3"
     }
   ],
   "PublicStructures": [],

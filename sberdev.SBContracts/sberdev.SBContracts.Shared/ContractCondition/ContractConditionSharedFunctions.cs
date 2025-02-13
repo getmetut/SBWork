@@ -83,7 +83,7 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
-      #region Проверка покупки продукции (IsProdPurchase)
+      #region Проверка, является ли МВЗ для производственных закупок(IsProdPurchase)
       if (_obj.ConditionType == ConditionType.IsProdPurchase)
       {
         bool flag = false;
@@ -124,7 +124,7 @@ namespace sberdev.SBContracts.Shared
       }
       #endregion
 
-      #region Проверка единицы продукции (ProductUnit)
+      #region Првоерка бизнесюнита (ProductUnit)
       if (_obj.ConditionType == ConditionType.ProductUnit)
       {
         bool flag = false;
@@ -207,7 +207,7 @@ namespace sberdev.SBContracts.Shared
       }
       #endregion
 
-      #region Проверка рыночного направления (MarketDirect)
+      #region Проверка направления маркетинга (MarketDirect)
       if (_obj.ConditionType == ConditionType.MarketDirect)
       {
         var contr = SBContracts.ContractualDocuments.As(document);
