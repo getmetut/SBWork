@@ -1288,7 +1288,7 @@ namespace sberdev.SberContracts.Server
     [Public, Remote]
     public static void FillGeneralProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
     {
-      doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev ;
+      doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
       if (docSelected.TotalAmount != null)
       {
         doc.TotalAmount = docSelected.TotalAmount;

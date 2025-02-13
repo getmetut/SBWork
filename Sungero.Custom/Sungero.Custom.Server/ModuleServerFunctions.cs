@@ -13,6 +13,85 @@ namespace Sungero.Custom.Server
   {
 
     /// <summary>
+    /// Функция выдачи прав на документы и задачи подразделения для указанного пользователя
+    /// </summary>
+    [Public]
+    public string AddAccesToDocAndTasks(long memberid, Sungero.Company.IEmployee us, bool OnlyDogContr)
+    {
+      string log = "";
+      var Contractualdocs = sberdev.SBContracts.ContractualDocuments.GetAll(t => t.Author.Login == Sungero.Company.Employees.Get(memberid).Login).ToArray();
+      Contractualdocs = Contractualdocs.Where(t => t.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us)).ToArray();
+      if (Contractualdocs.Count() > 0)
+      {
+        foreach (var doc in Contractualdocs)
+        {
+          log += "В работе Документ: (" + doc.Id.ToString() + ") " + doc.Name + '\n';
+          try
+          {
+            doc.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
+            doc.Save();
+            log += "Выданы права на просмотр: (" + doc.Id.ToString() + ")" + '\n';
+          }
+          catch (Exception t)
+          {
+            log += "Проблема: (" + t.Message.ToString() + ")" + '\n';
+          }
+        }
+      }
+      if ((Sungero.Company.Employees.GetAll(r => r.Id == memberid).FirstOrDefault() != null) && (!OnlyDogContr))
+      {
+        log += "В обработке автор: " + Sungero.Company.Employees.Get(memberid).Name + '\n';
+        var Tasks = Sungero.Workflow.Tasks.GetAll(t => t.Author.Login == Sungero.Company.Employees.Get(memberid).Login).ToArray();
+        Tasks = Tasks.Where(t => !t.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us)).ToArray();
+        if (Tasks.Count() > 0)
+        {
+          foreach (var task in Tasks)
+          {
+            log += "В работе Задача: (" + task.Id.ToString() + ") " + task.Subject + '\n';
+            try
+            {
+              if (!task.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us))
+              {
+                task.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
+                task.Save();
+                log += "Выданы права на просмотр: (" + task.Id.ToString() + ")" + '\n';
+              }
+            }
+            catch (Exception f)
+            {
+              log += "Ошибка при выдаче прав на задачу: " + f.Message.ToString() + '\n';
+            }
+            if (task.Attachments.Count > 0)
+            {
+              foreach (var attach in task.Attachments)
+              {
+                if (!attach.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us))
+                {
+                  log += "В работе вложение: (" + attach.Id.ToString() + ") " + attach.DisplayValue + '\n';
+                  try
+                  {
+                    attach.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
+                    attach.Save();
+                    log += "Выданы права на просмотр: (" + attach.Id.ToString() + ")" + '\n';                    
+                  }
+                  catch (Exception e)
+                  {
+                    log += "Ошибка при выдаче прав на документ: " + e.Message.ToString() + '\n';
+                  }
+                }
+                else
+                {
+                  log += "Контроль прав не пройден!" + '\n';
+                }
+              }
+            }
+          }
+        }
+      }
+      return log;
+    }
+
+    /// <summary>
     /// Функция создания лимита по документу типа договор
     /// </summary>
     [Public]
@@ -88,7 +167,7 @@ namespace Sungero.Custom.Server
 
     /// <summary>
     /// Функция проверки соответствия пользователя на принадлежность группе "Допуск к маркетинговым документам"
-    /// </summary> 
+    /// </summary>
     [Public]
     public bool DostumMarketing(Sungero.CoreEntities.IUser user)
     {
@@ -110,61 +189,61 @@ namespace Sungero.Custom.Server
         }
       }
       return marker;
-    } 
+    }
     
     
     [Public(WebApiRequestType = RequestType.Get)]
-		public string GetTestValFromRabbitMQ()
-		{
-			string originalMessage = string.Empty;
-			
-			// Создать очередь сообщений для справочника «Организации»
-			string exchangeName = "adm.companies.changeElements.drx";
-			string queueName = "adm.companies.changeElements.drx";
-			string routingKey = "adm.companies.drx";
-			
-			ConnectionFactory factory = new ConnectionFactory();
+    public string GetTestValFromRabbitMQ()
+    {
+      string originalMessage = string.Empty;
+      
+      // Создать очередь сообщений для справочника «Организации»
+      string exchangeName = "adm.companies.changeElements.drx";
+      string queueName = "adm.companies.changeElements.drx";
+      string routingKey = "adm.companies.drx";
+      
+      ConnectionFactory factory = new ConnectionFactory();
       // 'virtualhost=rxhost;hostname=192.168.115.10;username=rxhost;password=rxhost;exchange=directumrx_sberdev;Port=5672'
-			factory.UserName =  "rxhost";
-			factory.Password =  "rxhost";
-			factory.VirtualHost = "rxhost";
-			factory.HostName = "localhost"; // hostName;
-			factory.Port = 5672;
+      factory.UserName =  "rxhost";
+      factory.Password =  "rxhost";
+      factory.VirtualHost = "rxhost";
+      factory.HostName = "localhost"; // hostName;
+      factory.Port = 5672;
 
-			// Создание соединения
-			IConnection conn = factory.CreateConnection();
-			
-			// Создание канала
-			IModel channel = GetRabbitChannel(conn, exchangeName, queueName, routingKey); // channel = conn.CreateModel();
+      // Создание соединения
+      IConnection conn = factory.CreateConnection();
+      
+      // Создание канала
+      IModel channel = GetRabbitChannel(conn, exchangeName, queueName, routingKey); // channel = conn.CreateModel();
 
-			// Получение сообщения
-			BasicGetResult result = channel.BasicGet(queueName, false);
-			if (result == null)
-			{
-				// В настоящее время нет доступных сообщений.
-				originalMessage = "0";
-			}
-			else
-			{
-			  //byte[] body = result.Body;
-			  originalMessage = result.MessageCount.ToString(); //  System.Text.Encoding.UTF8.GetString(body);
-			}
-			
-			// Отключение соединения
-			channel.Close();
-			conn.Close();
-			
-			return originalMessage;
-		}
-		
-		private IModel GetRabbitChannel(IConnection conn, string exchangeName, string queueName, string routingKey)
-		{
-			IModel model = conn.CreateModel();
-			model.ExchangeDeclare(exchangeName, ExchangeType.Direct);
-			model.QueueDeclare(queueName, false, false, false, null);
-			model.QueueBind(queueName, exchangeName, routingKey, null);
-			return model;
-		}
-		
+      // Получение сообщения
+      BasicGetResult result = channel.BasicGet(queueName, false);
+      if (result == null)
+      {
+        // В настоящее время нет доступных сообщений.
+        originalMessage = "0";
+      }
+      else
+      {
+        //byte[] body = result.Body;
+        originalMessage = result.MessageCount.ToString(); //  System.Text.Encoding.UTF8.GetString(body);
+      }
+      
+      // Отключение соединения
+      channel.Close();
+      conn.Close();
+      
+      return originalMessage;
+    }
+    
+    private IModel GetRabbitChannel(IConnection conn, string exchangeName, string queueName, string routingKey)
+    {
+      IModel model = conn.CreateModel();
+      model.ExchangeDeclare(exchangeName, ExchangeType.Direct);
+      model.QueueDeclare(queueName, false, false, false, null);
+      model.QueueBind(queueName, exchangeName, routingKey, null);
+      return model;
+    }
+    
   }
 }

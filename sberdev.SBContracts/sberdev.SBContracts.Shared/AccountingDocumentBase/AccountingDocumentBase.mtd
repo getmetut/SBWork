@@ -1766,6 +1766,25 @@
       "ReturnTypeFullName": "System.String"
     },
     {
+      "Name": "GetHeadCompanies",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "accountingDocumentBase",
+          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
+          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "Subject",
+          "ParameterType": "global::Sungero.Parties.ICompanyBase",
+          "ParameterTypeFullName": "Sungero.Parties.ICompanyBase, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::sberdev.SBContracts.ICompany",
+      "ReturnTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
+    },
+    {
       "Name": "GetMVZBudgetOwner",
       "Parameters": [
         {

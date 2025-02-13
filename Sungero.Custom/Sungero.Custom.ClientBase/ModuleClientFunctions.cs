@@ -12,6 +12,58 @@ namespace Sungero.Custom.Client
   {
 
     /// <summary>
+    /// Тестирование доступности на чтение задач по ИД
+    /// </summary>
+    public virtual void TestCanRead()
+    {
+      var Dial = Dialogs.CreateInputDialog("Укажите вводные данные для тестирования");
+      var Inpt = Dial.AddSelect("Укажите сотрудника",true,Sungero.Company.Employees.Null);
+      var Podr = Dial.AddString("Укажите ИД Задачи",true);
+      if (Dial.Show() == DialogButtons.Ok)
+      {
+        var us = Sungero.Company.Employees.Get(Inpt.Value.Id);
+        long Idtask = long.Parse(Podr.Value);
+        string log = Calendar.Now.ToString() + '\n';
+        var Task = Sungero.Workflow.Tasks.Get(Idtask);
+        if (Task.AccessRights.CanRead(us))
+          log += "Task.AccessRights.CanRead(us): Вернул TRUE" + '\n';
+        else
+          log += "Task.AccessRights.CanRead(us): Вернул FALSE" + '\n';
+        
+        if (Task.AccessRights.CanGrant(DefaultAccessRightsTypes.Read))
+          log += "Task.AccessRights.CanGrant(Read): Вернул TRUE" + '\n';
+        else
+          log += "Task.AccessRights.CanGrant(Read): Вернул FALSE" + '\n';
+        
+        if (Task.AccessRights.GetSubstitutedWhoCanRead().Count() > 0)
+        {
+          bool ctrl = Task.AccessRights.GetSubstitutedWhoCanRead().Contains(us);;
+          if (ctrl)
+            log += "Указанный пользователь имеет скрытое право на чтение:" + '\n';
+          else
+            log += "Указанный пользователь НЕ ИМЕЕТ скрытых прав на чтение:" + '\n';
+        }
+        
+        if (Task.AccessRights.IsGranted(DefaultAccessRightsTypes.Read, us))
+          log += "Task.AccessRights.IsGranted(Read, us): Вернул TRUE" + '\n';
+        else
+          log += "Task.AccessRights.IsGranted(Read, us): Вернул FALSE" + '\n';
+        
+        if (Task.AccessRights.IsGrantedDirectly(DefaultAccessRightsTypes.Read, us))
+          log += "Task.AccessRights.IsGrantedDirectly(Read, us): Вернул TRUE" + '\n';
+        else
+          log += "Task.AccessRights.IsGrantedDirectly(Read, us): Вернул FALSE" + '\n';
+        
+        if (Task.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us))
+          log += "Task.AccessRights.IsGrantedWithoutSubstitution(Read, us): Вернул TRUE" + '\n';
+        else
+          log += "Task.AccessRights.IsGrantedWithoutSubstitution(Read, us): Вернул FALSE" + '\n'; // ask.AccessRights.IsGrantedWithoutSubstitution(Read, us): Вернул TRUE.
+        
+        Dialogs.ShowMessage(log);
+      }
+    }
+
+    /// <summary>
     /// Функция выдачи прав на задачи и документы по Подразделению
     /// </summary>
     public virtual void AddAccesToUser()
@@ -19,6 +71,7 @@ namespace Sungero.Custom.Client
       var Dial = Dialogs.CreateInputDialog("Укажите вводные данные для тестирования");
       var Inpt = Dial.AddSelect("Укажите сотрудника",true,Sungero.Company.Employees.Null);
       var Podr = Dial.AddSelect("Выберите подразделение",true,Sungero.Company.Departments.Null);
+      var DogContr = Dial.AddBoolean("Отработать только договорные документы",false);
       if (Dial.Show() == DialogButtons.Ok)
       {
         var us = Sungero.Company.Employees.Get(Inpt.Value.Id);
@@ -28,25 +81,7 @@ namespace Sungero.Custom.Client
         {
           foreach (var elem in Departament.RecipientLinks)
           {
-            log += "В работе ресипиент: " + elem.DisplayValue + '\n';
-            var Tasks = Sungero.Workflow.Tasks.GetAll(t => ((t.Author.Id == elem.Id) && (!t.AccessRights.CanRead(us)))).ToArray();
-            if (Tasks.Count() > 0)
-            {
-              foreach (var task in Tasks)
-              {
-                log += "В работе Задача: " + task.Subject + '\n';
-                task.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
-                if (task.Attachments.Count > 0)
-                {
-                  foreach (var attach in task.Attachments)
-                  {
-                    log += "В работе вложение: " + attach.DisplayValue + '\n';
-                    if (!attach.AccessRights.CanRead(us))
-                      attach.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
-                  }
-                }
-              }
-            }
+            log += PublicFunctions.Module.AddAccesToDocAndTasks(elem.Member.Id, us, DogContr.Value.Value);
           }
         }
         Dialogs.ShowMessage(log);
