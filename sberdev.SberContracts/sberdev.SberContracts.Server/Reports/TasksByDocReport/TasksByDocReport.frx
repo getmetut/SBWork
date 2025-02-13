@@ -29,6 +29,8 @@ namespace FastReport
     {
       switch (enumValue.ToLower())
       {
+        case &quot;be859f9b-7a04-4f07-82bc-441352bce627&quot;:
+          return &quot;Доверенность&quot;;
         case &quot;cf8357c3-8266-490d-b75e-0bd3e46b1ae8&quot;:
           return &quot;Вх. документ эл. обмена&quot;;
         case &quot;9570e517-7ab7-4f23-a959-3652715efad3&quot;:
