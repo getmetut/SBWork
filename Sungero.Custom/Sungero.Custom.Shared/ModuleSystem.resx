@@ -151,4 +151,10 @@
   <data name="CoverDescription_TestCanRead" xml:space="preserve">
     <value>Тестирование доступности на чтение задач по ИД для конкретного пользователя с целью поиска подходящего алгоритма</value>
   </data>
+  <data name="JobDisplayName_c5fd5a7f48234f9cb29e43fef006b3e8" xml:space="preserve">
+    <value>Фоновый процесс выдачи прав для сотрудников по задачам</value>
+  </data>
+  <data name="JobDescription_c5fd5a7f48234f9cb29e43fef006b3e8" xml:space="preserve">
+    <value>Фоновый процесс выдачи прав для сотрудников по задачам</value>
+  </data>
 </root>

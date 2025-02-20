@@ -5,6 +5,7 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Sungero.Custom.Client
 {
@@ -59,31 +60,6 @@ namespace Sungero.Custom.Client
         else
           log += "Task.AccessRights.IsGrantedWithoutSubstitution(Read, us): Вернул FALSE" + '\n'; // ask.AccessRights.IsGrantedWithoutSubstitution(Read, us): Вернул TRUE.
         
-        Dialogs.ShowMessage(log);
-      }
-    }
-
-    /// <summary>
-    /// Функция выдачи прав на задачи и документы по Подразделению
-    /// </summary>
-    public virtual void AddAccesToUser()
-    {
-      var Dial = Dialogs.CreateInputDialog("Укажите вводные данные для тестирования");
-      var Inpt = Dial.AddSelect("Укажите сотрудника",true,Sungero.Company.Employees.Null);
-      var Podr = Dial.AddSelect("Выберите подразделение",true,Sungero.Company.Departments.Null);
-      var DogContr = Dial.AddBoolean("Отработать только договорные документы",false);
-      if (Dial.Show() == DialogButtons.Ok)
-      {
-        var us = Sungero.Company.Employees.Get(Inpt.Value.Id);
-        string log = Calendar.Now.ToString() + '\n';
-        var Departament = Sungero.Company.Departments.Get(Podr.Value.Id);
-        if (Departament.RecipientLinks.Count > 0)
-        {
-          foreach (var elem in Departament.RecipientLinks)
-          {
-            log += PublicFunctions.Module.AddAccesToDocAndTasks(elem.Member.Id, us, DogContr.Value.Value);
-          }
-        }
         Dialogs.ShowMessage(log);
       }
     }
@@ -608,6 +584,97 @@ namespace Sungero.Custom.Client
         }
       }
       Dialogs.ShowMessage("Успешно отработано: " + oks.ToString() + '\n' + "Завершились ошиибкой: " + def.ToString() + '\n' + "ЛОГ: " + log);
+    }
+    
+    /// <summary>
+    /// Функция выдачи прав на задачи и документы по Подразделению
+    /// </summary>
+    public virtual void AddAccesToUser()
+    {
+      var Dial = Dialogs.CreateInputDialog("Укажите вводные данные для тестирования");
+      var Inpt = Dial.AddSelect("Укажите сотрудника", true, Sungero.Company.Employees.Null);
+      var Podr = Dial.AddSelect("Выберите подразделение", true, Sungero.Company.Departments.Null);
+      var DogContr = Dial.AddBoolean("Выдавать права на Изменения", false);
+      
+      if (Dial.Show() == DialogButtons.Ok)
+      {
+        var us = Sungero.Company.Employees.Get(Inpt.Value.Id);
+        string log = Calendar.Now.ToString() + '\n';
+        var Departament = Sungero.Company.Departments.Get(Podr.Value.Id);
+        var tasks = new List<System.Threading.Tasks.Task>();
+        var DefAcc = DogContr.Value.Value ? DefaultAccessRightsTypes.Change : DefaultAccessRightsTypes.Read;
+        if (Departament.RecipientLinks.Count > 0)
+        {
+          foreach (var elem in Departament.RecipientLinks)
+          {
+            if (Sungero.Company.Employees.Is(elem.Member))
+            {
+              var Tasks = PublicFunctions.Module.GetListTask(elem.Member.Id, us, DogContr.Value.Value);
+              if (Tasks.Count > 0)
+              {
+                foreach (var task in Tasks)
+                {
+                  log += "В работе Задача: (" + task.Id.ToString() + ") " + task.Subject + '\n';
+                  var RefAcc = Custom.AccesUserToTasks.GetAll(t => ((t.Recipient.Name == us.Name) && (t.Task == task))).FirstOrDefault();
+                  if (RefAcc == null)
+                  {
+                    RefAcc = Custom.AccesUserToTasks.Create();
+                    RefAcc.Recipient = us;
+                    RefAcc.Task = task;
+                    RefAcc.Control = false;
+                    RefAcc.Name = us.Name + " => " + task.Subject;
+                    RefAcc.Save();
+                  }
+                  
+                  try
+                  {
+                    if (!task.AccessRights.IsGrantedWithoutSubstitution(DefAcc, us))
+                    {
+                      task.AccessRights.Grant(us, DefAcc);
+                      task.AccessRights.Save();
+                    }
+                  }
+                  catch (Exception f)
+                  {
+                    log += "Ошибка при выдаче прав на задачу: " + f.Message.ToString() + '\n';
+                  }
+                  if (task.Attachments.Count > 0)
+                  {
+                    foreach (var attach in task.Attachments)
+                    {
+                      if (!attach.AccessRights.IsGrantedWithoutSubstitution(DefAcc, us))
+                      {
+                        log += "В работе вложение: (" + attach.Id.ToString() + ") " + attach.DisplayValue + '\n';
+                        try
+                        {
+                          attach.AccessRights.Grant(us, DefAcc);
+                          attach.AccessRights.Save();
+                        }
+                        catch (Exception e)
+                        {
+                          log += "Ошибка при выдаче прав на документ: " + e.Message.ToString() + '\n';
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        if (log.Length > 40)
+        {
+          Dialogs.ShowMessage(log);
+          var confirmationDialog = Dialogs.CreateConfirmDialog("Продолжить обработку?");
+          if (!confirmationDialog.Show())
+          {
+            Dialogs.ShowMessage("Обработка завершена пользователем.");
+            return;
+          }
+        }
+        Dialogs.ShowMessage(log);
+      }
     }
   }
 }

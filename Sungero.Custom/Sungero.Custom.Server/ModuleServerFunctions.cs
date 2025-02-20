@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using RabbitMQ.Client;
@@ -11,50 +13,62 @@ namespace Sungero.Custom.Server
 {
   public class ModuleFunctions
   {
-
+    
     /// <summary>
     /// Функция выдачи прав на документы и задачи подразделения для указанного пользователя
     /// </summary>
     [Public]
-    public string AddAccesToDocAndTasks(long memberid, Sungero.Company.IEmployee us, bool OnlyDogContr)
+    public List<Sungero.Workflow.ITask> GetListTask(long memberid, Sungero.Company.IEmployee us, bool OnlyDogContr)
     {
-      string log = "";
-      var Contractualdocs = sberdev.SBContracts.ContractualDocuments.GetAll(t => t.Author.Login == Sungero.Company.Employees.Get(memberid).Login).ToArray();
-      Contractualdocs = Contractualdocs.Where(t => t.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us)).ToArray();
-      if (Contractualdocs.Count() > 0)
+      List<Sungero.Workflow.ITask> TaskList = new List<Sungero.Workflow.ITask>();
+      var DefAcc = OnlyDogContr ? DefaultAccessRightsTypes.Change : DefaultAccessRightsTypes.Read;
+      var Tasks = Sungero.Workflow.Tasks.GetAll(t => t.Author.Login == Sungero.Company.Employees.Get(memberid).Login).ToArray();
+      Tasks = Tasks.Where(t => !t.AccessRights.IsGrantedWithoutSubstitution(DefAcc, us)).ToArray();
+      if (Tasks.Count() > 0)
       {
-        foreach (var doc in Contractualdocs)
+        foreach (var task in Tasks)
         {
-          log += "В работе Документ: (" + doc.Id.ToString() + ") " + doc.Name + '\n';
-          try
-          {
-            doc.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
-            doc.Save();
-            log += "Выданы права на просмотр: (" + doc.Id.ToString() + ")" + '\n';
-          }
-          catch (Exception t)
-          {
-            log += "Проблема: (" + t.Message.ToString() + ")" + '\n';
-          }
+          if (Custom.AccesUserToTasks.GetAll(r => r.Task == task).FirstOrDefault() == null)
+            TaskList.Add(task);
         }
       }
-      if ((Sungero.Company.Employees.GetAll(r => r.Id == memberid).FirstOrDefault() != null) && (!OnlyDogContr))
+      return TaskList;
+    }
+    
+    /// <summary>
+    /// Функция выдачи прав на документы и задачи подразделения для указанного пользователя
+    /// </summary>
+    [Public]
+    public string AddAccesToDocAndTasks2(long memberid, Sungero.Company.IEmployee us, bool OnlyDogContr)
+    {
+      string log = "";
+      if (Sungero.Company.Employees.GetAll(r => r.Id == memberid).FirstOrDefault() != null)
       {
-        log += "В обработке автор: " + Sungero.Company.Employees.Get(memberid).Name + '\n';
+        var DefAcc = OnlyDogContr ? DefaultAccessRightsTypes.Change : DefaultAccessRightsTypes.Read;
         var Tasks = Sungero.Workflow.Tasks.GetAll(t => t.Author.Login == Sungero.Company.Employees.Get(memberid).Login).ToArray();
-        Tasks = Tasks.Where(t => !t.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us)).ToArray();
+        Tasks = Tasks.Where(t => !t.AccessRights.IsGrantedWithoutSubstitution(DefAcc, us)).ToArray();
         if (Tasks.Count() > 0)
         {
           foreach (var task in Tasks)
           {
             log += "В работе Задача: (" + task.Id.ToString() + ") " + task.Subject + '\n';
+            var RefAcc = Custom.AccesUserToTasks.GetAll(t => ((t.Recipient.Name == us.Name) && (t.Task == task))).FirstOrDefault();
+            if (RefAcc == null)
+            {
+              RefAcc = Custom.AccesUserToTasks.Create();
+              RefAcc.Recipient = us;
+              RefAcc.Task = task;
+              RefAcc.Control = false;
+              RefAcc.Name = us.Name + " => " + task.Subject;
+              RefAcc.Save();
+            }
+            
             try
             {
-              if (!task.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us))
+              if (!task.AccessRights.IsGrantedWithoutSubstitution(DefAcc, us))
               {
-                task.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
-                task.Save();
-                log += "Выданы права на просмотр: (" + task.Id.ToString() + ")" + '\n';
+                task.AccessRights.Grant(us, DefAcc);
+                task.AccessRights.Save();
               }
             }
             catch (Exception f)
@@ -65,30 +79,151 @@ namespace Sungero.Custom.Server
             {
               foreach (var attach in task.Attachments)
               {
-                if (!attach.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us))
+                if (!attach.AccessRights.IsGrantedWithoutSubstitution(DefAcc, us))
                 {
                   log += "В работе вложение: (" + attach.Id.ToString() + ") " + attach.DisplayValue + '\n';
                   try
                   {
-                    attach.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
-                    attach.Save();
-                    log += "Выданы права на просмотр: (" + attach.Id.ToString() + ")" + '\n';                    
+                    attach.AccessRights.Grant(us, DefAcc);
+                    attach.AccessRights.Save();
                   }
                   catch (Exception e)
                   {
                     log += "Ошибка при выдаче прав на документ: " + e.Message.ToString() + '\n';
                   }
                 }
-                else
-                {
-                  log += "Контроль прав не пройден!" + '\n';
-                }
               }
             }
           }
         }
       }
-      return log;
+      if (log.Length < 1000)
+        return log;
+      else
+      {
+        Logger.Debug(log);
+        return "Лог содержит более 1000 симвлов и не отображается. Вся информация в логах.";
+      }
+    }
+    
+    [Public]
+    public string AsyncAddAccesToDocAndTasks(long memberid, Sungero.Company.IEmployee us, bool OnlyDogContr)
+    {
+      System.Threading.Tasks.Task<string> result = AddAccesToDocAndTasks(memberid, us, OnlyDogContr);
+      return result.ToString();
+    }
+    
+    /// <summary>
+    /// Функция выдачи прав на документы и задачи подразделения для указанного пользователя
+    /// </summary>
+    private async System.Threading.Tasks.Task<string> AddAccesToDocAndTasks(long memberid, Sungero.Company.IEmployee us, bool OnlyDogContr)
+    {
+      StringBuilder log = new StringBuilder();
+      var Contractualdocs = sberdev.SBContracts.ContractualDocuments.GetAll(t => t.Author.Login == Sungero.Company.Employees.Get(memberid).Login).ToArray();
+      Contractualdocs = Contractualdocs.Where(t => !t.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us)).ToArray();
+      
+      if (Contractualdocs.Count() > 0)
+      {
+        log.AppendLine("В обработке автор: " + Sungero.Company.Employees.Get(memberid).Name);
+        foreach (var doc in Contractualdocs)
+        {
+          log.AppendLine("В работе Документ: (" + doc.Id + ") " + doc.Name);
+          try
+          {
+            doc.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
+            await SaveDocumentAsync(doc);
+          }
+          catch (Exception ex)
+          {
+            log.AppendLine("Ошибка при выдаче прав на документ: " + ex.Message);
+          }
+          
+          // Проверяем, не превышён ли лимит для логов
+          //if (log.Length > 800) // Проверка длины логов
+          //{
+          //  Logger.Debug(log.ToString());
+          //  log.Clear(); // Очищаем логи, чтобы не накапливать слишком много данных
+          //}
+        }
+      }
+
+      if ((Sungero.Company.Employees.GetAll(r => r.Id == memberid).FirstOrDefault() != null) && (!OnlyDogContr))
+      {
+        var Tasks = Sungero.Workflow.Tasks.GetAll(t => t.Author.Login == Sungero.Company.Employees.Get(memberid).Login).ToArray();
+        Tasks = Tasks.Where(t => !t.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us)).ToArray();
+
+        if (Tasks.Count() > 0)
+        {
+          foreach (var task in Tasks)
+          {
+            log.AppendLine("В работе Задача: (" + task.Id + ") " + task.Subject);
+            try
+            {
+              if (!task.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us))
+              {
+                task.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
+                await SaveTaskAsync(task);
+              }
+            }
+            catch (Exception ex)
+            {
+              log.AppendLine("Ошибка при выдаче прав на задачу: " + ex.Message);
+            }
+
+            foreach (var attach in task.Attachments)
+            {
+              if (!attach.AccessRights.IsGrantedWithoutSubstitution(DefaultAccessRightsTypes.Read, us))
+              {
+                try
+                {
+                  if (Sungero.Content.ElectronicDocuments.Is(attach))
+                  {
+                    attach.AccessRights.Grant(us, DefaultAccessRightsTypes.Read);
+                    await SaveAttachmentAsync(Sungero.Content.ElectronicDocuments.As(attach));
+                  }
+                }
+                catch (Exception ex)
+                {
+                  log.AppendLine("Ошибка при выдаче прав на вложение: " + ex.Message);
+                }
+              }
+            }
+            
+            // Проверка длины логов после каждой задачи
+            //if (log.Length > 800)
+            //{
+            //  Logger.Debug(log.ToString());
+            //  log.Clear();
+            //}
+          }
+        }
+      }
+
+      //if (log.Length < 1000)
+      return log.ToString();
+      //else
+      //{
+      //  Logger.Debug(log.ToString());
+      //  return "Лог содержит более 1000 символов и не отображается. Вся информация в логах.";
+      //}
+    }
+
+    private async Task SaveDocumentAsync(Sungero.Content.IElectronicDocument document)
+    {
+      // Имитация асинхронного сохранения документа
+      await Task.Run(() => document.AccessRights.Save());
+    }
+
+    private async Task SaveTaskAsync(Sungero.Workflow.ITask task)
+    {
+      // Имитация асинхронного сохранения задачи
+      await Task.Run(() => task.AccessRights.Save());
+    }
+
+    private async Task SaveAttachmentAsync(Sungero.Content.IElectronicDocument attachment)
+    {
+      // Имитация асинхронного сохранения вложения
+      await Task.Run(() => attachment.AccessRights.Save());
     }
 
     /// <summary>

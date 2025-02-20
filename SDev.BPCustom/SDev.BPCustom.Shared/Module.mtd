@@ -144,6 +144,10 @@
   "InterfaceNamespace": "SDev.BPCustom",
   "IsolatedAssemblyName": "SDev.BPCustom.Isolated",
   "IsolatedNamespace": "SDev.BPCustom.Isolated",
+  "IsVisible": false,
+  "Overridden": [
+    "IsVisible"
+  ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "SDev.BPCustom",
@@ -153,7 +157,7 @@
   "SharedAssemblyName": "SDev.BPCustom.Shared",
   "SharedNamespace": "SDev.BPCustom.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.108",
+  "Version": "0.0.1.116",
   "Widgets": [],
   "Versions": [
     {

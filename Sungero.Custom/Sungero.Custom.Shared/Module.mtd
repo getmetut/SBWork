@@ -264,8 +264,12 @@
       "PreviousItemId": "7d573c8e-3953-4bec-8e3f-9782de8985cf"
     },
     {
-      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "ItemId": "89ce7a73-856e-48cb-9187-984686139b5a",
       "PreviousItemId": "cb01a902-1431-4361-a6ea-3eeb9f2bedba"
+    },
+    {
+      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "PreviousItemId": "89ce7a73-856e-48cb-9187-984686139b5a"
     }
   ],
   "HandledEvents": [
@@ -316,6 +320,14 @@
       "Monthly": "Weekly",
       "MonthSchedule": "Monthly",
       "StartAt": "1753-01-01T08:30:00"
+    },
+    {
+      "NameGuid": "c5fd5a7f-4823-4f9c-b29e-43fef006b3e8",
+      "Name": "JobAddAccesToUser",
+      "Daily": "Repeat",
+      "GenerateHandler": true,
+      "MonthSchedule": "Monthly",
+      "TimePeriod": 30
     }
   ],
   "Libraries": [
@@ -327,7 +339,29 @@
   ],
   "PublicFunctions": [
     {
-      "Name": "AddAccesToDocAndTasks",
+      "Name": "AddAccesToDocAndTasks2",
+      "Parameters": [
+        {
+          "Name": "memberid",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        },
+        {
+          "Name": "us",
+          "ParameterType": "global::Sungero.Company.IEmployee",
+          "ParameterTypeFullName": "Sungero.Company.IEmployee, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "OnlyDogContr",
+          "ParameterType": "global::System.Boolean",
+          "ParameterTypeFullName": "System.Boolean"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "AsyncAddAccesToDocAndTasks",
       "Parameters": [
         {
           "Name": "memberid",
@@ -449,6 +483,28 @@
       "ReturnTypeFullName": "System.Boolean"
     },
     {
+      "Name": "GetListTask",
+      "Parameters": [
+        {
+          "Name": "memberid",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        },
+        {
+          "Name": "us",
+          "ParameterType": "global::Sungero.Company.IEmployee",
+          "ParameterTypeFullName": "Sungero.Company.IEmployee, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "OnlyDogContr",
+          "ParameterType": "global::System.Boolean",
+          "ParameterTypeFullName": "System.Boolean"
+        }
+      ],
+      "ReturnType": "global::System.Collections.Generic.List<global::Sungero.Workflow.ITask>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
       "Name": "GetTestValFromRabbitMQ",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String",
@@ -511,7 +567,7 @@
   "SharedAssemblyName": "Sungero.Custom.Shared",
   "SharedNamespace": "Sungero.Custom.Shared",
   "SpecialFolders": [],
-  "Version": "0.1.1.5",
+  "Version": "0.1.1.13",
   "Widgets": [],
   "Versions": [
     {
