@@ -25,7 +25,7 @@ namespace sberdev.SBContracts.Client
 
     public virtual bool CanReapprov(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      return true;
+      return false;
     }
 
   }
