@@ -877,7 +877,54 @@
       "ReturnTypeFullName": "System.Void"
     }
   ],
-  "PublicStructures": [],
+  "PublicStructures": [
+    {
+      "Name": "ControlFlowSeriesInfo",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "ValueId",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Label",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "R",
+          "TypeFullName": "global::System.Int32"
+        },
+        {
+          "Name": "G",
+          "TypeFullName": "global::System.Int32"
+        },
+        {
+          "Name": "B",
+          "TypeFullName": "global::System.Int32"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
+      "Name": "DateRange",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "StartDate",
+          "IsNullable": true,
+          "TypeFullName": "global::System.DateTime"
+        },
+        {
+          "Name": "EndDate",
+          "IsNullable": true,
+          "TypeFullName": "global::System.DateTime"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    }
+  ],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "sberdev.SBContracts",
   "ResourcesKeys": [
@@ -889,7 +936,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "4.32.1.0",
+  "Version": "4.33.0.0",
   "Widgets": [],
   "Versions": [
     {

@@ -112,4 +112,25 @@
   <data name="JobDescription_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
     <value>Clear directory with temp. documents.</value>
   </data>
+  <data name="Enum_ApprovalAnalyticsWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Weeks</value>
+  </data>
+  <data name="Enum_ApprovalAnalyticsWidget_AnalysisPeriod_Months" xml:space="preserve">
+    <value>Months</value>
+  </data>
+  <data name="Enum_ApprovalAnalyticsWidget_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Quarters</value>
+  </data>
+  <data name="WidgetParameter_ApprovalAnalyticsWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Analysis period</value>
+  </data>
+  <data name="WidgetTitle_ApprovalAnalyticsWidget" xml:space="preserve">
+    <value>Approval analytics</value>
+  </data>
+  <data name="WidgetDescription_ApprovalAnalyticsWidget" xml:space="preserve">
+    <value>The widget displays three types of charts for task approval analysis:
+1)General Task Approval Analytics – includes four key metrics: the number of initiated tasks, closed tasks, tasks in progress, and overdue tasks.
+2)Approval Time Analytics – displays the average, maximum, minimum, and target task closure times.
+3)Average Task Approval Time by Department – analyzes and compares the average approval time for different departments.</value>
+  </data>
 </root>

@@ -1,13 +1,98 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
+using sberdev.SBContracts.Structures.Module;
 
 namespace sberdev.SberContracts.Shared
 {
   public class ModuleFunctions
   {
+    
+    /// <summary>
+    /// Возвращает список завершенных рабочих периодов до текущей даты
+    /// </summary>
+    [Public]
+    public List<sberdev.SBContracts.Structures.Module.IDateRange> GenerateCompletedDateRanges(DateTime currentDate, int numberOfSeries, string interval)
+    {
+      List<DateRange> dateRanges = new List<DateRange>();
+      DateTime endDate = currentDate.Date;
+
+      for (int i = 0; i < numberOfSeries; i++)
+      {
+        DateTime startDate;
+        
+        switch (interval.ToLower())
+        {
+          case "weeks":
+            endDate = endDate.AddDays(-(int)endDate.DayOfWeek); // Последнее воскресенье
+            startDate = endDate.AddDays(-6);
+            break;
+
+          case "months":
+            endDate = new DateTime(endDate.Year, endDate.Month, 1).AddDays(-1);
+            startDate = new DateTime(endDate.Year, endDate.Month, 1).AddMonths(-1);
+            break;
+
+          case "quarters":
+            int currentQuarter = (endDate.Month - 1) / 3;
+            endDate = new DateTime(endDate.Year, 3 * currentQuarter + 1, 1).AddDays(-1);
+            startDate = endDate.AddMonths(-3).AddDays(1);
+            break;
+
+          default:
+            throw new ArgumentException("Invalid interval. Supported intervals are 'weeks', 'months', and 'quarters'.");
+        }
+
+        dateRanges.Insert(0, new DateRange
+                          {
+                            StartDate = startDate,
+                            EndDate = endDate
+                          });
+
+        // Переходим к предыдущему периоду
+        endDate = startDate.AddDays(-1);
+      }
+
+      return dateRanges.Cast<IDateRange>().ToList();
+    }
+    
+    /// <summary>
+    /// Функция создает список с информацией о сериях в графике ControlFlowChart виджета ApprovalAnalyticsWidget
+    /// </summary>
+    /// <returns></returns>
+    [Public]
+    public List<sberdev.SBContracts.Structures.Module.IControlFlowSeriesInfo> CreateControlFlowSeriesInfosList()
+    {
+      List<ControlFlowSeriesInfo> list = new List<ControlFlowSeriesInfo>();
+      list.Add(new ControlFlowSeriesInfo
+               {
+                 ValueId = "started",
+                 Label = sberdev.SberContracts.Resources.PeriodDiscription1,
+                 R = 100, G = 149, B = 237
+               });
+      list.Add(new ControlFlowSeriesInfo
+               {
+                 ValueId = "completed",
+                 Label = sberdev.SberContracts.Resources.PeriodDiscription2,
+                 R = 60, G = 179, B = 113
+               });
+      list.Add(new ControlFlowSeriesInfo
+               {
+                 ValueId = "inprocess",
+                 Label = sberdev.SberContracts.Resources.PeriodDiscription3,
+                 R = 255, G = 165, B = 0
+               });
+      list.Add(new ControlFlowSeriesInfo
+               {
+                 ValueId = "expired",
+                 Label = sberdev.SberContracts.Resources.PeriodDiscription4,
+                 R = 220, G = 20, B = 60
+               });
+      return list.Cast<IControlFlowSeriesInfo>().ToList();
+    }
+    
     /// <summary>
     /// Возвращает русское название агрегации
     /// </summary>

@@ -116,4 +116,16 @@
   <data name="CreateCalcTamplateDialogProp" xml:space="preserve">
     <value>Шаблон калькуляции</value>
   </data>
+  <data name="PeriodDiscription1" xml:space="preserve">
+    <value>Стартованые</value>
+  </data>
+  <data name="PeriodDiscription2" xml:space="preserve">
+    <value>Завершенные</value>
+  </data>
+  <data name="PeriodDiscription3" xml:space="preserve">
+    <value>В процессе</value>
+  </data>
+  <data name="PeriodDiscription4" xml:space="preserve">
+    <value>Просроченные</value>
+  </data>
 </root>

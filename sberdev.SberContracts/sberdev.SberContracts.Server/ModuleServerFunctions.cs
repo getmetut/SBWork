@@ -9,11 +9,35 @@ using Sungero.CoreEntities;
 using Sungero.Docflow;
 using Sungero.Exchange;
 using OfficeOpenXml;
+using sberdev.SBContracts.Structures.Module;
 
 namespace sberdev.SberContracts.Server
 {
   public class ModuleFunctions
   {
+    #region Функции виджетов
+
+    /// <summary>
+    /// Функция вычисляет значения для графика ControlFlowChart виджета ApprovalAnalyticsWidget
+    /// </summary>
+    [Public]
+    public System.Collections.Generic.Dictionary<string, int> CalculateControlFlowValues(IDateRange dateRange)
+    {
+      Dictionary<string, int> controlFlowSeriesValue = new Dictionary<string, int>();
+      var tasks = ApprovalTasks.GetAll().Where(t => Sungero.Core.Calendar.Between(t.Created, dateRange.StartDate, dateRange.EndDate));
+      controlFlowSeriesValue["started"] = tasks.Where(t => t.Status != Sungero.Docflow.ApprovalTask.Status.Draft).Count();
+      controlFlowSeriesValue["completed"] = tasks.Where(t => t.Status == Sungero.Docflow.ApprovalTask.Status.Completed).Count();
+      controlFlowSeriesValue["inprocess"] = tasks.Where(t => t.Status == Sungero.Docflow.ApprovalTask.Status.InProcess
+                                                     || t.Status == Sungero.Docflow.ApprovalTask.Status.Suspended
+                                                     || t.Status == Sungero.Docflow.ApprovalTask.Status.UnderReview).Count();
+      controlFlowSeriesValue["expired"] = tasks.Where(t => (t.Status == Sungero.Docflow.ApprovalTask.Status.InProcess
+                                                     || t.Status == Sungero.Docflow.ApprovalTask.Status.Suspended
+                                                     || t.Status == Sungero.Docflow.ApprovalTask.Status.UnderReview)
+                                                    && t.IsExpired).Count();
+      return controlFlowSeriesValue;
+    }
+    #endregion
+    
     #region Функции миграции
     
     [Public, Remote]

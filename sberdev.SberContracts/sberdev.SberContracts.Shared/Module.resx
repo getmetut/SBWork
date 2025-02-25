@@ -115,4 +115,16 @@ When choosing the calculation type as a percentage, the "RESIDUAL:" field is ind
   <data name="CreateCalcTamplateDialogProp" xml:space="preserve">
     <value>Calculation tamplate</value>
   </data>
+  <data name="PeriodDiscription1" xml:space="preserve">
+    <value>Strated</value>
+  </data>
+  <data name="PeriodDiscription2" xml:space="preserve">
+    <value>Comleted</value>
+  </data>
+  <data name="PeriodDiscription3" xml:space="preserve">
+    <value>In process</value>
+  </data>
+  <data name="PeriodDiscription4" xml:space="preserve">
+    <value>Expired</value>
+  </data>
 </root>

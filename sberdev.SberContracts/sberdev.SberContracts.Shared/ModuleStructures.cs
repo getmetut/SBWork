@@ -6,5 +6,4 @@ using Sungero.CoreEntities;
 
 namespace sberdev.SberContracts.Structures.Module
 {
-
 }

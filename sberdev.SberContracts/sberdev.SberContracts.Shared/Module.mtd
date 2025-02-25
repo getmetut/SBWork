@@ -467,6 +467,17 @@
   ],
   "PublicFunctions": [
     {
+      "Name": "CalculateControlFlowValues",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Int32>"
+    },
+    {
       "Name": "CreateApprovalTask",
       "IsRemote": true,
       "Parameters": [
@@ -492,6 +503,12 @@
       "Placement": "Client",
       "ReturnType": "global::sberdev.SberContracts.ICalculationTamplate",
       "ReturnTypeFullName": "sberdev.SberContracts.ICalculationTamplate, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "CreateControlFlowSeriesInfosList",
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::sberdev.SBContracts.Structures.Module.IControlFlowSeriesInfo>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
     },
     {
       "Name": "CreateProductUnitDialog",
@@ -781,6 +798,29 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "GenerateCompletedDateRanges",
+      "Parameters": [
+        {
+          "Name": "currentDate",
+          "ParameterType": "global::System.DateTime",
+          "ParameterTypeFullName": "System.DateTime"
+        },
+        {
+          "Name": "numberOfSeries",
+          "ParameterType": "global::System.Int32",
+          "ParameterTypeFullName": "System.Int32"
+        },
+        {
+          "Name": "interval",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::sberdev.SBContracts.Structures.Module.IDateRange>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
       "Name": "GetAllBuisnessUnitTINs",
       "ReturnType": "global::System.Collections.Generic.List<global::System.String>",
       "ReturnTypeFullName": "System.Collections.Generic.List"
@@ -928,7 +968,11 @@
     "PATaskInstr",
     "MCTaskInstr",
     "ProvidePostalInformationInstruction",
-    "CreateCalcTamplateDialogProp"
+    "CreateCalcTamplateDialogProp",
+    "PeriodDiscription1",
+    "PeriodDiscription2",
+    "PeriodDiscription3",
+    "PeriodDiscription4"
   ],
   "ServerAssemblyName": "sberdev.SberContracts.Server",
   "ServerNamespace": "sberdev.SberContracts.Server",
@@ -965,8 +1009,58 @@
       "NeedShowMarkedCount": false
     }
   ],
-  "Version": "4.32.1.0",
-  "Widgets": [],
+  "Version": "4.33.0.0",
+  "Widgets": [
+    {
+      "NameGuid": "ed45fef3-c3a1-4091-888a-4bb05df905ae",
+      "Name": "ApprovalAnalyticsWidget",
+      "Color": "WidgetColor1",
+      "ColumnSpan": 24,
+      "WidgetItems": [
+        {
+          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
+          "NameGuid": "0e73f28e-5574-49fc-93fd-da7b7580e501",
+          "Name": "ControlFlowChart",
+          "ChartHeight": 10,
+          "ChartType": "VerticalClusteredBar",
+          "EntityGuid": "100950d0-03d2-44f0-9e31-f9c8dfdf3829",
+          "HandledEvents": [
+            "FilteringServer",
+            "GetValueServer"
+          ]
+        }
+      ],
+      "WidgetParameters": [
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "aacf83a1-0fbe-41b3-9b11-be96929c92b5",
+          "Name": "AnalysisPeriod",
+          "DefaultValue": {
+            "NameGuid": "036fd97a-7fcb-489b-8a94-ece98c6f34d1",
+            "Name": "Weeks",
+            "Code": "SixWeeks"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "036fd97a-7fcb-489b-8a94-ece98c6f34d1",
+              "Name": "Weeks",
+              "Code": "SixWeeks"
+            },
+            {
+              "NameGuid": "887d200f-5c8b-4bed-adde-dc1e2c1b3831",
+              "Name": "Months",
+              "Code": "Months"
+            },
+            {
+              "NameGuid": "99417d52-7dde-4057-a3fd-8ef3236a031a",
+              "Name": "Quarters",
+              "Code": "Quarters"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "Versions": [
     {
       "Type": "ModuleMetadata",
