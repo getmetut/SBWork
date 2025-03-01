@@ -76,7 +76,7 @@ namespace sberdev.SberContracts.Shared
                {
                  ValueId = "completed",
                  Label = sberdev.SberContracts.Resources.PeriodDiscription2,
-                 R = 60, G = 179, B = 113
+                 R = 46, G = 159, B = 12
                });
       list.Add(new ControlFlowSeriesInfo
                {
@@ -88,7 +88,7 @@ namespace sberdev.SberContracts.Shared
                {
                  ValueId = "expired",
                  Label = sberdev.SberContracts.Resources.PeriodDiscription4,
-                 R = 220, G = 20, B = 60
+                 R = 217, G = 63, B = 60
                });
       return list.Cast<IControlFlowSeriesInfo>().ToList();
     }

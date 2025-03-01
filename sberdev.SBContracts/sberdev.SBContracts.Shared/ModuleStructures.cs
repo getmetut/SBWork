@@ -16,7 +16,6 @@ namespace sberdev.SBContracts.Structures.Module
     public string Message { get; set; }
   }
   
-  
   /// <summary>
   /// Информация о значениях серии в графике ControlFlowChart
   /// </summary>

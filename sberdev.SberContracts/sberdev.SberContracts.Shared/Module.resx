@@ -127,4 +127,10 @@ When choosing the calculation type as a percentage, the "RESIDUAL:" field is ind
   <data name="PeriodDiscription4" xml:space="preserve">
     <value>Expired</value>
   </data>
+  <data name="DeadlineChartX" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="ControlFlowChartAxis" xml:space="preserve">
+    <value>Task flow analysis</value>
+  </data>
 </root>

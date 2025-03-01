@@ -452,13 +452,13 @@
       "Parameters": [
         {
           "Name": "startDate",
-          "ParameterType": "global::System.DateTime",
-          "ParameterTypeFullName": "System.DateTime"
+          "ParameterType": "global::System.Nullable<global::System.DateTime>",
+          "ParameterTypeFullName": "System.Nullable"
         },
         {
           "Name": "endDate",
-          "ParameterType": "global::System.DateTime",
-          "ParameterTypeFullName": "System.DateTime"
+          "ParameterType": "global::System.Nullable<global::System.DateTime>",
+          "ParameterTypeFullName": "System.Nullable"
         }
       ],
       "Placement": "Shared",

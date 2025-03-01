@@ -117,7 +117,7 @@
     <value>Шаблон калькуляции</value>
   </data>
   <data name="PeriodDiscription1" xml:space="preserve">
-    <value>Стартованые</value>
+    <value>Запущенные</value>
   </data>
   <data name="PeriodDiscription2" xml:space="preserve">
     <value>Завершенные</value>
@@ -127,5 +127,11 @@
   </data>
   <data name="PeriodDiscription4" xml:space="preserve">
     <value>Просроченные</value>
+  </data>
+  <data name="DeadlineChartX" xml:space="preserve">
+    <value>Дней</value>
+  </data>
+  <data name="ControlFlowChartAxis" xml:space="preserve">
+    <value>Анализ потока задач</value>
   </data>
 </root>

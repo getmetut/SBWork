@@ -18,22 +18,69 @@ namespace sberdev.SberContracts.Server
     #region Функции виджетов
 
     /// <summary>
+    /// Получить время выполнения задачи (в днях). Время счиатется от старта задачи до последнего завершенного задания
+    /// </summary>
+    [Public]
+    public int GetExecutionTaskTime(SBContracts.IApprovalTask task)
+    {
+      if (task == null)
+        return 0;
+
+      // Получаем последнее завершенное задание
+      var lastCompletedAssignment = SBContracts.ApprovalAssignments.GetAll()
+        .Where(a => a.Task == task && a.Status == SBContracts.ApprovalTask.Status.Completed)
+        .OrderByDescending(a => a.Completed)
+        .FirstOrDefault();
+
+      return lastCompletedAssignment != null
+        ? SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastCompletedAssignment.Completed)
+        : 0;
+    }
+    
+    [Public]
+    public double CalculateTaskDeadlineChartPoint(IDateRange dateRange, string serialType)
+    {
+      var tasks = SBContracts.ApprovalTasks.GetAll().Where(t => t.Status == SBContracts.ApprovalTask.Status.Completed &&
+                                                           Sungero.Core.Calendar.Between(t.Started, dateRange.StartDate, dateRange.EndDate));
+      var executionTimeList = tasks.Select(t => GetExecutionTaskTime(t));
+      if (executionTimeList.Any())
+        switch (serialType.ToLower())
+      {
+        case "average":
+          return executionTimeList.Average();
+          break;
+        case "maximum":
+          return executionTimeList.Max();
+          break;
+        case "minimum":
+          return executionTimeList.Min();
+          break;
+        case "target":
+          return tasks.Select(t => SBContracts.PublicFunctions.Module.CalculateBusinessDays(t.Started, t.MaxDeadline)).Average();
+          break;
+        default:
+          return 0;
+      }
+      else
+        return 0;
+    }
+    
+    /// <summary>
     /// Функция вычисляет значения для графика ControlFlowChart виджета ApprovalAnalyticsWidget
     /// </summary>
     [Public]
     public System.Collections.Generic.Dictionary<string, int> CalculateControlFlowValues(IDateRange dateRange)
     {
       Dictionary<string, int> controlFlowSeriesValue = new Dictionary<string, int>();
-      var tasks = ApprovalTasks.GetAll().Where(t => Sungero.Core.Calendar.Between(t.Created, dateRange.StartDate, dateRange.EndDate));
-      controlFlowSeriesValue["started"] = tasks.Where(t => t.Status != Sungero.Docflow.ApprovalTask.Status.Draft).Count();
-      controlFlowSeriesValue["completed"] = tasks.Where(t => t.Status == Sungero.Docflow.ApprovalTask.Status.Completed).Count();
-      controlFlowSeriesValue["inprocess"] = tasks.Where(t => t.Status == Sungero.Docflow.ApprovalTask.Status.InProcess
-                                                     || t.Status == Sungero.Docflow.ApprovalTask.Status.Suspended
-                                                     || t.Status == Sungero.Docflow.ApprovalTask.Status.UnderReview).Count();
-      controlFlowSeriesValue["expired"] = tasks.Where(t => (t.Status == Sungero.Docflow.ApprovalTask.Status.InProcess
-                                                     || t.Status == Sungero.Docflow.ApprovalTask.Status.Suspended
-                                                     || t.Status == Sungero.Docflow.ApprovalTask.Status.UnderReview)
-                                                    && t.IsExpired).Count();
+      var tasks = SBContracts.ApprovalTasks.GetAll().Where(t => Sungero.Core.Calendar.Between(t.Started, dateRange.StartDate, dateRange.EndDate));
+      controlFlowSeriesValue["started"] = tasks.Where(t => t.Status != SBContracts.ApprovalTask.Status.Draft).Count();
+      controlFlowSeriesValue["completed"] = tasks.Where(t => t.Status == SBContracts.ApprovalTask.Status.Completed).Count();
+      controlFlowSeriesValue["inprocess"] = tasks.Where(t => t.Status == SBContracts.ApprovalTask.Status.InProcess
+                                                        || t.Status == SBContracts.ApprovalTask.Status.UnderReview).Count();
+      controlFlowSeriesValue["expired"] = tasks.Where(t => (t.Status == SBContracts.ApprovalTask.Status.InProcess
+                                                            || t.Status == SBContracts.ApprovalTask.Status.Suspended
+                                                            || t.Status == SBContracts.ApprovalTask.Status.UnderReview)
+                                                      && t.MaxDeadline < Sungero.Core.Calendar.Now).Count();
       return controlFlowSeriesValue;
     }
     #endregion
