@@ -12,26 +12,49 @@ namespace sberdev.SberContracts.Server
 
     public virtual void GetApprovalAnalyticsWidgetTaskDeadlineChartValue(Sungero.Domain.GetWidgetPlotChartValueEventArgs e)
     {
-      e.Chart.Axis.X.Title = sberdev.SberContracts.Resources.DeadlineChartX;
-      e.Chart.Axis.X.AxisType = AxisType.DateTime;
-      
-      var dateRangesList = PublicFunctions.Module.GenerateCompletedDateRanges(Calendar.Now, 6, _parameters.AnalysisPeriod.Value);
-      
-      var serialAverage = e.Chart.AddNewSeries("Average", Colors.FromRgb(100, 149, 237));
-      foreach(var dateRange in dateRangesList)
-        serialAverage.AddValue(dateRange.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(dateRange, "Average"));
-      
-      var serialMaximum = e.Chart.AddNewSeries("Maximum", Colors.FromRgb(217, 63, 60));
-      foreach(var dateRange in dateRangesList)
-        serialMaximum.AddValue(dateRange.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(dateRange, "Maximum"));
-      
-      var serialMinimum = e.Chart.AddNewSeries("Minimum", Colors.FromRgb(46, 159, 12));
-      foreach(var dateRange in dateRangesList)
-        serialMinimum.AddValue(dateRange.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(dateRange, "Minimum"));
-      
-      var seriesTarget = e.Chart.AddNewSeries("Target", Colors.FromRgb(255, 165, 0));
-      foreach(var dateRange in dateRangesList)
-        seriesTarget.AddValue(dateRange.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(dateRange, "Target"));
+      try
+      {
+        e.Chart.Axis.X.Title = Resources.DeadlineChartX;
+        e.Chart.Axis.X.AxisType = AxisType.DateTime;
+        e.Chart.Axis.Y.MinValue = 0; // Фиксируем начало оси Y
+
+        var dateRanges = PublicFunctions.Module.GenerateCompletedDateRanges(
+          Calendar.Today,
+          6,
+          _parameters.AnalysisPeriod.Value
+         ).Where(dr => dr.EndDate <= Calendar.Today).ToList();
+
+        if (!dateRanges.Any())
+        {
+          Logger.Error("Нет доступных диапазонов дат для построения графика");
+          return;
+        }
+
+        Dictionary<string, WidgetPlotChartSeries> series = new Dictionary<string, WidgetPlotChartSeries>();
+        
+        series["Average"] = e.Chart.AddNewSeries("Average", Colors.FromRgb(100, 149, 237));
+        series["Maximum"] = e.Chart.AddNewSeries("Maximum", Colors.FromRgb(217, 63, 60));
+        series["Minimum"] = e.Chart.AddNewSeries("Minimum", Colors.FromRgb(46, 159, 12));
+        series["Target"] = e.Chart.AddNewSeries("Target", Colors.FromRgb(255, 165, 0));
+        
+        foreach (var range in dateRanges)
+        {
+          if (range.StartDate > range.EndDate)
+          {
+            Logger.Error($"Некорректный диапазон дат: {range.StartDate:d} - {range.EndDate:d}");
+            continue;
+          }
+          
+          series["Average"].AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "Average"));
+          series["Maximum"].AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "Maximum"));
+          series["Minimum"].AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "Minimum"));
+          series["Target"].AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "Target"));
+        }
+      }
+      catch (Exception ex)
+      {
+        Logger.Error("Ошибка при построении графика", ex);
+      }
     }
 
     public virtual void GetApprovalAnalyticsWidgetControlFlowChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)

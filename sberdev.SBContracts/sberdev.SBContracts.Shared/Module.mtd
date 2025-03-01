@@ -923,6 +923,31 @@
         }
       ],
       "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
+      "Name": "TaskDeadlineSeriesInfo",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Values",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::System.Double>"
+        },
+        {
+          "Name": "R",
+          "TypeFullName": "global::System.Int32"
+        },
+        {
+          "Name": "G",
+          "TypeFullName": "global::System.Int32"
+        },
+        {
+          "Name": "B",
+          "TypeFullName": "global::System.Int32"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
     }
   ],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
