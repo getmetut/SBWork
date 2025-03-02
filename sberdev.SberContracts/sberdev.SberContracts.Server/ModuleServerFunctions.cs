@@ -1525,7 +1525,10 @@ namespace sberdev.SberContracts.Server
 
         // Ищем последнее завершенное задание
         var lastAssignment = SBContracts.ApprovalAssignments.GetAll()
-          .Where(a => a.Task == task && a.Status == SBContracts.ApprovalTask.Status.Completed)
+          .Where(a => a.Task == task &&
+                 a.Status == SBContracts.ApprovalTask.Status.Completed &&
+                 a.Completed != null &&
+                 a.Completed >= task.Started)
           .OrderByDescending(a => a.Completed)
           .FirstOrDefault();
 
@@ -1539,7 +1542,6 @@ namespace sberdev.SberContracts.Server
         return 0;
       }
     }
-    
     /// <summary>
     /// Рассчитать показатели для графика
     /// </summary>
@@ -1548,44 +1550,67 @@ namespace sberdev.SberContracts.Server
     {
       try
       {
+        if (dateRange == null || dateRange.StartDate == null || dateRange.EndDate == null)
+        {
+          Logger.Error("CalculateTaskDeadlineChartPoint: Некорректный диапазон дат");
+          return 0;
+        }
+        
+        // Запрос для получения корректных задач
         var validTasks = SBContracts.ApprovalTasks.GetAll()
           .Where(t => t.Status == SBContracts.ApprovalTask.Status.Completed &&
+                 t.Started != null &&
                  t.Started >= dateRange.StartDate &&
-                 t.Started <= dateRange.EndDate &&
-                 t.MaxDeadline != null)
+                 t.Started <= dateRange.EndDate)
           .ToList();
-
+        
         if (!validTasks.Any())
+        {
+          Logger.Debug($"Нет завершенных задач в диапазоне {dateRange.StartDate:dd.MM.yyyy} - {dateRange.EndDate:dd.MM.yyyy}");
           return 0;
+        }
 
-        var executionDays = validTasks.Select(GetExecutionTaskTime).Where(d => d > 0).ToList();
-        var targetDays = validTasks.Select(t =>
-                                           SBContracts.PublicFunctions.Module.CalculateBusinessDays(t.Started, t.MaxDeadline)).ToList();
+        // Собираем данные безопасно
+        var executionDays = new List<int>();
+        foreach (var task in validTasks)
+        {
+          int days = GetExecutionTaskTime(task);
+          if (days > 0)
+            executionDays.Add(days);
+        }
+        
+        var targetDays = new List<int>();
+        foreach (var task in validTasks)
+        {
+          if (task.MaxDeadline != null && task.Started <= task.MaxDeadline)
+          {
+            int days = SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, task.MaxDeadline);
+            targetDays.Add(days);
+          }
+        }
 
+        // Вычисление значения в зависимости от типа серии
         switch (serialType.ToLower())
         {
           case "average" when executionDays.Any():
             return executionDays.Average();
-            break;
             
           case "maximum" when executionDays.Any():
             return executionDays.Max();
-            break;
             
           case "minimum" when executionDays.Any():
             return executionDays.Min();
-            break;
             
           case "target" when targetDays.Any():
             return targetDays.Average();
-            break;
+            
           default:
             return 0;
         }
       }
       catch (Exception ex)
       {
-        Logger.Error("Ошибка в CalculateTaskDeadlineChartPoint", ex);
+        Logger.Error($"Ошибка в CalculateTaskDeadlineChartPoint: {ex.Message}", ex);
       }
       return 0;
     }

@@ -1002,8 +1002,13 @@
     "PeriodDiscription2",
     "PeriodDiscription3",
     "PeriodDiscription4",
-    "DeadlineChartX",
-    "ControlFlowChartAxis"
+    "DeadlineChartYTitle",
+    "ControlFlowChartAxis",
+    "TaskDeadlineSerialAvg",
+    "TaskDeadlineSerialMax",
+    "TaskDeadlineSerialMin",
+    "TaskDeadlineSerialTarget",
+    "DeadlineChartXTitle"
   ],
   "ServerAssemblyName": "sberdev.SberContracts.Server",
   "ServerNamespace": "sberdev.SberContracts.Server",
@@ -1052,7 +1057,7 @@
           "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
           "NameGuid": "0e73f28e-5574-49fc-93fd-da7b7580e501",
           "Name": "ControlFlowChart",
-          "ChartHeight": 16,
+          "ChartHeight": 12,
           "ChartType": "VerticalClusteredBar",
           "EntityGuid": "100950d0-03d2-44f0-9e31-f9c8dfdf3829",
           "HandledEvents": [
@@ -1071,6 +1076,18 @@
           ],
           "PreviousGuid": "0e73f28e-5574-49fc-93fd-da7b7580e501",
           "SpecificationType": "Custom"
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
+          "NameGuid": "2cb40fb2-9075-4b71-a27b-75fc436df9d4",
+          "Name": "AssignAvgApprTimeChart",
+          "ChartHeight": 30,
+          "ChartType": "HorizontalBar",
+          "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
+          "HandledEvents": [
+            "GetValueServer"
+          ],
+          "PreviousGuid": "29cb07bf-f37c-411f-b9f6-1f66ca721a43"
         }
       ],
       "WidgetParameters": [

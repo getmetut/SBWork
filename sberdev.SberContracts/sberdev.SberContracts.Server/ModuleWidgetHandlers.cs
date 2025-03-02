@@ -10,13 +10,19 @@ namespace sberdev.SberContracts.Server
   partial class ApprovalAnalyticsWidgetWidgetHandlers
   {
 
+    public virtual void GetApprovalAnalyticsWidgetAssignAvgApprTimeChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
+    {
+      
+    }
+
     public virtual void GetApprovalAnalyticsWidgetTaskDeadlineChartValue(Sungero.Domain.GetWidgetPlotChartValueEventArgs e)
     {
       try
       {
-        e.Chart.Axis.X.Title = Resources.DeadlineChartX;
-        e.Chart.Axis.X.AxisType = AxisType.DateTime;
+        e.Chart.Axis.Y.Title = Resources.DeadlineChartYTitle;
         e.Chart.Axis.Y.MinValue = 0; // Фиксируем начало оси Y
+        e.Chart.Axis.X.Title = sberdev.SberContracts.Resources.DeadlineChartXTitle;
+        e.Chart.Axis.X.AxisType = AxisType.DateTime;
 
         var dateRanges = PublicFunctions.Module.GenerateCompletedDateRanges(
           Calendar.Today,
@@ -32,10 +38,10 @@ namespace sberdev.SberContracts.Server
 
         Dictionary<string, WidgetPlotChartSeries> series = new Dictionary<string, WidgetPlotChartSeries>();
         
-        series["Average"] = e.Chart.AddNewSeries("Average", Colors.FromRgb(100, 149, 237));
-        series["Maximum"] = e.Chart.AddNewSeries("Maximum", Colors.FromRgb(217, 63, 60));
-        series["Minimum"] = e.Chart.AddNewSeries("Minimum", Colors.FromRgb(46, 159, 12));
-        series["Target"] = e.Chart.AddNewSeries("Target", Colors.FromRgb(255, 165, 0));
+        series[sberdev.SberContracts.Resources.TaskDeadlineSerialAvg] = e.Chart.AddNewSeries(sberdev.SberContracts.Resources.TaskDeadlineSerialAvg, Colors.FromRgb(100, 149, 237));
+        series[sberdev.SberContracts.Resources.TaskDeadlineSerialMin] = e.Chart.AddNewSeries(sberdev.SberContracts.Resources.TaskDeadlineSerialMin, Colors.FromRgb(46, 159, 12));
+        series[sberdev.SberContracts.Resources.TaskDeadlineSerialTarget] = e.Chart.AddNewSeries(sberdev.SberContracts.Resources.TaskDeadlineSerialTarget, Colors.FromRgb(255, 165, 0));
+        series[sberdev.SberContracts.Resources.TaskDeadlineSerialMax] = e.Chart.AddNewSeries(sberdev.SberContracts.Resources.TaskDeadlineSerialMax, Colors.FromRgb(217, 63, 60));
         
         foreach (var range in dateRanges)
         {
@@ -45,10 +51,14 @@ namespace sberdev.SberContracts.Server
             continue;
           }
           
-          series["Average"].AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "Average"));
-          series["Maximum"].AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "Maximum"));
-          series["Minimum"].AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "Minimum"));
-          series["Target"].AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "Target"));
+          series[sberdev.SberContracts.Resources.TaskDeadlineSerialAvg]
+            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, sberdev.SberContracts.Resources.TaskDeadlineSerialAvg));
+          series[sberdev.SberContracts.Resources.TaskDeadlineSerialMin]
+            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, sberdev.SberContracts.Resources.TaskDeadlineSerialMin));
+          series[sberdev.SberContracts.Resources.TaskDeadlineSerialTarget]
+            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, sberdev.SberContracts.Resources.TaskDeadlineSerialTarget));
+          series[sberdev.SberContracts.Resources.TaskDeadlineSerialMax]
+            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, sberdev.SberContracts.Resources.TaskDeadlineSerialMax));
         }
       }
       catch (Exception ex)
@@ -76,7 +86,6 @@ namespace sberdev.SberContracts.Server
 
     public virtual IQueryable<Sungero.Docflow.IApprovalTask> ApprovalAnalyticsWidgetControlFlowChartFiltering(IQueryable<Sungero.Docflow.IApprovalTask> query, Sungero.Domain.WidgetBarChartFilteringEventArgs e)
     {
-      //  e.
       //  var filtredQuery = query.
       return query;
     }
