@@ -10,12 +10,6 @@ namespace sberdev.SberContracts
   partial class PurchaseSharedHandlers
   {
 
-    public override void AccArtExBaseSberDevChanged(sberdev.SBContracts.Shared.ContractualDocumentAccArtExBaseSberDevChangedEventArgs e)
-    {
-      PublicFunctions.Purchase.UpdateCard(_obj);
-      base.AccArtExBaseSberDevChanged(e);
-    }
-
     public override void LeadingDocumentChanged(Sungero.Docflow.Shared.OfficialDocumentLeadingDocumentChangedEventArgs e)
     {
       base.LeadingDocumentChanged(e);

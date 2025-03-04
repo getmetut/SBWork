@@ -11,24 +11,6 @@ namespace sberdev.SBContracts.Shared
   {
 
     /// <summary>
-    /// Обновление карточки докуента и открытие реквизитов по логике запроса и условий
-    /// </summary>
-    [Public]
-    public void UpdateCard()
-    {
-      bool NMVisible = false;
-      if (_obj.AccArtBaseSberDev != null)
-      {
-        if (_obj.AccArtBaseSberDev.NMA != null)
-        {
-          if (_obj.AccArtBaseSberDev.NMA.Value)
-            NMVisible = true;
-        }
-      }
-      _obj.State.Properties.NMASDev.IsVisible = NMVisible;
-    }
-
-    /// <summary>
     /// Проверка свойства UCN на верный формат
     /// </summary>
     [Public]

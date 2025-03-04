@@ -10,12 +10,6 @@ namespace sberdev.SBContracts
   partial class IncomingInvoiceClientHandlers
   {
 
-    public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
-    {
-      PublicFunctions.IncomingInvoice.UpdateCard(_obj);
-      base.Showing(e);
-    }
-
     public virtual void UCNSberDevValueInput(Sungero.Presentation.StringValueInputEventArgs e)
     {
       if (e.NewValue != e.OldValue && e.NewValue != null)
@@ -28,7 +22,6 @@ namespace sberdev.SBContracts
 
     public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
     {
-      PublicFunctions.IncomingInvoice.UpdateCard(_obj);
       base.Refresh(e);
     }
 

@@ -452,13 +452,13 @@
       "Parameters": [
         {
           "Name": "startDate",
-          "ParameterType": "global::System.DateTime",
-          "ParameterTypeFullName": "System.DateTime"
+          "ParameterType": "global::System.Nullable<global::System.DateTime>",
+          "ParameterTypeFullName": "System.Nullable"
         },
         {
           "Name": "endDate",
-          "ParameterType": "global::System.DateTime",
-          "ParameterTypeFullName": "System.DateTime"
+          "ParameterType": "global::System.Nullable<global::System.DateTime>",
+          "ParameterTypeFullName": "System.Nullable"
         }
       ],
       "Placement": "Shared",
@@ -923,6 +923,31 @@
         }
       ],
       "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
+      "Name": "TaskDeadlineSeriesInfo",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Values",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::System.Double>"
+        },
+        {
+          "Name": "R",
+          "TypeFullName": "global::System.Int32"
+        },
+        {
+          "Name": "G",
+          "TypeFullName": "global::System.Int32"
+        },
+        {
+          "Name": "B",
+          "TypeFullName": "global::System.Int32"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
     }
   ],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
@@ -936,7 +961,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "4.33.0.4",
+  "Version": "4.33.0.0",
   "Widgets": [],
   "Versions": [
     {

@@ -46,9 +46,6 @@ namespace sberdev.SBContracts
       {
         _obj.BudItemBaseSberDev = _obj.AccArtBaseSberDev.BudgetItem;
       }
-
-      PublicFunctions.IncomingInvoice.UpdateCard(_obj);
-
     }
 
     public override void PaymentDueDateChanged(Sungero.Domain.Shared.DateTimePropertyChangedEventArgs e)

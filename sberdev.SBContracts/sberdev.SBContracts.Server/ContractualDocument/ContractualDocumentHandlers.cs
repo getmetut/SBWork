@@ -190,9 +190,6 @@ namespace sberdev.SBContracts
       if (error != "")
         e.AddError(error);
       
-      if (SBContracts.PublicFunctions.Module.IsSystemUser())
-        _obj.State.Properties.DeliveryMethod.IsRequired = false;
-      
       if ((_obj.ProdCollectionExBaseSberDev.Count > 0) || (_obj.ProdCollectionPrBaseSberDev.Count > 0))
       {
         string prod = "";

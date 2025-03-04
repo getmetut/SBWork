@@ -9,33 +9,6 @@ namespace sberdev.SberContracts.Shared
 {
   partial class PurchaseFunctions
   {
-
-    /// <summary>
-    /// Обновление карточки докуента и открытие реквизитов по логике запроса и условий
-    /// </summary>
-    [Public]
-    public void UpdateCard()
-    {
-      bool NMVisible = false;
-      if (_obj.AccArtExBaseSberDev != null)
-      {
-        if (_obj.AccArtExBaseSberDev.NMA != null)
-        {
-          if (_obj.AccArtExBaseSberDev.NMA.Value)
-            NMVisible = true;
-        }
-      }
-      if (_obj.AccArtPrBaseSberDev != null)
-      {
-        if (_obj.AccArtPrBaseSberDev.NMA != null)
-        {
-          if (_obj.AccArtPrBaseSberDev.NMA.Value)
-            NMVisible = true;
-        }
-      }
-      _obj.State.Properties.NMASDevSDev.IsVisible = NMVisible;
-    }
-    
     public override void SetPropertiesAccess()
     {
       base.SetPropertiesAccess();

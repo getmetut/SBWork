@@ -264,21 +264,16 @@ namespace sberdev.SBContracts.Shared
     [Public]
     public string ShowOldProductsCalcWarning()
     {
-      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
+      List<SberContracts.IProductsAndDevices> old = new List<SberContracts.IProductsAndDevices>();
+      foreach (var prod in _obj.CalculationBaseSberDev)
+        if (prod.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Closed)
+          old.Add(prod.ProductCalc);
+      if (old.Any())
       {
-        List<SberContracts.IProductsAndDevices> old = new List<SberContracts.IProductsAndDevices>();
-        foreach (var prod in _obj.CalculationBaseSberDev)
-          if (prod.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Closed)
-            old.Add(prod.ProductCalc);
-        if (old.Any())
-        {
-          string err = "";
-          foreach (var prod in old)
-            err += prod.Name + ", ";
-          return "Необходимо заменить устаревшие продукты в калькуляции: " + err.Substring(0, err.Length - 2);
-        }
-        else
-          return "";
+        string err = "";
+        foreach (var prod in old)
+          err += prod.Name + ", ";
+        return "Необходимо заменить устаревшие продукты в калькуляции: " + err.Substring(0, err.Length - 2);
       }
       else
         return "";

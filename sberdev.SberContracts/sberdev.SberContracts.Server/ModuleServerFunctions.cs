@@ -15,29 +15,6 @@ namespace sberdev.SberContracts.Server
 {
   public class ModuleFunctions
   {
-    #region Функции виджетов
-
-    /// <summary>
-    /// Функция вычисляет значения для графика ControlFlowChart виджета ApprovalAnalyticsWidget
-    /// </summary>
-    [Public]
-    public System.Collections.Generic.Dictionary<string, int> CalculateControlFlowValues(IDateRange dateRange)
-    {
-      Dictionary<string, int> controlFlowSeriesValue = new Dictionary<string, int>();
-      var tasks = ApprovalTasks.GetAll().Where(t => Sungero.Core.Calendar.Between(t.Created, dateRange.StartDate, dateRange.EndDate));
-      controlFlowSeriesValue["started"] = tasks.Where(t => t.Status != Sungero.Docflow.ApprovalTask.Status.Draft).Count();
-      controlFlowSeriesValue["completed"] = tasks.Where(t => t.Status == Sungero.Docflow.ApprovalTask.Status.Completed).Count();
-      controlFlowSeriesValue["inprocess"] = tasks.Where(t => t.Status == Sungero.Docflow.ApprovalTask.Status.InProcess
-                                                     || t.Status == Sungero.Docflow.ApprovalTask.Status.Suspended
-                                                     || t.Status == Sungero.Docflow.ApprovalTask.Status.UnderReview).Count();
-      controlFlowSeriesValue["expired"] = tasks.Where(t => (t.Status == Sungero.Docflow.ApprovalTask.Status.InProcess
-                                                     || t.Status == Sungero.Docflow.ApprovalTask.Status.Suspended
-                                                     || t.Status == Sungero.Docflow.ApprovalTask.Status.UnderReview)
-                                                    && t.IsExpired).Count();
-      return controlFlowSeriesValue;
-    }
-    #endregion
-    
     #region Функции миграции
     
     [Public, Remote]
@@ -362,7 +339,8 @@ namespace sberdev.SberContracts.Server
             }
             
             
-          } catch (Exception ex)
+          }
+          catch (Exception ex)
           {
             messageList.Add(String.Format(messageFormat, row, ex.Message));
             errNum++;
@@ -1511,5 +1489,132 @@ namespace sberdev.SberContracts.Server
     #endregion
     
     #endregion
+    
+    #region Функции виджетов
+
+    
+    /// <summary>
+    /// Функция вычисляет значения для графика ControlFlowChart виджета ApprovalAnalyticsWidget
+    /// </summary>
+    [Public]
+    public System.Collections.Generic.Dictionary<string, int> CalculateControlFlowValues(IDateRange dateRange)
+    {
+      Dictionary<string, int> controlFlowSeriesValue = new Dictionary<string, int>();
+      var tasks = SBContracts.ApprovalTasks.GetAll().Where(t => Sungero.Core.Calendar.Between(t.Started, dateRange.StartDate, dateRange.EndDate));
+      controlFlowSeriesValue["started"] = tasks.Where(t => t.Status != SBContracts.ApprovalTask.Status.Draft).Count();
+      controlFlowSeriesValue["completed"] = tasks.Where(t => t.Status == SBContracts.ApprovalTask.Status.Completed).Count();
+      controlFlowSeriesValue["inprocess"] = tasks.Where(t => t.Status == SBContracts.ApprovalTask.Status.InProcess
+                                                        || t.Status == SBContracts.ApprovalTask.Status.UnderReview).Count();
+      controlFlowSeriesValue["expired"] = tasks.Where(t => (t.Status == SBContracts.ApprovalTask.Status.InProcess
+                                                            || t.Status == SBContracts.ApprovalTask.Status.Suspended
+                                                            || t.Status == SBContracts.ApprovalTask.Status.UnderReview)
+                                                      && t.MaxDeadline < Sungero.Core.Calendar.Now).Count();
+      return controlFlowSeriesValue;
+    }
+    
+    /// <summary>
+    /// Получить время выполнения задачи (в днях). Время счиатется от старта задачи до последнего завершенного задания
+    /// </summary>
+    [Public]
+    public int GetExecutionTaskTime(SBContracts.IApprovalTask task)
+    {
+      try
+      {
+        if (task?.Started == null)
+          return 0;
+
+        // Ищем последнее завершенное задание
+        var lastAssignment = SBContracts.ApprovalAssignments.GetAll()
+          .Where(a => a.Task == task &&
+                 a.Status == SBContracts.ApprovalTask.Status.Completed &&
+                 a.Completed != null &&
+                 a.Completed >= task.Started)
+          .OrderByDescending(a => a.Completed)
+          .FirstOrDefault();
+
+        return lastAssignment?.Completed != null
+          ? SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastAssignment.Completed)
+          : 0;
+      }
+      catch (Exception ex)
+      {
+        Logger.Error("Ошибка в GetExecutionTaskTime", ex);
+        return 0;
+      }
+    }
+    /// <summary>
+    /// Рассчитать показатели для графика
+    /// </summary>
+    [Public]
+    public double CalculateTaskDeadlineChartPoint(IDateRange dateRange, string serialType)
+    {
+      try
+      {
+        if (dateRange == null || dateRange.StartDate == null || dateRange.EndDate == null)
+        {
+          Logger.Error("CalculateTaskDeadlineChartPoint: Некорректный диапазон дат");
+          return 0;
+        }
+        
+        // Запрос для получения корректных задач
+        var validTasks = SBContracts.ApprovalTasks.GetAll()
+          .Where(t => t.Status == SBContracts.ApprovalTask.Status.Completed &&
+                 t.Started != null &&
+                 t.Started >= dateRange.StartDate &&
+                 t.Started <= dateRange.EndDate)
+          .ToList();
+        
+        if (!validTasks.Any())
+        {
+          Logger.Debug($"Нет завершенных задач в диапазоне {dateRange.StartDate:dd.MM.yyyy} - {dateRange.EndDate:dd.MM.yyyy}");
+          return 0;
+        }
+
+        // Собираем данные безопасно
+        var executionDays = new List<int>();
+        foreach (var task in validTasks)
+        {
+          int days = GetExecutionTaskTime(task);
+          if (days > 0)
+            executionDays.Add(days);
+        }
+        
+        var targetDays = new List<int>();
+        foreach (var task in validTasks)
+        {
+          if (task.MaxDeadline != null && task.Started <= task.MaxDeadline)
+          {
+            int days = SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, task.MaxDeadline);
+            targetDays.Add(days);
+          }
+        }
+
+        // Вычисление значения в зависимости от типа серии
+        switch (serialType.ToLower())
+        {
+          case "average" when executionDays.Any():
+            return executionDays.Average();
+            
+          case "maximum" when executionDays.Any():
+            return executionDays.Max();
+            
+          case "minimum" when executionDays.Any():
+            return executionDays.Min();
+            
+          case "target" when targetDays.Any():
+            return targetDays.Average();
+            
+          default:
+            return 0;
+        }
+      }
+      catch (Exception ex)
+      {
+        Logger.Error($"Ошибка в CalculateTaskDeadlineChartPoint: {ex.Message}", ex);
+      }
+      return 0;
+    }
+    #endregion
+    
   }
 }

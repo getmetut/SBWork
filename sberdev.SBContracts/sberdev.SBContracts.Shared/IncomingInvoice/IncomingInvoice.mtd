@@ -893,7 +893,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "980185c8-63ed-49f2-8c60-1d69a3f4c0ed",
           "PropertyGuid": "6543d8ba-230c-4615-87c4-5cd3c9470cdc",
-          "RowNumber": 5,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1038,19 +1038,6 @@
           "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "34cbe0db-301f-4607-8b2b-3ac7e70a0861",
-          "Name": "NMASDevSDev",
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
-          "ParentGuid": "980185c8-63ed-49f2-8c60-1d69a3f4c0ed",
-          "PropertyGuid": "702507c9-d1e8-45af-8b8f-9494653b95c4",
-          "RowNumber": 4,
-          "RowSpan": 1,
-          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -1065,8 +1052,7 @@
   "HandledEvents": [
     "BeforeSaveServer",
     "CreatedServer",
-    "RefreshClient",
-    "ShowingClient"
+    "RefreshClient"
   ],
   "IconResourcesKeys": [],
   "LayeredFromGuid": "a523a263-bc00-40f9-810d-f582bae2205d",
@@ -1360,19 +1346,6 @@
       "Placement": "Shared",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
-    },
-    {
-      "Name": "UpdateCard",
-      "Parameters": [
-        {
-          "Name": "incomingInvoice",
-          "ParameterType": "global::sberdev.SBContracts.IIncomingInvoice",
-          "ParameterTypeFullName": "sberdev.SBContracts.IIncomingInvoice, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [],
