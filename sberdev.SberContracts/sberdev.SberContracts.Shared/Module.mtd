@@ -478,23 +478,6 @@
       "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Int32>"
     },
     {
-      "Name": "CalculateTaskDeadlineChartPoint",
-      "Parameters": [
-        {
-          "Name": "dateRange",
-          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
-          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
-        },
-        {
-          "Name": "serialType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "global::System.Double",
-      "ReturnTypeFullName": "System.Double"
-    },
-    {
       "Name": "CreateApprovalTask",
       "IsRemote": true,
       "Parameters": [
@@ -843,18 +826,6 @@
       "ReturnTypeFullName": "System.Collections.Generic.List"
     },
     {
-      "Name": "GetExecutionTaskTime",
-      "Parameters": [
-        {
-          "Name": "task",
-          "ParameterType": "global::sberdev.SBContracts.IApprovalTask",
-          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
-        }
-      ],
-      "ReturnType": "global::System.Int32",
-      "ReturnTypeFullName": "System.Int32"
-    },
-    {
       "Name": "GetNumberTag",
       "Parameters": [
         {
@@ -1001,14 +972,7 @@
     "PeriodDiscription1",
     "PeriodDiscription2",
     "PeriodDiscription3",
-    "PeriodDiscription4",
-    "DeadlineChartYTitle",
-    "ControlFlowChartAxis",
-    "TaskDeadlineSerialAvg",
-    "TaskDeadlineSerialMax",
-    "TaskDeadlineSerialMin",
-    "TaskDeadlineSerialTarget",
-    "DeadlineChartXTitle"
+    "PeriodDiscription4"
   ],
   "ServerAssemblyName": "sberdev.SberContracts.Server",
   "ServerNamespace": "sberdev.SberContracts.Server",
@@ -1045,49 +1009,25 @@
       "NeedShowMarkedCount": false
     }
   ],
-  "Version": "4.33.0.0",
+  "Version": "4.33.0.4",
   "Widgets": [
     {
       "NameGuid": "ed45fef3-c3a1-4091-888a-4bb05df905ae",
       "Name": "ApprovalAnalyticsWidget",
       "Color": "WidgetColor1",
-      "ColumnSpan": 40,
+      "ColumnSpan": 24,
       "WidgetItems": [
         {
           "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
           "NameGuid": "0e73f28e-5574-49fc-93fd-da7b7580e501",
           "Name": "ControlFlowChart",
-          "ChartHeight": 12,
+          "ChartHeight": 10,
           "ChartType": "VerticalClusteredBar",
           "EntityGuid": "100950d0-03d2-44f0-9e31-f9c8dfdf3829",
           "HandledEvents": [
             "FilteringServer",
             "GetValueServer"
           ]
-        },
-        {
-          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
-          "NameGuid": "29cb07bf-f37c-411f-b9f6-1f66ca721a43",
-          "Name": "TaskDeadlineChart",
-          "ChartHeight": 12,
-          "ChartType": "Plot",
-          "HandledEvents": [
-            "GetValueServer"
-          ],
-          "PreviousGuid": "0e73f28e-5574-49fc-93fd-da7b7580e501",
-          "SpecificationType": "Custom"
-        },
-        {
-          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
-          "NameGuid": "2cb40fb2-9075-4b71-a27b-75fc436df9d4",
-          "Name": "AssignAvgApprTimeChart",
-          "ChartHeight": 30,
-          "ChartType": "HorizontalBar",
-          "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
-          "HandledEvents": [
-            "GetValueServer"
-          ],
-          "PreviousGuid": "29cb07bf-f37c-411f-b9f6-1f66ca721a43"
         }
       ],
       "WidgetParameters": [
@@ -1096,15 +1036,15 @@
           "NameGuid": "aacf83a1-0fbe-41b3-9b11-be96929c92b5",
           "Name": "AnalysisPeriod",
           "DefaultValue": {
-            "NameGuid": "445633e3-04fe-4bfd-a689-1065f0856557",
+            "NameGuid": "036fd97a-7fcb-489b-8a94-ece98c6f34d1",
             "Name": "Weeks",
-            "Code": "Weeks"
+            "Code": "SixWeeks"
           },
           "DirectValues": [
             {
-              "NameGuid": "445633e3-04fe-4bfd-a689-1065f0856557",
+              "NameGuid": "036fd97a-7fcb-489b-8a94-ece98c6f34d1",
               "Name": "Weeks",
-              "Code": "Weeks"
+              "Code": "SixWeeks"
             },
             {
               "NameGuid": "887d200f-5c8b-4bed-adde-dc1e2c1b3831",

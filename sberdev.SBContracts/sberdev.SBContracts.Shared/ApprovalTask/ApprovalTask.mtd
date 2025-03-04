@@ -401,7 +401,8 @@
     "BeforeAbortServer",
     "BeforeStartServer",
     "CreatedServer",
-    "RefreshClient"
+    "RefreshClient",
+    "BeforeSaveServer"
   ],
   "IconResourcesKeys": [],
   "IsCreateVersionsOnLayerForbidden": true,

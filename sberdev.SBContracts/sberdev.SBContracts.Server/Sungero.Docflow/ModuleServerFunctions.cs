@@ -8,6 +8,7 @@ namespace sberdev.SBContracts.Module.Docflow.Server
 {
   partial class ModuleFunctions
   {
+
     /// <summary>
     /// 
     /// </summary>

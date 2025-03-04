@@ -117,7 +117,7 @@
     <value>Шаблон калькуляции</value>
   </data>
   <data name="PeriodDiscription1" xml:space="preserve">
-    <value>Запущенные</value>
+    <value>Стартованые</value>
   </data>
   <data name="PeriodDiscription2" xml:space="preserve">
     <value>Завершенные</value>
@@ -127,29 +127,5 @@
   </data>
   <data name="PeriodDiscription4" xml:space="preserve">
     <value>Просроченные</value>
-  </data>
-  <data name="DeadlineChartYTitle" xml:space="preserve">
-    <value>Дней</value>
-  </data>
-  <data name="ControlFlowChartAxis" xml:space="preserve">
-    <value>Кол-во задач</value>
-  </data>
-  <data name="TaskDeadlineSerialAvg" xml:space="preserve">
-    <value>Средний</value>
-  </data>
-  <data name="TaskDeadlineSerialMax" xml:space="preserve">
-    <value>Максимальный</value>
-  </data>
-  <data name="TaskDeadlineSerialMin" xml:space="preserve">
-    <value>Минимальный</value>
-  </data>
-  <data name="TaskDeadlineSerialTarget" xml:space="preserve">
-    <value>Целевой</value>
-  </data>
-  <data name="DeadlineChartXTitle" xml:space="preserve">
-    <value>Дата конца периода</value>
-  </data>
-  <data name="AssignAvgApprTimeChartX" xml:space="preserve">
-    <value>Дней</value>
   </data>
 </root>

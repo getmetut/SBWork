@@ -145,16 +145,37 @@
   <data name="CoverDescription_AddAccesToUser" xml:space="preserve">
     <value>Функция проверки выдачи прав на задачи и документы по признаку причастности к подразделению автора</value>
   </data>
-  <data name="CoverAction_TestCanRead" xml:space="preserve">
-    <value>Тестирование доступности на чтение задач по ИД</value>
-  </data>
-  <data name="CoverDescription_TestCanRead" xml:space="preserve">
-    <value>Тестирование доступности на чтение задач по ИД для конкретного пользователя с целью поиска подходящего алгоритма</value>
-  </data>
   <data name="JobDisplayName_c5fd5a7f48234f9cb29e43fef006b3e8" xml:space="preserve">
     <value>Фоновый процесс выдачи прав для сотрудников по задачам</value>
   </data>
   <data name="JobDescription_c5fd5a7f48234f9cb29e43fef006b3e8" xml:space="preserve">
     <value>Фоновый процесс выдачи прав для сотрудников по задачам</value>
+  </data>
+  <data name="sf_d92f163c_796b_412f_80c4_d4bd89753968" xml:space="preserve">
+    <value>Реестр NDA</value>
+  </data>
+  <data name="FilterPanel_Groupkind_7a50f48bcc6546f3beeb1a27d9b0fb1b" xml:space="preserve">
+    <value>Отбор по виду</value>
+  </data>
+  <data name="FilterPanel_KindDoc_73841f7bbf9843d89e943bfeb302890d" xml:space="preserve">
+    <value>Вид документа</value>
+  </data>
+  <data name="FilterPanel_DateRange_a0ea2e9566d248e38540fe48eec21f7b" xml:space="preserve">
+    <value>Зарегистрирован</value>
+  </data>
+  <data name="FilterPanel_Counterparty_b2bad0057e48419f97a1e35d2b32bcab" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
+  <data name="FilterPanel_AuthorDoc_171b65bdcd7d498883b668c6ca6ae85a" xml:space="preserve">
+    <value>Автор документа</value>
+  </data>
+  <data name="FilterPanel_Department_2bc8c927a5364ef2b4fa73de2269a4d7" xml:space="preserve">
+    <value>Подразделение</value>
+  </data>
+  <data name="JobDisplayName_caac1860d81444ac890d2155f358fa38" xml:space="preserve">
+    <value>Фоновый процесс обхода договорных документов с целью простановки Продуктов в список</value>
+  </data>
+  <data name="JobDescription_caac1860d81444ac890d2155f358fa38" xml:space="preserve">
+    <value>Фоновый процесс обхода договорных документов с целью простановки Продуктов в список</value>
   </data>
 </root>

@@ -157,4 +157,31 @@
   <data name="CoverDescription_ContrDocsProductReportSberDev" xml:space="preserve">
     <value>Report on all contractual documents. With a list of products.</value>
   </data>
+  <data name="sf_07239a35_ce35_4357_b609_56bea463b615" xml:space="preserve">
+    <value>Реестр NDA</value>
+  </data>
+  <data name="FilterPanel_GroupkindSDev_ca47f30db89949a09395d496128929bd" xml:space="preserve">
+    <value>Отбор по виду</value>
+  </data>
+  <data name="FilterPanel_DateRangeSDev_6276fb76b12943379cafad0e18695424" xml:space="preserve">
+    <value>Зарегистрирован</value>
+  </data>
+  <data name="FilterPanel_KindDocSDev_5d07df4abbb34b0286e32388ca14270f" xml:space="preserve">
+    <value>Вид документа</value>
+  </data>
+  <data name="FilterPanel_AuthorDocSDev_b42a952a4cfc4fabaa20a7084374e79d" xml:space="preserve">
+    <value>Автор документа</value>
+  </data>
+  <data name="FilterPanel_DepartmentSDev_d46364c2f0be49158a09ac3d62e45bde" xml:space="preserve">
+    <value>Подразделение</value>
+  </data>
+  <data name="FilterPanel_CounterpartySDev_fe77f6398aab402d80aab7b0e33133e8" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
+  <data name="CoverAction_ReestrNDASDev" xml:space="preserve">
+    <value>Реестр NDA \ Соглашение об ЭДО</value>
+  </data>
+  <data name="CoverDescription_ReestrNDASDev" xml:space="preserve">
+    <value>Реестр договоров NDA и соглашений об ЭДО с системой фильтрации</value>
+  </data>
 </root>

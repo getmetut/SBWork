@@ -11,16 +11,90 @@ namespace Sungero.Custom.Server
   {
 
     /// <summary>
+    /// Фоновый процесс обхода договорных документов с целью простановки Продуктов в список
+    /// </summary>
+    public virtual void JobResaveContractualDoc()
+    {
+      var Exc = sberdev.SBContracts.ContractualDocuments.GetAll(s => ((s.ProdCollectionPrBaseSberDev.Count > 0) || (s.ProdCollectionExBaseSberDev.Count > 0))).ToList();
+      foreach (var elem in Exc)
+      {
+        try
+        {
+          if (elem.Note.EndsWith(" "))
+            elem.Note = elem.Note.Substring(0, elem.Note.Length - 1);
+          else
+            elem.Note += " ";
+          elem.Save();
+        }
+        catch
+        {
+          //Res += "-";
+        }
+      }
+    }
+    
+    private void GenAccesRef(long UsID, long PdrID, bool Edit)
+    {
+      var us = Sungero.Company.Employees.Get(UsID);
+      var Departament = Sungero.Company.Departments.Get(PdrID);
+      var tasks = new List<System.Threading.Tasks.Task>();
+      var DefAcc = Edit ? DefaultAccessRightsTypes.Change : DefaultAccessRightsTypes.Read;
+      if (Departament.RecipientLinks.Count > 0)
+      {
+        foreach (var elem in Departament.RecipientLinks)
+        {
+          if (Sungero.Company.Employees.Is(elem.Member))
+          {
+            var Tasks = PublicFunctions.Module.GetListTask(elem.Member.Id, us, Edit);
+            if (Tasks.Count > 0)
+            {
+              foreach (var task in Tasks)
+              {
+                var RefAcc = Custom.AccesUserToTasks.GetAll(t => ((t.Recipient.Name == us.Name) && (t.Task == task))).FirstOrDefault();
+                if (RefAcc == null)
+                {
+                  RefAcc = Custom.AccesUserToTasks.Create();
+                  RefAcc.Recipient = us;
+                  RefAcc.Task = task;
+                  RefAcc.Control = false;
+                  if (Edit)
+                    RefAcc.EditAcces = true;
+                  else
+                    RefAcc.EditAcces = false;
+                  
+                  RefAcc.Name = us.Name + " => " + task.Subject;
+                  RefAcc.Save();
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /// <summary>
     /// 
     /// </summary>
     public virtual void JobAddAccesToUser()
     {
+      var requestList = Custom.RequestAccesTaskToUses.GetAll(r => r.Status == Custom.RequestAccesTaskToUs.Status.Active).ToArray();
+      if (requestList.Count() > 0)
+      {
+        foreach (var req in requestList)
+        {
+          GenAccesRef(req.Employee.Id, req.Department.Id, req.EditAcces.Value);
+        }
+      }
+
+      //======================================================================================
+      
       var RefAcc = Custom.AccesUserToTasks.GetAll(t => t.Control == false).ToList();
       if (RefAcc.Count > 0)
       {
         foreach (var str in RefAcc)
         {
           var task = str.Task;
+          string log = "";
           var us = str.Recipient;
           var DefAcc = str.EditAcces.HasValue ? (str.EditAcces.Value ?  DefaultAccessRightsTypes.Change :  DefaultAccessRightsTypes.Read) : DefaultAccessRightsTypes.Read;
           try
@@ -33,7 +107,7 @@ namespace Sungero.Custom.Server
           }
           catch (Exception f)
           {
-            //log += "Ошибка при выдаче прав на задачу: " + f.Message.ToString() + '\n';
+            log += "Ошибка при выдаче прав на задачу: " + f.Message.ToString() + '\n';
           }
           if (task.Attachments.Count > 0)
           {
@@ -45,14 +119,18 @@ namespace Sungero.Custom.Server
                 {
                   attach.AccessRights.Grant(us, DefAcc);
                   attach.AccessRights.Save();
+                  log += "Выданы права на вложение: " + attach.DisplayValue.ToString() + '\n';
                 }
                 catch (Exception e)
                 {
-                  //log += "Ошибка при выдаче прав на документ: " + e.Message.ToString() + '\n';
+                  log += "Ошибка при выдаче прав на документ: " + e.Message.ToString() + '\n';
                 }
               }
             }
           }
+          str.Control = true;
+          str.HistoryNote = log;
+          str.Save();
         }
       }
     }

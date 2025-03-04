@@ -622,6 +622,10 @@ namespace Sungero.Custom.Client
                     RefAcc.Recipient = us;
                     RefAcc.Task = task;
                     RefAcc.Control = false;
+                    if (DogContr.Value.Value)
+                      RefAcc.EditAcces = true;
+                    else
+                      RefAcc.EditAcces = false;
                     RefAcc.Name = us.Name + " => " + task.Subject;
                     RefAcc.Save();
                   }

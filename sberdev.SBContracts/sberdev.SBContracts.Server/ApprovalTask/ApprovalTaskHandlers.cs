@@ -13,6 +13,14 @@ namespace sberdev.SBContracts
   partial class ApprovalTaskServerHandlers
   {
 
+    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
+    {
+      if (SBContracts.PublicFunctions.Module.IsSystemUser())
+        _obj.State.Properties.DeliveryMethod.IsRequired = false;
+
+      base.BeforeSave(e);
+    }
+
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       base.Created(e);

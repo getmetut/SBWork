@@ -6,6 +6,41 @@ using Sungero.CoreEntities;
 
 namespace sberdev.SBContracts.Module.ContractsUI.Server
 {
+  partial class ReestrNDASDevFolderHandlers
+  {
+
+    public virtual IQueryable<Sungero.Docflow.IDocumentKind> ReestrNDASDevKindDocSDevFiltering(IQueryable<Sungero.Docflow.IDocumentKind> query)
+    {
+      query = query.Where(q => q.DocumentType.Name == "NDA / Соглашение об ЭДО");
+      return query;
+    }
+
+    public virtual IQueryable<Sungero.Custom.INDA> ReestrNDASDevDataQuery(IQueryable<Sungero.Custom.INDA> query)
+    {
+      if (_filter != null)
+      {
+        if (_filter.CounterpartySDev != null)
+          query = query.Where(q => q.Counterparty == _filter.CounterpartySDev);
+        
+        if (_filter.KindDocSDev != null)
+          query = query.Where(q => q.DocumentKind == _filter.KindDocSDev);
+        
+        if (_filter.AuthorDocSDev != null)
+          query = query.Where(q => q.Author.Login == _filter.AuthorDocSDev.Login);
+        
+        if (_filter.DepartmentSDev != null)
+          query = query.Where(q => q.Department == _filter.DepartmentSDev);
+        
+        if (_filter.DateRangeSDevTo != null)
+          query = query.Where(q => q.RegistrationDate <= _filter.DateRangeSDevTo);
+        
+        if (_filter.DateRangeSDevFrom != null)
+          query = query.Where(q => q.RegistrationDate >= _filter.DateRangeSDevFrom);
+      }
+      return query;
+    }
+  }
+
   partial class ContractsListFolderHandlers
   {
 

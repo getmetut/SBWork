@@ -9,13 +9,14 @@ namespace sberdev.SberContracts.Shared
 {
   public class ModuleFunctions
   {
+    
     /// <summary>
     /// Возвращает список завершенных рабочих периодов до текущей даты
     /// </summary>
     [Public]
-    public List<IDateRange> GenerateCompletedDateRanges(DateTime currentDate, int numberOfSeries, string interval)
+    public List<sberdev.SBContracts.Structures.Module.IDateRange> GenerateCompletedDateRanges(DateTime currentDate, int numberOfSeries, string interval)
     {
-      var dateRanges = new List<DateRange>();
+      List<DateRange> dateRanges = new List<DateRange>();
       DateTime endDate = currentDate.Date;
 
       for (int i = 0; i < numberOfSeries; i++)
@@ -25,32 +26,23 @@ namespace sberdev.SberContracts.Shared
         switch (interval.ToLower())
         {
           case "weeks":
-            // Логика для недель остается без изменений
-            endDate = endDate.AddDays(-(int)endDate.DayOfWeek);
+            endDate = endDate.AddDays(-(int)endDate.DayOfWeek); // Последнее воскресенье
             startDate = endDate.AddDays(-6);
             break;
 
           case "months":
-            // Логика для месяцев остается без изменений
             endDate = new DateTime(endDate.Year, endDate.Month, 1).AddDays(-1);
             startDate = new DateTime(endDate.Year, endDate.Month, 1).AddMonths(-1);
             break;
 
           case "quarters":
-            // Исправленная логика для кварталов
-            int quarter = (endDate.Month - 1) / 3;
-            int startMonth = quarter * 3 + 1;
-            int endMonth = startMonth + 2;
-            
-            // Корректировка года если квартал в конце года
-            int year = endDate.Month >= 10 ? endDate.Year : endDate.Year;
-            
-            endDate = new DateTime(year, endMonth, DateTime.DaysInMonth(year, endMonth));
-            startDate = new DateTime(year, startMonth, 1);
+            int currentQuarter = (endDate.Month - 1) / 3;
+            endDate = new DateTime(endDate.Year, 3 * currentQuarter + 1, 1).AddDays(-1);
+            startDate = endDate.AddMonths(-3).AddDays(1);
             break;
 
           default:
-            throw new ArgumentException("Недопустимый интервал. Поддерживаются: 'weeks', 'months', 'quarters'.");
+            throw new ArgumentException("Invalid interval. Supported intervals are 'weeks', 'months', and 'quarters'.");
         }
 
         dateRanges.Insert(0, new DateRange
@@ -59,7 +51,7 @@ namespace sberdev.SberContracts.Shared
                             EndDate = endDate
                           });
 
-        // Переход к предыдущему периоду
+        // Переходим к предыдущему периоду
         endDate = startDate.AddDays(-1);
       }
 
@@ -84,7 +76,7 @@ namespace sberdev.SberContracts.Shared
                {
                  ValueId = "completed",
                  Label = sberdev.SberContracts.Resources.PeriodDiscription2,
-                 R = 46, G = 159, B = 12
+                 R = 60, G = 179, B = 113
                });
       list.Add(new ControlFlowSeriesInfo
                {
@@ -96,7 +88,7 @@ namespace sberdev.SberContracts.Shared
                {
                  ValueId = "expired",
                  Label = sberdev.SberContracts.Resources.PeriodDiscription4,
-                 R = 217, G = 63, B = 60
+                 R = 220, G = 20, B = 60
                });
       return list.Cast<IControlFlowSeriesInfo>().ToList();
     }

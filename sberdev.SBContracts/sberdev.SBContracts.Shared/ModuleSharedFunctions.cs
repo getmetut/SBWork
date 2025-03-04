@@ -172,21 +172,15 @@ namespace sberdev.SBContracts.Shared
       }
     }
     #endregion
-    
-    /// <summary>
-    /// Полчуить количество рабочих дней меду двумя датами
-    /// </summary>
-    [Public]
-    public int CalculateBusinessDays(DateTime? startDate, DateTime? endDate)
-    {
-      if (startDate == null || endDate == null)
-        throw new ArgumentException("Параметры должны содержать значения.");
 
+    [Public]
+    public int CalculateBusinessDays(DateTime startDate, DateTime endDate)
+    {
       if (startDate > endDate)
         throw new ArgumentException("Начальная дата должна быть меньше или равна конечной дате.");
 
       // Общее количество дней включая начальную и конечную дату
-      int totalDays = (endDate.Value - startDate.Value).Days + 1;
+      int totalDays = (endDate - startDate).Days + 1;
 
       // Количество полных недель
       int fullWeeks = totalDays / 7;
@@ -198,7 +192,7 @@ namespace sberdev.SBContracts.Shared
       int remainingDays = totalDays % 7;
 
       // День недели для начальной даты
-      DayOfWeek startDayOfWeek = startDate.Value.DayOfWeek;
+      DayOfWeek startDayOfWeek = startDate.DayOfWeek;
 
       for (int i = 0; i < remainingDays; i++)
       {

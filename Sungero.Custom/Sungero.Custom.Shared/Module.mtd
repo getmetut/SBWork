@@ -14,14 +14,6 @@
     "Actions": [
       {
         "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
-        "NameGuid": "3f3cb2c3-bf94-44bc-9bdb-249d88c3289b",
-        "Name": "TestCanRead",
-        "FunctionName": "TestCanRead",
-        "GroupId": "87590ec7-b390-4e15-8a60-3e53df37e634",
-        "PreviousItemGuid": "43d1433f-c82d-4547-a9b7-04fabd19cfeb"
-      },
-      {
-        "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
         "NameGuid": "43d1433f-c82d-4547-a9b7-04fabd19cfeb",
         "Name": "AddAccesToUser",
         "FunctionName": "AddAccesToUser",
@@ -268,8 +260,16 @@
       "PreviousItemId": "cb01a902-1431-4361-a6ea-3eeb9f2bedba"
     },
     {
-      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "ItemId": "d92f163c-796b-412f-80c4-d4bd89753968",
       "PreviousItemId": "89ce7a73-856e-48cb-9187-984686139b5a"
+    },
+    {
+      "ItemId": "c487a34b-8654-412d-874c-8f244a309556",
+      "PreviousItemId": "d92f163c-796b-412f-80c4-d4bd89753968"
+    },
+    {
+      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "PreviousItemId": "c487a34b-8654-412d-874c-8f244a309556"
     }
   ],
   "HandledEvents": [
@@ -328,6 +328,13 @@
       "GenerateHandler": true,
       "MonthSchedule": "Monthly",
       "TimePeriod": 30
+    },
+    {
+      "NameGuid": "caac1860-d814-44ac-890d-2155f358fa38",
+      "Name": "JobResaveContractualDoc",
+      "GenerateHandler": true,
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T08:30:00"
     }
   ],
   "Libraries": [
@@ -566,8 +573,76 @@
   "ServerNamespace": "Sungero.Custom.Server",
   "SharedAssemblyName": "Sungero.Custom.Shared",
   "SharedNamespace": "Sungero.Custom.Shared",
-  "SpecialFolders": [],
-  "Version": "0.1.1.13",
+  "SpecialFolders": [
+    {
+      "NameGuid": "d92f163c-796b-412f-80c4-d4bd89753968",
+      "Name": "ReestrNDA",
+      "DefaultContentType": "d62141c7-715c-47bb-82b0-cf2ffbe8b6e7",
+      "DisplayType": "Module",
+      "FilterPanel": {
+        "NameGuid": "6c9b2666-eaad-4980-bc48-ca1a17c69d78",
+        "Name": "FilterPanel",
+        "Controls": [
+          {
+            "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+            "NameGuid": "7a50f48b-cc65-46f3-beeb-1a27d9b0fb1b",
+            "Name": "Groupkind"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterNavigationMetadata, Sungero.Metadata",
+            "NameGuid": "73841f7b-bf98-43d8-9e94-3bfeb302890d",
+            "Name": "KindDoc",
+            "EntityGuid": "14a59623-89a2-4ea8-b6e9-2ad4365f358c",
+            "HandledEvents": [
+              "FilteringServer"
+            ],
+            "ParentGuid": "7a50f48b-cc65-46f3-beeb-1a27d9b0fb1b"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterDateRangeMetadata, Sungero.Metadata",
+            "NameGuid": "a0ea2e95-66d2-48e3-8540-fe48eec21f7b",
+            "Name": "DateRange",
+            "ParentGuid": "7a50f48b-cc65-46f3-beeb-1a27d9b0fb1b",
+            "PreviousGuid": "b2bad005-7e48-419f-97a1-e35d2b32bcab"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterNavigationMetadata, Sungero.Metadata",
+            "NameGuid": "b2bad005-7e48-419f-97a1-e35d2b32bcab",
+            "Name": "Counterparty",
+            "EntityGuid": "294767f1-009f-4fbd-80fc-f98c49ddc560",
+            "LookupMode": "Standalone",
+            "ParentGuid": "7a50f48b-cc65-46f3-beeb-1a27d9b0fb1b",
+            "PreviousGuid": "2bc8c927-a536-4ef2-b4fa-73de2269a4d7"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterNavigationMetadata, Sungero.Metadata",
+            "NameGuid": "171b65bd-cd7d-4988-83b6-68c6ca6ae85a",
+            "Name": "AuthorDoc",
+            "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
+            "LookupMode": "Standalone",
+            "ParentGuid": "7a50f48b-cc65-46f3-beeb-1a27d9b0fb1b",
+            "PreviousGuid": "73841f7b-bf98-43d8-9e94-3bfeb302890d"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterNavigationMetadata, Sungero.Metadata",
+            "NameGuid": "2bc8c927-a536-4ef2-b4fa-73de2269a4d7",
+            "Name": "Department",
+            "EntityGuid": "61b1c19f-26e2-49a5-b3d3-0d3618151e12",
+            "LookupMode": "Standalone",
+            "ParentGuid": "7a50f48b-cc65-46f3-beeb-1a27d9b0fb1b",
+            "PreviousGuid": "171b65bd-cd7d-4988-83b6-68c6ca6ae85a"
+          }
+        ]
+      },
+      "HandledEvents": [
+        "DataQueryServer"
+      ],
+      "IsShow": true,
+      "Kind": "Computable",
+      "NeedShowMarkedCount": false
+    }
+  ],
+  "Version": "0.1.1.22",
   "Widgets": [],
   "Versions": [
     {

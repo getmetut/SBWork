@@ -16,17 +16,6 @@ namespace sberdev.SBContracts.Structures.Module
     public string Message { get; set; }
   }
   
-  /// <summary>
-  /// Информация о значениях серии в графике TaskDeadlineChart
-  /// </summary>
-  [Public]
-  partial class TaskDeadlineSeriesInfo
-  {
-    public List<double> Values { get; set; }
-    public int R { get; set; }
-    public int G { get; set; }
-    public int B{ get; set; }
-  }
   
   /// <summary>
   /// Информация о значениях серии в графике ControlFlowChart

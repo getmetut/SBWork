@@ -30,7 +30,7 @@
             <property name="Name">IncomingInvoice_CalculationBaseSberDev_AggregationCalc</property>
             <property name="FieldName">AggregationCalc</property>
             <property name="VisibleIndex">0</property>
-            <property name="Width">97</property>
+            <property name="Width">100</property>
             <property name="ActualWidth">14*</property>
           </property>
           <property name="Item2" isnull="true" iskey="true">
@@ -38,7 +38,7 @@
             <property name="Name">IncomingInvoice_CalculationBaseSberDev_ProductCalc</property>
             <property name="FieldName">ProductCalc</property>
             <property name="VisibleIndex">1</property>
-            <property name="Width">83</property>
+            <property name="Width">86</property>
             <property name="ActualWidth">12*</property>
           </property>
           <property name="Item3" isnull="true" iskey="true">
@@ -46,7 +46,7 @@
             <property name="Name">IncomingInvoice_CalculationBaseSberDev_AbsoluteCalc</property>
             <property name="FieldName">AbsoluteCalc</property>
             <property name="VisibleIndex">2</property>
-            <property name="Width">152</property>
+            <property name="Width">158</property>
             <property name="ActualWidth">22*</property>
           </property>
           <property name="Item4" isnull="true" iskey="true">
@@ -54,7 +54,7 @@
             <property name="Name">IncomingInvoice_CalculationBaseSberDev_PercentCalc</property>
             <property name="FieldName">PercentCalc</property>
             <property name="VisibleIndex">3</property>
-            <property name="Width">83</property>
+            <property name="Width">86</property>
             <property name="ActualWidth">12*</property>
           </property>
           <property name="Item5" isnull="true" iskey="true">
@@ -62,7 +62,7 @@
             <property name="Name">IncomingInvoice_CalculationBaseSberDev_InterestCalc</property>
             <property name="FieldName">InterestCalc</property>
             <property name="VisibleIndex">4</property>
-            <property name="Width">131</property>
+            <property name="Width">136</property>
             <property name="ActualWidth">19*</property>
           </property>
         </property>
