@@ -1492,7 +1492,62 @@ namespace sberdev.SberContracts.Server
     
     #region Функции виджетов
 
-    
+    /// <summary>
+    /// Рассчитать среднее время выполнения заданий по подразделениям
+    /// </summary>
+    [Public]
+    public System.Collections.Generic.Dictionary<string, double> CalculateAssignAvgApprTimeValues(IDateRange dateRange)
+    {
+      {
+        var result = new Dictionary<string, double>();
+        
+        try
+        {
+          var query = Sungero.Workflow.Assignments.GetAll()
+            .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
+                   a.Created >= dateRange.StartDate &&
+                   a.Completed <= dateRange.EndDate &&
+                   a.Performer != null);
+
+          var departmentStats = query
+            .AsEnumerable() // Переводим в память для безопасной работы с объектами
+            .GroupBy(a =>
+                     {
+                       var employee = Sungero.Company.Employees.As(a.Performer);
+                       return employee?.Department?.Name ?? "Без подразделения";
+                     })
+            .Select(g => new
+                    {
+                      Department = g.Key,
+                      AvgDays = g.Average(a =>
+                                          {
+                                            try
+                                            {
+                                              return SBContracts.PublicFunctions.Module.CalculateBusinessDays(a.Created , a.Completed);
+                                            }
+                                            catch
+                                            {
+                                              return 0; // Обработка некорректных дат
+                                            }
+                                          })
+                    })
+            .Where(x => x.AvgDays > 0) // Исключаем нулевые значения
+            .OrderByDescending(x => x.AvgDays);
+
+          foreach (var stat in departmentStats)
+          {
+            result[stat.Department] = Math.Round(stat.AvgDays, 1);
+          }
+        }
+        catch (Exception ex)
+        {
+          Logger.Error("Ошибка расчета времени по подразделениям", ex);
+        }
+        
+        return result;
+      }
+    }
+
     /// <summary>
     /// Функция вычисляет значения для графика ControlFlowChart виджета ApprovalAnalyticsWidget
     /// </summary>

@@ -10,9 +10,32 @@ namespace sberdev.SberContracts.Server
   partial class ApprovalAnalyticsWidgetWidgetHandlers
   {
 
-    public virtual void GetApprovalAnalyticsWidgetAssignAvgApprTimeChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
+    public virtual void GetApprovalAnalyticsWidgetAssignAvgApprTimeByDepartChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
     {
-      
+      try
+      {
+        //  e.Chart.AxisTitle
+
+        var dateRange = PublicFunctions.Module.GenerateCompletedDateRanges(
+          Calendar.Today,
+          1, // Текущий период
+          _parameters.AnalysisPeriod.Value).FirstOrDefault();
+
+        if (dateRange == null)
+          return;
+
+        var departmentStats = PublicFunctions.Module.CalculateAssignAvgApprTimeValues(dateRange);
+        
+        foreach(var stat in departmentStats)
+        {
+          var serial = e.Chart.AddNewSeries(stat.Key, stat.Key);
+          serial.AddValue(stat.Key, "", stat.Value, Colors.FromRgb(70, 130, 180));
+        }
+      }
+      catch (Exception ex)
+      {
+        Logger.Error("Ошибка построения гистограммы", ex);
+      }
     }
 
     public virtual void GetApprovalAnalyticsWidgetTaskDeadlineChartValue(Sungero.Domain.GetWidgetPlotChartValueEventArgs e)

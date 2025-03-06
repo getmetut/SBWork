@@ -467,6 +467,17 @@
   ],
   "PublicFunctions": [
     {
+      "Name": "CalculateAssignAvgApprTimeValues",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Double>"
+    },
+    {
       "Name": "CalculateControlFlowValues",
       "Parameters": [
         {
@@ -1008,7 +1019,8 @@
     "TaskDeadlineSerialMax",
     "TaskDeadlineSerialMin",
     "TaskDeadlineSerialTarget",
-    "DeadlineChartXTitle"
+    "DeadlineChartXTitle",
+    "AssignAvgApprTimeChartX"
   ],
   "ServerAssemblyName": "sberdev.SberContracts.Server",
   "ServerNamespace": "sberdev.SberContracts.Server",
@@ -1080,7 +1092,7 @@
         {
           "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
           "NameGuid": "2cb40fb2-9075-4b71-a27b-75fc436df9d4",
-          "Name": "AssignAvgApprTimeChart",
+          "Name": "AssignAvgApprTimeByDepartChart",
           "ChartHeight": 30,
           "ChartType": "HorizontalBar",
           "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
