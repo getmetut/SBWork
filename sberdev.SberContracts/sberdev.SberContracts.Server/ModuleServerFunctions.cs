@@ -1496,56 +1496,54 @@ namespace sberdev.SberContracts.Server
     /// Рассчитать среднее время выполнения заданий по подразделениям
     /// </summary>
     [Public]
-    public System.Collections.Generic.Dictionary<string, double> CalculateAssignAvgApprTimeValues(IDateRange dateRange)
+    public System.Collections.Generic.Dictionary<string, double> CalculateAssignAvgApprTimeByDepartValues(IDateRange dateRange)
     {
+      var result = new Dictionary<string, double>();
+      
+      try
       {
-        var result = new Dictionary<string, double>();
+        // Формируем запрос
+        var query = Sungero.Workflow.Assignments.GetAll()
+          .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
+                 a.Created >= dateRange.StartDate &&
+                 a.Completed <= dateRange.EndDate &&
+                 a.Performer != null);
         
-        try
-        {
-          var query = Sungero.Workflow.Assignments.GetAll()
-            .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
-                   a.Created >= dateRange.StartDate &&
-                   a.Completed <= dateRange.EndDate &&
-                   a.Performer != null);
-
-          var departmentStats = query
-            .AsEnumerable() // Переводим в память для безопасной работы с объектами
-            .GroupBy(a =>
-                     {
-                       var employee = Sungero.Company.Employees.As(a.Performer);
-                       return employee?.Department?.Name ?? "Без подразделения";
-                     })
-            .Select(g => new
-                    {
-                      Department = g.Key,
-                      AvgDays = g.Average(a =>
-                                          {
-                                            try
-                                            {
-                                              return SBContracts.PublicFunctions.Module.CalculateBusinessDays(a.Created , a.Completed);
-                                            }
-                                            catch
-                                            {
-                                              return 0; // Обработка некорректных дат
-                                            }
-                                          })
-                    })
-            .Where(x => x.AvgDays > 0) // Исключаем нулевые значения
-            .OrderByDescending(x => x.AvgDays);
-
-          foreach (var stat in departmentStats)
-          {
-            result[stat.Department] = Math.Round(stat.AvgDays, 1);
-          }
-        }
-        catch (Exception ex)
-        {
-          Logger.Error("Ошибка расчета времени по подразделениям", ex);
-        }
+        // Выполняем запрос и получаем список заданий
+        // Используем ToList() вместо AsEnumerable() для явного выполнения запроса
+        var assignments = query.ToList();
         
-        return result;
+        // Группируем и вычисляем средние значения
+        var departmentStats = assignments
+          .GroupBy(a => {
+                     var employee = Sungero.Company.Employees.As(a.Performer);
+                     return employee?.Department?.Name ?? "Без подразделения";
+                   })
+          .Select(g => new {
+                    Department = g.Key,
+                    AvgDays = g.Average(a => {
+                                          try {
+                                            return SBContracts.PublicFunctions.Module.CalculateBusinessDays(a.Created, a.Completed);
+                                          } catch {
+                                            return 0;
+                                          }
+                                        })
+                  })
+          .Where(x => x.AvgDays > 0)
+          .OrderByDescending(x => x.AvgDays)
+          .Take(15); // Ограничиваем результат 15 подразделениями
+        
+        foreach (var stat in departmentStats)
+        {
+          result[stat.Department] = Math.Round(stat.AvgDays, 1);
+        }
       }
+      catch (Exception ex)
+      {
+        Logger.Error("Ошибка расчета времени по подразделениям", ex);
+      }
+      
+      return result;
     }
 
     /// <summary>
@@ -1568,36 +1566,6 @@ namespace sberdev.SberContracts.Server
     }
     
     /// <summary>
-    /// Получить время выполнения задачи (в днях). Время счиатется от старта задачи до последнего завершенного задания
-    /// </summary>
-    [Public]
-    public int GetExecutionTaskTime(SBContracts.IApprovalTask task)
-    {
-      try
-      {
-        if (task?.Started == null)
-          return 0;
-
-        // Ищем последнее завершенное задание
-        var lastAssignment = SBContracts.ApprovalAssignments.GetAll()
-          .Where(a => a.Task == task &&
-                 a.Status == SBContracts.ApprovalTask.Status.Completed &&
-                 a.Completed != null &&
-                 a.Completed >= task.Started)
-          .OrderByDescending(a => a.Completed)
-          .FirstOrDefault();
-
-        return lastAssignment?.Completed != null
-          ? SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastAssignment.Completed)
-          : 0;
-      }
-      catch (Exception ex)
-      {
-        Logger.Error("Ошибка в GetExecutionTaskTime", ex);
-        return 0;
-      }
-    }
-    /// <summary>
     /// Рассчитать показатели для графика
     /// </summary>
     [Public]
@@ -1611,63 +1579,105 @@ namespace sberdev.SberContracts.Server
           return 0;
         }
         
-        // Запрос для получения корректных задач
-        var validTasks = SBContracts.ApprovalTasks.GetAll()
+        // Оптимизация запроса - выполняем его сразу в базе и кэшируем результаты в памяти
+        var validTaskIds = SBContracts.ApprovalTasks.GetAll()
           .Where(t => t.Status == SBContracts.ApprovalTask.Status.Completed &&
                  t.Started != null &&
                  t.Started >= dateRange.StartDate &&
                  t.Started <= dateRange.EndDate)
+          .Select(t => t.Id)
           .ToList();
         
-        if (!validTasks.Any())
+        if (!validTaskIds.Any())
         {
           Logger.Debug($"Нет завершенных задач в диапазоне {dateRange.StartDate:dd.MM.yyyy} - {dateRange.EndDate:dd.MM.yyyy}");
           return 0;
         }
-
-        // Собираем данные безопасно
-        var executionDays = new List<int>();
-        foreach (var task in validTasks)
+        
+        // Создаем словарь для хранения задач и их времени выполнения
+        Dictionary<int, int> taskExecutionDays = new Dictionary<int, int>();
+        Dictionary<int, int> taskTargetDays = new Dictionary<int, int>();
+        
+        // Получаем задачи по IDs (избегаем потери производительности из-за деконструкции всех полей)
+        var tasks = SBContracts.ApprovalTasks.GetAll()
+          .Where(t => validTaskIds.Contains(t.Id))
+          .ToList();
+        
+        foreach (var task in tasks)
         {
+          // Вычисляем время выполнения
           int days = GetExecutionTaskTime(task);
           if (days > 0)
-            executionDays.Add(days);
-        }
-        
-        var targetDays = new List<int>();
-        foreach (var task in validTasks)
-        {
+            taskExecutionDays[(int)task.Id] = days;
+          
+          // Вычисляем целевое время
           if (task.MaxDeadline != null && task.Started <= task.MaxDeadline)
           {
-            int days = SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, task.MaxDeadline);
-            targetDays.Add(days);
+            int targetDays = SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, task.MaxDeadline);
+            if (targetDays > 0)
+              taskTargetDays[(int)task.Id] = targetDays;
           }
         }
-
+        
+        // Важно - преобразуем названия серий в нижний регистр для надежного сравнения
+        serialType = serialType.ToLower();
+        
         // Вычисление значения в зависимости от типа серии
-        switch (serialType.ToLower())
-        {
-          case "average" when executionDays.Any():
-            return executionDays.Average();
-            
-          case "maximum" when executionDays.Any():
-            return executionDays.Max();
-            
-          case "minimum" when executionDays.Any():
-            return executionDays.Min();
-            
-          case "target" when targetDays.Any():
-            return targetDays.Average();
-            
-          default:
-            return 0;
-        }
+        if (serialType == "average" && taskExecutionDays.Any())
+          return taskExecutionDays.Values.Average();
+        
+        if (serialType == "maximum" && taskExecutionDays.Any())
+          return taskExecutionDays.Values.Max();
+        
+        if (serialType == "minimum" && taskExecutionDays.Any())
+          return taskExecutionDays.Values.Min();
+        
+        if (serialType == "target" && taskTargetDays.Any())
+          return taskTargetDays.Values.Average();
+        
+        Logger.Debug($"Тип серии {serialType} не дал результатов");
+        return 0;
       }
       catch (Exception ex)
       {
         Logger.Error($"Ошибка в CalculateTaskDeadlineChartPoint: {ex.Message}", ex);
       }
       return 0;
+    }
+
+    /// <summary>
+    /// Получить время выполнения задачи (в днях). Время считается от старта задачи до последнего завершенного задания
+    /// </summary>
+    [Public]
+    public int GetExecutionTaskTime(SBContracts.IApprovalTask task)
+    {
+      try
+      {
+        if (task?.Started == null)
+          return 0;
+        
+        // Ищем последнее завершенное задание - исправлено сравнение статуса
+        var lastAssignment = SBContracts.ApprovalAssignments.GetAll()
+          .Where(a => a.Task.Id == task.Id &&
+                 a.Status == Sungero.Workflow.Assignment.Status.Completed && // Исправлено - статус задания
+                 a.Completed != null &&
+                 a.Completed >= task.Started)
+          .OrderByDescending(a => a.Completed)
+          .FirstOrDefault();
+        
+        if (lastAssignment?.Completed != null)
+        {
+          int days = SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastAssignment.Completed);
+          return days > 0 ? days : 0;
+        }
+        
+        return 0;
+      }
+      catch (Exception ex)
+      {
+        Logger.Error("Ошибка в GetExecutionTaskTime", ex);
+        return 0;
+      }
     }
     #endregion
     

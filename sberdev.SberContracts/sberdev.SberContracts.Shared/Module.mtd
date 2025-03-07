@@ -467,7 +467,7 @@
   ],
   "PublicFunctions": [
     {
-      "Name": "CalculateAssignAvgApprTimeValues",
+      "Name": "CalculateAssignAvgApprTimeByDepartValues",
       "Parameters": [
         {
           "Name": "dateRange",
