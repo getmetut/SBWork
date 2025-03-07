@@ -41,6 +41,7 @@ namespace sberdev.SBContracts
 
     public override void AccArtBaseSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseAccArtBaseSberDevChangedEventArgs e)
     {
+      PublicFunctions.IncomingInvoice.UpdateCard(_obj);
       base.AccArtBaseSberDevChanged(e);
       if ( e.NewValue != null)
       {

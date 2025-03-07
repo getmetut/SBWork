@@ -1733,7 +1733,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
           "PropertyGuid": "ddbd8560-adc3-4bc1-ad49-26faf831886f",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1797,6 +1797,19 @@
           "RowSpan": 1,
           "Settings": [],
           "Versions": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "5b71ba19-c818-48fb-9f05-7824c9067abf",
+          "Name": "NMASDevSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
+          "PropertyGuid": "506fb40e-b019-4b18-898a-cbccca8a839d",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -1809,7 +1822,9 @@
     }
   ],
   "HandledEvents": [
-    "CreatedServer"
+    "CreatedServer",
+    "ShowingClient",
+    "RefreshClient"
   ],
   "IconResourcesKeys": [],
   "IntegrationServiceName": "SberContractsPurchase",
@@ -1822,6 +1837,19 @@
     "CanBeSearch"
   ],
   "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "645d9c3b-e8a5-40d4-86c5-7c9a05bfab66",
+      "Name": "AccArtExBaseSberDev",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "aae1f6ae-d090-4c5a-963e-44c8b79dc92b",
@@ -2505,6 +2533,21 @@
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "2401e562-195e-44e3-9a97-fff5e22f864a"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "UpdateCard",
+      "Parameters": [
+        {
+          "Name": "purchase",
+          "ParameterType": "global::sberdev.SberContracts.IPurchase",
+          "ParameterTypeFullName": "sberdev.SberContracts.IPurchase, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [],

@@ -44,6 +44,10 @@
     {
       "ItemId": "79be93d0-66e2-4ff7-83bc-ebe5631a7a3b",
       "PreviousItemId": "ac83925f-e119-4b9d-b55f-526fcff63e36"
+    },
+    {
+      "ItemId": "55e89178-8ed6-4d40-b18e-ca9b957e2b44",
+      "PreviousItemId": "79be93d0-66e2-4ff7-83bc-ebe5631a7a3b"
     }
   ],
   "IconResourcesKeys": [],
@@ -77,7 +81,7 @@
   "SharedAssemblyName": "Sungero.ATS.Shared",
   "SharedNamespace": "Sungero.ATS.Shared",
   "SpecialFolders": [],
-  "Version": "0.1.1.22",
+  "Version": "0.1.1.23",
   "Widgets": [],
   "Versions": [
     {

@@ -1,0 +1,138 @@
+{
+  "$type": "Sungero.Metadata.DocumentMetadata, Sungero.Content.Shared",
+  "NameGuid": "55e89178-8ed6-4d40-b18e-ca9b957e2b44",
+  "Name": "UniversalTransferDocument",
+  "AccessRightsMode": "Both",
+  "BaseGuid": "58986e23-2b0a-4082-af37-bd1991bc6f7e",
+  "CanBeNavigationPropertyType": true,
+  "CreationAreaMetadata": {
+    "NameGuid": "7322020b-3299-4fba-b9b0-4c995bd2e401",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "80d3ce1a-9a72-443a-8b6c-6c6eef0c8d0f",
+    "Name": "FilterPanel",
+    "Controls": [],
+    "IsAncestorMetadata": true,
+    "Versions": []
+  },
+  "IconResourcesKeys": [],
+  "LayeredFromGuid": "58986e23-2b0a-4082-af37-bd1991bc6f7e",
+  "OpenCardByDefaultInCollection": true,
+  "OperationsClass": "",
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "cc53a990-5123-4f3a-b5ac-f3899be1f40a",
+      "Name": "Counterparty",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e1c76d5d-84b1-46d4-b5d4-6baeb1751b15",
+      "Name": "ProdCollectionBaseSberDev",
+      "EntityGuid": "a5130cc3-82b7-40eb-a108-1fdd52cba973",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "b36eb529-3e77-4983-8cd0-58f37c0c2bb7",
+      "Name": "CalculationBaseSberDev",
+      "EntityGuid": "4fefec81-4a1a-4c29-9a96-2239ce589d2a",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "56cbe741-880f-4e6f-9567-343d08494b59",
+      "Name": "Versions",
+      "EntityGuid": "b5fdcbd2-8ab5-45a5-8b45-97e930e3dd41",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "15280407-331e-42f6-b263-041a495b66cd",
+      "Name": "Tracking",
+      "EntityGuid": "f3d3b5a8-678b-4d79-81c5-581e3842f8fe",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "EntityGuid"
+      ],
+      "Versions": []
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "GetHeadCompanies",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "universalTransferDocument",
+          "ParameterType": "global::Sungero.ATS.IUniversalTransferDocument",
+          "ParameterTypeFullName": "Sungero.ATS.IUniversalTransferDocument, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "Subject",
+          "ParameterType": "global::Sungero.Parties.ICompanyBase",
+          "ParameterTypeFullName": "Sungero.Parties.ICompanyBase, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::sberdev.SBContracts.ICompany",
+      "ReturnTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "5c0f7ddf-cd4e-4f13-a068-adaf8141d36a",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "1ff15adf-2922-412a-882c-00f9763e48a1",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "DocumentMetadata",
+      "Number": 2
+    },
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

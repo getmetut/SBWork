@@ -63,7 +63,7 @@ namespace sberdev.SBContracts
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
-      if (!SBContracts.PublicFunctions.Module.IsSystemUser() && _obj.State.IsInserted)
+      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
       {
         bool err = false;
         if (_obj.Account == null)

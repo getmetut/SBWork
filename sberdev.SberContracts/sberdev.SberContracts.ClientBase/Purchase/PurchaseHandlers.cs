@@ -10,6 +10,18 @@ namespace sberdev.SberContracts
   partial class PurchaseClientHandlers
   {
 
+    public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
+    {
+      PublicFunctions.Purchase.UpdateCard(_obj);
+      base.Refresh(e);
+    }
+
+    public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
+    {
+      PublicFunctions.Purchase.UpdateCard(_obj);
+      base.Showing(e);
+    }
+
     public virtual void NecessaryConcludeValueInput(Sungero.Presentation.EnumerationValueInputEventArgs e)
     {
       if (e.NewValue == NecessaryConclude.SupAgreement && _obj.ConcludedContractsKind == ConcludedContractsKind.No)

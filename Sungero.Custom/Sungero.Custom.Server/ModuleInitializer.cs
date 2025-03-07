@@ -13,16 +13,7 @@ namespace Sungero.Custom.Server
     public override bool IsModuleVisible()
     {
       var Role = Roles.GetAll().Where(r => r.Name == "Доступ к обложке Custom").FirstOrDefault();
-      bool marker = false;
-      if (Role != null)
-      {
-        foreach (var Sot in Role.RecipientLinks)
-        {
-          if (Users.Current.Id == Sot.Member.Id)
-            marker = true;
-        }
-      }
-      return marker;
+      return (Role != null && Users.Current.IncludedIn(Role));
     }
 
     public override void Initializing(Sungero.Domain.ModuleInitializingEventArgs e)

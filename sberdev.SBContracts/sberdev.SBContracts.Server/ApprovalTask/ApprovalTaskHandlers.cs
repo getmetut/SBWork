@@ -77,6 +77,11 @@ namespace sberdev.SBContracts
         }
       }
       
+      if (SBContracts.PublicFunctions.Module.IsSystemUser())
+      {
+        _obj.State.Properties.DeliveryMethod.IsRequired = false;
+      }
+      
       // Мезаника проверки договора в Заявке на закупку
       var appProdPurch = SberContracts.AppProductPurchases.As(document);
       if (appProdPurch != null)
