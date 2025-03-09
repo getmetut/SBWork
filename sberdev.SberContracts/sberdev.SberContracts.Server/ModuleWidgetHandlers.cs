@@ -10,6 +10,29 @@ namespace sberdev.SberContracts.Server
   partial class ApprovalAnalyticsWidgetWidgetHandlers
   {
 
+    public virtual string GetApprovalAnalyticsWidgetAssignApprByDeparReportValue()
+    {
+      return Sungero.Shell.Resources.OpenReportHyperlink;
+    }
+
+    public virtual void GetApprovalAnalyticsWidgetAssignApprByDepartChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
+    {
+      var dateRanges = PublicFunctions.Module.GenerateCompletedDateRanges(
+        Calendar.Today,
+        6,
+        _parameters.AnalysisPeriod.Value
+       ).Where(dr => dr.EndDate <= Calendar.Today).ToList();
+      
+      if (!dateRanges.Any())
+      {
+        Logger.Error("Нет доступных диапазонов дат для построения графика");
+        return;
+      }
+      
+     
+    }
+    
+
     public virtual void GetApprovalAnalyticsWidgetAssignAvgApprTimeByDepartChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
     {
       try
@@ -24,7 +47,7 @@ namespace sberdev.SberContracts.Server
         if (dateRange == null)
           return;
 
-        var departmentStats = PublicFunctions.Module.CalculateAssignAvgApprTimeValues(dateRange);
+        var departmentStats = PublicFunctions.Module.CalculateAssignAvgApprTimeByDepartValues(dateRange);
         
         foreach(var stat in departmentStats)
         {
@@ -46,19 +69,19 @@ namespace sberdev.SberContracts.Server
         e.Chart.Axis.Y.MinValue = 0; // Фиксируем начало оси Y
         e.Chart.Axis.X.Title = sberdev.SberContracts.Resources.DeadlineChartXTitle;
         e.Chart.Axis.X.AxisType = AxisType.DateTime;
-
+        
         var dateRanges = PublicFunctions.Module.GenerateCompletedDateRanges(
           Calendar.Today,
           6,
           _parameters.AnalysisPeriod.Value
          ).Where(dr => dr.EndDate <= Calendar.Today).ToList();
-
+        
         if (!dateRanges.Any())
         {
           Logger.Error("Нет доступных диапазонов дат для построения графика");
           return;
         }
-
+        
         Dictionary<string, WidgetPlotChartSeries> series = new Dictionary<string, WidgetPlotChartSeries>();
         
         series[sberdev.SberContracts.Resources.TaskDeadlineSerialAvg] = e.Chart.AddNewSeries(sberdev.SberContracts.Resources.TaskDeadlineSerialAvg, Colors.FromRgb(100, 149, 237));
@@ -75,13 +98,13 @@ namespace sberdev.SberContracts.Server
           }
           
           series[sberdev.SberContracts.Resources.TaskDeadlineSerialAvg]
-            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, sberdev.SberContracts.Resources.TaskDeadlineSerialAvg));
+            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "average"));
           series[sberdev.SberContracts.Resources.TaskDeadlineSerialMin]
-            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, sberdev.SberContracts.Resources.TaskDeadlineSerialMin));
+            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "minimum"));
           series[sberdev.SberContracts.Resources.TaskDeadlineSerialTarget]
-            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, sberdev.SberContracts.Resources.TaskDeadlineSerialTarget));
+            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "target"));
           series[sberdev.SberContracts.Resources.TaskDeadlineSerialMax]
-            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, sberdev.SberContracts.Resources.TaskDeadlineSerialMax));
+            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "maximum"));
         }
       }
       catch (Exception ex)

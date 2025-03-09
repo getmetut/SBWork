@@ -467,7 +467,7 @@
   ],
   "PublicFunctions": [
     {
-      "Name": "CalculateAssignAvgApprTimeValues",
+      "Name": "CalculateAssignAvgApprTimeByDepartValues",
       "Parameters": [
         {
           "Name": "dateRange",
@@ -1093,13 +1093,39 @@
           "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
           "NameGuid": "2cb40fb2-9075-4b71-a27b-75fc436df9d4",
           "Name": "AssignAvgApprTimeByDepartChart",
-          "ChartHeight": 30,
+          "ChartHeight": 25,
           "ChartType": "HorizontalBar",
           "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
           "HandledEvents": [
             "GetValueServer"
           ],
-          "PreviousGuid": "29cb07bf-f37c-411f-b9f6-1f66ca721a43"
+          "PreviousGuid": "aceca0b4-4c90-4fdf-9b50-15d1b6c35393"
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
+          "NameGuid": "366b1618-edcf-4d02-9e67-cc95ddeed646",
+          "Name": "AssignApprByDepartChart",
+          "ChartHeight": 25,
+          "ChartType": "HorizontalBar",
+          "HandledEvents": [
+            "GetValueServer",
+            "ExecuteClient"
+          ],
+          "PreviousGuid": "29cb07bf-f37c-411f-b9f6-1f66ca721a43",
+          "SpecificationType": "Custom"
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetActionMetadata, Sungero.Metadata",
+          "NameGuid": "aceca0b4-4c90-4fdf-9b50-15d1b6c35393",
+          "Name": "AssignApprByDeparReport",
+          "HandledEvents": [
+            "GetValueServer",
+            "ExecuteClient"
+          ],
+          "IsCustomValue": true,
+          "IsMain": true,
+          "PreviousGuid": "366b1618-edcf-4d02-9e67-cc95ddeed646",
+          "SpecificationType": "Custom"
         }
       ],
       "WidgetParameters": [

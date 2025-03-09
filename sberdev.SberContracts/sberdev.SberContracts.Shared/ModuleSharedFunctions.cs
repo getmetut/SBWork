@@ -37,7 +37,6 @@ namespace sberdev.SberContracts.Shared
             break;
 
           case "quarters":
-            // Исправленная логика для кварталов
             int quarter = (endDate.Month - 1) / 3;
             int startMonth = quarter * 3 + 1;
             int endMonth = startMonth + 2;
