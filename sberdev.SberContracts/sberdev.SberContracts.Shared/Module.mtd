@@ -478,6 +478,17 @@
       "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Double>"
     },
     {
+      "Name": "CalculateCompletedAssignByDepartValues",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>"
+    },
+    {
       "Name": "CalculateControlFlowValues",
       "Parameters": [
         {
@@ -1099,25 +1110,26 @@
           "HandledEvents": [
             "GetValueServer"
           ],
-          "PreviousGuid": "aceca0b4-4c90-4fdf-9b50-15d1b6c35393"
+          "PreviousGuid": "aceca0b4-4c90-4fdf-9b50-15d1b6c35393",
+          "UpdatePeriod": "Day"
         },
         {
           "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
           "NameGuid": "366b1618-edcf-4d02-9e67-cc95ddeed646",
-          "Name": "AssignApprByDepartChart",
+          "Name": "AssignCompletedByDepartChart",
           "ChartHeight": 25,
           "ChartType": "HorizontalBar",
+          "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
           "HandledEvents": [
-            "GetValueServer",
-            "ExecuteClient"
+            "GetValueServer"
           ],
           "PreviousGuid": "29cb07bf-f37c-411f-b9f6-1f66ca721a43",
-          "SpecificationType": "Custom"
+          "UpdatePeriod": "Day"
         },
         {
           "$type": "Sungero.Metadata.WidgetActionMetadata, Sungero.Metadata",
           "NameGuid": "aceca0b4-4c90-4fdf-9b50-15d1b6c35393",
-          "Name": "AssignApprByDeparReport",
+          "Name": "AssignCompletedrByDeparReport",
           "HandledEvents": [
             "GetValueServer",
             "ExecuteClient"
@@ -1125,7 +1137,8 @@
           "IsCustomValue": true,
           "IsMain": true,
           "PreviousGuid": "366b1618-edcf-4d02-9e67-cc95ddeed646",
-          "SpecificationType": "Custom"
+          "SpecificationType": "Custom",
+          "UpdatePeriod": "Day"
         }
       ],
       "WidgetParameters": [

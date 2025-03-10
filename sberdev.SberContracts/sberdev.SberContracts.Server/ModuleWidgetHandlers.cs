@@ -10,6 +10,48 @@ namespace sberdev.SberContracts.Server
   partial class ApprovalAnalyticsWidgetWidgetHandlers
   {
 
+    public virtual void GetApprovalAnalyticsWidgetAssignCompletedByDepartChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
+    {
+      
+      try
+      {
+        var dateRange = PublicFunctions.Module.GenerateCompletedDateRanges(
+          Calendar.Today,
+          1, // Текущий период
+          _parameters.AnalysisPeriod.Value).FirstOrDefault();
+        
+        if (dateRange == null)
+          return;
+        
+        // Получаем данные о выполненных и просроченных заданиях по подразделениям
+        var departmentStats = PublicFunctions.Module.CalculateCompletedAssignByDepartValues(dateRange);
+        
+        if (departmentStats == null || !departmentStats.Any())
+          return;
+        
+        // Добавляем данные для каждого подразделения
+        foreach (var kvp in departmentStats)
+        {
+          string department = kvp.Key;
+          var stats = kvp.Value;
+          
+          // Создаем серию для каждого департамента
+          var series = e.Chart.AddNewSeries(department, department);
+          
+          // Добавляем в серию два значения - выполненные и просроченные
+          series.AddValue("Выполнено", "", stats.Completed, Colors.FromRgb(70, 130, 180));
+          series.AddValue("Просрочено", "", stats.Expired, Colors.FromRgb(220, 20, 60));
+        }
+        
+        // Устанавливаем заголовок оси
+        e.Chart.AxisTitle = "Количество заданий";
+      }
+      catch (Exception ex)
+      {
+        Logger.Error("Ошибка в методе GetApprovalAnalyticsWidgetAssignApprByDepartChartValue", ex);
+      }
+    }
+
     public virtual string GetApprovalAnalyticsWidgetAssignApprByDeparReportValue()
     {
       return Sungero.Shell.Resources.OpenReportHyperlink;
@@ -17,19 +59,44 @@ namespace sberdev.SberContracts.Server
 
     public virtual void GetApprovalAnalyticsWidgetAssignApprByDepartChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
     {
-      var dateRanges = PublicFunctions.Module.GenerateCompletedDateRanges(
-        Calendar.Today,
-        6,
-        _parameters.AnalysisPeriod.Value
-       ).Where(dr => dr.EndDate <= Calendar.Today).ToList();
       
-      if (!dateRanges.Any())
+      try
       {
-        Logger.Error("Нет доступных диапазонов дат для построения графика");
-        return;
+        var dateRange = PublicFunctions.Module.GenerateCompletedDateRanges(
+          Calendar.Today,
+          1, // Текущий период
+          _parameters.AnalysisPeriod.Value).FirstOrDefault();
+        
+        if (dateRange == null)
+          return;
+        
+        // Получаем данные о выполненных и просроченных заданиях по подразделениям
+        var departmentStats = PublicFunctions.Module.CalculateCompletedAssignByDepartValues(dateRange);
+        
+        if (departmentStats == null || !departmentStats.Any())
+          return;
+        
+        // Добавляем данные для каждого подразделения
+        foreach (var kvp in departmentStats)
+        {
+          string department = kvp.Key;
+          var stats = kvp.Value;
+          
+          // Создаем серию для каждого департамента
+          var series = e.Chart.AddNewSeries(department, department);
+          
+          // Добавляем в серию два значения - выполненные и просроченные
+          series.AddValue("В срок", "", stats.Completed, Colors.FromRgb(46, 159, 12));
+          series.AddValue("Просрочено", "", stats.Expired, Colors.FromRgb(217, 63, 60));
+        }
+        
+        // Устанавливаем заголовок оси
+        e.Chart.AxisTitle = "Количество заданий";
       }
-      
-     
+      catch (Exception ex)
+      {
+        Logger.Error("Ошибка в методе GetApprovalAnalyticsWidgetAssignApprByDepartChartValue", ex);
+      }
     }
     
 
@@ -37,7 +104,8 @@ namespace sberdev.SberContracts.Server
     {
       try
       {
-        //  e.Chart.AxisTitle
+        // Устанавливаем заголовок оси
+        e.Chart.AxisTitle = "Среднее кол-во дней";
 
         var dateRange = PublicFunctions.Module.GenerateCompletedDateRanges(
           Calendar.Today,
@@ -52,7 +120,7 @@ namespace sberdev.SberContracts.Server
         foreach(var stat in departmentStats)
         {
           var serial = e.Chart.AddNewSeries(stat.Key, stat.Key);
-          serial.AddValue(stat.Key, "", stat.Value, Colors.FromRgb(70, 130, 180));
+          serial.AddValue(stat.Key, "", stat.Value, Colors.FromRgb(100, 149, 237));
         }
       }
       catch (Exception ex)

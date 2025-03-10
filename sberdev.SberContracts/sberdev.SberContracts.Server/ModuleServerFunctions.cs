@@ -1492,23 +1492,6 @@ namespace sberdev.SberContracts.Server
     
     #region Функции виджетов
 
-    public System.Collections.Generic.Dictionary<string, double> CalculateCompletedAssignByDepartValues(IDateRange dateRange)
-    {
-      var result = new Dictionary<string, double>();
-      
-      try
-      {
-        
-      }
-      
-      catch (Exception ex)
-      {
-        Logger.Error("Ошибка расчета выполненных заданий по подразделениям", ex);
-      }
-      
-      return result;
-    }
-    
     /// <summary>
     /// Рассчитать среднее время выполнения заданий по подразделениям
     /// </summary>
@@ -1562,7 +1545,61 @@ namespace sberdev.SberContracts.Server
       
       return result;
     }
-
+    
+    /// <summary>
+    /// Рассчитать количество выполненных и просроченных заданий по подразделениям
+    /// </summary>
+    [Public]
+    public System.Collections.Generic.Dictionary<string, sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo> CalculateCompletedAssignByDepartValues(IDateRange dateRange)
+    {
+      var result = new Dictionary<string, sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>();
+      
+      try
+      {
+        // Строим запрос аналогично CalculateAssignAvgApprTimeByDepartValues
+        var query = Sungero.Workflow.Assignments.GetAll()
+          .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
+                 a.Created >= dateRange.StartDate &&
+                 a.Completed <= dateRange.EndDate &&
+                 a.Performer != null);
+        
+        // Группируем по департаментам в памяти для безопасной работы с объектами
+        var departmentGroups = query
+          .AsEnumerable() // Переводим в память для безопасной работы с объектами
+          .GroupBy(a =>
+                   {
+                     var employee = Sungero.Company.Employees.As(a.Performer);
+                     return employee?.Department?.Name ?? "Без подразделения";
+                   });
+        
+        // Строим статистику для каждого департамента
+        foreach (var group in departmentGroups)
+        {
+          var seriesInfo = sberdev.SBContracts.Structures.Module.AssignApprSeriesInfo.Create();
+          
+          // Общее количество выполненных заданий в группе
+          seriesInfo.Completed = group.Count();
+          
+          // Количество просроченных заданий
+          seriesInfo.Expired = group.Count(a => a.Deadline.HasValue && a.Completed > a.Deadline.Value);
+          
+          // Добавляем в результат
+          result[group.Key] = seriesInfo;
+        }
+        
+        // Сортируем по количеству заданий и ограничиваем 10 департаментами
+        return result
+          .OrderByDescending(kvp => kvp.Value.Completed)
+          .Take(10)
+          .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+      }
+      catch (Exception ex)
+      {
+        Logger.Error("Ошибка расчета количества заданий по подразделениям", ex);
+        return result;
+      }
+    }
+    
     /// <summary>
     /// Функция вычисляет значения для графика ControlFlowChart виджета ApprovalAnalyticsWidget
     /// </summary>
