@@ -47,4 +47,14 @@ namespace sberdev.SBContracts.Structures.Module
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
   }
+  
+  /// <summary>
+  /// Информация о значениях серии в графиках
+  /// </summary>
+  [Public]
+  partial class AssignApprSeriesInfo
+  {
+    public double Completed { get; set; }
+    public double Expired { get; set; }
+  }
 }

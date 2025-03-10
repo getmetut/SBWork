@@ -879,6 +879,21 @@
   ],
   "PublicStructures": [
     {
+      "Name": "AssignApprSeriesInfo",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Completed",
+          "TypeFullName": "global::System.Double"
+        },
+        {
+          "Name": "Expired",
+          "TypeFullName": "global::System.Double"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
       "Name": "ControlFlowSeriesInfo",
       "IsPublic": true,
       "Properties": [
