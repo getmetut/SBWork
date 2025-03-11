@@ -157,4 +157,25 @@
   <data name="CoverDescription_ContrDocsProductReportSberDev" xml:space="preserve">
     <value>Report on all contractual documents. With a list of products.</value>
   </data>
+  <data name="sf_59c4d498_d05e_4758_9441_a3db4509bcdb" xml:space="preserve">
+    <value>Реестр NDA</value>
+  </data>
+  <data name="FilterPanel_GroupkindSDev_01c60a768d0c4c38b38eac0e163deb29" xml:space="preserve">
+    <value>Отбор по виду</value>
+  </data>
+  <data name="FilterPanel_KindDocSDev_07a9f12f15ef4818b3b6164337cea27b" xml:space="preserve">
+    <value>Вид документа</value>
+  </data>
+  <data name="FilterPanel_AuthorDocSDev_d34ee9f9cbad4be6afec06d8e0f1000e" xml:space="preserve">
+    <value>Автор документа</value>
+  </data>
+  <data name="FilterPanel_DateRangeSDev_77d4cbc811014b5b8d527a5fafde2d8f" xml:space="preserve">
+    <value>Зарегистрирован</value>
+  </data>
+  <data name="FilterPanel_DepartmentSDev_4d8b569201574d6e89d43d61adf830f2" xml:space="preserve">
+    <value>Подразделение</value>
+  </data>
+  <data name="FilterPanel_CounterpartySDev_f6d1fe1b63fd4a03bc4f742433a3b952" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
 </root>

@@ -142,4 +142,7 @@
   <data name="Property_GUIDSberDev" xml:space="preserve">
     <value>GUID</value>
   </data>
+  <data name="Property_SaveDocSDev" xml:space="preserve">
+    <value>Документ хранения</value>
+  </data>
 </root>

@@ -539,6 +539,19 @@ namespace sberdev.SBContracts.Shared
         }
       }
       _obj.State.Properties.NMASDevSDev.IsVisible = NMVisible;
+      
+      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
+      {
+        if (_obj.DocumentKind != null)
+        {
+          var kind = sberdev.SBContracts.DocumentKinds.As(_obj.DocumentKind);
+          if (kind.SaveDocSDev.HasValue)
+          {
+            _obj.State.Properties.ValidFrom.IsRequired = kind.SaveDocSDev.Value;
+            _obj.State.Properties.ValidTill.IsRequired = kind.SaveDocSDev.Value;
+          }
+        }
+      }
     }
     
     /// <summary>
