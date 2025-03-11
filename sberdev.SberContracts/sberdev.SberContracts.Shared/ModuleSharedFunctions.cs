@@ -10,6 +10,83 @@ namespace sberdev.SberContracts.Shared
   public class ModuleFunctions
   {
     /// <summary>
+    /// Проверяет, соответствует ли документ выбранному типу
+    /// </summary>
+    [Public]
+    public bool MatchesDocumentType(Sungero.Domain.Shared.IEntity document, string documentType)
+    {
+      if (document == null)
+        return false;
+      
+      // Все типы документов
+      if (string.IsNullOrEmpty(documentType) || documentType == "All")
+        return true;
+      
+      // Преобразуем документ к возможным типам
+      var accounting = sberdev.SBContracts.AccountingDocumentBases.As(document);
+      var contractual = sberdev.SBContracts.ContractualDocuments.As(document);
+      var incomingInvoice = sberdev.SBContracts.IncomingInvoices.As(document);
+      var abstractSup = sberdev.SberContracts.AbstractsSupAgreements.As(document);
+      
+      switch (documentType)
+      {
+        case "Contractual":
+          // SBContracts.Contract, SBContracts.SupAgreement (наследники ContractualDocument)
+          return contractual != null && abstractSup == null;
+          
+        case "IncInvoce":
+          // SBContracts.IncomingInvoice
+          return incomingInvoice != null;
+          
+        case "Accounting":
+          // SBContracts.AccountingDocumentBase кроме IncomingInvoice
+          return accounting != null && incomingInvoice == null;
+          
+        case "AbstractContr":
+          // SberContracts.AbstractsSupAgreement
+          return abstractSup != null;
+          
+        case "Another":
+          // Все остальные типы
+          return document != null && accounting == null && contractual == null;
+          
+        default:
+          return false;
+      }
+    }
+
+    /// <summary>
+    /// Получить документ из задания и проверить его тип
+    /// </summary>
+    [Public]
+    public bool AssignmentMatchesDocumentType(Sungero.Workflow.IAssignment assignment, string documentType)
+    {
+      if (string.IsNullOrEmpty(documentType) || documentType == "All")
+        return true;
+      
+      var document = assignment.Attachments.FirstOrDefault();
+      return MatchesDocumentType(document, documentType);
+    }
+
+    /// <summary>
+    /// Получить документ из задачи и проверить его тип
+    /// </summary>
+    [Public]
+    public bool TaskMatchesDocumentType(Sungero.Workflow.ITask task, string documentType)
+    {
+      if (string.IsNullOrEmpty(documentType) || documentType == "All")
+        return true;
+      
+      var approvalTask = sberdev.SBContracts.ApprovalTasks.As(task);
+      if (approvalTask == null)
+        return false;
+      
+      var document = approvalTask.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      return MatchesDocumentType(document, documentType);
+    }
+
+
+    /// <summary>
     /// Возвращает список завершенных рабочих периодов до текущей даты
     /// </summary>
     [Public]

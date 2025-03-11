@@ -1491,14 +1491,45 @@ namespace sberdev.SberContracts.Server
     #endregion
     
     #region Функции виджетов
+    
+    /// <summary>
+    /// Этот метод уже не используется, но оставляем для обратной совместимости
+    /// </summary>
+    [Public]
+    public int GetExecutionTaskTime(SBContracts.IApprovalTask task)
+    {
+      try
+      {
+        if (task?.Started == null)
+          return 0;
+        
+        var lastAssignment = SBContracts.ApprovalAssignments.GetAll()
+          .Where(a => a.Task.Id == task.Id &&
+                 a.Status == Sungero.Workflow.Assignment.Status.Completed &&
+                 a.Completed != null &&
+                 a.Completed >= task.Started)
+          .OrderByDescending(a => a.Completed)
+          .FirstOrDefault();
+        
+        return lastAssignment?.Completed != null
+          ? SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastAssignment.Completed)
+          : 0;
+      }
+      catch (Exception ex)
+      {
+        Logger.Error("Ошибка в GetExecutionTaskTime", ex);
+        return 0;
+      }
+    }
 
     /// <summary>
     /// Рассчитать среднее время выполнения заданий по подразделениям
     /// </summary>
     [Public]
-    public System.Collections.Generic.Dictionary<string, double> CalculateAssignAvgApprTimeByDepartValues(IDateRange dateRange)
+    public System.Collections.Generic.Dictionary<string, double> CalculateAssignAvgApprTimeByDepartValues(
+      sberdev.SBContracts.Structures.Module.IDateRange dateRange, string documentType = "All")
     {
-      var result = new Dictionary<string, double>();
+      var result = new System.Collections.Generic.Dictionary<string, double>();
       
       try
       {
@@ -1507,72 +1538,99 @@ namespace sberdev.SberContracts.Server
                  a.Created >= dateRange.StartDate &&
                  a.Completed <= dateRange.EndDate &&
                  a.Performer != null);
-
-        var departmentStats = query
-          .AsEnumerable() // Переводим в память для безопасной работы с объектами
-          .GroupBy(a =>
-                   {
-                     var employee = Sungero.Company.Employees.As(a.Performer);
-                     return employee?.Department?.Name ?? "Без подразделения";
-                   })
-          .Select(g => new
-                  {
-                    Department = g.Key,
-                    AvgDays = g.Average(a =>
-                                        {
-                                          try
-                                          {
-                                            return SBContracts.PublicFunctions.Module.CalculateBusinessDays(a.Created , a.Completed);
-                                          }
-                                          catch
-                                          {
-                                            return 0; // Обработка некорректных дат
-                                          }
-                                        })
+        
+        // Получаем задания и фильтруем по типу документа
+        var assignments = query.ToList();
+        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
+        {
+          assignments = assignments.Where(a => PublicFunctions.Module.AssignmentMatchesDocumentType(a, documentType)).ToList();
+        }
+        
+        // Вычисляем средние значения по департаментам
+        var departmentWorkDays = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<double>>();
+        
+        foreach (var assignment in assignments)
+        {
+          try
+          {
+            // Определяем департамент
+            var employee = Sungero.Company.Employees.As(assignment.Performer);
+            string departmentName = employee?.Department?.Name ?? "Без подразделения";
+            
+            // Вычисляем рабочие дни
+            double workDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
+              assignment.Created,
+              assignment.Completed);
+            
+            if (workDays <= 0)
+              continue;
+            
+            if (!departmentWorkDays.ContainsKey(departmentName))
+              departmentWorkDays[departmentName] = new System.Collections.Generic.List<double>();
+            
+            departmentWorkDays[departmentName].Add(workDays);
+          }
+          catch
+          {
+            continue;
+          }
+        }
+        
+        // Вычисляем средние значения и сортируем
+        var departmentStats = departmentWorkDays
+          .Where(kvp => kvp.Value.Any())
+          .Select(kvp => new {
+                    Department = kvp.Key,
+                    AvgDays = kvp.Value.Average()
                   })
-          .Where(x => x.AvgDays > 0) // Исключаем нулевые значения
-          .OrderByDescending(x => x.AvgDays);
-
+          .Where(x => x.AvgDays > 0)
+          .OrderByDescending(x => x.AvgDays)
+          .Take(10);
+        
         foreach (var stat in departmentStats)
         {
-          result[stat.Department] = Math.Round(stat.AvgDays, 1);
+          result[stat.Department] = System.Math.Round(stat.AvgDays, 1);
         }
       }
-      catch (Exception ex)
+      catch (System.Exception ex)
       {
-        Logger.Error("Ошибка расчета среднего времени выполненеия заданий по подразделениям", ex);
+        Logger.Error("Ошибка расчета среднего времени выполнения заданий по подразделениям", ex);
       }
       
       return result;
     }
-    
+
     /// <summary>
     /// Рассчитать количество выполненных и просроченных заданий по подразделениям
     /// </summary>
     [Public]
-    public System.Collections.Generic.Dictionary<string, sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo> CalculateCompletedAssignByDepartValues(IDateRange dateRange)
+    public System.Collections.Generic.Dictionary<string, sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>
+      CalculateCompletedAssignByDepartValues(sberdev.SBContracts.Structures.Module.IDateRange dateRange, string documentType = "All")
     {
-      var result = new Dictionary<string, sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>();
+      var result = new System.Collections.Generic.Dictionary<string, sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>();
       
       try
       {
-        // Строим запрос аналогично CalculateAssignAvgApprTimeByDepartValues
         var query = Sungero.Workflow.Assignments.GetAll()
           .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
                  a.Created >= dateRange.StartDate &&
                  a.Completed <= dateRange.EndDate &&
                  a.Performer != null);
         
-        // Группируем по департаментам в памяти для безопасной работы с объектами
-        var departmentGroups = query
-          .AsEnumerable() // Переводим в память для безопасной работы с объектами
-          .GroupBy(a =>
-                   {
+        // Получаем задания и фильтруем по типу документа
+        var assignments = query.ToList();
+        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
+        {
+          assignments = assignments.Where(a => PublicFunctions.Module.AssignmentMatchesDocumentType(a, documentType)).ToList();
+        }
+        
+        // Группируем по департаментам
+        var departmentGroups = assignments
+          .GroupBy(a => {
                      var employee = Sungero.Company.Employees.As(a.Performer);
                      return employee?.Department?.Name ?? "Без подразделения";
                    });
         
-        // Строим статистику для каждого департамента
         foreach (var group in departmentGroups)
         {
           var seriesInfo = sberdev.SBContracts.Structures.Module.AssignApprSeriesInfo.Create();
@@ -1583,7 +1641,6 @@ namespace sberdev.SberContracts.Server
           // Количество просроченных заданий
           seriesInfo.Expired = group.Count(a => a.Deadline.HasValue && a.Completed > a.Deadline.Value);
           
-          // Добавляем в результат
           result[group.Key] = seriesInfo;
         }
         
@@ -1593,37 +1650,19 @@ namespace sberdev.SberContracts.Server
           .Take(10)
           .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
       }
-      catch (Exception ex)
+      catch (System.Exception ex)
       {
         Logger.Error("Ошибка расчета количества заданий по подразделениям", ex);
         return result;
       }
     }
-    
-    /// <summary>
-    /// Функция вычисляет значения для графика ControlFlowChart виджета ApprovalAnalyticsWidget
-    /// </summary>
-    [Public]
-    public System.Collections.Generic.Dictionary<string, int> CalculateControlFlowValues(IDateRange dateRange)
-    {
-      Dictionary<string, int> controlFlowSeriesValue = new Dictionary<string, int>();
-      var tasks = SBContracts.ApprovalTasks.GetAll().Where(t => Sungero.Core.Calendar.Between(t.Started, dateRange.StartDate, dateRange.EndDate));
-      controlFlowSeriesValue["started"] = tasks.Where(t => t.Status != SBContracts.ApprovalTask.Status.Draft).Count();
-      controlFlowSeriesValue["completed"] = tasks.Where(t => t.Status == SBContracts.ApprovalTask.Status.Completed).Count();
-      controlFlowSeriesValue["inprocess"] = tasks.Where(t => t.Status == SBContracts.ApprovalTask.Status.InProcess
-                                                        || t.Status == SBContracts.ApprovalTask.Status.UnderReview).Count();
-      controlFlowSeriesValue["expired"] = tasks.Where(t => (t.Status == SBContracts.ApprovalTask.Status.InProcess
-                                                            || t.Status == SBContracts.ApprovalTask.Status.Suspended
-                                                            || t.Status == SBContracts.ApprovalTask.Status.UnderReview)
-                                                      && t.MaxDeadline < Sungero.Core.Calendar.Now).Count();
-      return controlFlowSeriesValue;
-    }
-    
+
     /// <summary>
     /// Рассчитать показатели для графика
     /// </summary>
     [Public]
-    public double CalculateTaskDeadlineChartPoint(IDateRange dateRange, string serialType)
+    public double CalculateTaskDeadlineChartPoint(
+      sberdev.SBContracts.Structures.Module.IDateRange dateRange, string serialType, string documentType = "All")
     {
       try
       {
@@ -1633,50 +1672,48 @@ namespace sberdev.SberContracts.Server
           return 0;
         }
         
-        // Оптимизация запроса - выполняем его сразу в базе и кэшируем результаты в памяти
-        var validTaskIds = SBContracts.ApprovalTasks.GetAll()
-          .Where(t => t.Status == SBContracts.ApprovalTask.Status.Completed &&
+        // Получаем задачи и фильтруем по типу документа
+        var validTasks = sberdev.SBContracts.ApprovalTasks.GetAll()
+          .Where(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.Completed &&
                  t.Started != null &&
                  t.Started >= dateRange.StartDate &&
                  t.Started <= dateRange.EndDate)
-          .Select(t => t.Id)
           .ToList();
         
-        if (!validTaskIds.Any())
+        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
+        {
+          validTasks = validTasks.Where(t => PublicFunctions.Module.TaskMatchesDocumentType(t, documentType)).ToList();
+        }
+        
+        if (!validTasks.Any())
         {
           Logger.Debug($"Нет завершенных задач в диапазоне {dateRange.StartDate:dd.MM.yyyy} - {dateRange.EndDate:dd.MM.yyyy}");
           return 0;
         }
         
-        // Создаем словарь для хранения задач и их времени выполнения
-        Dictionary<int, int> taskExecutionDays = new Dictionary<int, int>();
-        Dictionary<int, int> taskTargetDays = new Dictionary<int, int>();
+        // Словари для хранения данных
+        System.Collections.Generic.Dictionary<int, int> taskExecutionDays = new System.Collections.Generic.Dictionary<int, int>();
+        System.Collections.Generic.Dictionary<int, int> taskTargetDays = new System.Collections.Generic.Dictionary<int, int>();
         
-        // Получаем задачи по IDs (избегаем потери производительности из-за деконструкции всех полей)
-        var tasks = SBContracts.ApprovalTasks.GetAll()
-          .Where(t => validTaskIds.Contains(t.Id))
-          .ToList();
-        
-        foreach (var task in tasks)
+        foreach (var task in validTasks)
         {
           // Вычисляем время выполнения
-          int days = GetExecutionTaskTime(task);
+          int days = PublicFunctions.Module.GetExecutionTaskTime(task);
           if (days > 0)
             taskExecutionDays[(int)task.Id] = days;
           
           // Вычисляем целевое время
           if (task.MaxDeadline != null && task.Started <= task.MaxDeadline)
           {
-            int targetDays = SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, task.MaxDeadline);
+            int targetDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, task.MaxDeadline);
             if (targetDays > 0)
               taskTargetDays[(int)task.Id] = targetDays;
           }
         }
         
-        // Важно - преобразуем названия серий в нижний регистр для надежного сравнения
+        // Вычисление значения в зависимости от типа серии
         serialType = serialType.ToLower();
         
-        // Вычисление значения в зависимости от типа серии
         if (serialType == "average" && taskExecutionDays.Any())
           return taskExecutionDays.Values.Average();
         
@@ -1689,10 +1726,9 @@ namespace sberdev.SberContracts.Server
         if (serialType == "target" && taskTargetDays.Any())
           return taskTargetDays.Values.Average();
         
-        Logger.Debug($"Тип серии {serialType} не дал результатов");
         return 0;
       }
-      catch (Exception ex)
+      catch (System.Exception ex)
       {
         Logger.Error($"Ошибка в CalculateTaskDeadlineChartPoint: {ex.Message}", ex);
       }
@@ -1700,38 +1736,45 @@ namespace sberdev.SberContracts.Server
     }
 
     /// <summary>
-    /// Получить время выполнения задачи (в днях). Время считается от старта задачи до последнего завершенного задания
+    /// Функция вычисляет значения для графика ControlFlowChart виджета ApprovalAnalyticsWidget
     /// </summary>
     [Public]
-    public int GetExecutionTaskTime(SBContracts.IApprovalTask task)
+    public System.Collections.Generic.Dictionary<string, int> CalculateControlFlowValues(
+      sberdev.SBContracts.Structures.Module.IDateRange dateRange, string documentType = "All")
     {
+      System.Collections.Generic.Dictionary<string, int> controlFlowSeriesValue = new System.Collections.Generic.Dictionary<string, int>();
+      
       try
       {
-        if (task?.Started == null)
-          return 0;
+        // Получаем задачи и фильтруем по типу документа
+        var tasks = sberdev.SBContracts.ApprovalTasks.GetAll()
+          .Where(t => Sungero.Core.Calendar.Between(t.Started, dateRange.StartDate, dateRange.EndDate))
+          .ToList();
         
-        // Ищем последнее завершенное задание - исправлено сравнение статуса
-        var lastAssignment = SBContracts.ApprovalAssignments.GetAll()
-          .Where(a => a.Task.Id == task.Id &&
-                 a.Status == Sungero.Workflow.Assignment.Status.Completed && // Исправлено - статус задания
-                 a.Completed != null &&
-                 a.Completed >= task.Started)
-          .OrderByDescending(a => a.Completed)
-          .FirstOrDefault();
-        
-        if (lastAssignment?.Completed != null)
+        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
         {
-          int days = SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastAssignment.Completed);
-          return days > 0 ? days : 0;
+          tasks = tasks.Where(t => PublicFunctions.Module.TaskMatchesDocumentType(t, documentType)).ToList();
         }
         
-        return 0;
+        controlFlowSeriesValue["started"] = tasks.Count(t => t.Status != sberdev.SBContracts.ApprovalTask.Status.Draft);
+        controlFlowSeriesValue["completed"] = tasks.Count(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.Completed);
+        controlFlowSeriesValue["inprocess"] = tasks.Count(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess
+                                                          || t.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview);
+        controlFlowSeriesValue["expired"] = tasks.Count(t => (t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess
+                                                              || t.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended
+                                                              || t.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview)
+                                                        && t.MaxDeadline < Sungero.Core.Calendar.Now);
       }
-      catch (Exception ex)
+      catch (System.Exception ex)
       {
-        Logger.Error("Ошибка в GetExecutionTaskTime", ex);
-        return 0;
+        Logger.Error("Ошибка в CalculateControlFlowValues", ex);
+        controlFlowSeriesValue["started"] = 0;
+        controlFlowSeriesValue["completed"] = 0;
+        controlFlowSeriesValue["inprocess"] = 0;
+        controlFlowSeriesValue["expired"] = 0;
       }
+      
+      return controlFlowSeriesValue;
     }
     #endregion
     

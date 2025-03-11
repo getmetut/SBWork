@@ -109,4 +109,22 @@
 2) Аналитика сроков согласования – показывает среднее, максимальное, минимальное и целевое время закрытия задач.
 3) Средний срок согласования в разрезе служб – анализирует и сравнивает среднее время согласования задач для различных служб.</value>
   </data>
+  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_Contractual" xml:space="preserve">
+    <value>Договорные</value>
+  </data>
+  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_IncInvoce" xml:space="preserve">
+    <value>Входящие счета</value>
+  </data>
+  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_Accounting" xml:space="preserve">
+    <value>Финансовые</value>
+  </data>
+  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_AbstractContr" xml:space="preserve">
+    <value>Закупочные (не только)</value>
+  </data>
+  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_Another" xml:space="preserve">
+    <value>Другие</value>
+  </data>
+  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_All" xml:space="preserve">
+    <value>Все</value>
+  </data>
 </root>
