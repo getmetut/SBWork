@@ -9,7 +9,39 @@ namespace sberdev.SberContracts.Server
 {
   partial class ApprovalAnalyticsWidgetWidgetHandlers
   {
-    public virtual void GetApprovalAnalyticsWidgetAssignApprByDepartChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
+
+    public virtual void GetApprovalAnalyticsWidgetAssignAvgApprTimeByDepartChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
+    {
+      try
+      {
+        e.Chart.AxisTitle = "Среднее кол-во дней";
+
+        var dateRange = PublicFunctions.Module.GenerateCompletedDateRanges(
+          Sungero.Core.Calendar.Today,
+          1, // Текущий период
+          _parameters.AnalysisPeriod.Value).FirstOrDefault();
+
+        if (dateRange == null)
+          return;
+
+        // Передаем тип документа как строку
+        var departmentStats = PublicFunctions.Module.CalculateAssignAvgApprTimeByDepartValues(
+          dateRange,
+          _parameters.DocumentTypes.Value);
+        
+        foreach(var stat in departmentStats)
+        {
+          var serial = e.Chart.AddNewSeries(stat.Key, stat.Key);
+          serial.AddValue(stat.Key, "", stat.Value, Sungero.Core.Colors.FromRgb(100, 149, 237));
+        }
+      }
+      catch (System.Exception ex)
+      {
+        Logger.Error("Ошибка построения гистограммы", ex);
+      }
+    }
+
+    public virtual void GetApprovalAnalyticsWidgetAssignCompletedByDepartChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
     {
       try
       {
@@ -45,37 +77,6 @@ namespace sberdev.SberContracts.Server
       catch (System.Exception ex)
       {
         Logger.Error("Ошибка в методе GetApprovalAnalyticsWidgetAssignApprByDepartChartValue", ex);
-      }
-    }
-
-    public virtual void GetApprovalAnalyticsWidgetAssignAvgApprTimeByDepartChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
-    {
-      try
-      {
-        e.Chart.AxisTitle = "Среднее кол-во дней";
-
-        var dateRange = PublicFunctions.Module.GenerateCompletedDateRanges(
-          Sungero.Core.Calendar.Today,
-          1, // Текущий период
-          _parameters.AnalysisPeriod.Value).FirstOrDefault();
-
-        if (dateRange == null)
-          return;
-
-        // Передаем тип документа как строку
-        var departmentStats = PublicFunctions.Module.CalculateAssignAvgApprTimeByDepartValues(
-          dateRange,
-          _parameters.DocumentTypes.Value);
-        
-        foreach(var stat in departmentStats)
-        {
-          var serial = e.Chart.AddNewSeries(stat.Key, stat.Key);
-          serial.AddValue(stat.Key, "", stat.Value, Sungero.Core.Colors.FromRgb(100, 149, 237));
-        }
-      }
-      catch (System.Exception ex)
-      {
-        Logger.Error("Ошибка построения гистограммы", ex);
       }
     }
 
@@ -139,7 +140,8 @@ namespace sberdev.SberContracts.Server
 
     public virtual void GetApprovalAnalyticsWidgetControlFlowChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
     {
-      try {
+      try
+      {
         e.Chart.AxisTitle = sberdev.SberContracts.Resources.ControlFlowChartAxis;
         var dateRangesList = PublicFunctions.Module.GenerateCompletedDateRanges(Sungero.Core.Calendar.Now, 6, _parameters.AnalysisPeriod.Value);
         var valuesInfos = PublicFunctions.Module.CreateControlFlowSeriesInfosList();
@@ -163,12 +165,6 @@ namespace sberdev.SberContracts.Server
       {
         Logger.Error("Ошибка в методе GetApprovalAnalyticsWidgetControlFlowChartValue", ex);
       }
-    }
-
-    public virtual IQueryable<Sungero.Docflow.IApprovalTask> ApprovalAnalyticsWidgetControlFlowChartFiltering(IQueryable<Sungero.Docflow.IApprovalTask> query, Sungero.Domain.WidgetBarChartFilteringEventArgs e)
-    {
-      //  var filtredQuery = query.
-      return query;
     }
   }
 

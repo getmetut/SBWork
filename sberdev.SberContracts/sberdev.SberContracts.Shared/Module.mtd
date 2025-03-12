@@ -1158,7 +1158,6 @@
           "ChartType": "VerticalClusteredBar",
           "EntityGuid": "100950d0-03d2-44f0-9e31-f9c8dfdf3829",
           "HandledEvents": [
-            "FilteringServer",
             "GetValueServer"
           ],
           "UpdatePeriod": "Day"
