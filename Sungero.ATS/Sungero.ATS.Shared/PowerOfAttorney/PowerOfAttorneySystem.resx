@@ -121,4 +121,73 @@
   <data name="ControlGroup_14190e59d9db4b37945239c44dd4800a" xml:space="preserve">
     <value>Персональные данные</value>
   </data>
+  <data name="Property_CategorySDev" xml:space="preserve">
+    <value>Категория доверенности</value>
+  </data>
+  <data name="Enum_CategorySDev_General" xml:space="preserve">
+    <value>Генеральная</value>
+  </data>
+  <data name="Enum_CategorySDev_Consumables" xml:space="preserve">
+    <value>Расходная с доп. типологией по МВЗ.</value>
+  </data>
+  <data name="Enum_CategorySDev_Profitable" xml:space="preserve">
+    <value>Доходная</value>
+  </data>
+  <data name="Enum_CategorySDev_NonMonetary" xml:space="preserve">
+    <value>Неденежная</value>
+  </data>
+  <data name="Enum_CategorySDev_Financial" xml:space="preserve">
+    <value>Бухгалтерская/финансовая/налоговая</value>
+  </data>
+  <data name="Enum_CategorySDev_Representation" xml:space="preserve">
+    <value>Представление интересов</value>
+  </data>
+  <data name="Enum_CategorySDev_Warehouse" xml:space="preserve">
+    <value>Складская</value>
+  </data>
+  <data name="Enum_CategorySDev_ShoppingSDev" xml:space="preserve">
+    <value>Получение ТМЦ</value>
+  </data>
+  <data name="Enum_CategorySDev_Customs" xml:space="preserve">
+    <value>Таможенная</value>
+  </data>
+  <data name="Enum_CategorySDev_ETP" xml:space="preserve">
+    <value>ЭТП (электронные торги)</value>
+  </data>
+  <data name="Enum_CategorySDev_HR" xml:space="preserve">
+    <value>HR</value>
+  </data>
+  <data name="Enum_CategorySDev_Commercial" xml:space="preserve">
+    <value>Коммерческая (на КП)</value>
+  </data>
+  <data name="Enum_CategorySDev_OneTime" xml:space="preserve">
+    <value>Разовая</value>
+  </data>
+  <data name="Enum_CategorySDev_Other" xml:space="preserve">
+    <value>Иная</value>
+  </data>
+  <data name="Resource_fc50c88831554ff196e8ff7064894ead" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_fc50c88831554ff196e8ff7064894ead_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ddf41ead829a4a3f8d12d40a52b7440c" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_ddf41ead829a4a3f8d12d40a52b7440c_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f0607051ea774af2b7966d11cd8a7374" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_f0607051ea774af2b7966d11cd8a7374_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_a915c070568d4f08a7365fbdabe9e559" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_a915c070568d4f08a7365fbdabe9e559_EmptyText" xml:space="preserve">
+    <value />
+  </data>
 </root>
