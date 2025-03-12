@@ -178,4 +178,10 @@
   <data name="FilterPanel_CounterpartySDev_f6d1fe1b63fd4a03bc4f742433a3b952" xml:space="preserve">
     <value>Контрагент</value>
   </data>
+  <data name="CoverAction_ReestrNDASungero" xml:space="preserve">
+    <value>Реестр NDA</value>
+  </data>
+  <data name="CoverDescription_ReestrNDASungero" xml:space="preserve">
+    <value>Реестр документов NDA и Соглашения об ЭДО с фильтрацией</value>
+  </data>
 </root>

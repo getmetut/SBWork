@@ -64,6 +64,14 @@
         "ReportId": "ef8aad9a-8709-4b9e-9876-bfdd72102167"
       },
       {
+        "$type": "Sungero.Metadata.CoverComputableFolderActionMetadata, Sungero.Metadata",
+        "NameGuid": "34918dcb-601a-488b-814b-0152ccca40cd",
+        "Name": "ReestrNDASungero",
+        "ComputableFolderId": "59c4d498-d05e-4758-9441-a3db4509bcdb",
+        "GroupId": "136b5b7b-053a-4ca1-8f05-79af1fc2dffb",
+        "PreviousItemGuid": "1f58bc0f-bdbf-42db-b4bc-d75e41275793"
+      },
+      {
         "$type": "Sungero.Metadata.CoverReportActionMetadata, Sungero.Reporting.Shared",
         "NameGuid": "41fe7372-305e-467b-9ae2-ce87bd9749b4",
         "Name": "ContrDocsProductReportSberDev",
