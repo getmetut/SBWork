@@ -1687,7 +1687,7 @@ namespace sberdev.SberContracts.Server
         
         if (!validTasks.Any())
         {
-          Logger.Debug($"Нет завершенных задач в диапазоне {dateRange.StartDate:dd.MM.yyyy} - {dateRange.EndDate:dd.MM.yyyy}");
+          Logger.Debug($"CalculateTaskDeadlineChartPoint: Нет завершенных задач в диапазоне {dateRange.StartDate:dd.MM.yyyy} - {dateRange.EndDate:dd.MM.yyyy}");
           return 0;
         }
         
@@ -1768,10 +1768,6 @@ namespace sberdev.SberContracts.Server
       catch (System.Exception ex)
       {
         Logger.Error("Ошибка в CalculateControlFlowValues", ex);
-        controlFlowSeriesValue["started"] = 0;
-        controlFlowSeriesValue["completed"] = 0;
-        controlFlowSeriesValue["inprocess"] = 0;
-        controlFlowSeriesValue["expired"] = 0;
       }
       
       return controlFlowSeriesValue;

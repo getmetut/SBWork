@@ -1145,137 +1145,10 @@
   "Version": "4.33.0.0",
   "Widgets": [
     {
-      "NameGuid": "ed45fef3-c3a1-4091-888a-4bb05df905ae",
-      "Name": "ApprovalAnalyticsWidget",
-      "Color": "WidgetColor1",
-      "ColumnSpan": 40,
-      "WidgetItems": [
-        {
-          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
-          "NameGuid": "0e73f28e-5574-49fc-93fd-da7b7580e501",
-          "Name": "ControlFlowChart",
-          "ChartHeight": 12,
-          "ChartType": "VerticalClusteredBar",
-          "EntityGuid": "100950d0-03d2-44f0-9e31-f9c8dfdf3829",
-          "HandledEvents": [
-            "GetValueServer"
-          ]
-        },
-        {
-          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
-          "NameGuid": "29cb07bf-f37c-411f-b9f6-1f66ca721a43",
-          "Name": "TaskDeadlineChart",
-          "ChartHeight": 12,
-          "ChartType": "Plot",
-          "HandledEvents": [
-            "GetValueServer"
-          ],
-          "PreviousGuid": "0e73f28e-5574-49fc-93fd-da7b7580e501",
-          "SpecificationType": "Custom"
-        },
-        {
-          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
-          "NameGuid": "2cb40fb2-9075-4b71-a27b-75fc436df9d4",
-          "Name": "AssignAvgApprTimeByDepartChart",
-          "ChartHeight": 25,
-          "ChartType": "HorizontalBar",
-          "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
-          "HandledEvents": [
-            "GetValueServer"
-          ],
-          "PreviousGuid": "366b1618-edcf-4d02-9e67-cc95ddeed646"
-        },
-        {
-          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
-          "NameGuid": "366b1618-edcf-4d02-9e67-cc95ddeed646",
-          "Name": "AssignCompletedByDepartChart",
-          "ChartHeight": 25,
-          "ChartType": "HorizontalBar",
-          "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
-          "HandledEvents": [
-            "GetValueServer"
-          ],
-          "PreviousGuid": "29cb07bf-f37c-411f-b9f6-1f66ca721a43"
-        }
-      ],
-      "WidgetParameters": [
-        {
-          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
-          "NameGuid": "aacf83a1-0fbe-41b3-9b11-be96929c92b5",
-          "Name": "AnalysisPeriod",
-          "DefaultValue": {
-            "NameGuid": "445633e3-04fe-4bfd-a689-1065f0856557",
-            "Name": "Weeks",
-            "Code": "Weeks"
-          },
-          "DirectValues": [
-            {
-              "NameGuid": "445633e3-04fe-4bfd-a689-1065f0856557",
-              "Name": "Weeks",
-              "Code": "Weeks"
-            },
-            {
-              "NameGuid": "887d200f-5c8b-4bed-adde-dc1e2c1b3831",
-              "Name": "Months",
-              "Code": "Months"
-            },
-            {
-              "NameGuid": "99417d52-7dde-4057-a3fd-8ef3236a031a",
-              "Name": "Quarters",
-              "Code": "Quarters"
-            }
-          ]
-        },
-        {
-          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
-          "NameGuid": "1cc0098a-f5a9-48f7-ab6a-62b8a75c0924",
-          "Name": "DocumentTypes",
-          "DefaultValue": {
-            "NameGuid": "72cc0181-c5bd-4ade-b239-95673c0b1a81",
-            "Name": "All",
-            "Code": "All"
-          },
-          "DirectValues": [
-            {
-              "NameGuid": "72cc0181-c5bd-4ade-b239-95673c0b1a81",
-              "Name": "All",
-              "Code": "All"
-            },
-            {
-              "NameGuid": "583b51f2-c04a-4c07-a757-1edb11c7809a",
-              "Name": "Contractual",
-              "Code": "Contractual"
-            },
-            {
-              "NameGuid": "91e65218-c589-4a9b-ac2d-d7b68e9bc28c",
-              "Name": "IncInvoce",
-              "Code": "IncInvoce"
-            },
-            {
-              "NameGuid": "8c0736a6-9fa4-4b80-adda-eec047ec8443",
-              "Name": "Accounting",
-              "Code": "Accounting"
-            },
-            {
-              "NameGuid": "736356df-5d93-48b4-9510-608c3c0507b4",
-              "Name": "AbstractContr",
-              "Code": "AbstractContr"
-            },
-            {
-              "NameGuid": "8d1e36cc-ee40-4cb9-b57d-26b1224748fe",
-              "Name": "Another",
-              "Code": "Another"
-            }
-          ],
-          "PreviousGuid": "aacf83a1-0fbe-41b3-9b11-be96929c92b5"
-        }
-      ]
-    },
-    {
       "NameGuid": "c2f21ab6-4272-410e-a676-52af22433fd1",
       "Name": "AssignCompletedByDepartWidget",
       "Color": "WidgetColor1",
-      "ColumnSpan": 15,
+      "ColumnSpan": 20,
       "WidgetItems": [
         {
           "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
@@ -1366,7 +1239,7 @@
       "NameGuid": "c48b6f8a-c210-4686-a4a2-1ead18d40dee",
       "Name": "TaskFlowWidget",
       "Color": "WidgetColor1",
-      "ColumnSpan": 30,
+      "ColumnSpan": 40,
       "WidgetItems": [
         {
           "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
@@ -1457,7 +1330,7 @@
       "NameGuid": "3ed83223-b1ad-4c1d-8f53-dfa9f50a7a86",
       "Name": "TaskDeadlineWidget",
       "Color": "WidgetColor1",
-      "ColumnSpan": 30,
+      "ColumnSpan": 40,
       "WidgetItems": [
         {
           "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
@@ -1548,7 +1421,7 @@
       "NameGuid": "2db813c7-b58f-49ea-ade8-1f4e13b544b9",
       "Name": "AssignAvgApprTimeByDepartWidget",
       "Color": "WidgetColor1",
-      "ColumnSpan": 15,
+      "ColumnSpan": 20,
       "WidgetItems": [
         {
           "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",

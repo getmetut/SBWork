@@ -88,48 +88,6 @@
   <data name="JobDescription_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
     <value>Чистит папку с временными документами.</value>
   </data>
-  <data name="Enum_ApprovalAnalyticsWidget_AnalysisPeriod_Weeks" xml:space="preserve">
-    <value>Недели</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_AnalysisPeriod_Months" xml:space="preserve">
-    <value>Месяцы</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_AnalysisPeriod_Quarters" xml:space="preserve">
-    <value>Кварталы</value>
-  </data>
-  <data name="WidgetParameter_ApprovalAnalyticsWidget_AnalysisPeriod" xml:space="preserve">
-    <value>Период анализа</value>
-  </data>
-  <data name="WidgetTitle_ApprovalAnalyticsWidget" xml:space="preserve">
-    <value>Аналитика согласований</value>
-  </data>
-  <data name="WidgetDescription_ApprovalAnalyticsWidget" xml:space="preserve">
-    <value>Виджет отображает три типа графиков для анализа процесса согласования задач:
-1) Общая аналитика задач на согласование – включает четыре ключевых показателя: количество запущенных задач, закрытых задач, задач в процессе и просроченных задач.
-2) Аналитика сроков согласования – 
-3) Средний срок согласования в разрезе служб – </value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_Contractual" xml:space="preserve">
-    <value>Договорные</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_IncInvoce" xml:space="preserve">
-    <value>Входящие счета</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_Accounting" xml:space="preserve">
-    <value>Финансовые</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_AbstractContr" xml:space="preserve">
-    <value>Закупочные (не только)</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_Another" xml:space="preserve">
-    <value>Другие</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_All" xml:space="preserve">
-    <value>Все</value>
-  </data>
-  <data name="WidgetParameter_ApprovalAnalyticsWidget_DocumentTypes" xml:space="preserve">
-    <value>Типы документа</value>
-  </data>
   <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Weeks" xml:space="preserve">
     <value>Недели</value>
   </data>
@@ -255,5 +213,8 @@
   </data>
   <data name="WidgetDescription_AssignCompletedByDepartWidget" xml:space="preserve">
     <value>Показывает количество выполненных заданий (в срок/просроченные) в разрезе подразделений.</value>
+  </data>
+  <data name="WidgetDescription_TaskFlowWidget" xml:space="preserve">
+    <value>Включает четыре основных показателя: количество инициированных задач, закрытых задач, задач в процессе выполнения и просроченных задач.</value>
   </data>
 </root>

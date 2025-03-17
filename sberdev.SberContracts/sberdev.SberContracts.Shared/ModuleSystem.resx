@@ -112,48 +112,6 @@
   <data name="JobDescription_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
     <value>Clear directory with temp. documents.</value>
   </data>
-  <data name="Enum_ApprovalAnalyticsWidget_AnalysisPeriod_Weeks" xml:space="preserve">
-    <value>Weeks</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_AnalysisPeriod_Months" xml:space="preserve">
-    <value>Months</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_AnalysisPeriod_Quarters" xml:space="preserve">
-    <value>Quarters</value>
-  </data>
-  <data name="WidgetParameter_ApprovalAnalyticsWidget_AnalysisPeriod" xml:space="preserve">
-    <value>Analysis period</value>
-  </data>
-  <data name="WidgetTitle_ApprovalAnalyticsWidget" xml:space="preserve">
-    <value>Approval analytics</value>
-  </data>
-  <data name="WidgetDescription_ApprovalAnalyticsWidget" xml:space="preserve">
-    <value>The widget displays three types of charts for task approval analysis:
-1)General Task Approval Analytics – includes four key metrics: the number of initiated tasks, closed tasks, tasks in progress, and overdue tasks.
-
-3) – </value>
-  </data>
-  <data name="WidgetParameter_ApprovalAnalyticsWidget_DocumentTypes" xml:space="preserve">
-    <value>Document types</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_Contractual" xml:space="preserve">
-    <value>Contractuals</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_IncInvoce" xml:space="preserve">
-    <value>Incoming invoices</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_Accounting" xml:space="preserve">
-    <value>Accountings</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_Another" xml:space="preserve">
-    <value>Anothers</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_AbstractContr" xml:space="preserve">
-    <value>Purschases (not only)</value>
-  </data>
-  <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_All" xml:space="preserve">
-    <value>All</value>
-  </data>
   <data name="WidgetTitle_AssignCompletedByDepartWidget" xml:space="preserve">
     <value>Completed assingnments by departments</value>
   </data>

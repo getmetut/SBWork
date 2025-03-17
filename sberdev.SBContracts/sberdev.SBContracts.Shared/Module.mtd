@@ -36,7 +36,12 @@
       "MinVersion": "4.0.38.0"
     }
   ],
-  "DesktopViews": [],
+  "DesktopViews": [
+    {
+      "NameGuid": "b99ab384-fecc-4580-9c19-744e6f96cce9",
+      "Name": "ApprovalAnalytics"
+    }
+  ],
   "ExplorerTreeOrder": [
     {
       "ItemId": "2d60986a-1617-4f94-8d3e-3aeee4e93ee0"
