@@ -106,8 +106,8 @@
   <data name="WidgetDescription_ApprovalAnalyticsWidget" xml:space="preserve">
     <value>Виджет отображает три типа графиков для анализа процесса согласования задач:
 1) Общая аналитика задач на согласование – включает четыре ключевых показателя: количество запущенных задач, закрытых задач, задач в процессе и просроченных задач.
-2) Аналитика сроков согласования – показывает среднее, максимальное, минимальное и целевое время закрытия задач.
-3) Средний срок согласования в разрезе служб – анализирует и сравнивает среднее время согласования задач для различных служб.</value>
+2) Аналитика сроков согласования – 
+3) Средний срок согласования в разрезе служб – </value>
   </data>
   <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_Contractual" xml:space="preserve">
     <value>Договорные</value>
@@ -126,5 +126,134 @@
   </data>
   <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_All" xml:space="preserve">
     <value>Все</value>
+  </data>
+  <data name="WidgetParameter_ApprovalAnalyticsWidget_DocumentTypes" xml:space="preserve">
+    <value>Типы документа</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Недели</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Недели</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Недели</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Недели</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Months" xml:space="preserve">
+    <value>Месяцы</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Months" xml:space="preserve">
+    <value>Месяцы</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Months" xml:space="preserve">
+    <value>Месяцы</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Months" xml:space="preserve">
+    <value>Месяцы</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Кварталы</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Кварталы</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Кварталы</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Кварталы</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_DocumentTypes_All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_DocumentTypes_All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_Contractual" xml:space="preserve">
+    <value>Договорные</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_DocumentTypes_Contractual" xml:space="preserve">
+    <value>Договорные</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_DocumentTypes_Contractual" xml:space="preserve">
+    <value>Договорные</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_Contractual" xml:space="preserve">
+    <value>Договорные</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_IncInvoce" xml:space="preserve">
+    <value>Входящие счета</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_DocumentTypes_IncInvoce" xml:space="preserve">
+    <value>Входящие счета</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_DocumentTypes_IncInvoce" xml:space="preserve">
+    <value>Входящие счета</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_IncInvoce" xml:space="preserve">
+    <value>Входящие счета</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_Accounting" xml:space="preserve">
+    <value>Финансовые</value>
+  </data>
+  <data name="WidgetTitle_AssignCompletedByDepartWidget" xml:space="preserve">
+    <value>Выполненные задания по подразделениям</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_AbstractContr" xml:space="preserve">
+    <value>Закупочные (не только)</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_Another" xml:space="preserve">
+    <value>Другие</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_DocumentTypes_Accounting" xml:space="preserve">
+    <value>Финансовые</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_DocumentTypes_AbstractContr" xml:space="preserve">
+    <value>Закупочные (не только)</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_DocumentTypes_Another" xml:space="preserve">
+    <value>Другие</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_DocumentTypes_Accounting" xml:space="preserve">
+    <value>Финансовые</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_Accounting" xml:space="preserve">
+    <value>Финансовые</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_DocumentTypes_AbstractContr" xml:space="preserve">
+    <value>Закупочные (не только)</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_AbstractContr" xml:space="preserve">
+    <value>Закупочные (не только)</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_Another" xml:space="preserve">
+    <value>Другие</value>
+  </data>
+  <data name="WidgetTitle_TaskFlowWidget" xml:space="preserve">
+    <value>Поток задач</value>
+  </data>
+  <data name="WidgetTitle_TaskDeadlineWidget" xml:space="preserve">
+    <value>Аналитика сроков согласования</value>
+  </data>
+  <data name="WidgetDescription_TaskDeadlineWidget" xml:space="preserve">
+    <value>Показывает среднее, максимальное, минимальное и целевое время закрытия задач.</value>
+  </data>
+  <data name="WidgetDescription_AssignAvgApprTimeByDepartWidget" xml:space="preserve">
+    <value>Aнализирует и сравнивает среднее время согласования задач для различных служб.</value>
+  </data>
+  <data name="WidgetTitle_AssignAvgApprTimeByDepartWidget" xml:space="preserve">
+    <value>Среднее время согласования задач по подразделениям</value>
+  </data>
+  <data name="WidgetDescription_AssignCompletedByDepartWidget" xml:space="preserve">
+    <value>Показывает количество выполненных заданий (в срок/просроченные) в разрезе подразделений.</value>
   </data>
 </root>

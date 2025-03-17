@@ -130,14 +130,14 @@
   <data name="WidgetDescription_ApprovalAnalyticsWidget" xml:space="preserve">
     <value>The widget displays three types of charts for task approval analysis:
 1)General Task Approval Analytics – includes four key metrics: the number of initiated tasks, closed tasks, tasks in progress, and overdue tasks.
-2)Approval Time Analytics – displays the average, maximum, minimum, and target task closure times.
-3)Average Task Approval Time by Department – analyzes and compares the average approval time for different departments.</value>
+
+3) – </value>
   </data>
   <data name="WidgetParameter_ApprovalAnalyticsWidget_DocumentTypes" xml:space="preserve">
-    <value>Типы документа</value>
+    <value>Document types</value>
   </data>
   <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_Contractual" xml:space="preserve">
-    <value>Conractuals</value>
+    <value>Contractuals</value>
   </data>
   <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_IncInvoce" xml:space="preserve">
     <value>Incoming invoices</value>
@@ -153,5 +153,161 @@
   </data>
   <data name="Enum_ApprovalAnalyticsWidget_DocumentTypes_All" xml:space="preserve">
     <value>All</value>
+  </data>
+  <data name="WidgetTitle_AssignCompletedByDepartWidget" xml:space="preserve">
+    <value>Completed assingnments by departments</value>
+  </data>
+  <data name="WidgetParameter_AssignCompletedByDepartWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Analysis period</value>
+  </data>
+  <data name="WidgetParameter_AssignCompletedByDepartWidget_DocumentTypes" xml:space="preserve">
+    <value>Document types</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Weeks</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Months" xml:space="preserve">
+    <value>Months</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Quarters</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_Contractual" xml:space="preserve">
+    <value>Contractuals</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_IncInvoce" xml:space="preserve">
+    <value>Incoming invoices</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_Accounting" xml:space="preserve">
+    <value>Accountings</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_AbstractContr" xml:space="preserve">
+    <value>Purschases (not only)</value>
+  </data>
+  <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_Another" xml:space="preserve">
+    <value>Anothers</value>
+  </data>
+  <data name="WidgetTitle_TaskFlowWidget" xml:space="preserve">
+    <value>Task flow</value>
+  </data>
+  <data name="WidgetParameter_TaskFlowWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Analysis period</value>
+  </data>
+  <data name="WidgetParameter_TaskFlowWidget_DocumentTypes" xml:space="preserve">
+    <value>DocumentTypes</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Weeks</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Months" xml:space="preserve">
+    <value>Months</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Quarters</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_DocumentTypes_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_DocumentTypes_Contractual" xml:space="preserve">
+    <value>Contractuals</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_DocumentTypes_IncInvoce" xml:space="preserve">
+    <value>Incoming invoices</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_DocumentTypes_Accounting" xml:space="preserve">
+    <value>Accountings</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_DocumentTypes_AbstractContr" xml:space="preserve">
+    <value>Purschases (not only)</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_DocumentTypes_Another" xml:space="preserve">
+    <value>Anothers</value>
+  </data>
+  <data name="WidgetTitle_TaskDeadlineWidget" xml:space="preserve">
+    <value>Task Deadline Analytics</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Weeks</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Months" xml:space="preserve">
+    <value>Months</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Quarters</value>
+  </data>
+  <data name="WidgetParameter_TaskDeadlineWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Analysis period</value>
+  </data>
+  <data name="WidgetParameter_TaskDeadlineWidget_DocumentTypes" xml:space="preserve">
+    <value>Document types</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_DocumentTypes_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_DocumentTypes_Contractual" xml:space="preserve">
+    <value>Contractuals</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_DocumentTypes_IncInvoce" xml:space="preserve">
+    <value>Incoming Invoices</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_DocumentTypes_Accounting" xml:space="preserve">
+    <value>Accountings</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_DocumentTypes_AbstractContr" xml:space="preserve">
+    <value>Purschases (not only)</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_DocumentTypes_Another" xml:space="preserve">
+    <value>Anothers</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Weeks</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Months" xml:space="preserve">
+    <value>Months</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Quarters</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_Contractual" xml:space="preserve">
+    <value>Contractuals</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_IncInvoce" xml:space="preserve">
+    <value>Incoming Invoices</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_Accounting" xml:space="preserve">
+    <value>Accountings</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_AbstractContr" xml:space="preserve">
+    <value>Purschases (not only)</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_Another" xml:space="preserve">
+    <value>Anothers</value>
+  </data>
+  <data name="WidgetParameter_AssignAvgApprTimeByDepartWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Analysis period</value>
+  </data>
+  <data name="WidgetParameter_AssignAvgApprTimeByDepartWidget_DocumentTypes" xml:space="preserve">
+    <value>Document types</value>
+  </data>
+  <data name="WidgetTitle_AssignAvgApprTimeByDepartWidget" xml:space="preserve">
+    <value>Average Task Approval Time by Department</value>
+  </data>
+  <data name="WidgetDescription_TaskDeadlineWidget" xml:space="preserve">
+    <value>Displays the average, maximum, minimum, and target task closure times.</value>
+  </data>
+  <data name="WidgetDescription_TaskFlowWidget" xml:space="preserve">
+    <value>Includes four key metrics: the number of initiated tasks, closed tasks, tasks in progress, and overdue tasks.</value>
+  </data>
+  <data name="WidgetDescription_AssignAvgApprTimeByDepartWidget" xml:space="preserve">
+    <value>Analyzes and compares the average approval time for different departments.</value>
+  </data>
+  <data name="WidgetDescription_AssignCompletedByDepartWidget" xml:space="preserve">
+    <value>Shows the number of completed tasks (on time/overdue) by department.</value>
   </data>
 </root>

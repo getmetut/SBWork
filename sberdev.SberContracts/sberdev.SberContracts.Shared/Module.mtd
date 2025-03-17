@@ -1159,8 +1159,7 @@
           "EntityGuid": "100950d0-03d2-44f0-9e31-f9c8dfdf3829",
           "HandledEvents": [
             "GetValueServer"
-          ],
-          "UpdatePeriod": "Day"
+          ]
         },
         {
           "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
@@ -1172,8 +1171,7 @@
             "GetValueServer"
           ],
           "PreviousGuid": "0e73f28e-5574-49fc-93fd-da7b7580e501",
-          "SpecificationType": "Custom",
-          "UpdatePeriod": "Day"
+          "SpecificationType": "Custom"
         },
         {
           "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
@@ -1185,8 +1183,7 @@
           "HandledEvents": [
             "GetValueServer"
           ],
-          "PreviousGuid": "aceca0b4-4c90-4fdf-9b50-15d1b6c35393",
-          "UpdatePeriod": "Day"
+          "PreviousGuid": "366b1618-edcf-4d02-9e67-cc95ddeed646"
         },
         {
           "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
@@ -1198,28 +1195,7 @@
           "HandledEvents": [
             "GetValueServer"
           ],
-          "PreviousGuid": "29cb07bf-f37c-411f-b9f6-1f66ca721a43",
-          "UpdatePeriod": "Day"
-        },
-        {
-          "$type": "Sungero.Metadata.WidgetActionMetadata, Sungero.Metadata",
-          "NameGuid": "aceca0b4-4c90-4fdf-9b50-15d1b6c35393",
-          "Name": "AssignCompletedrByDeparReport",
-          "IsCustomValue": true,
-          "IsMain": true,
-          "PreviousGuid": "366b1618-edcf-4d02-9e67-cc95ddeed646",
-          "SpecificationType": "Custom",
-          "UpdatePeriod": "Day"
-        },
-        {
-          "$type": "Sungero.Metadata.WidgetActionMetadata, Sungero.Metadata",
-          "NameGuid": "64318e23-27a6-4fcd-b5a4-8ba4c5f9676c",
-          "Name": "AssignAvgApprTimeByDepartReport",
-          "IsCustomValue": true,
-          "IsMain": true,
-          "PreviousGuid": "2cb40fb2-9075-4b71-a27b-75fc436df9d4",
-          "SpecificationType": "Custom",
-          "UpdatePeriod": "Day"
+          "PreviousGuid": "29cb07bf-f37c-411f-b9f6-1f66ca721a43"
         }
       ],
       "WidgetParameters": [
@@ -1292,6 +1268,370 @@
             }
           ],
           "PreviousGuid": "aacf83a1-0fbe-41b3-9b11-be96929c92b5"
+        }
+      ]
+    },
+    {
+      "NameGuid": "c2f21ab6-4272-410e-a676-52af22433fd1",
+      "Name": "AssignCompletedByDepartWidget",
+      "Color": "WidgetColor1",
+      "ColumnSpan": 15,
+      "WidgetItems": [
+        {
+          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
+          "NameGuid": "65629e69-3156-4855-ada5-a1ff9c5657bc",
+          "Name": "AssignCompletedByDepartChart",
+          "ChartHeight": 25,
+          "ChartType": "HorizontalBar",
+          "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
+          "HandledEvents": [
+            "GetValueServer"
+          ]
+        }
+      ],
+      "WidgetParameters": [
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "b5b8653b-3fd4-43de-93f7-971f6d558759",
+          "Name": "AnalysisPeriod",
+          "DefaultValue": {
+            "NameGuid": "d897bb03-885e-4b79-9cf1-0e4efeddb5fc",
+            "Name": "Months",
+            "Code": "Months"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "57c22d11-f6cb-495a-be9d-d89f59ba3383",
+              "Name": "Weeks",
+              "Code": "Weeks"
+            },
+            {
+              "NameGuid": "d897bb03-885e-4b79-9cf1-0e4efeddb5fc",
+              "Name": "Months",
+              "Code": "Months"
+            },
+            {
+              "NameGuid": "306e6925-956a-4030-a17b-04338fc8c618",
+              "Name": "Quarters",
+              "Code": "Quarters"
+            }
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "41e14eab-71e4-4f45-9977-bc7f1472ed3d",
+          "Name": "DocumentTypes",
+          "DefaultValue": {
+            "NameGuid": "09b2276d-9e08-4bb4-9f42-e63f1aa2bf1d",
+            "Name": "All",
+            "Code": "All"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "09b2276d-9e08-4bb4-9f42-e63f1aa2bf1d",
+              "Name": "All",
+              "Code": "All"
+            },
+            {
+              "NameGuid": "fd150d93-d5b8-4216-8bb1-1289ee690fe3",
+              "Name": "Contractual",
+              "Code": "Contractual"
+            },
+            {
+              "NameGuid": "2dc89934-4ef3-4bfd-aa34-03297014558b",
+              "Name": "IncInvoce",
+              "Code": "IncInvoce"
+            },
+            {
+              "NameGuid": "e782533f-86f7-4844-83a4-e12ececb5b83",
+              "Name": "Accounting",
+              "Code": "Accounting"
+            },
+            {
+              "NameGuid": "e83992d7-7022-4960-8e55-957964adbd89",
+              "Name": "AbstractContr",
+              "Code": "AbstractContr"
+            },
+            {
+              "NameGuid": "48292a90-454f-45c4-89ff-44a401c81201",
+              "Name": "Another",
+              "Code": "Another"
+            }
+          ],
+          "PreviousGuid": "b5b8653b-3fd4-43de-93f7-971f6d558759"
+        }
+      ]
+    },
+    {
+      "NameGuid": "c48b6f8a-c210-4686-a4a2-1ead18d40dee",
+      "Name": "TaskFlowWidget",
+      "Color": "WidgetColor1",
+      "ColumnSpan": 30,
+      "WidgetItems": [
+        {
+          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
+          "NameGuid": "35c6f1b2-9670-4037-9789-8f4f725c7441",
+          "Name": "TaskFlowChart",
+          "ChartHeight": 12,
+          "ChartType": "VerticalClusteredBar",
+          "EntityGuid": "100950d0-03d2-44f0-9e31-f9c8dfdf3829",
+          "HandledEvents": [
+            "GetValueServer"
+          ]
+        }
+      ],
+      "WidgetParameters": [
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "2ba658ba-0146-49bc-b724-ef2ea0e384bc",
+          "Name": "AnalysisPeriod",
+          "DefaultValue": {
+            "NameGuid": "f8420778-8e3f-42b8-b724-099e2e930ffa",
+            "Name": "Weeks",
+            "Code": "Weeks"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "f8420778-8e3f-42b8-b724-099e2e930ffa",
+              "Name": "Weeks",
+              "Code": "Weeks"
+            },
+            {
+              "NameGuid": "a21b41e0-a02f-420a-a1a2-fd1abf13c29e",
+              "Name": "Months",
+              "Code": "Months"
+            },
+            {
+              "NameGuid": "934573aa-b3b1-4c08-874a-f620ab9d2a72",
+              "Name": "Quarters",
+              "Code": "Quarters"
+            }
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "90cf420f-2858-4d4c-9ac2-784d8f66a9ec",
+          "Name": "DocumentTypes",
+          "DefaultValue": {
+            "NameGuid": "081bf56e-f091-4888-82c3-1e5c7d956a25",
+            "Name": "All",
+            "Code": "Quarters"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "081bf56e-f091-4888-82c3-1e5c7d956a25",
+              "Name": "All",
+              "Code": "Quarters"
+            },
+            {
+              "NameGuid": "089dce00-ed6c-4968-8531-d939dfe78311",
+              "Name": "Contractual",
+              "Code": "Contractual"
+            },
+            {
+              "NameGuid": "b9ee507a-b409-4311-9a90-7e1397fed42e",
+              "Name": "IncInvoce",
+              "Code": "IncInvoce"
+            },
+            {
+              "NameGuid": "a60370d7-b71f-48b1-a3f6-ec3b6a8bc0e1",
+              "Name": "Accounting",
+              "Code": "Accounting"
+            },
+            {
+              "NameGuid": "31bb0c1f-9747-479b-a1e1-e2fa59e70611",
+              "Name": "AbstractContr",
+              "Code": "AbstractContr"
+            },
+            {
+              "NameGuid": "4be606dc-8f31-4d93-a532-018b80b8c711",
+              "Name": "Another",
+              "Code": "Another"
+            }
+          ],
+          "PreviousGuid": "2ba658ba-0146-49bc-b724-ef2ea0e384bc"
+        }
+      ]
+    },
+    {
+      "NameGuid": "3ed83223-b1ad-4c1d-8f53-dfa9f50a7a86",
+      "Name": "TaskDeadlineWidget",
+      "Color": "WidgetColor1",
+      "ColumnSpan": 30,
+      "WidgetItems": [
+        {
+          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
+          "NameGuid": "7998f55d-1a7f-4530-ae6b-7d6b22b0f08b",
+          "Name": "TaskDeadlineChart",
+          "ChartHeight": 12,
+          "ChartType": "Plot",
+          "HandledEvents": [
+            "GetValueServer"
+          ],
+          "SpecificationType": "Custom"
+        }
+      ],
+      "WidgetParameters": [
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "cfc2525e-e34b-4789-8a0e-5bc8b197fbe0",
+          "Name": "AnalysisPeriod",
+          "DefaultValue": {
+            "NameGuid": "ada9471e-aadb-497d-b7b9-36c720345e65",
+            "Name": "Months",
+            "Code": "Months"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "92072aae-55a5-4443-9a7e-574f5b9ca1d7",
+              "Name": "Weeks",
+              "Code": "Weeks"
+            },
+            {
+              "NameGuid": "ada9471e-aadb-497d-b7b9-36c720345e65",
+              "Name": "Months",
+              "Code": "Months"
+            },
+            {
+              "NameGuid": "34f2a22a-3d0b-4a88-8fec-32d864c50377",
+              "Name": "Quarters",
+              "Code": "Quarters"
+            }
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "51ef4670-6c24-496d-b1d6-5a5f014dc3f9",
+          "Name": "DocumentTypes",
+          "DefaultValue": {
+            "NameGuid": "9f32d0cf-7a06-40b4-9056-37fd19d8f467",
+            "Name": "All",
+            "Code": "All"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "9f32d0cf-7a06-40b4-9056-37fd19d8f467",
+              "Name": "All",
+              "Code": "All"
+            },
+            {
+              "NameGuid": "cf5de6d2-64db-47e1-928f-23c5a8973947",
+              "Name": "Contractual",
+              "Code": "Contractual"
+            },
+            {
+              "NameGuid": "d55c8f01-fa30-4267-9e1b-bffbc86a6855",
+              "Name": "IncInvoce",
+              "Code": "IncInvoce"
+            },
+            {
+              "NameGuid": "6c86216c-1e1f-4ae9-bb00-6bd95b8754b5",
+              "Name": "Accounting",
+              "Code": "Accounting"
+            },
+            {
+              "NameGuid": "760eec76-b6c3-4086-be7a-208bf2f195c0",
+              "Name": "AbstractContr",
+              "Code": "AbstractContr"
+            },
+            {
+              "NameGuid": "6c31cdcb-c362-4a34-af57-3b3cec9afdbd",
+              "Name": "Another",
+              "Code": "Another"
+            }
+          ],
+          "PreviousGuid": "cfc2525e-e34b-4789-8a0e-5bc8b197fbe0"
+        }
+      ]
+    },
+    {
+      "NameGuid": "2db813c7-b58f-49ea-ade8-1f4e13b544b9",
+      "Name": "AssignAvgApprTimeByDepartWidget",
+      "Color": "WidgetColor1",
+      "ColumnSpan": 15,
+      "WidgetItems": [
+        {
+          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
+          "NameGuid": "0f24bf24-fa9c-440a-a099-513f29b17c5a",
+          "Name": "AssignAvgApprTimeByDepartChart",
+          "ChartHeight": 25,
+          "ChartType": "HorizontalBar",
+          "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
+          "HandledEvents": [
+            "GetValueServer"
+          ]
+        }
+      ],
+      "WidgetParameters": [
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "188aed03-22ec-4fa9-926f-be34ffa2fcf9",
+          "Name": "AnalysisPeriod",
+          "DefaultValue": {
+            "NameGuid": "5c80c1b0-5b2b-41f9-a43f-a9c180f256ca",
+            "Name": "Months",
+            "Code": "Months"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "883a1cb9-fb71-4713-ab28-2ca0df470a85",
+              "Name": "Weeks",
+              "Code": "Weeks"
+            },
+            {
+              "NameGuid": "5c80c1b0-5b2b-41f9-a43f-a9c180f256ca",
+              "Name": "Months",
+              "Code": "Months"
+            },
+            {
+              "NameGuid": "1191445b-8554-40c8-9d4f-cab93b1d9e47",
+              "Name": "Quarters",
+              "Code": "Quarters"
+            }
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "a4a7cbe3-e70a-4f91-8a15-e4547276c5dc",
+          "Name": "DocumentTypes",
+          "DefaultValue": {
+            "NameGuid": "779d927e-80e7-439c-ba67-0c2ff9b62a4a",
+            "Name": "All",
+            "Code": "All"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "779d927e-80e7-439c-ba67-0c2ff9b62a4a",
+              "Name": "All",
+              "Code": "All"
+            },
+            {
+              "NameGuid": "75b92fbf-9a92-4f3c-82e0-41b5f4bba97d",
+              "Name": "Contractual",
+              "Code": "Contractual"
+            },
+            {
+              "NameGuid": "ec6d6c5e-c644-435a-aa49-94ce0b173c86",
+              "Name": "IncInvoce",
+              "Code": "IncInvoce"
+            },
+            {
+              "NameGuid": "b5336983-00e7-44ef-9ed1-2e4112564aee",
+              "Name": "Accounting",
+              "Code": "Accounting"
+            },
+            {
+              "NameGuid": "aeb5390d-36b4-4da2-9149-5455640abff1",
+              "Name": "AbstractContr",
+              "Code": "AbstractContr"
+            },
+            {
+              "NameGuid": "6c214392-da60-401e-af39-28464c888690",
+              "Name": "Another",
+              "Code": "Another"
+            }
+          ],
+          "PreviousGuid": "188aed03-22ec-4fa9-926f-be34ffa2fcf9"
         }
       ]
     }
