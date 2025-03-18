@@ -61,6 +61,22 @@ namespace sberdev.SberContracts.Shared
     }
 
     [Public]
+    public string TranslatePaymentMethod(string enumValue)
+    {
+      switch (enumValue)
+      {
+        case "Agent":
+          return "Агентская схема";
+        case "VTB":
+          return "Счет в ВТБ";
+        case "Chinese":
+          return "Китайское юр. лицо";
+        default:
+          return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
+      }
+    }
+    
+    [Public]
     public string TranslatePlanDelType(string enumValue)
     {
       switch (enumValue)
@@ -71,7 +87,6 @@ namespace sberdev.SberContracts.Shared
           return "Ж/д";
         case "Auto":
           return "Авто";
-          // Добавьте остальные значения
         default:
           return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
       }
@@ -84,6 +99,7 @@ namespace sberdev.SberContracts.Shared
       properties.MarketDirectSberDev.IsRequired = false;
       properties.PurchComNumberSberDev.IsRequired = false;
       properties.TotalAmount.IsRequired = false;
+      properties.TotalAmount.IsEnabled = false;
       properties.ContrTypeBaseSberDev.IsEnabled = false;
       
       properties.EmailSberDev.IsVisible = true;

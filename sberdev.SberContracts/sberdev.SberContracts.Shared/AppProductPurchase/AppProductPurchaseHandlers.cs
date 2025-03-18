@@ -92,6 +92,18 @@ namespace sberdev.SberContracts
   partial class AppProductPurchaseSharedHandlers
   {
 
+    public virtual void PurchasesCollectionChanged(Sungero.Domain.Shared.CollectionPropertyChangedEventArgs e)
+    {
+      if (_obj.PurchasesCollection.Count > 0)
+      {
+        double amount = 0;
+        foreach (var product in _obj.PurchasesCollection)
+          if (product.PriceUnit.HasValue && product.Quantity.HasValue)
+            amount += product.PriceUnit.Value * product.Quantity.Value;
+        _obj.TotalAmount = amount;
+      }
+    }
+
     public virtual void SelectedCounterparty7Changed(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
     {
       PublicFunctions.AppProductPurchase.ResetOtherCounterpartySelections(_obj, e, "SelectedCounterparty7");

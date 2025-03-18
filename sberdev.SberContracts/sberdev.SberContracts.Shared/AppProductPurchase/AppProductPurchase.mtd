@@ -932,7 +932,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
           "ParentGuid": "0cdd0c8f-79bf-4399-8c99-36776efedc57",
           "PropertyGuid": "7cf09734-0d93-4957-8a8a-5564a00f788f",
-          "RowNumber": 1,
+          "RowNumber": 2,
           "RowSpan": 1,
           "Settings": []
         },
@@ -945,7 +945,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
           "ParentGuid": "0cdd0c8f-79bf-4399-8c99-36776efedc57",
           "PropertyGuid": "dd435ab0-8f87-4556-8abb-097e225cc65a",
-          "RowNumber": 0,
+          "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
         },
@@ -958,7 +958,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
           "ParentGuid": "0cdd0c8f-79bf-4399-8c99-36776efedc57",
           "PropertyGuid": "a470eb28-76d4-477e-a39e-d4368ac6d3f8",
-          "RowNumber": 1,
+          "RowNumber": 2,
           "RowSpan": 1,
           "Settings": []
         },
@@ -971,7 +971,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
           "ParentGuid": "0cdd0c8f-79bf-4399-8c99-36776efedc57",
           "PropertyGuid": "f5639b9e-129d-4e66-942a-b9093c32d07e",
-          "RowNumber": 0,
+          "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1207,19 +1207,6 @@
         },
         {
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "7cbe301f-383c-40c8-a1a6-5cf7c676329e",
-          "Name": "Currency",
-          "ColumnNumber": 1,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
-          "ParentGuid": "3d9c0592-d6ce-4fb2-9600-2e9a0783b6fb",
-          "PropertyGuid": "ca562f2d-d3c7-448f-a648-b858e8d2fb2a",
-          "RowNumber": 0,
-          "RowSpan": 1,
-          "Settings": []
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "7106f322-e4d3-4aed-9ffd-e84b0462b701",
           "Name": "AgentCP",
           "ColumnNumber": 0,
@@ -1305,12 +1292,12 @@
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "b30a135b-e74c-4ee2-baad-b518221f2a13",
           "Name": "VAT",
-          "ColumnNumber": 0,
+          "ColumnNumber": 1,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
           "ParentGuid": "3d9c0592-d6ce-4fb2-9600-2e9a0783b6fb",
           "PropertyGuid": "55cf7fb5-643b-41be-86ac-77af6e77f97f",
-          "RowNumber": 1,
+          "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1710,6 +1697,32 @@
           "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "59ad4741-d9da-428f-958a-3c1f2d971e3e",
+          "Name": "TotalAmount",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+          "ParentGuid": "0cdd0c8f-79bf-4399-8c99-36776efedc57",
+          "PropertyGuid": "96c9e3f6-9201-4e6c-92e0-acf7a1624081",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "7cbe301f-383c-40c8-a1a6-5cf7c676329e",
+          "Name": "Currency",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "0cdd0c8f-79bf-4399-8c99-36776efedc57",
+          "PropertyGuid": "ca562f2d-d3c7-448f-a648-b858e8d2fb2a",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -1955,15 +1968,6 @@
       "Versions": []
     },
     {
-      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "2bcbffb0-35ff-45fd-8995-a5c87665333d",
-      "Name": "FlagAgencyScheme",
-      "Code": "FlagAgencySche",
-      "IsRequired": true,
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
-      "PreviousPropertyGuid": "13fae65f-c85c-4d17-8e0b-ceeea26ad80b"
-    },
-    {
       "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
       "NameGuid": "ca33ff20-54e7-4cfc-a147-1bf4bc975110",
       "Name": "Incoterms",
@@ -2049,7 +2053,8 @@
       "Code": "PurchasesAppPP",
       "EntityGuid": "3a15e397-b74e-4c14-a732-6786777a9961",
       "HandledEvents": [
-        "AddedShared"
+        "AddedShared",
+        "ChangedShared"
       ],
       "IsRequired": true,
       "IsShowedInList": false,
@@ -2216,7 +2221,7 @@
       "Name": "FlagVTB",
       "Code": "FlagVTB",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
-      "PreviousPropertyGuid": "2bcbffb0-35ff-45fd-8995-a5c87665333d"
+      "PreviousPropertyGuid": "13fae65f-c85c-4d17-8e0b-ceeea26ad80b"
     },
     {
       "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
@@ -2496,6 +2501,24 @@
       "Placement": "Shared",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "TranslatePaymentMethod",
+      "Parameters": [
+        {
+          "Name": "appProductPurchase",
+          "ParameterType": "global::sberdev.SberContracts.IAppProductPurchase",
+          "ParameterTypeFullName": "sberdev.SberContracts.IAppProductPurchase, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "enumValue",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
     },
     {
       "Name": "TranslatePlanDelType",

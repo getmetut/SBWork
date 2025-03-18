@@ -475,9 +475,6 @@
   <data name="Enum_PaymentMethod_Chinese" xml:space="preserve">
     <value>Chinese legal entity</value>
   </data>
-  <data name="Property_FlagAgencyScheme" xml:space="preserve">
-    <value>FlagAgencySche</value>
-  </data>
   <data name="ControlGroup_16d47185fb0a4462ade1ba6ed442b6de" xml:space="preserve">
     <value />
   </data>

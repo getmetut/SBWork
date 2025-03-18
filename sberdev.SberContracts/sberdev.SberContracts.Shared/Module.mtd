@@ -1175,7 +1175,8 @@
           "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
           "HandledEvents": [
             "GetValueServer"
-          ]
+          ],
+          "UpdatePeriod": "Day"
         }
       ],
       "WidgetParameters": [
@@ -1266,7 +1267,8 @@
           "EntityGuid": "100950d0-03d2-44f0-9e31-f9c8dfdf3829",
           "HandledEvents": [
             "GetValueServer"
-          ]
+          ],
+          "UpdatePeriod": "Day"
         }
       ],
       "WidgetParameters": [
@@ -1357,7 +1359,8 @@
           "HandledEvents": [
             "GetValueServer"
           ],
-          "SpecificationType": "Custom"
+          "SpecificationType": "Custom",
+          "UpdatePeriod": "Day"
         }
       ],
       "WidgetParameters": [
@@ -1448,7 +1451,8 @@
           "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
           "HandledEvents": [
             "GetValueServer"
-          ]
+          ],
+          "UpdatePeriod": "Day"
         }
       ],
       "WidgetParameters": [

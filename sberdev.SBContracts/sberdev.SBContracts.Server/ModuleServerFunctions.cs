@@ -1117,6 +1117,9 @@ namespace sberdev.SBContracts.Server
     #region Заявка нп производ. закупку
     public void CreateBodyByPropertiesAppProductPurchase(SberContracts.IAppProductPurchase purch, Aspose.Words.Document body)
     {
+      // Удаление неиспользуемых плейсхолдеров
+      List<string> placeholdersToRemove = new List<string>();
+      
       var contractText = purch.LeadingDocument != null
         ? $"{purch.LeadingDocument.RegistrationNumber ?? "Не зарегистрирован"}, {purch.LeadingDocument.DocumentDate?.ToShortDateString()}"
         : "Договор не указан";
@@ -1140,8 +1143,9 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[DepositDays]",  $"{(purch.DepositDays > 0 ? $"% в течении {purch.DepositDays} р. д." : "")}");
       body.Range.Replace("[Balance]", purch.Balance.ToString());
       body.Range.Replace("[BalanceDays]", $"{(purch.BalanceDays > 0 ? $"% в течении {purch.BalanceDays} р. д." : "")}");
-      body.Range.Replace("[AgencyScheme]", purch.FlagAgencyScheme.Value ? "Агентская схема" : "Счет в ВТБ");
-      if (purch.FlagAgencyScheme.Value)
+      var paymentMethod = purch.PaymentMethod.Value.Value;
+      body.Range.Replace("[PaymentMethod]", SberContracts.PublicFunctions.AppProductPurchase.TranslatePaymentMethod(purch, paymentMethod));
+      if (paymentMethod == "Agent")
       {
         body.Range.Replace("[AgencyContract]", $"https://directum.sberdevices.ru/DrxWeb/#/sat/card/f37c7e63-b134-4446-9b5b-f8811f6c9666/{purch.NDA.Id}");
         body.Range.Replace("[AgencyPercent]", $"{purch.AgencyPercent.Value.ToString()}%");
@@ -1176,6 +1180,9 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[Products]", str);
       body.Range.Replace("[AccArt]", purch.AccArtExBaseSberDev.Name);
       body.Range.Replace("[MVZ]", purch.MVZBaseSberDev.Name);
+      if (purch.Note != null)
+        body.Range.Replace("[Note]", "Примечание: " + purch.Note);
+      placeholdersToRemove.Add("[Note]");
       
       #region Таблица продуктов
       // Настройки таблицы
@@ -1271,6 +1278,22 @@ namespace sberdev.SBContracts.Server
       int tableCount = 0;
       numberMapping.TryGetValue(purch.CpNumber.Value.Value.ToLower(), out tableCount);
 
+      // Определение выбранного контрагента
+      int selectedCounterpartyIndex = -1;
+      for (int i = 1; i <= 7; i++)
+      {
+        var selectedProperty = typeof(SberContracts.IAppProductPurchase).GetProperty($"SelectedCounterparty{i}");
+        if (selectedProperty != null)
+        {
+          bool isSelected = (bool)selectedProperty.GetValue(purch);
+          if (isSelected)
+          {
+            selectedCounterpartyIndex = i;
+            break;
+          }
+        }
+      }
+
       // Генерация таблиц
       for (int tableIndex = 1; tableIndex <= tableCount; tableIndex++)
       {
@@ -1323,40 +1346,71 @@ namespace sberdev.SBContracts.Server
           CreateTableByArray(body, tableData, boldRows, columnWidths, "Times New Roman", 10)
          );
         
+        // Замена наименования контрагента
         var cpProp = typeof(SberContracts.IAppProductPurchase).GetProperty($"Counterparty{tableIndex}");
         string cpPropValue = (string)cpProp.GetValue(purch);
         body.Range.Replace($"[Counterparty{tableIndex}]", cpPropValue);
-      }
-      
-      for (int i = tableCount; i <= 7; i++)
-      {
-        string placeholderTable = $"[CP{i}Table]";
-        string placeholderCounterparty = $"[Counterparty{i}]";
-
-        // Проходим по всем секциям документа
-        foreach (Aspose.Words.Section section in body.Sections)
+        
+        // Если это выбранный контрагент, дополнительно заменяем плейсхолдер [SelectedCounterparty]
+        if (tableIndex == selectedCounterpartyIndex)
         {
-          // Получаем тело секции
-          Body sectionBody = section.Body;
-
-          // Проходим по всем абзацам в теле секции
-          foreach (Aspose.Words.Paragraph paragraph in sectionBody.Paragraphs)
-          {
-            // Если текст абзаца содержит плейсхолдер, удаляем абзац
-            if (paragraph.Range.Text.Contains(placeholderTable) || paragraph.Range.Text.Contains(placeholderCounterparty))
-            {
-              paragraph.Remove();
-            }
-          }
+          // Создаем дубликат таблицы для выбранного контрагента
+          ReplacePlaceholderWithTable(
+            body,
+            "[SelectedCounterparty]",
+            CreateTableByArray(body, tableData, boldRows, columnWidths, "Times New Roman", 10)
+           );
+          
+          // Дополнительно заменяем заголовок выбранного контрагента
+          body.Range.Replace("[SelectedCounterpartyName]", cpPropValue);
         }
       }
-
-
+      
+      // Добавляем плейсхолдеры для неиспользуемых таблиц
+      for (int i = tableCount + 1; i <= 7; i++)
+      {
+        placeholdersToRemove.Add($"[CP{i}Table]");
+        placeholdersToRemove.Add($"[Counterparty{i}]");
+      }
+      
+      // Если ни один из контрагентов не выбран или выбранный контрагент вне допустимого диапазона,
+      // добавляем плейсхолдер выбранного контрагента в список для удаления
+      if (selectedCounterpartyIndex <= 0 || selectedCounterpartyIndex > tableCount)
+      {
+        placeholdersToRemove.Add("[SelectedCounterparty]");
+        placeholdersToRemove.Add("[SelectedCounterpartyName]");
+      }
+      
+      // Удаление всех неиспользуемых плейсхолдеров
+      RemovePlaceholders(body, placeholdersToRemove);
       #endregion
     }
     #endregion
     
     #region Вспомогательные функции для построения документа
+    
+    // Метод для удаления плейсхолдеров из документа
+    static void RemovePlaceholders(Aspose.Words.Document document, List<string> placeholders)
+    {
+      // Проходим по всем секциям документа
+      foreach (Aspose.Words.Section section in document.Sections)
+      {
+        // Получаем тело секции
+        Aspose.Words.Body sectionBody = section.Body;
+
+        // Проходим по всем абзацам в теле секции
+        foreach (Aspose.Words.Paragraph paragraph in sectionBody.Paragraphs.ToArray())
+        {
+          // Проверяем, содержит ли абзац какой-либо из плейсхолдеров
+          bool containsPlaceholder = placeholders.Any(p => paragraph.Range.Text.Contains(p));
+          
+          if (containsPlaceholder)
+          {
+            paragraph.Remove();
+          }
+        }
+      }
+    }
     
     static void ReplacePlaceholderWithMarkedParagraphs(Aspose.Words.Document doc, string placeholder, List<string> texts, Aspose.Words.Lists.ListTemplate listTemplate)
     {
