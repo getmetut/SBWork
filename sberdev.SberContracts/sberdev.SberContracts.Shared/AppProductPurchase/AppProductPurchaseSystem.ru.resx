@@ -334,8 +334,8 @@
   <data name="Resource_fc27e9e143f54bbfb327f375f540ab7a" xml:space="preserve">
     <value />
   </data>
-  <data name="Property_FlagAgencyScheme" xml:space="preserve">
-    <value>Агентская схема</value>
+  <data name="Property_PaymentMethod" xml:space="preserve">
+    <value>Способ оплаты</value>
   </data>
   <data name="ControlGroup_0cdd0c8f79bf43998c9936776efedc57" xml:space="preserve">
     <value>Условия оплаты</value>
@@ -405,5 +405,47 @@
   </data>
   <data name="Property_ComparativeCollection7" xml:space="preserve">
     <value>Сравнительная таблица ценовых предложений</value>
+  </data>
+  <data name="Property_DeliveryTerms" xml:space="preserve">
+    <value>Способ оплаты</value>
+  </data>
+  <data name="Enum_DeliveryTerms_Chinese" xml:space="preserve">
+    <value>Китайское юр. лицо</value>
+  </data>
+  <data name="Enum_DeliveryTerms_VTB" xml:space="preserve">
+    <value>Счет в ВТБ</value>
+  </data>
+  <data name="Enum_DeliveryTerms_Agent" xml:space="preserve">
+    <value>Агентская схема</value>
+  </data>
+  <data name="Enum_PaymentMethod_Agent" xml:space="preserve">
+    <value>Агентская схема</value>
+  </data>
+  <data name="Enum_PaymentMethod_VTB" xml:space="preserve">
+    <value>Счет в ВТБ</value>
+  </data>
+  <data name="Enum_PaymentMethod_Chinese" xml:space="preserve">
+    <value>Китайское юр. лицо</value>
+  </data>
+  <data name="Property_SelectedCounterparty1" xml:space="preserve">
+    <value>Выбранный контрагент</value>
+  </data>
+  <data name="Property_SelectedCounterparty2" xml:space="preserve">
+    <value>Выбранный контрагент</value>
+  </data>
+  <data name="Property_SelectedCounterparty3" xml:space="preserve">
+    <value>Выбранный контрагент</value>
+  </data>
+  <data name="Property_SelectedCounterparty4" xml:space="preserve">
+    <value>Выбранный контрагент</value>
+  </data>
+  <data name="Property_SelectedCounterparty5" xml:space="preserve">
+    <value>Выбранный контрагент</value>
+  </data>
+  <data name="Property_SelectedCounterparty6" xml:space="preserve">
+    <value>Выбранный контрагент</value>
+  </data>
+  <data name="Property_SelectedCounterparty7" xml:space="preserve">
+    <value>Выбранный контрагент</value>
   </data>
 </root>

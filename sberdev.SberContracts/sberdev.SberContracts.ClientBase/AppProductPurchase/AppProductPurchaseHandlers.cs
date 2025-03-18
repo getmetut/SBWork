@@ -10,10 +10,9 @@ namespace sberdev.SberContracts
   partial class AppProductPurchaseClientHandlers
   {
 
-    public virtual void FlagVTBValueInput(Sungero.Presentation.BooleanValueInputEventArgs e)
+    public virtual void PaymentMethodValueInput(Sungero.Presentation.EnumerationValueInputEventArgs e)
     {
-      _obj.FlagAgencyScheme = !(e.NewValue ?? true);
-      if (e.NewValue == true)
+      if (e.NewValue != PaymentMethod.Agent)
       {
         _obj.AgencyContract = null;
         _obj.AgencyFlagPAO = null;
@@ -21,12 +20,7 @@ namespace sberdev.SberContracts
         _obj.AgencyPercent = null;
       }
     }
-
-    public virtual void FlagAgencySchemeValueInput(Sungero.Presentation.BooleanValueInputEventArgs e)
-    {
-      _obj.FlagVTB = !(e.NewValue ?? true);
-    }
-
+    
     public virtual void CpNumberValueInput(Sungero.Presentation.EnumerationValueInputEventArgs e)
     {
       // вызов события обновления формы

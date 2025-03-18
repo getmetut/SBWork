@@ -16,6 +16,13 @@ namespace sberdev.SberContracts
       _obj.FlagNDA = false;
       _obj.FlagVAT = false;
       _obj.ContrTypeBaseSberDev = ContrTypeBaseSberDev.Expendable;
+      _obj.SelectedCounterparty1 = false;
+      _obj.SelectedCounterparty2 = false;
+      _obj.SelectedCounterparty3 = false;
+      _obj.SelectedCounterparty4 = false;
+      _obj.SelectedCounterparty5 = false;
+      _obj.SelectedCounterparty6 = false;
+      _obj.SelectedCounterparty7 = false;
     }
   }
 

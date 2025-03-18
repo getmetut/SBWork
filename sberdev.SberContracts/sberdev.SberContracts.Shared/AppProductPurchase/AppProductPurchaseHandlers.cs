@@ -12,29 +12,7 @@ namespace sberdev.SberContracts
 
     public virtual void ComparativeCollection7Added(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
     {
-      var col = _obj.ComparativeCollection7;
-      
-      if (col.Count > 0)
-      {
-        // Собираем все существующие номера
-        var existingNumbers = col
-          .Where(item => item.Number.HasValue)
-          .Select(item => item.Number.Value)
-          .OrderBy(num => num)
-          .ToList();
-
-        // Находим первый пропущенный номер
-        int missingNumber = 1;
-        foreach (var number in existingNumbers)
-        {
-          if (number != missingNumber)
-            break;
-          missingNumber++;
-        }
-
-        // Присваиваем первый пропущенный номер последнему элементу коллекции
-        col.Last().Number = missingNumber;
-      }
+      PublicFunctions.Module.AutoNumberCollectionItem("ComparativeCollection7", _obj);
     }
   }
 
@@ -43,29 +21,7 @@ namespace sberdev.SberContracts
 
     public virtual void ComparativeCollection6Added(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
     {
-      var col = _obj.ComparativeCollection6;
-      
-      if (col.Count > 0)
-      {
-        // Собираем все существующие номера
-        var existingNumbers = col
-          .Where(item => item.Number.HasValue)
-          .Select(item => item.Number.Value)
-          .OrderBy(num => num)
-          .ToList();
-
-        // Находим первый пропущенный номер
-        int missingNumber = 1;
-        foreach (var number in existingNumbers)
-        {
-          if (number != missingNumber)
-            break;
-          missingNumber++;
-        }
-
-        // Присваиваем первый пропущенный номер последнему элементу коллекции
-        col.Last().Number = missingNumber;
-      }
+      PublicFunctions.Module.AutoNumberCollectionItem("ComparativeCollection6", _obj);
     }
   }
 
@@ -74,29 +30,7 @@ namespace sberdev.SberContracts
 
     public virtual void ComparativeCollection5Added(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
     {
-      var col = _obj.ComparativeCollection5;
-      
-      if (col.Count > 0)
-      {
-        // Собираем все существующие номера
-        var existingNumbers = col
-          .Where(item => item.Number.HasValue)
-          .Select(item => item.Number.Value)
-          .OrderBy(num => num)
-          .ToList();
-
-        // Находим первый пропущенный номер
-        int missingNumber = 1;
-        foreach (var number in existingNumbers)
-        {
-          if (number != missingNumber)
-            break;
-          missingNumber++;
-        }
-
-        // Присваиваем первый пропущенный номер последнему элементу коллекции
-        col.Last().Number = missingNumber;
-      }
+      PublicFunctions.Module.AutoNumberCollectionItem("ComparativeCollection5", _obj);
     }
   }
 
@@ -105,29 +39,7 @@ namespace sberdev.SberContracts
 
     public virtual void ComparativeCollection4Added(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
     {
-      var col = _obj.ComparativeCollection4;
-      
-      if (col.Count > 0)
-      {
-        // Собираем все существующие номера
-        var existingNumbers = col
-          .Where(item => item.Number.HasValue)
-          .Select(item => item.Number.Value)
-          .OrderBy(num => num)
-          .ToList();
-
-        // Находим первый пропущенный номер
-        int missingNumber = 1;
-        foreach (var number in existingNumbers)
-        {
-          if (number != missingNumber)
-            break;
-          missingNumber++;
-        }
-
-        // Присваиваем первый пропущенный номер последнему элементу коллекции
-        col.Last().Number = missingNumber;
-      }
+      PublicFunctions.Module.AutoNumberCollectionItem("ComparativeCollection4", _obj);
     }
   }
 
@@ -136,30 +48,7 @@ namespace sberdev.SberContracts
 
     public virtual void ComparativeCollection3Added(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
     {
-      
-      var col = _obj.ComparativeCollection3;
-      
-      if (col.Count > 0)
-      {
-        // Собираем все существующие номера
-        var existingNumbers = col
-          .Where(item => item.Number.HasValue)
-          .Select(item => item.Number.Value)
-          .OrderBy(num => num)
-          .ToList();
-
-        // Находим первый пропущенный номер
-        int missingNumber = 1;
-        foreach (var number in existingNumbers)
-        {
-          if (number != missingNumber)
-            break;
-          missingNumber++;
-        }
-
-        // Присваиваем первый пропущенный номер последнему элементу коллекции
-        col.Last().Number = missingNumber;
-      }
+      PublicFunctions.Module.AutoNumberCollectionItem("ComparativeCollection3", _obj);
     }
   }
 
@@ -168,30 +57,7 @@ namespace sberdev.SberContracts
 
     public virtual void ComparativeCollection2Added(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
     {
-      
-      var col = _obj.ComparativeCollection2;
-      
-      if (col.Count > 0)
-      {
-        // Собираем все существующие номера
-        var existingNumbers = col
-          .Where(item => item.Number.HasValue)
-          .Select(item => item.Number.Value)
-          .OrderBy(num => num)
-          .ToList();
-
-        // Находим первый пропущенный номер
-        int missingNumber = 1;
-        foreach (var number in existingNumbers)
-        {
-          if (number != missingNumber)
-            break;
-          missingNumber++;
-        }
-
-        // Присваиваем первый пропущенный номер последнему элементу коллекции
-        col.Last().Number = missingNumber;
-      }
+      PublicFunctions.Module.AutoNumberCollectionItem("ComparativeCollection2", _obj);
     }
   }
 
@@ -200,29 +66,7 @@ namespace sberdev.SberContracts
 
     public virtual void ComparativeCollection1Added(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
     {
-      var col = _obj.ComparativeCollection1;
-      
-      if (col.Count > 0)
-      {
-        // Собираем все существующие номера
-        var existingNumbers = col
-          .Where(item => item.Number.HasValue)
-          .Select(item => item.Number.Value)
-          .OrderBy(num => num)
-          .ToList();
-
-        // Находим первый пропущенный номер
-        int missingNumber = 1;
-        foreach (var number in existingNumbers)
-        {
-          if (number != missingNumber)
-            break;
-          missingNumber++;
-        }
-
-        // Присваиваем первый пропущенный номер последнему элементу коллекции
-        col.Last().Number = missingNumber;
-      }
+      PublicFunctions.Module.AutoNumberCollectionItem("ComparativeCollection1", _obj);
     }
   }
 
@@ -231,30 +75,7 @@ namespace sberdev.SberContracts
 
     public virtual void ParticipantsCollectionAdded(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
     {
-      
-      var col = _obj.ParticipantsCollection;
-      
-      if (col.Count > 0)
-      {
-        // Собираем все существующие номера
-        var existingNumbers = col
-          .Where(item => item.Number.HasValue)
-          .Select(item => item.Number.Value)
-          .OrderBy(num => num)
-          .ToList();
-
-        // Находим первый пропущенный номер
-        int missingNumber = 1;
-        foreach (var number in existingNumbers)
-        {
-          if (number != missingNumber)
-            break;
-          missingNumber++;
-        }
-
-        // Присваиваем первый пропущенный номер последнему элементу коллекции
-        col.Last().Number = missingNumber;
-      }
+      PublicFunctions.Module.AutoNumberCollectionItem("ParticipantsCollection", _obj);
     }
   }
 
@@ -263,35 +84,48 @@ namespace sberdev.SberContracts
 
     public virtual void PurchasesCollectionAdded(Sungero.Domain.Shared.CollectionPropertyAddedEventArgs e)
     {
-      var col = _obj.PurchasesCollection;
-      
-      if (col.Count > 0)
-      {
-        // Собираем все существующие номера
-        var existingNumbers = col
-          .Where(item => item.Number.HasValue)
-          .Select(item => item.Number.Value)
-          .OrderBy(num => num)
-          .ToList();
-
-        // Находим первый пропущенный номер
-        int missingNumber = 1;
-        foreach (var number in existingNumbers)
-        {
-          if (number != missingNumber)
-            break;
-          missingNumber++;
-        }
-
-        // Присваиваем первый пропущенный номер последнему элементу коллекции
-        col.Last().Number = missingNumber;
-      }
+      PublicFunctions.Module.AutoNumberCollectionItem("PurchasesCollection", _obj);
     }
 
   }
 
   partial class AppProductPurchaseSharedHandlers
   {
+
+    public virtual void SelectedCounterparty7Changed(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
+    {
+      PublicFunctions.AppProductPurchase.ResetOtherCounterpartySelections(_obj, e, "SelectedCounterparty7");
+    }
+
+    public virtual void SelectedCounterparty6Changed(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
+    {
+      PublicFunctions.AppProductPurchase.ResetOtherCounterpartySelections(_obj, e, "SelectedCounterparty6");
+    }
+
+    public virtual void SelectedCounterparty5Changed(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
+    {
+      PublicFunctions.AppProductPurchase.ResetOtherCounterpartySelections(_obj, e, "SelectedCounterparty5");
+    }
+
+    public virtual void SelectedCounterparty4Changed(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
+    {
+      PublicFunctions.AppProductPurchase.ResetOtherCounterpartySelections(_obj, e, "SelectedCounterparty4");
+    }
+
+    public virtual void SelectedCounterparty3Changed(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
+    {
+      PublicFunctions.AppProductPurchase.ResetOtherCounterpartySelections(_obj, e, "SelectedCounterparty3");
+    }
+
+    public virtual void SelectedCounterparty2Changed(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
+    {
+      PublicFunctions.AppProductPurchase.ResetOtherCounterpartySelections(_obj, e, "SelectedCounterparty2");
+    }
+
+    public virtual void SelectedCounterparty1Changed(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
+    {
+      PublicFunctions.AppProductPurchase.ResetOtherCounterpartySelections(_obj, e, "SelectedCounterparty1");
+    }
 
     public virtual void AgencyContractChanged(sberdev.SberContracts.Shared.AppProductPurchaseAgencyContractChangedEventArgs e)
     {

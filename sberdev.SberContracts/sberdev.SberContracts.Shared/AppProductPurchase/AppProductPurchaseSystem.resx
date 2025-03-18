@@ -82,8 +82,8 @@
   <data name="Property_BalanceDays" xml:space="preserve">
     <value>Within (w. d.)</value>
   </data>
-  <data name="Property_FlagAgencyScheme" xml:space="preserve">
-    <value>Agency scheme</value>
+  <data name="Property_PaymentMethod" xml:space="preserve">
+    <value>Payment Method</value>
   </data>
   <data name="Enum_AgencyScheme_Yes" xml:space="preserve">
     <value />
@@ -412,7 +412,7 @@
   <data name="Property_AgencyFlagPAO" xml:space="preserve">
     <value>An application for payment via PJSC is required</value>
   </data>
-  <data name="ControlGroup_406fc4d56ae447039f75d0b5f2ee0160" xml:space="preserve">
+  <data name="ControlGroup_e7300cf3ffe34ac3939aa487ad7407bc" xml:space="preserve">
     <value />
   </data>
   <data name="ControlGroup_2e902bd913584feeb911892b21cf945d" xml:space="preserve">
@@ -453,5 +453,68 @@
   </data>
   <data name="Property_ComparativeCollection7" xml:space="preserve">
     <value>Comparative table of price offers</value>
+  </data>
+  <data name="Property_DeliveryTerms" xml:space="preserve">
+    <value>Payment method</value>
+  </data>
+  <data name="Enum_DeliveryTerms_Agent" xml:space="preserve">
+    <value>Agent scheme</value>
+  </data>
+  <data name="Enum_DeliveryTerms_VTB" xml:space="preserve">
+    <value>Account in VTB</value>
+  </data>
+  <data name="Enum_DeliveryTerms_Chinese" xml:space="preserve">
+    <value>Chinese legal entity</value>
+  </data>
+  <data name="Enum_PaymentMethod_Agent" xml:space="preserve">
+    <value>Agent scheme</value>
+  </data>
+  <data name="Enum_PaymentMethod_VTB" xml:space="preserve">
+    <value>Account in VTB</value>
+  </data>
+  <data name="Enum_PaymentMethod_Chinese" xml:space="preserve">
+    <value>Chinese legal entity</value>
+  </data>
+  <data name="Property_FlagAgencyScheme" xml:space="preserve">
+    <value>FlagAgencySche</value>
+  </data>
+  <data name="ControlGroup_16d47185fb0a4462ade1ba6ed442b6de" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_SelectedCounterparty1" xml:space="preserve">
+    <value>Selected Counterparty</value>
+  </data>
+  <data name="Property_SelectedCounterparty2" xml:space="preserve">
+    <value>Selected Counterparty</value>
+  </data>
+  <data name="Property_SelectedCounterparty3" xml:space="preserve">
+    <value>Selected Counterparty</value>
+  </data>
+  <data name="Property_SelectedCounterparty4" xml:space="preserve">
+    <value>Selected Counterparty</value>
+  </data>
+  <data name="Property_SelectedCounterparty5" xml:space="preserve">
+    <value>Selected Counterparty</value>
+  </data>
+  <data name="Property_SelectedCounterparty6" xml:space="preserve">
+    <value>Selected Counterparty</value>
+  </data>
+  <data name="Property_SelectedCounterparty7" xml:space="preserve">
+    <value>Selected Counterparty</value>
+  </data>
+  <data name="ControlGroup_7cf9531455b74cfe9a30fcca2107652d" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_b086381cd05f4faa862c61cb77bc4c7e" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_2045f13732aa4140af1a2daeeae8ffe9" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_29fdb7efd0af4cb4a6bfb216a11be0dc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_374a5428a59544b9a471c17bc6eafd0a" xml:space="preserve">
+    <value />
   </data>
 </root>
