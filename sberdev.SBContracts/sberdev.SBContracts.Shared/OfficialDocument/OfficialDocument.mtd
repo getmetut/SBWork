@@ -183,7 +183,8 @@
     }
   ],
   "HandledEvents": [
-    "ShowingClient"
+    "ShowingClient",
+    "BeforeSaveServer"
   ],
   "IconResourcesKeys": [],
   "IsAbstract": true,

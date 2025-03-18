@@ -217,6 +217,9 @@ namespace sberdev.SBContracts
           _obj.ProdCollectionStringSDev = prod;
       }
       
+      if (SBContracts.PublicFunctions.Module.IsSystemUser())
+        _obj.State.Properties.DeliveryMethod.IsRequired = false;
+      
       if (_obj.CalculationBaseSberDev.Count > 0)
       {
         if (_obj.CalculationAmountBaseSberDev == _obj.TotalAmount)

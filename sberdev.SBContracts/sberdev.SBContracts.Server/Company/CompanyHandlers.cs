@@ -20,7 +20,7 @@ namespace sberdev.SBContracts
         {
           foreach (var elem in OBrole.RecipientLinks)
           {
-              Userlist.Add(elem.Member);
+            Userlist.Add(elem.Member);
           }
           query = query.Where(q => Userlist.Contains(q));
         }
@@ -42,7 +42,7 @@ namespace sberdev.SBContracts
         {
           foreach (var elem in OBrole.RecipientLinks)
           {
-              Userlist.Add(elem.Member);
+            Userlist.Add(elem.Member);
           }
           query = query.Where(q => Userlist.Contains(q));
         }
@@ -65,32 +65,41 @@ namespace sberdev.SBContracts
     {
       if (!SBContracts.PublicFunctions.Module.IsSystemUser())
       {
-        bool err = false;
-        if (_obj.Account == null)
-           err = true;
-        else
+        bool rezident = true;
+        if (_obj.Nonresident.HasValue)
         {
-          if (_obj.Account.Length < 5)
+          if (_obj.Nonresident.Value)
+            rezident = false;
+        }
+        if (rezident)
+        {
+          bool err = false;
+          if (_obj.Account == null)
             err = true;
-        }
-        if (err)
-        {
-          _obj.State.Properties.Account.HighlightColor = Colors.Common.Red;
-            e.AddError("Необходимо заполнить Счет в банковских реквизитах!");
-        }
-        
-        if (_obj.HeadCompany == null)
-        {
-          if (_obj.HeadOrgSDev.HasValue)
-          {
-            if (!_obj.HeadOrgSDev.Value)
-              e.AddError("Добавление филиала без указания головной организации - запрещано.");
-          }
           else
           {
-            e.AddError("Добавление филиала без указания головной организации - запрещано.");
+            if (_obj.Account.Length < 5)
+              err = true;
           }
-        }               
+          if (err)
+          {
+            _obj.State.Properties.Account.HighlightColor = Colors.Common.Red;
+            e.AddError("Необходимо заполнить Счет в банковских реквизитах!");
+          }
+          
+          if (_obj.HeadCompany == null)
+          {
+            if (_obj.HeadOrgSDev.HasValue)
+            {
+              if (!_obj.HeadOrgSDev.Value)
+                e.AddError("Добавление филиала без указания головной организации - запрещано.");
+            }
+            else
+            {
+              e.AddError("Добавление филиала без указания головной организации - запрещано.");
+            }
+          }
+        }
       }
       
       var checkDuplicatesErrorText = Sungero.Parties.PublicFunctions.Counterparty.GetCounterpartyDuplicatesErrorText(_obj);

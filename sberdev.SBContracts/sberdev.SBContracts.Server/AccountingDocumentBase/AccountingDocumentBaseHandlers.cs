@@ -154,6 +154,10 @@ namespace sberdev.SBContracts
       Functions.AccountingDocumentBase.CreateOrUpdateAnaliticsCashe(_obj);
       Functions.AccountingDocumentBase.CreateOrUpdateAnaliticsCasheGeneral(_obj);
       _obj.CalcListSDev = PublicFunctions.AccountingDocumentBase.GetCalculationString(_obj);
+      
+      if (SBContracts.PublicFunctions.Module.IsSystemUser())
+        _obj.State.Properties.DeliveryMethod.IsRequired = false;
+          
       var error = Functions.AccountingDocumentBase.BanToSaveForStabs(_obj);
       if (error != "")
         e.AddError(error);
