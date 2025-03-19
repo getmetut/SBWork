@@ -217,4 +217,28 @@
   <data name="WidgetDescription_TaskFlowWidget" xml:space="preserve">
     <value>Включает четыре основных показателя: количество инициированных задач, закрытых задач, задач в процессе выполнения и просроченных задач.</value>
   </data>
+  <data name="WidgetParameter_AssignCompletedByDepartWidget_DocumentTypes" xml:space="preserve">
+    <value>Типы документов</value>
+  </data>
+  <data name="WidgetParameter_TaskFlowWidget_DocumentTypes" xml:space="preserve">
+    <value>Типы документов</value>
+  </data>
+  <data name="WidgetParameter_TaskDeadlineWidget_DocumentTypes" xml:space="preserve">
+    <value>Типы документов</value>
+  </data>
+  <data name="WidgetParameter_AssignAvgApprTimeByDepartWidget_DocumentTypes" xml:space="preserve">
+    <value>Типы документов</value>
+  </data>
+  <data name="WidgetParameter_AssignCompletedByDepartWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Период анализа</value>
+  </data>
+  <data name="WidgetParameter_TaskFlowWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Период анализа</value>
+  </data>
+  <data name="WidgetParameter_TaskDeadlineWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Период анализа</value>
+  </data>
+  <data name="WidgetParameter_AssignAvgApprTimeByDepartWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Период анализа</value>
+  </data>
 </root>

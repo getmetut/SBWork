@@ -24,7 +24,7 @@ namespace sberdev.SberContracts.Server
         {
           var serial = e.Chart.AddNewSeries(i.ToString(), $"{dateRangesList[i].StartDate.ToShortDateString()} - {dateRangesList[i].EndDate.ToShortDateString()}");
           
-          var values = PublicFunctions.Module.CalculateControlFlowValues(dateRangesList[i], _parameters.DocumentTypes.Value);
+          var values = PublicFunctions.Module.CalculateTaskFlowValues(dateRangesList[i], _parameters.DocumentTypes.Value);
           
           seriesList.Add(serial);
           for(int j = 0; j < 4; j++)
@@ -152,7 +152,7 @@ namespace sberdev.SberContracts.Server
           return;
         
         // Передаем тип документа как строку
-        var departmentStats = PublicFunctions.Module.CalculateCompletedAssignByDepartValues(
+        var departmentStats = PublicFunctions.Module.CalculateAssignCompletedByDepartValues(
           dateRange,
           _parameters.DocumentTypes.Value);
         

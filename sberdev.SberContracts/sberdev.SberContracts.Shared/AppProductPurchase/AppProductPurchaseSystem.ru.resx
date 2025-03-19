@@ -74,10 +74,10 @@
     <value>Баланс (%)</value>
   </data>
   <data name="Property_DepositDays" xml:space="preserve">
-    <value>В течении (р. д.)</value>
+    <value>В течение (р. д.)</value>
   </data>
   <data name="Property_BalanceDays" xml:space="preserve">
-    <value>В течении (р. д.)</value>
+    <value>В течение (р. д.)</value>
   </data>
   <data name="Property_Incoterms" xml:space="preserve">
     <value>Усл. поставки (ИНКОТЕРМС)</value>

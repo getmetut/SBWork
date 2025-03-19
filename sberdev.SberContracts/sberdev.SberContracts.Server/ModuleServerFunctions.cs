@@ -15,6 +15,105 @@ namespace sberdev.SberContracts.Server
 {
   public class ModuleFunctions
   {
+    #region Проверка документа на совпадение с выбранной группой типов
+    /// <summary>
+    /// Проверяет, соответствует ли документ выбранному типу
+    /// </summary>
+    [Public]
+    public bool MatchesDocumentType(Sungero.Domain.Shared.IEntity document, string documentType)
+    {
+      if (document == null)
+        return false;
+      
+      // Все типы документов
+      if (string.IsNullOrEmpty(documentType) || documentType == "All")
+        return true;
+      
+      // Преобразуем документ к возможным типам
+      var accounting = sberdev.SBContracts.AccountingDocumentBases.As(document);
+      var contractual = sberdev.SBContracts.ContractualDocuments.As(document);
+      var incomingInvoice = sberdev.SBContracts.IncomingInvoices.As(document);
+      var abstractSup = sberdev.SberContracts.AbstractsSupAgreements.As(document);
+      
+      switch (documentType)
+      {
+        case "Contractual":
+          // SBContracts.Contract, SBContracts.SupAgreement (наследники ContractualDocument)
+          return contractual != null && abstractSup == null;
+          
+        case "IncInvoce":
+          // SBContracts.IncomingInvoice
+          return incomingInvoice != null;
+          
+        case "Accounting":
+          // SBContracts.AccountingDocumentBase кроме IncomingInvoice
+          return accounting != null && incomingInvoice == null;
+          
+        case "AbstractContr":
+          // SberContracts.AbstractsSupAgreement
+          return abstractSup != null;
+          
+        case "Another":
+          // Все остальные типы
+          return document != null && accounting == null && contractual == null;
+          
+        default:
+          return false;
+      }
+    }
+
+    /// <summary>
+    /// Получить документ из задания и проверить его тип
+    /// </summary>
+    [Public]
+    public bool AssignmentMatchesDocumentType(Sungero.Workflow.IAssignment assignment, string documentType)
+    {
+      if (string.IsNullOrEmpty(documentType) || documentType == "All")
+        return true;
+      
+      var document = assignment.Attachments.FirstOrDefault();
+      return MatchesDocumentType(document, documentType);
+    }
+
+    /// <summary>
+    /// Получить документ из задачи и проверить его тип
+    /// </summary>
+    [Public]
+    public bool TaskMatchesDocumentType(Sungero.Workflow.ITask task, string documentType)
+    {
+      try
+      {
+        // Для всех типов документов возвращаем true без проверки
+        if (string.IsNullOrEmpty(documentType) || documentType == "All")
+          return true;
+        
+        var approvalTask = sberdev.SBContracts.ApprovalTasks.As(task);
+        if (approvalTask == null || approvalTask.DocumentGroup == null)
+          return false;
+        
+        // Безопасное получение документа с обработкой возможных исключений
+        try
+        {
+          var document = approvalTask.DocumentGroup.OfficialDocuments.FirstOrDefault();
+          if (document == null)
+            return false;
+          
+          return MatchesDocumentType(document, documentType);
+        }
+        catch (Exception ex)
+        {
+          Logger.Error($"Ошибка при получении документа из задачи {task.Id}", ex);
+          return false;
+        }
+      }
+      catch (Exception ex)
+      {
+        Logger.Error($"Ошибка в TaskMatchesDocumentType для задачи {task?.Id}", ex);
+        return false;
+      }
+    }
+    #endregion
+    
     /// <summary>
     /// Универсальная функция для автоматической нумерации элементов в коллекции DirectumRX
     /// </summary>
@@ -1612,7 +1711,7 @@ namespace sberdev.SberContracts.Server
     #region Функции виджетов
     
     /// <summary>
-    /// Этот метод уже не используется, но оставляем для обратной совместимости
+    /// Вычисление времени выполнения задачи
     /// </summary>
     [Public]
     public int GetExecutionTaskTime(SBContracts.IApprovalTask task)
@@ -1642,7 +1741,7 @@ namespace sberdev.SberContracts.Server
     }
 
     /// <summary>
-    /// Рассчитать среднее время выполнения заданий по подразделениям
+    /// Рассчитать показатели для виджета TaskDeadline
     /// </summary>
     [Public]
     public System.Collections.Generic.Dictionary<string, double> CalculateAssignAvgApprTimeByDepartValues(
@@ -1713,18 +1812,18 @@ namespace sberdev.SberContracts.Server
       }
       catch (System.Exception ex)
       {
-        Logger.Error("Ошибка расчета среднего времени выполнения заданий по подразделениям", ex);
+        Logger.Error("Ошибка в CalculateAssignAvgApprTimeByDepartValues", ex);
       }
       
       return result;
     }
 
     /// <summary>
-    /// Рассчитать количество выполненных и просроченных заданий по подразделениям
+    /// Рассчитать показатели для виджета AssignCompletedByDepart
     /// </summary>
     [Public]
     public System.Collections.Generic.Dictionary<string, sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>
-      CalculateCompletedAssignByDepartValues(sberdev.SBContracts.Structures.Module.IDateRange dateRange, string documentType = "All")
+      CalculateAssignCompletedByDepartValues(sberdev.SBContracts.Structures.Module.IDateRange dateRange, string documentType = "All")
     {
       var result = new System.Collections.Generic.Dictionary<string, sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>();
       
@@ -1771,13 +1870,13 @@ namespace sberdev.SberContracts.Server
       }
       catch (System.Exception ex)
       {
-        Logger.Error("Ошибка расчета количества заданий по подразделениям", ex);
+        Logger.Error("Ошибка в CalculateAssignCompletedByDepartValues", ex);
         return result;
       }
     }
 
     /// <summary>
-    /// Рассчитать показатели для графика
+    /// Рассчитать показатели для виджета TaskDeadline
     /// </summary>
     [Public]
     public double CalculateTaskDeadlineChartPoint(
@@ -1855,26 +1954,63 @@ namespace sberdev.SberContracts.Server
     }
 
     /// <summary>
-    /// Функция вычисляет значения для графика ControlFlowChart виджета ApprovalAnalyticsWidget
+    /// Функция вычисляет значения для виджета TaskFlowChart
     /// </summary>
     [Public]
-    public System.Collections.Generic.Dictionary<string, int> CalculateControlFlowValues(
+    public System.Collections.Generic.Dictionary<string, int> CalculateTaskFlowValues(
       sberdev.SBContracts.Structures.Module.IDateRange dateRange, string documentType = "All")
     {
-      System.Collections.Generic.Dictionary<string, int> controlFlowSeriesValue = new System.Collections.Generic.Dictionary<string, int>();
+      // Инициализируем словарь с нулевыми значениями по умолчанию
+      System.Collections.Generic.Dictionary<string, int> controlFlowSeriesValue = new System.Collections.Generic.Dictionary<string, int>
+      {
+        ["started"] = 0,
+        ["completed"] = 0,
+        ["inprocess"] = 0,
+        ["expired"] = 0
+      };
       
       try
       {
-        // Получаем задачи и фильтруем по типу документа
+        Logger.Debug($"CalculateTaskFlowValues: начало выполнения, dateRange={dateRange?.StartDate:dd.MM.yyyy}-{dateRange?.EndDate:dd.MM.yyyy}, documentType={documentType ?? "null"}");
+        
+        // Получаем задачи по диапазону дат без фильтрации по типу документа
         var tasks = sberdev.SBContracts.ApprovalTasks.GetAll()
           .Where(t => Sungero.Core.Calendar.Between(t.Started, dateRange.StartDate, dateRange.EndDate))
           .ToList();
         
+        Logger.Debug($"CalculateTaskFlowValues: получено задач - {tasks.Count}");
+        
+        // Важно! Применяем фильтрацию по типу документа только если реально нужна фильтрация
         if (!string.IsNullOrEmpty(documentType) && documentType != "All")
         {
-          tasks = tasks.Where(t => PublicFunctions.Module.TaskMatchesDocumentType(t, documentType)).ToList();
+          try
+          {
+            // Безопасная фильтрация с обработкой каждого исключения
+            var filteredTasks = new List<sberdev.SBContracts.IApprovalTask>();
+            foreach (var task in tasks)
+            {
+              try
+              {
+                if (PublicFunctions.Module.TaskMatchesDocumentType(task, documentType))
+                  filteredTasks.Add(task);
+              }
+              catch (Exception ex)
+              {
+                // Логируем ошибку для конкретной задачи, но продолжаем обработку
+                Logger.Error($"Ошибка при проверке типа документа для задачи {task.Id}", ex);
+              }
+            }
+            tasks = filteredTasks;
+            Logger.Debug($"CalculateTaskFlowValues: после фильтрации осталось задач - {tasks.Count}");
+          }
+          catch (Exception ex)
+          {
+            Logger.Error("Ошибка при фильтрации задач по типу документа", ex);
+            // Не меняем список задач, продолжаем без фильтрации
+          }
         }
         
+        // Заполняем словарь
         controlFlowSeriesValue["started"] = tasks.Count(t => t.Status != sberdev.SBContracts.ApprovalTask.Status.Draft);
         controlFlowSeriesValue["completed"] = tasks.Count(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.Completed);
         controlFlowSeriesValue["inprocess"] = tasks.Count(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess
@@ -1886,7 +2022,8 @@ namespace sberdev.SberContracts.Server
       }
       catch (System.Exception ex)
       {
-        Logger.Error("Ошибка в CalculateControlFlowValues", ex);
+        Logger.Error("Ошибка в CalculateTaskFlowValues", ex);
+        // Словарь уже инициализирован с нулевыми значениями
       }
       
       return controlFlowSeriesValue;

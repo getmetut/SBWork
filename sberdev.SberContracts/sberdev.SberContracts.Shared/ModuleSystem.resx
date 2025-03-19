@@ -155,7 +155,7 @@
     <value>Analysis period</value>
   </data>
   <data name="WidgetParameter_TaskFlowWidget_DocumentTypes" xml:space="preserve">
-    <value>DocumentTypes</value>
+    <value>Document types</value>
   </data>
   <data name="Enum_TaskFlowWidget_AnalysisPeriod_Weeks" xml:space="preserve">
     <value>Weeks</value>
