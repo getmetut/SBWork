@@ -6,6 +6,8 @@ namespace sberdev.SberContracts.Constants
   public static class Module
   {
     [Sungero.Core.PublicAttribute]
+    public static readonly Guid AppRnDPurchaseGuid =  Guid.Parse("5363e3b0-3af0-4788-b341-b769d45daaa4");
+    [Sungero.Core.PublicAttribute]
     public static readonly Guid AppProductPurchaseGuid =  Guid.Parse("5f15d0c0-c0e3-42df-b869-7aa26ae26a5e");
     [Sungero.Core.PublicAttribute]
     public static readonly Guid OrderXiongxin =  Guid.Parse("f22bbef8-9754-4963-8d60-21368432bf4b");

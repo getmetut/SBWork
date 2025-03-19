@@ -203,8 +203,12 @@
       "PreviousItemId": "7008bd90-30d7-4624-8d4f-f2a72f3e6061"
     },
     {
-      "ItemId": "ea461a5e-67b1-448f-9e88-225bafbf3705",
+      "ItemId": "ec171393-989b-4da6-b472-4c7bd5d014e9",
       "PreviousItemId": "b0bc2700-1f5c-4f20-ae30-92b30d07af1a"
+    },
+    {
+      "ItemId": "ea461a5e-67b1-448f-9e88-225bafbf3705",
+      "PreviousItemId": "ec171393-989b-4da6-b472-4c7bd5d014e9"
     },
     {
       "ItemId": "8fc24fb9-3645-4ff8-ac1a-f4f416ac4076",
@@ -335,6 +339,14 @@
       ],
       "TypeName": "System.Guid",
       "Value": "new System.Guid(\"5f15d0c0-c0e3-42df-b869-7aa26ae26a5e\")"
+    },
+    {
+      "Name": "AppRnDPurchaseGuid",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"5363e3b0-3af0-4788-b341-b769d45daaa4\")"
     },
     {
       "Name": "BusinessControlerRoleGuid",

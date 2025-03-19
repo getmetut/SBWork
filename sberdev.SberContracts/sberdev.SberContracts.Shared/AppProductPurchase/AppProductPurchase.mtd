@@ -1737,6 +1737,7 @@
   "HandledEvents": [
     "CreatedServer"
   ],
+  "IconName": "AppProductPurchase.ico",
   "IconResourcesKeys": [],
   "IntegrationServiceName": "SberContractsAppProductPurchase",
   "IsSelectableAsFolderContent": true,
@@ -1745,7 +1746,8 @@
   "Overridden": [
     "HideFromCreationArea",
     "HideFromNavigationEditorCreationArea",
-    "CanBeSearch"
+    "CanBeSearch",
+    "IconName"
   ],
   "Properties": [
     {

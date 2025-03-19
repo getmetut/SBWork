@@ -1826,6 +1826,7 @@
     "ShowingClient",
     "RefreshClient"
   ],
+  "IconName": "Purchase.ico",
   "IconResourcesKeys": [],
   "IntegrationServiceName": "SberContractsPurchase",
   "IsSelectableAsFolderContent": true,
@@ -1834,7 +1835,8 @@
   "Overridden": [
     "HideFromNavigationEditorCreationArea",
     "HideFromCreationArea",
-    "CanBeSearch"
+    "CanBeSearch",
+    "IconName"
   ],
   "Properties": [
     {
