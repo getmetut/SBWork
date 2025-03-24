@@ -268,4 +268,10 @@
   <data name="WidgetDescription_AssignCompletedByDepartWidget" xml:space="preserve">
     <value>Shows the number of completed tasks (on time/overdue) by department.</value>
   </data>
+  <data name="JobDisplayName_fd1cf1037d46492fb2a4ee38bf2b023a" xml:space="preserve">
+    <value>Widgets: Creating a cache for the Approval Analytics widget set</value>
+  </data>
+  <data name="JobDescription_fd1cf1037d46492fb2a4ee38bf2b023a" xml:space="preserve">
+    <value>The process calculates and writes data for the Approval Analytics widget set.</value>
+  </data>
 </root>

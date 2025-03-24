@@ -15,224 +15,6 @@ namespace sberdev.SberContracts.Server
 {
   public class ModuleFunctions
   {
-    #region Проверка документа на совпадение с выбранной группой типов
-    /// <summary>
-    /// Проверяет, соответствует ли документ выбранному типу
-    /// </summary>
-    [Public]
-    public bool MatchesDocumentType(Sungero.Domain.Shared.IEntity document, string documentType)
-    {
-      if (document == null)
-        return false;
-      
-      // Все типы документов
-      if (string.IsNullOrEmpty(documentType) || documentType == "All")
-        return true;
-      
-      // Преобразуем документ к возможным типам
-      var accounting = sberdev.SBContracts.AccountingDocumentBases.As(document);
-      var contractual = sberdev.SBContracts.ContractualDocuments.As(document);
-      var incomingInvoice = sberdev.SBContracts.IncomingInvoices.As(document);
-      var abstractSup = sberdev.SberContracts.AbstractsSupAgreements.As(document);
-      
-      switch (documentType)
-      {
-        case "Contractual":
-          // SBContracts.Contract, SBContracts.SupAgreement (наследники ContractualDocument)
-          return contractual != null && abstractSup == null;
-          
-        case "IncInvoce":
-          // SBContracts.IncomingInvoice
-          return incomingInvoice != null;
-          
-        case "Accounting":
-          // SBContracts.AccountingDocumentBase кроме IncomingInvoice
-          return accounting != null && incomingInvoice == null;
-          
-        case "AbstractContr":
-          // SberContracts.AbstractsSupAgreement
-          return abstractSup != null;
-          
-        case "Another":
-          // Все остальные типы
-          return document != null && accounting == null && contractual == null;
-          
-        default:
-          return false;
-      }
-    }
-
-    /// <summary>
-    /// Получить документ из задания и проверить его тип
-    /// </summary>
-    [Public]
-    public bool AssignmentMatchesDocumentType(Sungero.Workflow.IAssignment assignment, string documentType)
-    {
-      if (string.IsNullOrEmpty(documentType) || documentType == "All")
-        return true;
-      
-      var document = assignment.Attachments.FirstOrDefault();
-      return MatchesDocumentType(document, documentType);
-    }
-
-    /// <summary>
-    /// Получить документ из задачи и проверить его тип
-    /// </summary>
-    [Public]
-    public bool TaskMatchesDocumentType(Sungero.Workflow.ITask task, string documentType)
-    {
-      try
-      {
-        // Для всех типов документов возвращаем true без проверки
-        if (string.IsNullOrEmpty(documentType) || documentType == "All")
-          return true;
-        
-        var approvalTask = sberdev.SBContracts.ApprovalTasks.As(task);
-        if (approvalTask == null || approvalTask.DocumentGroup == null)
-          return false;
-        
-        // Безопасное получение документа с обработкой возможных исключений
-        try
-        {
-          var document = approvalTask.DocumentGroup.OfficialDocuments.FirstOrDefault();
-          if (document == null)
-            return false;
-          
-          return MatchesDocumentType(document, documentType);
-        }
-        catch (Exception ex)
-        {
-          Logger.Error($"Ошибка при получении документа из задачи {task.Id}", ex);
-          return false;
-        }
-      }
-      catch (Exception ex)
-      {
-        Logger.Error($"Ошибка в TaskMatchesDocumentType для задачи {task?.Id}", ex);
-        return false;
-      }
-    }
-    #endregion
-    
-    /// <summary>
-    /// Универсальная функция для автоматической нумерации элементов в коллекции DirectumRX
-    /// </summary>
-    /// <param name="collectionPropertyName">Имя свойства коллекции</param>
-    /// <param name="objInstance">Экземпляр объекта, содержащего коллекцию</param>
-    [Public]
-    public static void AutoNumberCollectionItem(string collectionPropertyName, object objInstance)
-    {
-      try
-      {
-        // Получаем саму коллекцию
-        var collectionProperty = objInstance.GetType().GetProperty(collectionPropertyName);
-        if (collectionProperty == null)
-          return;
-        
-        var collection = collectionProperty.GetValue(objInstance, null);
-        if (collection == null)
-          return;
-        
-        // Получаем количество элементов
-        var countProperty = collection.GetType().GetProperty("Count");
-        int count = (int)countProperty.GetValue(collection, null);
-        
-        if (count <= 0)
-          return;
-        
-        // Получаем последний элемент через индексатор
-        var itemAccessMethod = collection.GetType().GetMethod("get_Item");
-        var lastItem = itemAccessMethod.Invoke(collection, new object[] { count - 1 });
-        var lastItemNumberProperty = lastItem.GetType().GetProperty("Number");
-        
-        // Используем GetEnumerator для обхода коллекции
-        var getEnumeratorMethod = collection.GetType().GetMethod("GetEnumerator");
-        if (getEnumeratorMethod == null)
-          return;
-        
-        var enumerator = getEnumeratorMethod.Invoke(collection, null);
-        var moveNextMethod = enumerator.GetType().GetMethod("MoveNext");
-        var currentProperty = enumerator.GetType().GetProperty("Current");
-        
-        // Список существующих номеров
-        var existingNumbers = new System.Collections.Generic.List<int>();
-        int lastIndex = 0;
-        
-        // Перебираем все элементы, кроме последнего
-        while ((bool)moveNextMethod.Invoke(enumerator, null))
-        {
-          if (lastIndex == count - 1)
-            break;
-          
-          var item = currentProperty.GetValue(enumerator, null);
-          if (item == null)
-          {
-            lastIndex++;
-            continue;
-          }
-          
-          var numberProperty = item.GetType().GetProperty("Number");
-          if (numberProperty == null)
-          {
-            lastIndex++;
-            continue;
-          }
-          
-          var numberValue = numberProperty.GetValue(item, null);
-          if (numberValue == null)
-          {
-            lastIndex++;
-            continue;
-          }
-          
-          try
-          {
-            // Проверяем, является ли Number Nullable
-            var hasValueProperty = numberValue.GetType().GetProperty("HasValue");
-            if (hasValueProperty != null)
-            {
-              bool hasValue = (bool)hasValueProperty.GetValue(numberValue, null);
-              if (hasValue)
-              {
-                var valueProperty = numberValue.GetType().GetProperty("Value");
-                int number = (int)valueProperty.GetValue(numberValue, null);
-                existingNumbers.Add(number);
-              }
-            }
-            else
-            {
-              // Если не Nullable, просто приводим к int
-              int number = (int)numberValue;
-              existingNumbers.Add(number);
-            }
-          }
-          catch { }
-          
-          lastIndex++;
-        }
-        
-        // Сортируем номера
-        existingNumbers.Sort();
-        
-        // Находим первый пропущенный номер
-        int missingNumber = 1;
-        foreach (var number in existingNumbers)
-        {
-          if (number != missingNumber)
-            break;
-          missingNumber++;
-        }
-        
-        // Проверяем, есть ли уже такой номер
-        if (existingNumbers.Contains(missingNumber))
-          missingNumber = existingNumbers.Count > 0 ? existingNumbers.Max() + 1 : 1;
-        
-        // Присваиваем найденный номер последнему элементу
-        lastItemNumberProperty.SetValue(lastItem, missingNumber, null);
-      }
-      catch { }
-    }
-
     #region Функции миграции
     
     [Public, Remote]
@@ -934,6 +716,125 @@ namespace sberdev.SberContracts.Server
     #endregion
     
     #region Функции кнопок заполнения свойств в карточках
+    
+        /// <summary>
+    /// Универсальная функция для автоматической нумерации элементов в коллекции DirectumRX
+    /// </summary>
+    /// <param name="collectionPropertyName">Имя свойства коллекции</param>
+    /// <param name="objInstance">Экземпляр объекта, содержащего коллекцию</param>
+    [Public]
+    public static void AutoNumberCollectionItem(string collectionPropertyName, object objInstance)
+    {
+      try
+      {
+        // Получаем саму коллекцию
+        var collectionProperty = objInstance.GetType().GetProperty(collectionPropertyName);
+        if (collectionProperty == null)
+          return;
+        
+        var collection = collectionProperty.GetValue(objInstance, null);
+        if (collection == null)
+          return;
+        
+        // Получаем количество элементов
+        var countProperty = collection.GetType().GetProperty("Count");
+        int count = (int)countProperty.GetValue(collection, null);
+        
+        if (count <= 0)
+          return;
+        
+        // Получаем последний элемент через индексатор
+        var itemAccessMethod = collection.GetType().GetMethod("get_Item");
+        var lastItem = itemAccessMethod.Invoke(collection, new object[] { count - 1 });
+        var lastItemNumberProperty = lastItem.GetType().GetProperty("Number");
+        
+        // Используем GetEnumerator для обхода коллекции
+        var getEnumeratorMethod = collection.GetType().GetMethod("GetEnumerator");
+        if (getEnumeratorMethod == null)
+          return;
+        
+        var enumerator = getEnumeratorMethod.Invoke(collection, null);
+        var moveNextMethod = enumerator.GetType().GetMethod("MoveNext");
+        var currentProperty = enumerator.GetType().GetProperty("Current");
+        
+        // Список существующих номеров
+        var existingNumbers = new System.Collections.Generic.List<int>();
+        int lastIndex = 0;
+        
+        // Перебираем все элементы, кроме последнего
+        while ((bool)moveNextMethod.Invoke(enumerator, null))
+        {
+          if (lastIndex == count - 1)
+            break;
+          
+          var item = currentProperty.GetValue(enumerator, null);
+          if (item == null)
+          {
+            lastIndex++;
+            continue;
+          }
+          
+          var numberProperty = item.GetType().GetProperty("Number");
+          if (numberProperty == null)
+          {
+            lastIndex++;
+            continue;
+          }
+          
+          var numberValue = numberProperty.GetValue(item, null);
+          if (numberValue == null)
+          {
+            lastIndex++;
+            continue;
+          }
+          
+          try
+          {
+            // Проверяем, является ли Number Nullable
+            var hasValueProperty = numberValue.GetType().GetProperty("HasValue");
+            if (hasValueProperty != null)
+            {
+              bool hasValue = (bool)hasValueProperty.GetValue(numberValue, null);
+              if (hasValue)
+              {
+                var valueProperty = numberValue.GetType().GetProperty("Value");
+                int number = (int)valueProperty.GetValue(numberValue, null);
+                existingNumbers.Add(number);
+              }
+            }
+            else
+            {
+              // Если не Nullable, просто приводим к int
+              int number = (int)numberValue;
+              existingNumbers.Add(number);
+            }
+          }
+          catch { }
+          
+          lastIndex++;
+        }
+        
+        // Сортируем номера
+        existingNumbers.Sort();
+        
+        // Находим первый пропущенный номер
+        int missingNumber = 1;
+        foreach (var number in existingNumbers)
+        {
+          if (number != missingNumber)
+            break;
+          missingNumber++;
+        }
+        
+        // Проверяем, есть ли уже такой номер
+        if (existingNumbers.Contains(missingNumber))
+          missingNumber = existingNumbers.Count > 0 ? existingNumbers.Max() + 1 : 1;
+        
+        // Присваиваем найденный номер последнему элементу
+        lastItemNumberProperty.SetValue(lastItem, missingNumber, null);
+      }
+      catch { }
+    }
     
     /// <summary>
     /// Заполнить из предыдущего документа такого же типа (не стал дорабатывать так как это чисто моя инициатива)
@@ -2027,6 +1928,105 @@ namespace sberdev.SberContracts.Server
       }
       
       return controlFlowSeriesValue;
+    }
+    #endregion
+    
+    #region Проверка документа на совпадение с выбранной группой типов
+    /// <summary>
+    /// Проверяет, соответствует ли документ выбранному типу
+    /// </summary>
+    [Public]
+    public bool MatchesDocumentType(Sungero.Domain.Shared.IEntity document, string documentType)
+    {
+      if (document == null)
+        return false;
+      
+      // Все типы документов
+      if (string.IsNullOrEmpty(documentType) || documentType == "All")
+        return true;
+      
+      // Преобразуем документ к возможным типам
+      var accounting = sberdev.SBContracts.AccountingDocumentBases.As(document);
+      var contractual = sberdev.SBContracts.ContractualDocuments.As(document);
+      var incomingInvoice = sberdev.SBContracts.IncomingInvoices.As(document);
+      var abstractSup = sberdev.SberContracts.AbstractsSupAgreements.As(document);
+      
+      switch (documentType)
+      {
+        case "Contractual":
+          // SBContracts.Contract, SBContracts.SupAgreement (наследники ContractualDocument)
+          return contractual != null && abstractSup == null;
+          
+        case "IncInvoce":
+          // SBContracts.IncomingInvoice
+          return incomingInvoice != null;
+          
+        case "Accounting":
+          // SBContracts.AccountingDocumentBase кроме IncomingInvoice
+          return accounting != null && incomingInvoice == null;
+          
+        case "AbstractContr":
+          // SberContracts.AbstractsSupAgreement
+          return abstractSup != null;
+          
+        case "Another":
+          // Все остальные типы
+          return document != null && accounting == null && contractual == null;
+          
+        default:
+          return false;
+      }
+    }
+
+    /// <summary>
+    /// Получить документ из задания и проверить его тип
+    /// </summary>
+    [Public]
+    public bool AssignmentMatchesDocumentType(Sungero.Workflow.IAssignment assignment, string documentType)
+    {
+      if (string.IsNullOrEmpty(documentType) || documentType == "All")
+        return true;
+      
+      var document = assignment.Attachments.FirstOrDefault();
+      return MatchesDocumentType(document, documentType);
+    }
+
+    /// <summary>
+    /// Получить документ из задачи и проверить его тип
+    /// </summary>
+    [Public]
+    public bool TaskMatchesDocumentType(Sungero.Workflow.ITask task, string documentType)
+    {
+      try
+      {
+        // Для всех типов документов возвращаем true без проверки
+        if (string.IsNullOrEmpty(documentType) || documentType == "All")
+          return true;
+        
+        var approvalTask = sberdev.SBContracts.ApprovalTasks.As(task);
+        if (approvalTask == null || approvalTask.DocumentGroup == null)
+          return false;
+        
+        // Безопасное получение документа с обработкой возможных исключений
+        try
+        {
+          var document = approvalTask.DocumentGroup.OfficialDocuments.FirstOrDefault();
+          if (document == null)
+            return false;
+          
+          return MatchesDocumentType(document, documentType);
+        }
+        catch (Exception ex)
+        {
+          Logger.Error($"Ошибка при получении документа из задачи {task.Id}", ex);
+          return false;
+        }
+      }
+      catch (Exception ex)
+      {
+        Logger.Error($"Ошибка в TaskMatchesDocumentType для задачи {task?.Id}", ex);
+        return false;
+      }
     }
     #endregion
     

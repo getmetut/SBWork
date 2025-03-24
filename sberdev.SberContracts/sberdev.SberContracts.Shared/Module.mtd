@@ -287,6 +287,13 @@
       "MonthSchedule": "Monthly",
       "StartAt": "1753-01-01T09:00:00",
       "TimePeriod": 30
+    },
+    {
+      "NameGuid": "fd1cf103-7d46-492f-b2a4-ee38bf2b023a",
+      "Name": "CreateApprovalAnalyticsWidgetsCashes",
+      "GenerateHandler": true,
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T08:30:00"
     }
   ],
   "Libraries": [
@@ -478,23 +485,6 @@
     }
   ],
   "PublicFunctions": [
-    {
-      "Name": "AssignmentMatchesDocumentType",
-      "Parameters": [
-        {
-          "Name": "assignment",
-          "ParameterType": "global::Sungero.Workflow.IAssignment",
-          "ParameterTypeFullName": "Sungero.Workflow.IAssignment, Sungero.Workflow.Interfaces"
-        },
-        {
-          "Name": "documentType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "global::System.Boolean",
-      "ReturnTypeFullName": "System.Boolean"
-    },
     {
       "Name": "AutoNumberCollectionItem",
       "Parameters": [
@@ -998,23 +988,6 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "MatchesDocumentType",
-      "Parameters": [
-        {
-          "Name": "document",
-          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
-          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
-        },
-        {
-          "Name": "documentType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "global::System.Boolean",
-      "ReturnTypeFullName": "System.Boolean"
-    },
-    {
       "Name": "MigrationContractCard",
       "IsRemote": true,
       "Parameters": [
@@ -1080,23 +1053,6 @@
       "Placement": "Client",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
-    },
-    {
-      "Name": "TaskMatchesDocumentType",
-      "Parameters": [
-        {
-          "Name": "task",
-          "ParameterType": "global::Sungero.Workflow.ITask",
-          "ParameterTypeFullName": "Sungero.Workflow.ITask, Sungero.Workflow.Interfaces"
-        },
-        {
-          "Name": "documentType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "global::System.Boolean",
-      "ReturnTypeFullName": "System.Boolean"
     }
   ],
   "PublicStructures": [],

@@ -241,4 +241,10 @@
   <data name="WidgetParameter_AssignAvgApprTimeByDepartWidget_AnalysisPeriod" xml:space="preserve">
     <value>Период анализа</value>
   </data>
+  <data name="JobDisplayName_fd1cf1037d46492fb2a4ee38bf2b023a" xml:space="preserve">
+    <value>Виджеты. Создание кеша для набора виджетов "Аналитики согласований"</value>
+  </data>
+  <data name="JobDescription_fd1cf1037d46492fb2a4ee38bf2b023a" xml:space="preserve">
+    <value>Процесс вычисляет и записывает данные для набора виджетов "Аналитика согласований".</value>
+  </data>
 </root>

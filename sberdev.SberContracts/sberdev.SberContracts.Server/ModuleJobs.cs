@@ -13,6 +13,14 @@ namespace sberdev.SberContracts.Server
   {
 
     /// <summary>
+    /// 
+    /// </summary>
+    public virtual void CreateApprovalAnalyticsWidgetsCashes()
+    {
+      
+    }
+
+    /// <summary>
     /// Процесс очищает временные документы
     /// </summary>
     public virtual void CleanTempDocs()
