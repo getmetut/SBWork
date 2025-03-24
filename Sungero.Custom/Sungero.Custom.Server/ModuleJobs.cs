@@ -94,37 +94,23 @@ namespace Sungero.Custom.Server
         foreach (var str in RefAcc)
         {
           var task = str.Task;
+          foreach (var prop in task.State.Properties)
+          {
+            prop.IsRequired = false;
+          }
           string log = "";
           var us = str.Recipient;
-          var DefAcc = str.EditAcces.HasValue ? (str.EditAcces.Value ?  DefaultAccessRightsTypes.Change :  DefaultAccessRightsTypes.Read) : DefaultAccessRightsTypes.Read;
-          try
-          {
-            if (!task.AccessRights.IsGrantedWithoutSubstitution(DefAcc, us))
-            {
-              task.AccessRights.Grant(us, DefAcc);
-              task.AccessRights.Save();
-            }
-          }
-          catch (Exception f)
-          {
-            log += "Ошибка при выдаче прав на задачу: " + f.Message.ToString() + '\n';
-          }
+          var DefAccBool = str.EditAcces.HasValue ? str.EditAcces.Value : false;
+          var DefAcc = str.EditAcces.HasValue ? (str.EditAcces.Value ? DefaultAccessRightsTypes.Change :  DefaultAccessRightsTypes.Read) : DefaultAccessRightsTypes.Read;
+          log += PublicFunctions.Module.AddAccesToObject(task, DefAccBool, us);
+
           if (task.Attachments.Count > 0)
           {
             foreach (var attach in task.Attachments)
             {
               if (!attach.AccessRights.IsGrantedWithoutSubstitution(DefAcc, us))
               {
-                try
-                {
-                  attach.AccessRights.Grant(us, DefAcc);
-                  attach.AccessRights.Save();
-                  log += "Выданы права на вложение: " + attach.DisplayValue.ToString() + '\n';
-                }
-                catch (Exception e)
-                {
-                  log += "Ошибка при выдаче прав на документ: " + e.Message.ToString() + '\n';
-                }
+                log += PublicFunctions.Module.AddAccesToObject(attach, DefAccBool, us);
               }
             }
           }

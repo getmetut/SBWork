@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -27,17 +27,21 @@ namespace Sungero.Custom.Shared
         
         if (_obj.NFP.Value)
         {
-          _obj.KAForm = false;
-          _obj.Typing = false;
+          if (_obj.KAForm != false)
+            _obj.KAForm = false;
+          if (_obj.Typing != false)
+            _obj.Typing = false;
         }
         
         if (_obj.Typing != null)
         {
           if (_obj.Typing.Value)
           {
-            _obj.NFP = false;
-            _obj.KAForm = false;
-          } 
+            if (_obj.NFP != false)
+              _obj.NFP = false;
+            if (_obj.KAForm != false)
+              _obj.KAForm = false;
+          }
         }
       }
       else

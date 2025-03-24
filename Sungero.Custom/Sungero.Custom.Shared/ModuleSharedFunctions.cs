@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -8,6 +8,56 @@ namespace Sungero.Custom.Shared
 {
   public class ModuleFunctions
   {
+
+    /// <summary>
+    /// Функция выдачи прав без учета обязательных полей в карточке 
+    /// </summary>
+    [Public]
+    public string AddAccesToObject(Sungero.Workflow.ITask task, bool Edit, IRecipient us)
+    {
+      var DefAcc = Edit ?  DefaultAccessRightsTypes.Change :  DefaultAccessRightsTypes.Read;
+      string log = "";
+      try
+      {
+        foreach (var propatt in task.State.Properties)
+        {
+          propatt.IsRequired = false;
+        }
+        task.AccessRights.Grant(us, DefAcc);
+        task.AccessRights.Save();
+        log += "Выданы права на вложение: " + task.DisplayValue.ToString() + '\n';
+      }
+      catch (Exception e)
+      {
+        log += "Ошибка при выдаче прав на документ: " + e.Message.ToString() + '\n';
+      }
+      return log;
+    }
+    
+    /// <summary>
+    /// Функция выдачи прав без учета обязательных полей в карточке
+    /// </summary>
+    [Public]
+    public string AddAccesToObject(Sungero.Domain.Shared.IEntity att, bool Edit, IRecipient us)
+    {
+      var DefAcc = Edit ?  DefaultAccessRightsTypes.Change :  DefaultAccessRightsTypes.Read;
+      string log = "";
+      try
+      {
+        foreach (var propatt in att.State.Properties)
+        {
+          propatt.IsRequired = false;
+        }
+        att.AccessRights.Grant(us, DefAcc);
+        att.AccessRights.Save();
+        log += "Выданы права на вложение: " + att.DisplayValue.ToString() + '\n';
+      }
+      catch (Exception e)
+      {
+        log += "Ошибка при выдаче прав на документ: " + e.Message.ToString() + '\n';
+      }
+      return log;
+    }
 
     /// <summary>
     /// Создание записи справочника по задачам
@@ -24,7 +74,7 @@ namespace Sungero.Custom.Shared
         Refs.Author = Sungero.Company.Employees.GetAll().Where(empl => empl.Login == Task.Author.Login).FirstOrDefault();
         Refs.Name = Task.Subject;
         Refs.Sost = Task.Status.ToString();
-        Refs.LinkObject = Sungero.Core.Hyperlinks.Get(Task.Info); 
+        Refs.LinkObject = Sungero.Core.Hyperlinks.Get(Task.Info);
         Refs.Save();
       }
     }
@@ -40,7 +90,7 @@ namespace Sungero.Custom.Shared
       {
         var Job = Ref.InfoJobs.AddNew();
         Job.Performens = Performen;
-        Job.TimeResult = TimeResult; 
+        Job.TimeResult = TimeResult;
         Job.Result = Result;
         Job.Comment = Comment;
         Ref.Save();
@@ -60,7 +110,7 @@ namespace Sungero.Custom.Shared
         {
           Ref.InfoJobs.Clear();
           Ref.Save();
-        }        
+        }
       }
     }
 
