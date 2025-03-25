@@ -17,16 +17,20 @@ namespace sberdev.SberContracts.Server
         e.Chart.AxisTitle = sberdev.SberContracts.Resources.ControlFlowChartAxis;
         var dateRangesList = PublicFunctions.Module.GenerateCompletedDateRanges(Sungero.Core.Calendar.Now, 6, _parameters.AnalysisPeriod.Value);
         var valuesInfos = PublicFunctions.Module.CreateControlFlowSeriesInfosList();
-        System.Collections.Generic.List<Sungero.Domain.Widgets.WidgetBarChartSeries> seriesList =
-          new System.Collections.Generic.List<Sungero.Domain.Widgets.WidgetBarChartSeries>();
         
         for (int i = 0; i < 6; i++)
         {
           var serial = e.Chart.AddNewSeries(i.ToString(), $"{dateRangesList[i].StartDate.ToShortDateString()} - {dateRangesList[i].EndDate.ToShortDateString()}");
           
-          var values = PublicFunctions.Module.CalculateTaskFlowValues(dateRangesList[i], _parameters.DocumentTypes.Value);
+          // Получаем данные из кеша, если они есть
+          var cachedValues = PublicFunctions.WidgetCache.GetTaskFlowCacheData(
+            dateRangesList[i],
+            _parameters.DocumentTypes.Value,
+            _parameters.AnalysisPeriod.Value);
           
-          seriesList.Add(serial);
+          // Если в кеше нет данных, используем оригинальный метод расчета
+          var values = cachedValues ?? PublicFunctions.Module.CalculateTaskFlowValues(dateRangesList[i], _parameters.DocumentTypes.Value);
+          
           for(int j = 0; j < 4; j++)
             serial.AddValue(valuesInfos[j].ValueId, valuesInfos[j].Label, values[valuesInfos[j].ValueId],
                             Sungero.Core.Colors.FromRgb((byte)valuesInfos[j].R, (byte)valuesInfos[j].G, (byte)valuesInfos[j].B));
@@ -56,10 +60,19 @@ namespace sberdev.SberContracts.Server
         if (dateRange == null)
           return;
 
-        // Передаем тип документа как строку
-        var departmentStats = PublicFunctions.Module.CalculateAssignAvgApprTimeByDepartValues(
+        // Получаем данные из кеша, если они есть
+        var departmentStats = PublicFunctions.WidgetCache.GetAssignAvgApprTimeCacheData(
           dateRange,
-          _parameters.DocumentTypes.Value);
+          _parameters.DocumentTypes.Value,
+          _parameters.AnalysisPeriod.Value);
+        
+        // Если в кеше нет данных, используем оригинальный метод расчета
+        if (departmentStats == null)
+        {
+          departmentStats = PublicFunctions.Module.CalculateAssignAvgApprTimeByDepartValues(
+            dateRange,
+            _parameters.DocumentTypes.Value);
+        }
         
         foreach(var stat in departmentStats)
         {
@@ -79,6 +92,7 @@ namespace sberdev.SberContracts.Server
 
     public virtual void GetTaskDeadlineWidgetTaskDeadlineChartValue(Sungero.Domain.GetWidgetPlotChartValueEventArgs e)
     {
+      
       try
       {
         e.Chart.Axis.Y.Title = Resources.DeadlineChartYTitle;
@@ -118,15 +132,31 @@ namespace sberdev.SberContracts.Server
             continue;
           }
           
-          // Передаем тип документа как строку
-          series[sberdev.SberContracts.Resources.TaskDeadlineSerialAvg]
-            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "average", _parameters.DocumentTypes.Value));
-          series[sberdev.SberContracts.Resources.TaskDeadlineSerialMin]
-            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "minimum", _parameters.DocumentTypes.Value));
-          series[sberdev.SberContracts.Resources.TaskDeadlineSerialTarget]
-            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "target", _parameters.DocumentTypes.Value));
-          series[sberdev.SberContracts.Resources.TaskDeadlineSerialMax]
-            .AddValue(range.EndDate, PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "maximum", _parameters.DocumentTypes.Value));
+          // Получаем значения из кеша для каждого типа серии или рассчитываем при отсутствии в кеше
+          double avgValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
+            range, "average", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value);
+          if (avgValue == 0)
+            avgValue = PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "average", _parameters.DocumentTypes.Value);
+          
+          double minValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
+            range, "minimum", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value);
+          if (minValue == 0)
+            minValue = PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "minimum", _parameters.DocumentTypes.Value);
+          
+          double targetValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
+            range, "target", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value);
+          if (targetValue == 0)
+            targetValue = PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "target", _parameters.DocumentTypes.Value);
+          
+          double maxValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
+            range, "maximum", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value);
+          if (maxValue == 0)
+            maxValue = PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "maximum", _parameters.DocumentTypes.Value);
+          
+          series[sberdev.SberContracts.Resources.TaskDeadlineSerialAvg].AddValue(range.EndDate, avgValue);
+          series[sberdev.SberContracts.Resources.TaskDeadlineSerialMin].AddValue(range.EndDate, minValue);
+          series[sberdev.SberContracts.Resources.TaskDeadlineSerialTarget].AddValue(range.EndDate, targetValue);
+          series[sberdev.SberContracts.Resources.TaskDeadlineSerialMax].AddValue(range.EndDate, maxValue);
         }
       }
       catch (System.Exception ex)
@@ -141,6 +171,7 @@ namespace sberdev.SberContracts.Server
 
     public virtual void GetAssignCompletedByDepartWidgetAssignCompletedByDepartChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
     {
+      
       try
       {
         var dateRange = PublicFunctions.Module.GenerateCompletedDateRanges(
@@ -151,10 +182,19 @@ namespace sberdev.SberContracts.Server
         if (dateRange == null)
           return;
         
-        // Передаем тип документа как строку
-        var departmentStats = PublicFunctions.Module.CalculateAssignCompletedByDepartValues(
+        // Получаем данные из кеша, если они есть
+        var departmentStats = PublicFunctions.WidgetCache.GetAssignCompletedCacheData(
           dateRange,
-          _parameters.DocumentTypes.Value);
+          _parameters.DocumentTypes.Value,
+          _parameters.AnalysisPeriod.Value);
+        
+        // Если в кеше нет данных, используем оригинальный метод расчета
+        if (departmentStats == null)
+        {
+          departmentStats = PublicFunctions.Module.CalculateAssignCompletedByDepartValues(
+            dateRange,
+            _parameters.DocumentTypes.Value);
+        }
         
         if (departmentStats == null || !departmentStats.Any())
           return;

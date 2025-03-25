@@ -899,6 +899,21 @@
       "StructureNamespace": "sberdev.SBContracts.Structures.Module"
     },
     {
+      "Name": "AssignApprSeriesInfoDto",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Completed",
+          "TypeFullName": "global::System.Int32"
+        },
+        {
+          "Name": "Expired",
+          "TypeFullName": "global::System.Int32"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
       "Name": "ControlFlowSeriesInfo",
       "IsPublic": true,
       "Properties": [

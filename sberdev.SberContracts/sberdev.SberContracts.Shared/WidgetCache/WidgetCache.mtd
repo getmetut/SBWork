@@ -1,0 +1,347 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "c1301170-b79d-45c5-be58-4a518742012d",
+  "Name": "WidgetCache",
+  "BaseGuid": "04581d26-0780-4cfd-b3cd-c2cafc5798b0",
+  "CanBeNavigationPropertyType": true,
+  "Code": "WidgetCache",
+  "CreationAreaMetadata": {
+    "NameGuid": "f7766750-eee2-4fcd-8003-5c06a90d1f44",
+    "Name": "CreationArea",
+    "Buttons": [],
+    "IsAncestorMetadata": true
+  },
+  "ExtraSearchProperties": [],
+  "FilterPanel": {
+    "NameGuid": "b0125fbd-3b91-4dbb-914a-689276216404",
+    "Name": "FilterPanel",
+    "Controls": [],
+    "IsAncestorMetadata": true
+  },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.StandaloneFormMetadata, Sungero.Metadata",
+      "NameGuid": "dc3b0a5c-92e6-4d1c-a8c8-ba40c31c32e7",
+      "Name": "Card",
+      "Controls": [
+        {
+          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
+          "NameGuid": "4293f2e6-1849-4b40-9465-8c9f3ed08ee5",
+          "Name": "ControlGroup"
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "0686b54a-625f-462a-a3e9-1fad4eb830d1",
+          "Name": "Control",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+          "ParentGuid": "4293f2e6-1849-4b40-9465-8c9f3ed08ee5",
+          "PropertyGuid": "2729aa12-b387-43aa-8426-c55ff4435106",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        }
+      ]
+    }
+  ],
+  "HideFromCreationArea": true,
+  "HideFromNavigationEditorCreationArea": true,
+  "IconResourcesKeys": [],
+  "IntegrationServiceName": "SberContractsWidgetCache",
+  "IsAutoCreated": true,
+  "IsVisible": false,
+  "OperationsClass": "",
+  "Overridden": [
+    "IsVisible",
+    "HideFromCreationArea",
+    "HideFromNavigationEditorCreationArea",
+    "IsAutoCreated",
+    "NeedWriteHistory"
+  ],
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "2729aa12-b387-43aa-8426-c55ff4435106",
+      "Name": "Name",
+      "Code": "Name",
+      "IsDisplayValue": true,
+      "IsQuickSearchAllowed": true,
+      "Length": 500,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "1dcedc29-5140-4770-ac92-eabc212326a1"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "45d77ed8-fc3f-4d68-b5d6-4bbd6596df71",
+      "Name": "WidgetName",
+      "Code": "WidgetName",
+      "Length": 100,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "2729aa12-b387-43aa-8426-c55ff4435106"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "bb8acd95-699d-4341-b883-7f5f7ef37faf",
+      "Name": "DocumentType",
+      "Code": "DocumentType",
+      "Length": 50,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "45d77ed8-fc3f-4d68-b5d6-4bbd6596df71"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9cc7e45f-ec47-4704-8592-7a27f79dca63",
+      "Name": "AnalysisPeriod",
+      "Code": "AnalysisPeriod",
+      "Length": 50,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "bb8acd95-699d-4341-b883-7f5f7ef37faf"
+    },
+    {
+      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9e240b1f-59c6-4fa8-afbf-af1b0da9f970",
+      "Name": "StartDate",
+      "Code": "StartDate",
+      "DateTimeFormat": "DateTime",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+      "PreviousPropertyGuid": "9cc7e45f-ec47-4704-8592-7a27f79dca63"
+    },
+    {
+      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "677973fb-2dec-4434-a138-494f036d43e4",
+      "Name": "EndDate",
+      "Code": "EndDate",
+      "DateTimeFormat": "DateTime",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+      "PreviousPropertyGuid": "9e240b1f-59c6-4fa8-afbf-af1b0da9f970"
+    },
+    {
+      "$type": "Sungero.Metadata.TextPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "eb7336d6-8e3c-422a-8d33-21c62ee5fba9",
+      "Name": "AdditionalParam",
+      "Code": "AddParam",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToTextBinder",
+      "PreviousPropertyGuid": "677973fb-2dec-4434-a138-494f036d43e4"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "bd0e85d4-773d-4bd8-8e06-83a3d87ece8d",
+      "Name": "CachedData",
+      "Code": "CachedData",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "eb7336d6-8e3c-422a-8d33-21c62ee5fba9"
+    },
+    {
+      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "c90d85b6-0a56-4afe-b69f-5353b2e1b2c2",
+      "Name": "LastUpdated",
+      "Code": "LastUpdated",
+      "DateTimeFormat": "DateTime",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+      "PreviousPropertyGuid": "bd0e85d4-773d-4bd8-8e06-83a3d87ece8d"
+    },
+    {
+      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "2a70e5b5-c5a4-4b93-95d2-00f6c7c977c1",
+      "Name": "ActualityDate",
+      "Code": "ActualityDate",
+      "DateTimeFormat": "DateTime",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+      "PreviousPropertyGuid": "c90d85b6-0a56-4afe-b69f-5353b2e1b2c2"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "CleanupOldCacheRecords",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "GetAssignAvgApprTimeCacheData",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "analysisPeriod",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Double>"
+    },
+    {
+      "Name": "GetAssignCompletedCacheData",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "analysisPeriod",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>"
+    },
+    {
+      "Name": "GetTaskDeadlineCacheData",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "serialType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "analysisPeriod",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.Double",
+      "ReturnTypeFullName": "System.Double"
+    },
+    {
+      "Name": "GetTaskFlowCacheData",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "analysisPeriod",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Int32>"
+    },
+    {
+      "Name": "NeedUpdateCache",
+      "Parameters": [
+        {
+          "Name": "widgetName",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "analysisPeriod",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "additionalParam",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
+      "Name": "SaveCacheData",
+      "Parameters": [
+        {
+          "Name": "widgetName",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "analysisPeriod",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "additionalParam",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "data",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "9955af09-74e6-43af-90f3-4f847add4760",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "ea589238-707c-4779-a15f-c44229a736b7",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 12
+    }
+  ]
+}

@@ -6,6 +6,15 @@ using Sungero.CoreEntities;
 
 namespace sberdev.SBContracts.Structures.Module
 {
+  /// <summary>
+  /// DTO класс для сериализации/десериализации структуры AssignApprSeriesInfo.
+  /// </summary>
+  [Public]
+  partial class AssignApprSeriesInfoDto
+  {
+    public int Completed { get; set; }
+    public int Expired { get; set; }
+  }
 
   /// <summary>
   /// 

@@ -207,8 +207,12 @@
       "PreviousItemId": "b0bc2700-1f5c-4f20-ae30-92b30d07af1a"
     },
     {
-      "ItemId": "ea461a5e-67b1-448f-9e88-225bafbf3705",
+      "ItemId": "c1301170-b79d-45c5-be58-4a518742012d",
       "PreviousItemId": "ec171393-989b-4da6-b472-4c7bd5d014e9"
+    },
+    {
+      "ItemId": "ea461a5e-67b1-448f-9e88-225bafbf3705",
+      "PreviousItemId": "c1301170-b79d-45c5-be58-4a518742012d"
     },
     {
       "ItemId": "8fc24fb9-3645-4ff8-ac1a-f4f416ac4076",
@@ -502,90 +506,6 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "CalculateAssignAvgApprTimeByDepartValues",
-      "Parameters": [
-        {
-          "Name": "dateRange",
-          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
-          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
-        },
-        {
-          "Name": "documentType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Double>"
-    },
-    {
-      "Name": "CalculateAssignCompletedByDepartValues",
-      "Parameters": [
-        {
-          "Name": "dateRange",
-          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
-          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
-        },
-        {
-          "Name": "documentType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>"
-    },
-    {
-      "Name": "CalculateTaskDeadlineChartPoint",
-      "Parameters": [
-        {
-          "Name": "dateRange",
-          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
-          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
-        },
-        {
-          "Name": "serialType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        },
-        {
-          "Name": "documentType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "global::System.Double",
-      "ReturnTypeFullName": "System.Double"
-    },
-    {
-      "Name": "CalculateTaskFlowValues",
-      "Parameters": [
-        {
-          "Name": "dateRange",
-          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
-          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
-        },
-        {
-          "Name": "documentType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Int32>"
-    },
-    {
-      "Name": "CreateApprovalTask",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "document",
-          "ParameterType": "global::sberdev.SBContracts.IContract",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContract, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::Sungero.Docflow.IApprovalTask",
-      "ReturnTypeFullName": "Sungero.Docflow.IApprovalTask, Sungero.Domain.Interfaces"
-    },
-    {
       "Name": "CreateCalcTamplateDialog",
       "Parameters": [
         {
@@ -608,27 +528,6 @@
       "Name": "CreateProductUnitDialog",
       "Placement": "Client",
       "ReturnType": "System.Collections.Generic.IEnumerable<global::sberdev.SberContracts.IProductUnit>"
-    },
-    {
-      "Name": "DeleteAllContractsSrv",
-      "IsRemote": true,
-      "Placement": "Shared",
-      "ReturnType": "global::System.String",
-      "ReturnTypeFullName": "System.String"
-    },
-    {
-      "Name": "DeleteAllContractsSrvNew",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "contract",
-          "ParameterType": "global::Sungero.Contracts.IContract",
-          "ParameterTypeFullName": "Sungero.Contracts.IContract, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
     },
     {
       "Name": "DistributeToCalculation",
@@ -915,52 +814,6 @@
       "ReturnTypeFullName": "System.Collections.Generic.List"
     },
     {
-      "Name": "GetAllBuisnessUnitTINs",
-      "ReturnType": "global::System.Collections.Generic.List<global::System.String>",
-      "ReturnTypeFullName": "System.Collections.Generic.List"
-    },
-    {
-      "Name": "GetExecutionTaskTime",
-      "Parameters": [
-        {
-          "Name": "task",
-          "ParameterType": "global::sberdev.SBContracts.IApprovalTask",
-          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
-        }
-      ],
-      "ReturnType": "global::System.Int32",
-      "ReturnTypeFullName": "System.Int32"
-    },
-    {
-      "Name": "GetNumberTag",
-      "Parameters": [
-        {
-          "Name": "input",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        },
-        {
-          "Name": "tag",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "global::System.String",
-      "ReturnTypeFullName": "System.String"
-    },
-    {
-      "Name": "GetOrCreateGeneralProduct",
-      "Parameters": [
-        {
-          "Name": "doc",
-          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
-        }
-      ],
-      "ReturnType": "global::sberdev.SberContracts.IProductsAndDevices",
-      "ReturnTypeFullName": "sberdev.SberContracts.IProductsAndDevices, Sungero.Domain.Interfaces"
-    },
-    {
       "Name": "GetRusAggregationName",
       "Parameters": [
         {
@@ -972,48 +825,6 @@
       "Placement": "Shared",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
-    },
-    {
-      "Name": "LinkDocs",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "task",
-          "ParameterType": "global::Sungero.Docflow.IApprovalTask",
-          "ParameterTypeFullName": "Sungero.Docflow.IApprovalTask, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
-    },
-    {
-      "Name": "MigrationContractCard",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "filePath",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::Sungero.Core.IZip",
-      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
-    },
-    {
-      "Name": "MigrationFile",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "filePath",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::Sungero.Core.IZip",
-      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
     },
     {
       "Name": "NormalizeFileName",
