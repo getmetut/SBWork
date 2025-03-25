@@ -260,7 +260,9 @@ namespace sberdev.SBContracts.Server
         cp = SBContracts.Counterparties.As(contr.Counterparty);
       else
         return;
-      if (doc.DeliveryMethod.Id != 1)
+      if (cp == null)
+        return;
+      if (doc.DeliveryMethod != null && doc.DeliveryMethod.Id != 1)
         return;
       if (cp.Nonresident == true)
         return;
