@@ -103,6 +103,16 @@ namespace Sungero.Custom.Server
           var DefAccBool = str.EditAcces.HasValue ? str.EditAcces.Value : false;
           var DefAcc = str.EditAcces.HasValue ? (str.EditAcces.Value ? DefaultAccessRightsTypes.Change :  DefaultAccessRightsTypes.Read) : DefaultAccessRightsTypes.Read;
           log += PublicFunctions.Module.AddAccesToObject(task, DefAccBool, us);
+          try
+          {
+            task.AccessRights.Grant(us, DefAcc);
+            task.AccessRights.Save();
+            log += "Выданы права на задачу: " + task.DisplayValue.ToString() + '\n';
+          }
+          catch (Exception e)
+          {
+            log += "Ошибка при выдаче прав на задачу: " + e.Message.ToString() + '\n';
+          }
 
           if (task.Attachments.Count > 0)
           {
@@ -111,6 +121,16 @@ namespace Sungero.Custom.Server
               if (!attach.AccessRights.IsGrantedWithoutSubstitution(DefAcc, us))
               {
                 log += PublicFunctions.Module.AddAccesToObject(attach, DefAccBool, us);
+                try
+                {
+                  attach.AccessRights.Grant(us, DefAcc);
+                  attach.AccessRights.Save();
+                  log += "Выданы права на вложение: " + attach.DisplayValue.ToString() + '\n';
+                }
+                catch (Exception e)
+                {
+                  log += "Ошибка при выдаче прав на документ: " + e.Message.ToString() + '\n';
+                }
               }
             }
           }
