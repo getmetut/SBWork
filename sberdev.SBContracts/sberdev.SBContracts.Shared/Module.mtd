@@ -873,6 +873,19 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "TranslateContrTypeEnum",
+      "Parameters": [
+        {
+          "Name": "enumValue",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "UnblockCardByDatabase",
       "IsRemote": true,
       "Parameters": [
