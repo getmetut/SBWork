@@ -984,11 +984,14 @@ namespace sberdev.SBContracts.Shared
       baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.DeviceExists); // Входящее письмо
       baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.FactOfPayment); // Входящее письмо
       baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.PricesAgreed); // Входящее письмо
+            
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.SummDoc); // Договор
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.PlusMinus); // Договор
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.INNCollection); // Договор
       
-      
-      baseSupport["454df3c6-b850-47cf-897f-a10d767baa77"].Add(ConditionType.SummDoc); // Договорной документ Договор или доп.соглашение
-      baseSupport["454df3c6-b850-47cf-897f-a10d767baa77"].Add(ConditionType.PlusMinus); // Договорной документ Договор или доп.соглашение
-      baseSupport["454df3c6-b850-47cf-897f-a10d767baa77"].Add(ConditionType.INNCollection); // Договорной документ Договор или доп.соглашение
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.SummDoc); // Доп.Соглашение
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.PlusMinus); // Доп.Соглашение
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.INNCollection); // Доп.Соглашение
       
 
       return baseSupport;

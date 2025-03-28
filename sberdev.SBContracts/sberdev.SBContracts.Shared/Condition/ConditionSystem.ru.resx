@@ -242,6 +242,6 @@
     <value>Доходно-расходный</value>
   </data>
   <data name="Enum_ConditionType_INNCollection" xml:space="preserve">
-    <value>Соответствие КА спискку ИНН</value>
+    <value>Соответствие КА списку ИНН</value>
   </data>
 </root>
