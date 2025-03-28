@@ -25,7 +25,7 @@
       "Name": "INN",
       "CanBeSearch": false,
       "Code": "INN",
-      "IsShowedInList": false,
+      "IsRequired": true,
       "Length": 15,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "7e960953-f402-4d56-8725-da6b038e33b1",

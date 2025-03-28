@@ -176,34 +176,15 @@
           ]
         },
         {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "9ce58b05-5bd4-49cd-9242-ebd3638c91aa",
-          "Name": "CollectionINNSDevSDevSDev",
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.GridControlToChildCollectionBinder",
-          "HeaderLocation": "Top",
-          "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
-          "PropertyGuid": "2bc54eda-2e77-4d33-8248-bfd0ceb35617",
-          "RowNumber": 9,
-          "RowSpan": 1,
-          "Settings": [
-            {
-              "Name": "NeedExpand",
-              "Value": true
-            }
-          ]
-        },
-        {
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "cdb54192-bf89-4ff0-b02f-47a2d94ae04b",
           "Name": "ControlGroupSDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 37.17
+              "Percentage": 37.57
             },
             {
-              "Percentage": 61.76
+              "Percentage": 62.43
             }
           ],
           "ColumnNumber": 0,
@@ -249,6 +230,20 @@
           "ParentGuid": "cdb54192-bf89-4ff0-b02f-47a2d94ae04b",
           "PropertyGuid": "8c34c6f1-643b-4e32-a8a9-565a1128174b",
           "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "6032d8a4-eddd-4e7f-88e8-ec6222a36de1",
+          "Name": "CollectionINNSDevSDevSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.GridControlToChildCollectionBinder",
+          "HeaderLocation": "Top",
+          "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
+          "PropertyGuid": "2bc54eda-2e77-4d33-8248-bfd0ceb35617",
+          "RowNumber": 9,
           "RowSpan": 1,
           "Settings": []
         }
