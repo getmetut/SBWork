@@ -262,4 +262,10 @@
   <data name="Enum_PlusMinusSDev_ExpendProfit" xml:space="preserve">
     <value>Profitable-expendable</value>
   </data>
+  <data name="Property_CollectionINNSDev" xml:space="preserve">
+    <value>Соответствие ИНН</value>
+  </data>
+  <data name="Enum_ConditionType_INNCollection" xml:space="preserve">
+    <value>Compliance of the CA with the INN list</value>
+  </data>
 </root>

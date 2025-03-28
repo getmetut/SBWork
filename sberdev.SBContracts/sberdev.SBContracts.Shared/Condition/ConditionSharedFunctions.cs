@@ -63,6 +63,10 @@ namespace sberdev.SBContracts.Shared
       var isPlMin = _obj.ConditionType == ConditionType.PlusMinus;
       _obj.State.Properties.PlusMinusSDev.IsVisible = isPlMin;
       _obj.State.Properties.PlusMinusSDev.IsRequired = isPlMin;
+      
+      var isINN = _obj.ConditionType == ConditionType.INNCollection;
+      _obj.State.Properties.CollectionINNSDev.IsVisible = isINN;
+      _obj.State.Properties.CollectionINNSDev.IsRequired = isINN;
     }
 
     public override void ClearHiddenProperties()
@@ -104,6 +108,9 @@ namespace sberdev.SBContracts.Shared
       
       if (!_obj.State.Properties.PlusMinusSDev.IsVisible)
         _obj.PlusMinusSDev = null;
+      
+      if (!_obj.State.Properties.CollectionINNSDev.IsVisible)
+        _obj.CollectionINNSDev.Clear();
     }
     
     #endregion
@@ -874,6 +881,32 @@ namespace sberdev.SBContracts.Shared
         }
       }
       #endregion
+      
+      #region Проверка: Коллекция ИНН (ИНН)
+      if (_obj.ConditionType == ConditionType.INNCollection)
+      {
+        var find = false;
+        var Contract = SBContracts.ContractualDocuments.As(document);
+        if (Contract != null)
+        {
+          find = true;
+          var ContrFind = false;
+          foreach (var str in _obj.CollectionINNSDev)
+          {
+            if (Contract.Counterparty.TIN == str.INN)
+              ContrFind = true;
+          }
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
+        }
+
+        if (!find)
+        {
+            return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+              null,
+              "Условие не может быть вычислено. Не заполнено МВП документа.");
+        }
+      }
+      #endregion
 
       // Если ни одно из условий не выполнилось, возвращаем базовую реализацию:
       return base.CheckCondition(document, task);
@@ -955,6 +988,7 @@ namespace sberdev.SBContracts.Shared
       
       baseSupport["454df3c6-b850-47cf-897f-a10d767baa77"].Add(ConditionType.SummDoc); // Договорной документ Договор или доп.соглашение
       baseSupport["454df3c6-b850-47cf-897f-a10d767baa77"].Add(ConditionType.PlusMinus); // Договорной документ Договор или доп.соглашение
+      baseSupport["454df3c6-b850-47cf-897f-a10d767baa77"].Add(ConditionType.INNCollection); // Договорной документ Договор или доп.соглашение
       
 
       return baseSupport;

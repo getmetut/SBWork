@@ -241,4 +241,7 @@
   <data name="Enum_PlusMinusSDev_ExpendProfit" xml:space="preserve">
     <value>Доходно-расходный</value>
   </data>
+  <data name="Enum_ConditionType_INNCollection" xml:space="preserve">
+    <value>Соответствие КА спискку ИНН</value>
+  </data>
 </root>
