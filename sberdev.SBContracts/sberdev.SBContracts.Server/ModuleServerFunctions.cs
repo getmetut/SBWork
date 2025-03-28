@@ -14,6 +14,7 @@ using iTextSharp.text.pdf;
 using Sungero.Metadata;
 using Sungero.Domain.Shared;
 using sberdev.SBContracts.OfficialDocument;
+using Newtonsoft.Json;
 
 namespace sberdev.SBContracts.Server
 {

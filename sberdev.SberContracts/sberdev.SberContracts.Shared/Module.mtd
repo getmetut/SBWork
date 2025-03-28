@@ -305,6 +305,11 @@
       "NameGuid": "d78aa81d-833f-49f6-86c2-97cc0ed4878d",
       "Name": "OfficeOpenXml",
       "Scope": "Both"
+    },
+    {
+      "NameGuid": "ff9d95b3-700e-46e7-83b1-9922a5318a92",
+      "Name": "Newtonsoft",
+      "Scope": "Both"
     }
   ],
   "Overridden": [
@@ -490,6 +495,24 @@
   ],
   "PublicFunctions": [
     {
+      "Name": "AssignmentMatchesDocumentType",
+      "Parameters": [
+        {
+          "Name": "assignment",
+          "ParameterType": "global::Sungero.Workflow.IAssignment",
+          "ParameterTypeFullName": "Sungero.Workflow.IAssignment, Sungero.Workflow.Interfaces"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
       "Name": "AutoNumberCollectionItem",
       "Parameters": [
         {
@@ -504,6 +527,20 @@
       ],
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "CreateApprovalTask",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "document",
+          "ParameterType": "global::sberdev.SBContracts.IContract",
+          "ParameterTypeFullName": "sberdev.SBContracts.IContract, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.Docflow.IApprovalTask",
+      "ReturnTypeFullName": "Sungero.Docflow.IApprovalTask, Sungero.Domain.Interfaces"
     },
     {
       "Name": "CreateCalcTamplateDialog",
@@ -530,6 +567,27 @@
       "ReturnType": "System.Collections.Generic.IEnumerable<global::sberdev.SberContracts.IProductUnit>"
     },
     {
+      "Name": "DeleteAllContractsSrv",
+      "IsRemote": true,
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "DeleteAllContractsSrvNew",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "contract",
+          "ParameterType": "global::Sungero.Contracts.IContract",
+          "ParameterTypeFullName": "Sungero.Contracts.IContract, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
       "Name": "DistributeToCalculation",
       "IsRemote": true,
       "Parameters": [
@@ -545,7 +603,6 @@
     },
     {
       "Name": "FillExpendableAnaliticsProperties",
-      "IsRemote": true,
       "Parameters": [
         {
           "Name": "doc",
@@ -558,45 +615,6 @@
           "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
         }
       ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
-    },
-    {
-      "Name": "FillExpendableAnaliticsProperties",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "doc",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "docSelected",
-          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
-          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
-    },
-    {
-      "Name": "FillExpendableAnaliticsProperties",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "doc",
-          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
-          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "docSelected",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
     },
@@ -658,139 +676,6 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "FillGeneralProperties",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "doc",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "docSelected",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
-    },
-    {
-      "Name": "FillGeneralProperties",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "doc",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "docSelected",
-          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
-          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
-    },
-    {
-      "Name": "FillGeneralProperties",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "doc",
-          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
-          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "docSelected",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
-    },
-    {
-      "Name": "FillGeneralProperties",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "doc",
-          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
-          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "docSelected",
-          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
-          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
-    },
-    {
-      "Name": "FillProfitableAnaliticsProperties",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "doc",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "docSelected",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
-    },
-    {
-      "Name": "FillProfitableAnaliticsProperties",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "doc",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "docSelected",
-          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
-          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
-    },
-    {
-      "Name": "FillProfitableAnaliticsProperties",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "doc",
-          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
-          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "docSelected",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
-    },
-    {
       "Name": "GenerateCompletedDateRanges",
       "Parameters": [
         {
@@ -814,6 +699,40 @@
       "ReturnTypeFullName": "System.Collections.Generic.List"
     },
     {
+      "Name": "GetAllBuisnessUnitTINs",
+      "ReturnType": "global::System.Collections.Generic.List<global::System.String>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
+      "Name": "GetNumberTag",
+      "Parameters": [
+        {
+          "Name": "input",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "tag",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "GetOrCreateGeneralProduct",
+      "Parameters": [
+        {
+          "Name": "doc",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::sberdev.SberContracts.IProductsAndDevices",
+      "ReturnTypeFullName": "sberdev.SberContracts.IProductsAndDevices, Sungero.Domain.Interfaces"
+    },
+    {
       "Name": "GetRusAggregationName",
       "Parameters": [
         {
@@ -825,6 +744,66 @@
       "Placement": "Shared",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "LinkDocs",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "task",
+          "ParameterType": "global::Sungero.Docflow.IApprovalTask",
+          "ParameterTypeFullName": "Sungero.Docflow.IApprovalTask, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "MatchesDocumentType",
+      "Parameters": [
+        {
+          "Name": "document",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
+      "Name": "MigrationContractCard",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "filePath",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.Core.IZip",
+      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
+    },
+    {
+      "Name": "MigrationFile",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "filePath",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.Core.IZip",
+      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
     },
     {
       "Name": "NormalizeFileName",
@@ -864,6 +843,24 @@
       "Placement": "Client",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "TaskMatchesDocumentType",
+      "Parameters": [
+        {
+          "Name": "task",
+          "ParameterType": "global::Sungero.Workflow.ITask",
+          "ParameterTypeFullName": "Sungero.Workflow.ITask, Sungero.Workflow.Interfaces"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
     }
   ],
   "PublicStructures": [],

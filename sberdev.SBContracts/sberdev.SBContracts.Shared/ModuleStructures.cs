@@ -6,6 +6,63 @@ using Sungero.CoreEntities;
 
 namespace sberdev.SBContracts.Structures.Module
 {
+  [Public]
+  partial class AssignmentCompletedData
+  {
+    public long Id { get; set; }
+    public DateTime? Deadline { get; set; }
+    public DateTime Completed { get; set; }
+    public long PerformerId { get; set; }
+  }
+  
+  [Public]
+  partial class PerformerDepartmentData
+  {
+    public long Id { get; set; }
+    public string DepartmentName { get; set; }
+  }
+  
+  [Public]
+  partial class TaskDeadlineData
+  {
+    public long Id { get; set; }
+    public DateTime Started { get; set; }
+    public DateTime? MaxDeadline { get; set; }
+  }
+  
+  [Public]
+  partial class AssignmentTimeData
+  {
+    public long Id { get; set; }
+    public DateTime Created { get; set; }
+    public DateTime Completed { get; set; }
+    public long PerformerId { get; set; }
+  }
+  
+  [Public]
+  partial class EmployeeDepartmentData
+  {
+    public long Id { get; set; }
+    public long? DepartmentId { get; set; }
+    public string DepartmentName { get; set; }
+  }
+  
+  [Public]
+  partial class DepartmentAverageData
+  {
+    public string Department { get; set; }
+    public double AvgDays { get; set; }
+  }
+  
+  [Public]
+  partial class TaskStatusData
+  {
+    public long Id { get; set; }
+    public Sungero.Core.Enumeration Status { get; set; }
+    public DateTime Started { get; set; }
+    public DateTime? MaxDeadline { get; set; }
+  }
+  
   /// <summary>
   /// DTO класс для сериализации/десериализации структуры AssignApprSeriesInfo.
   /// </summary>

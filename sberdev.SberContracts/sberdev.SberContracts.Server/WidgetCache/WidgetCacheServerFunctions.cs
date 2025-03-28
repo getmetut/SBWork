@@ -4,6 +4,7 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using sberdev.SberContracts.WidgetCache;
+using Newtonsoft.Json;
 
 namespace sberdev.SberContracts.Server
 {

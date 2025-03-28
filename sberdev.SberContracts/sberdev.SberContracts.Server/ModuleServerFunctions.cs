@@ -14,6 +14,486 @@ namespace sberdev.SberContracts.Server
 {
   public class ModuleFunctions
   {
+    
+    #region Минифункции
+    
+    /// <summary>
+    /// Возвращает генеральный продукт для нашей организации документа
+    /// </summary>
+    /// <param name="doc">Документ</param>
+    /// <returns></returns>
+    [Public]
+    public IProductsAndDevices GetOrCreateGeneralProduct(SBContracts.IOfficialDocument doc)
+    {
+      var genProd = ProductsAndDeviceses.GetAll(p => p.BusinessUnit == doc.BusinessUnit && p.Name == "General").FirstOrDefault();
+      
+      if (genProd == null)
+      {
+        var newGenProd = ProductsAndDeviceses.Create();
+        newGenProd.BusinessUnit = doc.BusinessUnit;
+        newGenProd.Name = "General";
+        
+        // Сохранение перед возвратом сущности
+        newGenProd.Save();
+        
+        // Возвращаем сущность
+        return newGenProd;
+      }
+      else
+      {
+        return genProd;
+      }
+    }
+    
+    /// <summary>
+    /// Получить все цифры после указанного тега
+    /// </summary>
+    [Public]
+    public string GetNumberTag(string input, string tag)
+    {
+      string result = "";
+      int i = input.IndexOf(tag);
+      if (i > 0)
+      {
+        i += tag.Length;
+        while (i < input.Length && Char.IsDigit(input[i]))
+        {
+          result += input[i];
+          i++;
+        }
+      }
+      return result;
+    }
+    
+    /// <summary>
+    /// Возвращает список ИНН всех "Наших организаций"
+    /// </summary>
+    [Public]
+    public List<string> GetAllBuisnessUnitTINs()
+    {
+      return Sungero.Company.BusinessUnits.GetAll().Select(b => b.TIN).ToList();
+    }
+    
+    [Public, Remote]
+    public static string DeleteAllContractsSrv()
+    {
+      var s = "";
+      var contracts = Sungero.Contracts.Contracts.GetAll(); // sberdev.SBContracts.Contracts.GetAll();
+      foreach (var contract in contracts)
+      {
+        try{
+          var newcontract = Sungero.Contracts.Contracts.Get(contract.Id);
+          //Transactions.Execute(() => {
+          Sungero.Contracts.Contracts.Delete(newcontract) ;
+          //                    });//sberdev.SBContracts.Contracts.Delete(contract);
+        }
+        catch (Exception ex)
+        {
+          s = s+System.Environment.NewLine+ex.Message;
+        }
+        
+      }
+      return s;
+    }
+    
+    [Public, Remote]
+    public static void DeleteAllContractsSrvNew(Sungero.Contracts.IContract contract)
+    {
+      Sungero.Contracts.Contracts.Delete(contract) ;
+    }
+    
+    public static string GetCellValue(object cell)
+    {
+      return (cell != null) ? (cell.ToString() != "NULL" ? cell.ToString() : "") : "";
+    }
+    
+    #endregion
+    
+    #region Удаленные функции
+    
+    [Public, Remote]
+    public static void LinkDocs( Sungero.Docflow.IApprovalTask task )
+    {
+      var docs = task.AllAttachments.ToList();
+      var mainDoc = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      foreach (var docInf in docs)
+      {
+        if (mainDoc.Id != docInf.Id )
+        {
+          var doc = Sungero.Content.ElectronicDocuments.Get(docInf.Id);
+          doc.Relations.AddFrom("Simple relation", mainDoc );
+        }
+      }
+    }
+    
+    [Public, Remote]
+    public static IApprovalTask CreateApprovalTask(sberdev.SBContracts.IContract document)
+    {
+      var task = ApprovalTasks.Create();
+      task.DocumentGroup.All.Add(document);
+      
+      return task;
+    }
+
+    #region Функции миграции
+    
+    [Public, Remote]
+    public static Sungero.Core.IZip MigrationContractCard(string filePath)
+    {
+      FileInfo fi = new FileInfo(filePath);
+      var logId = Guid.NewGuid().ToString();
+      var logFilePath =  Path.GetTempPath() + logId + ".txt";
+      
+      using (ExcelPackage excelPackage = new ExcelPackage(fi))
+      {
+        
+        ExcelWorksheet firstWorksheet = excelPackage.Workbook.Worksheets[1];
+        var row = 2;
+        var errNum = 0;
+        var messageList = new List<String>();
+        var messageFormat = "Ошибка в строке {0} Excel файла. Текст ошибки: {1}";
+        var idContract = GetCellValue(firstWorksheet.Cells[row, 1].Value);
+        
+        messageList.Add("==========================================================" + Environment.NewLine + "Старт процедуры миграции " + Sungero.Core.Calendar.Now.ToString() + Environment.NewLine + "==========================================================");
+        
+        while (idContract != "")
+        {
+          try
+          {
+            
+            //Обязательные
+            var contrType = GetCellValue(firstWorksheet.Cells[row, 2].Value);
+            var contrCategory = GetCellValue(firstWorksheet.Cells[row, 3].Value);
+            var contrNum = GetCellValue(firstWorksheet.Cells[row, 4].Value);
+            var contrDate = GetCellValue(firstWorksheet.Cells[row, 5].Value);
+            var contrSubj = GetCellValue(firstWorksheet.Cells[row, 6].Value);
+            var contrAmount = GetCellValue(firstWorksheet.Cells[row, 7].Value);
+            var contrCurrency = GetCellValue(firstWorksheet.Cells[row, 8].Value);
+            var contactINN = GetCellValue(firstWorksheet.Cells[row, 9].Value);
+            var contactKPP = GetCellValue(firstWorksheet.Cells[row, 10].Value);
+            var contactGUID = GetCellValue(firstWorksheet.Cells[row, 11].Value);
+            var failedTrig = false;
+            
+            //Ищем документ или создаем новый
+            SBContracts.IContract contract;
+            contract = SBContracts.Contracts.GetAll(c => c.GUID1C != null && c.GUID1C == idContract).FirstOrDefault();
+            if (contract == null)
+            {
+              contract = SBContracts.Contracts.Create();
+            }
+            
+            //Заполнить исторический ИД ИУС ПТ
+            contract.GUID1C = idContract;
+            
+            //Заполнение типа документа (с проверкой)
+            if (contrType != null)
+            {
+              if (contrType == "Доходный")
+              {
+                contract.ContrTypeBaseSberDev = SBContracts.Contract.ContrTypeBaseSberDev.Profitable;
+                contract.MVPBaseSberDev = sberdev.SberContracts.MVZs.GetAll(c => c.Name == "Для исторических договоров").FirstOrDefault();
+              }
+              else
+              {
+                contract.ContrTypeBaseSberDev = SBContracts.Contract.ContrTypeBaseSberDev.Expendable;
+                contract.MVZBaseSberDev = sberdev.SberContracts.MVZs.GetAll(c => c.Name == "Для исторических договоров").FirstOrDefault();}
+              
+              //Заполнение Категории (с проверкой)
+              if (contrCategory != null)
+              {
+                if (contrCategory == "С покупателем")
+                {
+                  contract.DocumentGroup = sberdev.SBContracts.ContractCategories.GetAll(c => c.Name == "С покупателем").FirstOrDefault();
+                }
+                else
+                {
+                  if (contrCategory == "С поставщиком")
+                  {contract.DocumentGroup = sberdev.SBContracts.ContractCategories.GetAll(c => c.Name == "С поставщиком").FirstOrDefault();}
+                  else
+                  {contract.DocumentGroup = sberdev.SBContracts.ContractCategories.GetAll(c => c.Name == "С комиссионером").FirstOrDefault();}
+                }
+                if (contrDate == null || contrDate == "")
+                {
+                  string pattern = @"\d\d\.\d\d\.\d\d\d?\d?";
+                  Match match = Regex.Match(contrSubj, pattern);
+                  if (match.Success)
+                  {
+                    contrDate = match.Value;
+                  }
+                }
+                
+                if (contrDate != ""){
+                  contract.DocumentDate = Convert.ToDateTime(contrDate);
+                }
+                
+                //Заполнение темы (с проверкой)
+                if (contrSubj != "")
+                {
+                  contract.Subject = contrSubj;
+
+                  //Заполнение Суммы
+                  if (contrAmount != "")
+                    contract.TotalAmount = Convert.ToDouble(contrAmount.Replace('.',','));
+                  
+                  //Заполнение Валют
+                  var currency = Sungero.Commons.Currencies.GetAll(c => c.AlphaCode == contrCurrency).FirstOrDefault();
+                  if (currency != null)
+                    contract.Currency = currency;
+                  
+                  //Заполнение журнала регистрации.
+                  contract.DocumentRegister = Sungero.Docflow.DocumentRegisters.GetAll(c => c.Name == "Договоры").FirstOrDefault();
+                  
+                  //Заполнение Рег номера
+                  if (contrNum != "")
+                    contract.RegistrationNumber = contrNum;
+                  else
+                  {
+                    string patternNum = @"№\s*\w+\s";
+                    Match matchNum = Regex.Match(contrSubj, patternNum);
+                    if (matchNum.Success)
+                    {contract.RegistrationNumber = matchNum.Value.Substring(2);}
+                  }
+                  
+                  //Заполнение даты регистрации
+                  if (contrDate != "")
+                    contract.RegistrationDate = Convert.ToDateTime(contrDate);
+                  
+                  //Заполнение состояния значением "Действующий"
+                  contract.LifeCycleState = Sungero.Contracts.ContractualDocument.LifeCycleState.Active;
+                  
+                  //Заполнение ответственного подразделения
+                  contract.Department = Sungero.Company.Departments
+                    .GetAll(c => c.Name == "Администрация" || c.Name == "Администрация/Генеральный директор").FirstOrDefault();
+                  
+                  Sungero.Parties.ICompany contact = null;
+                  
+                  //Заполнение контрагента
+                  if (contactGUID != "")
+                  {
+                    var connection = SQL.CreateConnection();
+                    using (var command = connection.CreateCommand())
+                    {
+                      command.CommandText = string.Format("SELECT EntityId " +
+                                                          "FROM [dbo].[Sungero_Commons_ExtEntityLinks] " +
+                                                          "WHERE ExtEntityId = '{0}'", contactGUID);
+                      var reader = command.ExecuteReader();
+                      while (reader.Read())
+                      {
+                        if (reader[0] != null)
+                        {
+                          contact =  Sungero.Parties.Companies.GetAll(r => r.Id == Convert.ToInt16(reader[0].ToString())).FirstOrDefault();
+                          
+                          if (contact != null)
+                            contract.Counterparty = contact;
+                          else
+                          {
+                            var pers = Sungero.Parties.Counterparties.GetAll(r => r.Id == Convert.ToInt16(reader[0].ToString())).FirstOrDefault();
+                            if (pers != null)
+                              contract.Counterparty = pers;
+                          }
+                        }
+                      }
+                      reader.Close();
+                      connection.Close();
+                    }
+
+                  }
+                  else{}
+                  
+                  if (contract.Counterparty == null)
+                  {
+                    if (contactINN != "" && contactKPP != "")
+                    {
+                      contact = Sungero.Parties.Companies.GetAll(c => c.TIN == contactINN && c.TRRC == contactKPP).FirstOrDefault();
+                      if (contact != null)
+                        contract.Counterparty = contact;
+                      else
+                      {
+                        messageList.Add(String.Format(messageFormat, row, "Не найден контрагент с ИНН " + contactINN + " КПП " + contactKPP + "."));
+                        failedTrig = true;
+                        errNum++;
+                      }
+                    }
+                  }
+                  else{}
+                  
+                  
+                }
+                else
+                {
+                  messageList.Add(String.Format(messageFormat, row, "Незаполнен о содержание. Создать договор невозможно."));
+                  failedTrig = true;
+                  errNum++;
+                }
+              }
+              else
+              {
+                messageList.Add(String.Format(messageFormat, row, "Не заполнена категория договора. Создать договор невозможно."));
+                failedTrig = true;
+                errNum++;
+              }
+            }
+            else
+            {
+              messageList.Add(String.Format(messageFormat, row, "Не заполнен тип договора. Создать договор невозможно."));
+              failedTrig = true;
+              errNum++;
+            }
+            contract.BusinessUnit = Sungero.Company.BusinessUnits.GetAll(c => c.Name == "ООО «ТД ЕПК" || c.Name == "ООО \"СберДевайсы\"").FirstOrDefault();
+            contract.AccArtPrBaseSberDev = SberContracts.AccountingArticleses.GetAll(c => c.Name == "Для исторических договоров").FirstOrDefault();
+            contract.ProdCollectionPrBaseSberDev.AddNew().Product = SberContracts.ProductsAndDeviceses.GetAll(c => c.Name == "Для исторических договоров").FirstOrDefault();
+            contract.Save();
+          }
+          catch (Exception ex)
+          {
+            messageList.Add(String.Format(messageFormat, row, ex.Message));
+            errNum++;
+          }
+          
+          row++;
+          idContract = GetCellValue(firstWorksheet.Cells[row, 1].Value);
+        }
+        
+        
+        using (StreamWriter sw = new StreamWriter(logFilePath, false, System.Text.Encoding.Default))
+        {
+          foreach(var text in messageList)
+            sw.WriteLine(text);
+          sw.WriteLine("==========================================================================");
+          sw.WriteLine("Конец загрузки. Всего ошибок: " + errNum.ToString());
+        }
+      }
+      
+      //Заархивировать файл и вернуть в клиентский код
+      IZip zip = Zip.Create();
+      var zipFilePath = Path.GetTempPath() + Guid.NewGuid().ToString() + ".zip";
+      using (FileStream fstream = File.OpenRead(logFilePath))
+      {
+        byte[] array = new byte[fstream.Length];
+        fstream.Read(array, 0, array.Length);
+        var today = Sungero.Core.Calendar.Now;
+        var filePathName = "Log_" + logId + " от " + today.Day.ToString() + "_" +
+          today.Month.ToString() + "_" + today.Year.ToString(); //Пока так, чтобы сэкономить время на обработку имени файла от нечитаемых символов и т.д.
+        zip.Add(array, filePathName,".txt");
+        zip.Save(zipFilePath);
+      }
+      
+      System.IO.File.Delete(filePath);
+      System.IO.File.Delete(logFilePath);
+      System.IO.File.Delete(zipFilePath);
+      return zip;
+      
+    }
+    
+    /// <summary>
+    /// Загрузка файлов для раннее загруженных договоров
+    /// </summary>
+    [Public, Remote]
+    public static Sungero.Core.IZip MigrationFile(string filePath)
+    {
+      FileInfo fi = new FileInfo(filePath);
+      var logId = Guid.NewGuid().ToString();
+      var logFilePath = Path.GetTempPath() + logId + ".txt";
+      using (ExcelPackage excelPackage = new ExcelPackage(fi))
+      {
+        ExcelWorksheet firstWorksheet = excelPackage.Workbook.Worksheets[1];
+        var row = 2;
+        var errNum = 0;
+        var messageList = new List<String>();
+        var messageFormat = "Ошибка в строке {0} Excel файла. Текст ошибки: {1}";
+        var idContract = GetCellValue(firstWorksheet.Cells[row, 1].Value);
+        
+        messageList.Add("==========================================================" + Environment.NewLine + "Старт процедуры миграции "
+                        + Sungero.Core.Calendar.Now.ToString() + Environment.NewLine + "==========================================================");
+        while (idContract != "")
+        {
+          try
+          {
+            var contract = SBContracts.Contracts.GetAll(c => c.GUID1C != null && c.GUID1C == idContract).FirstOrDefault();
+            
+            if (contract != null)
+            {
+              var docFilePath = GetCellValue(firstWorksheet.Cells[row, 13].Value);
+              
+              //Конкатенируем путь и загружаем файл в документ
+              if (docFilePath != ""){
+                string[] subStrs = docFilePath.Split(';');
+                var contrtrig = true;
+                foreach (var str in subStrs)
+                {
+                  if (contrtrig)
+                  {
+                    contract.CreateVersion();
+                    contract.Import(str);
+                    contract.Save();
+                    contrtrig = false;
+                  }
+                  else
+                  {
+                    var otherDoc = SberContracts.OtherContractDocuments.Create();
+                    otherDoc.Subject = str;
+                    otherDoc.LeadingDocument = contract;
+                    otherDoc.DocumentKind = Sungero.Docflow.DocumentKinds.GetAll(c => c.Name == "Иные документы").FirstOrDefault();
+                    otherDoc.CreateVersion();
+                    otherDoc.Import(str);
+                    otherDoc.Save();
+                  }
+                }
+              }
+              else
+              {
+                messageList.Add(String.Format(messageFormat, row, "Не заполнен путь к файлу."));
+                errNum++;
+              }
+            }
+            else
+            {
+              messageList.Add(String.Format(messageFormat, row, "Не найден договор с ИД " + idContract));
+              errNum++;
+            }
+            
+            
+          }
+          catch (Exception ex)
+          {
+            messageList.Add(String.Format(messageFormat, row, ex.Message));
+            errNum++;
+          }
+          row++;
+          idContract = GetCellValue(firstWorksheet.Cells[row, 1].Value);
+        }
+        
+        using (StreamWriter sw = new StreamWriter(logFilePath, false, System.Text.Encoding.Default))
+        {
+          foreach(var text in messageList)
+            sw.WriteLine(text);
+          sw.WriteLine("==========================================================================");
+          sw.WriteLine("Конец загрузки. Всего ошибок: " + errNum.ToString());
+        }
+      }
+      
+      //Заархивировать файл и вернуть в клиентский код
+      IZip zip = Zip.Create();
+      var zipFilePath = Path.GetTempPath() + Guid.NewGuid().ToString() + ".zip";
+      using (FileStream fstream = File.OpenRead(logFilePath))
+      {
+        byte[] array = new byte[fstream.Length];
+        fstream.Read(array, 0, array.Length);
+        var today = Sungero.Core.Calendar.Now;
+        var filePathName = "Log_" + logId + " от " + today.Day.ToString() + "_" +
+          today.Month.ToString() + "_" + today.Year.ToString(); //Пока так, чтобы сэкономить время на обработку имени файла от нечитаемых символов и т.д.
+        zip.Add(array, filePathName,".txt");
+        zip.Save(zipFilePath);
+      }
+      
+      System.IO.File.Delete(filePath);
+      System.IO.File.Delete(logFilePath);
+      System.IO.File.Delete(zipFilePath);
+      return zip;
+    }
+    
+    #endregion
+
     #region Функция распределения
     
     /// <summary>
@@ -232,124 +712,6 @@ namespace sberdev.SberContracts.Server
     
     #region Функции кнопок заполнения свойств в карточках
     
-    /// <summary>
-    /// Универсальная функция для автоматической нумерации элементов в коллекции DirectumRX
-    /// </summary>
-    /// <param name="collectionPropertyName">Имя свойства коллекции</param>
-    /// <param name="objInstance">Экземпляр объекта, содержащего коллекцию</param>
-    [Public]
-    public static void AutoNumberCollectionItem(string collectionPropertyName, object objInstance)
-    {
-      try
-      {
-        // Получаем саму коллекцию
-        var collectionProperty = objInstance.GetType().GetProperty(collectionPropertyName);
-        if (collectionProperty == null)
-          return;
-        
-        var collection = collectionProperty.GetValue(objInstance, null);
-        if (collection == null)
-          return;
-        
-        // Получаем количество элементов
-        var countProperty = collection.GetType().GetProperty("Count");
-        int count = (int)countProperty.GetValue(collection, null);
-        
-        if (count <= 0)
-          return;
-        
-        // Получаем последний элемент через индексатор
-        var itemAccessMethod = collection.GetType().GetMethod("get_Item");
-        var lastItem = itemAccessMethod.Invoke(collection, new object[] { count - 1 });
-        var lastItemNumberProperty = lastItem.GetType().GetProperty("Number");
-        
-        // Используем GetEnumerator для обхода коллекции
-        var getEnumeratorMethod = collection.GetType().GetMethod("GetEnumerator");
-        if (getEnumeratorMethod == null)
-          return;
-        
-        var enumerator = getEnumeratorMethod.Invoke(collection, null);
-        var moveNextMethod = enumerator.GetType().GetMethod("MoveNext");
-        var currentProperty = enumerator.GetType().GetProperty("Current");
-        
-        // Список существующих номеров
-        var existingNumbers = new System.Collections.Generic.List<int>();
-        int lastIndex = 0;
-        
-        // Перебираем все элементы, кроме последнего
-        while ((bool)moveNextMethod.Invoke(enumerator, null))
-        {
-          if (lastIndex == count - 1)
-            break;
-          
-          var item = currentProperty.GetValue(enumerator, null);
-          if (item == null)
-          {
-            lastIndex++;
-            continue;
-          }
-          
-          var numberProperty = item.GetType().GetProperty("Number");
-          if (numberProperty == null)
-          {
-            lastIndex++;
-            continue;
-          }
-          
-          var numberValue = numberProperty.GetValue(item, null);
-          if (numberValue == null)
-          {
-            lastIndex++;
-            continue;
-          }
-          
-          try
-          {
-            // Проверяем, является ли Number Nullable
-            var hasValueProperty = numberValue.GetType().GetProperty("HasValue");
-            if (hasValueProperty != null)
-            {
-              bool hasValue = (bool)hasValueProperty.GetValue(numberValue, null);
-              if (hasValue)
-              {
-                var valueProperty = numberValue.GetType().GetProperty("Value");
-                int number = (int)valueProperty.GetValue(numberValue, null);
-                existingNumbers.Add(number);
-              }
-            }
-            else
-            {
-              // Если не Nullable, просто приводим к int
-              int number = (int)numberValue;
-              existingNumbers.Add(number);
-            }
-          }
-          catch { }
-          
-          lastIndex++;
-        }
-        
-        // Сортируем номера
-        existingNumbers.Sort();
-        
-        // Находим первый пропущенный номер
-        int missingNumber = 1;
-        foreach (var number in existingNumbers)
-        {
-          if (number != missingNumber)
-            break;
-          missingNumber++;
-        }
-        
-        // Проверяем, есть ли уже такой номер
-        if (existingNumbers.Contains(missingNumber))
-          missingNumber = existingNumbers.Count > 0 ? existingNumbers.Max() + 1 : 1;
-        
-        // Присваиваем найденный номер последнему элементу
-        lastItemNumberProperty.SetValue(lastItem, missingNumber, null);
-      }
-      catch { }
-    }
     
     /// <summary>
     /// Заполнить из предыдущего документа такого же типа (не стал дорабатывать так как это чисто моя инициатива)
@@ -453,6 +815,7 @@ namespace sberdev.SberContracts.Server
         }
       }
     }
+    
     
     /// <summary>
     /// Заполнить из любого предыдущего документа
@@ -674,7 +1037,6 @@ namespace sberdev.SberContracts.Server
     /// Заполнить общие свойства из выбранного документа
     /// </summary>
     /// <param name="contract"></param>
-    [Public, Remote]
     public static void FillGeneralProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
     {
       doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev ;
@@ -696,7 +1058,6 @@ namespace sberdev.SberContracts.Server
     /// Заполнить доходные аналитики из выбранного документа
     /// </summary>
     /// <param name="lead">Ведущий документ</param>
-    [Public, Remote]
     public static void FillProfitableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
     {
       if (docSelected.AccArtPrBaseSberDev != null)
@@ -724,7 +1085,7 @@ namespace sberdev.SberContracts.Server
     /// Заполнить расходные аналитики из выбранного документа
     /// </summary>
     /// <param name="lead">Ведущий документ</param>
-    [Public, Remote]
+    [Public]
     public static void FillExpendableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
     {
       if (docSelected.AccArtExBaseSberDev != null)
@@ -800,7 +1161,6 @@ namespace sberdev.SberContracts.Server
     /// Заполнить общие свойства из выбранного документа
     /// </summary>
     /// <param name="contract"></param>
-    [Public, Remote]
     public static void FillGeneralProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
     {
       doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev ;
@@ -818,7 +1178,6 @@ namespace sberdev.SberContracts.Server
     /// Заполнить доходные аналитики из выбранного документа
     /// </summary>
     /// <param name="lead">Ведущий документ</param>
-    [Public, Remote]
     public static void FillProfitableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
     {
       if (docSelected.AccArtBaseSberDev != null)
@@ -846,7 +1205,6 @@ namespace sberdev.SberContracts.Server
     /// Заполнить расходные аналитики из выбранного документа
     /// </summary>
     /// <param name="lead">Ведущий документ</param>
-    [Public, Remote]
     public static void FillExpendableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
     {
       if (docSelected.AccArtBaseSberDev != null)
@@ -921,7 +1279,6 @@ namespace sberdev.SberContracts.Server
     /// Заполнить общие свойства из выбранного документа
     /// </summary>
     /// <param name="contract"></param>
-    [Public, Remote]
     public static void FillGeneralProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
     {
       doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
@@ -938,7 +1295,6 @@ namespace sberdev.SberContracts.Server
     /// Заполнить доходные аналитики из выбранного документа
     /// </summary>
     /// <param name="lead">Ведущий документ</param>
-    [Public, Remote]
     public static void FillProfitableAnaliticsProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
     {
       doc.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable;
@@ -967,7 +1323,6 @@ namespace sberdev.SberContracts.Server
     /// Заполнить расходные аналитики из выбранного документа
     /// </summary>
     /// <param name="lead">Ведущий документ</param>
-    [Public, Remote]
     public static void FillExpendableAnaliticsProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
     {
       doc.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable;
@@ -1043,7 +1398,6 @@ namespace sberdev.SberContracts.Server
     /// Заполнить общие свойства из выбранного документа
     /// </summary>
     /// <param name="contract"></param>
-    [Public, Remote]
     public static void FillGeneralProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IAccountingDocumentBase docSelected)
     {
       doc.PayTypeBaseSberDev = docSelected.PayTypeBaseSberDev;
@@ -1122,100 +1476,242 @@ namespace sberdev.SberContracts.Server
     }
     #endregion
     
+    
+    /// <summary>
+    /// Универсальная функция для автоматической нумерации элементов в коллекции DirectumRX
+    /// </summary>
+    /// <param name="collectionPropertyName">Имя свойства коллекции</param>
+    /// <param name="objInstance">Экземпляр объекта, содержащего коллекцию</param>
+    [Public]
+    public static void AutoNumberCollectionItem(string collectionPropertyName, object objInstance)
+    {
+      try
+      {
+        // Получаем саму коллекцию
+        var collectionProperty = objInstance.GetType().GetProperty(collectionPropertyName);
+        if (collectionProperty == null)
+          return;
+        
+        var collection = collectionProperty.GetValue(objInstance, null);
+        if (collection == null)
+          return;
+        
+        // Получаем количество элементов
+        var countProperty = collection.GetType().GetProperty("Count");
+        int count = (int)countProperty.GetValue(collection, null);
+        
+        if (count <= 0)
+          return;
+        
+        // Получаем последний элемент через индексатор
+        var itemAccessMethod = collection.GetType().GetMethod("get_Item");
+        var lastItem = itemAccessMethod.Invoke(collection, new object[] { count - 1 });
+        var lastItemNumberProperty = lastItem.GetType().GetProperty("Number");
+        
+        // Используем GetEnumerator для обхода коллекции
+        var getEnumeratorMethod = collection.GetType().GetMethod("GetEnumerator");
+        if (getEnumeratorMethod == null)
+          return;
+        
+        var enumerator = getEnumeratorMethod.Invoke(collection, null);
+        var moveNextMethod = enumerator.GetType().GetMethod("MoveNext");
+        var currentProperty = enumerator.GetType().GetProperty("Current");
+        
+        // Список существующих номеров
+        var existingNumbers = new System.Collections.Generic.List<int>();
+        int lastIndex = 0;
+        
+        // Перебираем все элементы, кроме последнего
+        while ((bool)moveNextMethod.Invoke(enumerator, null))
+        {
+          if (lastIndex == count - 1)
+            break;
+          
+          var item = currentProperty.GetValue(enumerator, null);
+          if (item == null)
+          {
+            lastIndex++;
+            continue;
+          }
+          
+          var numberProperty = item.GetType().GetProperty("Number");
+          if (numberProperty == null)
+          {
+            lastIndex++;
+            continue;
+          }
+          
+          var numberValue = numberProperty.GetValue(item, null);
+          if (numberValue == null)
+          {
+            lastIndex++;
+            continue;
+          }
+          
+          try
+          {
+            // Проверяем, является ли Number Nullable
+            var hasValueProperty = numberValue.GetType().GetProperty("HasValue");
+            if (hasValueProperty != null)
+            {
+              bool hasValue = (bool)hasValueProperty.GetValue(numberValue, null);
+              if (hasValue)
+              {
+                var valueProperty = numberValue.GetType().GetProperty("Value");
+                int number = (int)valueProperty.GetValue(numberValue, null);
+                existingNumbers.Add(number);
+              }
+            }
+            else
+            {
+              // Если не Nullable, просто приводим к int
+              int number = (int)numberValue;
+              existingNumbers.Add(number);
+            }
+          }
+          catch { }
+          
+          lastIndex++;
+        }
+        
+        // Сортируем номера
+        existingNumbers.Sort();
+        
+        // Находим первый пропущенный номер
+        int missingNumber = 1;
+        foreach (var number in existingNumbers)
+        {
+          if (number != missingNumber)
+            break;
+          missingNumber++;
+        }
+        
+        // Проверяем, есть ли уже такой номер
+        if (existingNumbers.Contains(missingNumber))
+          missingNumber = existingNumbers.Count > 0 ? existingNumbers.Max() + 1 : 1;
+        
+        // Присваиваем найденный номер последнему элементу
+        lastItemNumberProperty.SetValue(lastItem, missingNumber, null);
+      }
+      catch { }
+    }
+    
+    #endregion
+    
     #endregion
     
     #region Функции виджетов
     
     /// <summary>
-    /// Оптимизированный расчет значений для AssignAvgApprTimeByDepart.
+    /// Вычисление времени выполнения задачи
     /// </summary>
-    public virtual System.Collections.Generic.Dictionary<string, double> OptimizedCalculateAssignAvgApprTimeValues(SBContracts.Structures.Module.IDateRange dateRange, string documentType)
+    public int GetExecutionTaskTime(SBContracts.IApprovalTask task)
     {
-      var result = new Dictionary<string, double>();
+      try
+      {
+        if (task?.Started == null)
+          return 0;
+        
+        var lastAssignment = SBContracts.ApprovalAssignments.GetAll()
+          .Where(a => a.Task.Id == task.Id &&
+                 a.Status == Sungero.Workflow.Assignment.Status.Completed &&
+                 a.Completed != null &&
+                 a.Completed >= task.Started)
+          .OrderByDescending(a => a.Completed)
+          .FirstOrDefault();
+        
+        return lastAssignment?.Completed != null
+          ? SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastAssignment.Completed)
+          : 0;
+      }
+      catch (Exception ex)
+      {
+        Logger.Error("Ошибка в GetExecutionTaskTime", ex);
+        return 0;
+      }
+    }
+    /// <summary>
+    /// Оптимизированный расчет значений для AssignCompletedByDepart.
+    /// </summary>
+    public virtual System.Collections.Generic.Dictionary<string, SBContracts.Structures.Module.IAssignApprSeriesInfo> OptimizedCalculateAssignCompletedValues(
+      SBContracts.Structures.Module.IDateRange dateRange, string documentType)
+    {
+      var result = new Dictionary<string, SBContracts.Structures.Module.IAssignApprSeriesInfo>();
       
       try
       {
-        // Оптимизированный запрос - выбираем только нужные поля
-        var query = Sungero.Workflow.Assignments.GetAll()
+        // Создаем структуру для хранения данных заданий
+        var assignments = Sungero.Workflow.Assignments.GetAll()
           .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
                  a.Created >= dateRange.StartDate &&
                  a.Completed <= dateRange.EndDate &&
                  a.Performer != null)
-          .Select(a => new
+          .Select(a => new SBContracts.Structures.Module.AssignmentCompletedData
                   {
-                    a.Id,
-                    a.Created,
-                    a.Completed,
+                    Id = a.Id,
+                    Deadline = a.Deadline,
+                    Completed = a.Completed.Value,
                     PerformerId = a.Performer.Id
-                  });
+                  })
+          .ToList();
         
         // Выполняем запрос порциями
-        const int batchSize = 100; // Изменено с 500 на 100
-        int skip = 0;
-        bool hasMore = true;
+        const int batchSize = 500;
         
         // Словари для хранения промежуточных результатов
-        Dictionary<long, long> performerToDepartment = new Dictionary<long, long>();
-        Dictionary<string, List<double>> departmentWorkDays = new Dictionary<string, List<double>>();
+        Dictionary<long, string> performerToDepartment = new Dictionary<long, string>();
+        Dictionary<string, int> departmentCompleted = new Dictionary<string, int>();
+        Dictionary<string, int> departmentExpired = new Dictionary<string, int>();
         List<int> assignmentIds = new List<int>();
         
-        while (hasMore)
+        // Если нужно фильтровать по типу документа
+        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
         {
-          var assignmentsBatch = query.Skip(skip).Take(batchSize).ToList();
-          hasMore = assignmentsBatch.Count == batchSize;
-          skip += batchSize;
-          
-          if (!assignmentsBatch.Any())
-            break;
-          
-          // Если нужно фильтровать по типу документа
-          if (!string.IsNullOrEmpty(documentType) && documentType != "All")
-          {
-            assignmentIds.AddRange(assignmentsBatch.Select(a => (int)a.Id));
-          }
-          
-          // Собираем данные о сотрудниках
-          var performerIds = assignmentsBatch.Select(a => a.PerformerId).Distinct().ToList();
-          var performers = Sungero.Company.Employees.GetAll()
-            .Where(e => performerIds.Contains(e.Id))
-            .Select(e => new { e.Id, DepartmentId = e.Department != null ? e.Department.Id : (long?)null, DepartmentName = e.Department != null ? e.Department.Name : null })
-            .ToList();
-          
-          // Заполняем словарь сотрудник -> департамент
-          foreach (var performer in performers)
-          {
-            performerToDepartment[performer.Id] = performer.DepartmentId ?? 0;
-          }
-          
-          // Вычисляем рабочие дни для всех заданий
-          foreach (var assignment in assignmentsBatch)
-          {
-            // Определяем департамент
-            long departmentId = 0;
-            string departmentName = "Без подразделения";
-            if (performerToDepartment.TryGetValue(assignment.PerformerId, out departmentId) && departmentId != 0)
-            {
-              var department = performers.FirstOrDefault(p => p.Id == assignment.PerformerId);
-              if (department != null && department.DepartmentName != null)
-                departmentName = department.DepartmentName;
-            }
-            
-            // Вычисляем рабочие дни
-            double workDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
-              assignment.Created,
-              assignment.Completed);
-            
-            if (workDays <= 0)
-              continue;
-            
-            if (!departmentWorkDays.ContainsKey(departmentName))
-              departmentWorkDays[departmentName] = new List<double>();
-            
-            departmentWorkDays[departmentName].Add(workDays);
-          }
+          assignmentIds.AddRange(assignments.Select(a => (int)a.Id));
         }
         
-        // Если нужно фильтровать по типу документа, проверяем соответствие
+        // Собираем данные о сотрудниках
+        var performerIds = assignments.Select(a => a.PerformerId).Distinct().ToList();
+        var performers = Sungero.Company.Employees.GetAll()
+          .Where(e => performerIds.Contains(e.Id))
+          .Select(e => new SBContracts.Structures.Module.PerformerDepartmentData
+                  {
+                    Id = e.Id,
+                    DepartmentName = e.Department != null ? e.Department.Name : null
+                  })
+          .ToList();
+        
+        // Заполняем словарь сотрудник -> департамент
+        foreach (var performer in performers)
+        {
+          performerToDepartment[performer.Id] = performer.DepartmentName ?? "Без подразделения";
+        }
+        
+        // Подсчитываем статистику по заданиям
+        foreach (var assignment in assignments)
+        {
+          // Определяем департамент
+          string deptName = "Без подразделения";
+          string departmentName = "Без подразделения";
+          if (performerToDepartment.TryGetValue(assignment.PerformerId, out deptName))
+            departmentName = deptName;
+          
+          // Инициализируем счетчики для департамента, если их нет
+          if (!departmentCompleted.ContainsKey(departmentName))
+          {
+            departmentCompleted[departmentName] = 0;
+            departmentExpired[departmentName] = 0;
+          }
+          
+          // Увеличиваем счетчик выполненных заданий
+          departmentCompleted[departmentName]++;
+          
+          // Проверяем, просрочено ли задание
+          if (assignment.Deadline.HasValue && assignment.Completed > assignment.Deadline.Value)
+            departmentExpired[departmentName]++;
+        }
+        
+        // Если нужно фильтровать по типу документа
         if (!string.IsNullOrEmpty(documentType) && documentType != "All" && assignmentIds.Any())
         {
           // Фильтруем задания по типу документа порциями
@@ -1224,91 +1720,74 @@ namespace sberdev.SberContracts.Server
           for (int i = 0; i < assignmentIds.Count; i += batchSize)
           {
             var batchIds = assignmentIds.Skip(i).Take(batchSize).ToList();
-            var assignments = Sungero.Workflow.Assignments.GetAll().Where(a => batchIds.Contains((int)a.Id)).ToList();
+            var assignmentsBatch = Sungero.Workflow.Assignments.GetAll().Where(a => batchIds.Contains((int)a.Id)).ToList();
             
-            foreach (var assignment in assignments)
+            foreach (var assignment in assignmentsBatch)
             {
-              bool matches = AssignmentMatchesDocumentType(assignment, documentType);
+              bool matches = PublicFunctions.Module.AssignmentMatchesDocumentType(assignment, documentType);
               assignmentMatches[(int)assignment.Id] = matches;
             }
           }
           
-          // Создаем новый словарь с учетом фильтрации
-          Dictionary<string, List<double>> filteredDepartmentWorkDays = new Dictionary<string, List<double>>();
+          // Пересчитываем статистику с учетом фильтрации
+          Dictionary<string, int> filteredDepartmentCompleted = new Dictionary<string, int>();
+          Dictionary<string, int> filteredDepartmentExpired = new Dictionary<string, int>();
           
-          skip = 0;
-          hasMore = true;
-          
-          while (hasMore)
+          foreach (var assignment in assignments)
           {
-            var assignmentsBatch = query.Skip(skip).Take(batchSize).ToList();
-            hasMore = assignmentsBatch.Count == batchSize;
-            skip += batchSize;
+            bool matches = false;
+            if (!assignmentMatches.TryGetValue((int)assignment.Id, out matches) || !matches)
+              continue;
             
-            if (!assignmentsBatch.Any())
-              break;
+            // Определяем департамент
+            string deptName = "Без подразделения";
+            string departmentName = "Без подразделения";
+            if (performerToDepartment.TryGetValue(assignment.PerformerId, out deptName))
+              departmentName = deptName;
             
-            foreach (var assignment in assignmentsBatch)
+            // Инициализируем счетчики для департамента, если их нет
+            if (!filteredDepartmentCompleted.ContainsKey(departmentName))
             {
-              bool matches = false;
-              if (!assignmentMatches.TryGetValue((int)assignment.Id, out matches) || !matches)
-                continue;
-              
-              // Определяем департамент
-              long departmentId = 0;
-              string departmentName = "Без подразделения";
-              if (performerToDepartment.TryGetValue(assignment.PerformerId, out departmentId) && departmentId != 0)
-              {
-                var performers = Sungero.Company.Employees.GetAll()
-                  .Where(e => e.Id == assignment.PerformerId)
-                  .Select(e => new { DepartmentName = e.Department != null ? e.Department.Name : null })
-                  .FirstOrDefault();
-                if (performers != null && performers.DepartmentName != null)
-                  departmentName = performers.DepartmentName;
-              }
-              
-              // Вычисляем рабочие дни
-              double workDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
-                assignment.Created,
-                assignment.Completed);
-              
-              if (workDays <= 0)
-                continue;
-              
-              if (!filteredDepartmentWorkDays.ContainsKey(departmentName))
-                filteredDepartmentWorkDays[departmentName] = new List<double>();
-              
-              filteredDepartmentWorkDays[departmentName].Add(workDays);
+              filteredDepartmentCompleted[departmentName] = 0;
+              filteredDepartmentExpired[departmentName] = 0;
             }
+            
+            // Увеличиваем счетчик выполненных заданий
+            filteredDepartmentCompleted[departmentName]++;
+            
+            // Проверяем, просрочено ли задание
+            if (assignment.Deadline.HasValue && assignment.Completed > assignment.Deadline.Value)
+              filteredDepartmentExpired[departmentName]++;
           }
           
-          departmentWorkDays = filteredDepartmentWorkDays;
+          departmentCompleted = filteredDepartmentCompleted;
+          departmentExpired = filteredDepartmentExpired;
         }
         
-        // Вычисляем средние значения и сортируем
-        var departmentStats = departmentWorkDays
-          .Where(kvp => kvp.Value.Any())
-          .Select(kvp => new {
-                    Department = kvp.Key,
-                    AvgDays = kvp.Value.Average()
-                  })
-          .Where(x => x.AvgDays > 0)
-          .OrderByDescending(x => x.AvgDays)
-          .Take(10);
-        
-        foreach (var stat in departmentStats)
+        // Формируем результат
+        foreach (var department in departmentCompleted.Keys)
         {
-          result[stat.Department] = Math.Round(stat.AvgDays, 1);
+          var seriesInfo = SBContracts.Structures.Module.AssignApprSeriesInfo.Create();
+          seriesInfo.Completed = departmentCompleted[department];
+          seriesInfo.Expired = departmentExpired.ContainsKey(department) ? departmentExpired[department] : 0;
+          
+          result[department] = seriesInfo;
         }
+        
+        // Сортируем по количеству заданий и ограничиваем 10 департаментами
+        return result
+          .OrderByDescending(kvp => kvp.Value.Completed)
+          .Take(10)
+          .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
       }
       catch (Exception ex)
       {
-        Logger.Error("Ошибка в OptimizedCalculateAssignAvgApprTimeValues", ex);
+        Logger.Error("Ошибка в OptimizedCalculateAssignCompletedValues", ex);
       }
       
       return result;
     }
-    
+
     /// <summary>
     /// Оптимизированный расчет значений для TaskDeadline.
     /// </summary>
@@ -1323,57 +1802,46 @@ namespace sberdev.SberContracts.Server
         }
         
         // Оптимизированный запрос с выборкой только нужных полей
-        var query = sberdev.SBContracts.ApprovalTasks.GetAll()
+        var tasks = sberdev.SBContracts.ApprovalTasks.GetAll()
           .Where(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.Completed &&
                  t.Started != null &&
                  t.Started >= dateRange.StartDate &&
                  t.Started <= dateRange.EndDate)
-          .Select(t => new
+          .Select(t => new SBContracts.Structures.Module.TaskDeadlineData
                   {
-                    t.Id,
-                    t.Started,
-                    t.MaxDeadline
-                  });
+                    Id = t.Id,
+                    Started = t.Started.Value,
+                    MaxDeadline = t.MaxDeadline
+                  })
+          .ToList();
         
         // Выполняем запрос порциями
         const int batchSize = 500;
-        int skip = 0;
-        bool hasMore = true;
         
         Dictionary<int, int> taskExecutionDays = new Dictionary<int, int>();
         Dictionary<int, int> taskTargetDays = new Dictionary<int, int>();
         List<int> taskIds = new List<int>();
         
-        while (hasMore)
+        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
         {
-          var tasksBatch = query.Skip(skip).Take(batchSize).ToList();
-          hasMore = tasksBatch.Count == batchSize;
-          skip += batchSize;
+          taskIds.AddRange(tasks.Select(t => (int)t.Id));
+        }
+        
+        foreach (var task in tasks)
+        {
+          // Вычисляем время выполнения
+          int taskId = (int)task.Id;
+          int days = GetExecutionTaskTime(SBContracts.ApprovalTasks.Get(taskId));
           
-          if (!tasksBatch.Any())
-            break;
+          if (days > 0)
+            taskExecutionDays[taskId] = days;
           
-          if (!string.IsNullOrEmpty(documentType) && documentType != "All")
+          // Вычисляем целевое время
+          if (task.MaxDeadline != null && task.Started <= task.MaxDeadline)
           {
-            taskIds.AddRange(tasksBatch.Select(t => (int)t.Id));
-          }
-          
-          foreach (var task in tasksBatch)
-          {
-            // Вычисляем время выполнения
-            int taskId = (int)task.Id;
-            int days = GetExecutionTaskTime(SBContracts.ApprovalTasks.Get(taskId));
-            
-            if (days > 0)
-              taskExecutionDays[taskId] = days;
-            
-            // Вычисляем целевое время
-            if (task.MaxDeadline != null && task.Started <= task.MaxDeadline)
-            {
-              int targetDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, task.MaxDeadline);
-              if (targetDays > 0)
-                taskTargetDays[taskId] = targetDays;
-            }
+            int targetDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, task.MaxDeadline);
+            if (targetDays > 0)
+              taskTargetDays[taskId] = targetDays;
           }
         }
         
@@ -1386,11 +1854,11 @@ namespace sberdev.SberContracts.Server
           for (int i = 0; i < taskIds.Count; i += batchSize)
           {
             var batchIds = taskIds.Skip(i).Take(batchSize).ToList();
-            var tasks = sberdev.SBContracts.ApprovalTasks.GetAll().Where(t => batchIds.Contains((int)t.Id)).ToList();
+            var tasksBatch = sberdev.SBContracts.ApprovalTasks.GetAll().Where(t => batchIds.Contains((int)t.Id)).ToList();
             
-            foreach (var task in tasks)
+            foreach (var task in tasksBatch)
             {
-              bool matches = TaskMatchesDocumentType(task, documentType);
+              bool matches = PublicFunctions.Module.TaskMatchesDocumentType(task, documentType);
               taskMatches[(int)task.Id] = matches;
             }
           }
@@ -1439,7 +1907,169 @@ namespace sberdev.SberContracts.Server
       
       return 0;
     }
-    
+
+    /// <summary>
+    /// Оптимизированный расчет значений для AssignAvgApprTimeByDepart.
+    /// </summary>
+    public virtual System.Collections.Generic.Dictionary<string, double> OptimizedCalculateAssignAvgApprTimeValues(SBContracts.Structures.Module.IDateRange dateRange, string documentType)
+    {
+      var result = new Dictionary<string, double>();
+      
+      try
+      {
+        // Оптимизированный запрос - выбираем только нужные поля
+        var assignments = Sungero.Workflow.Assignments.GetAll()
+          .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
+                 a.Created >= dateRange.StartDate &&
+                 a.Completed <= dateRange.EndDate &&
+                 a.Performer != null)
+          .Select(a => new SBContracts.Structures.Module.AssignmentTimeData
+                  {
+                    Id = a.Id,
+                    Created = a.Created.Value,
+                    Completed = a.Completed.Value,
+                    PerformerId = a.Performer.Id
+                  })
+          .ToList();
+        
+        // Выполняем запрос порциями
+        const int batchSize = 100;
+        
+        // Словари для хранения промежуточных результатов
+        Dictionary<long, long> performerToDepartment = new Dictionary<long, long>();
+        Dictionary<string, List<double>> departmentWorkDays = new Dictionary<string, List<double>>();
+        List<int> assignmentIds = new List<int>();
+        
+        // Если нужно фильтровать по типу документа
+        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
+        {
+          assignmentIds.AddRange(assignments.Select(a => (int)a.Id));
+        }
+        
+        // Собираем данные о сотрудниках
+        var performerIds = assignments.Select(a => a.PerformerId).Distinct().ToList();
+        var performers = Sungero.Company.Employees.GetAll()
+          .Where(e => performerIds.Contains(e.Id))
+          .Select(e => new SBContracts.Structures.Module.EmployeeDepartmentData
+                  {
+                    Id = e.Id,
+                    DepartmentId = e.Department != null ? e.Department.Id : (long?)null,
+                    DepartmentName = e.Department != null ? e.Department.Name : null
+                  })
+          .ToList();
+        
+        // Заполняем словарь сотрудник -> департамент
+        foreach (var performer in performers)
+        {
+          performerToDepartment[performer.Id] = performer.DepartmentId ?? 0;
+        }
+        
+        // Вычисляем рабочие дни для всех заданий
+        foreach (var assignment in assignments)
+        {
+          // Определяем департамент
+          long departmentId = 0;
+          string departmentName = "Без подразделения";
+          if (performerToDepartment.TryGetValue(assignment.PerformerId, out departmentId) && departmentId != 0)
+          {
+            var department = performers.FirstOrDefault(p => p.Id == assignment.PerformerId);
+            if (department != null && department.DepartmentName != null)
+              departmentName = department.DepartmentName;
+          }
+          
+          // Вычисляем рабочие дни
+          double workDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
+            assignment.Created,
+            assignment.Completed);
+          
+          if (workDays <= 0)
+            continue;
+          
+          if (!departmentWorkDays.ContainsKey(departmentName))
+            departmentWorkDays[departmentName] = new List<double>();
+          
+          departmentWorkDays[departmentName].Add(workDays);
+        }
+        
+        // Если нужно фильтровать по типу документа, проверяем соответствие
+        if (!string.IsNullOrEmpty(documentType) && documentType != "All" && assignmentIds.Any())
+        {
+          // Фильтруем задания по типу документа порциями
+          Dictionary<int, bool> assignmentMatches = new Dictionary<int, bool>();
+          
+          for (int i = 0; i < assignmentIds.Count; i += batchSize)
+          {
+            var batchIds = assignmentIds.Skip(i).Take(batchSize).ToList();
+            var assignmentsBatch = Sungero.Workflow.Assignments.GetAll().Where(a => batchIds.Contains((int)a.Id)).ToList();
+            
+            foreach (var assignment in assignmentsBatch)
+            {
+              bool matches = PublicFunctions.Module.AssignmentMatchesDocumentType(assignment, documentType);
+              assignmentMatches[(int)assignment.Id] = matches;
+            }
+          }
+          
+          // Создаем новый словарь с учетом фильтрации
+          Dictionary<string, List<double>> filteredDepartmentWorkDays = new Dictionary<string, List<double>>();
+          
+          foreach (var assignment in assignments)
+          {
+            bool matches = false;
+            if (!assignmentMatches.TryGetValue((int)assignment.Id, out matches) || !matches)
+              continue;
+            
+            // Определяем департамент
+            long departmentId = 0;
+            string departmentName = "Без подразделения";
+            if (performerToDepartment.TryGetValue(assignment.PerformerId, out departmentId) && departmentId != 0)
+            {
+              var department = performers.FirstOrDefault(p => p.Id == assignment.PerformerId);
+              if (department != null && department.DepartmentName != null)
+                departmentName = department.DepartmentName;
+            }
+            
+            // Вычисляем рабочие дни
+            double workDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
+              assignment.Created,
+              assignment.Completed);
+            
+            if (workDays <= 0)
+              continue;
+            
+            if (!filteredDepartmentWorkDays.ContainsKey(departmentName))
+              filteredDepartmentWorkDays[departmentName] = new List<double>();
+            
+            filteredDepartmentWorkDays[departmentName].Add(workDays);
+          }
+          
+          departmentWorkDays = filteredDepartmentWorkDays;
+        }
+        
+        // Вычисляем средние значения и сортируем
+        var departmentStats = departmentWorkDays
+          .Where(kvp => kvp.Value.Any())
+          .Select(kvp => new SBContracts.Structures.Module.DepartmentAverageData
+                  {
+                    Department = kvp.Key,
+                    AvgDays = kvp.Value.Average()
+                  })
+          .Where(x => x.AvgDays > 0)
+          .OrderByDescending(x => x.AvgDays)
+          .Take(10);
+        
+        foreach (var stat in departmentStats)
+        {
+          result[stat.Department] = Math.Round(stat.AvgDays, 1);
+        }
+      }
+      catch (Exception ex)
+      {
+        Logger.Error("Ошибка в OptimizedCalculateAssignAvgApprTimeValues", ex);
+      }
+      
+      return result;
+    }
+
     /// <summary>
     /// Оптимизированный расчет значений для TaskFlowChart.
     /// </summary>
@@ -1456,59 +2086,47 @@ namespace sberdev.SberContracts.Server
       try
       {
         // Используем оптимизированный запрос с выборкой только нужных полей
-        var tasksQuery = sberdev.SBContracts.ApprovalTasks.GetAll()
+        var tasks = sberdev.SBContracts.ApprovalTasks.GetAll()
           .Where(t => t.Started >= dateRange.StartDate && t.Started <= dateRange.EndDate)
-          .Select(t => new
+          .Select(t => new SBContracts.Structures.Module.TaskStatusData
                   {
-                    t.Id,
-                    t.Status,
-                    t.Started,
-                    t.MaxDeadline
-                  });
+                    Id = t.Id,
+                    Status = t.Status.Value,
+                    Started = t.Started.Value,
+                    MaxDeadline = t.MaxDeadline
+                  })
+          .ToList();
         
         // Выполняем запрос порциями для снижения нагрузки
-        const int batchSize = 100; // Изменено с 500 на 100
-        int skip = 0;
-        bool hasMore = true;
+        const int batchSize = 100;
         
         List<long> taskIds = new List<long>();
         Dictionary<int, bool> matchesDocumentType = new Dictionary<int, bool>();
         
-        while (hasMore)
+        // Получаем ID задач для фильтрации по типу документа
+        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
         {
-          var tasksBatch = tasksQuery.Skip(skip).Take(batchSize).ToList();
-          hasMore = tasksBatch.Count == batchSize;
-          skip += tasksBatch.Count;
+          taskIds.AddRange(tasks.Select(t => t.Id));
+        }
+        
+        // Подсчитываем значения без учета типа документа
+        foreach (var task in tasks)
+        {
+          if (task.Status != sberdev.SBContracts.ApprovalTask.Status.Draft)
+            result["started"]++;
           
-          if (!tasksBatch.Any())
-            break;
+          if (task.Status == sberdev.SBContracts.ApprovalTask.Status.Completed)
+            result["completed"]++;
           
-          // Получаем ID задач для фильтрации по типу документа
-          if (!string.IsNullOrEmpty(documentType) && documentType != "All")
-          {
-            var batchIds = tasksBatch.Select(t => t.Id).ToList();
-            taskIds.AddRange(batchIds);
-          }
+          if (task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
+              task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview)
+            result["inprocess"]++;
           
-          // Подсчитываем значения без учета типа документа
-          foreach (var task in tasksBatch)
-          {
-            if (task.Status != sberdev.SBContracts.ApprovalTask.Status.Draft)
-              result["started"]++;
-            
-            if (task.Status == sberdev.SBContracts.ApprovalTask.Status.Completed)
-              result["completed"]++;
-            
-            if (task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
-                task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview)
-              result["inprocess"]++;
-            
-            if ((task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
-                 task.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended ||
-                 task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
-                task.MaxDeadline < Calendar.Now)
-              result["expired"]++;
-          }
+          if ((task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
+               task.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended ||
+               task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
+              task.MaxDeadline < Calendar.Now)
+            result["expired"]++;
         }
         
         // Если нужна фильтрация по типу документа, применяем её после основного подсчета
@@ -1522,7 +2140,7 @@ namespace sberdev.SberContracts.Server
             
             foreach (var task in tasksForDocumentCheck)
             {
-              bool matches = TaskMatchesDocumentType(task, documentType);
+              bool matches = PublicFunctions.Module.TaskMatchesDocumentType(task, documentType);
               matchesDocumentType[(int)task.Id] = matches;
             }
           }
@@ -1536,40 +2154,27 @@ namespace sberdev.SberContracts.Server
             ["expired"] = 0
           };
           
-          skip = 0;
-          hasMore = true;
-          
-          while (hasMore)
+          foreach (var task in tasks)
           {
-            var tasksBatch = tasksQuery.Skip(skip).Take(batchSize).ToList();
-            hasMore = tasksBatch.Count == batchSize;
-            skip += batchSize;
+            bool matches = false;
+            if (!matchesDocumentType.TryGetValue((int)task.Id, out matches) || !matches)
+              continue;
             
-            if (!tasksBatch.Any())
-              break;
+            if (task.Status != sberdev.SBContracts.ApprovalTask.Status.Draft)
+              filteredResult["started"]++;
             
-            foreach (var task in tasksBatch)
-            {
-              bool matches = false;
-              if (!matchesDocumentType.TryGetValue((int)task.Id, out matches) || !matches)
-                continue;
-              
-              if (task.Status != sberdev.SBContracts.ApprovalTask.Status.Draft)
-                filteredResult["started"]++;
-              
-              if (task.Status == sberdev.SBContracts.ApprovalTask.Status.Completed)
-                filteredResult["completed"]++;
-              
-              if (task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
-                  task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview)
-                filteredResult["inprocess"]++;
-              
-              if ((task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
-                   task.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended ||
-                   task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
-                  task.MaxDeadline < Calendar.Now)
-                filteredResult["expired"]++;
-            }
+            if (task.Status == sberdev.SBContracts.ApprovalTask.Status.Completed)
+              filteredResult["completed"]++;
+            
+            if (task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
+                task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview)
+              filteredResult["inprocess"]++;
+            
+            if ((task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
+                 task.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended ||
+                 task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
+                task.MaxDeadline < Calendar.Now)
+              filteredResult["expired"]++;
           }
           
           return filteredResult;
@@ -1581,1076 +2186,6 @@ namespace sberdev.SberContracts.Server
       }
       
       return result;
-    }
-    
-    /// <summary>
-    /// Оптимизированный расчет значений для AssignCompletedByDepart.
-    /// </summary>
-    public virtual System.Collections.Generic.Dictionary<string, SBContracts.Structures.Module.IAssignApprSeriesInfo> OptimizedCalculateAssignCompletedValues(
-      SBContracts.Structures.Module.IDateRange dateRange, string documentType)
-    {
-      var result = new Dictionary<string, SBContracts.Structures.Module.IAssignApprSeriesInfo>();
-      
-      try
-      {
-        // Оптимизированный запрос с выборкой только нужных полей
-        var query = Sungero.Workflow.Assignments.GetAll()
-          .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
-                 a.Created >= dateRange.StartDate &&
-                 a.Completed <= dateRange.EndDate &&
-                 a.Performer != null)
-          .Select(a => new
-                  {
-                    a.Id,
-                    a.Deadline,
-                    a.Completed,
-                    PerformerId = a.Performer.Id
-                  });
-        
-        // Выполняем запрос порциями
-        const int batchSize = 500;
-        int skip = 0;
-        bool hasMore = true;
-        
-        // Словари для хранения промежуточных результатов
-        Dictionary<long, string> performerToDepartment = new Dictionary<long, string>();
-        Dictionary<string, int> departmentCompleted = new Dictionary<string, int>();
-        Dictionary<string, int> departmentExpired = new Dictionary<string, int>();
-        List<int> assignmentIds = new List<int>();
-        
-        while (hasMore)
-        {
-          var assignmentsBatch = query.Skip(skip).Take(batchSize).ToList();
-          hasMore = assignmentsBatch.Count == batchSize;
-          skip += batchSize;
-          
-          if (!assignmentsBatch.Any())
-            break;
-          
-          // Если нужно фильтровать по типу документа
-          if (!string.IsNullOrEmpty(documentType) && documentType != "All")
-          {
-            assignmentIds.AddRange(assignmentsBatch.Select(a => (int)a.Id));
-          }
-          
-          // Собираем данные о сотрудниках
-          var performerIds = assignmentsBatch.Select(a => a.PerformerId).Distinct().ToList();
-          var performers = Sungero.Company.Employees.GetAll()
-            .Where(e => performerIds.Contains(e.Id))
-            .Select(e => new { e.Id, DepartmentName = e.Department != null ? e.Department.Name : null })
-            .ToList();
-          
-          // Заполняем словарь сотрудник -> департамент
-          foreach (var performer in performers)
-          {
-            performerToDepartment[performer.Id] = performer.DepartmentName ?? "Без подразделения";
-          }
-          
-          // Подсчитываем статистику по заданиям
-          foreach (var assignment in assignmentsBatch)
-          {
-            // Определяем департамент
-            string deptName = "Без подразделения";
-            string departmentName = "Без подразделения";
-            if (performerToDepartment.TryGetValue(assignment.PerformerId, out deptName))
-              departmentName = deptName;
-            
-            // Инициализируем счетчики для департамента, если их нет
-            if (!departmentCompleted.ContainsKey(departmentName))
-            {
-              departmentCompleted[departmentName] = 0;
-              departmentExpired[departmentName] = 0;
-            }
-            
-            // Увеличиваем счетчик выполненных заданий
-            departmentCompleted[departmentName]++;
-            
-            // Проверяем, просрочено ли задание
-            if (assignment.Deadline.HasValue && assignment.Completed > assignment.Deadline.Value)
-              departmentExpired[departmentName]++;
-          }
-        }
-        
-        // Если нужно фильтровать по типу документа
-        if (!string.IsNullOrEmpty(documentType) && documentType != "All" && assignmentIds.Any())
-        {
-          // Фильтруем задания по типу документа порциями
-          Dictionary<int, bool> assignmentMatches = new Dictionary<int, bool>();
-          
-          for (int i = 0; i < assignmentIds.Count; i += batchSize)
-          {
-            var batchIds = assignmentIds.Skip(i).Take(batchSize).ToList();
-            var assignments = Sungero.Workflow.Assignments.GetAll().Where(a => batchIds.Contains((int)a.Id)).ToList();
-            
-            foreach (var assignment in assignments)
-            {
-              bool matches = AssignmentMatchesDocumentType(assignment, documentType);
-              assignmentMatches[(int)assignment.Id] = matches;
-            }
-          }
-          
-          // Пересчитываем статистику с учетом фильтрации
-          Dictionary<string, int> filteredDepartmentCompleted = new Dictionary<string, int>();
-          Dictionary<string, int> filteredDepartmentExpired = new Dictionary<string, int>();
-          
-          skip = 0;
-          hasMore = true;
-          
-          while (hasMore)
-          {
-            var assignmentsBatch = query.Skip(skip).Take(batchSize).ToList();
-            hasMore = assignmentsBatch.Count == batchSize;
-            skip += batchSize;
-            
-            if (!assignmentsBatch.Any())
-              break;
-            
-            foreach (var assignment in assignmentsBatch)
-            {
-              bool matches = false;
-              if (!assignmentMatches.TryGetValue((int)assignment.Id, out matches) || !matches)
-                continue;
-              
-              // Определяем департамент
-              string deptName = "Без подразделения";
-              string departmentName = "Без подразделения";
-              if (performerToDepartment.TryGetValue(assignment.PerformerId, out deptName))
-                departmentName = deptName;
-              
-              // Инициализируем счетчики для департамента, если их нет
-              if (!filteredDepartmentCompleted.ContainsKey(departmentName))
-              {
-                filteredDepartmentCompleted[departmentName] = 0;
-                filteredDepartmentExpired[departmentName] = 0;
-              }
-              
-              // Увеличиваем счетчик выполненных заданий
-              filteredDepartmentCompleted[departmentName]++;
-              
-              // Проверяем, просрочено ли задание
-              if (assignment.Deadline.HasValue && assignment.Completed > assignment.Deadline.Value)
-                filteredDepartmentExpired[departmentName]++;
-            }
-          }
-          
-          departmentCompleted = filteredDepartmentCompleted;
-          departmentExpired = filteredDepartmentExpired;
-        }
-        
-        // Формируем результат
-        foreach (var department in departmentCompleted.Keys)
-        {
-          var seriesInfo = SBContracts.Structures.Module.AssignApprSeriesInfo.Create();
-          seriesInfo.Completed = departmentCompleted[department];
-          seriesInfo.Expired = departmentExpired.ContainsKey(department) ? departmentExpired[department] : 0;
-          
-          result[department] = seriesInfo;
-        }
-        
-        // Сортируем по количеству заданий и ограничиваем 10 департаментами
-        return result
-          .OrderByDescending(kvp => kvp.Value.Completed)
-          .Take(10)
-          .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-      }
-      catch (Exception ex)
-      {
-        Logger.Error("Ошибка в OptimizedCalculateAssignCompletedValues", ex);
-      }
-      
-      return result;
-    }
-    
-    /// <summary>
-    /// Вычисление времени выполнения задачи
-    /// </summary>
-    [Public]
-    public int GetExecutionTaskTime(SBContracts.IApprovalTask task)
-    {
-      try
-      {
-        if (task?.Started == null)
-          return 0;
-        
-        var lastAssignment = SBContracts.ApprovalAssignments.GetAll()
-          .Where(a => a.Task.Id == task.Id &&
-                 a.Status == Sungero.Workflow.Assignment.Status.Completed &&
-                 a.Completed != null &&
-                 a.Completed >= task.Started)
-          .OrderByDescending(a => a.Completed)
-          .FirstOrDefault();
-        
-        return lastAssignment?.Completed != null
-          ? SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastAssignment.Completed)
-          : 0;
-      }
-      catch (Exception ex)
-      {
-        Logger.Error("Ошибка в GetExecutionTaskTime", ex);
-        return 0;
-      }
-    }
-
-    /// <summary>
-    /// Рассчитать показатели для виджета TaskDeadline
-    /// </summary>
-    [Public]
-    public System.Collections.Generic.Dictionary<string, double> CalculateAssignAvgApprTimeByDepartValues(
-      sberdev.SBContracts.Structures.Module.IDateRange dateRange, string documentType = "All")
-    {
-      var result = new System.Collections.Generic.Dictionary<string, double>();
-      
-      try
-      {
-        var query = Sungero.Workflow.Assignments.GetAll()
-          .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
-                 a.Created >= dateRange.StartDate &&
-                 a.Completed <= dateRange.EndDate &&
-                 a.Performer != null);
-        
-        // Получаем задания и фильтруем по типу документа
-        var assignments = query.ToList();
-        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
-        {
-          assignments = assignments.Where(a => AssignmentMatchesDocumentType(a, documentType)).ToList();
-        }
-        
-        // Вычисляем средние значения по департаментам
-        var departmentWorkDays = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<double>>();
-        
-        foreach (var assignment in assignments)
-        {
-          try
-          {
-            // Определяем департамент
-            var employee = Sungero.Company.Employees.As(assignment.Performer);
-            string departmentName = employee?.Department?.Name ?? "Без подразделения";
-            
-            // Вычисляем рабочие дни
-            double workDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
-              assignment.Created,
-              assignment.Completed);
-            
-            if (workDays <= 0)
-              continue;
-            
-            if (!departmentWorkDays.ContainsKey(departmentName))
-              departmentWorkDays[departmentName] = new System.Collections.Generic.List<double>();
-            
-            departmentWorkDays[departmentName].Add(workDays);
-          }
-          catch
-          {
-            continue;
-          }
-        }
-        
-        // Вычисляем средние значения и сортируем
-        var departmentStats = departmentWorkDays
-          .Where(kvp => kvp.Value.Any())
-          .Select(kvp => new {
-                    Department = kvp.Key,
-                    AvgDays = kvp.Value.Average()
-                  })
-          .Where(x => x.AvgDays > 0)
-          .OrderByDescending(x => x.AvgDays)
-          .Take(10);
-        
-        foreach (var stat in departmentStats)
-        {
-          result[stat.Department] = System.Math.Round(stat.AvgDays, 1);
-        }
-      }
-      catch (System.Exception ex)
-      {
-        Logger.Error("Ошибка в CalculateAssignAvgApprTimeByDepartValues", ex);
-      }
-      
-      return result;
-    }
-
-    /// <summary>
-    /// Рассчитать показатели для виджета AssignCompletedByDepart
-    /// </summary>
-    [Public]
-    public System.Collections.Generic.Dictionary<string, sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>
-      CalculateAssignCompletedByDepartValues(sberdev.SBContracts.Structures.Module.IDateRange dateRange, string documentType = "All")
-    {
-      var result = new System.Collections.Generic.Dictionary<string, sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>();
-      
-      try
-      {
-        var query = Sungero.Workflow.Assignments.GetAll()
-          .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
-                 a.Created >= dateRange.StartDate &&
-                 a.Completed <= dateRange.EndDate &&
-                 a.Performer != null);
-        
-        // Получаем задания и фильтруем по типу документа
-        var assignments = query.ToList();
-        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
-        {
-          assignments = assignments.Where(a => AssignmentMatchesDocumentType(a, documentType)).ToList();
-        }
-        
-        // Группируем по департаментам
-        var departmentGroups = assignments
-          .GroupBy(a => {
-                     var employee = Sungero.Company.Employees.As(a.Performer);
-                     return employee?.Department?.Name ?? "Без подразделения";
-                   });
-        
-        foreach (var group in departmentGroups)
-        {
-          var seriesInfo = sberdev.SBContracts.Structures.Module.AssignApprSeriesInfo.Create();
-          
-          // Общее количество выполненных заданий в группе
-          seriesInfo.Completed = group.Count();
-          
-          // Количество просроченных заданий
-          seriesInfo.Expired = group.Count(a => a.Deadline.HasValue && a.Completed > a.Deadline.Value);
-          
-          result[group.Key] = seriesInfo;
-        }
-        
-        // Сортируем по количеству заданий и ограничиваем 10 департаментами
-        return result
-          .OrderByDescending(kvp => kvp.Value.Completed)
-          .Take(10)
-          .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-      }
-      catch (System.Exception ex)
-      {
-        Logger.Error("Ошибка в CalculateAssignCompletedByDepartValues", ex);
-        return result;
-      }
-    }
-
-    /// <summary>
-    /// Рассчитать показатели для виджета TaskDeadline
-    /// </summary>
-    [Public]
-    public double CalculateTaskDeadlineChartPoint(
-      sberdev.SBContracts.Structures.Module.IDateRange dateRange, string serialType, string documentType = "All")
-    {
-      try
-      {
-        if (dateRange == null || dateRange.StartDate == null || dateRange.EndDate == null)
-        {
-          Logger.Error("CalculateTaskDeadlineChartPoint: Некорректный диапазон дат");
-          return 0;
-        }
-        
-        // Получаем задачи и фильтруем по типу документа
-        var validTasks = sberdev.SBContracts.ApprovalTasks.GetAll()
-          .Where(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.Completed &&
-                 t.Started != null &&
-                 t.Started >= dateRange.StartDate &&
-                 t.Started <= dateRange.EndDate)
-          .ToList();
-        
-        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
-        {
-          validTasks = validTasks.Where(t => TaskMatchesDocumentType(t, documentType)).ToList();
-        }
-        
-        if (!validTasks.Any())
-        {
-          Logger.Debug($"CalculateTaskDeadlineChartPoint: Нет завершенных задач в диапазоне {dateRange.StartDate:dd.MM.yyyy} - {dateRange.EndDate:dd.MM.yyyy}");
-          return 0;
-        }
-        
-        // Словари для хранения данных
-        System.Collections.Generic.Dictionary<int, int> taskExecutionDays = new System.Collections.Generic.Dictionary<int, int>();
-        System.Collections.Generic.Dictionary<int, int> taskTargetDays = new System.Collections.Generic.Dictionary<int, int>();
-        
-        foreach (var task in validTasks)
-        {
-          // Вычисляем время выполнения
-          int days = GetExecutionTaskTime(task);
-          if (days > 0)
-            taskExecutionDays[(int)task.Id] = days;
-          
-          // Вычисляем целевое время
-          if (task.MaxDeadline != null && task.Started <= task.MaxDeadline)
-          {
-            int targetDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, task.MaxDeadline);
-            if (targetDays > 0)
-              taskTargetDays[(int)task.Id] = targetDays;
-          }
-        }
-        
-        // Вычисление значения в зависимости от типа серии
-        serialType = serialType.ToLower();
-        
-        if (serialType == "average" && taskExecutionDays.Any())
-          return taskExecutionDays.Values.Average();
-        
-        if (serialType == "maximum" && taskExecutionDays.Any())
-          return taskExecutionDays.Values.Max();
-        
-        if (serialType == "minimum" && taskExecutionDays.Any())
-          return taskExecutionDays.Values.Min();
-        
-        if (serialType == "target" && taskTargetDays.Any())
-          return taskTargetDays.Values.Average();
-        
-        return 0;
-      }
-      catch (System.Exception ex)
-      {
-        Logger.Error($"Ошибка в CalculateTaskDeadlineChartPoint: {ex.Message}", ex);
-      }
-      return 0;
-    }
-
-    /// <summary>
-    /// Функция вычисляет значения для виджета TaskFlowChart
-    /// </summary>
-    [Public]
-    public System.Collections.Generic.Dictionary<string, int> CalculateTaskFlowValues(
-      sberdev.SBContracts.Structures.Module.IDateRange dateRange, string documentType = "All")
-    {
-      // Инициализируем словарь с нулевыми значениями по умолчанию
-      System.Collections.Generic.Dictionary<string, int> controlFlowSeriesValue = new System.Collections.Generic.Dictionary<string, int>
-      {
-        ["started"] = 0,
-        ["completed"] = 0,
-        ["inprocess"] = 0,
-        ["expired"] = 0
-      };
-      
-      try
-      {
-        Logger.Debug($"CalculateTaskFlowValues: начало выполнения, dateRange={dateRange?.StartDate:dd.MM.yyyy}-{dateRange?.EndDate:dd.MM.yyyy}, documentType={documentType ?? "null"}");
-        
-        // Получаем задачи по диапазону дат без фильтрации по типу документа
-        var tasks = sberdev.SBContracts.ApprovalTasks.GetAll()
-          .Where(t => Sungero.Core.Calendar.Between(t.Started, dateRange.StartDate, dateRange.EndDate))
-          .ToList();
-        
-        Logger.Debug($"CalculateTaskFlowValues: получено задач - {tasks.Count}");
-        
-        // Важно! Применяем фильтрацию по типу документа только если реально нужна фильтрация
-        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
-        {
-          try
-          {
-            // Безопасная фильтрация с обработкой каждого исключения
-            var filteredTasks = new List<sberdev.SBContracts.IApprovalTask>();
-            foreach (var task in tasks)
-            {
-              try
-              {
-                if (TaskMatchesDocumentType(task, documentType))
-                  filteredTasks.Add(task);
-              }
-              catch (Exception ex)
-              {
-                // Логируем ошибку для конкретной задачи, но продолжаем обработку
-                Logger.Error($"Ошибка при проверке типа документа для задачи {task.Id}", ex);
-              }
-            }
-            tasks = filteredTasks;
-            Logger.Debug($"CalculateTaskFlowValues: после фильтрации осталось задач - {tasks.Count}");
-          }
-          catch (Exception ex)
-          {
-            Logger.Error("Ошибка при фильтрации задач по типу документа", ex);
-            // Не меняем список задач, продолжаем без фильтрации
-          }
-        }
-        
-        // Заполняем словарь
-        controlFlowSeriesValue["started"] = tasks.Count(t => t.Status != sberdev.SBContracts.ApprovalTask.Status.Draft);
-        controlFlowSeriesValue["completed"] = tasks.Count(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.Completed);
-        controlFlowSeriesValue["inprocess"] = tasks.Count(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess
-                                                          || t.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview);
-        controlFlowSeriesValue["expired"] = tasks.Count(t => (t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess
-                                                              || t.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended
-                                                              || t.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview)
-                                                        && t.MaxDeadline < Sungero.Core.Calendar.Now);
-      }
-      catch (System.Exception ex)
-      {
-        Logger.Error("Ошибка в CalculateTaskFlowValues", ex);
-        // Словарь уже инициализирован с нулевыми значениями
-      }
-      
-      return controlFlowSeriesValue;
-    }
-    #endregion
-    
-    #region Минифункции
-    
-    /// <summary>
-    /// Возвращает генеральный продукт для нашей организации документа
-    /// </summary>
-    /// <param name="doc">Документ</param>
-    /// <returns></returns>
-    [Public]
-    public IProductsAndDevices GetOrCreateGeneralProduct(SBContracts.IOfficialDocument doc)
-    {
-      var genProd = ProductsAndDeviceses.GetAll(p => p.BusinessUnit == doc.BusinessUnit && p.Name == "General").FirstOrDefault();
-      
-      if (genProd == null)
-      {
-        var newGenProd = ProductsAndDeviceses.Create();
-        newGenProd.BusinessUnit = doc.BusinessUnit;
-        newGenProd.Name = "General";
-        
-        // Сохранение перед возвратом сущности
-        newGenProd.Save();
-        
-        // Возвращаем сущность
-        return newGenProd;
-      }
-      else
-      {
-        return genProd;
-      }
-    }
-    
-    /// <summary>
-    /// Получить все цифры после указанного тега
-    /// </summary>
-    [Public]
-    public string GetNumberTag(string input, string tag)
-    {
-      string result = "";
-      int i = input.IndexOf(tag);
-      if (i > 0)
-      {
-        i += tag.Length;
-        while (i < input.Length && Char.IsDigit(input[i]))
-        {
-          result += input[i];
-          i++;
-        }
-      }
-      return result;
-    }
-    
-    /// <summary>
-    /// Возвращает список ИНН всех "Наших организаций"
-    /// </summary>
-    [Public]
-    public List<string> GetAllBuisnessUnitTINs()
-    {
-      return Sungero.Company.BusinessUnits.GetAll().Select(b => b.TIN).ToList();
-    }
-    
-    [Public, Remote]
-    public static string DeleteAllContractsSrv()
-    {
-      var s = "";
-      var contracts = Sungero.Contracts.Contracts.GetAll(); // sberdev.SBContracts.Contracts.GetAll();
-      foreach (var contract in contracts)
-      {
-        try{
-          var newcontract = Sungero.Contracts.Contracts.Get(contract.Id);
-          //Transactions.Execute(() => {
-          Sungero.Contracts.Contracts.Delete(newcontract) ;
-          //                    });//sberdev.SBContracts.Contracts.Delete(contract);
-        }
-        catch (Exception ex)
-        {
-          s = s+System.Environment.NewLine+ex.Message;
-        }
-        
-      }
-      return s;
-    }
-    
-    [Public, Remote]
-    public static void DeleteAllContractsSrvNew(Sungero.Contracts.IContract contract)
-    {
-      Sungero.Contracts.Contracts.Delete(contract) ;
-    }
-    
-    [Remote(PackResultEntityEagerly = true), Public]
-    public static void LinkDocs( Sungero.Docflow.IApprovalTask task )
-    {
-      var docs = task.AllAttachments.ToList();
-      var mainDoc = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
-      foreach (var docInf in docs)
-      {
-        if (mainDoc.Id != docInf.Id )
-        {
-          var doc = Sungero.Content.ElectronicDocuments.Get(docInf.Id);
-          doc.Relations.AddFrom("Simple relation", mainDoc );
-        }
-      }
-    }
-    
-    public static string GetCellValue(object cell)
-    {
-      return (cell != null) ? (cell.ToString() != "NULL" ? cell.ToString() : "") : "";
-    }
-    
-    #endregion
-    
-    #region Функции миграции
-    
-    [Public, Remote]
-    public static Sungero.Core.IZip MigrationContractCard(string filePath)
-    {
-      FileInfo fi = new FileInfo(filePath);
-      var logId = Guid.NewGuid().ToString();
-      var logFilePath =  Path.GetTempPath() + logId + ".txt";
-      
-      using (ExcelPackage excelPackage = new ExcelPackage(fi))
-      {
-        
-        ExcelWorksheet firstWorksheet = excelPackage.Workbook.Worksheets[1];
-        var row = 2;
-        var errNum = 0;
-        var messageList = new List<String>();
-        var messageFormat = "Ошибка в строке {0} Excel файла. Текст ошибки: {1}";
-        var idContract = GetCellValue(firstWorksheet.Cells[row, 1].Value);
-        
-        messageList.Add("==========================================================" + Environment.NewLine + "Старт процедуры миграции " + Sungero.Core.Calendar.Now.ToString() + Environment.NewLine + "==========================================================");
-        
-        while (idContract != "")
-        {
-          try
-          {
-            
-            //Обязательные
-            var contrType = GetCellValue(firstWorksheet.Cells[row, 2].Value);
-            var contrCategory = GetCellValue(firstWorksheet.Cells[row, 3].Value);
-            var contrNum = GetCellValue(firstWorksheet.Cells[row, 4].Value);
-            var contrDate = GetCellValue(firstWorksheet.Cells[row, 5].Value);
-            var contrSubj = GetCellValue(firstWorksheet.Cells[row, 6].Value);
-            var contrAmount = GetCellValue(firstWorksheet.Cells[row, 7].Value);
-            var contrCurrency = GetCellValue(firstWorksheet.Cells[row, 8].Value);
-            var contactINN = GetCellValue(firstWorksheet.Cells[row, 9].Value);
-            var contactKPP = GetCellValue(firstWorksheet.Cells[row, 10].Value);
-            var contactGUID = GetCellValue(firstWorksheet.Cells[row, 11].Value);
-            var failedTrig = false;
-            
-            //Ищем документ или создаем новый
-            SBContracts.IContract contract;
-            contract = SBContracts.Contracts.GetAll(c => c.GUID1C != null && c.GUID1C == idContract).FirstOrDefault();
-            if (contract == null)
-            {
-              contract = SBContracts.Contracts.Create();
-            }
-            
-            //Заполнить исторический ИД ИУС ПТ
-            contract.GUID1C = idContract;
-            
-            //Заполнение типа документа (с проверкой)
-            if (contrType != null)
-            {
-              if (contrType == "Доходный")
-              {contract.ContrTypeBaseSberDev = SBContracts.Contract.ContrTypeBaseSberDev.Profitable;
-                contract.MVPBaseSberDev = sberdev.SberContracts.MVZs.GetAll(c => c.Name == "Для исторических договоров").FirstOrDefault();
-              }
-              else
-              {contract.ContrTypeBaseSberDev = SBContracts.Contract.ContrTypeBaseSberDev.Expendable;
-                contract.MVZBaseSberDev = sberdev.SberContracts.MVZs.GetAll(c => c.Name == "Для исторических договоров").FirstOrDefault();}
-              
-              //Заполнение Категории (с проверкой)
-              if(contrCategory != null)
-              {
-                if (contrCategory == "С покупателем")
-                {contract.DocumentGroup = sberdev.SBContracts.ContractCategories.GetAll(c => c.Name == "С покупателем").FirstOrDefault();
-                  //var tets = sberdev.SBContracts.ContractCategories.GetAll(c => c.Name == "С покупателем").FirstOrDefault();
-                  //messageList.Add(String.Format(messageFormat, row, tets.Name));
-                }
-                else
-                {
-                  if (contrCategory == "С поставщиком")
-                  {contract.DocumentGroup = sberdev.SBContracts.ContractCategories.GetAll(c => c.Name == "С поставщиком").FirstOrDefault();}
-                  else
-                  {contract.DocumentGroup = sberdev.SBContracts.ContractCategories.GetAll(c => c.Name == "С комиссионером").FirstOrDefault();}
-                }
-                
-                //Заполнение номера(с проверкой)
-                //  if (contrNum != ""){
-                //  contract.RegistrationNumber = contrNum;
-                
-                //Заполнение даты (с проверкой)
-                if (contrDate == null || contrDate == ""){
-                  string pattern = @"\d\d\.\d\d\.\d\d\d?\d?";
-                  Match match = Regex.Match(contrSubj, pattern);
-                  if (match.Success)
-                  {contrDate = match.Value;
-                  }
-                }
-                
-                if (contrDate != ""){
-                  contract.DocumentDate = Convert.ToDateTime(contrDate);
-                }
-                //Заполнение темы (с проверкой)
-                if (contrSubj != ""){
-                  contract.Subject = contrSubj;
-
-                  //Заполнение Суммы
-                  if (contrAmount != "")
-                  {contract.TotalAmount = Convert.ToDouble(contrAmount.Replace('.',','));}
-                  
-                  //Заполнение Валют
-                  var currency = Sungero.Commons.Currencies.GetAll(c => c.AlphaCode == contrCurrency).FirstOrDefault();
-                  if (currency != null){
-                    contract.Currency = currency;
-                  }
-                  
-                  //Заполнение журнала регистрации.
-                  contract.DocumentRegister = Sungero.Docflow.DocumentRegisters.GetAll(c => c.Name == "Договоры").FirstOrDefault();
-                  
-                  //Заполнение Рег номера
-                  if (contrNum != "")
-                  { contract.RegistrationNumber = contrNum;}
-                  else
-                  {string patternNum = @"№\s*\w+\s";
-                    Match matchNum = Regex.Match(contrSubj, patternNum);
-                    if (matchNum.Success)
-                    {contract.RegistrationNumber = matchNum.Value.Substring(2);}
-                  }
-                  
-                  //Заполнение даты регистрации
-                  if (contrDate != ""){
-                    contract.RegistrationDate = Convert.ToDateTime(contrDate);}
-                  
-                  //Заполнение состояния значением "Действующий"
-                  contract.LifeCycleState = Sungero.Contracts.ContractualDocument.LifeCycleState.Active;
-                  
-                  //Заполнение ответственного подразделения
-                  contract.Department = Sungero.Company.Departments.GetAll(c => c.Name == "Администрация" || c.Name == "Администрация/Генеральный директор").FirstOrDefault();
-                  
-                  Sungero.Parties.ICompany contact = null;
-                  
-                  //Заполнение контрагента
-                  if (contactGUID != "")
-                  {
-                    var connection = SQL.CreateConnection();
-                    using (var command = connection.CreateCommand())
-                    {
-                      command.CommandText = string.Format("SELECT EntityId " +
-                                                          "FROM [dbo].[Sungero_Commons_ExtEntityLinks] " +
-                                                          "WHERE ExtEntityId = '{0}'", contactGUID);
-                      var reader = command.ExecuteReader();
-                      while (reader.Read()){
-                        if(reader[0] != null)
-                        { contact =  Sungero.Parties.Companies.GetAll(r => r.Id == Convert.ToInt16(reader[0].ToString())).FirstOrDefault(); // Get(Convert.ToInt16(reader[0].ToString()));//  GetAll(c => c.Id == reader[0]).FirstOrDefault();
-                          if (contact != null)
-                          {
-                            contract.Counterparty = contact;
-                          }
-                          else
-                          {
-                            var pers = Sungero.Parties.Counterparties.GetAll(r => r.Id == Convert.ToInt16(reader[0].ToString())).FirstOrDefault();
-                            if (pers != null)
-                            {
-                              contract.Counterparty = pers;
-                            }
-                          }
-                        }
-                      }
-                      reader.Close();
-                      connection.Close();
-                    }
-
-                  }
-                  else{}
-                  
-                  if (contract.Counterparty == null){
-                    if (contactINN != "" && contactKPP != "")
-                    {
-                      contact = Sungero.Parties.Companies.GetAll(c => c.TIN == contactINN && c.TRRC == contactKPP).FirstOrDefault();
-                      if (contact != null)
-                      { contract.Counterparty = contact; }
-                      else{
-                        messageList.Add(String.Format(messageFormat, row, "Не найден контрагент с ИНН " + contactINN + " КПП " + contactKPP + "."));
-                        failedTrig = true;
-                        errNum++;
-                      }
-                    }
-                  }
-                  else{}
-                  //if (contact == null){
-                  //messageList.Add(String.Format(messageFormat, row, "Контрагент не найден. Создать договор невозможно."));
-                  //failedTrig = true;
-                  //errNum++;}
-                  
-                  
-                }else{
-                  messageList.Add(String.Format(messageFormat, row, "Незаполнен о содержание. Создать договор невозможно."));
-                  failedTrig = true;
-                  errNum++;
-                }
-                //}else{
-                // messageList.Add(String.Format(messageFormat, row, "Не заполнена дата. Создать договор невозможно."));
-                //failedTrig = true;
-                //errNum++;
-                //}
-                //}else{
-                // messageList.Add(String.Format(messageFormat, row, "Не заполнен номер. Создать договор невозможно."));
-                // failedTrig = true;
-                // errNum++;
-                // }
-              }else{
-                messageList.Add(String.Format(messageFormat, row, "Не заполнена категория договора. Создать договор невозможно."));
-                failedTrig = true;
-                errNum++;
-              }
-            }else{
-              messageList.Add(String.Format(messageFormat, row, "Не заполнен тип договора. Создать договор невозможно."));
-              failedTrig = true;
-              errNum++;
-            }
-            contract.BusinessUnit = Sungero.Company.BusinessUnits.GetAll(c => c.Name == "ООО «ТД ЕПК" || c.Name == "ООО \"СберДевайсы\"").FirstOrDefault();
-            contract.AccArtPrBaseSberDev = SberContracts.AccountingArticleses.GetAll(c => c.Name == "Для исторических договоров").FirstOrDefault();
-            contract.ProdCollectionPrBaseSberDev.AddNew().Product = SberContracts.ProductsAndDeviceses.GetAll(c => c.Name == "Для исторических договоров").FirstOrDefault();
-            contract.Save();
-          }
-          catch (Exception ex)
-          {
-            messageList.Add(String.Format(messageFormat, row, ex.Message));
-            errNum++;
-          }
-          
-          row++;
-          idContract = GetCellValue(firstWorksheet.Cells[row, 1].Value);
-        }
-        
-        
-        using (StreamWriter sw = new StreamWriter(logFilePath, false, System.Text.Encoding.Default))
-        {
-          foreach(var text in messageList)
-            sw.WriteLine(text);
-          sw.WriteLine("==========================================================================");
-          sw.WriteLine("Конец загрузки. Всего ошибок: " + errNum.ToString());
-        }
-        
-        
-      }
-      //Заархивировать файл и вернуть в клиентский код
-      IZip zip = Zip.Create();
-      var zipFilePath = Path.GetTempPath() + Guid.NewGuid().ToString() + ".zip";
-      using (FileStream fstream = File.OpenRead(logFilePath))
-      {
-        byte[] array = new byte[fstream.Length];
-        fstream.Read(array, 0, array.Length);
-        var today = Sungero.Core.Calendar.Now;
-        var filePathName = "Log_" + logId + " от " + today.Day.ToString() + "_" +
-          today.Month.ToString() + "_" + today.Year.ToString(); //Пока так, чтобы сэкономить время на обработку имени файла от нечитаемых символов и т.д.
-        zip.Add(array, filePathName,".txt");
-        zip.Save(zipFilePath);
-      }
-      
-      System.IO.File.Delete(filePath);
-      System.IO.File.Delete(logFilePath);
-      System.IO.File.Delete(zipFilePath);
-      return zip;
-      
-    }
-    
-    /// <summary>
-    /// Загрузка файлов для раннее загруженных договоров
-    /// </summary>
-    [Public, Remote]
-    public static Sungero.Core.IZip MigrationFile(string filePath) //Sungero.Core.IZip CreateZipBene(DateTime dateStart, DateTime dateEnd)
-    {
-      FileInfo fi = new FileInfo(filePath);
-      var logId = Guid.NewGuid().ToString();
-      var logFilePath = Path.GetTempPath() + logId + ".txt";
-      
-      //Получить первую часть пути
-      //var firstPath = Functions.Module.GetSystemParams("MigrationFirstPath");
-      
-      using (ExcelPackage excelPackage = new ExcelPackage(fi))
-      {
-        ExcelWorksheet firstWorksheet = excelPackage.Workbook.Worksheets[1];
-        var row = 2;
-        var errNum = 0;
-        var messageList = new List<String>();
-        var messageFormat = "Ошибка в строке {0} Excel файла. Текст ошибки: {1}";
-        var idContract = GetCellValue(firstWorksheet.Cells[row, 1].Value);
-        
-        messageList.Add("==========================================================" + Environment.NewLine + "Старт процедуры миграции " + Sungero.Core.Calendar.Now.ToString() + Environment.NewLine + "==========================================================");
-        while (idContract != "")
-        {
-          try
-          {
-            var contract = SBContracts.Contracts.GetAll(c => c.GUID1C != null && c.GUID1C == idContract).FirstOrDefault();
-            
-            if (contract != null) {
-              var docFilePath = GetCellValue(firstWorksheet.Cells[row, 13].Value);
-              
-              //Конкатенируем путь и загружаем файл в документ
-              if (docFilePath != ""){
-                string[] subStrs = docFilePath.Split(';');
-                var contrtrig = true;
-                foreach (var str in subStrs)
-                {
-                  if (contrtrig)
-                  {
-                    contract.CreateVersion();
-                    contract.Import(str);
-                    contract.Save();
-                    contrtrig = false;
-                  }
-                  else
-                  {
-                    var otherDoc = SberContracts.OtherContractDocuments.Create();
-                    otherDoc.Subject = str;
-                    otherDoc.LeadingDocument = contract;
-                    otherDoc.DocumentKind = Sungero.Docflow.DocumentKinds.GetAll(c => c.Name == "Иные документы").FirstOrDefault();
-                    otherDoc.CreateVersion();
-                    otherDoc.Import(str);
-                    otherDoc.Save();
-                  }
-                }
-              }else{
-                messageList.Add(String.Format(messageFormat, row, "Не заполнен путь к файлу."));
-                errNum++;
-              }
-            } else {
-              messageList.Add(String.Format(messageFormat, row, "Не найден договор с ИД " + idContract));
-              errNum++;
-            }
-            
-            
-          }
-          catch (Exception ex)
-          {
-            messageList.Add(String.Format(messageFormat, row, ex.Message));
-            errNum++;
-          }
-          row++;
-          idContract = GetCellValue(firstWorksheet.Cells[row, 1].Value);
-        }
-        
-        using (StreamWriter sw = new StreamWriter(logFilePath, false, System.Text.Encoding.Default))
-        {
-          foreach(var text in messageList)
-            sw.WriteLine(text);
-          sw.WriteLine("==========================================================================");
-          sw.WriteLine("Конец загрузки. Всего ошибок: " + errNum.ToString());
-        }
-      }
-      
-      //Заархивировать файл и вернуть в клиентский код
-      IZip zip = Zip.Create();
-      var zipFilePath = Path.GetTempPath() + Guid.NewGuid().ToString() + ".zip";
-      using (FileStream fstream = File.OpenRead(logFilePath))
-      {
-        byte[] array = new byte[fstream.Length];
-        fstream.Read(array, 0, array.Length);
-        var today = Sungero.Core.Calendar.Now;
-        var filePathName = "Log_" + logId + " от " + today.Day.ToString() + "_" +
-          today.Month.ToString() + "_" + today.Year.ToString(); //Пока так, чтобы сэкономить время на обработку имени файла от нечитаемых символов и т.д.
-        zip.Add(array, filePathName,".txt");
-        zip.Save(zipFilePath);
-      }
-      
-      System.IO.File.Delete(filePath);
-      System.IO.File.Delete(logFilePath);
-      System.IO.File.Delete(zipFilePath);
-      return zip;
-    }
-    
-    #endregion
-    
-    #region Проверка документа на совпадение с выбранной группой типов
-    /// <summary>
-    /// Проверяет, соответствует ли документ выбранному типу
-    /// </summary>
-    [Public]
-    public bool MatchesDocumentType(Sungero.Domain.Shared.IEntity document, string documentType)
-    {
-      if (document == null)
-        return false;
-      
-      // Все типы документов
-      if (string.IsNullOrEmpty(documentType) || documentType == "All")
-        return true;
-      
-      // Преобразуем документ к возможным типам
-      var accounting = sberdev.SBContracts.AccountingDocumentBases.As(document);
-      var contractual = sberdev.SBContracts.ContractualDocuments.As(document);
-      var incomingInvoice = sberdev.SBContracts.IncomingInvoices.As(document);
-      var abstractSup = sberdev.SberContracts.AbstractsSupAgreements.As(document);
-      
-      switch (documentType)
-      {
-        case "Contractual":
-          // SBContracts.Contract, SBContracts.SupAgreement (наследники ContractualDocument)
-          return contractual != null && abstractSup == null;
-          
-        case "IncInvoce":
-          // SBContracts.IncomingInvoice
-          return incomingInvoice != null;
-          
-        case "Accounting":
-          // SBContracts.AccountingDocumentBase кроме IncomingInvoice
-          return accounting != null && incomingInvoice == null;
-          
-        case "AbstractContr":
-          // SberContracts.AbstractsSupAgreement
-          return abstractSup != null;
-          
-        case "Another":
-          // Все остальные типы
-          return document != null && accounting == null && contractual == null;
-          
-        default:
-          return false;
-      }
-    }
-
-    /// <summary>
-    /// Получить документ из задания и проверить его тип
-    /// </summary>
-    [Public]
-    public bool AssignmentMatchesDocumentType(Sungero.Workflow.IAssignment assignment, string documentType)
-    {
-      if (string.IsNullOrEmpty(documentType) || documentType == "All")
-        return true;
-      
-      var document = assignment.Attachments.FirstOrDefault();
-      return MatchesDocumentType(document, documentType);
-    }
-
-    /// <summary>
-    /// Получить документ из задачи и проверить его тип
-    /// </summary>
-    [Public]
-    public bool TaskMatchesDocumentType(Sungero.Workflow.ITask task, string documentType)
-    {
-      try
-      {
-        // Для всех типов документов возвращаем true без проверки
-        if (string.IsNullOrEmpty(documentType) || documentType == "All")
-          return true;
-        
-        var approvalTask = sberdev.SBContracts.ApprovalTasks.As(task);
-        if (approvalTask == null || approvalTask.DocumentGroup == null)
-          return false;
-        
-        // Безопасное получение документа с обработкой возможных исключений
-        try
-        {
-          var document = approvalTask.DocumentGroup.OfficialDocuments.FirstOrDefault();
-          if (document == null)
-            return false;
-          
-          return MatchesDocumentType(document, documentType);
-        }
-        catch (Exception ex)
-        {
-          Logger.Error($"Ошибка при получении документа из задачи {task.Id}", ex);
-          return false;
-        }
-      }
-      catch (Exception ex)
-      {
-        Logger.Error($"Ошибка в TaskMatchesDocumentType для задачи {task?.Id}", ex);
-        return false;
-      }
     }
     #endregion
     

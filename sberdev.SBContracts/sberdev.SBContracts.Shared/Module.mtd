@@ -914,6 +914,56 @@
       "StructureNamespace": "sberdev.SBContracts.Structures.Module"
     },
     {
+      "Name": "AssignmentCompletedData",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Id",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
+          "Name": "Deadline",
+          "IsNullable": true,
+          "TypeFullName": "global::System.Nullable<global::System.DateTime>"
+        },
+        {
+          "Name": "Completed",
+          "IsNullable": true,
+          "TypeFullName": "global::System.DateTime"
+        },
+        {
+          "Name": "PerformerId",
+          "TypeFullName": "global::System.Int64"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
+      "Name": "AssignmentTimeData",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Id",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
+          "Name": "Created",
+          "IsNullable": true,
+          "TypeFullName": "global::System.DateTime"
+        },
+        {
+          "Name": "Completed",
+          "IsNullable": true,
+          "TypeFullName": "global::System.DateTime"
+        },
+        {
+          "Name": "PerformerId",
+          "TypeFullName": "global::System.Int64"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
       "Name": "ControlFlowSeriesInfo",
       "IsPublic": true,
       "Properties": [
@@ -960,6 +1010,80 @@
       "StructureNamespace": "sberdev.SBContracts.Structures.Module"
     },
     {
+      "Name": "DepartmentAverageData",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Department",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "AvgDays",
+          "TypeFullName": "global::System.Double"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
+      "Name": "EmployeeDepartmentData",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Id",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
+          "Name": "DepartmentId",
+          "IsNullable": true,
+          "TypeFullName": "global::System.Nullable<global::System.Int64>"
+        },
+        {
+          "Name": "DepartmentName",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
+      "Name": "PerformerDepartmentData",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Id",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
+          "Name": "DepartmentName",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
+      "Name": "TaskDeadlineData",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Id",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
+          "Name": "Started",
+          "IsNullable": true,
+          "TypeFullName": "global::System.DateTime"
+        },
+        {
+          "Name": "MaxDeadline",
+          "IsNullable": true,
+          "TypeFullName": "global::System.Nullable<global::System.DateTime>"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
       "Name": "TaskDeadlineSeriesInfo",
       "IsPublic": true,
       "Properties": [
@@ -980,6 +1104,32 @@
         {
           "Name": "B",
           "TypeFullName": "global::System.Int32"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
+      "Name": "TaskStatusData",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Id",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
+          "Name": "Status",
+          "IsNullable": true,
+          "TypeFullName": "global::Sungero.Core.Enumeration"
+        },
+        {
+          "Name": "Started",
+          "IsNullable": true,
+          "TypeFullName": "global::System.DateTime"
+        },
+        {
+          "Name": "MaxDeadline",
+          "IsNullable": true,
+          "TypeFullName": "global::System.Nullable<global::System.DateTime>"
         }
       ],
       "StructureNamespace": "sberdev.SBContracts.Structures.Module"
