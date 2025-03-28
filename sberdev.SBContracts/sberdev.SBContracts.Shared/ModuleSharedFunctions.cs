@@ -17,9 +17,9 @@ namespace sberdev.SBContracts.Shared
       switch (enumValue)
       {
         case "Expendable":
-          return "Доходный";
-        case "Profitable":
           return "Расходный";
+        case "Profitable":
+          return "Доходный";
         case "ExpendProfit":
           return "Доходно-расходный";
         default:
