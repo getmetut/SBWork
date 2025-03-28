@@ -142,16 +142,16 @@ namespace sberdev.SBContracts.Server
             itg += "Доходно-расходный?";
           
           itg += " Сумма ";
-          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Big)
+          if (_obj.SummPriznSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Big)
             itg += "> ";
           
-          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Little)
+          if (_obj.SummPriznSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Little)
             itg += "< ";
           
-          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
+          if (_obj.SummPriznSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
             itg += "= ";
           
-          itg += _obj.SummPriznSDevSDev.Value.ToString();
+          itg += _obj.TotalSummSDevSDev.Value.ToString();
           
           return (itg);
         }
