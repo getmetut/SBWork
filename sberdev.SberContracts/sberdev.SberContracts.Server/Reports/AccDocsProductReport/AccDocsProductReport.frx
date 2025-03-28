@@ -77,9 +77,9 @@ namespace FastReport
       switch (enumValue)
       {
         case &quot;Expendable&quot;:
-          return &quot;Доходный&quot;;
-        case &quot;Profitable&quot;:
           return &quot;Расходный&quot;;
+        case &quot;Profitable&quot;:
+          return &quot;Доходный&quot;;
         case &quot;ExpendProfit&quot;:
           return &quot;Доходно-расходный&quot;;
         default:
