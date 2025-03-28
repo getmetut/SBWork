@@ -8,7 +8,7 @@ using sberdev.SBContracts.ContractCondition;
 namespace sberdev.SBContracts.Server
 {
   partial class ContractConditionFunctions
-  {    
+  {
     public override string GetConditionName()
     {
       using (TenantInfo.Culture.SwitchTo())
@@ -128,6 +128,52 @@ namespace sberdev.SBContracts.Server
           text += "?";
           return text;
         }
+        
+        if (_obj.ConditionType == ConditionType.PlusMinus)
+        {
+          string itg = "";
+          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.PlusMinusSDevSDev.Profitable)
+            itg += "Доходный?";
+          
+          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.PlusMinusSDevSDev.Expendable)
+            itg += "Расходный?";
+          
+          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.PlusMinusSDevSDev.ExpendProfit)
+            itg += "Доходно-расходный?";
+          
+          itg += " Сумма ";
+          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Big)
+            itg += "> ";
+          
+          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Little)
+            itg += "< ";
+          
+          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
+            itg += "= ";
+          
+          itg += _obj.SummPriznSDevSDev.Value.ToString();
+          
+          return (itg);
+        }
+        
+        if (_obj.ConditionType == ConditionType.SummDoc)
+        {
+          string itg = "Сумма документа ";
+          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Big)
+            itg += "> ";
+          
+          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Little)
+            itg += "< ";
+          
+          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
+            itg += "= ";
+          
+          itg += _obj.SummPriznSDevSDev.Value.ToString();
+          return (itg);
+        }
+        
+        if (_obj.ConditionType == ConditionType.INNCollection)
+          return ("Контроль по ИНН КА");
       }
 
       return base.GetConditionName();

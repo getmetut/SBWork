@@ -995,7 +995,6 @@ namespace sberdev.SBContracts.Shared
       
 
       return baseSupport;
-
     }
     
     #endregion

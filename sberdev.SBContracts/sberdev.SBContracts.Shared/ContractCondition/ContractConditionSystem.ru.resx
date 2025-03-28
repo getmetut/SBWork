@@ -196,4 +196,13 @@
   <data name="Enum_ConditionType_IsProdPurchase" xml:space="preserve">
     <value>Производственная закупка</value>
   </data>
+  <data name="Enum_PlusMinusSDevSDev_Profitable" xml:space="preserve">
+    <value>Доходный</value>
+  </data>
+  <data name="Enum_PlusMinusSDevSDev_Expendable" xml:space="preserve">
+    <value>Расходный</value>
+  </data>
+  <data name="Enum_PlusMinusSDevSDev_ExpendProfit" xml:space="preserve">
+    <value>Доходно-расходный</value>
+  </data>
 </root>
