@@ -1601,7 +1601,6 @@ namespace sberdev.SberContracts.Server
     #endregion
     
     #region Функции виджетов
-    
     /// <summary>
     /// Вычисление времени выполнения задачи
     /// </summary>
@@ -1610,7 +1609,10 @@ namespace sberdev.SberContracts.Server
       try
       {
         if (task?.Started == null)
+        {
+          Logger.Debug($"GetExecutionTaskTime: Задача {task?.Id} не имеет даты начала");
           return 0;
+        }
         
         var lastAssignment = SBContracts.ApprovalAssignments.GetAll()
           .Where(a => a.Task.Id == task.Id &&
@@ -1620,16 +1622,30 @@ namespace sberdev.SberContracts.Server
           .OrderByDescending(a => a.Completed)
           .FirstOrDefault();
         
-        return lastAssignment?.Completed != null
-          ? SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastAssignment.Completed)
-          : 0;
+        if (lastAssignment?.Completed == null)
+        {
+          Logger.Debug($"GetExecutionTaskTime: Для задачи {task.Id} не найдено завершенных заданий");
+          return 0;
+        }
+        
+        // Проверяем корректность дат
+        if (task.Started > lastAssignment.Completed)
+        {
+          Logger.Error($"GetExecutionTaskTime: Некорректный порядок дат для задачи {task.Id}: начало ({task.Started}) > завершение ({lastAssignment.Completed})");
+          return 0;
+        }
+        
+        int days = SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastAssignment.Completed);
+        Logger.Debug($"GetExecutionTaskTime: Для задачи {task.Id} рассчитано {days} рабочих дней");
+        return days;
       }
       catch (Exception ex)
       {
-        Logger.Error("Ошибка в GetExecutionTaskTime", ex);
+        Logger.Error($"Ошибка в GetExecutionTaskTime для задачи {task?.Id}: {ex.Message}", ex);
         return 0;
       }
     }
+    
     /// <summary>
     /// Оптимизированный расчет значений для AssignCompletedByDepart.
     /// </summary>
@@ -1787,7 +1803,7 @@ namespace sberdev.SberContracts.Server
       
       return result;
     }
-
+    
     /// <summary>
     /// Оптимизированный расчет значений для TaskDeadline.
     /// </summary>
@@ -1795,9 +1811,18 @@ namespace sberdev.SberContracts.Server
     {
       try
       {
+        Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Начало расчета для documentType={documentType}, serialType={serialType}, dateRange={dateRange?.StartDate:yyyy-MM-dd}-{dateRange?.EndDate:yyyy-MM-dd}");
+        
         if (dateRange == null || dateRange.StartDate == null || dateRange.EndDate == null)
         {
           Logger.Error("OptimizedCalculateTaskDeadlineChartPoint: Некорректный диапазон дат");
+          return 0;
+        }
+        
+        // Проверяем корректность диапазона дат
+        if (dateRange.StartDate > dateRange.EndDate)
+        {
+          Logger.Error($"OptimizedCalculateTaskDeadlineChartPoint: Начальная дата больше конечной: {dateRange.StartDate:yyyy-MM-dd} > {dateRange.EndDate:yyyy-MM-dd}");
           return 0;
         }
         
@@ -1815,6 +1840,8 @@ namespace sberdev.SberContracts.Server
                   })
           .ToList();
         
+        Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Найдено {tasks.Count} завершенных задач");
+        
         // Выполняем запрос порциями
         const int batchSize = 500;
         
@@ -1831,17 +1858,32 @@ namespace sberdev.SberContracts.Server
         {
           // Вычисляем время выполнения
           int taskId = (int)task.Id;
-          int days = GetExecutionTaskTime(SBContracts.ApprovalTasks.Get(taskId));
           
-          if (days > 0)
-            taskExecutionDays[taskId] = days;
+          try
+          {
+            int days = GetExecutionTaskTime(SBContracts.ApprovalTasks.Get(taskId));
+            
+            if (days > 0)
+              taskExecutionDays[taskId] = days;
+          }
+          catch (Exception ex)
+          {
+            Logger.Error($"OptimizedCalculateTaskDeadlineChartPoint: Ошибка расчета времени выполнения для задачи {taskId}: {ex.Message}");
+          }
           
           // Вычисляем целевое время
-          if (task.MaxDeadline != null && task.Started <= task.MaxDeadline)
+          if (task.MaxDeadline.HasValue && task.Started <= task.MaxDeadline.Value)
           {
-            int targetDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, task.MaxDeadline);
-            if (targetDays > 0)
-              taskTargetDays[taskId] = targetDays;
+            try
+            {
+              int targetDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, task.MaxDeadline);
+              if (targetDays > 0)
+                taskTargetDays[taskId] = targetDays;
+            }
+            catch (Exception ex)
+            {
+              Logger.Error($"OptimizedCalculateTaskDeadlineChartPoint: Ошибка расчета целевого времени для задачи {taskId}: {ex.Message}");
+            }
           }
         }
         
@@ -1889,23 +1931,41 @@ namespace sberdev.SberContracts.Server
         serialType = serialType.ToLower();
         
         if (serialType == "average" && taskExecutionDays.Any())
-          return taskExecutionDays.Values.Average();
+        {
+          double avgValue = taskExecutionDays.Values.Average();
+          Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Рассчитано среднее значение {avgValue:F1} для {documentType}");
+          return avgValue;
+        }
         
         if (serialType == "maximum" && taskExecutionDays.Any())
-          return taskExecutionDays.Values.Max();
+        {
+          int maxValue = taskExecutionDays.Values.Max();
+          Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Рассчитано максимальное значение {maxValue} для {documentType}");
+          return maxValue;
+        }
         
         if (serialType == "minimum" && taskExecutionDays.Any())
-          return taskExecutionDays.Values.Min();
+        {
+          int minValue = taskExecutionDays.Values.Min();
+          Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Рассчитано минимальное значение {minValue} для {documentType}");
+          return minValue;
+        }
         
         if (serialType == "target" && taskTargetDays.Any())
-          return taskTargetDays.Values.Average();
+        {
+          double targetValue = taskTargetDays.Values.Average();
+          Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Рассчитано целевое значение {targetValue:F1} для {documentType}");
+          return targetValue;
+        }
+        
+        Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Не удалось рассчитать значение для serialType={serialType}, documentType={documentType}");
+        return 0;
       }
       catch (Exception ex)
       {
         Logger.Error($"Ошибка в OptimizedCalculateTaskDeadlineChartPoint: {ex.Message}", ex);
+        return 0;
       }
-      
-      return 0;
     }
 
     /// <summary>
@@ -1917,6 +1977,16 @@ namespace sberdev.SberContracts.Server
       
       try
       {
+        // Логируем начало операции
+        Logger.Debug($"OptimizedCalculateAssignAvgApprTimeValues: Начало расчета для documentType={documentType}, даты: {dateRange.StartDate:yyyy-MM-dd}-{dateRange.EndDate:yyyy-MM-dd}");
+        
+        // Проверка корректности диапазона дат
+        if (dateRange == null || dateRange.StartDate > dateRange.EndDate)
+        {
+          Logger.Error($"OptimizedCalculateAssignAvgApprTimeValues: Некорректный диапазон дат: {dateRange?.StartDate:yyyy-MM-dd}-{dateRange?.EndDate:yyyy-MM-dd}");
+          return result;
+        }
+        
         // Оптимизированный запрос - выбираем только нужные поля
         var assignments = Sungero.Workflow.Assignments.GetAll()
           .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
@@ -1931,6 +2001,8 @@ namespace sberdev.SberContracts.Server
                     PerformerId = a.Performer.Id
                   })
           .ToList();
+        
+        Logger.Debug($"OptimizedCalculateAssignAvgApprTimeValues: Найдено {assignments.Count} заданий");
         
         // Выполняем запрос порциями
         const int batchSize = 100;
@@ -1977,10 +2049,26 @@ namespace sberdev.SberContracts.Server
               departmentName = department.DepartmentName;
           }
           
+          // ИСПРАВЛЕНО: Проверяем корректность дат перед расчетом
+          if (assignment.Created > assignment.Completed)
+          {
+            Logger.Debug($"OptimizedCalculateAssignAvgApprTimeValues: Пропуск задания {assignment.Id} с некорректными датами: Created={assignment.Created:yyyy-MM-dd HH:mm:ss}, Completed={assignment.Completed:yyyy-MM-dd HH:mm:ss}");
+            continue;
+          }
+          
           // Вычисляем рабочие дни
-          double workDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
-            assignment.Created,
-            assignment.Completed);
+          double workDays = 0;
+          try
+          {
+            workDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
+              assignment.Created,
+              assignment.Completed);
+          }
+          catch (Exception ex)
+          {
+            Logger.Debug($"OptimizedCalculateAssignAvgApprTimeValues: Ошибка расчета рабочих дней для задания {assignment.Id}: {ex.Message}");
+            continue;
+          }
           
           if (workDays <= 0)
             continue;
@@ -2028,10 +2116,22 @@ namespace sberdev.SberContracts.Server
                 departmentName = department.DepartmentName;
             }
             
+            // ИСПРАВЛЕНО: Проверяем корректность дат перед расчетом
+            if (assignment.Created > assignment.Completed)
+              continue;
+            
             // Вычисляем рабочие дни
-            double workDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
-              assignment.Created,
-              assignment.Completed);
+            double workDays = 0;
+            try
+            {
+              workDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
+                assignment.Created,
+                assignment.Completed);
+            }
+            catch (Exception ex)
+            {
+              continue;
+            }
             
             if (workDays <= 0)
               continue;
@@ -2061,10 +2161,12 @@ namespace sberdev.SberContracts.Server
         {
           result[stat.Department] = Math.Round(stat.AvgDays, 1);
         }
+        
+        Logger.Debug($"OptimizedCalculateAssignAvgApprTimeValues: Расчет завершен, найдено {result.Count} департаментов");
       }
       catch (Exception ex)
       {
-        Logger.Error("Ошибка в OptimizedCalculateAssignAvgApprTimeValues", ex);
+        Logger.Error($"Ошибка в OptimizedCalculateAssignAvgApprTimeValues: {ex.Message}", ex);
       }
       
       return result;
@@ -2085,6 +2187,15 @@ namespace sberdev.SberContracts.Server
       
       try
       {
+        Logger.Debug($"OptimizedCalculateTaskFlowValues: Начало расчета для documentType={documentType}, dateRange={dateRange?.StartDate:yyyy-MM-dd}-{dateRange?.EndDate:yyyy-MM-dd}");
+        
+        // Проверяем корректность диапазона дат
+        if (dateRange == null || dateRange.StartDate > dateRange.EndDate)
+        {
+          Logger.Error($"OptimizedCalculateTaskFlowValues: Некорректный диапазон дат: {dateRange?.StartDate:yyyy-MM-dd}-{dateRange?.EndDate:yyyy-MM-dd}");
+          return result;
+        }
+        
         // Используем оптимизированный запрос с выборкой только нужных полей
         var tasks = sberdev.SBContracts.ApprovalTasks.GetAll()
           .Where(t => t.Started >= dateRange.StartDate && t.Started <= dateRange.EndDate)
@@ -2097,6 +2208,8 @@ namespace sberdev.SberContracts.Server
                   })
           .ToList();
         
+        Logger.Debug($"OptimizedCalculateTaskFlowValues: Найдено {tasks.Count} задач");
+        
         // Выполняем запрос порциями для снижения нагрузки
         const int batchSize = 100;
         
@@ -2108,6 +2221,9 @@ namespace sberdev.SberContracts.Server
         {
           taskIds.AddRange(tasks.Select(t => t.Id));
         }
+        
+        // Текущая дата для сравнения со сроками
+        var currentDate = Calendar.Now;
         
         // Подсчитываем значения без учета типа документа
         foreach (var task in tasks)
@@ -2122,16 +2238,19 @@ namespace sberdev.SberContracts.Server
               task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview)
             result["inprocess"]++;
           
+          // ИСПРАВЛЕНО: Добавлена проверка на null для MaxDeadline
           if ((task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
                task.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended ||
                task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
-              task.MaxDeadline < Calendar.Now)
+              task.MaxDeadline.HasValue && task.MaxDeadline.Value < currentDate)
             result["expired"]++;
         }
         
         // Если нужна фильтрация по типу документа, применяем её после основного подсчета
         if (!string.IsNullOrEmpty(documentType) && documentType != "All" && taskIds.Any())
         {
+          Logger.Debug($"OptimizedCalculateTaskFlowValues: Применение фильтрации по типу документа {documentType}");
+          
           // Фильтруем задачи по типу документа порциями
           for (int i = 0; i < taskIds.Count; i += batchSize)
           {
@@ -2154,11 +2273,15 @@ namespace sberdev.SberContracts.Server
             ["expired"] = 0
           };
           
+          int matchingTasksCount = 0;
+          
           foreach (var task in tasks)
           {
             bool matches = false;
             if (!matchesDocumentType.TryGetValue((int)task.Id, out matches) || !matches)
               continue;
+            
+            matchingTasksCount++;
             
             if (task.Status != sberdev.SBContracts.ApprovalTask.Status.Draft)
               filteredResult["started"]++;
@@ -2173,20 +2296,24 @@ namespace sberdev.SberContracts.Server
             if ((task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
                  task.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended ||
                  task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
-                task.MaxDeadline < Calendar.Now)
+                task.MaxDeadline.HasValue && task.MaxDeadline.Value < currentDate)
               filteredResult["expired"]++;
           }
           
+          Logger.Debug($"OptimizedCalculateTaskFlowValues: После фильтрации осталось {matchingTasksCount} задач из {tasks.Count}");
           return filteredResult;
         }
+        
+        Logger.Debug($"OptimizedCalculateTaskFlowValues: Расчет завершен, значения: started={result["started"]}, completed={result["completed"]}, inprocess={result["inprocess"]}, expired={result["expired"]}");
       }
       catch (Exception ex)
       {
-        Logger.Error("Ошибка в OptimizedCalculateTaskFlowValues", ex);
+        Logger.Error($"Ошибка в OptimizedCalculateTaskFlowValues: {ex.Message}", ex);
       }
       
       return result;
     }
+
     #endregion
     
   }

@@ -125,11 +125,11 @@
       "PreviousPropertyGuid": "677973fb-2dec-4434-a138-494f036d43e4"
     },
     {
-      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "$type": "Sungero.Metadata.TextPropertyMetadata, Sungero.Metadata",
       "NameGuid": "bd0e85d4-773d-4bd8-8e06-83a3d87ece8d",
       "Name": "CachedData",
       "Code": "CachedData",
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToTextBinder",
       "PreviousPropertyGuid": "eb7336d6-8e3c-422a-8d33-21c62ee5fba9"
     },
     {

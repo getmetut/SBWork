@@ -190,42 +190,66 @@ namespace sberdev.SBContracts.Shared
     #endregion
     
     /// <summary>
-    /// Полчуить количество рабочих дней меду двумя датами
+    /// Вычисляет количество рабочих дней между двумя датами.
     /// </summary>
     [Public]
-    public int CalculateBusinessDays(DateTime? startDate, DateTime? endDate)
+    public virtual int CalculateBusinessDays(DateTime? startDate, DateTime? endDate)
     {
-      if (startDate == null || endDate == null)
-        throw new ArgumentException("Параметры должны содержать значения.");
-
-      if (startDate > endDate)
-        throw new ArgumentException("Начальная дата должна быть меньше или равна конечной дате.");
-
-      // Общее количество дней включая начальную и конечную дату
-      int totalDays = (endDate.Value - startDate.Value).Days + 1;
-
-      // Количество полных недель
-      int fullWeeks = totalDays / 7;
-
-      // Количество рабочих дней из полных недель
-      int businessDays = fullWeeks * 5;
-
-      // Остаточные дни
-      int remainingDays = totalDays % 7;
-
-      // День недели для начальной даты
-      DayOfWeek startDayOfWeek = startDate.Value.DayOfWeek;
-
-      for (int i = 0; i < remainingDays; i++)
+      if (!startDate.HasValue || !endDate.HasValue)
+        return 0;
+      
+      // Проверяем корректность дат
+      if (startDate.Value > endDate.Value)
       {
-        DayOfWeek currentDay = (DayOfWeek)(((int)startDayOfWeek + i) % 7);
-        if (currentDay != DayOfWeek.Saturday && currentDay != DayOfWeek.Sunday)
-        {
-          businessDays++;
-        }
+        Logger.Debug($"CalculateBusinessDays: Некорректные даты - начальная дата ({startDate.Value:yyyy-MM-dd HH:mm:ss}) больше конечной ({endDate.Value:yyyy-MM-dd HH:mm:ss})");
+        // Вместо выброса исключения возвращаем 0
+        return 0;
       }
+      
+      // Приводим к началу дня для корректного расчета
+      var start = startDate.Value.Date;
+      var end = endDate.Value.Date;
+      
+      // Если даты совпадают, возвращаем 0 или 1 в зависимости от того, считаем ли текущий день
+      if (start == end)
+        return 1; // Считаем текущий день как 1 рабочий день
+      
+      // Количество календарных дней
+      int calendarDays = (end - start).Days + 1;
+      
+      // Количество выходных дней
+      int weekendDays = 0;
+      for (var date = start; date <= end; date = date.AddDays(1))
+      {
+        if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
+          weekendDays++;
+      }
+      
+      // Учитываем праздничные дни (если есть такая функциональность)
+      int holidayDays = GetHolidayDays(start, end);
+      
+      // Рабочие дни = календарные дни - выходные - праздники (не совпадающие с выходными)
+      return calendarDays - weekendDays - holidayDays;
+    }
 
-      return businessDays;
+    /// <summary>
+    /// Получает количество праздничных дней в диапазоне дат.
+    /// </summary>
+    private static int GetHolidayDays(DateTime start, DateTime end)
+    {
+      try
+      {
+        // Здесь должен быть код для определения праздничных дней
+        // на основе настроек системы или данных из базы
+        
+        // Это заглушка, которую следует реализовать
+        return 0;
+      }
+      catch (Exception ex)
+      {
+        Logger.Error($"Ошибка при определении праздничных дней: {ex.Message}", ex);
+        return 0;
+      }
     }
     
     /// <summary>

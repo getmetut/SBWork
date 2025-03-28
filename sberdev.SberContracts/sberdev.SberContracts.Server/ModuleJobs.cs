@@ -11,7 +11,9 @@ namespace sberdev.SberContracts.Server
 {
   public class ModuleJobs
   {
-
+    /// <summary>
+    /// Обновление кэша аналитических виджетов.
+    /// </summary>
     public virtual void CreateApprovalAnalyticsWidgetsCashes()
     {
       var startTime = Calendar.Now;
@@ -26,8 +28,11 @@ namespace sberdev.SberContracts.Server
         // Параметры для всех типов кешей
         var now = Calendar.Now;
         var documentTypes = new List<string> { "All", "Contractual", "IncInvoce", "Accounting", "AbstractContr", "Another" };
-        var analysisPeriods = new List<string> { "Week", "Month", "Quarter" };
+        var analysisPeriods = new List<string> { "weeks", "months", "quarters" };
         var serialTypes = new List<string> { "average", "maximum", "minimum", "target" };
+        
+        int successCount = 0;
+        int errorCount = 0;
         
         // Обрабатываем один тип документа за раз, чтобы не перегружать систему
         foreach (var documentType in documentTypes)
@@ -40,29 +45,64 @@ namespace sberdev.SberContracts.Server
               var dateRanges = PublicFunctions.Module.GenerateCompletedDateRanges(now, 6, analysisPeriod);
               
               if (dateRanges == null || !dateRanges.Any())
+              {
+                Logger.Error($"WidgetCacheUpdaterJob: Не удалось сгенерировать диапазоны дат для analysisPeriod={analysisPeriod}");
                 continue;
+              }
               
               Logger.Debug($"WidgetCacheUpdaterJob: Обработка documentType={documentType}, analysisPeriod={analysisPeriod}");
               
               // Обновляем кеш для TaskFlowWidget
               foreach (var dateRange in dateRanges)
               {
-                // Всегда обновляем кеш (раз в день)
-                // Оптимизированный расчет данных для кеша
-                var values = Functions.Module.OptimizedCalculateTaskFlowValues(dateRange, documentType);
-                
-                // Сохраняем в кеш
-                PublicFunctions.WidgetCache.SaveCacheData("TaskFlow", documentType, analysisPeriod, dateRange,
-                                                                              string.Empty, JsonConvert.SerializeObject(values));
+                try
+                {
+                  // Проверяем корректность диапазона дат
+                  if (dateRange.StartDate > dateRange.EndDate)
+                  {
+                    Logger.Error($"WidgetCacheUpdaterJob: Некорректный диапазон дат для TaskFlow: {dateRange.StartDate:yyyy-MM-dd} > {dateRange.EndDate:yyyy-MM-dd}");
+                    continue;
+                  }
+                  
+                  // Оптимизированный расчет данных для кеша
+                  var values = Functions.Module.OptimizedCalculateTaskFlowValues(dateRange, documentType);
+                  
+                  // Сохраняем в кеш
+                  PublicFunctions.WidgetCache.SaveCacheData("TaskFlow", documentType, analysisPeriod, dateRange,
+                                                            string.Empty, JsonConvert.SerializeObject(values));
+                  successCount++;
+                }
+                catch (Exception ex)
+                {
+                  Logger.Error($"WidgetCacheUpdaterJob: Ошибка при обновлении кеша TaskFlow для {documentType}/{analysisPeriod}", ex);
+                  errorCount++;
+                }
               }
               
               // Обновляем кеш для AssignAvgApprTimeByDepartWidget (только текущий период)
               var currentRange = dateRanges.FirstOrDefault();
               if (currentRange != null)
               {
-                var avgTimeValues = Functions.Module.OptimizedCalculateAssignAvgApprTimeValues(currentRange, documentType);
-                PublicFunctions.WidgetCache.SaveCacheData("AssignAvgApprTime", documentType, analysisPeriod, currentRange,
-                                                                              string.Empty, JsonConvert.SerializeObject(avgTimeValues));
+                try
+                {
+                  // Проверяем корректность диапазона дат
+                  if (currentRange.StartDate > currentRange.EndDate)
+                  {
+                    Logger.Error($"WidgetCacheUpdaterJob: Некорректный диапазон дат для AssignAvgApprTime: {currentRange.StartDate:yyyy-MM-dd} > {currentRange.EndDate:yyyy-MM-dd}");
+                  }
+                  else
+                  {
+                    var avgTimeValues = Functions.Module.OptimizedCalculateAssignAvgApprTimeValues(currentRange, documentType);
+                    PublicFunctions.WidgetCache.SaveCacheData("AssignAvgApprTime", documentType, analysisPeriod, currentRange,
+                                                              string.Empty, JsonConvert.SerializeObject(avgTimeValues));
+                    successCount++;
+                  }
+                }
+                catch (Exception ex)
+                {
+                  Logger.Error($"WidgetCacheUpdaterJob: Ошибка при обновлении кеша AssignAvgApprTime для {documentType}/{analysisPeriod}", ex);
+                  errorCount++;
+                }
               }
               
               // Обновляем кеш для TaskDeadlineWidget
@@ -70,29 +110,62 @@ namespace sberdev.SberContracts.Server
               {
                 foreach (var serialType in serialTypes)
                 {
-                  double value = Functions.Module.OptimizedCalculateTaskDeadlineChartPoint(dateRange, serialType, documentType);
-                  PublicFunctions.WidgetCache.SaveCacheData("TaskDeadline", documentType, analysisPeriod, dateRange,
-                                                                                serialType, JsonConvert.SerializeObject(value));
+                  try
+                  {
+                    // Проверяем корректность диапазона дат
+                    if (dateRange.StartDate > dateRange.EndDate)
+                    {
+                      Logger.Error($"WidgetCacheUpdaterJob: Некорректный диапазон дат для TaskDeadline: {dateRange.StartDate:yyyy-MM-dd} > {dateRange.EndDate:yyyy-MM-dd}");
+                      continue;
+                    }
+                    
+                    double value = Functions.Module.OptimizedCalculateTaskDeadlineChartPoint(dateRange, serialType, documentType);
+                    PublicFunctions.WidgetCache.SaveCacheData("TaskDeadline", documentType, analysisPeriod, dateRange,
+                                                              serialType, JsonConvert.SerializeObject(value));
+                    successCount++;
+                  }
+                  catch (Exception ex)
+                  {
+                    Logger.Error($"WidgetCacheUpdaterJob: Ошибка при обновлении кеша TaskDeadline для {documentType}/{analysisPeriod}/{serialType}", ex);
+                    errorCount++;
+                  }
                 }
               }
               
               // Обновляем кеш для AssignCompletedByDepartWidget (только текущий период)
               if (currentRange != null)
               {
-                var completedValues = Functions.Module.OptimizedCalculateAssignCompletedValues(currentRange, documentType);
-                PublicFunctions.WidgetCache.SaveCacheData("AssignCompleted", documentType, analysisPeriod, currentRange,
-                                                                              string.Empty, JsonConvert.SerializeObject(completedValues));
+                try
+                {
+                  // Проверяем корректность диапазона дат
+                  if (currentRange.StartDate > currentRange.EndDate)
+                  {
+                    Logger.Error($"WidgetCacheUpdaterJob: Некорректный диапазон дат для AssignCompleted: {currentRange.StartDate:yyyy-MM-dd} > {currentRange.EndDate:yyyy-MM-dd}");
+                  }
+                  else
+                  {
+                    var completedValues = Functions.Module.OptimizedCalculateAssignCompletedValues(currentRange, documentType);
+                    PublicFunctions.WidgetCache.SaveCacheData("AssignCompleted", documentType, analysisPeriod, currentRange,
+                                                              string.Empty, JsonConvert.SerializeObject(completedValues));
+                    successCount++;
+                  }
+                }
+                catch (Exception ex)
+                {
+                  Logger.Error($"WidgetCacheUpdaterJob: Ошибка при обновлении кеша AssignCompleted для {documentType}/{analysisPeriod}", ex);
+                  errorCount++;
+                }
               }
             }
             catch (Exception ex)
             {
               Logger.Error($"WidgetCacheUpdaterJob: Ошибка при обработке documentType={documentType}, analysisPeriod={analysisPeriod}", ex);
-              // Продолжаем с другими параметрами
+              errorCount++;
             }
           }
         }
         
-        Logger.Debug($"WidgetCacheUpdaterJob: Обновление кеша виджетов успешно завершено. Время выполнения: {(Calendar.Now - startTime).TotalMinutes:F1} минут");
+        Logger.Debug($"WidgetCacheUpdaterJob: Обновление кеша виджетов завершено. Успешно: {successCount}, ошибок: {errorCount}. Время выполнения: {(Calendar.Now - startTime).TotalMinutes:F1} минут");
       }
       catch (Exception ex)
       {
