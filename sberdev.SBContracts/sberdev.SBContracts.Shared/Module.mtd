@@ -580,6 +580,25 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "ExtendAssignmentDeadline",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "assignment",
+          "ParameterType": "global::Sungero.Workflow.IAssignment",
+          "ParameterTypeFullName": "Sungero.Workflow.IAssignment, Sungero.Workflow.Interfaces"
+        },
+        {
+          "Name": "newDeadline",
+          "ParameterType": "global::System.DateTime",
+          "ParameterTypeFullName": "System.DateTime"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
       "Name": "GetAccountingArticleStab",
       "Parameters": [
         {
@@ -852,6 +871,19 @@
       "Placement": "Client",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "TranslateContrTypeEnum",
+      "Parameters": [
+        {
+          "Name": "enumValue",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
     },
     {
       "Name": "UnblockCardByDatabase",
@@ -1146,7 +1178,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "4.34.0.0",
+  "Version": "4.34.0.3",
   "Widgets": [],
   "Versions": [
     {

@@ -134,6 +134,43 @@ namespace sberdev.SBContracts.Server
         if (_obj.ConditionType == ConditionType.Framework)
           return ("Рамка/безденежный?");
         
+        if (_obj.ConditionType == ConditionType.PlusMinus)
+        {
+          string itg = "Сумма документа ";
+          if (_obj.PlusMinusSDev == sberdev.SBContracts.Condition.PlusMinusSDev.Profitable)
+            itg += "Доходный?";
+          
+          if (_obj.PlusMinusSDev == sberdev.SBContracts.Condition.PlusMinusSDev.Expendable)
+            itg += "Расходный?";
+          
+          if (_obj.PlusMinusSDev == sberdev.SBContracts.Condition.PlusMinusSDev.ExpendProfit)
+            itg += "Доходно-расходный?";
+          
+          return (itg);
+        }
+        
+        if (_obj.ConditionType == ConditionType.SummDoc)
+        {
+          string itg = "Сумма документа ";
+          if (_obj.PlusMinusSDev == sberdev.SBContracts.Condition.SummPriznSDev.Big)
+            itg += "> ";
+          
+          if (_obj.PlusMinusSDev == sberdev.SBContracts.Condition.SummPriznSDev.Little)
+            itg += "< ";
+          
+          if (_obj.PlusMinusSDev == sberdev.SBContracts.Condition.SummPriznSDev.Identy)
+            itg += "= ";
+          
+          itg += _obj.SummPriznSDev.Value.ToString();
+          return (itg);
+        }
+        
+        if (_obj.ConditionType == ConditionType.INNCollection)
+          return ("Контроль по ИНН КА");
+
+        if (_obj.ConditionType == ConditionType.Framework)
+          return ("Рамка/безденежный?");
+        
         if (_obj.ConditionType == ConditionType.MVZ)
         {
           string text;

@@ -226,4 +226,46 @@
   <data name="Property_ProductsSberDev" xml:space="preserve">
     <value>Products</value>
   </data>
+  <data name="Property_TotalSummSDev" xml:space="preserve">
+    <value>Сумма документа</value>
+  </data>
+  <data name="Property_PlusMinusSDev" xml:space="preserve">
+    <value>Доходный\расходный</value>
+  </data>
+  <data name="Enum_PlusMinusSDev_Profitable" xml:space="preserve">
+    <value>Profitable</value>
+  </data>
+  <data name="Enum_PlusMinusSDev_Expendable" xml:space="preserve">
+    <value>Expendable</value>
+  </data>
+  <data name="Property_SummPriznSDev" xml:space="preserve">
+    <value>Признак</value>
+  </data>
+  <data name="Enum_SummPriznSDev_Big" xml:space="preserve">
+    <value>Больше</value>
+  </data>
+  <data name="Enum_SummPriznSDev_Little" xml:space="preserve">
+    <value>Меньше</value>
+  </data>
+  <data name="Enum_SummPriznSDev_Identy" xml:space="preserve">
+    <value>Равна</value>
+  </data>
+  <data name="ControlGroup_b71d03defd644d15a138dd67cb5e24ad" xml:space="preserve">
+    <value>Сумма по договору</value>
+  </data>
+  <data name="Enum_ConditionType_PlusMinus" xml:space="preserve">
+    <value>Profitable\Consumable</value>
+  </data>
+  <data name="Enum_ConditionType_SummDoc" xml:space="preserve">
+    <value>Document amount control</value>
+  </data>
+  <data name="Enum_PlusMinusSDev_ExpendProfit" xml:space="preserve">
+    <value>Profitable-expendable</value>
+  </data>
+  <data name="Property_CollectionINNSDev" xml:space="preserve">
+    <value>Соответствие ИНН</value>
+  </data>
+  <data name="Enum_ConditionType_INNCollection" xml:space="preserve">
+    <value>Compliance of the CA with the INN list</value>
+  </data>
 </root>

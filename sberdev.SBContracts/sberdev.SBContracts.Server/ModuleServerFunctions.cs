@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -20,6 +19,17 @@ namespace sberdev.SBContracts.Server
 {
   public class ModuleFunctions
   {
+
+    /// <summary>
+    /// Продлить срок задания
+    /// </summary>
+    [Public, Remote]
+    public void ExtendAssignmentDeadline(Sungero.Workflow.IAssignment assignment, DateTime newDeadline)
+    {
+    //  PublicFunctions.Module.Remote.UnblockCardByDatabase(assignment);
+      assignment.Deadline = newDeadline;
+      assignment.Save();
+    }
     
     [Public]
     public string GetPaymentType(SberContracts.IPurchase purch)

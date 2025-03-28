@@ -11,6 +11,22 @@ namespace sberdev.SBContracts.Shared
     
     #region Текстовые
     
+    [Public]
+    public string TranslateContrTypeEnum(string enumValue)
+    {
+      switch (enumValue)
+      {
+        case "Expendable":
+          return "Расходный";
+        case "Profitable":
+          return "Доходный";
+        case "ExpendProfit":
+          return "Доходно-расходный";
+        default:
+          return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
+      }
+    }
+    
     /// <summary>
     /// Функция возваращает русское название месяца по его номеру
     /// </summary>

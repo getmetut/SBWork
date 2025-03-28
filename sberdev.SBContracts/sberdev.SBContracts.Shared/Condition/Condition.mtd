@@ -445,6 +445,83 @@
               "Value": "0f7fd0b7-0515-451d-86c7-df02763d24d7"
             }
           ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
+          "NameGuid": "b71d03de-fd64-4d15-a138-dd67cb5e24ad",
+          "Name": "DocSumm",
+          "ColumnDefinitions": [
+            {
+              "Percentage": 34.73
+            },
+            {
+              "Percentage": 65.27
+            }
+          ],
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "GroupType": "GroupBox",
+          "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
+          "RowNumber": 7,
+          "RowSpan": 1
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "fbc6d30c-8856-40b8-a2c8-49f02aa9f2fc",
+          "Name": "SummPriznSDevSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "ParentGuid": "b71d03de-fd64-4d15-a138-dd67cb5e24ad",
+          "PropertyGuid": "a3340da9-69d8-48fd-a3d4-65beca53c238",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "75be7fa5-714b-4a1d-9c0d-389a8a404479",
+          "Name": "TotalSummSDevSDev",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+          "ParentGuid": "b71d03de-fd64-4d15-a138-dd67cb5e24ad",
+          "PropertyGuid": "9d0356cc-2c56-4079-8917-2af045127ddc",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "0e5f7762-7308-43e7-a2c3-f7c7d4fe326d",
+          "Name": "PlusMinusSDevSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
+          "PropertyGuid": "a15b6b31-d60e-41a5-92d5-7d518c987468",
+          "RowNumber": 6,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "4141175a-385c-45e8-b0c6-f035a2733180",
+          "Name": "CollectionINNSDevSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.GridControlToChildCollectionBinder",
+          "HeaderLocation": "Top",
+          "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
+          "PropertyGuid": "b26f8bae-19ef-4c57-bfb6-45be8a71c212",
+          "RowNumber": 8,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "NeedExpand",
+              "Value": true
+            }
+          ]
         }
       ],
       "IsAncestorMetadata": true,
@@ -592,6 +669,21 @@
           "NameGuid": "5de3e67b-4863-457d-9be6-7d455730b99d",
           "Name": "Product",
           "Code": "Product"
+        },
+        {
+          "NameGuid": "419a7a19-8620-4249-a43b-5bc7655cd196",
+          "Name": "PlusMinus",
+          "Code": "PlusMinus"
+        },
+        {
+          "NameGuid": "4605e6ed-5970-42fb-a06e-f313c45a51af",
+          "Name": "SummDoc",
+          "Code": "SummDoc"
+        },
+        {
+          "NameGuid": "ccfcb3a9-70bf-4c7f-a7d2-915d7d05f066",
+          "Name": "INNCollection",
+          "Code": "INNCollection"
         }
       ],
       "IsAncestorMetadata": true,
@@ -740,6 +832,77 @@
       "EntityGuid": "ffb4e20d-4263-4a85-9188-303983c24cc7",
       "IsShowedInList": false,
       "PreviousPropertyGuid": "4e212324-b8b0-4d90-993d-16061a0662d3"
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9d0356cc-2c56-4079-8917-2af045127ddc",
+      "Name": "TotalSummSDev",
+      "CanBeSearch": false,
+      "Code": "TotalSummSDev",
+      "IsShowedInList": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "071a2e45-f8ba-4cd7-bd60-f165400d3840"
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "a15b6b31-d60e-41a5-92d5-7d518c987468",
+      "Name": "PlusMinusSDev",
+      "CanBeSearch": false,
+      "Code": "PlusMinusSDev",
+      "DirectValues": [
+        {
+          "NameGuid": "e69fe2d9-e7ae-4acf-af64-3cb10e6d9355",
+          "Name": "Profitable",
+          "Code": "Profitable"
+        },
+        {
+          "NameGuid": "62517300-35c0-4077-8bfb-efbc393d6d3f",
+          "Name": "Expendable",
+          "Code": "Expendable"
+        },
+        {
+          "NameGuid": "51010527-ced9-4071-8afa-616c2710dda3",
+          "Name": "ExpendProfit",
+          "Code": "ExpendProfit"
+        }
+      ],
+      "IsShowedInList": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "9d0356cc-2c56-4079-8917-2af045127ddc"
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "a3340da9-69d8-48fd-a3d4-65beca53c238",
+      "Name": "SummPriznSDev",
+      "Code": "SummPriznSDev",
+      "DirectValues": [
+        {
+          "NameGuid": "34065b01-321d-4b71-b7c4-e44bdbdf9dfb",
+          "Name": "Big",
+          "Code": "Big"
+        },
+        {
+          "NameGuid": "0c41fcc8-7546-419b-ba07-0cf7f8ac9f74",
+          "Name": "Little",
+          "Code": "Little"
+        },
+        {
+          "NameGuid": "1e55a23c-41e0-424e-945b-444b2485c90f",
+          "Name": "Identy",
+          "Code": "Identy"
+        }
+      ],
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "a15b6b31-d60e-41a5-92d5-7d518c987468"
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "b26f8bae-19ef-4c57-bfb6-45be8a71c212",
+      "Name": "CollectionINNSDev",
+      "Code": "ConditionColle",
+      "EntityGuid": "6fe39937-048a-4157-94e0-52553af3fad5",
+      "IsShowedInList": false,
+      "PreviousPropertyGuid": "a3340da9-69d8-48fd-a3d4-65beca53c238"
     }
   ],
   "PublicStructures": [],

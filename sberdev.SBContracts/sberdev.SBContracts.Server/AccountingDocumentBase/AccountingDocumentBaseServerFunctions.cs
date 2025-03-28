@@ -10,32 +10,37 @@ namespace sberdev.SBContracts.Server
 {
   partial class AccountingDocumentBaseFunctions
   {
-
-    /// <summary>
-    /// Функция получения головной организации по ИНН
-    /// </summary> 
-    [Public, Remote]
-    public sberdev.SBContracts.ICompany GetHeadCompanies(Sungero.Parties.ICompanyBase Subject)
+    #region Переопределенные
+    public override StateView GetDocumentSummary()
     {
-      string TINNew = SBContracts.Companies.As(Subject).TIN;
-      sberdev.SBContracts.ICompany Counterparty = sberdev.SBContracts.Companies.Null; 
-      var ListOrgTrue = sberdev.SBContracts.Companies.GetAll(c => c.HeadOrgSDev.HasValue).Where(c => ((c.HeadOrgSDev == true) && (c != SBContracts.Companies.As(Subject)))).ToArray();
-      if ((ListOrgTrue.Count() > 0) && (ListOrgTrue.Count() < 25))
-      {
-        foreach (var elem in ListOrgTrue)
-        {
-          if (elem.TIN != null)
-          {
-            var OtherOrg = sberdev.SBContracts.Companies.GetAll(c => ((c.TIN == TINNew) && (c.HeadCompany != elem) && (c.Id != Subject.Id))).ToArray();
-            if (OtherOrg.Count() > 0)
-            {
-              Counterparty = OtherOrg.FirstOrDefault();
-            }
-          }
-        }
-      }
-      return Counterparty;
+      var info = base.GetDocumentSummary();
+      if (_obj.ContrTypeBaseSberDev == null)
+        return info;
+      var block = info.AddBlock();
+      block.AddLabel("Тип договора: " + _obj.ContrTypeBaseSberDev.Value.Value);
+      block.AddLineBreak();
+      return info;
     }
+    
+    public override IQueryable<Sungero.Docflow.ISignatureSetting> GetSignatureSettingsQuery()
+    {
+      var query = base.GetSignatureSettingsQuery();
+      var sbQuery = query.Select(q => SBContracts.SignatureSettings.As(q));
+      var prod = _obj.ProdCollectionBaseSberDev.FirstOrDefault();
+      
+      if (prod != null && prod.Product.Name != "General")
+        sbQuery = sbQuery.Where(q => q.ProductsSberDev.Select(qq => qq.Product).Contains(prod.Product));
+      if (!sbQuery.Any())
+        sbQuery = query.Select(q => SBContracts.SignatureSettings.As(q));
+      
+      if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable)
+        return sbQuery.Where(q => q.ExpendableSberDev.Value);
+      if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
+        return sbQuery.Where(q => q.ProfitableSberDev.Value);
+      return sbQuery;
+    }
+    #endregion
+    
     #region Функции кнопок автозаполнения
     
     /// <summary>
@@ -125,20 +130,6 @@ namespace sberdev.SBContracts.Server
     
     #endregion
     
-    /// <summary>
-    /// Если выбрано много продуктов заменяет их одним - "General"
-    /// </summary>
-    [Public, Remote]
-    public void ReplaceProducts()
-    {
-      if (_obj.ProdCollectionBaseSberDev.Count > 1)
-      {
-        _obj.ProdCollectionBaseSberDev.Clear();
-        var genProd = _obj.ProdCollectionBaseSberDev.AddNew();
-        genProd.Product = SberContracts.PublicFunctions.Module.GetOrCreateGeneralProduct(_obj);
-      }
-    }
-    
     #region Функии заглушек
     
     /// <summary>
@@ -208,22 +199,48 @@ namespace sberdev.SBContracts.Server
     
     #endregion
     
-    public override IQueryable<Sungero.Docflow.ISignatureSetting> GetSignatureSettingsQuery()
+    #region Разное
+    
+    /// <summary>
+    /// Если выбрано много продуктов заменяет их одним - "General"
+    /// </summary>
+    [Public, Remote]
+    public void ReplaceProducts()
     {
-      var query = base.GetSignatureSettingsQuery();
-      var sbQuery = query.Select(q => SBContracts.SignatureSettings.As(q));
-      var prod = _obj.ProdCollectionBaseSberDev.FirstOrDefault();
-      
-      if (prod != null && prod.Product.Name != "General")
-        sbQuery = sbQuery.Where(q => q.ProductsSberDev.Select(qq => qq.Product).Contains(prod.Product));
-      if (!sbQuery.Any())
-        sbQuery = query.Select(q => SBContracts.SignatureSettings.As(q));
-      
-      if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable)
-        return sbQuery.Where(q => q.ExpendableSberDev.Value);
-      if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
-        return sbQuery.Where(q => q.ProfitableSberDev.Value);
-      return sbQuery;
+      if (_obj.ProdCollectionBaseSberDev.Count > 1)
+      {
+        _obj.ProdCollectionBaseSberDev.Clear();
+        var genProd = _obj.ProdCollectionBaseSberDev.AddNew();
+        genProd.Product = SberContracts.PublicFunctions.Module.GetOrCreateGeneralProduct(_obj);
+      }
     }
+
+    /// <summary>
+    /// Функция получения головной организации по ИНН
+    /// </summary>
+    [Public, Remote]
+    public sberdev.SBContracts.ICompany GetHeadCompanies(Sungero.Parties.ICompanyBase Subject)
+    {
+      string TINNew = SBContracts.Companies.As(Subject).TIN;
+      sberdev.SBContracts.ICompany Counterparty = sberdev.SBContracts.Companies.Null;
+      var ListOrgTrue = sberdev.SBContracts.Companies.GetAll(c => c.HeadOrgSDev.HasValue).Where(c => ((c.HeadOrgSDev == true) && (c != SBContracts.Companies.As(Subject)))).ToArray();
+      if ((ListOrgTrue.Count() > 0) && (ListOrgTrue.Count() < 25))
+      {
+        foreach (var elem in ListOrgTrue)
+        {
+          if (elem.TIN != null)
+          {
+            var OtherOrg = sberdev.SBContracts.Companies.GetAll(c => ((c.TIN == TINNew) && (c.HeadCompany != elem) && (c.Id != Subject.Id))).ToArray();
+            if (OtherOrg.Count() > 0)
+            {
+              Counterparty = OtherOrg.FirstOrDefault();
+            }
+          }
+        }
+      }
+      return Counterparty;
+    }
+    #endregion
+    
   }
 }

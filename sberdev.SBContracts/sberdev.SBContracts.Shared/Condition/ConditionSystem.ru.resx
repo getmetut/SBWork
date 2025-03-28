@@ -226,4 +226,22 @@
   <data name="Property_ProductsSberDev" xml:space="preserve">
     <value>Продукты</value>
   </data>
+  <data name="Enum_ConditionType_PlusMinus" xml:space="preserve">
+    <value>Доходный\Расходный</value>
+  </data>
+  <data name="Enum_ConditionType_SummDoc" xml:space="preserve">
+    <value>Контроль суммы документа</value>
+  </data>
+  <data name="Enum_PlusMinusSDev_Profitable" xml:space="preserve">
+    <value>Доходный</value>
+  </data>
+  <data name="Enum_PlusMinusSDev_Expendable" xml:space="preserve">
+    <value>Расходный</value>
+  </data>
+  <data name="Enum_PlusMinusSDev_ExpendProfit" xml:space="preserve">
+    <value>Доходно-расходный</value>
+  </data>
+  <data name="Enum_ConditionType_INNCollection" xml:space="preserve">
+    <value>Соответствие КА списку ИНН</value>
+  </data>
 </root>

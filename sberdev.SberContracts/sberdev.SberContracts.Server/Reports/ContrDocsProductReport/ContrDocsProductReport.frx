@@ -77,12 +77,11 @@ namespace FastReport
       switch (enumValue)
       {
         case &quot;Expendable&quot;:
-          return &quot;Доходный&quot;;
-        case &quot;Profitable&quot;:
           return &quot;Расходный&quot;;
+        case &quot;Profitable&quot;:
+          return &quot;Доходный&quot;;
         case &quot;ExpendProfit&quot;:
           return &quot;Доходно-расходный&quot;;
-        // Добавьте остальные значения
         default:
           return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
       }
@@ -148,7 +147,7 @@ namespace FastReport
     <SungeroParameter Name="EndDate" Id="8f218e6b-7cd0-476e-af6d-6935e092b01d" IsRequired="true" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
   </Dictionary>
   <ReportPage Name="Page1" PaperWidth="500" RawPaperSize="0" Watermark.Font="Arial, 60pt">
-    <DataBand Name="Data1" Top="21.65" Width="1814.4" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table">
+    <DataBand Name="Data1" Top="22.9" Width="1814.4" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table">
       <TextObject Name="Text6" Left="916.65" Width="141.75" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.Subject]" Font="Arial, 8pt"/>
       <TextObject Name="Text8" Left="1417.5" Width="151.2" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.CalcList]" Font="Arial, 8pt"/>
       <TextObject Name="Text9" Left="1341.9" Width="75.6" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[AccDocsProductTable.AccArt]" Font="Arial, 8pt"/>

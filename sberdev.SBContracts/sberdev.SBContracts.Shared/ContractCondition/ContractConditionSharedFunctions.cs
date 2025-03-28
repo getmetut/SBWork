@@ -47,6 +47,24 @@ namespace sberdev.SBContracts.Shared
       var isMarketDirect = _obj.ConditionType == ConditionType.MarketDirect;
       _obj.State.Properties.MarketDirectSberDev.IsVisible = isMarketDirect;
       _obj.State.Properties.MarketDirectSberDev.IsRequired = isMarketDirect;
+      
+      var isSummDoc = _obj.ConditionType == ConditionType.SummDoc;
+      _obj.State.Properties.SummPriznSDevSDev.IsVisible = isSummDoc;
+      _obj.State.Properties.TotalSummSDevSDev.IsVisible = isSummDoc;
+      _obj.State.Properties.SummPriznSDevSDev.IsRequired = isSummDoc;
+      _obj.State.Properties.TotalSummSDevSDev.IsRequired = isSummDoc;
+      
+      var isPlMin = _obj.ConditionType == ConditionType.PlusMinus;
+      _obj.State.Properties.PlusMinusSDevSDev.IsVisible = isPlMin;
+      _obj.State.Properties.PlusMinusSDevSDev.IsRequired = isPlMin;
+      _obj.State.Properties.SummPriznSDevSDev.IsVisible = isPlMin;
+      _obj.State.Properties.TotalSummSDevSDev.IsVisible = isPlMin;
+      _obj.State.Properties.SummPriznSDevSDev.IsRequired = isPlMin;
+      _obj.State.Properties.TotalSummSDevSDev.IsRequired = isPlMin;
+      
+      var isINN = _obj.ConditionType == ConditionType.INNCollection;
+      _obj.State.Properties.CollectionINNSDevSDev.IsVisible = isINN;
+      _obj.State.Properties.CollectionINNSDevSDev.IsRequired = isINN;
     }
 
     public override void ClearHiddenProperties()
@@ -538,13 +556,131 @@ namespace sberdev.SBContracts.Shared
                     string.Empty);
         }
       }
+      
+      
+      
       #endregion
 
+      #region Проверка: Контроль суммы документа на соответствие требованию
+      if (_obj.ConditionType == ConditionType.SummDoc)
+      {
+        var contra = false;
+        var ContraDocument = SBContracts.ContractualDocuments.As(document);
+        if (ContraDocument != null)
+        {
+          contra = true;
+          double ContraSumm = 0;
+          if (ContraDocument.TotalAmount.HasValue)
+            ContraSumm = ContraDocument.TotalAmount.Value;
+          
+          bool ctrl = false;
+          
+          if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Big)
+            ctrl = ContraSumm > _obj.TotalSummSDevSDev.Value;
+          
+          if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Little)
+            ctrl = ContraSumm < _obj.TotalSummSDevSDev.Value;
+          
+          if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
+            ctrl = ContraSumm == _obj.TotalSummSDevSDev.Value;
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            ctrl,
+            string.Empty);
+        }
+
+        if (!contra)
+        {
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            null,
+            "Условие не может быть вычислено. Нет необходимого документа.");
+        }
+      }
+      #endregion
+      
+      #region Проверка: Контроль документа на указанный признак доходности
+      if (_obj.ConditionType == ConditionType.PlusMinus)
+      {
+        var contra = false;
+        var ContraDocument = SBContracts.ContractualDocuments.As(document);
+        if (ContraDocument != null)
+        {
+          contra = true;
+          var ContraSumm = ContraDocument.ContrTypeBaseSberDev;
+          
+          bool ctrl = false;
+          
+          if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.PlusMinusSDevSDev.Profitable)
+            ctrl = ContraSumm == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Profitable;
+          
+          if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.PlusMinusSDevSDev.Expendable)
+            ctrl = ContraSumm == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Expendable;
+          
+          if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.PlusMinusSDevSDev.ExpendProfit)
+            ctrl = ContraSumm == SBContracts.ContractualDocument.ContrTypeBaseSberDev.ExpendProfitSberDev;
+          
+          if (ctrl)
+          {
+            double ContraSumm2 = 0;
+            if (ContraDocument.TotalAmount.HasValue)
+              ContraSumm2 = ContraDocument.TotalAmount.Value;
+            
+            ctrl = false;
+            
+            if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Big)
+              ctrl = ContraSumm2 > _obj.TotalSummSDevSDev.Value;
+            
+            if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Little)
+              ctrl = ContraSumm2 < _obj.TotalSummSDevSDev.Value;
+            
+            if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
+              ctrl = ContraSumm2 == _obj.TotalSummSDevSDev.Value;
+          }
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            ctrl,
+            string.Empty);
+        }
+
+        if (!contra)
+        {
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            null,
+            "Условие не может быть вычислено. Нет необходимого документа.");
+        }
+      }
+      #endregion
+      
+      #region Проверка: Коллекция ИНН (ИНН)
+      if (_obj.ConditionType == ConditionType.INNCollection)
+      {
+        var find = false;
+        var Contract = SBContracts.ContractualDocuments.As(document);
+        if (Contract != null)
+        {
+          find = true;
+          var ContrFind = false;
+          foreach (var str in _obj.CollectionINNSDevSDev)
+          {
+            if (Contract.Counterparty.TIN == str.INN)
+              ContrFind = true;
+          }
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
+        }
+
+        if (!find)
+        {
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            null,
+            "Условие не может быть вычислено. Не заполнено МВП документа.");
+        }
+      }
+      #endregion
+      
+      #endregion
+      
       return base.CheckCondition(document, task);
     }
-
-    
-    #endregion
     
     #region Поддерживаемые типы
     
@@ -637,6 +773,18 @@ namespace sberdev.SBContracts.Shared
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.Framework); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.Framework); // sup agreement
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.Framework); // сontract statement
+      
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.SummDoc); // Договор
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.PlusMinus); // Договор
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.INNCollection); // Договор
+      
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.SummDoc); // Доп.Соглашение
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.PlusMinus); // Доп.Соглашение
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.INNCollection); // Доп.Соглашение
+      
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.SummDoc); // сontract statement
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.PlusMinus); // сontract statement
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.INNCollection); // сontract statement
       
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.PayType);
       

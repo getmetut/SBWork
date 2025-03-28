@@ -21,6 +21,17 @@ namespace sberdev.SBContracts.Server
     
     #region Прочие функции
     
+    public override StateView GetDocumentSummary()
+    {
+      var info = base.GetDocumentSummary();
+      if (_obj.ContrTypeBaseSberDev == null)
+        return info;
+      var block = info.AddBlock();
+      block.AddLabel("Тип договора: " + _obj.ContrTypeBaseSberDev.Value.Value);
+      block.AddLineBreak();
+      return info;
+    }
+    
     [Remote]
     public void SetXiongxinProps(List<int>  ids)
     {
