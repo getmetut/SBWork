@@ -516,6 +516,17 @@
       "EntityGuid": "8c9ed591-7085-430a-9e33-d58593158e67",
       "IsShowedInList": false,
       "PreviousPropertyGuid": "00ea5117-b90f-4d20-9445-f0eee2a6c103"
+    },
+    {
+      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "b94fa283-3c61-401d-99bf-bc86c10d3c68",
+      "Name": "ExecutionInDaysSungero",
+      "CanBeSearch": false,
+      "Code": "ExecutionInDay",
+      "IsEnabled": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "46c5a983-f0cc-4c22-9af5-e9921579b4ac"
     }
   ],
   "PublicConstants": [

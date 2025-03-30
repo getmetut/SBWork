@@ -1604,15 +1604,17 @@ namespace sberdev.SberContracts.Server
     /// <summary>
     /// Вычисление времени выполнения задачи
     /// </summary>
+    [Public]
     public int GetExecutionTaskTime(SBContracts.IApprovalTask task)
     {
       try
       {
+        // Если уже рассчитано, используем сохранённое значение
+        if (task.ExecutionInDaysSungero.HasValue)
+          return task.ExecutionInDaysSungero.Value;
+        
         if (task?.Started == null)
-        {
-          Logger.Debug($"GetExecutionTaskTime: Задача {task?.Id} не имеет даты начала");
           return 0;
-        }
         
         var lastAssignment = SBContracts.ApprovalAssignments.GetAll()
           .Where(a => a.Task.Id == task.Id &&
@@ -1623,25 +1625,18 @@ namespace sberdev.SberContracts.Server
           .FirstOrDefault();
         
         if (lastAssignment?.Completed == null)
-        {
-          Logger.Debug($"GetExecutionTaskTime: Для задачи {task.Id} не найдено завершенных заданий");
           return 0;
-        }
         
         // Проверяем корректность дат
         if (task.Started > lastAssignment.Completed)
-        {
-          Logger.Error($"GetExecutionTaskTime: Некорректный порядок дат для задачи {task.Id}: начало ({task.Started}) > завершение ({lastAssignment.Completed})");
           return 0;
-        }
         
         int days = SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastAssignment.Completed);
-        Logger.Debug($"GetExecutionTaskTime: Для задачи {task.Id} рассчитано {days} рабочих дней");
         return days;
       }
       catch (Exception ex)
       {
-        Logger.Error($"Ошибка в GetExecutionTaskTime для задачи {task?.Id}: {ex.Message}", ex);
+        Logger.Error($"Ошибка в GetExecutionTaskTime для задачи {task?.Id}", ex);
         return 0;
       }
     }
@@ -1656,145 +1651,123 @@ namespace sberdev.SberContracts.Server
       
       try
       {
-        // Создаем структуру для хранения данных заданий
-        var assignments = Sungero.Workflow.Assignments.GetAll()
+        // Проверяем корректность диапазона дат
+        if (dateRange == null || dateRange.StartDate > dateRange.EndDate)
+          return result;
+        
+        // Запрос для получения всех сотрудников и их департаментов в одной операции
+        var employeeDepartments = Sungero.Company.Employees.GetAll()
+          .Select(e => new {
+                    Id = e.Id,
+                    DepartmentName = e.Department != null ? e.Department.Name : "Без подразделения"
+                  })
+          .ToDictionary(e => e.Id, e => e.DepartmentName);
+        
+        // Оптимизированный запрос для группировки заданий по департаментам
+        var query = Sungero.Workflow.Assignments.GetAll()
           .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
                  a.Created >= dateRange.StartDate &&
                  a.Completed <= dateRange.EndDate &&
-                 a.Performer != null)
-          .Select(a => new SBContracts.Structures.Module.AssignmentCompletedData
-                  {
-                    Id = a.Id,
-                    Deadline = a.Deadline,
-                    Completed = a.Completed.Value,
-                    PerformerId = a.Performer.Id
-                  })
-          .ToList();
+                 a.Performer != null);
         
-        // Выполняем запрос порциями
-        const int batchSize = 500;
-        
-        // Словари для хранения промежуточных результатов
-        Dictionary<long, string> performerToDepartment = new Dictionary<long, string>();
-        Dictionary<string, int> departmentCompleted = new Dictionary<string, int>();
-        Dictionary<string, int> departmentExpired = new Dictionary<string, int>();
-        List<int> assignmentIds = new List<int>();
-        
-        // Если нужно фильтровать по типу документа
-        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
+        // Если не нужно фильтровать по типу документа, используем оптимизированный подход с группировкой в БД
+        if (string.IsNullOrEmpty(documentType) || documentType == "All")
         {
-          assignmentIds.AddRange(assignments.Select(a => (int)a.Id));
-        }
-        
-        // Собираем данные о сотрудниках
-        var performerIds = assignments.Select(a => a.PerformerId).Distinct().ToList();
-        var performers = Sungero.Company.Employees.GetAll()
-          .Where(e => performerIds.Contains(e.Id))
-          .Select(e => new SBContracts.Structures.Module.PerformerDepartmentData
-                  {
-                    Id = e.Id,
-                    DepartmentName = e.Department != null ? e.Department.Name : null
-                  })
-          .ToList();
-        
-        // Заполняем словарь сотрудник -> департамент
-        foreach (var performer in performers)
-        {
-          performerToDepartment[performer.Id] = performer.DepartmentName ?? "Без подразделения";
-        }
-        
-        // Подсчитываем статистику по заданиям
-        foreach (var assignment in assignments)
-        {
-          // Определяем департамент
-          string deptName = "Без подразделения";
-          string departmentName = "Без подразделения";
-          if (performerToDepartment.TryGetValue(assignment.PerformerId, out deptName))
-            departmentName = deptName;
+          // Выборка и группировка заданий в одном запросе
+          var assignmentsByDepartment = query
+            .Select(a => new {
+                      Assignment = a,
+                      DepartmentName = (Sungero.Company.Employees.As(a.Performer) != null
+                                        && Sungero.Company.Employees.As(a.Performer).Department != null) ?
+                        Sungero.Company.Employees.As(a.Performer).Department.Name :
+                        "Без подразделения",
+                      IsExpired = a.Deadline.HasValue && a.Completed > a.Deadline
+                    })
+            .ToList() // Выгружаем в память для группировки
+            .GroupBy(a => a.DepartmentName)
+            .Select(g => new {
+                      Department = g.Key,
+                      Completed = g.Count(),
+                      Expired = g.Count(a => a.IsExpired)
+                    })
+            .OrderByDescending(g => g.Completed)
+            .Take(10)
+            .ToList();
           
-          // Инициализируем счетчики для департамента, если их нет
-          if (!departmentCompleted.ContainsKey(departmentName))
+          // Заполняем результат
+          foreach (var dept in assignmentsByDepartment)
           {
-            departmentCompleted[departmentName] = 0;
-            departmentExpired[departmentName] = 0;
+            var seriesInfo = SBContracts.Structures.Module.AssignApprSeriesInfo.Create();
+            seriesInfo.Completed = dept.Completed;
+            seriesInfo.Expired = dept.Expired;
+            result[dept.Department] = seriesInfo;
           }
-          
-          // Увеличиваем счетчик выполненных заданий
-          departmentCompleted[departmentName]++;
-          
-          // Проверяем, просрочено ли задание
-          if (assignment.Deadline.HasValue && assignment.Completed > assignment.Deadline.Value)
-            departmentExpired[departmentName]++;
         }
-        
-        // Если нужно фильтровать по типу документа
-        if (!string.IsNullOrEmpty(documentType) && documentType != "All" && assignmentIds.Any())
+        else // Нужно фильтровать по типу документа
         {
-          // Фильтруем задания по типу документа порциями
-          Dictionary<int, bool> assignmentMatches = new Dictionary<int, bool>();
+          // Получаем все задания, чтобы проверить тип документа
+          var assignments = query.ToList();
+          
+          // Проверяем соответствие типу документа порциями
+          Dictionary<string, int> departmentCompleted = new Dictionary<string, int>();
+          Dictionary<string, int> departmentExpired = new Dictionary<string, int>();
+          
+          // Проверяем задания порциями
+          const int batchSize = 500;
+          var assignmentIds = assignments.Select(a => (int)a.Id).ToList();
           
           for (int i = 0; i < assignmentIds.Count; i += batchSize)
           {
             var batchIds = assignmentIds.Skip(i).Take(batchSize).ToList();
-            var assignmentsBatch = Sungero.Workflow.Assignments.GetAll().Where(a => batchIds.Contains((int)a.Id)).ToList();
+            
+            // Получаем задания с прикрепленными документами
+            var assignmentsBatch = Sungero.Workflow.Assignments.GetAll()
+              .Where(a => batchIds.Contains((int)a.Id))
+              .ToList();
             
             foreach (var assignment in assignmentsBatch)
             {
-              bool matches = PublicFunctions.Module.AssignmentMatchesDocumentType(assignment, documentType);
-              assignmentMatches[(int)assignment.Id] = matches;
+              // Проверяем соответствие типу документа
+              if (!PublicFunctions.Module.AssignmentMatchesDocumentType(assignment, documentType))
+                continue;
+              
+              // Определяем департамент
+              string departmentName = "Без подразделения";
+              string deptName = "Без подразделения";
+              if (assignment.Performer != null &&
+                  employeeDepartments.TryGetValue(assignment.Performer.Id, out deptName))
+                departmentName = deptName;
+              
+              // Подсчитываем статистику
+              if (!departmentCompleted.ContainsKey(departmentName))
+              {
+                departmentCompleted[departmentName] = 0;
+                departmentExpired[departmentName] = 0;
+              }
+              
+              departmentCompleted[departmentName]++;
+              
+              if (assignment.Deadline.HasValue && assignment.Completed > assignment.Deadline.Value)
+                departmentExpired[departmentName]++;
             }
           }
           
-          // Пересчитываем статистику с учетом фильтрации
-          Dictionary<string, int> filteredDepartmentCompleted = new Dictionary<string, int>();
-          Dictionary<string, int> filteredDepartmentExpired = new Dictionary<string, int>();
-          
-          foreach (var assignment in assignments)
+          // Формируем результат
+          foreach (var department in departmentCompleted.Keys)
           {
-            bool matches = false;
-            if (!assignmentMatches.TryGetValue((int)assignment.Id, out matches) || !matches)
-              continue;
+            var seriesInfo = SBContracts.Structures.Module.AssignApprSeriesInfo.Create();
+            seriesInfo.Completed = departmentCompleted[department];
+            seriesInfo.Expired = departmentExpired.ContainsKey(department) ? departmentExpired[department] : 0;
             
-            // Определяем департамент
-            string deptName = "Без подразделения";
-            string departmentName = "Без подразделения";
-            if (performerToDepartment.TryGetValue(assignment.PerformerId, out deptName))
-              departmentName = deptName;
-            
-            // Инициализируем счетчики для департамента, если их нет
-            if (!filteredDepartmentCompleted.ContainsKey(departmentName))
-            {
-              filteredDepartmentCompleted[departmentName] = 0;
-              filteredDepartmentExpired[departmentName] = 0;
-            }
-            
-            // Увеличиваем счетчик выполненных заданий
-            filteredDepartmentCompleted[departmentName]++;
-            
-            // Проверяем, просрочено ли задание
-            if (assignment.Deadline.HasValue && assignment.Completed > assignment.Deadline.Value)
-              filteredDepartmentExpired[departmentName]++;
+            result[department] = seriesInfo;
           }
           
-          departmentCompleted = filteredDepartmentCompleted;
-          departmentExpired = filteredDepartmentExpired;
+          // Сортируем по количеству заданий и ограничиваем 10 департаментами
+          result = result
+            .OrderByDescending(kvp => kvp.Value.Completed)
+            .Take(10)
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
-        
-        // Формируем результат
-        foreach (var department in departmentCompleted.Keys)
-        {
-          var seriesInfo = SBContracts.Structures.Module.AssignApprSeriesInfo.Create();
-          seriesInfo.Completed = departmentCompleted[department];
-          seriesInfo.Expired = departmentExpired.ContainsKey(department) ? departmentExpired[department] : 0;
-          
-          result[department] = seriesInfo;
-        }
-        
-        // Сортируем по количеству заданий и ограничиваем 10 департаментами
-        return result
-          .OrderByDescending(kvp => kvp.Value.Completed)
-          .Take(10)
-          .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
       }
       catch (Exception ex)
       {
@@ -1811,163 +1784,139 @@ namespace sberdev.SberContracts.Server
     {
       try
       {
-        Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Начало расчета для documentType={documentType}, serialType={serialType}, dateRange={dateRange?.StartDate:yyyy-MM-dd}-{dateRange?.EndDate:yyyy-MM-dd}");
-        
         if (dateRange == null || dateRange.StartDate == null || dateRange.EndDate == null)
-        {
-          Logger.Error("OptimizedCalculateTaskDeadlineChartPoint: Некорректный диапазон дат");
           return 0;
-        }
         
         // Проверяем корректность диапазона дат
         if (dateRange.StartDate > dateRange.EndDate)
-        {
-          Logger.Error($"OptimizedCalculateTaskDeadlineChartPoint: Начальная дата больше конечной: {dateRange.StartDate:yyyy-MM-dd} > {dateRange.EndDate:yyyy-MM-dd}");
           return 0;
-        }
         
-        // Оптимизированный запрос с выборкой только нужных полей
-        var tasks = sberdev.SBContracts.ApprovalTasks.GetAll()
+        // Используем поле ExecutionInDaysSungero для получения времени выполнения
+        var query = sberdev.SBContracts.ApprovalTasks.GetAll()
           .Where(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.Completed &&
                  t.Started != null &&
                  t.Started >= dateRange.StartDate &&
-                 t.Started <= dateRange.EndDate)
-          .Select(t => new SBContracts.Structures.Module.TaskDeadlineData
-                  {
-                    Id = t.Id,
-                    Started = t.Started.Value,
-                    MaxDeadline = t.MaxDeadline
-                  })
-          .ToList();
-        
-        Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Найдено {tasks.Count} завершенных задач");
-        
-        // Выполняем запрос порциями
-        const int batchSize = 500;
-        
-        Dictionary<int, int> taskExecutionDays = new Dictionary<int, int>();
-        Dictionary<int, int> taskTargetDays = new Dictionary<int, int>();
-        List<int> taskIds = new List<int>();
-        
-        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
-        {
-          taskIds.AddRange(tasks.Select(t => (int)t.Id));
-        }
-        
-        foreach (var task in tasks)
-        {
-          // Вычисляем время выполнения
-          int taskId = (int)task.Id;
-          
-          try
-          {
-            int days = GetExecutionTaskTime(SBContracts.ApprovalTasks.Get(taskId));
-            
-            if (days > 0)
-              taskExecutionDays[taskId] = days;
-          }
-          catch (Exception ex)
-          {
-            Logger.Error($"OptimizedCalculateTaskDeadlineChartPoint: Ошибка расчета времени выполнения для задачи {taskId}: {ex.Message}");
-          }
-          
-          // Вычисляем целевое время
-          if (task.MaxDeadline.HasValue && task.Started <= task.MaxDeadline.Value)
-          {
-            try
-            {
-              int targetDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, task.MaxDeadline);
-              if (targetDays > 0)
-                taskTargetDays[taskId] = targetDays;
-            }
-            catch (Exception ex)
-            {
-              Logger.Error($"OptimizedCalculateTaskDeadlineChartPoint: Ошибка расчета целевого времени для задачи {taskId}: {ex.Message}");
-            }
-          }
-        }
+                 t.Started <= dateRange.EndDate);
         
         // Если нужно фильтровать по типу документа
-        if (!string.IsNullOrEmpty(documentType) && documentType != "All" && taskIds.Any())
+        var tasksToCheck = documentType != "All" && !string.IsNullOrEmpty(documentType)
+          ? query.ToList()
+          : null;
+        
+        List<int> executionDays = new List<int>();
+        List<int> targetDays = new List<int>();
+        
+        // Если не нужно фильтровать по типу документа, выполняем агрегирование в БД
+        if (tasksToCheck == null)
         {
-          // Фильтруем задачи по типу документа порциями
-          Dictionary<int, bool> taskMatches = new Dictionary<int, bool>();
+          // Выбираем задачи с заполненным ExecutionInDaysSungero
+          var tasksWithExecutionTime = query
+            .Where(t => t.ExecutionInDaysSungero != null && t.ExecutionInDaysSungero > 0)
+            .Select(t => t.ExecutionInDaysSungero.Value)
+            .ToList();
           
-          for (int i = 0; i < taskIds.Count; i += batchSize)
+          // Для тех, у кого не заполнено, вычисляем время выполнения на месте
+          var tasksWithoutExecutionTime = query
+            .Where(t => t.ExecutionInDaysSungero == null || t.ExecutionInDaysSungero <= 0)
+            .ToList();
+          
+          foreach (var task in tasksWithoutExecutionTime)
           {
-            var batchIds = taskIds.Skip(i).Take(batchSize).ToList();
-            var tasksBatch = sberdev.SBContracts.ApprovalTasks.GetAll().Where(t => batchIds.Contains((int)t.Id)).ToList();
+            int days = GetExecutionTaskTime(task);
+            if (days > 0)
+              executionDays.Add(days);
+          }
+          
+          // Объединяем результаты
+          executionDays.AddRange(tasksWithExecutionTime);
+          
+          // Для целевого времени - сначала получаем данные из БД, потом обрабатываем в памяти
+          if (serialType.ToLower() == "target")
+          {
+            // Получаем задачи с нужными датами
+            var tasksWithDates = query
+              .Where(t => t.MaxDeadline.HasValue && t.Started <= t.MaxDeadline.Value)
+              .Select(t => new {
+                        StartDate = t.Started.Value,
+                        MaxDeadlineDate = t.MaxDeadline.Value
+                      })
+              .ToList();
             
-            foreach (var task in tasksBatch)
+            // Затем применяем метод CalculateBusinessDays в памяти
+            foreach (var taskData in tasksWithDates)
             {
-              bool matches = PublicFunctions.Module.TaskMatchesDocumentType(task, documentType);
-              taskMatches[(int)task.Id] = matches;
+              int days = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
+                taskData.StartDate, taskData.MaxDeadlineDate);
+              
+              if (days > 0)
+                targetDays.Add(days);
             }
           }
+        }
+        else // Нужно фильтровать по типу документа
+        {
+          // Фильтруем задачи по типу документа
+          List<SBContracts.IApprovalTask> filteredTasks = new List<SBContracts.IApprovalTask>();
           
-          // Фильтруем словари по соответствию типа документа
-          Dictionary<int, int> filteredTaskExecutionDays = new Dictionary<int, int>();
-          Dictionary<int, int> filteredTaskTargetDays = new Dictionary<int, int>();
-          
-          foreach (var kvp in taskExecutionDays)
+          foreach (var task in tasksToCheck)
           {
-            bool matches = false;
-            if (taskMatches.TryGetValue(kvp.Key, out matches) && matches)
-              filteredTaskExecutionDays[kvp.Key] = kvp.Value;
+            if (PublicFunctions.Module.TaskMatchesDocumentType(task, documentType))
+              filteredTasks.Add(task);
           }
           
-          foreach (var kvp in taskTargetDays)
+          // Вычисляем время выполнения для отфильтрованных задач
+          foreach (var task in filteredTasks)
           {
-            bool matches = false;
-            if (taskMatches.TryGetValue(kvp.Key, out matches) && matches)
-              filteredTaskTargetDays[kvp.Key] = kvp.Value;
+            // Используем сохраненное значение, если есть
+            if (task.ExecutionInDaysSungero != null && task.ExecutionInDaysSungero > 0)
+            {
+              executionDays.Add(task.ExecutionInDaysSungero.Value);
+            }
+            else
+            {
+              int days = GetExecutionTaskTime(task);
+              if (days > 0)
+                executionDays.Add(days);
+            }
+            
+            // Для целевого времени
+            if (serialType.ToLower() == "target" &&
+                task.MaxDeadline.HasValue &&
+                task.Started <= task.MaxDeadline.Value)
+            {
+              int targetDay = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
+                task.Started.Value, task.MaxDeadline.Value);
+              
+              if (targetDay > 0)
+                targetDays.Add(targetDay);
+            }
           }
-          
-          taskExecutionDays = filteredTaskExecutionDays;
-          taskTargetDays = filteredTaskTargetDays;
         }
         
         // Вычисление значения в зависимости от типа серии
         serialType = serialType.ToLower();
         
-        if (serialType == "average" && taskExecutionDays.Any())
-        {
-          double avgValue = taskExecutionDays.Values.Average();
-          Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Рассчитано среднее значение {avgValue:F1} для {documentType}");
-          return avgValue;
-        }
+        if (serialType == "average" && executionDays.Any())
+          return executionDays.Average();
         
-        if (serialType == "maximum" && taskExecutionDays.Any())
-        {
-          int maxValue = taskExecutionDays.Values.Max();
-          Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Рассчитано максимальное значение {maxValue} для {documentType}");
-          return maxValue;
-        }
+        if (serialType == "maximum" && executionDays.Any())
+          return executionDays.Max();
         
-        if (serialType == "minimum" && taskExecutionDays.Any())
-        {
-          int minValue = taskExecutionDays.Values.Min();
-          Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Рассчитано минимальное значение {minValue} для {documentType}");
-          return minValue;
-        }
+        if (serialType == "minimum" && executionDays.Any())
+          return executionDays.Min();
         
-        if (serialType == "target" && taskTargetDays.Any())
-        {
-          double targetValue = taskTargetDays.Values.Average();
-          Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Рассчитано целевое значение {targetValue:F1} для {documentType}");
-          return targetValue;
-        }
+        if (serialType == "target" && targetDays.Any())
+          return targetDays.Average();
         
-        Logger.Debug($"OptimizedCalculateTaskDeadlineChartPoint: Не удалось рассчитать значение для serialType={serialType}, documentType={documentType}");
         return 0;
       }
       catch (Exception ex)
       {
-        Logger.Error($"Ошибка в OptimizedCalculateTaskDeadlineChartPoint: {ex.Message}", ex);
+        Logger.Error($"Ошибка в OptimizedCalculateTaskDeadlineChartPoint", ex);
         return 0;
       }
     }
-
+    
     /// <summary>
     /// Оптимизированный расчет значений для AssignAvgApprTimeByDepart.
     /// </summary>
@@ -1977,196 +1926,101 @@ namespace sberdev.SberContracts.Server
       
       try
       {
-        // Логируем начало операции
-        Logger.Debug($"OptimizedCalculateAssignAvgApprTimeValues: Начало расчета для documentType={documentType}, даты: {dateRange.StartDate:yyyy-MM-dd}-{dateRange.EndDate:yyyy-MM-dd}");
-        
         // Проверка корректности диапазона дат
         if (dateRange == null || dateRange.StartDate > dateRange.EndDate)
-        {
-          Logger.Error($"OptimizedCalculateAssignAvgApprTimeValues: Некорректный диапазон дат: {dateRange?.StartDate:yyyy-MM-dd}-{dateRange?.EndDate:yyyy-MM-dd}");
           return result;
-        }
         
-        // Оптимизированный запрос - выбираем только нужные поля
+        // Создаем структуру для хранения времени выполнения по департаментам
+        var departmentWorkDays = new Dictionary<string, List<double>>();
+        
+        // Оптимизация 1: Получаем данные о сотрудниках и их департаментах одним запросом
+        var performers = Sungero.Company.Employees.GetAll()
+          .Select(e => new {
+                    Id = e.Id,
+                    DepartmentId = e.Department != null ? e.Department.Id : (long?)null,
+                    DepartmentName = e.Department != null ? e.Department.Name : null
+                  })
+          .ToDictionary(e => e.Id, e => new {
+                          DepartmentId = e.DepartmentId,
+                          DepartmentName = e.DepartmentName ?? "Без подразделения"
+                        });
+        
+        // Оптимизация 2: Ограничиваем выборку заданий только нужными полями
         var assignments = Sungero.Workflow.Assignments.GetAll()
           .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
                  a.Created >= dateRange.StartDate &&
                  a.Completed <= dateRange.EndDate &&
                  a.Performer != null)
-          .Select(a => new SBContracts.Structures.Module.AssignmentTimeData
-                  {
+          .Select(a => new {
                     Id = a.Id,
-                    Created = a.Created.Value,
-                    Completed = a.Completed.Value,
+                    Created = a.Created,
+                    Completed = a.Completed,
                     PerformerId = a.Performer.Id
                   })
           .ToList();
         
-        Logger.Debug($"OptimizedCalculateAssignAvgApprTimeValues: Найдено {assignments.Count} заданий");
-        
-        // Выполняем запрос порциями
-        const int batchSize = 100;
-        
-        // Словари для хранения промежуточных результатов
-        Dictionary<long, long> performerToDepartment = new Dictionary<long, long>();
-        Dictionary<string, List<double>> departmentWorkDays = new Dictionary<string, List<double>>();
-        List<int> assignmentIds = new List<int>();
-        
         // Если нужно фильтровать по типу документа
+        List<int> filteredAssignmentIds = new List<int>();
+        
         if (!string.IsNullOrEmpty(documentType) && documentType != "All")
         {
-          assignmentIds.AddRange(assignments.Select(a => (int)a.Id));
-        }
-        
-        // Собираем данные о сотрудниках
-        var performerIds = assignments.Select(a => a.PerformerId).Distinct().ToList();
-        var performers = Sungero.Company.Employees.GetAll()
-          .Where(e => performerIds.Contains(e.Id))
-          .Select(e => new SBContracts.Structures.Module.EmployeeDepartmentData
-                  {
-                    Id = e.Id,
-                    DepartmentId = e.Department != null ? e.Department.Id : (long?)null,
-                    DepartmentName = e.Department != null ? e.Department.Name : null
-                  })
-          .ToList();
-        
-        // Заполняем словарь сотрудник -> департамент
-        foreach (var performer in performers)
-        {
-          performerToDepartment[performer.Id] = performer.DepartmentId ?? 0;
-        }
-        
-        // Вычисляем рабочие дни для всех заданий
-        foreach (var assignment in assignments)
-        {
-          // Определяем департамент
-          long departmentId = 0;
-          string departmentName = "Без подразделения";
-          if (performerToDepartment.TryGetValue(assignment.PerformerId, out departmentId) && departmentId != 0)
+          // Получаем все задания, которые могут соответствовать типу документа
+          var assignmentIdsToCheck = assignments.Select(a => (int)a.Id).ToList();
+          
+          // Выполняем оптимизированную проверку порциями
+          const int batchSize = 500;
+          for (int i = 0; i < assignmentIdsToCheck.Count; i += batchSize)
           {
-            var department = performers.FirstOrDefault(p => p.Id == assignment.PerformerId);
-            if (department != null && department.DepartmentName != null)
-              departmentName = department.DepartmentName;
-          }
-          
-          // ИСПРАВЛЕНО: Проверяем корректность дат перед расчетом
-          if (assignment.Created > assignment.Completed)
-          {
-            Logger.Debug($"OptimizedCalculateAssignAvgApprTimeValues: Пропуск задания {assignment.Id} с некорректными датами: Created={assignment.Created:yyyy-MM-dd HH:mm:ss}, Completed={assignment.Completed:yyyy-MM-dd HH:mm:ss}");
-            continue;
-          }
-          
-          // Вычисляем рабочие дни
-          double workDays = 0;
-          try
-          {
-            workDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
-              assignment.Created,
-              assignment.Completed);
-          }
-          catch (Exception ex)
-          {
-            Logger.Debug($"OptimizedCalculateAssignAvgApprTimeValues: Ошибка расчета рабочих дней для задания {assignment.Id}: {ex.Message}");
-            continue;
-          }
-          
-          if (workDays <= 0)
-            continue;
-          
-          if (!departmentWorkDays.ContainsKey(departmentName))
-            departmentWorkDays[departmentName] = new List<double>();
-          
-          departmentWorkDays[departmentName].Add(workDays);
-        }
-        
-        // Если нужно фильтровать по типу документа, проверяем соответствие
-        if (!string.IsNullOrEmpty(documentType) && documentType != "All" && assignmentIds.Any())
-        {
-          // Фильтруем задания по типу документа порциями
-          Dictionary<int, bool> assignmentMatches = new Dictionary<int, bool>();
-          
-          for (int i = 0; i < assignmentIds.Count; i += batchSize)
-          {
-            var batchIds = assignmentIds.Skip(i).Take(batchSize).ToList();
-            var assignmentsBatch = Sungero.Workflow.Assignments.GetAll().Where(a => batchIds.Contains((int)a.Id)).ToList();
+            var batchIds = assignmentIdsToCheck.Skip(i).Take(batchSize).ToList();
             
+            // Получаем соответствующие задания с их вложениями
+            var assignmentsBatch = Sungero.Workflow.Assignments.GetAll()
+              .Where(a => batchIds.Contains((int)a.Id))
+              .ToList()  // Сначала получаем объекты в память
+              .Select(a => new { Id = a.Id, Document = a.Attachments.FirstOrDefault() })
+              .ToList();
+            
+            // Проверяем соответствие типу документа
             foreach (var assignment in assignmentsBatch)
             {
-              bool matches = PublicFunctions.Module.AssignmentMatchesDocumentType(assignment, documentType);
-              assignmentMatches[(int)assignment.Id] = matches;
+              if (assignment.Document != null &&
+                  PublicFunctions.Module.MatchesDocumentType(assignment.Document, documentType))
+              {
+                filteredAssignmentIds.Add((int)assignment.Id);
+              }
             }
           }
-          
-          // Создаем новый словарь с учетом фильтрации
-          Dictionary<string, List<double>> filteredDepartmentWorkDays = new Dictionary<string, List<double>>();
-          
-          foreach (var assignment in assignments)
-          {
-            bool matches = false;
-            if (!assignmentMatches.TryGetValue((int)assignment.Id, out matches) || !matches)
-              continue;
-            
-            // Определяем департамент
-            long departmentId = 0;
-            string departmentName = "Без подразделения";
-            if (performerToDepartment.TryGetValue(assignment.PerformerId, out departmentId) && departmentId != 0)
-            {
-              var department = performers.FirstOrDefault(p => p.Id == assignment.PerformerId);
-              if (department != null && department.DepartmentName != null)
-                departmentName = department.DepartmentName;
-            }
-            
-            // ИСПРАВЛЕНО: Проверяем корректность дат перед расчетом
-            if (assignment.Created > assignment.Completed)
-              continue;
-            
-            // Вычисляем рабочие дни
-            double workDays = 0;
-            try
-            {
-              workDays = sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
-                assignment.Created,
-                assignment.Completed);
-            }
-            catch (Exception ex)
-            {
-              continue;
-            }
-            
-            if (workDays <= 0)
-              continue;
-            
-            if (!filteredDepartmentWorkDays.ContainsKey(departmentName))
-              filteredDepartmentWorkDays[departmentName] = new List<double>();
-            
-            filteredDepartmentWorkDays[departmentName].Add(workDays);
-          }
-          
-          departmentWorkDays = filteredDepartmentWorkDays;
         }
         
-        // Вычисляем средние значения и сортируем
-        var departmentStats = departmentWorkDays
-          .Where(kvp => kvp.Value.Any())
-          .Select(kvp => new SBContracts.Structures.Module.DepartmentAverageData
-                  {
-                    Department = kvp.Key,
-                    AvgDays = kvp.Value.Average()
+        // Фильтруем задания, если нужно
+        var assignmentsToProcess = !string.IsNullOrEmpty(documentType) && documentType != "All"
+          ? assignments.Where(a => filteredAssignmentIds.Contains((int)a.Id)).ToList()
+          : assignments;
+        
+        // Группируем задания по департаментам и вычисляем среднее время выполнения
+        var departmentStats = assignmentsToProcess
+          .Where(a => a.Created <= a.Completed) // Проверяем корректность дат
+          .GroupBy(a => performers.ContainsKey(a.PerformerId)
+                   ? performers[a.PerformerId].DepartmentName
+                   : "Без подразделения")
+          .Select(g => new {
+                    Department = g.Key,
+                    AvgDays = g.Average(a => sberdev.SBContracts.PublicFunctions.Module.CalculateBusinessDays(
+                      a.Created.Value, a.Completed.Value))
                   })
           .Where(x => x.AvgDays > 0)
           .OrderByDescending(x => x.AvgDays)
           .Take(10);
         
+        // Заполняем результат
         foreach (var stat in departmentStats)
         {
           result[stat.Department] = Math.Round(stat.AvgDays, 1);
         }
-        
-        Logger.Debug($"OptimizedCalculateAssignAvgApprTimeValues: Расчет завершен, найдено {result.Count} департаментов");
       }
       catch (Exception ex)
       {
-        Logger.Error($"Ошибка в OptimizedCalculateAssignAvgApprTimeValues: {ex.Message}", ex);
+        Logger.Error("Ошибка в OptimizedCalculateAssignAvgApprTimeValues", ex);
       }
       
       return result;
@@ -2187,128 +2041,75 @@ namespace sberdev.SberContracts.Server
       
       try
       {
-        Logger.Debug($"OptimizedCalculateTaskFlowValues: Начало расчета для documentType={documentType}, dateRange={dateRange?.StartDate:yyyy-MM-dd}-{dateRange?.EndDate:yyyy-MM-dd}");
-        
-        // Проверяем корректность диапазона дат
+        // Удаляем лишнее логирование
         if (dateRange == null || dateRange.StartDate > dateRange.EndDate)
-        {
-          Logger.Error($"OptimizedCalculateTaskFlowValues: Некорректный диапазон дат: {dateRange?.StartDate:yyyy-MM-dd}-{dateRange?.EndDate:yyyy-MM-dd}");
           return result;
-        }
         
-        // Используем оптимизированный запрос с выборкой только нужных полей
-        var tasks = sberdev.SBContracts.ApprovalTasks.GetAll()
-          .Where(t => t.Started >= dateRange.StartDate && t.Started <= dateRange.EndDate)
-          .Select(t => new SBContracts.Structures.Module.TaskStatusData
-                  {
-                    Id = t.Id,
-                    Status = t.Status.Value,
-                    Started = t.Started.Value,
-                    MaxDeadline = t.MaxDeadline
-                  })
-          .ToList();
-        
-        Logger.Debug($"OptimizedCalculateTaskFlowValues: Найдено {tasks.Count} задач");
-        
-        // Выполняем запрос порциями для снижения нагрузки
-        const int batchSize = 100;
-        
-        List<long> taskIds = new List<long>();
-        Dictionary<int, bool> matchesDocumentType = new Dictionary<int, bool>();
-        
-        // Получаем ID задач для фильтрации по типу документа
-        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
-        {
-          taskIds.AddRange(tasks.Select(t => t.Id));
-        }
-        
-        // Текущая дата для сравнения со сроками
         var currentDate = Calendar.Now;
         
-        // Подсчитываем значения без учета типа документа
-        foreach (var task in tasks)
+        // Оптимизированный запрос - выполняем агрегирование на уровне БД
+        // для уменьшения объема данных и числа запросов
+        
+        // 1. Сначала агрегируем данные по статусам
+        var tasksByStatus = sberdev.SBContracts.ApprovalTasks.GetAll()
+          .Where(t => t.Started >= dateRange.StartDate && t.Started <= dateRange.EndDate)
+          .GroupBy(t => t.Status)
+          .Select(g => new { Status = g.Key, Count = g.Count() })
+          .ToList();
+        
+        // 2. Отдельный запрос для просроченных задач
+        var expiredCount = sberdev.SBContracts.ApprovalTasks.GetAll()
+          .Where(t => t.Started >= dateRange.StartDate &&
+                 t.Started <= dateRange.EndDate &&
+                 (t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
+                  t.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended ||
+                  t.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
+                 t.MaxDeadline != null && t.MaxDeadline < currentDate)
+          .Count();
+        
+        // Заполняем результат
+        foreach (var status in tasksByStatus)
         {
-          if (task.Status != sberdev.SBContracts.ApprovalTask.Status.Draft)
-            result["started"]++;
+          if (status.Status != sberdev.SBContracts.ApprovalTask.Status.Draft)
+            result["started"] += status.Count;
           
-          if (task.Status == sberdev.SBContracts.ApprovalTask.Status.Completed)
-            result["completed"]++;
+          if (status.Status == sberdev.SBContracts.ApprovalTask.Status.Completed)
+            result["completed"] += status.Count;
           
-          if (task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
-              task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview)
-            result["inprocess"]++;
-          
-          // ИСПРАВЛЕНО: Добавлена проверка на null для MaxDeadline
-          if ((task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
-               task.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended ||
-               task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
-              task.MaxDeadline.HasValue && task.MaxDeadline.Value < currentDate)
-            result["expired"]++;
+          if (status.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
+              status.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview)
+            result["inprocess"] += status.Count;
         }
         
-        // Если нужна фильтрация по типу документа, применяем её после основного подсчета
-        if (!string.IsNullOrEmpty(documentType) && documentType != "All" && taskIds.Any())
-        {
-          Logger.Debug($"OptimizedCalculateTaskFlowValues: Применение фильтрации по типу документа {documentType}");
-          
-          // Фильтруем задачи по типу документа порциями
-          for (int i = 0; i < taskIds.Count; i += batchSize)
-          {
-            var batchIds = taskIds.Skip(i).Take(batchSize).ToList();
-            var tasksForDocumentCheck = sberdev.SBContracts.ApprovalTasks.GetAll().Where(t => batchIds.Contains((int)t.Id)).ToList();
-            
-            foreach (var task in tasksForDocumentCheck)
-            {
-              bool matches = PublicFunctions.Module.TaskMatchesDocumentType(task, documentType);
-              matchesDocumentType[(int)task.Id] = matches;
-            }
-          }
-          
-          // Повторно выполняем подсчет, но учитываем только задачи с подходящим типом документа
-          Dictionary<string, int> filteredResult = new Dictionary<string, int>
-          {
-            ["started"] = 0,
-            ["completed"] = 0,
-            ["inprocess"] = 0,
-            ["expired"] = 0
-          };
-          
-          int matchingTasksCount = 0;
-          
-          foreach (var task in tasks)
-          {
-            bool matches = false;
-            if (!matchesDocumentType.TryGetValue((int)task.Id, out matches) || !matches)
-              continue;
-            
-            matchingTasksCount++;
-            
-            if (task.Status != sberdev.SBContracts.ApprovalTask.Status.Draft)
-              filteredResult["started"]++;
-            
-            if (task.Status == sberdev.SBContracts.ApprovalTask.Status.Completed)
-              filteredResult["completed"]++;
-            
-            if (task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
-                task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview)
-              filteredResult["inprocess"]++;
-            
-            if ((task.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
-                 task.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended ||
-                 task.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
-                task.MaxDeadline.HasValue && task.MaxDeadline.Value < currentDate)
-              filteredResult["expired"]++;
-          }
-          
-          Logger.Debug($"OptimizedCalculateTaskFlowValues: После фильтрации осталось {matchingTasksCount} задач из {tasks.Count}");
-          return filteredResult;
-        }
+        result["expired"] = expiredCount;
         
-        Logger.Debug($"OptimizedCalculateTaskFlowValues: Расчет завершен, значения: started={result["started"]}, completed={result["completed"]}, inprocess={result["inprocess"]}, expired={result["expired"]}");
+        // Если нужно фильтровать по типу документа и это не "Все документы"
+        if (!string.IsNullOrEmpty(documentType) && documentType != "All")
+        {
+          // 1. Получаем все задачи за выбранный период с их документами
+          var tasks = sberdev.SBContracts.ApprovalTasks.GetAll()
+            .Where(t => t.Started >= dateRange.StartDate && t.Started <= dateRange.EndDate)
+            .ToList();
+          
+          // 2. Фильтруем локально с использованием оптимизированного метода
+          var filteredTasks = tasks.Where(t => PublicFunctions.Module.TaskMatchesDocumentType(t, documentType)).ToList();
+          
+          // 3. Повторно подсчитываем для отфильтрованных задач
+          result["started"] = filteredTasks.Count(t => t.Status != sberdev.SBContracts.ApprovalTask.Status.Draft);
+          result["completed"] = filteredTasks.Count(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.Completed);
+          result["inprocess"] = filteredTasks.Count(t =>
+                                                    t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
+                                                    t.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview);
+          result["expired"] = filteredTasks.Count(t =>
+                                                  (t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
+                                                   t.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended ||
+                                                   t.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
+                                                  t.MaxDeadline.HasValue && t.MaxDeadline.Value < currentDate);
+        }
       }
       catch (Exception ex)
       {
-        Logger.Error($"Ошибка в OptimizedCalculateTaskFlowValues: {ex.Message}", ex);
+        Logger.Error($"Ошибка в OptimizedCalculateTaskFlowValues", ex);
       }
       
       return result;

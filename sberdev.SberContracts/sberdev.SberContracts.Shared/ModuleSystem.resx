@@ -274,4 +274,10 @@
   <data name="JobDescription_fd1cf1037d46492fb2a4ee38bf2b023a" xml:space="preserve">
     <value>The process calculates and writes data for the Approval Analytics widget set.</value>
   </data>
+  <data name="JobDisplayName_759f800d713147cdb5a7ab7e1d9d0a37" xml:space="preserve">
+    <value>Migration. Filling the execution time of historical tasks</value>
+  </data>
+  <data name="JobDescription_759f800d713147cdb5a7ab7e1d9d0a37" xml:space="preserve">
+    <value>The process is designed to fill in the execution time fields in historical tasks.</value>
+  </data>
 </root>

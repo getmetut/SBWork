@@ -247,4 +247,10 @@
   <data name="JobDescription_fd1cf1037d46492fb2a4ee38bf2b023a" xml:space="preserve">
     <value>Процесс вычисляет и записывает данные для набора виджетов "Аналитика согласований".</value>
   </data>
+  <data name="JobDisplayName_759f800d713147cdb5a7ab7e1d9d0a37" xml:space="preserve">
+    <value>Миграция. Заполнение времени выполнения исторических задач</value>
+  </data>
+  <data name="JobDescription_759f800d713147cdb5a7ab7e1d9d0a37" xml:space="preserve">
+    <value>Процесс создан чтобы заполнить поля со временем выполнения в исторических задачах.</value>
+  </data>
 </root>

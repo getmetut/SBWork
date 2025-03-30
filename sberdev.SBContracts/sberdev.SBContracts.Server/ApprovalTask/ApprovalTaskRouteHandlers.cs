@@ -159,6 +159,7 @@ namespace sberdev.SBContracts.Server
     {
       if (base.Decision32Result() && _obj.DoneStage.Count() > 0)
       {
+        _obj.ExecutionInDaysSungero = SberContracts.PublicFunctions.Module.GetExecutionTaskTime(_obj);
         _obj.DoneStage.Clear();
         _obj.Save();
       }

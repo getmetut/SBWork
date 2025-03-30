@@ -160,4 +160,7 @@
   <data name="Control_795d55293ed140429c36ff861221083b_EmptyText" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_ExecutionInDaysSungero" xml:space="preserve">
+    <value>Время выполнения (дни)</value>
+  </data>
 </root>

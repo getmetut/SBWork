@@ -298,6 +298,14 @@
       "GenerateHandler": true,
       "MonthSchedule": "Monthly",
       "StartAt": "1753-01-01T08:30:00"
+    },
+    {
+      "NameGuid": "759f800d-7131-47cd-b5a7-ab7e1d9d0a37",
+      "Name": "FillTaskExecutionTimeData",
+      "GenerateHandler": true,
+      "IsEnabled": false,
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T08:30:00"
     }
   ],
   "Libraries": [
@@ -702,6 +710,18 @@
       "Name": "GetAllBuisnessUnitTINs",
       "ReturnType": "global::System.Collections.Generic.List<global::System.String>",
       "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
+      "Name": "GetExecutionTaskTime",
+      "Parameters": [
+        {
+          "Name": "task",
+          "ParameterType": "global::sberdev.SBContracts.IApprovalTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Int32",
+      "ReturnTypeFullName": "System.Int32"
     },
     {
       "Name": "GetNumberTag",

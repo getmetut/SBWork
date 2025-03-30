@@ -29,7 +29,7 @@ namespace sberdev.SberContracts.Server
             _parameters.AnalysisPeriod.Value);
           
           // Если в кеше нет данных, используем оригинальный метод расчета
-          var values = cachedValues;// ?? PublicFunctions.Module.CalculateTaskFlowValues(dateRangesList[i], _parameters.DocumentTypes.Value);
+          var values = cachedValues;
           
           for(int j = 0; j < 4; j++)
             serial.AddValue(valuesInfos[j].ValueId, valuesInfos[j].Label, values[valuesInfos[j].ValueId],
@@ -65,14 +65,6 @@ namespace sberdev.SberContracts.Server
           dateRange,
           _parameters.DocumentTypes.Value,
           _parameters.AnalysisPeriod.Value);
-        
-       /* // Если в кеше нет данных, используем оригинальный метод расчета
-        if (departmentStats == null)
-        {
-          departmentStats = PublicFunctions.Module.CalculateAssignAvgApprTimeByDepartValues(
-            dateRange,
-            _parameters.DocumentTypes.Value);
-        }*/
         
         foreach(var stat in departmentStats)
         {
@@ -135,23 +127,15 @@ namespace sberdev.SberContracts.Server
           // Получаем значения из кеша для каждого типа серии или рассчитываем при отсутствии в кеше
           double avgValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
             range, "average", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value);
-        //  if (avgValue == 0)
-        //    avgValue = PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "average", _parameters.DocumentTypes.Value);
           
           double minValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
             range, "minimum", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value);
-       //   if (minValue == 0)
-       //     minValue = PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "minimum", _parameters.DocumentTypes.Value);
           
           double targetValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
             range, "target", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value);
-       //   if (targetValue == 0)
-        //    targetValue = PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "target", _parameters.DocumentTypes.Value);
           
           double maxValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
             range, "maximum", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value);
-        //  if (maxValue == 0)
-        //    maxValue = PublicFunctions.Module.CalculateTaskDeadlineChartPoint(range, "maximum", _parameters.DocumentTypes.Value);
           
           series[sberdev.SberContracts.Resources.TaskDeadlineSerialAvg].AddValue(range.EndDate, avgValue);
           series[sberdev.SberContracts.Resources.TaskDeadlineSerialMin].AddValue(range.EndDate, minValue);
@@ -187,14 +171,6 @@ namespace sberdev.SberContracts.Server
           dateRange,
           _parameters.DocumentTypes.Value,
           _parameters.AnalysisPeriod.Value);
-        
-        // Если в кеше нет данных, используем оригинальный метод расчета
-    /*    if (departmentStats == null)
-        {
-          departmentStats = PublicFunctions.Module.CalculateAssignCompletedByDepartValues(
-            dateRange,
-            _parameters.DocumentTypes.Value);
-        }*/
         
         if (departmentStats == null || !departmentStats.Any())
           return;
