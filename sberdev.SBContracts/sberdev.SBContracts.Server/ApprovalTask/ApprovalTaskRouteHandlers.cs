@@ -157,10 +157,11 @@ namespace sberdev.SBContracts.Server
 
     public override bool Decision32Result()
     {
-      if (base.Decision32Result() && _obj.DoneStage.Count() > 0)
+      if (base.Decision32Result())
       {
         _obj.ExecutionInDaysSungero = SberContracts.PublicFunctions.Module.GetExecutionTaskTime(_obj);
-        _obj.DoneStage.Clear();
+        if (_obj.DoneStage.Count() > 0)
+          _obj.DoneStage.Clear();
         _obj.Save();
       }
       return base.Decision32Result();
