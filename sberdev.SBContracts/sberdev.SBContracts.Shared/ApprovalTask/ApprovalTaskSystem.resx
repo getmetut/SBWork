@@ -187,4 +187,7 @@
   <data name="Property_ExecutionInDaysSungero" xml:space="preserve">
     <value>Execution time (days)</value>
   </data>
+  <data name="Property_DocumentTypeSungero" xml:space="preserve">
+    <value>Document type</value>
+  </data>
 </root>

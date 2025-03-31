@@ -18,7 +18,13 @@ namespace sberdev.SberContracts.Server
         var dateRangesList = PublicFunctions.Module.GenerateCompletedDateRanges(Sungero.Core.Calendar.Now, 6, _parameters.AnalysisPeriod.Value);
         var valuesInfos = PublicFunctions.Module.CreateControlFlowSeriesInfosList();
         
-        for (int i = 0; i < 6; i++)
+        if (dateRangesList == null || !dateRangesList.Any() || valuesInfos == null || !valuesInfos.Any())
+        {
+          Logger.Error("Ошибка в методе GetTaskFlowWidgetTaskFlowChartValue: отсутствуют диапазоны дат или информация о сериях");
+          return;
+        }
+        
+        for (int i = 0; i < Math.Min(6, dateRangesList.Count); i++)
         {
           var serial = e.Chart.AddNewSeries(i.ToString(), $"{dateRangesList[i].StartDate.ToShortDateString()} - {dateRangesList[i].EndDate.ToShortDateString()}");
           
@@ -28,12 +34,30 @@ namespace sberdev.SberContracts.Server
             _parameters.DocumentTypes.Value,
             _parameters.AnalysisPeriod.Value);
           
-          // Если в кеше нет данных, используем оригинальный метод расчета
-          var values = cachedValues;
+          // Если в кеше нет данных или данные неполные, используем оригинальный метод расчета
+          if (cachedValues == null || cachedValues.Count < valuesInfos.Count)
+          {
+            cachedValues = PublicFunctions.Module.OptimizedCalculateTaskFlowValues(
+              dateRangesList[i],
+              _parameters.DocumentTypes.Value);
+          }
           
-          for(int j = 0; j < 4; j++)
-            serial.AddValue(valuesInfos[j].ValueId, valuesInfos[j].Label, values[valuesInfos[j].ValueId],
-                            Sungero.Core.Colors.FromRgb((byte)valuesInfos[j].R, (byte)valuesInfos[j].G, (byte)valuesInfos[j].B));
+          // Проверяем наличие данных и добавляем значения для каждой серии
+          if (cachedValues != null && cachedValues.Count > 0)
+          {
+            for (int j = 0; j < Math.Min(4, valuesInfos.Count); j++)
+            {
+              string valueId = valuesInfos[j].ValueId;
+              if (cachedValues.ContainsKey(valueId))
+              {
+                serial.AddValue(
+                  valueId,
+                  valuesInfos[j].Label,
+                  cachedValues[valueId],
+                  Sungero.Core.Colors.FromRgb((byte)valuesInfos[j].R, (byte)valuesInfos[j].G, (byte)valuesInfos[j].B));
+              }
+            }
+          }
         }
       }
       catch (System.Exception ex)
@@ -58,7 +82,10 @@ namespace sberdev.SberContracts.Server
           _parameters.AnalysisPeriod.Value).FirstOrDefault();
 
         if (dateRange == null)
+        {
+          Logger.Error("Ошибка в методе GetAssignAvgApprTimeByDepartWidgetAssignAvgApprTimeByDepartChartValue: не удалось сгенерировать диапазон дат");
           return;
+        }
 
         // Получаем данные из кеша, если они есть
         var departmentStats = PublicFunctions.WidgetCache.GetAssignAvgApprTimeCacheData(
@@ -66,10 +93,29 @@ namespace sberdev.SberContracts.Server
           _parameters.DocumentTypes.Value,
           _parameters.AnalysisPeriod.Value);
         
-        foreach(var stat in departmentStats)
+        // Если данных в кеше нет, рассчитываем
+        if (departmentStats == null || !departmentStats.Any())
         {
-          var serial = e.Chart.AddNewSeries(stat.Key, stat.Key);
-          serial.AddValue(stat.Key, "", stat.Value, Sungero.Core.Colors.FromRgb(100, 149, 237));
+          departmentStats = PublicFunctions.Module.OptimizedCalculateAssignAvgApprTimeValues(
+            dateRange,
+            _parameters.DocumentTypes.Value);
+        }
+        
+        // Проверяем наличие данных перед добавлением в диаграмму
+        if (departmentStats != null && departmentStats.Any())
+        {
+          foreach (var stat in departmentStats)
+          {
+            if (!string.IsNullOrEmpty(stat.Key))
+            {
+              var serial = e.Chart.AddNewSeries(stat.Key, stat.Key);
+              serial.AddValue(stat.Key, "", stat.Value, Sungero.Core.Colors.FromRgb(100, 149, 237));
+            }
+          }
+        }
+        else
+        {
+          Logger.Debug("GetAssignAvgApprTimeByDepartWidgetAssignAvgApprTimeByDepartChartValue: Нет данных для отображения");
         }
       }
       catch (System.Exception ex)

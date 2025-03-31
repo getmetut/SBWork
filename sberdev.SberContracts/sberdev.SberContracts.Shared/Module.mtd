@@ -297,11 +297,19 @@
       "Name": "CreateApprovalAnalyticsWidgetsCashes",
       "GenerateHandler": true,
       "MonthSchedule": "Monthly",
-      "StartAt": "1753-01-01T08:30:00"
+      "StartAt": "1753-01-01T05:30:00"
     },
     {
       "NameGuid": "759f800d-7131-47cd-b5a7-ab7e1d9d0a37",
       "Name": "FillTaskExecutionTimeData",
+      "GenerateHandler": true,
+      "IsEnabled": false,
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T08:30:00"
+    },
+    {
+      "NameGuid": "ded63938-850a-4e34-aa2f-f1c5161633ca",
+      "Name": "FillTaskDocunetType",
       "GenerateHandler": true,
       "IsEnabled": false,
       "MonthSchedule": "Monthly",
@@ -839,6 +847,76 @@
       "ReturnTypeFullName": "System.String"
     },
     {
+      "Name": "OptimizedCalculateAssignAvgApprTimeValues",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Double>"
+    },
+    {
+      "Name": "OptimizedCalculateAssignCompletedValues",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>"
+    },
+    {
+      "Name": "OptimizedCalculateTaskDeadlineChartPoint",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "serialType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.Double",
+      "ReturnTypeFullName": "System.Double"
+    },
+    {
+      "Name": "OptimizedCalculateTaskFlowValues",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Int32>"
+    },
+    {
       "Name": "PaidInvoiceReportFunction",
       "Parameters": [
         {
@@ -850,6 +928,24 @@
       "Placement": "Client",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "SafeMatchesDocumentType",
+      "Parameters": [
+        {
+          "Name": "document",
+          "ParameterType": "global::Sungero.Domain.Shared.IEntity",
+          "ParameterTypeFullName": "Sungero.Domain.Shared.IEntity, Sungero.Domain.Shared"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
     },
     {
       "Name": "ShowTotalAmountChangedDialog",
@@ -951,7 +1047,7 @@
       "NeedShowMarkedCount": false
     }
   ],
-  "Version": "4.35.1.0",
+  "Version": "4.35.2.0",
   "Widgets": [
     {
       "NameGuid": "c2f21ab6-4272-410e-a676-52af22433fd1",

@@ -56,6 +56,65 @@ namespace sberdev.SberContracts.Shared
           return false;
       }
     }
+    
+    /// <summary>
+    /// Безопасная проверка соответствия документа выбранному типу с обработкой возможных исключений
+    /// </summary>
+    [Public]
+    public bool SafeMatchesDocumentType(Sungero.Domain.Shared.IEntity document, string documentType)
+    {
+      try
+      {
+        if (document == null)
+          return false;
+        
+        // Все типы документов
+        if (string.IsNullOrEmpty(documentType) || documentType == "All")
+          return true;
+        
+        // Преобразуем документ к возможным типам с защитой от ошибок приведения типов
+        bool isAccounting = false;
+        bool isContractual = false;
+        bool isIncomingInvoice = false;
+        bool isAbstractSup = false;
+        
+        try { isAccounting = sberdev.SBContracts.AccountingDocumentBases.Is(document); } catch { }
+        try { isContractual = sberdev.SBContracts.ContractualDocuments.Is(document); } catch { }
+        try { isIncomingInvoice = sberdev.SBContracts.IncomingInvoices.Is(document); } catch { }
+        try { isAbstractSup = sberdev.SberContracts.AbstractsSupAgreements.Is(document); } catch { }
+        
+        switch (documentType)
+        {
+          case "Contractual":
+            // SBContracts.Contract, SBContracts.SupAgreement (наследники ContractualDocument)
+            return isContractual && !isAbstractSup;
+            
+          case "IncInvoce":
+            // SBContracts.IncomingInvoice
+            return isIncomingInvoice;
+            
+          case "Accounting":
+            // SBContracts.AccountingDocumentBase кроме IncomingInvoice
+            return isAccounting && !isIncomingInvoice;
+            
+          case "AbstractContr":
+            // SberContracts.AbstractsSupAgreement
+            return isAbstractSup;
+            
+          case "Another":
+            // Все остальные типы
+            return document != null && !isAccounting && !isContractual;
+            
+          default:
+            return false;
+        }
+      }
+      catch (Exception ex)
+      {
+        Logger.Error($"SafeMatchesDocumentType: Ошибка при проверке типа {documentType} для документа {document?.Id}", ex);
+        return false;
+      }
+    }
 
     /// <summary>
     /// Получить документ из задания и проверить его тип
@@ -66,8 +125,12 @@ namespace sberdev.SberContracts.Shared
       if (string.IsNullOrEmpty(documentType) || documentType == "All")
         return true;
       
-      var document = assignment.Attachments.FirstOrDefault();
-      return MatchesDocumentType(document, documentType);
+      var task = SBContracts.ApprovalTasks.As(assignment.Task);
+      
+      if (task.DocumentTypeSungero == documentType)
+        return true;
+      
+      return MatchesDocumentType(task.DocumentGroup.OfficialDocuments.FirstOrDefault(), documentType);
     }
 
     /// <summary>
@@ -82,18 +145,52 @@ namespace sberdev.SberContracts.Shared
         if (string.IsNullOrEmpty(documentType) || documentType == "All")
           return true;
         
+        // Если задача пуста, возвращаем false
+        if (task == null)
+          return false;
+        
+        // Преобразуем к типу задачи согласования
         var approvalTask = sberdev.SBContracts.ApprovalTasks.As(task);
         if (approvalTask == null || approvalTask.DocumentGroup == null)
           return false;
         
+        // Проверяем, есть ли в задаче сохраненное значение DocumentType
+        if (!string.IsNullOrEmpty(approvalTask.DocumentTypeSungero))
+        {
+          // Если типы совпадают, возвращаем true
+          return approvalTask.DocumentTypeSungero == documentType;
+        }
+        
         // Безопасное получение документа с обработкой возможных исключений
         try
         {
-          var document = approvalTask.DocumentGroup.OfficialDocuments.FirstOrDefault();
+          // Получаем первый документ из группы вложений
+          var documents = approvalTask.DocumentGroup.OfficialDocuments.ToList();
+          if (documents == null || !documents.Any())
+            return false;
+          
+          var document = documents.FirstOrDefault();
           if (document == null)
             return false;
           
-          return MatchesDocumentType(document, documentType);
+          // Определяем тип документа и сохраняем его в задаче для повторного использования
+          bool result = MatchesDocumentType(document, documentType);
+          
+          // Сохраняем определенный тип в поле DocumentType для будущего использования
+          if (result && string.IsNullOrEmpty(approvalTask.DocumentTypeSungero))
+          {
+            try
+            {
+              approvalTask.DocumentTypeSungero = documentType;
+              approvalTask.Save();
+            }
+            catch (Exception ex)
+            {
+              Logger.Error($"Ошибка при сохранении типа документа для задачи {task.Id}", ex);
+            }
+          }
+          
+          return result;
         }
         catch (Exception ex)
         {

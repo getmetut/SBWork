@@ -527,6 +527,16 @@
       "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "46c5a983-f0cc-4c22-9af5-e9921579b4ac"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "5af0f9cd-7260-488e-a681-c94f5655b634",
+      "Name": "DocumentTypeSungero",
+      "Code": "DocumentTypeSu",
+      "IsEnabled": false,
+      "Length": 150,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "b94fa283-3c61-401d-99bf-bc86c10d3c68"
     }
   ],
   "PublicConstants": [

@@ -280,4 +280,10 @@
   <data name="JobDescription_759f800d713147cdb5a7ab7e1d9d0a37" xml:space="preserve">
     <value>The process is designed to fill in the execution time fields in historical tasks.</value>
   </data>
+  <data name="JobDisplayName_ded63938850a4e34aa2ff1c5161633ca" xml:space="preserve">
+    <value>Migration. Filling in the document type of historical tasks</value>
+  </data>
+  <data name="JobDescription_ded63938850a4e34aa2ff1c5161633ca" xml:space="preserve">
+    <value>The process fills the DocumentType field in tasks (it is created for building widgets)</value>
+  </data>
 </root>

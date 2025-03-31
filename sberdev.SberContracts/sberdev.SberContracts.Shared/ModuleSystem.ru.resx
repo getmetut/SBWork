@@ -253,4 +253,13 @@
   <data name="JobDescription_759f800d713147cdb5a7ab7e1d9d0a37" xml:space="preserve">
     <value>Процесс создан чтобы заполнить поля со временем выполнения в исторических задачах.</value>
   </data>
+  <data name="JobDisplayName_ded63938850a4e34aa2ff1c5161633ca" xml:space="preserve">
+    <value>Миграция. Заполнение типа документа исторических задач</value>
+  </data>
+  <data name="JobDescription_ded63938850a4e34aa2ff1c5161633ca" xml:space="preserve">
+    <value>Процесс заполняет поле DocumentType у задач (оно создано для построения виджетов)</value>
+  </data>
+  <data name="Enum_TaskDeadlineWidget_DocumentTypes_Another" xml:space="preserve">
+    <value>Другие</value>
+  </data>
 </root>

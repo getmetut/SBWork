@@ -13,6 +13,113 @@ namespace sberdev.SberContracts.Server
   {
 
     /// <summary>
+    /// Процесс заполняет поле DocumentType у задач (оно создано для построения виджетов)
+    /// </summary>
+    public virtual void FillTaskDocunetType()
+    {
+      // Получаем все задачи согласования без заполненного DocumentType
+      var approvalTasks = sberdev.SBContracts.ApprovalTasks.GetAll()
+        .Where(t => t.DocumentTypeSungero == null || t.DocumentTypeSungero == "")
+        .ToList();
+      
+      Logger.Debug($"DocumentTypeFillerJob: Начата обработка задач согласования. Всего задач для обработки: {approvalTasks.Count}");
+      
+      int processedCount = 0;
+      int updatedCount = 0;
+      int errorCount = 0;
+      
+      // Обрабатываем задачи пакетами для экономии памяти
+      int batchSize = 500;
+      int tasksCount = approvalTasks.Count();
+      for (int i = 0; i < tasksCount; i += batchSize)
+      {
+        var batch = approvalTasks.Skip(i).Take(batchSize).ToList();
+        
+        foreach (var task in batch)
+        {
+          try
+          {
+            // Определяем тип документа с защитой от ошибок
+            string documentType = DetermineDocumentType(task);
+            
+            if (!string.IsNullOrEmpty(documentType))
+            {
+              // Обновляем поле DocumentType в задаче
+              task.DocumentTypeSungero = documentType;
+              task.Save();
+              updatedCount++;
+            }
+            
+            processedCount++;
+            
+            // Логируем каждые 500 задач для контроля процесса
+            if (processedCount % 500 == 0)
+              Logger.Debug($"DocumentTypeFillerJob: Обработано задач: {processedCount}, обновлено: {updatedCount}, ошибок: {errorCount}");
+          }
+          catch (Exception ex)
+          {
+            errorCount++;
+            Logger.Error($"DocumentTypeFillerJob: Ошибка при обработке задачи {task.Id}", ex);
+          }
+        }
+      }
+      
+      Logger.Debug($"DocumentTypeFillerJob: Обработка завершена. Всего обработано: {processedCount}, обновлено: {updatedCount}, ошибок: {errorCount}");
+    }
+    
+    /// <summary>
+    /// Определяет тип документа для задачи с защитой от ошибок
+    /// </summary>
+    private string DetermineDocumentType(Sungero.Workflow.ITask task)
+    {
+      try
+      {
+        var approvalTask = sberdev.SBContracts.ApprovalTasks.As(task);
+        if (approvalTask == null || approvalTask.DocumentGroup == null)
+          return string.Empty;
+        
+        // Безопасное получение документа с обработкой возможных исключений
+        try
+        {
+          // Проверяем наличие документов в группе вложений
+          var documents = approvalTask.DocumentGroup.OfficialDocuments.ToList();
+          if (documents == null || !documents.Any())
+            return string.Empty;
+          
+          var document = documents.FirstOrDefault();
+          if (document == null)
+            return string.Empty;
+          
+          // Пробуем определить тип документа, проверяя последовательно все варианты
+          foreach (var docType in new[] { "Contractual", "IncInvoce", "Accounting", "AbstractContr", "Another" })
+          {
+            try
+            {
+              if (PublicFunctions.Module.SafeMatchesDocumentType(document, docType))
+                return docType;
+            }
+            catch (Exception ex)
+            {
+              Logger.Error($"DocumentTypeFillerJob: Ошибка при проверке типа {docType} для документа в задаче {task.Id}", ex);
+            }
+          }
+          
+          return "Another"; // Если ни один тип не подошел
+        }
+        catch (Exception ex)
+        {
+          Logger.Error($"DocumentTypeFillerJob: Ошибка при получении документа из задачи {task.Id}", ex);
+          return string.Empty;
+        }
+      }
+      catch (Exception ex)
+      {
+        Logger.Error($"DocumentTypeFillerJob: Ошибка в DetermineDocumentType для задачи {task?.Id}", ex);
+        return string.Empty;
+      }
+    }
+
+    /// <summary>
     /// Фоновый процесс заполнение времени выполнения в исторических задач
     /// </summary>
     public virtual void FillTaskExecutionTimeData()
@@ -115,9 +222,8 @@ namespace sberdev.SberContracts.Server
       }
     }
     
-    
     /// <summary>
-    /// Фоновый процесс обновление кэша аналитических виджетов.
+    /// Фоновый процесс обновления кэша аналитических виджетов.
     /// </summary>
     public virtual void CreateApprovalAnalyticsWidgetsCashes()
     {

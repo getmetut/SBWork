@@ -1601,6 +1601,7 @@ namespace sberdev.SberContracts.Server
     #endregion
     
     #region Функции виджетов
+    
     /// <summary>
     /// Вычисление времени выполнения задачи
     /// </summary>
@@ -1640,11 +1641,11 @@ namespace sberdev.SberContracts.Server
         return 0;
       }
     }
-    
     /// <summary>
     /// Оптимизированный расчет значений для AssignCompletedByDepart.
     /// </summary>
-    public virtual System.Collections.Generic.Dictionary<string, SBContracts.Structures.Module.IAssignApprSeriesInfo> OptimizedCalculateAssignCompletedValues(
+    [Public]
+    public System.Collections.Generic.Dictionary<string, SBContracts.Structures.Module.IAssignApprSeriesInfo> OptimizedCalculateAssignCompletedValues(
       SBContracts.Structures.Module.IDateRange dateRange, string documentType)
     {
       var result = new Dictionary<string, SBContracts.Structures.Module.IAssignApprSeriesInfo>();
@@ -1780,7 +1781,8 @@ namespace sberdev.SberContracts.Server
     /// <summary>
     /// Оптимизированный расчет значений для TaskDeadline.
     /// </summary>
-    public virtual double OptimizedCalculateTaskDeadlineChartPoint(SBContracts.Structures.Module.IDateRange dateRange, string serialType, string documentType)
+    [Public]
+    public double OptimizedCalculateTaskDeadlineChartPoint(SBContracts.Structures.Module.IDateRange dateRange, string serialType, string documentType)
     {
       try
       {
@@ -1920,7 +1922,8 @@ namespace sberdev.SberContracts.Server
     /// <summary>
     /// Оптимизированный расчет значений для AssignAvgApprTimeByDepart.
     /// </summary>
-    public virtual System.Collections.Generic.Dictionary<string, double> OptimizedCalculateAssignAvgApprTimeValues(SBContracts.Structures.Module.IDateRange dateRange, string documentType)
+    [Public]
+    public System.Collections.Generic.Dictionary<string, double> OptimizedCalculateAssignAvgApprTimeValues(SBContracts.Structures.Module.IDateRange dateRange, string documentType)
     {
       var result = new Dictionary<string, double>();
       
@@ -2029,7 +2032,8 @@ namespace sberdev.SberContracts.Server
     /// <summary>
     /// Оптимизированный расчет значений для TaskFlowChart.
     /// </summary>
-    public virtual System.Collections.Generic.Dictionary<string, int> OptimizedCalculateTaskFlowValues(SBContracts.Structures.Module.IDateRange dateRange, string documentType)
+    [Public]
+    public System.Collections.Generic.Dictionary<string, int> OptimizedCalculateTaskFlowValues(SBContracts.Structures.Module.IDateRange dateRange, string documentType)
     {
       Dictionary<string, int> result = new Dictionary<string, int>
       {
