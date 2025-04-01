@@ -471,7 +471,7 @@ namespace sberdev.SBContracts.Shared
       if (_obj.DocumentKind == null)
         return;
       var kind = _obj.DocumentKind.Name;
-      bool isXiongxin = kind == "Договор Xiongxin" || kind == "Дополнительное соглашение Xiongxin"
+      bool isXiongxin = kind == "Договор Xiongxin" || kind == "Дополнительное соглашение Xiongxin";
         _obj.State.Properties.AgentSaluteSberDev.IsVisible = isXiongxin;
         _obj.State.Properties.AgentSaluteSberDev.IsRequired = isXiongxin;
         _obj.State.Properties.DelPeriodSberDev.IsVisible = isXiongxin;
