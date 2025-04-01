@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -26,9 +26,19 @@ namespace sberdev.SBContracts.Shared
       {
         _obj.State.Properties.DaysToFinishWorks.IsEnabled = false;
       }
-      _obj.State.Properties.ValidTill.IsRequired = false;//_obj.IsAutomaticRenewal != true || _obj.DaysToFinishWorks != null;
+      _obj.State.Properties.ValidTill.IsRequired = false;
     }
     
-    
+    public override void SetPropertiesAccess()
+    {
+      base.SetPropertiesAccess();
+      if (_obj.DocumentKind != null)
+      {
+        string kind = _obj.DocumentKind.Name;
+        bool isAcc = kind == "Счет-договор" || kind == "Договор-оферта";
+        _obj.State.Properties.PayTypeBaseSungero.IsVisible = isAcc;
+        _obj.State.Properties.PayTypeBaseSungero.IsRequired = isAcc;
+      }
     }
   }
+}

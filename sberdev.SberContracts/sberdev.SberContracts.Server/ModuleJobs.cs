@@ -6,6 +6,7 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using Newtonsoft.Json;
+using System.Transactions;
 
 namespace sberdev.SberContracts.Server
 {
@@ -18,50 +19,116 @@ namespace sberdev.SberContracts.Server
     public virtual void FillTaskDocunetType()
     {
       // Получаем все задачи согласования без заполненного DocumentType
-      var approvalTasks = sberdev.SBContracts.ApprovalTasks.GetAll()
+      var approvalTaskIds = sberdev.SBContracts.ApprovalTasks.GetAll()
         .Where(t => t.DocumentTypeSungero == null || t.DocumentTypeSungero == "")
+        .Select(t => t.Id)
         .ToList();
       
-      Logger.Debug($"DocumentTypeFillerJob: Начата обработка задач согласования. Всего задач для обработки: {approvalTasks.Count}");
+      Logger.Debug($"DocumentTypeFillerJob: Начата обработка задач согласования. Всего задач для обработки: {approvalTaskIds.Count}");
       
       int processedCount = 0;
       int updatedCount = 0;
       int errorCount = 0;
       
-      // Обрабатываем задачи пакетами для экономии памяти
-      int batchSize = 500;
-      int tasksCount = approvalTasks.Count();
-      for (int i = 0; i < tasksCount; i += batchSize)
+      // Уменьшаем размер пакета
+      int batchSize = 100;
+      
+      // Обрабатываем по ID для уменьшения нагрузки на память
+      for (int i = 0; i < approvalTaskIds.Count; i += batchSize)
       {
-        var batch = approvalTasks.Skip(i).Take(batchSize).ToList();
+        var batchIds = approvalTaskIds.Skip(i).Take(batchSize).ToList();
         
-        foreach (var task in batch)
+        // Обрабатываем каждую задачу в отдельной транзакции
+        foreach (var taskId in batchIds)
         {
           try
           {
-            // Определяем тип документа с защитой от ошибок
-            string documentType = DetermineDocumentType(task);
+            // Каждый раз получаем свежую версию задачи в отдельной транзакции
+            var task = sberdev.SBContracts.ApprovalTasks.GetAll().Where(t => t.Id == taskId).FirstOrDefault();
             
-            if (!string.IsNullOrEmpty(documentType))
+            if (task == null)
             {
-              // Обновляем поле DocumentType в задаче
-              task.DocumentTypeSungero = documentType;
-              task.Save();
-              updatedCount++;
+              Logger.Debug($"DocumentTypeFillerJob: Задача с ID {taskId} не найдена, возможно уже удалена");
+              continue;
+            }
+            
+            // Повторно проверяем условие, т.к. состояние могло измениться
+            if (string.IsNullOrEmpty(task.DocumentTypeSungero))
+            {
+              // Определяем тип документа
+              string documentType = DetermineDocumentType(task);
+              
+              if (!string.IsNullOrEmpty(documentType))
+              {
+                // Обрабатываем с повторными попытками при ошибке
+                bool saved = false;
+                int maxRetries = 3;
+                
+                for (int retry = 0; retry < maxRetries && !saved; retry++)
+                {
+                  try
+                  {
+                    // Если это повторная попытка, получаем задачу заново
+                    if (retry > 0)
+                    {
+                      System.Threading.Thread.Sleep(1000 * retry);
+                      task = sberdev.SBContracts.ApprovalTasks.GetAll().Where(t => t.Id == taskId).FirstOrDefault();
+                      if (task == null) break;
+                    }
+                    
+                    using (var ts = new TransactionScope())
+                    {
+                      // Подробное логирование
+                      Logger.Debug($"DocumentTypeFillerJob: Попытка {retry+1} сохранения задачи {taskId}, устанавливаемый тип: {documentType}");
+                      
+                      task.DocumentTypeSungero = documentType;
+                      task.Save();
+                      
+                      ts.Complete();
+                      saved = true;
+                      updatedCount++;
+                      
+                      Logger.Debug($"DocumentTypeFillerJob: Задача {taskId} успешно сохранена, тип установлен: {documentType}");
+                    }
+                  }
+                  catch (Exception retryEx)
+                  {
+                    // Логируем детальную информацию об ошибке
+                    Logger.Error($"DocumentTypeFillerJob: Попытка {retry+1} - Ошибка при сохранении задачи {taskId}, сообщение: {retryEx.Message}", retryEx);
+                    
+                    // Логируем вложенные исключения
+                    var innerEx = retryEx.InnerException;
+                    int innerLevel = 1;
+                    while (innerEx != null)
+                    {
+                      Logger.Error($"DocumentTypeFillerJob: Внутреннее исключение уровня {innerLevel}: {innerEx.Message}, {innerEx.StackTrace}");
+                      innerEx = innerEx.InnerException;
+                      innerLevel++;
+                    }
+                    
+                    // Если это последняя попытка, увеличиваем счетчик ошибок
+                    if (retry == maxRetries - 1)
+                      errorCount++;
+                  }
+                }
+              }
             }
             
             processedCount++;
             
-            // Логируем каждые 500 задач для контроля процесса
-            if (processedCount % 500 == 0)
+            // Логируем прогресс выполнения
+            if (processedCount % 50 == 0)
               Logger.Debug($"DocumentTypeFillerJob: Обработано задач: {processedCount}, обновлено: {updatedCount}, ошибок: {errorCount}");
           }
           catch (Exception ex)
           {
             errorCount++;
-            Logger.Error($"DocumentTypeFillerJob: Ошибка при обработке задачи {task.Id}", ex);
+            Logger.Error($"DocumentTypeFillerJob: Общая ошибка при обработке задачи {taskId}", ex);
           }
         }
+        
+        // Принудительная сборка мусора после каждого пакета
+        GC.Collect();
       }
       
       Logger.Debug($"DocumentTypeFillerJob: Обработка завершена. Всего обработано: {processedCount}, обновлено: {updatedCount}, ошибок: {errorCount}");

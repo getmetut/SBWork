@@ -415,4 +415,13 @@
   <data name="Property_NMASDevSDev" xml:space="preserve">
     <value>Объекты НМА в 1С</value>
   </data>
+  <data name="Property_PayTypeBaseSungero" xml:space="preserve">
+    <value>Pay type</value>
+  </data>
+  <data name="Enum_PayTypeBaseSungero_Prepayment" xml:space="preserve">
+    <value>Prepayment</value>
+  </data>
+  <data name="Enum_PayTypeBaseSungero_Postpay" xml:space="preserve">
+    <value>Postpay</value>
+  </data>
 </root>
