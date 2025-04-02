@@ -462,7 +462,7 @@
           "ColumnSpan": 1,
           "GroupType": "GroupBox",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
-          "RowNumber": 7,
+          "RowNumber": 6,
           "RowSpan": 1
         },
         {
@@ -474,7 +474,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
           "ParentGuid": "b71d03de-fd64-4d15-a138-dd67cb5e24ad",
           "PropertyGuid": "a3340da9-69d8-48fd-a3d4-65beca53c238",
-          "RowNumber": 0,
+          "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
         },
@@ -487,20 +487,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
           "ParentGuid": "b71d03de-fd64-4d15-a138-dd67cb5e24ad",
           "PropertyGuid": "9d0356cc-2c56-4079-8917-2af045127ddc",
-          "RowNumber": 0,
-          "RowSpan": 1,
-          "Settings": []
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "0e5f7762-7308-43e7-a2c3-f7c7d4fe326d",
-          "Name": "PlusMinusSDevSDev",
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
-          "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
-          "PropertyGuid": "a15b6b31-d60e-41a5-92d5-7d518c987468",
-          "RowNumber": 6,
+          "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
         },
@@ -514,7 +501,7 @@
           "HeaderLocation": "Top",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "b26f8bae-19ef-4c57-bfb6-45be8a71c212",
-          "RowNumber": 8,
+          "RowNumber": 7,
           "RowSpan": 1,
           "Settings": [
             {
@@ -522,6 +509,19 @@
               "Value": true
             }
           ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "0e5f7762-7308-43e7-a2c3-f7c7d4fe326d",
+          "Name": "PlusMinusSDevSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "ParentGuid": "b71d03de-fd64-4d15-a138-dd67cb5e24ad",
+          "PropertyGuid": "a15b6b31-d60e-41a5-92d5-7d518c987468",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -674,11 +674,6 @@
           "NameGuid": "419a7a19-8620-4249-a43b-5bc7655cd196",
           "Name": "PlusMinus",
           "Code": "PlusMinus"
-        },
-        {
-          "NameGuid": "4605e6ed-5970-42fb-a06e-f313c45a51af",
-          "Name": "SummDoc",
-          "Code": "SummDoc"
         },
         {
           "NameGuid": "ccfcb3a9-70bf-4c7f-a7d2-915d7d05f066",

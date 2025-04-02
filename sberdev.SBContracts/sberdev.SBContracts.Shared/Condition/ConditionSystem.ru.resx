@@ -229,9 +229,6 @@
   <data name="Enum_ConditionType_PlusMinus" xml:space="preserve">
     <value>Доходный\Расходный</value>
   </data>
-  <data name="Enum_ConditionType_SummDoc" xml:space="preserve">
-    <value>Контроль суммы документа</value>
-  </data>
   <data name="Enum_PlusMinusSDev_Profitable" xml:space="preserve">
     <value>Доходный</value>
   </data>

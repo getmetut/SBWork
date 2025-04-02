@@ -118,29 +118,6 @@
         },
         {
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "f0607051-ea77-4af2-b796-6d11cd8a7374",
-          "Name": "SubjectSDev",
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
-          "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
-          "PropertyGuid": "4bc39efb-1f46-4a1e-8b8c-04f2b90d6a8b",
-          "RowNumber": 3,
-          "RowSpan": 1,
-          "Settings": [
-            {
-              "Name": "Height",
-              "Value": 60
-            },
-            {
-              "Name": "IsAutotextEnabled",
-              "Value": true
-            }
-          ],
-          "Versions": []
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "a915c070-568d-4f08-a736-5fbdabe9e559",
           "Name": "ProjectSDev",
           "ColumnNumber": 0,
@@ -348,6 +325,7 @@
           "ColumnNumber": 0,
           "ColumnSpan": 2,
           "GroupType": "GroupBox",
+          "IsVisible": false,
           "ParentGuid": "3d411ab8-967c-43b4-ab77-0240b19d9921",
           "RowNumber": 7,
           "RowSpan": 1
@@ -420,7 +398,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
           "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
           "PropertyGuid": "2ce0ebe7-593a-4855-a39a-a4537ae4dd5d",
-          "RowNumber": 4,
+          "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
         }
@@ -434,13 +412,27 @@
   ],
   "HandledEvents": [
     "CreatedServer",
-    "ShowingClient"
+    "ShowingClient",
+    "BeforeSaveServer"
   ],
   "IconResourcesKeys": [],
   "LayeredFromGuid": "be859f9b-7a04-4f07-82bc-441352bce627",
   "OpenCardByDefaultInCollection": true,
   "OperationsClass": "",
   "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "91ac0e49-10fc-45a2-848a-0541e7fdd7cd",
+      "Name": "DocumentKind",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "27dee161-2fb4-46bb-9fd9-da61c92e534c",

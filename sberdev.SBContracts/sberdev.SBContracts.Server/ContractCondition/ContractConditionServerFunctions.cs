@@ -154,23 +154,7 @@ namespace sberdev.SBContracts.Server
           itg += _obj.TotalSummSDevSDev.Value.ToString();
           
           return (itg);
-        }
-        
-        if (_obj.ConditionType == ConditionType.SummDoc)
-        {
-          string itg = "Сумма документа ";
-          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Big)
-            itg += "> ";
-          
-          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Little)
-            itg += "< ";
-          
-          if (_obj.PlusMinusSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
-            itg += "= ";
-          
-          itg += _obj.SummPriznSDevSDev.Value.ToString();
-          return (itg);
-        }
+        }        
         
         if (_obj.ConditionType == ConditionType.INNCollection)
           return ("Контроль по ИНН КА");

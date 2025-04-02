@@ -10,6 +10,13 @@ namespace Sungero.ATS
   partial class PowerOfAttorneyServerHandlers
   {
 
+    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
+    {
+      base.BeforeSave(e);
+      if (_obj.CategorySDev == null)
+        e.AddError("Заполнение категории доверенности - обязательно!");
+    }
+
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       base.Created(e);
