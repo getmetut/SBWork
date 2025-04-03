@@ -254,10 +254,7 @@
     <value>Сумма по договору</value>
   </data>
   <data name="Enum_ConditionType_PlusMinus" xml:space="preserve">
-    <value>Profitable\Consumable</value>
-  </data>
-  <data name="Enum_ConditionType_SummDoc" xml:space="preserve">
-    <value>Document amount control</value>
+    <value>Доходный/Расходный + контроль суммы</value>
   </data>
   <data name="Enum_PlusMinusSDev_ExpendProfit" xml:space="preserve">
     <value>Profitable-expendable</value>

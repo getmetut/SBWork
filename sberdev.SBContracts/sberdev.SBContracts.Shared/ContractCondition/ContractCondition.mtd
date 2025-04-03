@@ -356,11 +356,6 @@
           "Code": "IsProdPurchase"
         },
         {
-          "NameGuid": "5a4d5b3f-f6e7-4b4f-a454-e19ed5da9687",
-          "Name": "SummDoc",
-          "Code": "SummDoc"
-        },
-        {
           "NameGuid": "b4ea34ae-5068-4c92-97ca-9b00c9114314",
           "Name": "PlusMinus",
           "Code": "PlusMinus"
