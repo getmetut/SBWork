@@ -1894,8 +1894,10 @@
       "NameGuid": "f819af65-5a7c-4f59-87f3-f5f62106d162",
       "Name": "Counterparty",
       "IsAncestorMetadata": true,
+      "IsRequired": true,
       "Overridden": [
-        "IsQuickSearchAllowed"
+        "IsQuickSearchAllowed",
+        "IsRequired"
       ],
       "Versions": []
     },

@@ -407,7 +407,7 @@
     <value>Доп. соглашение</value>
   </data>
   <data name="Property_ConcludedContractsKind" xml:space="preserve">
-    <value>Заключенные договора</value>
+    <value>Заключенные договоры</value>
   </data>
   <data name="Enum_ConcludedContractsKind_Yes" xml:space="preserve">
     <value>Да</value>

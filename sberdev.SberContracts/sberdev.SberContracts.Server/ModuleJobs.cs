@@ -12,17 +12,19 @@ namespace sberdev.SberContracts.Server
 {
   public class ModuleJobs
   {
-
-    /// <summary>
-    /// Процесс заполняет поле DocumentType у задач (оно создано для построения виджетов)
-    /// </summary>
+    
     public virtual void FillTaskDocunetType()
     {
-      // Получаем все задачи согласования без заполненного DocumentType
-      var approvalTaskIds = sberdev.SBContracts.ApprovalTasks.GetAll()
+      // Получаем только ID задач без заполненного DocumentType
+      var query = sberdev.SBContracts.ApprovalTasks.GetAll()
         .Where(t => t.DocumentTypeSungero == null || t.DocumentTypeSungero == "")
-        .Select(t => t.Id)
-        .ToList();
+        .Select(t => t.Id);
+      
+      var approvalTaskIds = new List<long>();
+      using (var session = new Sungero.Domain.Session())
+      {
+        approvalTaskIds = query.ToList();
+      }
       
       Logger.Debug($"DocumentTypeFillerJob: Начата обработка задач согласования. Всего задач для обработки: {approvalTaskIds.Count}");
       
@@ -31,92 +33,19 @@ namespace sberdev.SberContracts.Server
       int errorCount = 0;
       
       // Уменьшаем размер пакета
-      int batchSize = 100;
+      int batchSize = 50;
       
-      // Обрабатываем по ID для уменьшения нагрузки на память
       for (int i = 0; i < approvalTaskIds.Count; i += batchSize)
       {
         var batchIds = approvalTaskIds.Skip(i).Take(batchSize).ToList();
         
-        // Обрабатываем каждую задачу в отдельной транзакции
         foreach (var taskId in batchIds)
         {
           try
           {
-            // Каждый раз получаем свежую версию задачи в отдельной транзакции
-            var task = sberdev.SBContracts.ApprovalTasks.GetAll().Where(t => t.Id == taskId).FirstOrDefault();
-            
-            if (task == null)
-            {
-              Logger.Debug($"DocumentTypeFillerJob: Задача с ID {taskId} не найдена, возможно уже удалена");
-              continue;
-            }
-            
-            // Повторно проверяем условие, т.к. состояние могло измениться
-            if (string.IsNullOrEmpty(task.DocumentTypeSungero))
-            {
-              // Определяем тип документа
-              string documentType = DetermineDocumentType(task);
-              
-              if (!string.IsNullOrEmpty(documentType))
-              {
-                // Обрабатываем с повторными попытками при ошибке
-                bool saved = false;
-                int maxRetries = 3;
-                
-                for (int retry = 0; retry < maxRetries && !saved; retry++)
-                {
-                  try
-                  {
-                    // Если это повторная попытка, получаем задачу заново
-                    if (retry > 0)
-                    {
-                      System.Threading.Thread.Sleep(1000 * retry);
-                      task = sberdev.SBContracts.ApprovalTasks.GetAll().Where(t => t.Id == taskId).FirstOrDefault();
-                      if (task == null) break;
-                    }
-                    
-                    using (var ts = new TransactionScope())
-                    {
-                      // Подробное логирование
-                      Logger.Debug($"DocumentTypeFillerJob: Попытка {retry+1} сохранения задачи {taskId}, устанавливаемый тип: {documentType}");
-                      
-                      task.DocumentTypeSungero = documentType;
-                      task.Save();
-                      
-                      ts.Complete();
-                      saved = true;
-                      updatedCount++;
-                      
-                      Logger.Debug($"DocumentTypeFillerJob: Задача {taskId} успешно сохранена, тип установлен: {documentType}");
-                    }
-                  }
-                  catch (Exception retryEx)
-                  {
-                    // Логируем детальную информацию об ошибке
-                    Logger.Error($"DocumentTypeFillerJob: Попытка {retry+1} - Ошибка при сохранении задачи {taskId}, сообщение: {retryEx.Message}", retryEx);
-                    
-                    // Логируем вложенные исключения
-                    var innerEx = retryEx.InnerException;
-                    int innerLevel = 1;
-                    while (innerEx != null)
-                    {
-                      Logger.Error($"DocumentTypeFillerJob: Внутреннее исключение уровня {innerLevel}: {innerEx.Message}, {innerEx.StackTrace}");
-                      innerEx = innerEx.InnerException;
-                      innerLevel++;
-                    }
-                    
-                    // Если это последняя попытка, увеличиваем счетчик ошибок
-                    if (retry == maxRetries - 1)
-                      errorCount++;
-                  }
-                }
-              }
-            }
-            
+            bool processed = ProcessSingleTask(taskId, ref updatedCount);
             processedCount++;
             
-            // Логируем прогресс выполнения
             if (processedCount % 50 == 0)
               Logger.Debug($"DocumentTypeFillerJob: Обработано задач: {processedCount}, обновлено: {updatedCount}, ошибок: {errorCount}");
           }
@@ -127,37 +56,99 @@ namespace sberdev.SberContracts.Server
           }
         }
         
-        // Принудительная сборка мусора после каждого пакета
+        // Явно вызываем сборку мусора между пакетами
         GC.Collect();
+        GC.WaitForPendingFinalizers();
       }
       
       Logger.Debug($"DocumentTypeFillerJob: Обработка завершена. Всего обработано: {processedCount}, обновлено: {updatedCount}, ошибок: {errorCount}");
     }
-    
+
     /// <summary>
-    /// Определяет тип документа для задачи с защитой от ошибок
+    /// Обрабатывает одну задачу в отдельной сессии
     /// </summary>
-    private string DetermineDocumentType(Sungero.Workflow.ITask task)
+    private bool ProcessSingleTask(int taskId, ref int updatedCount)
     {
-      try
+      // Создаем и работаем в новой сессии, не наследуя текущие транзакции
+      using (var session = new Sungero.Domain.Session())
       {
-        var approvalTask = sberdev.SBContracts.ApprovalTasks.As(task);
-        if (approvalTask == null || approvalTask.DocumentGroup == null)
-          return string.Empty;
-        
-        // Безопасное получение документа с обработкой возможных исключений
         try
         {
-          // Проверяем наличие документов в группе вложений
-          var documents = approvalTask.DocumentGroup.OfficialDocuments.ToList();
-          if (documents == null || !documents.Any())
+          var task = sberdev.SBContracts.ApprovalTasks.GetAll(session)
+            .Where(t => t.Id == taskId)
+            .FirstOrDefault();
+          
+          if (task == null)
+          {
+            Logger.Debug($"DocumentTypeFillerJob: Задача с ID {taskId} не найдена");
+            return false;
+          }
+          
+          if (string.IsNullOrEmpty(task.DocumentTypeSungero))
+          {
+            var documentType = DetermineDocumentTypeInNewSession(task.Id);
+            
+            if (!string.IsNullOrEmpty(documentType))
+            {
+              Logger.Debug($"DocumentTypeFillerJob: Сохранение задачи {taskId}, устанавливаемый тип: {documentType}");
+              
+              // Обновляем и сохраняем в отдельной сессии
+              task.DocumentTypeSungero = documentType;
+              session.SubmitChanges();
+              
+              Logger.Debug($"DocumentTypeFillerJob: Задача {taskId} успешно сохранена");
+              updatedCount++;
+              return true;
+            }
+          }
+          
+          return false;
+        }
+        catch (Exception ex)
+        {
+          Logger.Error($"DocumentTypeFillerJob: Ошибка при обработке задачи {taskId} в отдельной сессии: {ex.Message}", ex);
+          
+          // Логируем вложенные исключения
+          var innerEx = ex.InnerException;
+          int innerLevel = 1;
+          while (innerEx != null)
+          {
+            Logger.Error($"DocumentTypeFillerJob: Внутреннее исключение уровня {innerLevel}: {innerEx.Message}");
+            innerEx = innerEx.InnerException;
+            innerLevel++;
+          }
+          
+          return false;
+        }
+      }
+    }
+
+    /// <summary>
+    /// Определяет тип документа в новой сессии
+    /// </summary>
+    private string DetermineDocumentTypeInNewSession(int taskId)
+    {
+      using (var session = new Sungero.Domain.Session())
+      {
+        try
+        {
+          var task = sberdev.SBContracts.ApprovalTasks.GetAll(session)
+            .Where(t => t.Id == taskId)
+            .FirstOrDefault();
+          
+          if (task == null || task.DocumentGroup == null)
+            return string.Empty;
+          
+          // Получаем документы из группы вложений
+          var documents = task.DocumentGroup.OfficialDocuments.ToList();
+          if (!documents.Any())
             return string.Empty;
           
           var document = documents.FirstOrDefault();
           if (document == null)
             return string.Empty;
           
-          // Пробуем определить тип документа, проверяя последовательно все варианты
+          // Проверяем типы документов
           foreach (var docType in new[] { "Contractual", "IncInvoce", "Accounting", "AbstractContr", "Another" })
           {
             try
@@ -167,22 +158,17 @@ namespace sberdev.SberContracts.Server
             }
             catch (Exception ex)
             {
-              Logger.Error($"DocumentTypeFillerJob: Ошибка при проверке типа {docType} для документа в задаче {task.Id}", ex);
+              Logger.Error($"DocumentTypeFillerJob: Ошибка при проверке типа {docType} для документа в задаче {taskId}", ex);
             }
           }
           
-          return "Another"; // Если ни один тип не подошел
+          return "Another";
         }
         catch (Exception ex)
         {
-          Logger.Error($"DocumentTypeFillerJob: Ошибка при получении документа из задачи {task.Id}", ex);
+          Logger.Error($"DocumentTypeFillerJob: Ошибка определения типа документа для задачи {taskId}", ex);
           return string.Empty;
         }
-      }
-      catch (Exception ex)
-      {
-        Logger.Error($"DocumentTypeFillerJob: Ошибка в DetermineDocumentType для задачи {task?.Id}", ex);
-        return string.Empty;
       }
     }
 
