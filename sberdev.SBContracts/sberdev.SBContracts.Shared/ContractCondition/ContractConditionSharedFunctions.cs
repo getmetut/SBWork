@@ -737,8 +737,8 @@ namespace sberdev.SBContracts.Shared
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.PlusMinus); // Доп.Соглашение
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.INNCollection); // Доп.Соглашение
       
-      baseSupport["59079f7f-a326-4947-bbd6-0ae6dfb5f59b"].Add(ConditionType.PlusMinus); // сontract base
-      baseSupport["59079f7f-a326-4947-bbd6-0ae6dfb5f59b"].Add(ConditionType.INNCollection); // сontract base
+     // baseSupport["59079f7f-a326-4947-bbd6-0ae6dfb5f59b"].Add(ConditionType.PlusMinus); // сontract base
+     // baseSupport["59079f7f-a326-4947-bbd6-0ae6dfb5f59b"].Add(ConditionType.INNCollection); // сontract base
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.PlusMinus); // incomming
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.INNCollection); // incomming
