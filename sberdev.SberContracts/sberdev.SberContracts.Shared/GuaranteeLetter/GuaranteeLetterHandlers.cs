@@ -10,5 +10,11 @@ namespace sberdev.SberContracts
   partial class GuaranteeLetterSharedHandlers
   {
 
+    public override void DocumentKindChanged(Sungero.Docflow.Shared.OfficialDocumentDocumentKindChangedEventArgs e)
+    {
+      base.DocumentKindChanged(e);
+      PublicFunctions.GuaranteeLetter.UpdateCard(_obj);
+    }
+
   }
 }

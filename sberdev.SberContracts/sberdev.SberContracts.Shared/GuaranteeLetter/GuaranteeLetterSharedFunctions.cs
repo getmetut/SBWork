@@ -9,6 +9,30 @@ namespace sberdev.SberContracts.Shared
 {
   partial class GuaranteeLetterFunctions
   {
+
+    /// <summary>
+    /// Обновление карточки документа
+    /// </summary>  
+    [Public]
+    public void UpdateCard()
+    {
+      _obj.State.Properties.AddendumDocument.IsVisible = true;
+      _obj.State.Properties.AddendumDocument.IsRequired = true;
+      if (_obj.DocumentKind != null)
+      {
+        var Kind = sberdev.SBContracts.DocumentKinds.As(_obj.DocumentKind);
+        if (Kind.ReklamaSDev.HasValue)
+        {
+          if (Kind.ReklamaSDev.Value)
+          {
+            _obj.State.Properties.TotalAmount.IsVisible = false;
+            _obj.State.Properties.TotalAmount.IsRequired = false;
+            _obj.State.Properties.AddendumDocument.IsVisible = false;
+            _obj.State.Properties.AddendumDocument.IsRequired = false;
+          }
+        }
+      }
+    }
     public override void SetPropertiesAccess()
     {
       base.SetPropertiesAccess();

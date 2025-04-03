@@ -145,4 +145,10 @@
   <data name="Property_SaveDocSDev" xml:space="preserve">
     <value>Договор ответственного хранения</value>
   </data>
+  <data name="Property_NoMoneySDev" xml:space="preserve">
+    <value>Не финансовый документ</value>
+  </data>
+  <data name="Property_ReklamaSDev" xml:space="preserve">
+    <value>Маркетинг/реклама (не финансовый)</value>
+  </data>
 </root>

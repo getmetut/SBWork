@@ -998,7 +998,9 @@
     }
   ],
   "HandledEvents": [
-    "CreatedServer"
+    "CreatedServer",
+    "ShowingClient",
+    "RefreshClient"
   ],
   "IconResourcesKeys": [],
   "IntegrationServiceName": "SberContractsGuaranteeLetter",
@@ -1012,6 +1014,19 @@
     "HideFromNavigationEditorCreationArea"
   ],
   "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "91ac0e49-10fc-45a2-848a-0541e7fdd7cd",
+      "Name": "DocumentKind",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "aae1f6ae-d090-4c5a-963e-44c8b79dc92b",
@@ -1096,13 +1111,26 @@
       "Name": "AddendumDocument",
       "EntityGuid": "7aa8969f-f81d-462c-b0d8-761ccd59253f",
       "IsAncestorMetadata": true,
-      "IsRequired": true,
       "Overridden": [
-        "IsRequired",
         "EntityGuid",
         "IsShowedInList",
         "CanBeSearch"
       ]
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "UpdateCard",
+      "Parameters": [
+        {
+          "Name": "guaranteeLetter",
+          "ParameterType": "global::sberdev.SberContracts.IGuaranteeLetter",
+          "ParameterTypeFullName": "sberdev.SberContracts.IGuaranteeLetter, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [],
