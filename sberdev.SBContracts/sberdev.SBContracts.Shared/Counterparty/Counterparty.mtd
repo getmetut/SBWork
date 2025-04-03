@@ -324,6 +324,9 @@
       "NameGuid": "8040b198-5278-4621-b31c-cbe5632609f6",
       "Name": "FocusCheckedDateSberDev",
       "Code": "FocusCheckDate",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
       "PreviousPropertyGuid": "48aa3e2d-135d-41a3-8bf4-423deb2540c9"
     },
@@ -379,7 +382,9 @@
     }
   ],
   "PublicStructures": [],
-  "ResourcesKeys": [],
+  "ResourcesKeys": [
+    "CheckHistoryComment"
+  ],
   "RibbonCardMetadata": {
     "NameGuid": "70be353b-816b-470d-8f20-3e8e403c6587",
     "Name": "RibbonCard",
