@@ -383,7 +383,7 @@
   ],
   "PublicStructures": [],
   "ResourcesKeys": [
-    "CheckHistoryComment"
+    "Enum_Operation_Checking"
   ],
   "RibbonCardMetadata": {
     "NameGuid": "70be353b-816b-470d-8f20-3e8e403c6587",
