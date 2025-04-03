@@ -18,7 +18,7 @@ namespace sberdev.SberContracts.Server
       {
         var contractual = SBContracts.ContractualDocuments.As(document);
         if (contractual == null)
-          return this.GetErrorResult("Документ не является договором.");
+          return this.GetErrorResult("Документ не является договорным.");
         var cp = SBContracts.Counterparties.As(contractual.Counterparty);
         if (cp == null)
           return this.GetErrorResult("В документе не указан контрагент.");
@@ -30,6 +30,7 @@ namespace sberdev.SberContracts.Server
       }
       catch (Exception ex)
       {
+        Logger.Error($"AutoSetFocusFlagFunction: {ex.ToString()}");
         return this.GetRetryResult(string.Empty);
       }
     }
