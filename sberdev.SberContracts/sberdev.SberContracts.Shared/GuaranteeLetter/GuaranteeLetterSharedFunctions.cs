@@ -18,6 +18,8 @@ namespace sberdev.SberContracts.Shared
     {
       _obj.State.Properties.AddendumDocument.IsVisible = true;
       _obj.State.Properties.AddendumDocument.IsRequired = true;
+      _obj.State.Properties.TotalAmount.IsVisible = true;
+      _obj.State.Properties.Currency.IsVisible = true;
       if (_obj.DocumentKind != null)
       {
         var Kind = sberdev.SBContracts.DocumentKinds.As(_obj.DocumentKind);
@@ -27,6 +29,8 @@ namespace sberdev.SberContracts.Shared
           {
             _obj.State.Properties.TotalAmount.IsVisible = false;
             _obj.State.Properties.TotalAmount.IsRequired = false;
+            _obj.State.Properties.Currency.IsVisible = true;
+            _obj.State.Properties.Currency.IsRequired = true;
             _obj.State.Properties.AddendumDocument.IsVisible = false;
             _obj.State.Properties.AddendumDocument.IsRequired = false;
           }
