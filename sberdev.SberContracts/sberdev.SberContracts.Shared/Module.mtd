@@ -524,7 +524,6 @@
           "ParameterTypeFullName": "System.String"
         }
       ],
-      "Placement": "Shared",
       "ReturnType": "global::System.Boolean",
       "ReturnTypeFullName": "System.Boolean"
     },
@@ -543,6 +542,76 @@
       ],
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "CalculateAssignAvgApprTimeByDepartValues",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Double>"
+    },
+    {
+      "Name": "CalculateAssignCompletedByDepartValues",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>"
+    },
+    {
+      "Name": "CalculateTaskDeadlineChartPoints",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "serialType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.Double",
+      "ReturnTypeFullName": "System.Double"
+    },
+    {
+      "Name": "CalculateTaskFlowValues",
+      "Parameters": [
+        {
+          "Name": "dateRange",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
+        },
+        {
+          "Name": "documentType",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Int32>"
     },
     {
       "Name": "CreateApprovalTask",
@@ -801,7 +870,6 @@
           "ParameterTypeFullName": "System.String"
         }
       ],
-      "Placement": "Shared",
       "ReturnType": "global::System.Boolean",
       "ReturnTypeFullName": "System.Boolean"
     },
@@ -847,76 +915,6 @@
       "ReturnTypeFullName": "System.String"
     },
     {
-      "Name": "OptimizedCalculateAssignAvgApprTimeValues",
-      "Parameters": [
-        {
-          "Name": "dateRange",
-          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
-          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
-        },
-        {
-          "Name": "documentType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Double>"
-    },
-    {
-      "Name": "OptimizedCalculateAssignCompletedValues",
-      "Parameters": [
-        {
-          "Name": "dateRange",
-          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
-          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
-        },
-        {
-          "Name": "documentType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::sberdev.SBContracts.Structures.Module.IAssignApprSeriesInfo>"
-    },
-    {
-      "Name": "OptimizedCalculateTaskDeadlineChartPoint",
-      "Parameters": [
-        {
-          "Name": "dateRange",
-          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
-          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
-        },
-        {
-          "Name": "serialType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        },
-        {
-          "Name": "documentType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "global::System.Double",
-      "ReturnTypeFullName": "System.Double"
-    },
-    {
-      "Name": "OptimizedCalculateTaskFlowValues",
-      "Parameters": [
-        {
-          "Name": "dateRange",
-          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IDateRange",
-          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IDateRange"
-        },
-        {
-          "Name": "documentType",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Int32>"
-    },
-    {
       "Name": "PaidInvoiceReportFunction",
       "Parameters": [
         {
@@ -943,7 +941,6 @@
           "ParameterTypeFullName": "System.String"
         }
       ],
-      "Placement": "Shared",
       "ReturnType": "global::System.Boolean",
       "ReturnTypeFullName": "System.Boolean"
     },
@@ -965,8 +962,8 @@
       "Parameters": [
         {
           "Name": "task",
-          "ParameterType": "global::Sungero.Workflow.ITask",
-          "ParameterTypeFullName": "Sungero.Workflow.ITask, Sungero.Workflow.Interfaces"
+          "ParameterType": "global::sberdev.SBContracts.IApprovalTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
         },
         {
           "Name": "documentType",
@@ -974,7 +971,6 @@
           "ParameterTypeFullName": "System.String"
         }
       ],
-      "Placement": "Shared",
       "ReturnType": "global::System.Boolean",
       "ReturnTypeFullName": "System.Boolean"
     }

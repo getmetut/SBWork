@@ -30,7 +30,7 @@ namespace sberdev.SberContracts.Server
       }
       catch (Exception ex)
       {
-        Logger.Error($"AutoSetFocusFlagFunction: {ex.ToString()}");
+        Logger.Error("Ошибка в AutoSetFocusFlagFunction", ex);
         return this.GetRetryResult(string.Empty);
       }
     }

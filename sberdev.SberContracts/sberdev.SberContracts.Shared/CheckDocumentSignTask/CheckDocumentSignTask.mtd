@@ -3,6 +3,25 @@
   "NameGuid": "caadab73-6e42-4d66-984a-126225ddc101",
   "Name": "CheckDocumentSignTask",
   "AccessRightsMode": "Both",
+  "Actions": [
+    {
+      "NameGuid": "2154bdda-f568-4546-9237-262bff744b6d",
+      "Name": "GetFirstAttach",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": null,
+      "SmallIconName": null
+    },
+    {
+      "NameGuid": "ccac127a-03d5-4684-afcb-4507df693f5b",
+      "Name": "GetFirstAllAttach",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "",
+      "SmallIconName": "",
+      "Versions": []
+    }
+  ],
   "BaseGuid": "d795d1f6-45c1-4e5e-9677-b53fb7280c7e",
   "BlockIds": [],
   "CanBeNavigationPropertyType": true,
@@ -237,7 +256,60 @@
     "NameGuid": "85ef01a0-21b8-4d48-9859-99c2cb703c21",
     "Name": "RibbonCard",
     "Categories": [],
-    "Elements": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "1b3430e8-3c27-4b48-9c8e-898f8bfe81f5",
+        "Name": "Restart",
+        "ActionGuid": "83bd59b6-466b-4163-9719-1da6acffc409",
+        "ButtonSize": "Large",
+        "Index": 3,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "e4e6fdd4-8159-4a37-a25d-70ee43c07975"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "c5677ed5-fc34-4db8-80ed-45e341cf595d",
+        "Name": "Resume",
+        "ActionGuid": "c94056c6-af03-453c-9ca0-c2e238966e52",
+        "ButtonSize": "Large",
+        "Index": 2,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "e4e6fdd4-8159-4a37-a25d-70ee43c07975"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "9e424389-3201-438e-b102-023fcb83b64f",
+        "Name": "Start",
+        "ActionGuid": "0871245b-1f6a-45e4-bb5c-16320db12a30",
+        "ButtonSize": "Large",
+        "Index": 1,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "e4e6fdd4-8159-4a37-a25d-70ee43c07975"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "cbc78580-ea8b-4180-92ef-c8a1cb844770",
+        "Name": "Abort",
+        "ActionGuid": "d3da67a4-89e7-4ee5-bd0c-6b0f0bfb4bca",
+        "ButtonSize": "Large",
+        "Index": 4,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "e4e6fdd4-8159-4a37-a25d-70ee43c07975"
+      }
+    ],
     "Groups": [],
     "IsAncestorMetadata": true,
     "Pages": [],

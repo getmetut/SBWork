@@ -103,4 +103,34 @@
   <data name="ControlGroup_70d3894aadc148568b918ec98c8ff5ad" xml:space="preserve">
     <value />
   </data>
+  <data name="Action_GetFirstAttach" xml:space="preserve">
+    <value>GetFirstAttach</value>
+  </data>
+  <data name="Action_GetFirstAttachDescription" xml:space="preserve">
+    <value>GetFirstAttach</value>
+  </data>
+  <data name="Action_GetFirstAttachHint" xml:space="preserve">
+    <value>GetFirstAttach</value>
+  </data>
+  <data name="Action_GetFirstAttachConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_GetFirstAttachConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_GetFirstAllAttach" xml:space="preserve">
+    <value>GetFirstAllAttach</value>
+  </data>
+  <data name="Action_GetFirstAllAttachDescription" xml:space="preserve">
+    <value>GetFirstAllAttach</value>
+  </data>
+  <data name="Action_GetFirstAllAttachHint" xml:space="preserve">
+    <value>GetFirstAllAttach</value>
+  </data>
+  <data name="Action_GetFirstAllAttachConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_GetFirstAllAttachConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
 </root>
