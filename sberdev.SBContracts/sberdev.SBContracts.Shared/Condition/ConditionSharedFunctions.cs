@@ -1032,10 +1032,7 @@ namespace sberdev.SBContracts.Shared
       
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.PlusMinus); // Sungero.FinancialArchive.UniversalTransferDocument
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.INNCollection); // Sungero.FinancialArchive.UniversalTransferDocument
-      
-      baseSupport["14a59623-89a2-4ea8-b6e9-2ad4365f358c"].Add(ConditionType.INNCollection);
-      baseSupport["14a59623-89a2-4ea8-b6e9-2ad4365f358c"].Add(ConditionType.PlusMinus);
-      
+
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.PlusMinus); // Sungero.FinancialArchive.ContractStatement
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.INNCollection); // Sungero.FinancialArchive.ContractStatement
       

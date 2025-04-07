@@ -559,6 +559,87 @@ namespace sberdev.SBContracts.Shared
       if (_obj.ConditionType == ConditionType.PlusMinus)
       {
         var contra = false;
+        
+        var ContractStat = SBContracts.ContractStatements.As(document);
+        if (ContractStat != null)
+        {
+          contra = true;
+          var ContraSumm = ContractStat.ContrTypeBaseSberDev;
+          
+          bool ctrl = false;
+          
+          if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.PlusMinusSDevSDev.Profitable)
+            ctrl = ContraSumm == SBContracts.ContractStatement.ContrTypeBaseSberDev.Profitable;
+          
+          if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.PlusMinusSDevSDev.Expendable)
+            ctrl = ContraSumm == SBContracts.ContractStatement.ContrTypeBaseSberDev.Expendable;
+          
+          if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.PlusMinusSDevSDev.ExpendProfit)
+            ctrl = false;
+          
+          if (ctrl)
+          {
+            double ContraSumm2 = 0;
+            if (ContractStat.TotalAmount.HasValue)
+              ContraSumm2 = ContractStat.TotalAmount.Value;
+            
+            ctrl = false;
+            
+            if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Big)
+              ctrl = ContraSumm2 > _obj.TotalSummSDevSDev.Value;
+            
+            if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Little)
+              ctrl = ContraSumm2 < _obj.TotalSummSDevSDev.Value;
+            
+            if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
+              ctrl = ContraSumm2 == _obj.TotalSummSDevSDev.Value;
+          }
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            ctrl,
+            string.Empty);
+        }
+
+        var UPD = Sungero.ATS.UniversalTransferDocuments.As(document);
+        if (UPD != null)
+        {
+          contra = true;
+          var ContraSumm = UPD.ContrTypeBaseSberDev;
+          
+          bool ctrl = false;
+          
+          if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.PlusMinusSDevSDev.Profitable)
+            ctrl = ContraSumm == Sungero.ATS.UniversalTransferDocument.ContrTypeBaseSberDev.Profitable;
+          
+          if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.PlusMinusSDevSDev.Expendable)
+            ctrl = ContraSumm == Sungero.ATS.UniversalTransferDocument.ContrTypeBaseSberDev.Expendable;
+          
+          if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.PlusMinusSDevSDev.ExpendProfit)
+            ctrl = false;
+          
+          if (ctrl)
+          {
+            double ContraSumm2 = 0;
+            if (UPD.TotalAmount.HasValue)
+              ContraSumm2 = UPD.TotalAmount.Value;
+            
+            ctrl = false;
+            
+            if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Big)
+              ctrl = ContraSumm2 > _obj.TotalSummSDevSDev.Value;
+            
+            if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Little)
+              ctrl = ContraSumm2 < _obj.TotalSummSDevSDev.Value;
+            
+            if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
+              ctrl = ContraSumm2 == _obj.TotalSummSDevSDev.Value;
+          }
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            ctrl,
+            string.Empty);
+        }
+        
         var ContraDocument = SBContracts.ContractualDocuments.As(document);
         if (ContraDocument != null)
         {
@@ -620,6 +701,45 @@ namespace sberdev.SBContracts.Shared
           foreach (var str in _obj.CollectionINNSDevSDev)
           {
             if (Contract.Counterparty.TIN == str.INN)
+              ContrFind = true;
+          }
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
+        }
+        
+        var ContractStat = SBContracts.ContractStatements.As(document);
+        if (ContractStat != null)
+        {
+          find = true;
+          var ContrFind = false;
+          foreach (var str in _obj.CollectionINNSDevSDev)
+          {
+            if (ContractStat.Counterparty.TIN == str.INN)
+              ContrFind = true;
+          }
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
+        }
+        
+        var UPD = Sungero.ATS.UniversalTransferDocuments.As(document);
+        if (UPD != null)
+        {
+          find = true;
+          var ContrFind = false;
+          foreach (var str in _obj.CollectionINNSDevSDev)
+          {
+            if (UPD.Counterparty.TIN == str.INN)
+              ContrFind = true;
+          }
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
+        }
+       
+        var Purchas = SberContracts.Purchases.As(document);
+        if (Purchas != null)
+        {
+          find = true;
+          var ContrFind = false;
+          foreach (var str in _obj.CollectionINNSDevSDev)
+          {
+            if (Purchas.Counterparty.TIN == str.INN)
               ContrFind = true;
           }
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
@@ -755,6 +875,17 @@ namespace sberdev.SBContracts.Shared
       
       baseSupport["58ad01fb-6805-426b-9152-4de16d83b258"].Add(ConditionType.PlusMinus); // outgoing
       baseSupport["58ad01fb-6805-426b-9152-4de16d83b258"].Add(ConditionType.INNCollection); // outgoing
+      
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.PlusMinus); // Sungero.FinancialArchive.UniversalTransferDocument
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.INNCollection); // Sungero.FinancialArchive.UniversalTransferDocument
+      
+      baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.PlusMinus);
+      baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.INNCollection);
+      
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.PlusMinus); // Sungero.FinancialArchive.ContractStatement
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.INNCollection); // Sungero.FinancialArchive.ContractStatement
+      
+      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.INNCollection); // purchase
       
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.PayType);
       

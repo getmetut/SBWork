@@ -29,8 +29,8 @@ namespace sberdev.SberContracts.Shared
           {
             _obj.State.Properties.TotalAmount.IsVisible = false;
             _obj.State.Properties.TotalAmount.IsRequired = false;
-            _obj.State.Properties.Currency.IsVisible = true;
-            _obj.State.Properties.Currency.IsRequired = true;
+            _obj.State.Properties.Currency.IsVisible = false;
+            _obj.State.Properties.Currency.IsRequired = false;
             _obj.State.Properties.AddendumDocument.IsVisible = false;
             _obj.State.Properties.AddendumDocument.IsRequired = false;
           }
