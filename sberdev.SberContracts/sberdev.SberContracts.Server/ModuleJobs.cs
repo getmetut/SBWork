@@ -42,14 +42,13 @@ namespace sberdev.SberContracts.Server
           {
             bool processed = ProcessSingleTask(taskId, ref updatedCount);
             processedCount++;
-            
             if (processedCount % 50 == 0)
               Logger.Debug($"DocumentTypeFillerJob: Обработано задач: {processedCount}, обновлено: {updatedCount}, ошибок: {errorCount}");
           }
           catch (Exception ex)
           {
             errorCount++;
-            Logger.Error($"DocumentTypeFillerJob: Общая ошибка при обработке задачи {taskId}", ex);
+            Logger.Error($"DocumentTypeFillerJob: Ошибка при обработке задачи {taskId}", ex);
           }
         }
         
@@ -58,7 +57,7 @@ namespace sberdev.SberContracts.Server
         GC.WaitForPendingFinalizers();
       }
       
-      Logger.Debug($"DocumentTypeFillerJob: Обработка завершена. Всего обработано: {processedCount}, обновлено: {updatedCount}, ошибок: {errorCount}");
+      Logger.Debug($"DocumentTypeFillerJob: Обработка завершена. Всего: {processedCount}, обновлено: {updatedCount}, ошибок: {errorCount}");
     }
 
     private bool ProcessSingleTask(long taskId, ref int updatedCount)
@@ -70,17 +69,11 @@ namespace sberdev.SberContracts.Server
           .FirstOrDefault();
         
         if (task == null)
-        {
-          Logger.Debug($"DocumentTypeFillerJob: Задача с ID {taskId} не найдена");
           return false;
-        }
         
-        // Проверяем наличие документов здесь, уже после загрузки задачи
+        // Проверяем наличие документов
         if (task.DocumentGroup == null || !task.DocumentGroup.OfficialDocuments.Any())
-        {
-          Logger.Debug($"DocumentTypeFillerJob: У задачи {taskId} нет прикрепленных документов");
           return false;
-        }
         
         if (string.IsNullOrEmpty(task.DocumentTypeSungero))
         {
@@ -88,13 +81,10 @@ namespace sberdev.SberContracts.Server
           
           if (!string.IsNullOrEmpty(documentType))
           {
-            Logger.Debug($"DocumentTypeFillerJob: Обновление задачи {taskId}, устанавливаемый тип: {documentType}");
-            
-            // Вместо task.Save() используем прямой SQL-запрос так как ничего не сохраняется
-            var sql = $"UPDATE Sungero_WF_Task SET DocumentTypeSu_SBContr_sberdev = '{documentType}' WHERE Id = {taskId}";
+            // Вместо task.Save() используем прямой SQL-запрос
+            var sql = $"UPDATE Sungero_WF_Task SET DocumentTypeSungero = '{documentType}' WHERE Id = {taskId}";
             Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand(sql);
             
-            Logger.Debug($"DocumentTypeFillerJob: Задача {taskId} успешно обновлена через SQL");
             updatedCount++;
             return true;
           }
@@ -133,7 +123,7 @@ namespace sberdev.SberContracts.Server
           }
           catch (Exception ex)
           {
-            Logger.Error($"DocumentTypeFillerJob: Ошибка при проверке типа {docType} для документа в задаче {task.Id}", ex);
+            Logger.Error($"DocumentTypeFillerJob: Ошибка при проверке типа {docType} для задачи {task.Id}", ex);
           }
         }
         
