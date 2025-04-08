@@ -930,7 +930,20 @@ namespace sberdev.SBContracts.Shared
           }
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
         }
-
+       
+        var Purchas = SberContracts.Purchases.As(document);
+        if (Purchas != null)
+        {
+          find = true;
+          var ContrFind = false;
+          foreach (var str in _obj.CollectionINNSDev)
+          {
+            if (Purchas.Counterparty.TIN == str.INN)
+              ContrFind = true;
+          }
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
+        }
+       
         if (!find)
         {
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
@@ -1017,14 +1030,13 @@ namespace sberdev.SBContracts.Shared
       baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.FactOfPayment); // Входящее письмо
       baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.PricesAgreed); // Входящее письмо
       
-      //baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.SummDoc); // Sungero.FinancialArchive.UniversalTransferDocument
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.PlusMinus); // Sungero.FinancialArchive.UniversalTransferDocument
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.INNCollection); // Sungero.FinancialArchive.UniversalTransferDocument
+
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.PlusMinus); // Sungero.FinancialArchive.ContractStatement
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.INNCollection); // Sungero.FinancialArchive.ContractStatement
       
-      //baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.SummDoc); // Sungero.FinancialArchive.ContractStatement
-      //baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.PlusMinus); // Sungero.FinancialArchive.ContractStatement
-      //baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.INNCollection); // Sungero.FinancialArchive.ContractStatement
-      
+      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.INNCollection); // purchase
 
       return baseSupport;
     }
