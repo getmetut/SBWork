@@ -15,7 +15,7 @@ namespace sberdev.SberContracts.Server
     
     public virtual void FillTaskDocunetType()
     {
-      // Получаем только ID задач без заполненного DocumentType (без проверки DocumentGroup)
+      // Получаем только ID задач без заполненного DocumentType
       var query = SBContracts.ApprovalTasks.GetAll()
         .Where(t => t.DocumentTypeSungero == null || t.DocumentTypeSungero == "")
         .Select(t => t.Id);
@@ -88,12 +88,13 @@ namespace sberdev.SberContracts.Server
           
           if (!string.IsNullOrEmpty(documentType))
           {
-            Logger.Debug($"DocumentTypeFillerJob: Сохранение задачи {taskId}, устанавливаемый тип: {documentType}");
+            Logger.Debug($"DocumentTypeFillerJob: Обновление задачи {taskId}, устанавливаемый тип: {documentType}");
             
-            task.DocumentTypeSungero = documentType;
-            task.Save();
+            // Вместо task.Save() используем прямой SQL-запрос так как ничего не сохраняется
+            var sql = $"UPDATE Sungero_WF_Task SET DocumentTypeSu_SBContr_sberdev = '{documentType}' WHERE Id = {taskId}";
+            Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand(sql);
             
-            Logger.Debug($"DocumentTypeFillerJob: Задача {taskId} успешно сохранена");
+            Logger.Debug($"DocumentTypeFillerJob: Задача {taskId} успешно обновлена через SQL");
             updatedCount++;
             return true;
           }
@@ -208,8 +209,9 @@ namespace sberdev.SberContracts.Server
                                         if (lastAssignment?.Completed != null && task.Started <= lastAssignment.Completed)
                                         {
                                           int days = SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastAssignment.Completed);
-                                          task.ExecutionInDaysSungero = days;
-                                          task.Save();
+                                          // Вместо task.Save() используем прямой SQL-запрос так как ничего не сохраняется
+                                          var sql = $"UPDATE Sungero_WF_Task SET ExecutionInDay_SBContr_sberdev = '{days}' WHERE Id = {task.Id}";
+                                          Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand(sql);
                                           success++;
                                         }
                                       }
