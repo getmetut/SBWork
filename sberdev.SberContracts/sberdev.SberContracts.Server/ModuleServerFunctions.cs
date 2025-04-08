@@ -15,6 +15,188 @@ namespace sberdev.SberContracts.Server
   public class ModuleFunctions
   {
     
+    #region Проверка документа на совпадение с выбранной группой типов
+    /// <summary>
+    /// Проверяет, соответствует ли документ выбранному типу
+    /// </summary>
+    [Public]
+    public bool MatchesDocumentType(Sungero.Domain.Shared.IEntity document, string documentType)
+    {
+      if (document == null)
+        return false;
+      
+      // Все типы документов
+      if (string.IsNullOrEmpty(documentType) || documentType == "All")
+        return true;
+      
+      // Преобразуем документ к возможным типам
+      var accounting = sberdev.SBContracts.AccountingDocumentBases.As(document);
+      var contractual = sberdev.SBContracts.ContractualDocuments.As(document);
+      var incomingInvoice = sberdev.SBContracts.IncomingInvoices.As(document);
+      var abstractSup = sberdev.SberContracts.AbstractsSupAgreements.As(document);
+      
+      switch (documentType)
+      {
+        case "Contractual":
+          // SBContracts.Contract, SBContracts.SupAgreement (наследники ContractualDocument)
+          return contractual != null && abstractSup == null;
+          
+        case "IncInvoce":
+          // SBContracts.IncomingInvoice
+          return incomingInvoice != null;
+          
+        case "Accounting":
+          // SBContracts.AccountingDocumentBase кроме IncomingInvoice
+          return accounting != null && incomingInvoice == null;
+          
+        case "AbstractContr":
+          // SberContracts.AbstractsSupAgreement
+          return abstractSup != null;
+          
+        case "Another":
+          // Все остальные типы
+          return document != null && accounting == null && contractual == null;
+          
+        default:
+          return false;
+      }
+    }
+    
+    /// <summary>
+    /// Безопасная проверка соответствия документа выбранному типу с обработкой возможных исключений
+    /// </summary>
+    [Public]
+    public bool SafeMatchesDocumentType(Sungero.Domain.Shared.IEntity document, string documentType)
+    {
+      try
+      {
+        if (document == null)
+          return false;
+        
+        // Все типы документов
+        if (string.IsNullOrEmpty(documentType) || documentType == "All")
+          return true;
+        
+        // Преобразуем документ к возможным типам с защитой от ошибок приведения типов
+        bool isAccounting = false;
+        bool isContractual = false;
+        bool isIncomingInvoice = false;
+        bool isAbstractSup = false;
+        
+        try { isAccounting = sberdev.SBContracts.AccountingDocumentBases.Is(document); } catch { }
+        try { isContractual = sberdev.SBContracts.ContractualDocuments.Is(document); } catch { }
+        try { isIncomingInvoice = sberdev.SBContracts.IncomingInvoices.Is(document); } catch { }
+        try { isAbstractSup = sberdev.SberContracts.AbstractsSupAgreements.Is(document); } catch { }
+        
+        switch (documentType)
+        {
+          case "Contractual":
+            // SBContracts.Contract, SBContracts.SupAgreement (наследники ContractualDocument)
+            return isContractual && !isAbstractSup;
+            
+          case "IncInvoce":
+            // SBContracts.IncomingInvoice
+            return isIncomingInvoice;
+            
+          case "Accounting":
+            // SBContracts.AccountingDocumentBase кроме IncomingInvoice
+            return isAccounting && !isIncomingInvoice;
+            
+          case "AbstractContr":
+            // SberContracts.AbstractsSupAgreement
+            return isAbstractSup;
+            
+          case "Another":
+            // Все остальные типы
+            return !isAccounting && !isContractual;
+            
+          default:
+            return false;
+        }
+      }
+      catch (Exception ex)
+      {
+        Logger.Error($"SafeMatchesDocumentType: Ошибка при проверке типа {documentType} для документа {document?.Id}", ex);
+        return false;
+      }
+    }
+
+    /// <summary>
+    /// Получить документ из задания и проверить его тип
+    /// </summary>
+    [Public]
+    public bool AssignmentMatchesDocumentType(Sungero.Workflow.IAssignment assignment, string documentType)
+    {
+      if (string.IsNullOrEmpty(documentType) || documentType == "All")
+        return true;
+      
+      bool isSubtaskAssignment = assignment.Task != assignment.MainTask;
+      
+      if (isSubtaskAssignment)
+        return SafeMatchesDocumentType(assignment.Attachments.FirstOrDefault(), documentType);
+      else
+      {
+        var task = SBContracts.ApprovalTasks.As(assignment.Task);
+        
+        if (task == null)
+          return SafeMatchesDocumentType(assignment.Attachments.FirstOrDefault(), documentType);
+        
+        if (task.DocumentTypeSungero == documentType)
+          return true;
+        else
+          return SafeMatchesDocumentType(task.DocumentGroup.OfficialDocuments.FirstOrDefault(), documentType);
+      }
+    }
+
+    /// <summary>
+    /// Получить документ из задачи и проверить его тип
+    /// </summary>
+    [Public]
+    public bool TaskMatchesDocumentType(SBContracts.IApprovalTask task, string documentType)
+    {
+      try
+      {
+        // Для всех типов документов возвращаем true без проверки
+        if (string.IsNullOrEmpty(documentType) || documentType == "All")
+          return true;
+        
+        // Если задача пуста, возвращаем false
+        if (task == null)
+          return false;
+        
+        // Проверяем, есть ли в задаче сохраненное значение DocumentType
+        if (!string.IsNullOrEmpty(task.DocumentTypeSungero))
+        {
+          // Если типы совпадают, возвращаем true
+          return task.DocumentTypeSungero == documentType;
+        }
+        
+        // Безопасное получение документа с обработкой возможных исключений
+        try
+        {
+          var document = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
+          if (document == null)
+            return false;
+          
+          // Определяем тип документа и сохраняем его в задаче для повторного использования
+          bool result = SafeMatchesDocumentType(document, documentType);
+          
+          return result;
+        }
+        catch (Exception ex)
+        {
+          Logger.Error($"Ошибка при получении документа из задачи {task.Id}", ex);
+          return false;
+        }
+      }
+      catch (Exception ex)
+      {
+        Logger.Error($"Ошибка в TaskMatchesDocumentType для задачи {task?.Id}", ex);
+        return false;
+      }
+    }
+    #endregion
+    
     #region Минифункции
     
     /// <summary>
@@ -1641,11 +1823,12 @@ namespace sberdev.SberContracts.Server
         return 0;
       }
     }
+    
     /// <summary>
     /// Оптимизированный расчет значений для AssignCompletedByDepart.
     /// </summary>
     [Public]
-    public System.Collections.Generic.Dictionary<string, SBContracts.Structures.Module.IAssignApprSeriesInfo> OptimizedCalculateAssignCompletedValues(
+    public System.Collections.Generic.Dictionary<string, SBContracts.Structures.Module.IAssignApprSeriesInfo> CalculateAssignCompletedByDepartValues(
       SBContracts.Structures.Module.IDateRange dateRange, string documentType)
     {
       var result = new Dictionary<string, SBContracts.Structures.Module.IAssignApprSeriesInfo>();
@@ -1666,26 +1849,28 @@ namespace sberdev.SberContracts.Server
         
         // Оптимизированный запрос для группировки заданий по департаментам
         var query = Sungero.Workflow.Assignments.GetAll()
-          .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
+          .Where(a =>
+                 a.Status == Sungero.Workflow.Assignment.Status.Completed &&
                  a.Created >= dateRange.StartDate &&
                  a.Completed <= dateRange.EndDate &&
                  a.Performer != null);
         
-        // Если не нужно фильтровать по типу документа, используем оптимизированный подход с группировкой в БД
+        // Если не нужно фильтровать по типу документа, используем оптимизированный подход с группировкой
         if (string.IsNullOrEmpty(documentType) || documentType == "All")
         {
-          // Выборка и группировка заданий в одном запросе
-          var assignmentsByDepartment = query
+          // Выгружаем только необходимые данные без определения департамента в запросе
+          var assignments = query
             .Select(a => new {
-                      Assignment = a,
-                      DepartmentName = (Sungero.Company.Employees.As(a.Performer) != null
-                                        && Sungero.Company.Employees.As(a.Performer).Department != null) ?
-                        Sungero.Company.Employees.As(a.Performer).Department.Name :
-                        "Без подразделения",
+                      AssignmentId = a.Id,
+                      PerformerId = a.Performer.Id,
                       IsExpired = a.Deadline.HasValue && a.Completed > a.Deadline
                     })
-            .ToList() // Выгружаем в память для группировки
-            .GroupBy(a => a.DepartmentName)
+            .ToList();
+          
+          // Группируем по департаментам после выгрузки данных из БД
+          var assignmentsByDepartment = assignments
+            .GroupBy(a => employeeDepartments.ContainsKey(a.PerformerId) ?
+                     employeeDepartments[a.PerformerId] : "Без подразделения")
             .Select(g => new {
                       Department = g.Key,
                       Completed = g.Count(),
@@ -1735,8 +1920,7 @@ namespace sberdev.SberContracts.Server
               // Определяем департамент
               string departmentName = "Без подразделения";
               string deptName = "Без подразделения";
-              if (assignment.Performer != null &&
-                  employeeDepartments.TryGetValue(assignment.Performer.Id, out deptName))
+              if (assignment.Performer != null && employeeDepartments.TryGetValue(assignment.Performer.Id, out deptName))
                 departmentName = deptName;
               
               // Подсчитываем статистику
@@ -1772,7 +1956,7 @@ namespace sberdev.SberContracts.Server
       }
       catch (Exception ex)
       {
-        Logger.Error("Ошибка в OptimizedCalculateAssignCompletedValues", ex);
+        Logger.Error("Ошибка в CalculateAssignCompletedByDepartValues", ex);
       }
       
       return result;
@@ -1782,7 +1966,7 @@ namespace sberdev.SberContracts.Server
     /// Оптимизированный расчет значений для TaskDeadline.
     /// </summary>
     [Public]
-    public double OptimizedCalculateTaskDeadlineChartPoint(SBContracts.Structures.Module.IDateRange dateRange, string serialType, string documentType)
+    public double CalculateTaskDeadlineChartPoints(SBContracts.Structures.Module.IDateRange dateRange, string serialType, string documentType)
     {
       try
       {
@@ -1914,7 +2098,7 @@ namespace sberdev.SberContracts.Server
       }
       catch (Exception ex)
       {
-        Logger.Error($"Ошибка в OptimizedCalculateTaskDeadlineChartPoint", ex);
+        Logger.Error($"Ошибка в CalculateTaskDeadlineChartPoints", ex);
         return 0;
       }
     }
@@ -1923,7 +2107,7 @@ namespace sberdev.SberContracts.Server
     /// Оптимизированный расчет значений для AssignAvgApprTimeByDepart.
     /// </summary>
     [Public]
-    public System.Collections.Generic.Dictionary<string, double> OptimizedCalculateAssignAvgApprTimeValues(SBContracts.Structures.Module.IDateRange dateRange, string documentType)
+    public System.Collections.Generic.Dictionary<string, double> CalculateAssignAvgApprTimeByDepartValues(SBContracts.Structures.Module.IDateRange dateRange, string documentType)
     {
       var result = new Dictionary<string, double>();
       
@@ -1979,15 +2163,12 @@ namespace sberdev.SberContracts.Server
             // Получаем соответствующие задания с их вложениями
             var assignmentsBatch = Sungero.Workflow.Assignments.GetAll()
               .Where(a => batchIds.Contains((int)a.Id))
-              .ToList()  // Сначала получаем объекты в память
-              .Select(a => new { Id = a.Id, Document = a.Attachments.FirstOrDefault() })
-              .ToList();
+              .ToList();  // Сначала получаем объекты в память
             
             // Проверяем соответствие типу документа
             foreach (var assignment in assignmentsBatch)
             {
-              if (assignment.Document != null &&
-                  PublicFunctions.Module.MatchesDocumentType(assignment.Document, documentType))
+              if (PublicFunctions.Module.SafeMatchesDocumentType(assignment, documentType))
               {
                 filteredAssignmentIds.Add((int)assignment.Id);
               }
@@ -2023,7 +2204,7 @@ namespace sberdev.SberContracts.Server
       }
       catch (Exception ex)
       {
-        Logger.Error("Ошибка в OptimizedCalculateAssignAvgApprTimeValues", ex);
+        Logger.Error("Ошибка в CalculateAssignAvgApprTimeByDepartValues", ex);
       }
       
       return result;
@@ -2033,7 +2214,7 @@ namespace sberdev.SberContracts.Server
     /// Оптимизированный расчет значений для TaskFlowChart.
     /// </summary>
     [Public]
-    public System.Collections.Generic.Dictionary<string, int> OptimizedCalculateTaskFlowValues(SBContracts.Structures.Module.IDateRange dateRange, string documentType)
+    public System.Collections.Generic.Dictionary<string, int> CalculateTaskFlowValues(SBContracts.Structures.Module.IDateRange dateRange, string documentType)
     {
       Dictionary<string, int> result = new Dictionary<string, int>
       {
@@ -2045,75 +2226,97 @@ namespace sberdev.SberContracts.Server
       
       try
       {
-        // Удаляем лишнее логирование
         if (dateRange == null || dateRange.StartDate > dateRange.EndDate)
           return result;
         
         var currentDate = Calendar.Now;
         
-        // Оптимизированный запрос - выполняем агрегирование на уровне БД
-        // для уменьшения объема данных и числа запросов
-        
-        // 1. Сначала агрегируем данные по статусам
-        var tasksByStatus = sberdev.SBContracts.ApprovalTasks.GetAll()
+        // 1. Получаем основные данные о задачах без доступа к вложениям
+        var tasks = sberdev.SBContracts.ApprovalTasks.GetAll()
           .Where(t => t.Started >= dateRange.StartDate && t.Started <= dateRange.EndDate)
-          .GroupBy(t => t.Status)
-          .Select(g => new { Status = g.Key, Count = g.Count() })
+          .Select(t => new
+                  {
+                    t.Id,
+                    t.Status,
+                    t.MaxDeadline,
+                    t.DocumentTypeSungero
+                  })
           .ToList();
         
-        // 2. Отдельный запрос для просроченных задач
-        var expiredCount = sberdev.SBContracts.ApprovalTasks.GetAll()
-          .Where(t => t.Started >= dateRange.StartDate &&
-                 t.Started <= dateRange.EndDate &&
-                 (t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
-                  t.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended ||
-                  t.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
-                 t.MaxDeadline != null && t.MaxDeadline < currentDate)
-          .Count();
+        // Словарь для кэширования соответствий задач типам документов
+        Dictionary<long, bool> taskMatchesType = new Dictionary<long, bool>();
         
-        // Заполняем результат
-        foreach (var status in tasksByStatus)
-        {
-          if (status.Status != sberdev.SBContracts.ApprovalTask.Status.Draft)
-            result["started"] += status.Count;
-          
-          if (status.Status == sberdev.SBContracts.ApprovalTask.Status.Completed)
-            result["completed"] += status.Count;
-          
-          if (status.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
-              status.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview)
-            result["inprocess"] += status.Count;
-        }
-        
-        result["expired"] = expiredCount;
-        
-        // Если нужно фильтровать по типу документа и это не "Все документы"
+        // 2. Если нужна фильтрация по типу документов и не все задачи имеют кэшированный тип
         if (!string.IsNullOrEmpty(documentType) && documentType != "All")
         {
-          // 1. Получаем все задачи за выбранный период с их документами
-          var tasks = sberdev.SBContracts.ApprovalTasks.GetAll()
-            .Where(t => t.Started >= dateRange.StartDate && t.Started <= dateRange.EndDate)
+          // Получаем ID задач, для которых нужно проверить документы
+          var taskIdsToCheck = tasks
+            .Where(t => string.IsNullOrEmpty(t.DocumentTypeSungero))
+            .Select(t => t.Id)
             .ToList();
           
-          // 2. Фильтруем локально с использованием оптимизированного метода
-          var filteredTasks = tasks.Where(t => PublicFunctions.Module.TaskMatchesDocumentType(t, documentType)).ToList();
+          // Проверяем документы порциями для оптимизации
+          const int batchSize = 500;
+          for (int i = 0; i < taskIdsToCheck.Count; i += batchSize)
+          {
+            var batchIds = taskIdsToCheck.Skip(i).Take(batchSize).ToList();
+            
+            // Получаем задачи с документами для проверки
+            var tasksBatch = sberdev.SBContracts.ApprovalTasks.GetAll()
+              .Where(t => batchIds.Contains(t.Id))
+              .ToList();  // Сначала загружаем в память
+            
+            // Проверяем соответствие типу документа
+            foreach (var task in tasksBatch)
+            {
+              taskMatchesType[task.Id] = TaskMatchesDocumentType(task, documentType);
+            }
+          }
+        }
+        
+        // 3. Подсчитываем статистику одним проходом
+        foreach (var t in tasks)
+        {
+          // Применяем фильтр по типу документа, если нужно
+          if (!string.IsNullOrEmpty(documentType) && documentType != "All")
+          {
+            bool matches = false;
+            
+            // Если тип документа уже сохранен в задаче
+            if (!string.IsNullOrEmpty(t.DocumentTypeSungero))
+            {
+              matches = (t.DocumentTypeSungero == documentType);
+            }
+            // Иначе используем кэшированный результат проверки
+            else if (taskMatchesType.ContainsKey(t.Id))
+            {
+              matches = taskMatchesType[t.Id];
+            }
+            
+            if (!matches)
+              continue;
+          }
           
-          // 3. Повторно подсчитываем для отфильтрованных задач
-          result["started"] = filteredTasks.Count(t => t.Status != sberdev.SBContracts.ApprovalTask.Status.Draft);
-          result["completed"] = filteredTasks.Count(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.Completed);
-          result["inprocess"] = filteredTasks.Count(t =>
-                                                    t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
-                                                    t.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview);
-          result["expired"] = filteredTasks.Count(t =>
-                                                  (t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
-                                                   t.Status == sberdev.SBContracts.ApprovalTask.Status.Suspended ||
-                                                   t.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
-                                                  t.MaxDeadline.HasValue && t.MaxDeadline.Value < currentDate);
+          // Подсчет статистики
+          if (t.Status != sberdev.SBContracts.ApprovalTask.Status.Draft)
+            result["started"]++;
+          
+          if (t.Status == sberdev.SBContracts.ApprovalTask.Status.Completed)
+            result["completed"]++;
+          
+          if (t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
+              t.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview)
+            result["inprocess"]++;
+          
+          if ((t.Status == sberdev.SBContracts.ApprovalTask.Status.InProcess ||
+               t.Status == sberdev.SBContracts.ApprovalTask.Status.UnderReview) &&
+              t.MaxDeadline.HasValue && t.MaxDeadline.Value < currentDate)
+            result["expired"]++;
         }
       }
       catch (Exception ex)
       {
-        Logger.Error($"Ошибка в OptimizedCalculateTaskFlowValues", ex);
+        Logger.Error($"Ошибка в CalculateTaskFlowValues", ex);
       }
       
       return result;

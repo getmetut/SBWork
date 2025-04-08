@@ -16,16 +16,15 @@ namespace sberdev.SberContracts.Server
     public virtual void FillTaskDocunetType()
     {
       // Получаем только ID задач без заполненного DocumentType
-      var query = sberdev.SBContracts.ApprovalTasks.GetAll()
-        .Where(t => t.DocumentTypeSungero == null || t.DocumentTypeSungero == ""
-               && t.DocumentGroup.OfficialDocuments.Any()
-               && t.DocumentGroup.OfficialDocuments.FirstOrDefault() != null)
+      var query = SBContracts.ApprovalTasks.GetAll()
+        .Where(t => t.DocumentTypeSungero == null || t.DocumentTypeSungero == "")
         .Select(t => t.Id);
       
-      var approvalTaskIds = query.ToList();
+      var allTaskIds = query.ToList();
       
-      Logger.Debug($"DocumentTypeFillerJob: Начата обработка задач согласования. Всего задач для обработки: {approvalTaskIds.Count}");
+      Logger.Debug($"DocumentTypeFillerJob: Найдено задач без типа: {allTaskIds.Count}");
       
+      // Будем заполнять постепенно
       int processedCount = 0;
       int updatedCount = 0;
       int errorCount = 0;
@@ -33,9 +32,9 @@ namespace sberdev.SberContracts.Server
       // Уменьшаем размер пакета
       int batchSize = 50;
       
-      for (int i = 0; i < approvalTaskIds.Count; i += batchSize)
+      for (int i = 0; i < allTaskIds.Count; i += batchSize)
       {
-        var batchIds = approvalTaskIds.Skip(i).Take(batchSize).ToList();
+        var batchIds = allTaskIds.Skip(i).Take(batchSize).ToList();
         
         foreach (var taskId in batchIds)
         {
@@ -43,14 +42,13 @@ namespace sberdev.SberContracts.Server
           {
             bool processed = ProcessSingleTask(taskId, ref updatedCount);
             processedCount++;
-            
             if (processedCount % 50 == 0)
               Logger.Debug($"DocumentTypeFillerJob: Обработано задач: {processedCount}, обновлено: {updatedCount}, ошибок: {errorCount}");
           }
           catch (Exception ex)
           {
             errorCount++;
-            Logger.Error($"DocumentTypeFillerJob: Общая ошибка при обработке задачи {taskId}", ex);
+            Logger.Error($"DocumentTypeFillerJob: Ошибка при обработке задачи {taskId}", ex);
           }
         }
         
@@ -59,121 +57,82 @@ namespace sberdev.SberContracts.Server
         GC.WaitForPendingFinalizers();
       }
       
-      Logger.Debug($"DocumentTypeFillerJob: Обработка завершена. Всего обработано: {processedCount}, обновлено: {updatedCount}, ошибок: {errorCount}");
+      Logger.Debug($"DocumentTypeFillerJob: Обработка завершена. Всего: {processedCount}, обновлено: {updatedCount}, ошибок: {errorCount}");
     }
 
     private bool ProcessSingleTask(long taskId, ref int updatedCount)
     {
       try
       {
-        // Сначала определяем тип документа
-        string documentType = DetermineDocumentType(taskId);
+        var task = SBContracts.ApprovalTasks.GetAll()
+          .Where(t => t.Id == taskId)
+          .FirstOrDefault();
         
-        if (string.IsNullOrEmpty(documentType))
+        if (task == null)
           return false;
         
-        // Теперь обновляем задачу в отдельной сессии
-        using (var session = new Sungero.Domain.Session())
-        {
-          using (var transaction = session.BeginTransaction())
-          {
-            try
-            {
-              var task = sberdev.SBContracts.ApprovalTasks.GetAll()
-                .Where(t => t.Id == taskId)
-                .FirstOrDefault();
-              
-              if (task == null)
-              {
-                Logger.Debug($"DocumentTypeFillerJob: Задача с ID {taskId} не найдена");
-                return false;
-              }
-              
-              if (string.IsNullOrEmpty(task.DocumentTypeSungero))
-              {
-                Logger.Debug($"DocumentTypeFillerJob: Сохранение задачи {taskId}, устанавливаемый тип: {documentType}");
-                
-                task.DocumentTypeSungero = documentType;
-                task.Save();
-                
-                transaction.Commit();
-                
-                Logger.Debug($"DocumentTypeFillerJob: Задача {taskId} успешно сохранена");
-                updatedCount++;
-                return true;
-              }
-              
-              return false;
-            }
-            catch (Exception ex)
-            {
-              transaction.Rollback();
-              throw;
-            }
-          }
-        }
-      }
-      catch (Exception ex)
-      {
-        Logger.Error($"DocumentTypeFillerJob: Ошибка при обработке задачи {taskId} в отдельной сессии: {ex.Message}", ex);
+        // Проверяем наличие документов
+        if (task.DocumentGroup == null || !task.DocumentGroup.OfficialDocuments.Any())
+          return false;
         
-        // Логируем вложенные исключения
-        var innerEx = ex.InnerException;
-        int innerLevel = 1;
-        while (innerEx != null)
+        if (string.IsNullOrEmpty(task.DocumentTypeSungero))
         {
-          Logger.Error($"DocumentTypeFillerJob: Внутреннее исключение уровня {innerLevel}: {innerEx.Message}");
-          innerEx = innerEx.InnerException;
-          innerLevel++;
+          var documentType = DetermineDocumentType(task);
+          
+          if (!string.IsNullOrEmpty(documentType))
+          {
+            // Вместо task.Save() используем прямой SQL-запрос
+            var sql = $"UPDATE Sungero_WF_Task SET DocumentTypeSungero = '{documentType}' WHERE Id = {taskId}";
+            Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand(sql);
+            
+            updatedCount++;
+            return true;
+          }
         }
         
         return false;
       }
+      catch (Exception ex)
+      {
+        Logger.Error($"DocumentTypeFillerJob: Ошибка при обработке задачи {taskId}: {ex.Message}", ex);
+        return false;
+      }
     }
 
-    private string DetermineDocumentType(long taskId)
+    private string DetermineDocumentType(SBContracts.IApprovalTask task)
     {
-      using (var session = new Sungero.Domain.Session())
+      try
       {
-        try
-        {
-          var task = sberdev.SBContracts.ApprovalTasks.GetAll()
-            .Where(t => t.Id == taskId)
-            .FirstOrDefault();
-          
-          if (task == null || task.DocumentGroup == null)
-            return string.Empty;
-          
-          // Получаем документы из группы вложений
-          var documents = task.DocumentGroup.OfficialDocuments.ToList();
-          if (!documents.Any())
-            return string.Empty;
-          
-          var document = documents.FirstOrDefault();
-          if (document == null)
-            return string.Empty;
-          
-          // Проверяем типы документов
-          foreach (var docType in new[] { "Contractual", "IncInvoce", "Accounting", "AbstractContr", "Another" })
-          {
-            try
-            {
-              if (PublicFunctions.Module.SafeMatchesDocumentType(document, docType))
-                return docType;
-            }
-            catch (Exception ex)
-            {
-              Logger.Error($"DocumentTypeFillerJob: Ошибка при проверке типа {docType} для документа в задаче {taskId}", ex);
-            }
-          }
-          
-          return "Another";
-        }
-        catch (Exception ex)
-        {
-          Logger.Error($"DocumentTypeFillerJob: Ошибка определения типа документа для задачи {taskId}", ex);
+        if (task == null || task.DocumentGroup == null)
           return string.Empty;
+        
+        var documents = task.DocumentGroup.OfficialDocuments.ToList();
+        if (!documents.Any())
+          return string.Empty;
+        
+        var document = documents.FirstOrDefault();
+        if (document == null)
+          return string.Empty;
+        
+        foreach (var docType in new[] { "Contractual", "IncInvoce", "Accounting", "AbstractContr", "Another" })
+        {
+          try
+          {
+            if (PublicFunctions.Module.SafeMatchesDocumentType(document, docType))
+              return docType;
+          }
+          catch (Exception ex)
+          {
+            Logger.Error($"DocumentTypeFillerJob: Ошибка при проверке типа {docType} для задачи {task.Id}", ex);
+          }
         }
+        
+        return "Another";
+      }
+      catch (Exception ex)
+      {
+        Logger.Error($"DocumentTypeFillerJob: Ошибка определения типа документа для задачи {task.Id}", ex);
+        return string.Empty;
       }
     }
 
@@ -240,8 +199,9 @@ namespace sberdev.SberContracts.Server
                                         if (lastAssignment?.Completed != null && task.Started <= lastAssignment.Completed)
                                         {
                                           int days = SBContracts.PublicFunctions.Module.CalculateBusinessDays(task.Started, lastAssignment.Completed);
-                                          task.ExecutionInDaysSungero = days;
-                                          task.Save();
+                                          // Вместо task.Save() используем прямой SQL-запрос так как ничего не сохраняется
+                                          var sql = $"UPDATE Sungero_WF_Task SET ExecutionInDay_SBContr_sberdev = '{days}' WHERE Id = {task.Id}";
+                                          Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand(sql);
                                           success++;
                                         }
                                       }
@@ -369,7 +329,7 @@ namespace sberdev.SberContracts.Server
             continue;
           
           // Оптимизированный расчет данных для кэша
-          var values = Functions.Module.OptimizedCalculateTaskFlowValues(dateRange, documentType);
+          var values = Functions.Module.CalculateTaskFlowValues(dateRange, documentType);
           
           // Сохраняем в кэш
           PublicFunctions.WidgetCache.SaveCacheData("TaskFlow", documentType, analysisPeriod, dateRange,
@@ -399,7 +359,7 @@ namespace sberdev.SberContracts.Server
         if (dateRange.StartDate > dateRange.EndDate)
           return;
         
-        var avgTimeValues = Functions.Module.OptimizedCalculateAssignAvgApprTimeValues(dateRange, documentType);
+        var avgTimeValues = Functions.Module.CalculateAssignAvgApprTimeByDepartValues(dateRange, documentType);
         PublicFunctions.WidgetCache.SaveCacheData("AssignAvgApprTime", documentType, analysisPeriod, dateRange,
                                                   string.Empty, JsonConvert.SerializeObject(avgTimeValues));
         successCount++;
@@ -426,7 +386,7 @@ namespace sberdev.SberContracts.Server
         if (dateRange.StartDate > dateRange.EndDate)
           return;
         
-        var completedValues = Functions.Module.OptimizedCalculateAssignCompletedValues(dateRange, documentType);
+        var completedValues = Functions.Module.CalculateAssignCompletedByDepartValues(dateRange, documentType);
         PublicFunctions.WidgetCache.SaveCacheData("AssignCompleted", documentType, analysisPeriod, dateRange,
                                                   string.Empty, JsonConvert.SerializeObject(completedValues));
         successCount++;
@@ -458,7 +418,7 @@ namespace sberdev.SberContracts.Server
         {
           try
           {
-            double value = Functions.Module.OptimizedCalculateTaskDeadlineChartPoint(dateRange, serialType, documentType);
+            double value = Functions.Module.CalculateTaskDeadlineChartPoints(dateRange, serialType, documentType);
             PublicFunctions.WidgetCache.SaveCacheData("TaskDeadline", documentType, analysisPeriod, dateRange,
                                                       serialType, JsonConvert.SerializeObject(value));
             successCount++;

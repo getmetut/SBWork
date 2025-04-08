@@ -37,7 +37,7 @@ namespace sberdev.SberContracts.Server
           // Если в кеше нет данных или данные неполные, используем оригинальный метод расчета
           if (cachedValues == null || cachedValues.Count < valuesInfos.Count)
           {
-            cachedValues = PublicFunctions.Module.OptimizedCalculateTaskFlowValues(
+            cachedValues = PublicFunctions.Module.CalculateTaskFlowValues(
               dateRangesList[i],
               _parameters.DocumentTypes.Value);
           }
@@ -70,7 +70,7 @@ namespace sberdev.SberContracts.Server
   partial class AssignAvgApprTimeByDepartWidgetWidgetHandlers
   {
 
-    public virtual void GetAssignAvgApprTimeByDepartWidgetAssignAvgApprTimeByDepartChartValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
+    public virtual void GetAssignAvgApprTimeByDepartWidgetValue(Sungero.Domain.GetWidgetBarChartValueEventArgs e)
     {
       try
       {
@@ -83,7 +83,7 @@ namespace sberdev.SberContracts.Server
 
         if (dateRange == null)
         {
-          Logger.Error("Ошибка в методе GetAssignAvgApprTimeByDepartWidgetAssignAvgApprTimeByDepartChartValue: не удалось сгенерировать диапазон дат");
+          Logger.Error("Ошибка в методе GetAssignAvgApprTimeByDepartWidgetValue: не удалось сгенерировать диапазон дат");
           return;
         }
 
@@ -96,7 +96,7 @@ namespace sberdev.SberContracts.Server
         // Если данных в кеше нет, рассчитываем
         if (departmentStats == null || !departmentStats.Any())
         {
-          departmentStats = PublicFunctions.Module.OptimizedCalculateAssignAvgApprTimeValues(
+          departmentStats = PublicFunctions.Module.CalculateAssignAvgApprTimeByDepartValues(
             dateRange,
             _parameters.DocumentTypes.Value);
         }
