@@ -163,4 +163,22 @@
   <data name="sf_ae3b3ff0_73ac_4590_961c_adf4579d59de" xml:space="preserve">
     <value>Notices</value>
   </data>
+  <data name="sf_cbf06a91_fa8b_48e1_9540_d7cd86895b64" xml:space="preserve">
+    <value>На согласование (с фильтрацией)</value>
+  </data>
+  <data name="FilterPanel_BaseGroupSDev_8b5fa6350d5d4848a2b487572f3d3600" xml:space="preserve">
+    <value>Фильтратор</value>
+  </data>
+  <data name="FilterPanel_DohSDev_3e7e965c4d924bdc8e58161472c06359" xml:space="preserve">
+    <value>Доходный</value>
+  </data>
+  <data name="FilterPanel_RashSDev_5791e38885c64f8aa7137f6ed270197f" xml:space="preserve">
+    <value>Расходный</value>
+  </data>
+  <data name="FilterPanel_DohRashSDev_8e21d8dd35a749979a836b5e2433bb5e" xml:space="preserve">
+    <value>Тип документа</value>
+  </data>
+  <data name="FilterPanel_GoupAuthorSDev_ee95fde731bb42cda7340621dbdc7053" xml:space="preserve">
+    <value>Подразделение инициатора</value>
+  </data>
 </root>

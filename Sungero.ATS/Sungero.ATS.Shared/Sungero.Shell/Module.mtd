@@ -22,6 +22,10 @@
     {
       "ItemId": "780b62c6-1e7d-4ebf-8878-8e3f252ca358",
       "PreviousItemId": "c52f4f9b-137b-42f8-a212-f4080b8de375"
+    },
+    {
+      "ItemId": "cbf06a91-fa8b-48e1-9540-d7cd86895b64",
+      "PreviousItemId": "780b62c6-1e7d-4ebf-8878-8e3f252ca358"
     }
   ],
   "IconResourcesKeys": [],
@@ -493,6 +497,61 @@
       "Kind": "Computable",
       "NeedShowMarkedCount": true,
       "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17"
+    },
+    {
+      "NameGuid": "cbf06a91-fa8b-48e1-9540-d7cd86895b64",
+      "Name": "FolderSDev",
+      "DefaultContentType": "ea683a63-273e-43ae-bcf1-7a443698008a",
+      "DisplayType": "Inbox",
+      "FilterPanel": {
+        "NameGuid": "d61f6880-1e09-4fe3-8700-902180ccdbfd",
+        "Name": "FilterPanel",
+        "Controls": [
+          {
+            "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+            "NameGuid": "8b5fa635-0d5d-4848-a2b4-87572f3d3600",
+            "Name": "BaseGroupSDev"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+            "NameGuid": "8e21d8dd-35a7-4997-9a83-6b5e2433bb5e",
+            "Name": "DohRashSDev",
+            "IsMultiSelect": true,
+            "ParentGuid": "8b5fa635-0d5d-4848-a2b4-87572f3d3600"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "3e7e965c-4d92-4bdc-8e58-161472c06359",
+            "Name": "DohSDev",
+            "ParentGuid": "8e21d8dd-35a7-4997-9a83-6b5e2433bb5e"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "5791e388-85c6-4f8a-a713-7f6ed270197f",
+            "Name": "RashSDev",
+            "ParentGuid": "8e21d8dd-35a7-4997-9a83-6b5e2433bb5e",
+            "PreviousGuid": "3e7e965c-4d92-4bdc-8e58-161472c06359"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterNavigationMetadata, Sungero.Metadata",
+            "NameGuid": "ee95fde7-31bb-42cd-a734-0621dbdc7053",
+            "Name": "GoupAuthorSDev",
+            "EntityGuid": "31b5643f-ddd7-4021-8f3c-29b43f4df51f",
+            "ParentGuid": "8b5fa635-0d5d-4848-a2b4-87572f3d3600",
+            "PreviousGuid": "8e21d8dd-35a7-4997-9a83-6b5e2433bb5e"
+          }
+        ]
+      },
+      "HandledEvents": [
+        "DataQueryServer"
+      ],
+      "IsShow": false,
+      "Kind": "Computable",
+      "NeedShowMarkedCount": false,
+      "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17",
+      "SupportedDescendantsTypes": [
+        "01be6c28-8785-4f74-9877-e3270704452e"
+      ]
     }
   ],
   "Version": "4.8.39.0",

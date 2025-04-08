@@ -6,6 +6,44 @@ using Sungero.CoreEntities;
 
 namespace Sungero.ATS.Module.Shell.Server
 {
+  partial class FolderSDevFolderHandlers
+  {
+
+    public virtual IQueryable<Sungero.Workflow.IAssignmentBase> FolderSDevDataQuery(IQueryable<Sungero.Workflow.IAssignmentBase> query)
+    {
+      if (_filter != null)
+      {
+        if (_filter.GoupAuthorSDev != null)
+        {
+          query = query.Where(a => a.Author.IncludedIn(_filter.GoupAuthorSDev));
+        }
+        if ((_filter.DohSDev) && (_filter.RashSDev))
+        {
+          //
+        }
+        else
+        {
+          if (_filter.DohSDev)
+          {
+            query = query.Where(a => sberdev.SBContracts.ApprovalAssignments.Is(a)).
+              Where(a => (sberdev.SBContracts.AccountingDocumentBases.Is(sberdev.SBContracts.ApprovalAssignments.As(a).DocumentGroup.OfficialDocuments.FirstOrDefault())))
+              .Where(a => sberdev.SBContracts.AccountingDocumentBases.As(sberdev.SBContracts.ApprovalAssignments.As(a).DocumentGroup.OfficialDocuments.FirstOrDefault())
+                                                                          .ContrTypeBaseSberDev == sberdev.SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable);
+          }
+          if (_filter.RashSDev)
+          {
+            query = query.Where(a => sberdev.SBContracts.ApprovalAssignments.Is(a)).
+              Where(a => (sberdev.SBContracts.AccountingDocumentBases.Is(sberdev.SBContracts.ApprovalAssignments.As(a).DocumentGroup.OfficialDocuments.FirstOrDefault())))
+              .Where(a => sberdev.SBContracts.AccountingDocumentBases.As(sberdev.SBContracts.ApprovalAssignments.As(a).DocumentGroup.OfficialDocuments.FirstOrDefault())
+                                                                          .ContrTypeBaseSberDev == sberdev.SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable);
+          }
+        }
+      }
+      
+      return query;
+    }
+  }
+
 
   partial class ExchangeDocumentProcessingFolderHandlers
   {
@@ -20,7 +58,7 @@ namespace Sungero.ATS.Module.Shell.Server
         {
           foreach (var elem in OBrole.RecipientLinks)
           {
-              Userlist.Add(elem.Member);
+            Userlist.Add(elem.Member);
           }
           query = query.Where(q => Userlist.Contains(q));
         }
