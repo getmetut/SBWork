@@ -82,7 +82,7 @@ namespace sberdev.SberContracts.Server
           if (!string.IsNullOrEmpty(documentType))
           {
             // Вместо task.Save() используем прямой SQL-запрос
-            var sql = $"UPDATE Sungero_WF_Task SET DocumentTypeSungero = '{documentType}' WHERE Id = {taskId}";
+            var sql = $"UPDATE Sungero_WF_Task SET DocumentTypeSu_SBContr_sberdev = '{documentType}' WHERE Id = {taskId}";
             Sungero.Docflow.PublicFunctions.Module.ExecuteSQLCommand(sql);
             
             updatedCount++;
