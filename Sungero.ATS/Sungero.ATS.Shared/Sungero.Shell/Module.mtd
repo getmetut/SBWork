@@ -500,7 +500,7 @@
     },
     {
       "NameGuid": "cbf06a91-fa8b-48e1-9540-d7cd86895b64",
-      "Name": "FolderSDev",
+      "Name": "FilterApprovalSDev",
       "DefaultContentType": "ea683a63-273e-43ae-bcf1-7a443698008a",
       "DisplayType": "Inbox",
       "FilterPanel": {
@@ -543,9 +543,10 @@
         ]
       },
       "HandledEvents": [
-        "DataQueryServer"
+        "DataQueryServer",
+        "VisibilityHandlerServer"
       ],
-      "IsShow": false,
+      "IsShow": true,
       "Kind": "Computable",
       "NeedShowMarkedCount": false,
       "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17",

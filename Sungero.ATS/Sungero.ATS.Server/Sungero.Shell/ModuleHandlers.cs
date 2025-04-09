@@ -6,10 +6,18 @@ using Sungero.CoreEntities;
 
 namespace Sungero.ATS.Module.Shell.Server
 {
-  partial class FolderSDevFolderHandlers
+  partial class FilterApprovalSDevFolderHandlers
   {
 
-    public virtual IQueryable<Sungero.Workflow.IAssignmentBase> FolderSDevDataQuery(IQueryable<Sungero.Workflow.IAssignmentBase> query)
+    public virtual bool IsFilterApprovalSDevVisible()
+    {
+      if (Users.Current.IncludedIn(Roles.Administrators))
+        return true;
+      else
+        return false;
+    }
+
+    public virtual IQueryable<Sungero.Workflow.IAssignmentBase> FilterApprovalSDevDataQuery(IQueryable<Sungero.Workflow.IAssignmentBase> query)
     {
       if (_filter != null)
       {
