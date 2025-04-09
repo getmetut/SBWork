@@ -66,7 +66,7 @@ namespace sberdev.SberContracts.Shared
     }
     
     /// <summary>
-    /// Функция создает список с информацией о сериях в графике ControlFlowChart виджета ApprovalAnalyticsWidget
+    /// Функция создает список с информацией о сериях в графике ControlFlowChart виджета
     /// </summary>
     /// <returns></returns>
     [Public]

@@ -88,41 +88,20 @@
   <data name="JobDescription_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
     <value>Чистит папку с временными документами.</value>
   </data>
-  <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Weeks" xml:space="preserve">
-    <value>Недели</value>
+  <data name="WidgetParameter_AssignCompletedByDepartWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Период анализа</value>
   </data>
-  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Weeks" xml:space="preserve">
-    <value>Недели</value>
+  <data name="WidgetParameter_AssignAvgApprTimeByDepartWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Период анализа</value>
   </data>
-  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Weeks" xml:space="preserve">
-    <value>Недели</value>
+  <data name="WidgetParameter_ApprovalAnalytics_DocumentTypes" xml:space="preserve">
+    <value>Типы документов</value>
   </data>
-  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Weeks" xml:space="preserve">
-    <value>Недели</value>
+  <data name="WidgetParameter_TaskFlowWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Период анализа</value>
   </data>
-  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Months" xml:space="preserve">
-    <value>Месяцы</value>
-  </data>
-  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Months" xml:space="preserve">
-    <value>Месяцы</value>
-  </data>
-  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Months" xml:space="preserve">
-    <value>Месяцы</value>
-  </data>
-  <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Months" xml:space="preserve">
-    <value>Месяцы</value>
-  </data>
-  <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Quarters" xml:space="preserve">
-    <value>Кварталы</value>
-  </data>
-  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Quarters" xml:space="preserve">
-    <value>Кварталы</value>
-  </data>
-  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Quarters" xml:space="preserve">
-    <value>Кварталы</value>
-  </data>
-  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Quarters" xml:space="preserve">
-    <value>Кварталы</value>
+  <data name="WidgetTitle_ApprovalAnalytics" xml:space="preserve">
+    <value>Аналитика согласований</value>
   </data>
   <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_All" xml:space="preserve">
     <value>Все</value>
@@ -229,16 +208,7 @@
   <data name="WidgetParameter_AssignAvgApprTimeByDepartWidget_DocumentTypes" xml:space="preserve">
     <value>Типы документов</value>
   </data>
-  <data name="WidgetParameter_AssignCompletedByDepartWidget_AnalysisPeriod" xml:space="preserve">
-    <value>Период анализа</value>
-  </data>
-  <data name="WidgetParameter_TaskFlowWidget_AnalysisPeriod" xml:space="preserve">
-    <value>Период анализа</value>
-  </data>
-  <data name="WidgetParameter_TaskDeadlineWidget_AnalysisPeriod" xml:space="preserve">
-    <value>Период анализа</value>
-  </data>
-  <data name="WidgetParameter_AssignAvgApprTimeByDepartWidget_AnalysisPeriod" xml:space="preserve">
+  <data name="WidgetParameter_ApprovalAnalytics_AnalysisPeriod" xml:space="preserve">
     <value>Период анализа</value>
   </data>
   <data name="JobDisplayName_fd1cf1037d46492fb2a4ee38bf2b023a" xml:space="preserve">

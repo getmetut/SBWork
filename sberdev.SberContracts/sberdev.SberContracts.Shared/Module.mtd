@@ -1043,7 +1043,7 @@
       "NeedShowMarkedCount": false
     }
   ],
-  "Version": "4.35.3.8",
+  "Version": "4.44.4.0",
   "Widgets": [
     {
       "NameGuid": "c2f21ab6-4272-410e-a676-52af22433fd1",
@@ -1064,33 +1064,6 @@
         }
       ],
       "WidgetParameters": [
-        {
-          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
-          "NameGuid": "b5b8653b-3fd4-43de-93f7-971f6d558759",
-          "Name": "AnalysisPeriod",
-          "DefaultValue": {
-            "NameGuid": "d897bb03-885e-4b79-9cf1-0e4efeddb5fc",
-            "Name": "Months",
-            "Code": "Months"
-          },
-          "DirectValues": [
-            {
-              "NameGuid": "57c22d11-f6cb-495a-be9d-d89f59ba3383",
-              "Name": "Weeks",
-              "Code": "Weeks"
-            },
-            {
-              "NameGuid": "d897bb03-885e-4b79-9cf1-0e4efeddb5fc",
-              "Name": "Months",
-              "Code": "Months"
-            },
-            {
-              "NameGuid": "306e6925-956a-4030-a17b-04338fc8c618",
-              "Name": "Quarters",
-              "Code": "Quarters"
-            }
-          ]
-        },
         {
           "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
           "NameGuid": "41e14eab-71e4-4f45-9977-bc7f1472ed3d",
@@ -1131,8 +1104,35 @@
               "Name": "Another",
               "Code": "Another"
             }
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "5e8f762a-d079-488d-a9eb-c33453f92b71",
+          "Name": "AnalysisPeriod",
+          "DefaultValue": {
+            "NameGuid": "7967b8a3-853f-4bbc-ac1a-b8bc7d462216",
+            "Name": "Months",
+            "Code": "months"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "0f666c3e-232a-4f07-9acc-a3150485107a",
+              "Name": "Weeks",
+              "Code": "weeks"
+            },
+            {
+              "NameGuid": "7967b8a3-853f-4bbc-ac1a-b8bc7d462216",
+              "Name": "Months",
+              "Code": "months"
+            },
+            {
+              "NameGuid": "9d30ca00-ca82-4563-b436-7cd6ac21c944",
+              "Name": "Quarters",
+              "Code": "quarters"
+            }
           ],
-          "PreviousGuid": "b5b8653b-3fd4-43de-93f7-971f6d558759"
+          "PreviousGuid": "41e14eab-71e4-4f45-9977-bc7f1472ed3d"
         }
       ]
     },
@@ -1155,33 +1155,6 @@
         }
       ],
       "WidgetParameters": [
-        {
-          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
-          "NameGuid": "2ba658ba-0146-49bc-b724-ef2ea0e384bc",
-          "Name": "AnalysisPeriod",
-          "DefaultValue": {
-            "NameGuid": "f8420778-8e3f-42b8-b724-099e2e930ffa",
-            "Name": "Weeks",
-            "Code": "Weeks"
-          },
-          "DirectValues": [
-            {
-              "NameGuid": "f8420778-8e3f-42b8-b724-099e2e930ffa",
-              "Name": "Weeks",
-              "Code": "Weeks"
-            },
-            {
-              "NameGuid": "a21b41e0-a02f-420a-a1a2-fd1abf13c29e",
-              "Name": "Months",
-              "Code": "Months"
-            },
-            {
-              "NameGuid": "934573aa-b3b1-4c08-874a-f620ab9d2a72",
-              "Name": "Quarters",
-              "Code": "Quarters"
-            }
-          ]
-        },
         {
           "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
           "NameGuid": "90cf420f-2858-4d4c-9ac2-784d8f66a9ec",
@@ -1222,8 +1195,35 @@
               "Name": "Another",
               "Code": "Another"
             }
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "b6b22ed6-5354-4b88-acb2-3f6862ade686",
+          "Name": "AnalysisPeriod",
+          "DefaultValue": {
+            "NameGuid": "13e7b117-4d2a-4a9d-b93f-ec6460f9a455",
+            "Name": "Months",
+            "Code": "months"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "766faede-a765-48d9-807d-95542172d93a",
+              "Name": "Weeks",
+              "Code": "weeks"
+            },
+            {
+              "NameGuid": "13e7b117-4d2a-4a9d-b93f-ec6460f9a455",
+              "Name": "Months",
+              "Code": "months"
+            },
+            {
+              "NameGuid": "f5eac2bb-6275-495a-95cc-081cc5cc2ae5",
+              "Name": "Quarters",
+              "Code": "quarters"
+            }
           ],
-          "PreviousGuid": "2ba658ba-0146-49bc-b724-ef2ea0e384bc"
+          "PreviousGuid": "90cf420f-2858-4d4c-9ac2-784d8f66a9ec"
         }
       ]
     },
@@ -1246,33 +1246,6 @@
         }
       ],
       "WidgetParameters": [
-        {
-          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
-          "NameGuid": "cfc2525e-e34b-4789-8a0e-5bc8b197fbe0",
-          "Name": "AnalysisPeriod",
-          "DefaultValue": {
-            "NameGuid": "ada9471e-aadb-497d-b7b9-36c720345e65",
-            "Name": "Months",
-            "Code": "Months"
-          },
-          "DirectValues": [
-            {
-              "NameGuid": "92072aae-55a5-4443-9a7e-574f5b9ca1d7",
-              "Name": "Weeks",
-              "Code": "Weeks"
-            },
-            {
-              "NameGuid": "ada9471e-aadb-497d-b7b9-36c720345e65",
-              "Name": "Months",
-              "Code": "Months"
-            },
-            {
-              "NameGuid": "34f2a22a-3d0b-4a88-8fec-32d864c50377",
-              "Name": "Quarters",
-              "Code": "Quarters"
-            }
-          ]
-        },
         {
           "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
           "NameGuid": "51ef4670-6c24-496d-b1d6-5a5f014dc3f9",
@@ -1313,8 +1286,35 @@
               "Name": "Another",
               "Code": "Another"
             }
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "f5345358-5666-47a2-ab63-777455379a36",
+          "Name": "AnalysisPeriod",
+          "DefaultValue": {
+            "NameGuid": "8fd3bfeb-e2fd-4027-b5c1-d4b2dd686e2e",
+            "Name": "Months",
+            "Code": "months"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "1bbcee8c-c904-492e-b8fa-978d32a4eb61",
+              "Name": "Weeks",
+              "Code": "weeks"
+            },
+            {
+              "NameGuid": "8fd3bfeb-e2fd-4027-b5c1-d4b2dd686e2e",
+              "Name": "Months",
+              "Code": "months"
+            },
+            {
+              "NameGuid": "18f5fd0b-54ad-4472-b382-3220706d6574",
+              "Name": "Quarters",
+              "Code": "quarters"
+            }
           ],
-          "PreviousGuid": "cfc2525e-e34b-4789-8a0e-5bc8b197fbe0"
+          "PreviousGuid": "51ef4670-6c24-496d-b1d6-5a5f014dc3f9"
         }
       ]
     },
@@ -1337,33 +1337,6 @@
         }
       ],
       "WidgetParameters": [
-        {
-          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
-          "NameGuid": "188aed03-22ec-4fa9-926f-be34ffa2fcf9",
-          "Name": "AnalysisPeriod",
-          "DefaultValue": {
-            "NameGuid": "5c80c1b0-5b2b-41f9-a43f-a9c180f256ca",
-            "Name": "Months",
-            "Code": "Months"
-          },
-          "DirectValues": [
-            {
-              "NameGuid": "883a1cb9-fb71-4713-ab28-2ca0df470a85",
-              "Name": "Weeks",
-              "Code": "Weeks"
-            },
-            {
-              "NameGuid": "5c80c1b0-5b2b-41f9-a43f-a9c180f256ca",
-              "Name": "Months",
-              "Code": "Months"
-            },
-            {
-              "NameGuid": "1191445b-8554-40c8-9d4f-cab93b1d9e47",
-              "Name": "Quarters",
-              "Code": "Quarters"
-            }
-          ]
-        },
         {
           "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
           "NameGuid": "a4a7cbe3-e70a-4f91-8a15-e4547276c5dc",
@@ -1404,8 +1377,162 @@
               "Name": "Another",
               "Code": "Another"
             }
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "3a1cc518-82f5-4b9d-b327-4aa88fda988a",
+          "Name": "AnalysisPeriod",
+          "DefaultValue": {
+            "NameGuid": "c4adacdc-2e13-4f9a-930c-e5d19715bc78",
+            "Name": "Months",
+            "Code": "months"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "aa0926b8-0550-4a44-a04e-f6b3ee569eb7",
+              "Name": "Weeks",
+              "Code": "weeks"
+            },
+            {
+              "NameGuid": "c4adacdc-2e13-4f9a-930c-e5d19715bc78",
+              "Name": "Months",
+              "Code": "months"
+            },
+            {
+              "NameGuid": "ed6bf8ae-77e1-4427-869a-e819638a9a86",
+              "Name": "Quarters",
+              "Code": "quarters"
+            }
           ],
-          "PreviousGuid": "188aed03-22ec-4fa9-926f-be34ffa2fcf9"
+          "PreviousGuid": "a4a7cbe3-e70a-4f91-8a15-e4547276c5dc"
+        }
+      ]
+    },
+    {
+      "NameGuid": "7a1c43a9-189b-4b35-b191-be2668558311",
+      "Name": "ApprovalAnalytics",
+      "Color": "WidgetColor1",
+      "ColumnSpan": 40,
+      "WidgetItems": [
+        {
+          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
+          "NameGuid": "05f895a2-1a16-4153-acd4-f6fbfe7ce1e5",
+          "Name": "TaskFlowWidget",
+          "ChartHeight": 12,
+          "ChartType": "VerticalClusteredBar",
+          "EntityGuid": "100950d0-03d2-44f0-9e31-f9c8dfdf3829",
+          "HandledEvents": [
+            "GetValueServer"
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
+          "NameGuid": "9a4667ac-24bf-433a-816c-cda63a19751b",
+          "Name": "TaskDeadlineWidget",
+          "ChartHeight": 12,
+          "ChartType": "Plot",
+          "HandledEvents": [
+            "GetValueServer"
+          ],
+          "PreviousGuid": "05f895a2-1a16-4153-acd4-f6fbfe7ce1e5",
+          "SpecificationType": "Custom"
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
+          "NameGuid": "4fcfed60-bdc6-4bd2-b8ac-f4d2b8941de8",
+          "Name": "AssignCompletedByDepartWidget",
+          "ChartHeight": 20,
+          "ChartType": "HorizontalBar",
+          "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
+          "HandledEvents": [
+            "GetValueServer"
+          ],
+          "PreviousGuid": "9a4667ac-24bf-433a-816c-cda63a19751b"
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetChartMetadata, Sungero.Metadata",
+          "NameGuid": "d68fd229-1f64-46ff-85da-6617c4ec192c",
+          "Name": "AssignAvgApprTimeByDepartWidget",
+          "ChartHeight": 20,
+          "ChartType": "HorizontalBar",
+          "EntityGuid": "91cbfdc8-5d5d-465e-95a4-3235b8c01d5b",
+          "HandledEvents": [
+            "GetValueServer"
+          ],
+          "PreviousGuid": "4fcfed60-bdc6-4bd2-b8ac-f4d2b8941de8"
+        }
+      ],
+      "WidgetParameters": [
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "df32cd53-c41a-40fd-a8ec-3cea69375b2a",
+          "Name": "DocumentTypes",
+          "DefaultValue": {
+            "NameGuid": "b125cc65-0865-4c68-9545-acd0783021c6",
+            "Name": "All",
+            "Code": "All"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "b125cc65-0865-4c68-9545-acd0783021c6",
+              "Name": "All",
+              "Code": "All"
+            },
+            {
+              "NameGuid": "f56a9f69-1d70-4384-8b75-ab1bb48db55b",
+              "Name": "Contractual",
+              "Code": "Contractual"
+            },
+            {
+              "NameGuid": "22064896-c5ef-44e2-8f61-578271530a35",
+              "Name": "IncInvoce",
+              "Code": "IncInvoce"
+            },
+            {
+              "NameGuid": "a09f9db5-2ab2-43cf-8781-5d9f95b90659",
+              "Name": "Accounting",
+              "Code": "Accounting"
+            },
+            {
+              "NameGuid": "a22c276c-1e72-4fd1-93b1-4793f4cb83ec",
+              "Name": "AbstractContr",
+              "Code": "AbstractContr"
+            },
+            {
+              "NameGuid": "a74d19ea-eac2-46b1-9ad0-d5bb2a0496ac",
+              "Name": "Another",
+              "Code": "Another"
+            }
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.WidgetEnumParameterMetadata, Sungero.Metadata",
+          "NameGuid": "1abad6fb-3220-40e3-8edd-904db84a5744",
+          "Name": "AnalysisPeriod",
+          "DefaultValue": {
+            "NameGuid": "ad87065e-e7e4-43d9-8a1a-9c0da8b04f47",
+            "Name": "Months",
+            "Code": "Months"
+          },
+          "DirectValues": [
+            {
+              "NameGuid": "29fc877e-7525-4502-96c0-b20460e2cde1",
+              "Name": "Weeks",
+              "Code": "Weeks"
+            },
+            {
+              "NameGuid": "ad87065e-e7e4-43d9-8a1a-9c0da8b04f47",
+              "Name": "Months",
+              "Code": "Months"
+            },
+            {
+              "NameGuid": "54aeca77-690c-4ffc-9705-b8effa80cad9",
+              "Name": "Quarters",
+              "Code": "Quarters"
+            }
+          ],
+          "PreviousGuid": "df32cd53-c41a-40fd-a8ec-3cea69375b2a"
         }
       ]
     }

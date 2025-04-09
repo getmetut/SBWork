@@ -142,7 +142,7 @@ namespace sberdev.SberContracts.Server
     public virtual void FillTaskExecutionTimeData()
     {
       // Логируем начало миграции
-      Logger.Debug("FillTaskExecutionTimeData: Начало заполнения времени выполнения для задач");
+      Logger.Debug("FillTaskExecutionTimeDataJob: Начало заполнения времени выполнения для задач");
       DateTime startTime = Calendar.Now;
       
       try
@@ -210,7 +210,7 @@ namespace sberdev.SberContracts.Server
                                         errors++;
                                         // Ограничиваем логирование для избежания переполнения лога
                                         if (errors < 100 || errors % 100 == 0)
-                                          Logger.Error($"Ошибка обработки задачи {task.Id}", ex);
+                                          Logger.Error($"FillTaskExecutionTimeDataJob: Ошибка обработки задачи {task.Id}", ex);
                                       }
                                     }
                                     
@@ -222,7 +222,7 @@ namespace sberdev.SberContracts.Server
           if (processed % 1000 == 0 || processed == tasks.Count)
           {
             var timeSpent = Calendar.Now - startTime;
-            Logger.Debug($"FillTaskExecutionTimeData: Обработано {processed} из {tasks.Count} задач. " +
+            Logger.Debug($"FillTaskExecutionTimeDataJob: Обработано {processed} из {tasks.Count} задач. " +
                          $"Успешно: {success}, ошибок: {errors}. " +
                          $"Время выполнения: {timeSpent.TotalMinutes:F1} минут");
           }
@@ -230,13 +230,13 @@ namespace sberdev.SberContracts.Server
         
         // Итоговое сообщение
         var totalTime = Calendar.Now - startTime;
-        Logger.Debug($"FillTaskExecutionTimeData: Завершено заполнение времени выполнения. " +
+        Logger.Debug($"FillTaskExecutionTimeDataJob: Завершено заполнение времени выполнения. " +
                      $"Всего обработано: {processed}, успешно: {success}, ошибок: {errors}. " +
                      $"Общее время: {totalTime.TotalMinutes:F1} минут");
       }
       catch (Exception ex)
       {
-        Logger.Error("Критическая ошибка в FillTaskExecutionTimeData", ex);
+        Logger.Error("Критическая ошибка в FillTaskExecutionTimeDataJob", ex);
       }
     }
     

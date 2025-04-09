@@ -115,20 +115,20 @@
   <data name="WidgetTitle_AssignCompletedByDepartWidget" xml:space="preserve">
     <value>Completed assingnments by departments</value>
   </data>
-  <data name="WidgetParameter_AssignCompletedByDepartWidget_AnalysisPeriod" xml:space="preserve">
-    <value>Analysis period</value>
+  <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Weeks</value>
   </data>
   <data name="WidgetParameter_AssignCompletedByDepartWidget_DocumentTypes" xml:space="preserve">
     <value>Document types</value>
-  </data>
-  <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Weeks" xml:space="preserve">
-    <value>Weeks</value>
   </data>
   <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Months" xml:space="preserve">
     <value>Months</value>
   </data>
   <data name="Enum_AssignCompletedByDepartWidget_AnalysisPeriod_Quarters" xml:space="preserve">
     <value>Quarters</value>
+  </data>
+  <data name="WidgetParameter_AssignCompletedByDepartWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Analysis period</value>
   </data>
   <data name="Enum_AssignCompletedByDepartWidget_DocumentTypes_All" xml:space="preserve">
     <value>All</value>
@@ -151,20 +151,20 @@
   <data name="WidgetTitle_TaskFlowWidget" xml:space="preserve">
     <value>Task flow</value>
   </data>
-  <data name="WidgetParameter_TaskFlowWidget_AnalysisPeriod" xml:space="preserve">
-    <value>Analysis period</value>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Quarters</value>
   </data>
   <data name="WidgetParameter_TaskFlowWidget_DocumentTypes" xml:space="preserve">
     <value>Document types</value>
   </data>
-  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Weeks" xml:space="preserve">
-    <value>Weeks</value>
-  </data>
   <data name="Enum_TaskFlowWidget_AnalysisPeriod_Months" xml:space="preserve">
     <value>Months</value>
   </data>
-  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Quarters" xml:space="preserve">
-    <value>Quarters</value>
+  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Weeks</value>
+  </data>
+  <data name="WidgetParameter_TaskFlowWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Analysis period</value>
   </data>
   <data name="Enum_TaskFlowWidget_DocumentTypes_All" xml:space="preserve">
     <value>All</value>
@@ -187,17 +187,17 @@
   <data name="WidgetTitle_TaskDeadlineWidget" xml:space="preserve">
     <value>Task Deadline Analytics</value>
   </data>
-  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Weeks" xml:space="preserve">
     <value>Weeks</value>
   </data>
-  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Months" xml:space="preserve">
-    <value>Months</value>
-  </data>
-  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Quarters" xml:space="preserve">
-    <value>Quarters</value>
+  <data name="WidgetParameter_AssignAvgApprTimeByDepartWidget_AnalysisPeriod" xml:space="preserve">
+    <value>Analysis period</value>
   </data>
   <data name="WidgetParameter_TaskDeadlineWidget_AnalysisPeriod" xml:space="preserve">
     <value>Analysis period</value>
+  </data>
+  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Months" xml:space="preserve">
+    <value>Months</value>
   </data>
   <data name="WidgetParameter_TaskDeadlineWidget_DocumentTypes" xml:space="preserve">
     <value>Document types</value>
@@ -220,13 +220,13 @@
   <data name="Enum_TaskDeadlineWidget_DocumentTypes_Another" xml:space="preserve">
     <value>Anothers</value>
   </data>
-  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Weeks" xml:space="preserve">
-    <value>Weeks</value>
-  </data>
-  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Months" xml:space="preserve">
+  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Months" xml:space="preserve">
     <value>Months</value>
   </data>
-  <data name="Enum_AssignAvgApprTimeByDepartWidget_AnalysisPeriod_Quarters" xml:space="preserve">
+  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Weeks</value>
+  </data>
+  <data name="Enum_TaskFlowWidget_AnalysisPeriod_Quarters" xml:space="preserve">
     <value>Quarters</value>
   </data>
   <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_All" xml:space="preserve">
@@ -247,8 +247,8 @@
   <data name="Enum_AssignAvgApprTimeByDepartWidget_DocumentTypes_Another" xml:space="preserve">
     <value>Anothers</value>
   </data>
-  <data name="WidgetParameter_AssignAvgApprTimeByDepartWidget_AnalysisPeriod" xml:space="preserve">
-    <value>Analysis period</value>
+  <data name="Enum_TaskDeadlineWidget_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Quarters</value>
   </data>
   <data name="WidgetParameter_AssignAvgApprTimeByDepartWidget_DocumentTypes" xml:space="preserve">
     <value>Document types</value>
@@ -285,5 +285,41 @@
   </data>
   <data name="JobDescription_ded63938850a4e34aa2ff1c5161633ca" xml:space="preserve">
     <value>The process fills the DocumentType field in tasks (it is created for building widgets)</value>
+  </data>
+  <data name="WidgetParameter_ApprovalAnalytics_DocumentTypes" xml:space="preserve">
+    <value>Document types</value>
+  </data>
+  <data name="WidgetTitle_ApprovalAnalytics" xml:space="preserve">
+    <value>Approval analytics</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_DocumentTypes_Another" xml:space="preserve">
+    <value>Another</value>
+  </data>
+  <data name="WidgetParameter_ApprovalAnalytics_AnalysisPeriod" xml:space="preserve">
+    <value>Analysis period</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Weeks</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_AnalysisPeriod_Months" xml:space="preserve">
+    <value>Months</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Quarters</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_DocumentTypes_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_DocumentTypes_Contractual" xml:space="preserve">
+    <value>Contractual</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_DocumentTypes_IncInvoce" xml:space="preserve">
+    <value>IncInvoce</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_DocumentTypes_Accounting" xml:space="preserve">
+    <value>Accounting</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_DocumentTypes_AbstractContr" xml:space="preserve">
+    <value>AbstractContr</value>
   </data>
 </root>
