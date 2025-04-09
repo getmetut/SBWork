@@ -15,6 +15,100 @@ namespace sberdev.SberContracts.Server
   public class ModuleFunctions
   {
     
+    #region Минифункции
+    
+    /// <summary>
+    /// Возвращает генеральный продукт для нашей организации документа
+    /// </summary>
+    /// <param name="doc">Документ</param>
+    /// <returns></returns>
+    [Public]
+    public IProductsAndDevices GetOrCreateGeneralProduct(SBContracts.IOfficialDocument doc)
+    {
+      var genProd = ProductsAndDeviceses.GetAll(p => p.BusinessUnit == doc.BusinessUnit && p.Name == "General").FirstOrDefault();
+      
+      if (genProd == null)
+      {
+        var newGenProd = ProductsAndDeviceses.Create();
+        newGenProd.BusinessUnit = doc.BusinessUnit;
+        newGenProd.Name = "General";
+        
+        // Сохранение перед возвратом сущности
+        newGenProd.Save();
+        
+        // Возвращаем сущность
+        return newGenProd;
+      }
+      else
+      {
+        return genProd;
+      }
+    }
+    
+    /// <summary>
+    /// Получить все цифры после указанного тега
+    /// </summary>
+    [Public]
+    public string GetNumberTag(string input, string tag)
+    {
+      string result = "";
+      int i = input.IndexOf(tag);
+      if (i > 0)
+      {
+        i += tag.Length;
+        while (i < input.Length && Char.IsDigit(input[i]))
+        {
+          result += input[i];
+          i++;
+        }
+      }
+      return result;
+    }
+    
+    /// <summary>
+    /// Возвращает список ИНН всех "Наших организаций"
+    /// </summary>
+    [Public]
+    public List<string> GetAllBuisnessUnitTINs()
+    {
+      return Sungero.Company.BusinessUnits.GetAll().Select(b => b.TIN).ToList();
+    }
+    
+    [Public, Remote]
+    public static string DeleteAllContractsSrv()
+    {
+      var s = "";
+      var contracts = Sungero.Contracts.Contracts.GetAll(); // sberdev.SBContracts.Contracts.GetAll();
+      foreach (var contract in contracts)
+      {
+        try{
+          var newcontract = Sungero.Contracts.Contracts.Get(contract.Id);
+          //Transactions.Execute(() => {
+          Sungero.Contracts.Contracts.Delete(newcontract) ;
+          //                    });//sberdev.SBContracts.Contracts.Delete(contract);
+        }
+        catch (Exception ex)
+        {
+          s = s+System.Environment.NewLine+ex.Message;
+        }
+        
+      }
+      return s;
+    }
+    
+    [Public, Remote]
+    public static void DeleteAllContractsSrvNew(Sungero.Contracts.IContract contract)
+    {
+      Sungero.Contracts.Contracts.Delete(contract) ;
+    }
+    
+    public static string GetCellValue(object cell)
+    {
+      return (cell != null) ? (cell.ToString() != "NULL" ? cell.ToString() : "") : "";
+    }
+    
+    #endregion
+    
     #region Проверка документа на совпадение с выбранной группой типов
     /// <summary>
     /// Проверяет, соответствует ли документ выбранному типу
@@ -195,100 +289,6 @@ namespace sberdev.SberContracts.Server
         return false;
       }
     }
-    #endregion
-    
-    #region Минифункции
-    
-    /// <summary>
-    /// Возвращает генеральный продукт для нашей организации документа
-    /// </summary>
-    /// <param name="doc">Документ</param>
-    /// <returns></returns>
-    [Public]
-    public IProductsAndDevices GetOrCreateGeneralProduct(SBContracts.IOfficialDocument doc)
-    {
-      var genProd = ProductsAndDeviceses.GetAll(p => p.BusinessUnit == doc.BusinessUnit && p.Name == "General").FirstOrDefault();
-      
-      if (genProd == null)
-      {
-        var newGenProd = ProductsAndDeviceses.Create();
-        newGenProd.BusinessUnit = doc.BusinessUnit;
-        newGenProd.Name = "General";
-        
-        // Сохранение перед возвратом сущности
-        newGenProd.Save();
-        
-        // Возвращаем сущность
-        return newGenProd;
-      }
-      else
-      {
-        return genProd;
-      }
-    }
-    
-    /// <summary>
-    /// Получить все цифры после указанного тега
-    /// </summary>
-    [Public]
-    public string GetNumberTag(string input, string tag)
-    {
-      string result = "";
-      int i = input.IndexOf(tag);
-      if (i > 0)
-      {
-        i += tag.Length;
-        while (i < input.Length && Char.IsDigit(input[i]))
-        {
-          result += input[i];
-          i++;
-        }
-      }
-      return result;
-    }
-    
-    /// <summary>
-    /// Возвращает список ИНН всех "Наших организаций"
-    /// </summary>
-    [Public]
-    public List<string> GetAllBuisnessUnitTINs()
-    {
-      return Sungero.Company.BusinessUnits.GetAll().Select(b => b.TIN).ToList();
-    }
-    
-    [Public, Remote]
-    public static string DeleteAllContractsSrv()
-    {
-      var s = "";
-      var contracts = Sungero.Contracts.Contracts.GetAll(); // sberdev.SBContracts.Contracts.GetAll();
-      foreach (var contract in contracts)
-      {
-        try{
-          var newcontract = Sungero.Contracts.Contracts.Get(contract.Id);
-          //Transactions.Execute(() => {
-          Sungero.Contracts.Contracts.Delete(newcontract) ;
-          //                    });//sberdev.SBContracts.Contracts.Delete(contract);
-        }
-        catch (Exception ex)
-        {
-          s = s+System.Environment.NewLine+ex.Message;
-        }
-        
-      }
-      return s;
-    }
-    
-    [Public, Remote]
-    public static void DeleteAllContractsSrvNew(Sungero.Contracts.IContract contract)
-    {
-      Sungero.Contracts.Contracts.Delete(contract) ;
-    }
-    
-    public static string GetCellValue(object cell)
-    {
-      return (cell != null) ? (cell.ToString() != "NULL" ? cell.ToString() : "") : "";
-    }
-    
     #endregion
     
     #region Удаленные функции
