@@ -10,6 +10,7 @@ namespace sberdev.SBContracts.Server
 {
   partial class AccountingDocumentBaseFunctions
   {
+    
     #region Переопределенные
     public override StateView GetDocumentSummary()
     {
@@ -200,7 +201,7 @@ namespace sberdev.SBContracts.Server
     #endregion
     
     #region Разное
-    
+
     /// <summary>
     /// Если выбрано много продуктов заменяет их одним - "General"
     /// </summary>

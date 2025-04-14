@@ -97,4 +97,11 @@
   <data name="ControlGroup_8dea542d4cf34f96b734264fd1c235c1" xml:space="preserve">
     <value>Калькуляция</value>
   </data>
+  <data name="Control_f79633c29cab4d04a6c4681afe396ec6_EmptyText" xml:space="preserve">
+    <value>[Индекс] [Город], [Улица], [Дом/офис], [Место]
+Пример: 125009 Москва, Тверская ул., 12, офис 34</value>
+  </data>
+  <data name="Control_4102231827c34657b4e5e404622e1ffb_EmptyText" xml:space="preserve">
+    <value>example@domain.com</value>
+  </data>
 </root>

@@ -614,7 +614,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "a5496557-87f4-4e62-a097-5a9e48878e5c",
           "PropertyGuid": "394a1dbe-6e80-4739-ad9f-bcf36863714d",
-          "RowNumber": 1,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": [],
           "Versions": []
@@ -628,7 +628,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
           "ParentGuid": "a5496557-87f4-4e62-a097-5a9e48878e5c",
           "PropertyGuid": "a61809b1-cac9-4f1c-8691-3b5f30a0a16d",
-          "RowNumber": 2,
+          "RowNumber": 5,
           "RowSpan": 1,
           "Settings": []
         },
@@ -690,7 +690,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "a5496557-87f4-4e62-a097-5a9e48878e5c",
           "PropertyGuid": "16ad65c0-cf92-4162-8e3e-242501eef95e",
-          "RowNumber": 1,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1076,7 +1076,6 @@
           ],
           "ColumnNumber": 0,
           "ColumnSpan": 1,
-          "GroupType": "WithTitleNoBorder",
           "ParentGuid": "01dd99f5-db49-480e-b699-28488f2653fb",
           "RowNumber": 5,
           "RowSpan": 1
@@ -1137,6 +1136,63 @@
           "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "54371110-c564-4847-9ef6-81d5c4138a35",
+          "Name": "AdressSberDevSungeroSungero",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
+          "ParentGuid": "a5496557-87f4-4e62-a097-5a9e48878e5c",
+          "PropertyGuid": "cabed4f0-e985-4e95-80e4-09398f829e0e",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "Height",
+              "Value": 40
+            }
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "29c26b5c-e113-43ac-b611-958e0139ea63",
+          "Name": "EmailSberDevSungeroSungero",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+          "ParentGuid": "a5496557-87f4-4e62-a097-5a9e48878e5c",
+          "PropertyGuid": "4034ccbf-f3b5-4283-bcae-195d3e5be67f",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "ea06c864-d14f-4b42-873c-e1bf1abe8d4c",
+          "Name": "PhoneNumberSberDevSungeroSungero",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+          "ParentGuid": "a5496557-87f4-4e62-a097-5a9e48878e5c",
+          "PropertyGuid": "de2cf091-94bb-41f9-8233-58a9bb290ef7",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "77ca5e79-9bb0-4bf1-a3b1-d73ab7c15d3a",
+          "Name": "ControlSungero",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "a5496557-87f4-4e62-a097-5a9e48878e5c",
+          "PropertyGuid": "bbbc063d-7367-4ea8-a777-5dd1bbe8e216",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -1160,6 +1216,24 @@
   "OpenCardByDefaultInCollection": true,
   "OperationsClass": "",
   "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "bbbc063d-7367-4ea8-a777-5dd1bbe8e216",
+      "Name": "DeliveryMethod",
+      "HandledEvents": [
+        "ValueInputClient"
+      ],
+      "IsAncestorMetadata": true,
+      "IsRequired": true,
+      "Overridden": [
+        "IsRequired",
+        "IsVisibility",
+        "CanBeSearch",
+        "IsEnabled",
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "cc53a990-5123-4f3a-b5ac-f3899be1f40a",
@@ -1723,6 +1797,36 @@
       "FlatListInStandaloneLookup": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "8e516513-58b6-478c-8a5f-e18e9c5e5bda"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "cabed4f0-e985-4e95-80e4-09398f829e0e",
+      "Name": "AdressSberDevSungero",
+      "Code": "AdressSberDevS",
+      "Length": 300,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "702507c9-d1e8-45af-8b8f-9494653b95c4",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "de2cf091-94bb-41f9-8233-58a9bb290ef7",
+      "Name": "PhoneNumberSberDevSungero",
+      "Code": "PhoneNumberSbe",
+      "Length": 20,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "cabed4f0-e985-4e95-80e4-09398f829e0e",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "4034ccbf-f3b5-4283-bcae-195d3e5be67f",
+      "Name": "EmailSberDevSungero",
+      "Code": "EmailSberDevSu",
+      "Length": 100,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "de2cf091-94bb-41f9-8233-58a9bb290ef7",
+      "Versions": []
     }
   ],
   "PublicFunctions": [

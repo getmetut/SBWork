@@ -118,20 +118,6 @@
           "Versions": []
         },
         {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "7df27ccd-a542-45df-b052-40089a659cbf",
-          "Name": "DeliveryMethod",
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
-          "ParentGuid": "4e1d78fc-6f6c-4c81-bf9a-a1fa2031a46b",
-          "PropertyGuid": "bbbc063d-7367-4ea8-a777-5dd1bbe8e216",
-          "RowNumber": 3,
-          "RowSpan": 1,
-          "Settings": [],
-          "Versions": []
-        },
-        {
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "4e1d78fc-6f6c-4c81-bf9a-a1fa2031a46b",
           "Name": "Registration",
@@ -427,7 +413,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "2a9b759d-673b-4a94-bb3b-3d6bdcae0d5d",
           "PropertyGuid": "394a1dbe-6e80-4739-ad9f-bcf36863714d",
-          "RowNumber": 1,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": [],
           "Versions": []
@@ -469,7 +455,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "2a9b759d-673b-4a94-bb3b-3d6bdcae0d5d",
           "PropertyGuid": "16ad65c0-cf92-4162-8e3e-242501eef95e",
-          "RowNumber": 1,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": [],
           "Versions": []
@@ -1032,6 +1018,64 @@
           "ParentGuid": "73e9df7c-895e-4811-b3d5-76c6f95b87aa",
           "PropertyGuid": "84a47c44-a3a3-4eb4-a905-f04d5768c5e9",
           "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "7df27ccd-a542-45df-b052-40089a659cbf",
+          "Name": "DeliveryMethod",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "2a9b759d-673b-4a94-bb3b-3d6bdcae0d5d",
+          "PropertyGuid": "bbbc063d-7367-4ea8-a777-5dd1bbe8e216",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": [],
+          "Versions": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "f79633c2-9cab-4d04-a6c4-681afe396ec6",
+          "Name": "AdressSberDevSungeroSungero",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
+          "ParentGuid": "2a9b759d-673b-4a94-bb3b-3d6bdcae0d5d",
+          "PropertyGuid": "cabed4f0-e985-4e95-80e4-09398f829e0e",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "Height",
+              "Value": 40
+            }
+          ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "41022318-27c3-4657-b4e5-e404622e1ffb",
+          "Name": "EmailSberDevSungeroSungero",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+          "ParentGuid": "2a9b759d-673b-4a94-bb3b-3d6bdcae0d5d",
+          "PropertyGuid": "4034ccbf-f3b5-4283-bcae-195d3e5be67f",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "37c274c5-4bb8-45db-93f0-bae99a56e6f1",
+          "Name": "PhoneNumberSberDevSungeroSungero",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+          "ParentGuid": "2a9b759d-673b-4a94-bb3b-3d6bdcae0d5d",
+          "PropertyGuid": "de2cf091-94bb-41f9-8233-58a9bb290ef7",
+          "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
         }

@@ -11,6 +11,12 @@ namespace sberdev.SBContracts
   partial class SupAgreementSharedHandlers
   {
 
+    public override void LeadingDocumentChanged(Sungero.Docflow.Shared.OfficialDocumentLeadingDocumentChangedEventArgs e)
+    {
+      base.LeadingDocumentChanged(e);
+      Functions.SupAgreement.FillDeliveryInfo(_obj, SBContracts.ContractualDocuments.As(_obj.LeadingDocument));
+    }
+
     public override void TotalAmountChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
     {
       base.TotalAmountChanged(e);

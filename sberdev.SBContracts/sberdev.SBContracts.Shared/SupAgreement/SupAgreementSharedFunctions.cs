@@ -35,5 +35,18 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.AgentSaluteSberDev.IsVisible = orderXXFlag;
       _obj.State.Properties.AgentSaluteSberDev.IsRequired = orderXXFlag;
     }
+    
+    /// <summary>
+    /// Переносит информацию по доставке из таргета в объект
+    /// </summary>
+    public void FillDeliveryInfo(SBContracts.IContractualDocument target)
+    {
+      if (target != null && (target.DeliveryMethod?.Id == 3 || target.DeliveryMethod?.Id == 2))
+      {
+        _obj.AdressSberDev = target.AdressSberDev;
+        _obj.EmailSberDev = target.EmailSberDev;
+        _obj.PhoneNumberSberDev = target.PhoneNumberSberDev;
+      }
+    }
   }
 }

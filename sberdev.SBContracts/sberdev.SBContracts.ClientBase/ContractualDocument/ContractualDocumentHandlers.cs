@@ -10,6 +10,12 @@ namespace sberdev.SBContracts
   partial class ContractualDocumentClientHandlers
   {
 
+    public override void DeliveryMethodValueInput(Sungero.Docflow.Client.OfficialDocumentDeliveryMethodValueInputEventArgs e)
+    {
+      base.DeliveryMethodValueInput(e);
+      // для вызова обновления формы
+    }
+
     public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
     {
       base.Showing(e);

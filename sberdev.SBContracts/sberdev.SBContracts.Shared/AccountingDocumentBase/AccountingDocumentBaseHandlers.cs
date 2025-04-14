@@ -41,7 +41,7 @@ namespace sberdev.SBContracts
           _obj.CounterpartyTINSberDev = comp.TIN;
           _obj.CouterpartyTRRCSberDev = comp.TRRC;
           if ((comp.HeadOrgSDev != true) && (!SBContracts.PublicFunctions.Module.IsSystemUser()))
-          {            
+          {
             var OrgTrue = PublicFunctions.AccountingDocumentBase.Remote.GetHeadCompanies(_obj, comp);
             if ((OrgTrue != null) && (OrgTrue != comp))
             {
@@ -352,6 +352,7 @@ namespace sberdev.SBContracts
         }
         else
         {
+          Functions.AccountingDocumentBase.FillDeliveryInfo(_obj, SBContracts.ContractualDocuments.As(_obj.LeadingDocument));
           if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Postpay)
             SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
         }

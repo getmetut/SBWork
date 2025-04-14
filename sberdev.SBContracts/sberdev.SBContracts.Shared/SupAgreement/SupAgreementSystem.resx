@@ -376,4 +376,11 @@
   <data name="ControlGroup_14efaf9d8d3747f4bb0c9b70e3a3a8e4" xml:space="preserve">
     <value />
   </data>
+  <data name="Control_64dba3c181f24f82b9bc1d06a7c5f909_EmptyText" xml:space="preserve">
+    <value>[Zip Code] [City], [Street], [House/Office], [Place]
+Example: 125009 Moscow, Tverskaya St., 12, office 34</value>
+  </data>
+  <data name="Control_3f02a2a621e544d2bf3ecef2d64a5fe3_EmptyText" xml:space="preserve">
+    <value>example@domain.com</value>
+  </data>
 </root>

@@ -210,12 +210,10 @@ namespace sberdev.SBContracts
             if (prop.ProductCalc != null)
               prop.PercentCalc = prop.PercentCalc;
           }
-          //      SberContracts.PublicFunctions.Module.ShowTotalAmountChangedDialog(false);
         }
         if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Absolute)
         {
           _obj.CalculationAmountBaseSberDev = _obj.CalculationAmountBaseSberDev;
-          //      SberContracts.PublicFunctions.Module.ShowTotalAmountChangedDialog(true);
         }
       }
     }

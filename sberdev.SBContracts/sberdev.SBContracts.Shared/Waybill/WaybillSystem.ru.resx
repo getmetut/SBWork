@@ -67,4 +67,11 @@
   <data name="Control_c2289b3127fb4d62aad128c9deadea2c_DisplayValue" xml:space="preserve">
     <value>Заполнить аналитики из документа</value>
   </data>
+  <data name="Control_6bafa1c5da42414cae6027217d82c07d_EmptyText" xml:space="preserve">
+    <value>[Индекс] [Город], [Улица], [Дом/офис], [Место]
+Пример: 125009 Москва, Тверская ул., 12, офис 34</value>
+  </data>
+  <data name="Control_1ee6b0fb8a734f4495412647df2c7564_EmptyText" xml:space="preserve">
+    <value>example@domain.com</value>
+  </data>
 </root>

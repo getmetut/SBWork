@@ -1173,13 +1173,17 @@
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "bbbc063d-7367-4ea8-a777-5dd1bbe8e216",
       "Name": "DeliveryMethod",
+      "HandledEvents": [
+        "ValueInputClient"
+      ],
       "IsAncestorMetadata": true,
       "IsRequired": true,
       "Overridden": [
         "IsVisibility",
         "CanBeSearch",
         "IsEnabled",
-        "IsRequired"
+        "IsRequired",
+        "HandledEvents"
       ],
       "Versions": []
     },
@@ -1583,6 +1587,7 @@
       "NameGuid": "795b3664-5b2a-44c1-97d7-a33aa1e0a957",
       "Name": "AdressSberDev",
       "Code": "AdressX",
+      "Length": 30,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "7890cbf3-a2bf-4717-b1d7-3eb3b6ee40a5",
       "Versions": []
@@ -1592,6 +1597,7 @@
       "NameGuid": "cb5a6136-6899-4afa-a925-cafac526e56b",
       "Name": "PhoneNumberSberDev",
       "Code": "PhoneNumberX",
+      "Length": 20,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "795b3664-5b2a-44c1-97d7-a33aa1e0a957",
       "Versions": []
@@ -1601,6 +1607,7 @@
       "NameGuid": "6bfe8383-a16b-4de7-9fae-3243781eab5a",
       "Name": "EmailSberDev",
       "Code": "EmailX",
+      "Length": 100,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "cb5a6136-6899-4afa-a925-cafac526e56b",
       "Versions": []

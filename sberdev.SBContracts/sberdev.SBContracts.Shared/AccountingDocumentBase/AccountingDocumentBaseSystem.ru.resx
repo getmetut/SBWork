@@ -382,4 +382,20 @@
   <data name="Property_CouterpartyTRRCSberDev" xml:space="preserve">
     <value>КПП контрагента</value>
   </data>
+  <data name="Property_AdressSberDevSungero" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="Property_PhoneNumberSberDevSungero" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
+  <data name="Property_EmailSberDevSungero" xml:space="preserve">
+    <value>Эл. почта</value>
+  </data>
+  <data name="Control_54371110c56448479ef681d5c4138a35_EmptyText" xml:space="preserve">
+    <value>[Индекс] [Город], [Улица], [Дом/офис], [Место]
+Пример: 125009 Москва, Тверская ул., 12, офис 34</value>
+  </data>
+  <data name="Control_29c26b5ce11343acb611958e0139ea63_EmptyText" xml:space="preserve">
+    <value>example@domain.com</value>
+  </data>
 </root>

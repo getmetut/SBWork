@@ -9,6 +9,43 @@ namespace sberdev.SBContracts.Shared
 {
   partial class AccountingDocumentBaseFunctions
   {
+    public void ChangeDeliveryInfoAccess()
+    {
+      var props = _obj.State.Properties;
+      var isMail = _obj.DeliveryMethod != null ? _obj.DeliveryMethod.Id == 2 : false;
+      var isCourier = _obj.DeliveryMethod != null ? _obj.DeliveryMethod.Id == 3 : false;
+      props.EmailSberDevSungero.IsRequired = isMail;
+      props.EmailSberDevSungero.IsEnabled = isMail || isCourier;
+      props.EmailSberDevSungero.IsVisible = isMail || isCourier;
+      props.AdressSberDevSungero.IsRequired = isMail || isCourier;
+      props.AdressSberDevSungero.IsEnabled = isMail || isCourier;
+      props.AdressSberDevSungero.IsVisible = isMail || isCourier;
+      props.PhoneNumberSberDevSungero.IsRequired = isCourier;
+      props.PhoneNumberSberDevSungero.IsEnabled = isMail || isCourier;
+      props.PhoneNumberSberDevSungero.IsVisible = isMail || isCourier;
+    }
+    
+    public override void ChangeRegistrationPaneVisibility(bool needShow, bool repeatRegister)
+    {
+      base.ChangeRegistrationPaneVisibility(needShow, repeatRegister);
+      _obj.State.Properties.DeliveryMethod.IsVisible = true;
+      _obj.State.Properties.DeliveryMethod.IsEnabled = true;
+      _obj.State.Properties.DeliveryMethod.IsRequired = true;
+    }
+    
+    /// <summary>
+    /// Переносит информацию по доставке из таргета в объект
+    /// </summary>
+    public void FillDeliveryInfo(SBContracts.IContractualDocument target)
+    {
+      if (target != null && (target.DeliveryMethod?.Id == 3 || target.DeliveryMethod?.Id == 2))
+      {
+        _obj.DeliveryMethod = target.DeliveryMethod;
+        _obj.AdressSberDevSungero = target.AdressSberDev;
+        _obj.EmailSberDevSungero = target.EmailSberDev;
+        _obj.PhoneNumberSberDevSungero = target.PhoneNumberSberDev;
+      }
+    }
 
     /// <summary>
     /// Обновление карточки докуента и открытие реквизитов по логике запроса и условий
@@ -126,6 +163,8 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.InvoiceSberDev.IsEnabled = _obj.PayTypeBaseSberDev.HasValue;
       _obj.State.Properties.AccDocSberDev.IsEnabled = _obj.PayTypeBaseSberDev.HasValue;
       _obj.State.Properties.MarketingSberDev.IsEnabled = _obj.PayTypeBaseSberDev.HasValue;
+      
+      ChangeDeliveryInfoAccess();
       
       CancelRequiredPropeties();
     }

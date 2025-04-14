@@ -67,7 +67,7 @@ namespace sberdev.SBContracts.Shared
         _obj.State.Properties.TotalAmount.IsEnabled = true;
         _obj.State.Properties.Currency.IsEnabled = true;
       }
-      
+      ChangeDeliveryInfoAccess();
       ChangePropertiesAccessByKind();
       CancelRequiredPropeties();
     }
@@ -371,50 +371,22 @@ namespace sberdev.SBContracts.Shared
     
     #endregion
     
-    #region Прочие
+    #region Контроль разных свойств
     
-    
-    /// <summary>
-    /// Формирует строку с продуктами
-    /// </summary>
-    [Public]
-    public string GetCalculationString()
+    public void ChangeDeliveryInfoAccess()
     {
-      string spisokCalc = "";
-      if (_obj.CalculationBaseSberDev.Count > 0)
-      {
-        if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Absolute)
-          foreach (var elem in _obj.CalculationBaseSberDev)
-            spisokCalc += elem.ProductCalc.Name + " " + Math.Round((decimal)elem.AbsoluteCalc.Value, 2) + "; ";
-          else
-            foreach (var elem in _obj.CalculationBaseSberDev)
-              spisokCalc += elem.ProductCalc.Name + " " + Math.Round((decimal)elem.InterestCalc.Value, 2) + "; ";
-      }
-      else
-      {
-        spisokCalc += _obj.ProdCollectionExBaseSberDev.FirstOrDefault()?.Product.Name + " ";
-        if (_obj.ProdCollectionPrBaseSberDev.Count > 0)
-          spisokCalc += _obj.ProdCollectionPrBaseSberDev.FirstOrDefault()?.Product.Name + " ";
-        spisokCalc += _obj.TotalAmount;
-      }
-      spisokCalc = spisokCalc.Substring(0, Math.Min(spisokCalc.Length, 999)).TrimEnd(';');
-      return spisokCalc;
-    }
-    
-    [Public]
-    public Sungero.CoreEntities.IUser GetMVZBudgetOwner()
-    {
-      if (_obj.MVZBaseSberDev != null)
-        if (_obj.MVZBaseSberDev.MainMVZ != null)
-          return _obj.MVZBaseSberDev.MainMVZ.BudgetOwner;
-        else
-          return _obj.MVZBaseSberDev.BudgetOwner;
-      if (_obj.MVPBaseSberDev != null)
-        if (_obj.MVPBaseSberDev.MainMVZ != null)
-          return _obj.MVPBaseSberDev.MainMVZ.BudgetOwner;
-        else
-          return _obj.MVPBaseSberDev.BudgetOwner;
-      return null;
+      var props = _obj.State.Properties;
+      var isMail = _obj.DeliveryMethod != null ? _obj.DeliveryMethod.Id == 2 : false;
+      var isCourier = _obj.DeliveryMethod != null ? _obj.DeliveryMethod.Id == 3 : false;
+      props.EmailSberDev.IsRequired = isMail;
+      props.EmailSberDev.IsEnabled = isMail || isCourier;
+      props.EmailSberDev.IsVisible = isMail || isCourier;
+      props.AdressSberDev.IsRequired = isMail || isCourier;
+      props.AdressSberDev.IsEnabled = isMail || isCourier;
+      props.AdressSberDev.IsVisible = isMail || isCourier;
+      props.PhoneNumberSberDev.IsRequired = isCourier;
+      props.PhoneNumberSberDev.IsEnabled = isMail || isCourier;
+      props.PhoneNumberSberDev.IsVisible = isMail || isCourier;
     }
     
     public override void ChangeRegistrationPaneVisibility(bool needShow, bool repeatRegister)
@@ -472,23 +444,67 @@ namespace sberdev.SBContracts.Shared
         return;
       var kind = _obj.DocumentKind.Name;
       bool isXiongxin = kind == "Договор Xiongxin" || kind == "Дополнительное соглашение Xiongxin";
-        _obj.State.Properties.AgentSaluteSberDev.IsVisible = isXiongxin;
-        _obj.State.Properties.AgentSaluteSberDev.IsRequired = isXiongxin;
-        _obj.State.Properties.DelPeriodSberDev.IsVisible = isXiongxin;
-        _obj.State.Properties.DelPeriodSberDev.IsRequired = isXiongxin;
-        _obj.State.Properties.AmountPrepaySberDev.IsVisible = isXiongxin;
-        _obj.State.Properties.AmountPrepaySberDev.IsRequired = isXiongxin;
-        _obj.State.Properties.DeadlinePrepaySberDev.IsVisible = isXiongxin;
-        _obj.State.Properties.DeadlinePrepaySberDev.IsRequired = isXiongxin;
-        _obj.State.Properties.AdressSberDev.IsVisible = isXiongxin;
-        _obj.State.Properties.PhoneNumberSberDev.IsVisible = isXiongxin;
-        _obj.State.Properties.EmailSberDev.IsVisible = isXiongxin;
-        _obj.State.Properties.FrameworkBaseSberDev.IsEnabled = !isXiongxin;
-        _obj.State.Properties.ValidFrom.IsRequired = isXiongxin;
-        _obj.State.Properties.ValidTill.IsRequired = isXiongxin;
-        
+      _obj.State.Properties.AgentSaluteSberDev.IsVisible = isXiongxin;
+      _obj.State.Properties.AgentSaluteSberDev.IsRequired = isXiongxin;
+      _obj.State.Properties.DelPeriodSberDev.IsVisible = isXiongxin;
+      _obj.State.Properties.DelPeriodSberDev.IsRequired = isXiongxin;
+      _obj.State.Properties.AmountPrepaySberDev.IsVisible = isXiongxin;
+      _obj.State.Properties.AmountPrepaySberDev.IsRequired = isXiongxin;
+      _obj.State.Properties.DeadlinePrepaySberDev.IsVisible = isXiongxin;
+      _obj.State.Properties.DeadlinePrepaySberDev.IsRequired = isXiongxin;
+      _obj.State.Properties.FrameworkBaseSberDev.IsEnabled = !isXiongxin;
+      _obj.State.Properties.ValidFrom.IsRequired = isXiongxin;
+      _obj.State.Properties.ValidTill.IsRequired = isXiongxin;
+      
       bool isAcc = kind == "Счет-договор" || kind == "Договор-оферта";
-        _obj.State.Properties.FrameworkBaseSberDev.IsVisible = isAcc;
+      _obj.State.Properties.FrameworkBaseSberDev.IsVisible = !isAcc;
+    }
+    #endregion
+    
+    #region Прочие
+    
+    
+    /// <summary>
+    /// Формирует строку с продуктами
+    /// </summary>
+    [Public]
+    public string GetCalculationString()
+    {
+      string spisokCalc = "";
+      if (_obj.CalculationBaseSberDev.Count > 0)
+      {
+        if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Absolute)
+          foreach (var elem in _obj.CalculationBaseSberDev)
+            spisokCalc += elem.ProductCalc.Name + " " + Math.Round((decimal)elem.AbsoluteCalc.Value, 2) + "; ";
+          else
+            foreach (var elem in _obj.CalculationBaseSberDev)
+              spisokCalc += elem.ProductCalc.Name + " " + Math.Round((decimal)elem.InterestCalc.Value, 2) + "; ";
+      }
+      else
+      {
+        spisokCalc += _obj.ProdCollectionExBaseSberDev.FirstOrDefault()?.Product.Name + " ";
+        if (_obj.ProdCollectionPrBaseSberDev.Count > 0)
+          spisokCalc += _obj.ProdCollectionPrBaseSberDev.FirstOrDefault()?.Product.Name + " ";
+        spisokCalc += _obj.TotalAmount;
+      }
+      spisokCalc = spisokCalc.Substring(0, Math.Min(spisokCalc.Length, 999)).TrimEnd(';');
+      return spisokCalc;
+    }
+    
+    [Public]
+    public Sungero.CoreEntities.IUser GetMVZBudgetOwner()
+    {
+      if (_obj.MVZBaseSberDev != null)
+        if (_obj.MVZBaseSberDev.MainMVZ != null)
+          return _obj.MVZBaseSberDev.MainMVZ.BudgetOwner;
+        else
+          return _obj.MVZBaseSberDev.BudgetOwner;
+      if (_obj.MVPBaseSberDev != null)
+        if (_obj.MVPBaseSberDev.MainMVZ != null)
+          return _obj.MVPBaseSberDev.MainMVZ.BudgetOwner;
+        else
+          return _obj.MVPBaseSberDev.BudgetOwner;
+      return null;
     }
     
     /// <summary>

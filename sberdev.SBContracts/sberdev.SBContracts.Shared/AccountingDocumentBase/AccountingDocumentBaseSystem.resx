@@ -403,4 +403,20 @@
   <data name="Property_NMASDev" xml:space="preserve">
     <value>Объекты НМА в 1С</value>
   </data>
+  <data name="Property_AdressSberDevSungero" xml:space="preserve">
+    <value>Adress</value>
+  </data>
+  <data name="Property_PhoneNumberSberDevSungero" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="Property_EmailSberDevSungero" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Control_54371110c56448479ef681d5c4138a35_EmptyText" xml:space="preserve">
+    <value>[Zip Code] [City], [Street], [House/Office], [Place]
+Example: 125009 Moscow, Tverskaya St., 12, office 34</value>
+  </data>
+  <data name="Control_29c26b5ce11343acb611958e0139ea63_EmptyText" xml:space="preserve">
+    <value>example@domain.com</value>
+  </data>
 </root>
