@@ -1597,7 +1597,7 @@
       "NameGuid": "cb5a6136-6899-4afa-a925-cafac526e56b",
       "Name": "PhoneNumberSberDev",
       "Code": "PhoneNumberX",
-      "Length": 20,
+      "Length": 100,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "795b3664-5b2a-44c1-97d7-a33aa1e0a957",
       "Versions": []

@@ -764,13 +764,13 @@
           "Name": "TermsSberDevSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 37.91
+              "Percentage": 39.16
             },
             {
-              "Percentage": 34.08
+              "Percentage": 35.2
             },
             {
-              "Percentage": 24.83
+              "Percentage": 25.65
             }
           ],
           "ColumnNumber": 0,

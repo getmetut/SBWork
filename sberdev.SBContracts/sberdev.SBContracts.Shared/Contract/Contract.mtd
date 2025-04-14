@@ -739,13 +739,13 @@
           "Name": "TermsSberDevSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 34.66
+              "Percentage": 35.79
             },
             {
-              "Percentage": 29.63
+              "Percentage": 30.6
             },
             {
-              "Percentage": 32.54
+              "Percentage": 33.61
             }
           ],
           "ColumnNumber": 0,
@@ -1290,16 +1290,16 @@
           "Name": "ControlGroupSungero",
           "ColumnDefinitions": [
             {
-              "Percentage": 34.79
+              "Percentage": 36.53
             },
             {
-              "Percentage": 25.4
+              "Percentage": 26.67
             },
             {
-              "Percentage": 15.61
+              "Percentage": 16.39
             },
             {
-              "Percentage": 19.44
+              "Percentage": 20.41
             }
           ],
           "ColumnNumber": 0,
