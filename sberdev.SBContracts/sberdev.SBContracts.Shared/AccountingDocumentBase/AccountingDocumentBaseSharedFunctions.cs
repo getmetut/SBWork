@@ -9,6 +9,7 @@ namespace sberdev.SBContracts.Shared
 {
   partial class AccountingDocumentBaseFunctions
   {
+    
     public void ChangeDeliveryInfoAccess()
     {
       var props = _obj.State.Properties;
@@ -27,10 +28,13 @@ namespace sberdev.SBContracts.Shared
     
     public override void ChangeRegistrationPaneVisibility(bool needShow, bool repeatRegister)
     {
+      var type = _obj.GetType().Name;
       base.ChangeRegistrationPaneVisibility(needShow, repeatRegister);
-      _obj.State.Properties.DeliveryMethod.IsVisible = true;
-      _obj.State.Properties.DeliveryMethod.IsEnabled = true;
-      _obj.State.Properties.DeliveryMethod.IsRequired = true;
+      string[] types = new string[]{"IncomingInvoice", "IncomingInvoiceProxy", "OutgoingInvoice", "OutgoingInvoiceProxy"};
+      var isNeed = !types.Contains(type);
+      _obj.State.Properties.DeliveryMethod.IsVisible = isNeed;
+      _obj.State.Properties.DeliveryMethod.IsEnabled = isNeed;
+      _obj.State.Properties.DeliveryMethod.IsRequired = isNeed;
     }
     
     /// <summary>
