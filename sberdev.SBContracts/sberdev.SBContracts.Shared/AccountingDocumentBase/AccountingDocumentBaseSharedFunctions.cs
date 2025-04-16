@@ -10,31 +10,68 @@ namespace sberdev.SBContracts.Shared
   partial class AccountingDocumentBaseFunctions
   {
     
+    /// <summary>
+    /// Изменяет доступность и обязательность полей доставки в зависимости от метода доставки и типа документа.
+    /// </summary>
     public void ChangeDeliveryInfoAccess()
     {
       var props = _obj.State.Properties;
-      var isMail = _obj.DeliveryMethod != null ? _obj.DeliveryMethod.Id == 2 : false;
-      var isCourier = _obj.DeliveryMethod != null ? _obj.DeliveryMethod.Id == 3 : false;
-      props.EmailSberDevSungero.IsRequired = isMail;
-      props.EmailSberDevSungero.IsEnabled = isMail || isCourier;
-      props.EmailSberDevSungero.IsVisible = isMail || isCourier;
-      props.AdressSberDevSungero.IsRequired = isMail || isCourier;
-      props.AdressSberDevSungero.IsEnabled = isMail || isCourier;
-      props.AdressSberDevSungero.IsVisible = isMail || isCourier;
-      props.PhoneNumberSberDevSungero.IsRequired = isCourier;
-      props.PhoneNumberSberDevSungero.IsEnabled = isMail || isCourier;
-      props.PhoneNumberSberDevSungero.IsVisible = isMail || isCourier;
+      
+      // Определяем тип текущего документа
+      var documentType = _obj.GetType().Name;
+      string[] excludedTypes = new string[] { "IncomingInvoice", "IncomingInvoiceProxy", "OutgoingInvoice", "OutgoingInvoiceProxy" };
+      var isApplicableDocumentType = !excludedTypes.Contains(documentType);
+      
+      // Если документ не входит в список исключаемых типов, проверяем метод доставки
+      if (isApplicableDocumentType)
+      {
+        // Определяем способ доставки
+        var deliveryMethod = _obj.DeliveryMethod;
+        var isMail = deliveryMethod != null && deliveryMethod.Id == 2;
+        var isCourier = deliveryMethod != null && deliveryMethod.Id == 3;
+        var showDeliveryFields = isMail || isCourier;
+        
+        // Настраиваем видимость и обязательность полей в зависимости от способа доставки
+        // Email
+        props.EmailSberDevSungero.IsVisible = showDeliveryFields;
+        props.EmailSberDevSungero.IsEnabled = showDeliveryFields;
+        props.EmailSberDevSungero.IsRequired = isMail;
+        
+        // Адрес
+        props.AdressSberDevSungero.IsVisible = showDeliveryFields;
+        props.AdressSberDevSungero.IsEnabled = showDeliveryFields;
+        props.AdressSberDevSungero.IsRequired = showDeliveryFields;
+        
+        // Телефон
+        props.PhoneNumberSberDevSungero.IsVisible = showDeliveryFields;
+        props.PhoneNumberSberDevSungero.IsEnabled = showDeliveryFields;
+        props.PhoneNumberSberDevSungero.IsRequired = isCourier;
+      }
+      else
+      {
+        // Скрываем все поля доставки для исключенных типов документов
+        SetFieldsVisibility(props, false);
+      }
     }
-    
-    public override void ChangeRegistrationPaneVisibility(bool needShow, bool repeatRegister)
+
+    /// <summary>
+    /// Устанавливает видимость, доступность и обязательность всех полей доставки.
+    /// </summary>
+    /// <param name="props">Свойства объекта.</param>
+    /// <param name="value">Значение для установки (true/false).</param>
+    private void SetFieldsVisibility(SBContracts.IAccountingDocumentBasePropertyStates props, bool value)
     {
-      var type = _obj.GetType().Name;
-      base.ChangeRegistrationPaneVisibility(needShow, repeatRegister);
-      string[] types = new string[]{"IncomingInvoice", "IncomingInvoiceProxy", "OutgoingInvoice", "OutgoingInvoiceProxy"};
-      var isNeed = !types.Contains(type);
-      _obj.State.Properties.DeliveryMethod.IsVisible = isNeed;
-      _obj.State.Properties.DeliveryMethod.IsEnabled = isNeed;
-      _obj.State.Properties.DeliveryMethod.IsRequired = isNeed;
+      props.EmailSberDevSungero.IsVisible = value;
+      props.EmailSberDevSungero.IsEnabled = value;
+      props.EmailSberDevSungero.IsRequired = value;
+      
+      props.AdressSberDevSungero.IsVisible = value;
+      props.AdressSberDevSungero.IsEnabled = value;
+      props.AdressSberDevSungero.IsRequired = value;
+      
+      props.PhoneNumberSberDevSungero.IsVisible = value;
+      props.PhoneNumberSberDevSungero.IsEnabled = value;
+      props.PhoneNumberSberDevSungero.IsRequired = value;
     }
     
     /// <summary>
@@ -54,7 +91,6 @@ namespace sberdev.SBContracts.Shared
     /// <summary>
     /// Обновление карточки докуента и открытие реквизитов по логике запроса и условий
     /// </summary>
-    [Public]
     public void UpdateCard()
     {
       bool NMVisible = false;
@@ -169,7 +205,6 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.MarketingSberDev.IsEnabled = _obj.PayTypeBaseSberDev.HasValue;
       
       ChangeDeliveryInfoAccess();
-      
       CancelRequiredPropeties();
     }
     

@@ -10,6 +10,17 @@ namespace sberdev.SBContracts.Shared
   partial class OfficialDocumentFunctions
   {
     /// <summary>
+    /// Выключает обязательность невидимых свойств
+    /// </summary>
+    [Public]
+    public void ValidationRequierdProperties()
+    {
+      var unvisProps = _obj.State.Properties.Where(p => p.IsVisible == false);
+      foreach (var prop in unvisProps)
+        prop.IsRequired = false;
+    }
+    
+    /// <summary>
     /// Получить список всех продуктов
     /// </summary>
     /// <returns></returns>

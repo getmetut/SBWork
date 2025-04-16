@@ -19,7 +19,6 @@ namespace sberdev.SBContracts
     public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
     {
       base.Showing(e);
-      PublicFunctions.AccountingDocumentBase.UpdateCard(_obj);
       if (_obj.LeadingDocument != null)
       {
         _obj.State.Properties.LeadingDocument.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.LeadingDocument, false);
@@ -47,7 +46,7 @@ namespace sberdev.SBContracts
       base.Refresh(e);
       Functions.AccountingDocumentBase.SetPropertiesAccess(_obj);
       Functions.AccountingDocumentBase.HighlightClosedAnalitics(_obj);
-      PublicFunctions.AccountingDocumentBase.UpdateCard(_obj);
+      Functions.AccountingDocumentBase.UpdateCard(_obj);
     }
 
   }

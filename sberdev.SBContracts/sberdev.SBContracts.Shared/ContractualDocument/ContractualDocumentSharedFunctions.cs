@@ -510,7 +510,6 @@ namespace sberdev.SBContracts.Shared
     /// <summary>
     /// Обновление карточки докуента и открытие реквизитов по логике запроса и условий
     /// </summary>
-    [Public]
     public void UpdateCard()
     {
       bool NMVisible = false;

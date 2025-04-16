@@ -98,12 +98,12 @@ namespace sberdev.SberContracts.Shared
       var properties = _obj.State.Properties;
       properties.MarketDirectSberDev.IsRequired = false;
       properties.PurchComNumberSberDev.IsRequired = false;
-      properties.TotalAmount.IsRequired = false;
-      properties.TotalAmount.IsEnabled = false;
       properties.ContrTypeBaseSberDev.IsEnabled = false;
       
       properties.EmailSberDev.IsVisible = true;
       properties.PhoneNumberSberDev.IsVisible = true;
+      properties.EmailSberDev.IsEnabled = true;
+      properties.PhoneNumberSberDev.IsEnabled = true;
       
       bool isAgentScheme = _obj.PaymentMethod == PaymentMethod.Agent;
       var agentProps = new List<Sungero.Domain.Shared.IPropertyState>()

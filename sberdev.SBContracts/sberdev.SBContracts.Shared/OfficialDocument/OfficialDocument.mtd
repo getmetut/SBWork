@@ -184,7 +184,8 @@
   ],
   "HandledEvents": [
     "ShowingClient",
-    "BeforeSaveServer"
+    "BeforeSaveServer",
+    "RefreshClient"
   ],
   "IconResourcesKeys": [],
   "IsAbstract": true,
@@ -400,6 +401,19 @@
           "Name": "doc",
           "ParameterType": "global::Sungero.Docflow.IOfficialDocument",
           "ParameterTypeFullName": "Sungero.Docflow.IOfficialDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "ValidationRequierdProperties",
+      "Parameters": [
+        {
+          "Name": "officialDocument",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
         }
       ],
       "Placement": "Shared",

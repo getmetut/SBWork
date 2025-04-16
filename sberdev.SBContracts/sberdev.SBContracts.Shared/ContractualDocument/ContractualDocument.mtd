@@ -1017,8 +1017,7 @@
   "HandledEvents": [
     "RefreshClient",
     "BeforeSaveServer",
-    "CreatedServer",
-    "ShowingClient"
+    "CreatedServer"
   ],
   "IconResourcesKeys": [],
   "IsAbstract": true,
@@ -1851,19 +1850,6 @@
       "Placement": "Shared",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
-    },
-    {
-      "Name": "UpdateCard",
-      "Parameters": [
-        {
-          "Name": "contractualDocument",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [],

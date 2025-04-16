@@ -1940,19 +1940,6 @@
       "Placement": "Shared",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
-    },
-    {
-      "Name": "UpdateCard",
-      "Parameters": [
-        {
-          "Name": "accountingDocumentBase",
-          "ParameterType": "global::sberdev.SBContracts.IAccountingDocumentBase",
-          "ParameterTypeFullName": "sberdev.SBContracts.IAccountingDocumentBase, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "void",
-      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [],
