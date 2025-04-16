@@ -69,8 +69,8 @@ namespace sberdev.SBContracts.Structures.Module
   [Public]
   partial class AssignApprSeriesInfoDto
   {
-    public int Completed { get; set; }
-    public int Expired { get; set; }
+    public double Completed { get; set; }
+    public double Expired { get; set; }
   }
 
   /// <summary>

@@ -276,10 +276,20 @@ namespace sberdev.SberContracts.Server
         if (cacheRecord != null && !string.IsNullOrEmpty(cacheRecord.CachedData))
         {
           // Используем вспомогательный класс для десериализации
-          var data = JsonConvert.DeserializeObject<Dictionary<string, SBContracts.Structures.Module.IAssignApprSeriesInfoDto>>(cacheRecord.CachedData);
-          return data.ToDictionary(
-            kvp => kvp.Key,
-            kvp => (SBContracts.Structures.Module.IAssignApprSeriesInfo)SBContracts.Structures.Module.AssignApprSeriesInfo.Create(kvp.Value.Completed, kvp.Value.Expired));
+          // Предполагая, что существует конкретная реализация AssignApprSeriesInfoDto
+          var data = JsonConvert.DeserializeObject<System.Collections.Generic.Dictionary<string, SBContracts.Structures.Module.AssignApprSeriesInfoDto>>(cacheRecord.CachedData);
+          var jsonObject = Newtonsoft.Json.Linq.JObject.Parse(cacheRecord.CachedData);
+          var result = new System.Collections.Generic.Dictionary<string, SBContracts.Structures.Module.IAssignApprSeriesInfo>();
+
+          foreach (var property in jsonObject.Properties())
+          {
+            var completed = Convert.ToInt32(property.Value["Completed"]);
+            var expired = Convert.ToInt32(property.Value["Expired"]);
+            
+            result[property.Name] = SBContracts.Structures.Module.AssignApprSeriesInfo.Create(completed, expired);
+          }
+
+          return result;
         }
       }
       catch (Exception ex)

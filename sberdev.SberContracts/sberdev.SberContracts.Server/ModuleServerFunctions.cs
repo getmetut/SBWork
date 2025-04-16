@@ -221,24 +221,41 @@ namespace sberdev.SberContracts.Server
     [Public]
     public bool AssignmentMatchesDocumentType(Sungero.Workflow.IAssignment assignment, string documentType)
     {
-      if (string.IsNullOrEmpty(documentType) || documentType == "All")
-        return true;
-      
-      bool isSubtaskAssignment = assignment.Task != assignment.MainTask;
-      
-      if (isSubtaskAssignment)
-        return SafeMatchesDocumentType(assignment.Attachments.FirstOrDefault(), documentType);
-      else
+      try
       {
-        var task = SBContracts.ApprovalTasks.As(assignment.Task);
+        if (assignment == null)
+          return false;
         
-        if (task == null)
-          return SafeMatchesDocumentType(assignment.Attachments.FirstOrDefault(), documentType);
-        
-        if (task.DocumentTypeSungero == documentType)
+        if (string.IsNullOrEmpty(documentType) || documentType == "All")
           return true;
+        
+        bool isSubtaskAssignment = assignment.Task != assignment.MainTask;
+        
+      /*  if(!assignment.Attachments.Any())
+        {
+          Logger.Error($"AssignmentMatchesDocumentType: Нет вложений для задания {assignment?.Id}");
+          return false;
+        }*/
+        
+        if (isSubtaskAssignment)
+          return SafeMatchesDocumentType(assignment.Attachments.FirstOrDefault(), documentType);
         else
-          return SafeMatchesDocumentType(task.DocumentGroup.OfficialDocuments.FirstOrDefault(), documentType);
+        {
+          var task = SBContracts.ApprovalTasks.As(assignment.Task);
+          
+          if (task == null)
+            return SafeMatchesDocumentType(assignment.Attachments.FirstOrDefault(), documentType);
+          
+          if (task.DocumentTypeSungero == documentType)
+            return true;
+          else
+            return SafeMatchesDocumentType(task.DocumentGroup.OfficialDocuments.FirstOrDefault(), documentType);
+        }
+      }
+      catch (Exception ex)
+      {
+        Logger.Error($"Ошибка в AssignmentMatchesDocumentType для задания {assignment?.Id}", ex);
+        return false;
       }
     }
 
@@ -1840,26 +1857,30 @@ namespace sberdev.SberContracts.Server
           return result;
         
         // Запрос для получения всех сотрудников и их департаментов в одной операции
-        var employeeDepartments = Sungero.Company.Employees.GetAll()
+        var employeeDepartmentsRaw = Sungero.Company.Employees.GetAll()
           .Select(e => new {
                     Id = e.Id,
                     DepartmentName = e.Department != null ? e.Department.Name : "Без подразделения"
                   })
+          .ToList(); // Сначала материализуем список
+        
+        var employeeDepartments = employeeDepartmentsRaw
           .ToDictionary(e => e.Id, e => e.DepartmentName);
         
-        // Оптимизированный запрос для группировки заданий по департаментам
-        var query = Sungero.Workflow.Assignments.GetAll()
+        // Получаем базовый список заданий
+        var baseQuery = Sungero.Workflow.Assignments.GetAll()
           .Where(a =>
                  a.Status == Sungero.Workflow.Assignment.Status.Completed &&
                  a.Created >= dateRange.StartDate &&
                  a.Completed <= dateRange.EndDate &&
-                 a.Performer != null);
+                 a.Performer != null)
+          .ToList();
         
         // Если не нужно фильтровать по типу документа, используем оптимизированный подход с группировкой
         if (string.IsNullOrEmpty(documentType) || documentType == "All")
         {
-          // Выгружаем только необходимые данные без определения департамента в запросе
-          var assignments = query
+          // Теперь применяем проекцию к материализованному списку
+          var assignments = baseQuery
             .Select(a => new {
                       AssignmentId = a.Id,
                       PerformerId = a.Performer.Id,
@@ -1892,7 +1913,7 @@ namespace sberdev.SberContracts.Server
         else // Нужно фильтровать по типу документа
         {
           // Получаем все задания, чтобы проверить тип документа
-          var assignments = query.ToList();
+          var assignments = baseQuery.ToList();
           
           // Проверяем соответствие типу документа порциями
           Dictionary<string, int> departmentCompleted = new Dictionary<string, int>();
@@ -1977,32 +1998,33 @@ namespace sberdev.SberContracts.Server
         if (dateRange.StartDate > dateRange.EndDate)
           return 0;
         
-        // Используем поле ExecutionInDaysSungero для получения времени выполнения
-        var query = sberdev.SBContracts.ApprovalTasks.GetAll()
+        // Базовый запрос без проекции
+        var baseQuery = sberdev.SBContracts.ApprovalTasks.GetAll()
           .Where(t => t.Status == sberdev.SBContracts.ApprovalTask.Status.Completed &&
                  t.Started != null &&
                  t.Started >= dateRange.StartDate &&
-                 t.Started <= dateRange.EndDate);
+                 t.Started <= dateRange.EndDate)
+          .ToList();
         
         // Если нужно фильтровать по типу документа
         var tasksToCheck = documentType != "All" && !string.IsNullOrEmpty(documentType)
-          ? query.ToList()
+          ? baseQuery
           : null;
         
         List<int> executionDays = new List<int>();
         List<int> targetDays = new List<int>();
         
-        // Если не нужно фильтровать по типу документа, выполняем агрегирование в БД
+        // Если не нужно фильтровать по типу документа
         if (tasksToCheck == null)
         {
           // Выбираем задачи с заполненным ExecutionInDaysSungero
-          var tasksWithExecutionTime = query
+          var tasksWithExecutionTime = baseQuery
             .Where(t => t.ExecutionInDaysSungero != null && t.ExecutionInDaysSungero > 0)
             .Select(t => t.ExecutionInDaysSungero.Value)
             .ToList();
           
           // Для тех, у кого не заполнено, вычисляем время выполнения на месте
-          var tasksWithoutExecutionTime = query
+          var tasksWithoutExecutionTime = baseQuery
             .Where(t => t.ExecutionInDaysSungero == null || t.ExecutionInDaysSungero <= 0)
             .ToList();
           
@@ -2016,12 +2038,13 @@ namespace sberdev.SberContracts.Server
           // Объединяем результаты
           executionDays.AddRange(tasksWithExecutionTime);
           
-          // Для целевого времени - сначала получаем данные из БД, потом обрабатываем в памяти
+          // Для целевого времени - применяем проекцию уже в памяти
           if (serialType.ToLower() == "target")
           {
-            // Получаем задачи с нужными датами
-            var tasksWithDates = query
+            // Сначала получаем задачи с нужными датами
+            var tasksWithDates = baseQuery
               .Where(t => t.MaxDeadline.HasValue && t.Started <= t.MaxDeadline.Value)
+              .ToList()
               .Select(t => new {
                         StartDate = t.Started.Value,
                         MaxDeadlineDate = t.MaxDeadline.Value
@@ -2127,17 +2150,22 @@ namespace sberdev.SberContracts.Server
                     DepartmentId = e.Department != null ? e.Department.Id : (long?)null,
                     DepartmentName = e.Department != null ? e.Department.Name : null
                   })
+          .ToList()
           .ToDictionary(e => e.Id, e => new {
                           DepartmentId = e.DepartmentId,
                           DepartmentName = e.DepartmentName ?? "Без подразделения"
                         });
         
-        // Оптимизация 2: Ограничиваем выборку заданий только нужными полями
-        var assignments = Sungero.Workflow.Assignments.GetAll()
+        // Оптимизация 2: Сначала получаем базовые данные, потом проекцию
+        var baseAssignments = Sungero.Workflow.Assignments.GetAll()
           .Where(a => a.Status == Sungero.Workflow.Assignment.Status.Completed &&
                  a.Created >= dateRange.StartDate &&
                  a.Completed <= dateRange.EndDate &&
                  a.Performer != null)
+          .ToList();
+        
+        // Применяем проекцию уже в памяти
+        var assignments = baseAssignments
           .Select(a => new {
                     Id = a.Id,
                     Created = a.Created,
@@ -2231,22 +2259,25 @@ namespace sberdev.SberContracts.Server
         
         var currentDate = Calendar.Now;
         
-        // 1. Получаем основные данные о задачах без доступа к вложениям
-        var tasks = sberdev.SBContracts.ApprovalTasks.GetAll()
+        // 1. Сначала получаем данные без проекции
+        var baseTasks = sberdev.SBContracts.ApprovalTasks.GetAll()
           .Where(t => t.Started >= dateRange.StartDate && t.Started <= dateRange.EndDate)
-          .Select(t => new
-                  {
-                    t.Id,
-                    t.Status,
-                    t.MaxDeadline,
-                    t.DocumentTypeSungero
-                  })
+          .ToList();
+        
+        // 2. Затем применяем проекцию уже в памяти
+        var tasks = baseTasks.Select(t => new
+                                     {
+                                       t.Id,
+                                       t.Status,
+                                       t.MaxDeadline,
+                                       t.DocumentTypeSungero
+                                     })
           .ToList();
         
         // Словарь для кэширования соответствий задач типам документов
         Dictionary<long, bool> taskMatchesType = new Dictionary<long, bool>();
         
-        // 2. Если нужна фильтрация по типу документов и не все задачи имеют кэшированный тип
+        // 3. Если нужна фильтрация по типу документов и не все задачи имеют кэшированный тип
         if (!string.IsNullOrEmpty(documentType) && documentType != "All")
         {
           // Получаем ID задач, для которых нужно проверить документы
@@ -2274,7 +2305,7 @@ namespace sberdev.SberContracts.Server
           }
         }
         
-        // 3. Подсчитываем статистику одним проходом
+        // 4. Подсчитываем статистику одним проходом
         foreach (var t in tasks)
         {
           // Применяем фильтр по типу документа, если нужно

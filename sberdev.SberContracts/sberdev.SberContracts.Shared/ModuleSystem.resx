@@ -293,7 +293,7 @@
     <value>Approval analytics</value>
   </data>
   <data name="Enum_ApprovalAnalytics_DocumentTypes_Another" xml:space="preserve">
-    <value>Another</value>
+    <value>Anothers</value>
   </data>
   <data name="WidgetParameter_ApprovalAnalytics_AnalysisPeriod" xml:space="preserve">
     <value>Analysis period</value>
@@ -311,15 +311,15 @@
     <value>All</value>
   </data>
   <data name="Enum_ApprovalAnalytics_DocumentTypes_Contractual" xml:space="preserve">
-    <value>Contractual</value>
+    <value>Contractuals</value>
   </data>
   <data name="Enum_ApprovalAnalytics_DocumentTypes_IncInvoce" xml:space="preserve">
-    <value>IncInvoce</value>
+    <value>Incoming Invoices</value>
   </data>
   <data name="Enum_ApprovalAnalytics_DocumentTypes_Accounting" xml:space="preserve">
-    <value>Accounting</value>
+    <value>Accountings</value>
   </data>
   <data name="Enum_ApprovalAnalytics_DocumentTypes_AbstractContr" xml:space="preserve">
-    <value>AbstractContr</value>
+    <value>Purschases (not only)</value>
   </data>
 </root>
