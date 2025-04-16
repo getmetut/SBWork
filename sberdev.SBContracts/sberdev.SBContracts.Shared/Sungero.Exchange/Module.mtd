@@ -126,6 +126,9 @@
     }
   ],
   "LayeredFromGuid": "cec41b99-da21-422f-9332-0fbc423e95c0",
+  "Overridden": [
+    "IsVisible"
+  ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "sberdev.SBContracts.Module.Exchange",
@@ -133,7 +136,7 @@
     "IncorrectSignatureFormat"
   ],
   "SpecialFolders": [],
-  "Version": "4.8.39.0",
+  "Version": "4.9.372.0",
   "Widgets": [],
   "Versions": [
     {

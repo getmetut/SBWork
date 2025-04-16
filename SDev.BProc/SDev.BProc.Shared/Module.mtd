@@ -22,6 +22,7 @@
       "NameGuid": "be195fc3-6320-48ac-ad08-301603d1296a",
       "BackgroundPosition": "Stretch"
     },
+    "RemoteControls": [],
     "Tabs": []
   },
   "DesktopViews": [],
@@ -41,7 +42,7 @@
   "SharedAssemblyName": "SDev.BProc.Shared",
   "SharedNamespace": "SDev.BProc.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.150",
+  "Version": "0.0.1.152",
   "Widgets": [],
   "Versions": [
     {

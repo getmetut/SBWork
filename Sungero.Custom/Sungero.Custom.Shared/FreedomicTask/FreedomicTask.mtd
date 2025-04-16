@@ -27,8 +27,7 @@
       "EntityType": "7d573c8e-3953-4bec-8e3f-9782de8985cf",
       "HandledEvents": [
         "BaseFreedomStartAssignment"
-      ],
-      "Properties": []
+      ]
     },
     {
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
@@ -37,8 +36,7 @@
       "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
         "SendNotificationExecute"
-      ],
-      "Properties": []
+      ]
     }
   ],
   "CanBeNavigationPropertyType": true,

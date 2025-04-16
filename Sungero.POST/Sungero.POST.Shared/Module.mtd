@@ -209,6 +209,7 @@
       "BackgroundPosition": "Stretch",
       "IconName": "HeaderIcon_77f56dfd00204080bae4da8f76896df9.png"
     },
+    "RemoteControls": [],
     "Tabs": [
       {
         "NameGuid": "afa10276-0c85-4ad3-8b5d-59d533ff923a",
@@ -2414,7 +2415,7 @@
   "SharedAssemblyName": "Sungero.POST.Shared",
   "SharedNamespace": "Sungero.POST.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.268",
+  "Version": "0.0.1.270",
   "Widgets": [],
   "Versions": [
     {

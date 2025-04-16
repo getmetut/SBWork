@@ -43,8 +43,7 @@
       "EntityType": "02977b7d-fcd5-4c0a-b7b2-a2a87df6c246",
       "HandledEvents": [
         "TypesAssignmentStartAssignment"
-      ],
-      "Properties": []
+      ]
     },
     {
       "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
@@ -55,8 +54,7 @@
       "HandledEvents": [
         "DoWorksStart",
         "DoWorksStartAssignment"
-      ],
-      "Properties": []
+      ]
     },
     {
       "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
@@ -66,8 +64,7 @@
       "EntityType": "c0ebe0c6-4157-4015-b2db-ae1cc5cfccba",
       "HandledEvents": [
         "NaPodpisanieStartAssignment"
-      ],
-      "Properties": []
+      ]
     },
     {
       "$type": "Sungero.Metadata.MonitoringBlockMetadata, Sungero.Workflow.Shared",
@@ -106,16 +103,14 @@
       "NameGuid": "e4c2462a-a7d3-4c65-8f8e-fd412ee6644c",
       "Name": "Justice",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
-      "EntityType": "9f7d9bb0-720f-456f-94a2-339896bea245",
-      "Properties": []
+      "EntityType": "9f7d9bb0-720f-456f-94a2-339896bea245"
     },
     {
       "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
       "NameGuid": "795b9609-ead3-4bb6-94cd-9c6ea427493c",
       "Name": "Finance",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
-      "EntityType": "903298be-dd28-4da6-9682-1a898041342b",
-      "Properties": []
+      "EntityType": "903298be-dd28-4da6-9682-1a898041342b"
     }
   ],
   "CanBeNavigationPropertyType": true,

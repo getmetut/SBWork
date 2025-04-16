@@ -398,6 +398,7 @@
       "Actions",
       "Tabs"
     ],
+    "RemoteControls": [],
     "Tabs": [],
     "Versions": []
   },
@@ -411,6 +412,9 @@
   "Importance": "High",
   "IsLicensed": true,
   "LayeredFromGuid": "3c8b7d3a-187d-4445-8a8c-1d00ece44556",
+  "Overridden": [
+    "IsVisible"
+  ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "sberdev.SBContracts.Module.ContractsUI",
@@ -467,18 +471,6 @@
         "HandledEvents"
       ],
       "Versions": []
-    },
-    {
-      "NameGuid": "aeac0a51-31cb-4508-9267-e9a602186943",
-      "Name": "PowerOfAttorneyList",
-      "DisplayType": "Module",
-      "IconPath": "PowerOfAttorneyList_aeac0a5131cb45089267e9a602186943.ico",
-      "IsAncestorMetadata": true,
-      "IsShow": true,
-      "NeedShowMarkedCount": false,
-      "Overridden": [
-        "HandledEvents"
-      ]
     },
     {
       "NameGuid": "825bcdaa-f676-490f-9ce8-3c95355a63d4",
@@ -572,7 +564,7 @@
       "NeedShowMarkedCount": false
     }
   ],
-  "Version": "4.8.39.0",
+  "Version": "4.9.372.0",
   "Widgets": [],
   "Versions": [
     {

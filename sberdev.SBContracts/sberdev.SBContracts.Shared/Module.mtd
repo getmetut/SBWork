@@ -22,6 +22,7 @@
       "NameGuid": "f2b71f31-d66c-4ce8-82f8-82c9dd283889",
       "BackgroundPosition": "Stretch"
     },
+    "RemoteControls": [],
     "Tabs": []
   },
   "Dependencies": [
@@ -1178,7 +1179,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "4.45.2.0",
+  "Version": "4.45.2.2",
   "Widgets": [],
   "Versions": [
     {

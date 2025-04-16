@@ -22,6 +22,7 @@
       "NameGuid": "f150a184-30a9-4987-8ff5-81c86b66c07c",
       "BackgroundPosition": "Stretch"
     },
+    "RemoteControls": [],
     "Tabs": []
   },
   "DesktopViews": [],
@@ -86,7 +87,7 @@
   "SharedAssemblyName": "Sungero.ATS.Shared",
   "SharedNamespace": "Sungero.ATS.Shared",
   "SpecialFolders": [],
-  "Version": "0.1.1.47",
+  "Version": "0.1.1.49",
   "Widgets": [],
   "Versions": [
     {

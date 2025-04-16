@@ -22,6 +22,7 @@
       "NameGuid": "0856f929-64f0-4fea-862c-448a10b3aa24",
       "BackgroundPosition": "Stretch"
     },
+    "RemoteControls": [],
     "Tabs": []
   },
   "DesktopViews": [],
@@ -41,7 +42,7 @@
   "SharedAssemblyName": "Sungero.Integration.Shared",
   "SharedNamespace": "Sungero.Integration.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.268",
+  "Version": "0.0.1.270",
   "Widgets": [],
   "Versions": [
     {

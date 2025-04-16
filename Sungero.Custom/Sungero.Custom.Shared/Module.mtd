@@ -87,6 +87,7 @@
       "BackgroundPosition": "Stretch",
       "IconName": "HeaderIcon_d1d646dd86c54a22bebe1708b184fd0d.png"
     },
+    "RemoteControls": [],
     "Tabs": [
       {
         "NameGuid": "c3bfdbb6-0923-4b41-b9f7-7395802b1a33",
@@ -688,7 +689,7 @@
       "NeedShowMarkedCount": false
     }
   ],
-  "Version": "0.1.1.42",
+  "Version": "0.1.1.44",
   "Widgets": [],
   "Versions": [
     {
