@@ -253,7 +253,6 @@
   "InterfaceNamespace": "sberdev.SberContracts",
   "IsolatedAssemblyName": "sberdev.SberContracts.Isolated",
   "IsolatedNamespace": "sberdev.SberContracts.Isolated",
-  "IsVisible": false,
   "Jobs": [
     {
       "NameGuid": "39fa5665-9408-49c7-8926-648128e396db",
