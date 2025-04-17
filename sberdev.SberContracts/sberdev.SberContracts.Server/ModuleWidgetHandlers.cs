@@ -130,12 +130,12 @@ namespace sberdev.SberContracts.Server
         
         series[sberdev.SberContracts.Resources.TaskDeadlineSerialAvg] =
           e.Chart.AddNewSeries(sberdev.SberContracts.Resources.TaskDeadlineSerialAvg, Sungero.Core.Colors.FromRgb(100, 149, 237));
-        series[sberdev.SberContracts.Resources.TaskDeadlineSerialMin] =
-          e.Chart.AddNewSeries(sberdev.SberContracts.Resources.TaskDeadlineSerialMin, Sungero.Core.Colors.FromRgb(46, 159, 12));
+    //    series[sberdev.SberContracts.Resources.TaskDeadlineSerialMin] =
+    //      e.Chart.AddNewSeries(sberdev.SberContracts.Resources.TaskDeadlineSerialMin, Sungero.Core.Colors.FromRgb(46, 159, 12));
         series[sberdev.SberContracts.Resources.TaskDeadlineSerialTarget] =
           e.Chart.AddNewSeries(sberdev.SberContracts.Resources.TaskDeadlineSerialTarget, Sungero.Core.Colors.FromRgb(255, 165, 0));
-        series[sberdev.SberContracts.Resources.TaskDeadlineSerialMax] =
-          e.Chart.AddNewSeries(sberdev.SberContracts.Resources.TaskDeadlineSerialMax, Sungero.Core.Colors.FromRgb(217, 63, 60));
+    //    series[sberdev.SberContracts.Resources.TaskDeadlineSerialMax] =
+     //     e.Chart.AddNewSeries(sberdev.SberContracts.Resources.TaskDeadlineSerialMax, Sungero.Core.Colors.FromRgb(217, 63, 60));
         
         foreach (var range in dateRanges)
         {
@@ -149,19 +149,19 @@ namespace sberdev.SberContracts.Server
           double avgValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
             range, "average", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value.ToLower());
           
-          double minValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
-            range, "minimum", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value.ToLower());
+       //   double minValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
+        //    range, "minimum", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value.ToLower());
           
           double targetValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
             range, "target", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value.ToLower());
           
-          double maxValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
-            range, "maximum", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value.ToLower());
+       //   double maxValue = PublicFunctions.WidgetCache.GetTaskDeadlineCacheData(
+       //     range, "maximum", _parameters.DocumentTypes.Value, _parameters.AnalysisPeriod.Value.ToLower());
           
           series[sberdev.SberContracts.Resources.TaskDeadlineSerialAvg].AddValue(range.EndDate, avgValue);
-          series[sberdev.SberContracts.Resources.TaskDeadlineSerialMin].AddValue(range.EndDate, minValue);
+         // series[sberdev.SberContracts.Resources.TaskDeadlineSerialMin].AddValue(range.EndDate, minValue);
           series[sberdev.SberContracts.Resources.TaskDeadlineSerialTarget].AddValue(range.EndDate, targetValue);
-          series[sberdev.SberContracts.Resources.TaskDeadlineSerialMax].AddValue(range.EndDate, maxValue);
+        //  series[sberdev.SberContracts.Resources.TaskDeadlineSerialMax].AddValue(range.EndDate, maxValue);
         }
       }
       catch (System.Exception ex)

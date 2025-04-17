@@ -284,7 +284,7 @@ namespace sberdev.SberContracts.Server
               UpdateTaskFlowWidgetCache(dateRanges, documentType, analysisPeriod, ref successCount, ref errorCount);
               
               // Обновляем кэш для AssignAvgApprTimeByDepartWidget (только текущий период)
-              var currentRange = dateRanges.FirstOrDefault();
+              var currentRange = dateRanges.LastOrDefault();
               if (currentRange != null)
               {
                 UpdateAvgApprTimeWidgetCache(currentRange, documentType, analysisPeriod, ref successCount, ref errorCount);

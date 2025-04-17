@@ -232,4 +232,31 @@
   <data name="Enum_TaskDeadlineWidget_DocumentTypes_Another" xml:space="preserve">
     <value>Другие</value>
   </data>
+  <data name="Enum_ApprovalAnalytics_DocumentTypes_All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_DocumentTypes_Contractual" xml:space="preserve">
+    <value>Договорные</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_DocumentTypes_IncInvoce" xml:space="preserve">
+    <value>Входящие счета</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_DocumentTypes_Accounting" xml:space="preserve">
+    <value>Финансовые</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_DocumentTypes_AbstractContr" xml:space="preserve">
+    <value>Закупочные (не только)</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_DocumentTypes_Another" xml:space="preserve">
+    <value>Другие</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_AnalysisPeriod_Weeks" xml:space="preserve">
+    <value>Недели</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_AnalysisPeriod_Months" xml:space="preserve">
+    <value>Месяцы</value>
+  </data>
+  <data name="Enum_ApprovalAnalytics_AnalysisPeriod_Quarters" xml:space="preserve">
+    <value>Кварталы</value>
+  </data>
 </root>
