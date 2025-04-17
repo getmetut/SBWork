@@ -277,4 +277,7 @@
   <data name="Property_UCNSberDev" xml:space="preserve">
     <value>Unique contract number</value>
   </data>
+  <data name="Property_PurchaseATSDev" xml:space="preserve">
+    <value>Закупка или заявка на закупку</value>
+  </data>
 </root>

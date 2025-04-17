@@ -272,7 +272,7 @@ namespace sberdev.SberContracts.Server
                                                                               {Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval},
                                                                               Constants.Module.AppProductPurchaseGuid);
       // Создание вида документа «Договор Xiongxin».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Договор Xiongxin", "Договор Xiongxin",
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Договор Xiongxin", "Договор Xiongxin",                                                                             
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
                                                                               Sungero.Contracts.Server.Contract.ClassTypeGuid,

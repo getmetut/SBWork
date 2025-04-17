@@ -1,0 +1,91 @@
+{
+  "$type": "Sungero.Metadata.LayerModuleMetadata, Sungero.Metadata",
+  "NameGuid": "37e8b607-f601-44e2-a15e-5bee0ebea59a",
+  "Name": "Commons",
+  "AssociatedGuid": "ed6fc3e0-0fae-4506-8085-885c8222f982",
+  "AsyncHandlers": [
+    {
+      "NameGuid": "1e83eeb6-e56d-4786-98e6-dd3b7290f3d5",
+      "Name": "IndexEntity",
+      "DelayPeriod": 15,
+      "DelayStrategy": "ExponentialDelayStrategy",
+      "IsAncestorMetadata": true,
+      "Parameters": [
+        {
+          "NameGuid": "056ceed8-4474-4864-80e1-c911a3dcd47c",
+          "Name": "AllowCreateRecord",
+          "ParameterType": "Boolean"
+        },
+        {
+          "NameGuid": "223d3e5d-bd6d-4ad9-a2b0-fc393129af40",
+          "Name": "IndexName",
+          "ParameterType": "String"
+        },
+        {
+          "NameGuid": "3821109a-a822-4e88-a91e-0795c0eae41e",
+          "Name": "EntityId",
+          "ParameterType": "LongInteger"
+        },
+        {
+          "NameGuid": "a7a7a3e5-32fa-4df4-9d35-828cf1030bcb",
+          "Name": "Json",
+          "ParameterType": "String"
+        },
+        {
+          "NameGuid": "b92fefd3-9f88-4e85-9ba7-ba771d7a3dbc",
+          "Name": "AsyncCreated",
+          "ParameterType": "DateTime"
+        }
+      ]
+    },
+    {
+      "NameGuid": "cb668a39-0ffc-4e03-9217-d07d59997c66",
+      "Name": "RemoveEntityFromIndex",
+      "DelayPeriod": 15,
+      "DelayStrategy": "ExponentialDelayStrategy",
+      "IsAncestorMetadata": true,
+      "Parameters": [
+        {
+          "NameGuid": "172caa65-ec88-4111-a33b-01000cea9d7c",
+          "Name": "IndexName",
+          "ParameterType": "String"
+        },
+        {
+          "NameGuid": "6a5aca32-4e24-4d00-978b-e5c8bd72604b",
+          "Name": "EntityId",
+          "ParameterType": "LongInteger"
+        }
+      ]
+    }
+  ],
+  "BaseGuid": "459fa497-ee5b-49a4-9980-de00cada9b7a",
+  "ClientBaseAssemblyName": "Sungero.ATS.ClientBase",
+  "ClientBaseNamespace": "Sungero.ATS.Module.Commons.ClientBase",
+  "Code": "Commons",
+  "CompanyCode": "Sungero",
+  "ExplorerTreeOrder": [],
+  "IconResourcesKeys": [],
+  "Importance": "Low",
+  "LayeredFromGuid": "459fa497-ee5b-49a4-9980-de00cada9b7a",
+  "NeedResetAppliedCache": true,
+  "Overridden": [
+    "IsVisible"
+  ],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.ATS.Module.Commons",
+  "ResourcesKeys": [],
+  "SpecialFolders": [],
+  "Version": "4.9.372.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "LayerModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    }
+  ]
+}

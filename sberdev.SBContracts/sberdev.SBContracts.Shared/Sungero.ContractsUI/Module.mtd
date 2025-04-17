@@ -406,11 +406,6 @@
     {
       "ItemId": "59c4d498-d05e-4758-9441-a3db4509bcdb",
       "PreviousItemId": "37d0e546-5b38-4b60-b680-5ab862dcea47"
-    },
-    {
-      "IsAncestorMetadata": true,
-      "ItemId": "11256dfa-f429-4a13-8360-9cd1035e6cef",
-      "PreviousItemId": "59c4d498-d05e-4758-9441-a3db4509bcdb"
     }
   ],
   "IconResourcesKeys": [],
