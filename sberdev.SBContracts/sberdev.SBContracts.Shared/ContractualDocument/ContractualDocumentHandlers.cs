@@ -131,6 +131,19 @@ namespace sberdev.SBContracts
       {
         _obj.ModifiedSberDev = Calendar.Now;
         _obj.FrameworkBaseSberDev = false;
+        
+        var kind = e.NewValue;
+        if (sberdev.SBContracts.DocumentKinds.As(kind).SaveDocSDev.HasValue)
+        {
+          var stor = sberdev.SBContracts.DocumentKinds.As(kind).SaveDocSDev.Value;
+          if (_obj.StorageDocATSDev != stor)
+            _obj.StorageDocATSDev = stor;
+        }
+        else
+        {
+          if (_obj.StorageDocATSDev != false)
+            _obj.StorageDocATSDev = false;
+        }
       }
       if (e.NewValue != null)
       {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -14,6 +14,8 @@ namespace sberdev.SBContracts
     {
       base.Created(e);
       _obj.NoBodyApprovalSberDev = false;
+      _obj.ReklamaSDev = false;
+      _obj.SaveDocSDev = false;
     }
   }
 

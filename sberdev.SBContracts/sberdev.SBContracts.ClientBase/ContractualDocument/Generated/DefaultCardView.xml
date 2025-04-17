@@ -30,6 +30,7 @@
             <property name="Name">ContractualDocument_CalculationBaseSberDev_AggregationCalc</property>
             <property name="FieldName">AggregationCalc</property>
             <property name="VisibleIndex">0</property>
+            <property name="Width">123</property>
             <property name="ActualWidth">18*</property>
           </property>
           <property name="Item2" isnull="true" iskey="true">
@@ -37,6 +38,7 @@
             <property name="Name">ContractualDocument_CalculationBaseSberDev_ProductCalc</property>
             <property name="FieldName">ProductCalc</property>
             <property name="VisibleIndex">1</property>
+            <property name="Width">102</property>
             <property name="ActualWidth">15*</property>
           </property>
           <property name="Item3" isnull="true" iskey="true">
@@ -44,6 +46,7 @@
             <property name="Name">ContractualDocument_CalculationBaseSberDev_AbsoluteCalc</property>
             <property name="FieldName">AbsoluteCalc</property>
             <property name="VisibleIndex">2</property>
+            <property name="Width">191</property>
             <property name="ActualWidth">28*</property>
           </property>
           <property name="Item4" isnull="true" iskey="true">
@@ -51,6 +54,7 @@
             <property name="Name">ContractualDocument_CalculationBaseSberDev_PercentCalc</property>
             <property name="FieldName">PercentCalc</property>
             <property name="VisibleIndex">3</property>
+            <property name="Width">109</property>
             <property name="ActualWidth">16*</property>
           </property>
           <property name="Item5" isnull="true" iskey="true">
@@ -58,6 +62,7 @@
             <property name="Name">ContractualDocument_CalculationBaseSberDev_InterestCalc</property>
             <property name="FieldName">InterestCalc</property>
             <property name="VisibleIndex">4</property>
+            <property name="Width">164</property>
             <property name="ActualWidth">24*</property>
           </property>
         </property>

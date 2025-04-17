@@ -31,7 +31,7 @@
           "NameGuid": "f9765d8a-dc5f-458d-84a4-c049779bdd02",
           "Name": "NameSberDev",
           "ColumnNumber": 0,
-          "ColumnSpan": 3,
+          "ColumnSpan": 2,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
           "ParentGuid": "50e703c5-a129-42e9-a1f4-73fffcd224cb",
           "PropertyGuid": "8987c717-92ad-4d5e-9cef-2453ba12d150",
@@ -60,13 +60,13 @@
           "Name": "ControlGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 54.4
+              "Percentage": 36.27
             },
             {
-              "Percentage": 21.51
+              "Percentage": 30.4
             },
             {
-              "Percentage": 24.09
+              "Percentage": 33.33
             }
           ],
           "SharedNestedGroupsAlignment": true,
@@ -78,14 +78,17 @@
           "Name": "ProjectGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 28.34
+              "Percentage": 18.89
             },
             {
-              "Percentage": 71.66
+              "Percentage": 47.77
+            },
+            {
+              "Percentage": 33.33
             }
           ],
           "ColumnNumber": 0,
-          "ColumnSpan": 3,
+          "ColumnSpan": 2,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "50e703c5-a129-42e9-a1f4-73fffcd224cb",
           "RowNumber": 5,
@@ -126,7 +129,7 @@
           "NameGuid": "b6a93f9f-0d32-4620-b981-c56d4480b516",
           "Name": "NoteSberDev",
           "ColumnNumber": 0,
-          "ColumnSpan": 3,
+          "ColumnSpan": 2,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "50e703c5-a129-42e9-a1f4-73fffcd224cb",
           "RowNumber": 6,
@@ -177,7 +180,7 @@
           "NameGuid": "0316ec7c-4ec8-4214-bd97-feca2aeee27b",
           "Name": "CodeSberDev",
           "ColumnNumber": 1,
-          "ColumnSpan": 2,
+          "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
           "ParentGuid": "50e703c5-a129-42e9-a1f4-73fffcd224cb",
           "PropertyGuid": "7eca1266-9b95-447b-9886-77d1f63d8228",
@@ -192,14 +195,17 @@
           "Name": "SettingsGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 53.8
+              "Percentage": 48.68
             },
             {
-              "Percentage": 46.2
+              "Percentage": 24.64
+            },
+            {
+              "Percentage": 24.64
             }
           ],
           "ColumnNumber": 0,
-          "ColumnSpan": 3,
+          "ColumnSpan": 2,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "50e703c5-a129-42e9-a1f4-73fffcd224cb",
           "RowNumber": 3,
@@ -307,7 +313,7 @@
             }
           ],
           "ColumnNumber": 0,
-          "ColumnSpan": 3,
+          "ColumnSpan": 2,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "50e703c5-a129-42e9-a1f4-73fffcd224cb",
           "RowNumber": 4,
@@ -379,12 +385,12 @@
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "052049ae-b822-48f0-8f33-f2a7f3f125b5",
           "Name": "SaveDocSDevSDev",
-          "ColumnNumber": 1,
+          "ColumnNumber": 2,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
-          "ParentGuid": "50e703c5-a129-42e9-a1f4-73fffcd224cb",
+          "ParentGuid": "01764d26-7ac6-4022-842e-9cf325a074d5",
           "PropertyGuid": "46bf1721-57e4-4b7d-ad4e-39b398a4139f",
-          "RowNumber": 2,
+          "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
         },
@@ -395,9 +401,9 @@
           "ColumnNumber": 2,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
-          "ParentGuid": "50e703c5-a129-42e9-a1f4-73fffcd224cb",
+          "ParentGuid": "01764d26-7ac6-4022-842e-9cf325a074d5",
           "PropertyGuid": "c9b14e67-bea6-4f79-8a6b-e740bf6a203b",
-          "RowNumber": 2,
+          "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
         }

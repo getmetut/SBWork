@@ -513,12 +513,18 @@ namespace sberdev.SBContracts.Shared
     public void UpdateCard()
     {
       bool NMVisible = false;
+      bool Channeleq = false;
       if (_obj.AccArtExBaseSberDev != null)
       {
         if (_obj.AccArtExBaseSberDev.NMA != null)
         {
           if (_obj.AccArtExBaseSberDev.NMA.Value)
             NMVisible = true;
+        }
+        if (_obj.AccArtExBaseSberDev.SalesChannel.HasValue)
+        {
+          if (_obj.AccArtExBaseSberDev.SalesChannel.Value)
+            Channeleq = true;
         }
       }
       if (_obj.AccArtPrBaseSberDev != null)
@@ -528,11 +534,17 @@ namespace sberdev.SBContracts.Shared
           if (_obj.AccArtPrBaseSberDev.NMA.Value)
             NMVisible = true;
         }
+        if (_obj.AccArtPrBaseSberDev.SalesChannel.HasValue)
+        {
+          if (_obj.AccArtPrBaseSberDev.SalesChannel.Value)
+            Channeleq = true;
+        }
       }
       _obj.State.Properties.NMASDevSDev.IsVisible = NMVisible;
-      
+
       if (!SBContracts.PublicFunctions.Module.IsSystemUser())
       {
+        _obj.State.Properties.SalesChannelATSDev.IsRequired = Channeleq;
         if (_obj.DocumentKind != null)
         {
           var kind = sberdev.SBContracts.DocumentKinds.As(_obj.DocumentKind);

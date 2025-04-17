@@ -59,33 +59,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Property_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Канал продажи</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Accounting articles</value>
+    <value>Sales channels</value>
   </data>
   <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Accounting articles</value>
+    <value>Sales channels</value>
   </data>
   <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Accounting articles</value>
+    <value>Sales channels</value>
   </data>
-  <data name="Property_BudgetItem" xml:space="preserve">
-    <value>Budget Item</value>
+  <data name="Property_GUID" xml:space="preserve">
+    <value>GUID 1C</value>
   </data>
-  <data name="Property_ContrType" xml:space="preserve">
-    <value>Contract type</value>
+  <data name="Property_Opisanie" xml:space="preserve">
+    <value>Описание</value>
   </data>
-  <data name="Enum_ContrType_Profitable" xml:space="preserve">
-    <value>Profitable</value>
+  <data name="Property_CannelAll" xml:space="preserve">
+    <value>Канал общий</value>
   </data>
-  <data name="Enum_ContrType_Expendable" xml:space="preserve">
-    <value>Expendable</value>
+  <data name="Enum_CannelAll_B2B" xml:space="preserve">
+    <value>B2B</value>
   </data>
-  <data name="Property_NMA" xml:space="preserve">
-    <value>НМА</value>
-  </data>
-  <data name="Property_SalesChannel" xml:space="preserve">
-    <value>Канал продаж (обязательный)</value>
+  <data name="Enum_CannelAll_B2C" xml:space="preserve">
+    <value>B2C</value>
   </data>
 </root>
