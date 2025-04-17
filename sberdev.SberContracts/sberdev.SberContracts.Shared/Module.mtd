@@ -253,6 +253,7 @@
   "InterfaceNamespace": "sberdev.SberContracts",
   "IsolatedAssemblyName": "sberdev.SberContracts.Isolated",
   "IsolatedNamespace": "sberdev.SberContracts.Isolated",
+  "IsVisible": false,
   "Jobs": [
     {
       "NameGuid": "39fa5665-9408-49c7-8926-648128e396db",
@@ -1043,7 +1044,7 @@
       "NeedShowMarkedCount": false
     }
   ],
-  "Version": "4.45.2.2",
+  "Version": "4.45.2.3",
   "Widgets": [
     {
       "NameGuid": "c2f21ab6-4272-410e-a676-52af22433fd1",
