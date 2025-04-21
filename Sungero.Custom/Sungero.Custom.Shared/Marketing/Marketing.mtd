@@ -41,8 +41,7 @@
       "EntityType": "3a6caaff-6636-4edd-8e77-89d2fdfd451d",
       "HandledEvents": [
         "ClassicBlockStartAssignment"
-      ],
-      "Properties": []
+      ]
     },
     {
       "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
@@ -52,8 +51,7 @@
       "EntityType": "38bd47eb-ecd8-4823-b84e-c53fbd083eb5",
       "HandledEvents": [
         "ExecutionBlockStartAssignment"
-      ],
-      "Properties": []
+      ]
     },
     {
       "$type": "Sungero.Metadata.MonitoringBlockMetadata, Sungero.Workflow.Shared",

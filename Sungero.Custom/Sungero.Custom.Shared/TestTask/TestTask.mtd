@@ -57,8 +57,7 @@
       "NameGuid": "4a3c39b1-dc32-415c-be40-59cbaf16d25d",
       "Name": "StandartBlock",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
-      "EntityType": "0c5a665f-4ec8-4d40-87fd-605c74df1383",
-      "Properties": []
+      "EntityType": "0c5a665f-4ec8-4d40-87fd-605c74df1383"
     },
     {
       "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
@@ -115,8 +114,7 @@
       "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
         "GenlistSoglExecute"
-      ],
-      "Properties": []
+      ]
     }
   ],
   "CanBeNavigationPropertyType": true,
