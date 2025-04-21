@@ -60,13 +60,10 @@
           "Name": "ControlGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 36.27
+              "Percentage": 54.41
             },
             {
-              "Percentage": 30.4
-            },
-            {
-              "Percentage": 33.33
+              "Percentage": 45.6
             }
           ],
           "SharedNestedGroupsAlignment": true,
@@ -78,13 +75,10 @@
           "Name": "ProjectGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 18.89
+              "Percentage": 28.34
             },
             {
-              "Percentage": 47.77
-            },
-            {
-              "Percentage": 33.33
+              "Percentage": 71.66
             }
           ],
           "ColumnNumber": 0,
@@ -195,13 +189,13 @@
           "Name": "SettingsGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 48.68
+              "Percentage": 49.69
             },
             {
-              "Percentage": 24.64
+              "Percentage": 25.15
             },
             {
-              "Percentage": 24.64
+              "Percentage": 25.15
             }
           ],
           "ColumnNumber": 0,

@@ -160,10 +160,10 @@
           "Name": "MainSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 76.42
+              "Percentage": 77.74
             },
             {
-              "Percentage": 21.88
+              "Percentage": 22.26
             }
           ],
           "ColumnNumber": 0,
