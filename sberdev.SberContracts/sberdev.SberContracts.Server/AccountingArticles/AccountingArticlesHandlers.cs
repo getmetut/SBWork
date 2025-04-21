@@ -7,4 +7,13 @@ using sberdev.SberContracts.AccountingArticles;
 
 namespace sberdev.SberContracts
 {
+  partial class AccountingArticlesServerHandlers
+  {
+
+    public override void Created(Sungero.Domain.CreatedEventArgs e)
+    {
+      _obj.SalesChannel = false;
+    }
+  }
+
 }

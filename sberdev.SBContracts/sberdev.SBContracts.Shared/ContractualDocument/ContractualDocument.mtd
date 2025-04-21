@@ -724,7 +724,7 @@
           "HeaderLocation": "None",
           "ParentGuid": "9bf3f658-8c97-4ddd-961e-26ccf7259929",
           "PropertyGuid": "15ae2efe-a515-4325-bf1d-1b02b5d33f76",
-          "RowNumber": 2,
+          "RowNumber": 3,
           "RowSpan": 1,
           "Settings": [
             {
@@ -743,7 +743,7 @@
           "FunctionName": "ClearCalculation",
           "HeaderLocation": "None",
           "ParentGuid": "9bf3f658-8c97-4ddd-961e-26ccf7259929",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
         },
@@ -756,7 +756,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
           "ParentGuid": "9bf3f658-8c97-4ddd-961e-26ccf7259929",
           "PropertyGuid": "b1432e91-511d-4593-8d06-f7d9f07b8081",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
         },
@@ -769,7 +769,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
           "ParentGuid": "9bf3f658-8c97-4ddd-961e-26ccf7259929",
           "PropertyGuid": "728d8a1d-e0ed-4172-85ef-77abc1e04353",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1001,6 +1001,19 @@
           "ParentGuid": "73e9df7c-895e-4811-b3d5-76c6f95b87aa",
           "PropertyGuid": "506fb40e-b019-4b18-898a-cbccca8a839d",
           "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "a02f3fc4-babf-49d3-993d-4142a35455ab",
+          "Name": "SalesChannelATSDevATSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "9bf3f658-8c97-4ddd-961e-26ccf7259929",
+          "PropertyGuid": "12e60252-358d-4f68-9457-d5dcee45e47d",
+          "RowNumber": 2,
           "RowSpan": 1,
           "Settings": []
         }
@@ -1714,6 +1727,25 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "506fb40e-b019-4b18-898a-cbccca8a839d",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "a7df6bc5-1ee3-4d93-b833-c7ec5296c9a0",
+      "Name": "StorageDocATSDev",
+      "Code": "StorageDocATSD",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "211ac8ab-c64c-419e-8960-5e272e2faa21",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "12e60252-358d-4f68-9457-d5dcee45e47d",
+      "Name": "SalesChannelATSDev",
+      "Code": "SalesChannelAT",
+      "EntityGuid": "094f2f1d-6a22-4a77-a792-f393fb5bdaf5",
+      "FlatListInStandaloneLookup": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "a7df6bc5-1ee3-4d93-b833-c7ec5296c9a0"
     }
   ],
   "PublicFunctions": [

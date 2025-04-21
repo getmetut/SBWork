@@ -10,6 +10,18 @@ namespace sberdev.SberContracts.Client
   partial class PurchaseFunctions
   {
 
+    /// <summary>
+    /// Отккрыть Ссылку на задачу в Jira
+    /// </summary>  
+    [Public]
+    public void OpenJiraLink()
+    {
+      if (_obj.JiraLink.Any())
+        Hyperlinks.Open(_obj.JiraLink);
+      else
+        Dialogs.ShowMessage("Ссылка на задачу в Jira не заполнена.");
+    }
+
     public void ChooseImage()
     {
       var dfile = Dialogs.CreateInputDialog("Выберите файл");

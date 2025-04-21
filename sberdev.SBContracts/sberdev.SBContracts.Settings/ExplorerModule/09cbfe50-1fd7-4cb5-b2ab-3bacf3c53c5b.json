@@ -1,0 +1,9 @@
+{
+  "$type": "Sungero.DataExport.ExportingObject, Sungero.DataExport",
+  "Uuid": "09cbfe50-1fd7-4cb5-b2ab-3bacf3c53c5b",
+  "ModuleNameGuid": "b33230d7-1513-4f37-9ea0-7d0db0fb6b72",
+  "HelpCode": "Sungero_ContractsUI",
+  "Status": "Active",
+  "SortingPriority": "High",
+  "StoreAsDefaultSetting": true
+}

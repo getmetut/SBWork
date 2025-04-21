@@ -85,4 +85,7 @@
   <data name="Property_NMA" xml:space="preserve">
     <value>НМА</value>
   </data>
+  <data name="Property_SalesChannel" xml:space="preserve">
+    <value>Канал продаж (обязательный)</value>
+  </data>
 </root>

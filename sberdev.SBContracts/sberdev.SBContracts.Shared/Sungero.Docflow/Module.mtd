@@ -556,6 +556,9 @@
   ],
   "LayeredFromGuid": "df83a2ea-8d43-4ec4-a34a-2e61863014df",
   "NeedResetAppliedCache": true,
+  "Overridden": [
+    "IsVisible"
+  ],
   "PublicConstants": [
     {
       "Name": "PurchaseRelationName",
@@ -576,7 +579,7 @@
     "PurchaseRelationDiscrp"
   ],
   "SpecialFolders": [],
-  "Version": "4.8.39.0",
+  "Version": "4.9.372.0",
   "Widgets": [],
   "Versions": [
     {

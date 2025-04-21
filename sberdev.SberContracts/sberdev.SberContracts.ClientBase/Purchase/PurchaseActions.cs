@@ -9,6 +9,16 @@ namespace sberdev.SberContracts.Client
 {
   partial class PurchaseActions
   {
+    public virtual void OpenJiraLink(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      PublicFunctions.Purchase.OpenJiraLink(_obj);
+    }
+
+    public virtual bool CanOpenJiraLink(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return (!string.IsNullOrEmpty(_obj.JiraLink));
+    }
+
     public virtual void CreateBodyByPropertiesPurch(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       SBContracts.PublicFunctions.Module.Remote.CreateBodyByProperties(_obj);

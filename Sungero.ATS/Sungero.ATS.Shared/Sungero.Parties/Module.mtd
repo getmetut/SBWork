@@ -1,0 +1,51 @@
+{
+  "$type": "Sungero.Metadata.LayerModuleMetadata, Sungero.Metadata",
+  "NameGuid": "ff4a574d-9a0f-4bac-ad4a-337ab49f505c",
+  "Name": "Parties",
+  "AssociatedGuid": "ed6fc3e0-0fae-4506-8085-885c8222f982",
+  "AsyncHandlers": [
+    {
+      "NameGuid": "668982ea-29e3-4f4c-9908-6d1dfca2b51a",
+      "Name": "UpdateContactName",
+      "DelayPeriod": 15,
+      "DelayStrategy": "ExponentialDelayStrategy",
+      "IsAncestorMetadata": true,
+      "Parameters": [
+        {
+          "NameGuid": "fb4fd345-9494-4ee0-82e7-49fbf369a5e1",
+          "Name": "PersonId",
+          "ParameterType": "Integer"
+        }
+      ]
+    }
+  ],
+  "BaseGuid": "cb6bd28f-6861-43eb-84ca-e9f4aef5b8ce",
+  "ClientBaseAssemblyName": "Sungero.ATS.ClientBase",
+  "ClientBaseNamespace": "Sungero.ATS.Module.Parties.ClientBase",
+  "Code": "Parties",
+  "CompanyCode": "Sungero",
+  "ExplorerTreeOrder": [],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "LayeredFromGuid": "243b34ec-8425-4c7e-b66f-27f7b9c8f38d",
+  "Overridden": [
+    "IsVisible"
+  ],
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.ATS.Module.Parties",
+  "ResourcesKeys": [],
+  "SpecialFolders": [],
+  "Version": "4.9.372.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "LayerModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    }
+  ]
+}

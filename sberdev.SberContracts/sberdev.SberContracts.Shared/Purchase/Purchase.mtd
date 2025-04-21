@@ -19,6 +19,14 @@
       "GenerateHandler": true,
       "LargeIconName": "Action_CreateBodyByProperties_large_f017bc0a24a24efbad9fa2789f037a29.png",
       "SmallIconName": "Action_CreateBodyByProperties_small_f017bc0a24a24efbad9fa2789f037a29.png"
+    },
+    {
+      "NameGuid": "f8f35678-4f83-4b6c-94d2-e8cf81244885",
+      "Name": "OpenJiraLink",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_OpenJiraLink_large_f8f356784f834b6c94d2e8cf81244885.png",
+      "SmallIconName": "Action_OpenJiraLink_small_f8f356784f834b6c94d2e8cf81244885.png"
     }
   ],
   "BaseGuid": "178d3053-5516-4f14-9f3d-4d75e3f352d4",
@@ -95,7 +103,7 @@
           "NameGuid": "fc50c888-3155-4ff1-96e8-ff7064894ead",
           "Name": "NameSberDev",
           "ColumnNumber": 0,
-          "ColumnSpan": 1,
+          "ColumnSpan": 2,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
           "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
           "PropertyGuid": "efaae3b3-152c-4470-a9d8-b0c511095ef5",
@@ -118,7 +126,7 @@
           "NameGuid": "ddf41ead-829a-4a3f-8d12-d40a52b7440c",
           "Name": "DocumentKindSberDev",
           "ColumnNumber": 0,
-          "ColumnSpan": 1,
+          "ColumnSpan": 2,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
           "PropertyGuid": "91ac0e49-10fc-45a2-848a-0541e7fdd7cd",
@@ -132,7 +140,7 @@
           "NameGuid": "f0607051-ea77-4af2-b796-6d11cd8a7374",
           "Name": "SubjectSberDev",
           "ColumnNumber": 0,
-          "ColumnSpan": 1,
+          "ColumnSpan": 2,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
           "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
           "PropertyGuid": "4bc39efb-1f46-4a1e-8b8c-04f2b90d6a8b",
@@ -150,6 +158,14 @@
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
           "Name": "MainSberDev",
+          "ColumnDefinitions": [
+            {
+              "Percentage": 76.42
+            },
+            {
+              "Percentage": 21.88
+            }
+          ],
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
@@ -1810,6 +1826,33 @@
           "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "b07ee674-c905-4b4d-b6db-7840bb65eb7d",
+          "Name": "JiraLink",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+          "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
+          "PropertyGuid": "d19fa541-79f0-403a-8168-be2da528e1b7",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.HyperlinkControlMetadata, Sungero.Metadata",
+          "NameGuid": "cfe4efb4-b8c0-47b7-b6ed-952b834fae01",
+          "Name": "Control",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.HyperlinkToSourceBinder",
+          "FunctionName": "OpenJiraLink",
+          "HeaderLocation": "None",
+          "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
+          "RowNumber": 4,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -2537,9 +2580,34 @@
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "2401e562-195e-44e3-9a97-fff5e22f864a"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "d19fa541-79f0-403a-8168-be2da528e1b7",
+      "Name": "JiraLink",
+      "Code": "JiraLink",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "Length": 1000,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "5af6a38a-46ba-426d-9a70-fad3197c7550"
     }
   ],
   "PublicFunctions": [
+    {
+      "Name": "OpenJiraLink",
+      "Parameters": [
+        {
+          "Name": "purchase",
+          "ParameterType": "global::sberdev.SberContracts.IPurchase",
+          "ParameterTypeFullName": "sberdev.SberContracts.IPurchase, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
     {
       "Name": "UpdateCard",
       "Parameters": [
@@ -2668,6 +2736,15 @@
         "ActionGuid": "f017bc0a-24a2-4efb-ad9f-a2789f037a29",
         "Index": 55,
         "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "9d19fb88-86b3-4475-92c8-2618f3a40150",
+        "Name": "OpenJiraLink",
+        "ActionGuid": "f8f35678-4f83-4b6c-94d2-e8cf81244885",
+        "ButtonSize": "Large",
+        "Index": 53,
+        "ParentGuid": "f3b0ddcd-9d1e-4ca3-8780-695ae25a9e8b"
       }
     ],
     "Groups": [],

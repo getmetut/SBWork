@@ -19,6 +19,9 @@
   "Importance": "High",
   "IsLicensed": true,
   "LayeredFromGuid": "51247c94-981f-4bc8-819a-128704b5aa31",
+  "Overridden": [
+    "IsVisible"
+  ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "Sungero.ATS.Module.RecordManagementUI",
@@ -87,7 +90,7 @@
       ]
     }
   ],
-  "Version": "4.8.39.0",
+  "Version": "4.9.372.0",
   "Widgets": [],
   "Versions": [
     {

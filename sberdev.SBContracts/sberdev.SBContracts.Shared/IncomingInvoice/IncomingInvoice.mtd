@@ -91,7 +91,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
           "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
           "PropertyGuid": "4bc39efb-1f46-4a1e-8b8c-04f2b90d6a8b",
-          "RowNumber": 4,
+          "RowNumber": 5,
           "RowSpan": 1,
           "Settings": [
             {
@@ -925,19 +925,6 @@
         },
         {
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "97761bf2-cc37-4058-9fb3-557c54675d7d",
-          "Name": "NoNeedLeadingDocsSberDev",
-          "ColumnNumber": 1,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
-          "ParentGuid": "9addea7b-cece-4a6c-89c9-222001948a11",
-          "PropertyGuid": "e4527417-cb2f-48b0-8124-68e75b0723a8",
-          "RowNumber": 1,
-          "RowSpan": 1,
-          "Settings": []
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "495f126d-a7ee-4521-9d51-128a1ab4b98b",
           "Name": "PayTypeSberDev",
           "ColumnNumber": 0,
@@ -1048,6 +1035,19 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "980185c8-63ed-49f2-8c60-1d69a3f4c0ed",
           "PropertyGuid": "702507c9-d1e8-45af-8b8f-9494653b95c4",
+          "RowNumber": 4,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "2b8f8384-7c16-402c-aff1-c6feec9f5937",
+          "Name": "PurchaseATSDevATSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
+          "PropertyGuid": "c59e8a98-cac2-420f-8deb-3e043a44bc48",
           "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
@@ -1339,6 +1339,20 @@
       "Length": 22,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "c409fe0e-deda-4dba-a52a-826c3ffc5b55"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "c59e8a98-cac2-420f-8deb-3e043a44bc48",
+      "Name": "PurchaseATSDev",
+      "Code": "PurchaseATSDev",
+      "EntityGuid": "178d3053-5516-4f14-9f3d-4d75e3f352d4",
+      "FlatListInStandaloneLookup": true,
+      "HandledEvents": [
+        "LookupServer"
+      ],
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "NeedPassEntityToLookupEvent": true,
+      "PreviousPropertyGuid": "bca67d2a-14f9-4c6b-af6c-ab0b39a1fd77"
     }
   ],
   "PublicFunctions": [

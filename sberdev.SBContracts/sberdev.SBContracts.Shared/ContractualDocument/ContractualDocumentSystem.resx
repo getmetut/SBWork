@@ -424,4 +424,10 @@
   <data name="Enum_PayTypeBaseSungero_Postpay" xml:space="preserve">
     <value>Postpay</value>
   </data>
+  <data name="Property_StorageDocATSDev" xml:space="preserve">
+    <value>Документ хранения</value>
+  </data>
+  <data name="Property_SalesChannelATSDev" xml:space="preserve">
+    <value>Канал продаж</value>
+  </data>
 </root>

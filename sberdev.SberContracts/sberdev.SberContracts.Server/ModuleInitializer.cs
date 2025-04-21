@@ -36,15 +36,15 @@ namespace sberdev.SberContracts.Server
       
       if (roleSC == null)
       {
-        roleSC = Roles.Create();
-        roleSC.Name = "Ответсвенный за конфликты синхронизации контрагентов";
-        roleSC.Description = "Участнику роли приходят задания на решение конфликтов синхронизации контрагентов";
-        roleSC.Sid = Constants.Module.CpSyncConflictRoleGuid;
-        roleSC.IsSystem = false;
-        roleSC.RecipientLinks.AddNew().Member = Users.GetAll().Where(r => r.Id == 10).FirstOrDefault();
-        roleSC.IsSingleUser = true;
-        roleSC.Save();
-        InitializationLogger.Debug("Ответсвенный за фин. вх. документы");
+//        roleSC = Roles.Create();
+//        roleSC.Name = "Ответсвенный за конфликты синхронизации контрагентов";
+//        roleSC.Description = "Участнику роли приходят задания на решение конфликтов синхронизации контрагентов";
+//        roleSC.Sid = Constants.Module.CpSyncConflictRoleGuid;
+//        roleSC.IsSystem = false;
+//        roleSC.RecipientLinks.AddNew().Member = Users.GetAll().Where(r => r.Id == 10).FirstOrDefault();
+//        roleSC.IsSingleUser = true;
+//        roleSC.Save();
+//        InitializationLogger.Debug("Ответсвенный за фин. вх. документы");
       }
       else
       {
@@ -224,8 +224,8 @@ namespace sberdev.SberContracts.Server
         sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerProd,
         sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerPrGe,
         sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerUnit,
-        sberdev.SberContracts.CustomAppovalRole.Type.Attorney,
-        sberdev.SberContracts.CustomAppovalRole.Type.AttorneyManager};
+        sberdev.SberContracts.CustomAppovalRole.Type.Attorney};
+       // sberdev.SberContracts.CustomAppovalRole.Type.AttorneyManager};
       foreach (var customRole in customRoles)
       {
         var role = roles.FirstOrDefault(r => r.Type.Value == customRole);
@@ -272,7 +272,7 @@ namespace sberdev.SberContracts.Server
                                                                               {Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval},
                                                                               Constants.Module.AppProductPurchaseGuid);
       // Создание вида документа «Договор Xiongxin».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Договор Xiongxin", "Договор Xiongxin",
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Договор Xiongxin", "Договор Xiongxin",                                                                             
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
                                                                               Sungero.Contracts.Server.Contract.ClassTypeGuid,

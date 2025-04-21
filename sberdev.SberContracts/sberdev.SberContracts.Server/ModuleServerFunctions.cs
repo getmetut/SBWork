@@ -467,35 +467,41 @@ namespace sberdev.SberContracts.Server
                   Sungero.Parties.ICompany contact = null;
                   
                   //Заполнение контрагента
-                  if (contactGUID != "")
+                  if (!string.IsNullOrEmpty(contactGUID))
                   {
-                    var connection = SQL.CreateConnection();
-                    using (var command = connection.CreateCommand())
+                    using (var connection = SQL.CreateConnection())
                     {
-                      command.CommandText = string.Format("SELECT EntityId " +
-                                                          "FROM [dbo].[Sungero_Commons_ExtEntityLinks] " +
-                                                          "WHERE ExtEntityId = '{0}'", contactGUID);
-                      var reader = command.ExecuteReader();
-                      while (reader.Read())
+                      connection.Open();
+                      
+                      using (var command = connection.CreateCommand())
                       {
-                        if (reader[0] != null)
+                        command.CommandText = string.Format(
+                          "SELECT EntityId " +
+                          "FROM [dbo].[Sungero_Commons_ExtEntityLinks] " +
+                          "WHERE ExtEntityId = '{0}'", contactGUID);
+                        
+                        using (var reader = command.ExecuteReader())
                         {
-                          contact =  Sungero.Parties.Companies.GetAll(r => r.Id == Convert.ToInt16(reader[0].ToString())).FirstOrDefault();
-                          
-                          if (contact != null)
-                            contract.Counterparty = contact;
-                          else
+                          while (reader.Read())
                           {
-                            var pers = Sungero.Parties.Counterparties.GetAll(r => r.Id == Convert.ToInt16(reader[0].ToString())).FirstOrDefault();
-                            if (pers != null)
-                              contract.Counterparty = pers;
+                            if (reader[0] != null)
+                            {
+                              var entityId = Convert.ToInt16(reader[0].ToString());
+                              contact = Sungero.Parties.Companies.GetAll(r => r.Id == entityId).FirstOrDefault();
+
+                              if (contact != null)
+                                contract.Counterparty = contact;
+                              else
+                              {
+                                var pers = Sungero.Parties.Counterparties.GetAll(r => r.Id == entityId).FirstOrDefault();
+                                if (pers != null)
+                                  contract.Counterparty = pers;
+                              }
+                            }
                           }
                         }
                       }
-                      reader.Close();
-                      connection.Close();
                     }
-
                   }
                   else{}
                   

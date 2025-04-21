@@ -574,4 +574,28 @@
   <data name="ControlGroup_a3543d4aa1db4b82840a416560223e71" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_JiraLink" xml:space="preserve">
+    <value>Ссылка на задачу в Jira</value>
+  </data>
+  <data name="Action_OpenJiraLink" xml:space="preserve">
+    <value>Открыть задачу в Jira</value>
+  </data>
+  <data name="Action_OpenJiraLinkDescription" xml:space="preserve">
+    <value>Функция открытия указанной в карточке ссылки на задачу в Jira</value>
+  </data>
+  <data name="Action_OpenJiraLinkHint" xml:space="preserve">
+    <value>Функция открытия указанной в карточке ссылки на задачу в Jira</value>
+  </data>
+  <data name="Action_OpenJiraLinkConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_OpenJiraLinkConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_cfe4efb4b8c047b7b6ed952b834fae01_DisplayValue" xml:space="preserve">
+    <value>Открыть задачу в Jira</value>
+  </data>
+  <data name="Control_b07ee674c9054b4db6db7840bb65eb7d_EmptyText" xml:space="preserve">
+    <value>"https://tasks.sberdevices.ru/browse/ABC-123" или просто "ABC-123"</value>
+  </data>
 </root>
