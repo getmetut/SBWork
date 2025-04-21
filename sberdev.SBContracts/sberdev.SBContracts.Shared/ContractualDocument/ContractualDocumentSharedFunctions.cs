@@ -373,20 +373,69 @@ namespace sberdev.SBContracts.Shared
     
     #region Контроль разных свойств
     
+    /// <summary>
+    /// Изменяет доступность и обязательность полей доставки в зависимости от метода доставки и типа документа.
+    /// </summary>
     public void ChangeDeliveryInfoAccess()
     {
       var props = _obj.State.Properties;
-      var isMail = _obj.DeliveryMethod != null ? _obj.DeliveryMethod.Id == 2 : false;
-      var isCourier = _obj.DeliveryMethod != null ? _obj.DeliveryMethod.Id == 3 : false;
-      props.EmailSberDev.IsRequired = isMail;
-      props.EmailSberDev.IsEnabled = isMail || isCourier;
-      props.EmailSberDev.IsVisible = isMail || isCourier;
-      props.AdressSberDev.IsRequired = isMail || isCourier;
-      props.AdressSberDev.IsEnabled = isMail || isCourier;
-      props.AdressSberDev.IsVisible = isMail || isCourier;
-      props.PhoneNumberSberDev.IsRequired = isCourier;
-      props.PhoneNumberSberDev.IsEnabled = isMail || isCourier;
-      props.PhoneNumberSberDev.IsVisible = isMail || isCourier;
+      
+      // Определяем тип текущего документа
+      var documentType = _obj.GetType().Name;
+      string[] excludedTypes = new string[] { "AppProductPurchase", "AppProductPurchaseProxy", "AppProductPurchase", "AppProductPurchaseProxy"
+          , "GuaranteeLetter", "GuaranteeLetterProxy", "OtherContractDocument", "OtherContractDocumentProxy", "Purchase", "PurchaseProxy"      };
+      var isApplicableDocumentType = !excludedTypes.Contains(documentType);
+      
+      // Если документ не входит в список исключаемых типов, проверяем метод доставки
+      if (isApplicableDocumentType)
+      {
+        // Определяем способ доставки
+        var deliveryMethod = _obj.DeliveryMethod;
+        var isMail = deliveryMethod != null && deliveryMethod.Id == 2;
+        var isCourier = deliveryMethod != null && deliveryMethod.Id == 3;
+        var showDeliveryFields = isMail || isCourier;
+        
+        // Настраиваем видимость и обязательность полей в зависимости от способа доставки
+        // Email
+        props.EmailSberDev.IsVisible = showDeliveryFields;
+        props.EmailSberDev.IsEnabled = showDeliveryFields;
+        props.EmailSberDev.IsRequired = isMail;
+        
+        // Адрес
+        props.AdressSberDev.IsVisible = showDeliveryFields;
+        props.AdressSberDev.IsEnabled = showDeliveryFields;
+        props.AdressSberDev.IsRequired = showDeliveryFields;
+        
+        // Телефон
+        props.PhoneNumberSberDev.IsVisible = showDeliveryFields;
+        props.PhoneNumberSberDev.IsEnabled = showDeliveryFields;
+        props.PhoneNumberSberDev.IsRequired = isCourier;
+      }
+      else
+      {
+        // Скрываем все поля доставки для исключенных типов документов
+        SetFieldsVisibility(props, false);
+      }
+    }
+
+    /// <summary>
+    /// Устанавливает видимость, доступность и обязательность всех полей доставки.
+    /// </summary>
+    /// <param name="props">Свойства объекта.</param>
+    /// <param name="value">Значение для установки (true/false).</param>
+    private void SetFieldsVisibility(SBContracts.IContractualDocumentPropertyStates props, bool value)
+    {
+      props.EmailSberDev.IsVisible = value;
+      props.EmailSberDev.IsEnabled = value;
+      props.EmailSberDev.IsRequired = value;
+      
+      props.AdressSberDev.IsVisible = value;
+      props.AdressSberDev.IsEnabled = value;
+      props.AdressSberDev.IsRequired = value;
+      
+      props.PhoneNumberSberDev.IsVisible = value;
+      props.PhoneNumberSberDev.IsEnabled = value;
+      props.PhoneNumberSberDev.IsRequired = value;
     }
     
     public override void ChangeRegistrationPaneVisibility(bool needShow, bool repeatRegister)

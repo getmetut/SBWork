@@ -26,7 +26,7 @@ namespace sberdev.SBContracts.Server
     [Public, Remote]
     public void ExtendAssignmentDeadline(Sungero.Workflow.IAssignment assignment, DateTime newDeadline)
     {
-    //  PublicFunctions.Module.Remote.UnblockCardByDatabase(assignment);
+      //  PublicFunctions.Module.Remote.UnblockCardByDatabase(assignment);
       assignment.Deadline = newDeadline;
       assignment.Save();
     }
@@ -454,19 +454,9 @@ namespace sberdev.SBContracts.Server
       var signer = Sungero.CoreEntities.Users.As(Sungero.Company.Departments.As(depart).Manager);
       if (signer == null)
         return false;
+      flag = signatures.Any(sign => sign.SignatureType == SignatureType.Endorsing &&
+                            (sign.Signatory != null && Equals(sign.Signatory, signer) || sign.SubstitutedUser != null && Equals(sign.SubstitutedUser, signer)));
       
-      if (signatures.Any())
-      {
-        if (document != null)
-        {
-          foreach(var sign in signatures)
-          {
-            if (sign.SignatureType == SignatureType.Endorsing && (sign.Signatory != null && Equals(sign.Signatory, signer)
-                                                                  || sign.SubstitutedUser != null && Equals(sign.SubstitutedUser, signer)));
-            flag = true;
-          }
-        }
-      }
       return flag;
     }
     

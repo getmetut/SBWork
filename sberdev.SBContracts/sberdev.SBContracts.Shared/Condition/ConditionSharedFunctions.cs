@@ -348,17 +348,11 @@ namespace sberdev.SBContracts.Shared
           .GetBusinessUnits().Where(u => u.TIN == "7730253720").FirstOrDefault();
         var depart = SBContracts.PublicFunctions.Module.Remote.GetGroup("Закупки", salut);
         var purchase = SberContracts.GuaranteeLetters.As(document).AddendumDocument;
-
+        var flag = PublicFunctions.Module.CheckDepartmentApproval(purchase, depart);
         if (depart != null && purchase != null)
-        {
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            PublicFunctions.Module.CheckDepartmentApproval(purchase, depart),
-            string.Empty);
-        }
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
         else
-        {
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
-        }
       }
       #endregion
 
