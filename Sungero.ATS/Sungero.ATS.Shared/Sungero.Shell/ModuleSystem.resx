@@ -181,4 +181,22 @@
   <data name="FilterPanel_GoupAuthorSDev_ee95fde731bb42cda7340621dbdc7053" xml:space="preserve">
     <value>Подразделение инициатора</value>
   </data>
+  <data name="FilterPanel_FlagsListATSDev_0223dd53baf343899fcaee325834474f" xml:space="preserve">
+    <value>Тип документа</value>
+  </data>
+  <data name="FilterPanel_ProfitATSDev_d0a9aed2d5fe4b01a3a7ea856efa7039" xml:space="preserve">
+    <value>Доходный</value>
+  </data>
+  <data name="FilterPanel_ConsumableDoATSDev_6824948a33f945e7979161c0a75e9123" xml:space="preserve">
+    <value>Расходный до 5 млн.</value>
+  </data>
+  <data name="FilterPanel_ConsumablAfterATSDev_442b5b6c38944c18a42776d3b2c5451a" xml:space="preserve">
+    <value>Расходный от 5 млн.</value>
+  </data>
+  <data name="FilterPanel_AllATSDev_cbc8329148ca459a875c149de1c9e81b" xml:space="preserve">
+    <value>Все типы</value>
+  </data>
+  <data name="FilterPanel_AuthorGroupATSDev_7d402897750e4287b0361dde295c2f63" xml:space="preserve">
+    <value>Группа инициатора</value>
+  </data>
 </root>

@@ -224,8 +224,8 @@ namespace sberdev.SberContracts.Server
         sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerProd,
         sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerPrGe,
         sberdev.SberContracts.CustomAppovalRole.Type.BudgetOwnerUnit,
-        sberdev.SberContracts.CustomAppovalRole.Type.Attorney};
-       // sberdev.SberContracts.CustomAppovalRole.Type.AttorneyManager};
+        sberdev.SberContracts.CustomAppovalRole.Type.Attorney,
+        sberdev.SberContracts.CustomAppovalRole.Type.AttorneyManager};
       foreach (var customRole in customRoles)
       {
         var role = roles.FirstOrDefault(r => r.Type.Value == customRole);

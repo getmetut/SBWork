@@ -165,6 +165,54 @@
             "LookupMode": "Standalone",
             "MasterControlId": "5a6579ea-cbc2-42e3-b6de-87d0b435a52a",
             "ParentGuid": "2bab7cb6-8fbc-40e6-bfe6-6a85673d7249"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+            "NameGuid": "0223dd53-baf3-4389-9fca-ee325834474f",
+            "Name": "FlagsListATSDev",
+            "IsVisible": false,
+            "ParentGuid": "2bab7cb6-8fbc-40e6-bfe6-6a85673d7249",
+            "PreviousGuid": "df3e414c-2e11-4703-805d-b30ad1c36a7a"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "d0a9aed2-d5fe-4b01-a3a7-ea856efa7039",
+            "Name": "ProfitATSDev",
+            "ParentGuid": "0223dd53-baf3-4389-9fca-ee325834474f",
+            "PreviousGuid": "cbc83291-48ca-459a-875c-149de1c9e81b"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "6824948a-33f9-45e7-9791-61c0a75e9123",
+            "Name": "ConsumableDoATSDev",
+            "ParentGuid": "0223dd53-baf3-4389-9fca-ee325834474f",
+            "PreviousGuid": "d0a9aed2-d5fe-4b01-a3a7-ea856efa7039"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "442b5b6c-3894-4c18-a427-76d3b2c5451a",
+            "Name": "ConsumablAfterATSDev",
+            "ParentGuid": "0223dd53-baf3-4389-9fca-ee325834474f",
+            "PreviousGuid": "6824948a-33f9-45e7-9791-61c0a75e9123"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "cbc83291-48ca-459a-875c-149de1c9e81b",
+            "Name": "AllATSDev",
+            "IsSelected": true,
+            "ParentGuid": "0223dd53-baf3-4389-9fca-ee325834474f"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterNavigationMetadata, Sungero.Metadata",
+            "NameGuid": "7d402897-750e-4287-b036-1dde295c2f63",
+            "Name": "AuthorGroupATSDev",
+            "EntityGuid": "31b5643f-ddd7-4021-8f3c-29b43f4df51f",
+            "HandledEvents": [
+              "FilteringServer"
+            ],
+            "IsVisible": false,
+            "ParentGuid": "2bab7cb6-8fbc-40e6-bfe6-6a85673d7249",
+            "PreviousGuid": "0223dd53-baf3-4389-9fca-ee325834474f"
           }
         ],
         "IsAncestorMetadata": true,
@@ -220,13 +268,28 @@
       "NameGuid": "852ea6a2-304e-48d1-88e5-1bcbb1fb69a2",
       "Name": "OnApproval",
       "DisplayType": "Inbox",
+      "FilterPanel": {
+        "NameGuid": "b1a698ba-b89d-4b49-8f0c-7cde28db4291",
+        "Name": "FilterPanel",
+        "Controls": [],
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Controls"
+        ],
+        "Versions": []
+      },
+      "HandledEvents": [
+        "DataQueryServer"
+      ],
       "IconPath": "OnApproval_852ea6a2304e48d188e51bcbb1fb69a2.ico",
       "IsAncestorMetadata": true,
       "IsShow": true,
       "IsViewSettingsByFolder": true,
       "NeedShowMarkedCount": true,
       "Overridden": [
-        "SupportedDescendantsTypes"
+        "SupportedDescendantsTypes",
+        "FilterPanel",
+        "HandledEvents"
       ],
       "SupportedDescendantsTypes": [
         "903298be-dd28-4da6-9682-1a898041342b",
@@ -546,9 +609,10 @@
         "DataQueryServer",
         "VisibilityHandlerServer"
       ],
-      "IsShow": true,
+      "IconPath": "FilterApprovalSDev_cbf06a91fa8b48e19540d7cd86895b64.ico",
+      "IsShow": false,
       "Kind": "Computable",
-      "NeedShowMarkedCount": false,
+      "NeedShowMarkedCount": true,
       "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17",
       "SupportedDescendantsTypes": [
         "01be6c28-8785-4f74-9877-e3270704452e"
