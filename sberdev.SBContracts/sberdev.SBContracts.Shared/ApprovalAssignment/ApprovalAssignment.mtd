@@ -583,6 +583,41 @@
       "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "a4bf24c3-125c-44fe-ad39-647099dd47af"
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "ba355a92-9c2e-4d0f-bb70-869240513b4c",
+      "Name": "ContractTypeATSDevATSDev",
+      "Code": "ContractTypeAT",
+      "DirectValues": [
+        {
+          "NameGuid": "8d565c24-5a44-438f-a6d1-e88e20621e1d",
+          "Name": "Profitable",
+          "Code": "Profitable"
+        },
+        {
+          "NameGuid": "d97d2ec9-d6b8-4f84-b3b9-4905920d7cc0",
+          "Name": "Expendable",
+          "Code": "Expendable"
+        },
+        {
+          "NameGuid": "9f27f3bb-54da-4761-860f-54efaabe5a07",
+          "Name": "ProfExpen",
+          "Code": "ProfExpen"
+        }
+      ],
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "60530de4-24ea-4b1b-900d-7783c80e62f8",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "954fb92d-d342-4d5c-9b23-bdd3820941d7",
+      "Name": "AmountATSDevATSDev",
+      "Code": "AmountATSDevAT",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "ba355a92-9c2e-4d0f-bb70-869240513b4c",
+      "Versions": []
     }
   ],
   "PublicFunctions": [
