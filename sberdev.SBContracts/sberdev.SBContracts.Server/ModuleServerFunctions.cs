@@ -441,139 +441,165 @@ namespace sberdev.SBContracts.Server
     /// <summary>
     /// Функция проверяет согласование документа. Возвращает true,
     /// если есть согласование от начальника данного подразделения.
-    /// <param name="document">Документ.</param>
-    /// <param name="isNotNeedValid">Необходимость проверки валидности.</param>
     /// </summary>
+    /// <param name="document">Документ.</param>
+    /// <param name="depart">Подразделение.</param>
+    /// <returns>Признак наличия согласования от руководителя подразделения.</returns>
     [Public]
     public bool CheckDepartmentApproval(SBContracts.IOfficialDocument document, Sungero.CoreEntities.IGroup depart)
     {
-      bool flag = false;
-      if (document == null)
+      if (document == null || !document.HasVersions)
         return false;
+      
       var signatures = Signatures.Get(document.LastVersion);
       var signer = Sungero.CoreEntities.Users.As(Sungero.Company.Departments.As(depart).Manager);
+      
       if (signer == null)
         return false;
-      flag = signatures.Any(sign => sign.SignatureType == SignatureType.Endorsing &&
-                            (sign.Signatory != null && Equals(sign.Signatory, signer) || sign.SubstitutedUser != null && Equals(sign.SubstitutedUser, signer)));
       
-      return flag;
+      return signatures.Any(sign => sign.SignatureType == SignatureType.Endorsing &&
+                            (Equals(sign.Signatory, signer) || Equals(sign.SubstitutedUser, signer)));
     }
-    
+
     /// <summary>
-    /// Функция проверяет подпись документа. Возвращает true если есть внешняя от Нашей организации или
-    /// внутренняя от одного человека из группы "Обязательные подписанты счета перед согласованием" у документа.
-    /// <param name="document">Документ.</param>
-    /// <param name="isNotNeedValid">Необходимость проверки валидности.</param>
+    /// Функция проверяет подпись документа.
+    /// Возвращает true если есть внешняя от Нашей организации или
+    /// внутренняя от одного человека из группы "Обязательные подписанты счета перед согласованием".
     /// </summary>
+    /// <param name="document">Документ.</param>
+    /// <param name="isNeedValid">Необходимость проверки валидности.</param>
+    /// <returns>Признак наличия требуемой подписи.</returns>
     [Public]
     public bool CheckSpecialGroupSignature(SBContracts.IOfficialDocument document, bool isNeedValid)
     {
-      bool flag = false;
+      if (document == null || !document.HasVersions)
+        return false;
+      
       var signatures = Signatures.Get(document.LastVersion);
       var needSignGroup = PublicFunctions.Module.Remote.GetGroup("Обязательные подписанты счета перед согласованием");
       
-      if (signatures.Any())
-      {
-        if (document != null)
-        {
-          foreach(var sign in signatures)
-          {
-            if (sign.IsExternal.HasValue && sign.IsExternal.Value)
-            {
-              var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(sign.GetDataSignature());
-              string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyTIN(certificateInfo.SubjectInfo);
-              if (Equals(tin, document.BusinessUnit.TIN) && (sign.IsValid || !isNeedValid))
-                flag = true;
-            }
-            else
-              if (sign.SignatureType == SignatureType.Approval &&
-                  ((sign.Signatory != null && sign.Signatory.IncludedIn(needSignGroup)) || (sign.SubstitutedUser != null && sign.SubstitutedUser.IncludedIn(needSignGroup))))
-                flag = true;
-          }
-        }
-      }
-      return flag;
+      return signatures.Any(sign =>
+                            (sign.IsExternal.HasValue && sign.IsExternal.Value &&
+                             IsSignatureFromBusinessUnit(sign, document.BusinessUnit.TIN, isNeedValid)) ||
+                            (sign.SignatureType == SignatureType.Approval &&
+                             (UserIncludedInGroup(sign.Signatory, needSignGroup) ||
+                              UserIncludedInGroup(sign.SubstitutedUser, needSignGroup))));
     }
-    
+
+    /// <summary>
+    /// Проверяет, что пользователь входит в указанную группу.
+    /// </summary>
+    /// <param name="user">Пользователь.</param>
+    /// <param name="group">Группа.</param>
+    /// <returns>True, если пользователь входит в группу.</returns>
+    [Public]
+    private bool UserIncludedInGroup(Sungero.CoreEntities.IUser user, Sungero.CoreEntities.IGroup group)
+    {
+      return user != null && user.IncludedIn(group);
+    }
+
+    /// <summary>
+    /// Проверяет, что подпись принадлежит указанной организации.
+    /// </summary>
+    /// <param name="signature">Подпись.</param>
+    /// <param name="tin">ИНН организации.</param>
+    /// <param name="isNeedValid">Проверять валидность подписи.</param>
+    /// <returns>True, если подпись принадлежит указанной организации.</returns>
+    [Public]
+    private bool IsSignatureFromBusinessUnit(Sungero.Domain.Shared.ISignature signature, string tin, bool isNeedValid)
+    {
+      try
+      {
+        var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(signature.GetDataSignature());
+        var signatureTin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyTIN(certificateInfo.SubjectInfo);
+        return Equals(signatureTin, tin) && (signature.IsValid || !isNeedValid);
+      }
+      catch
+      {
+        return false;
+      }
+    }
+
     /// <summary>
     /// Функция проверяет наличие подписи от контрагента и от одного человека из группы
-    /// "Обязательные подписанты счета перед согласованием" у документа и возвращает булевой список где первый элемент флаг нашей подписи, второй контрагента.
-    /// <param name="document">Документ.</param>
-    /// <param name="isNotNeedValid">Необходимость проверки валидности.</param>
+    /// "Обязательные подписанты счета перед согласованием".
     /// </summary>
+    /// <param name="document">Документ.</param>
+    /// <param name="isNeedValid">Необходимость проверки валидности.</param>
+    /// <returns>Список [наша подпись, подпись контрагента].</returns>
     [Public, Remote]
     public List<bool> CheckRealSignatures(SBContracts.IOfficialDocument document, bool isNeedValid)
     {
-      List<bool> flags = new List<bool>() {false, false};
-      if (!document.HasVersions)
+      var flags = new List<bool>() { false, false };
+      
+      if (document == null || !document.HasVersions)
         return flags;
+      
       var signatures = Signatures.Get(document.LastVersion);
+      
       // Проверка на двойную версию
       if (document.LastVersion.Note == "Титул покупателя")
         signatures = Signatures.Get(document);
+      
       var needSignGroup = PublicFunctions.Module.Remote.GetGroup("Обязательные подписанты счета перед согласованием");
-      if (signatures.Any())
+      
+      if (!signatures.Any())
+        return flags;
+      
+      var counterpartyTin = string.Empty;
+      var businessUnitTin = string.Empty;
+      
+      var contractual = SBContracts.ContractualDocuments.As(document);
+      var accounting = SBContracts.AccountingDocumentBases.As(document);
+      
+      if (contractual != null)
       {
-        var contractual = SBContracts.ContractualDocuments.As(document);
-        if (contractual != null)
-        {
-          foreach(var sign in signatures)
-          {
-            if (sign.IsExternal.HasValue && sign.IsExternal.Value)
-            {
-              try
-              {
-                var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(sign.GetDataSignature());
-                string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyTIN(certificateInfo.SubjectInfo);
-                if (Equals(tin, contractual.Counterparty.TIN) && (sign.IsValid || !isNeedValid))
-                  flags[1] = true;
-                if (Equals(tin, contractual.BusinessUnit.TIN) && (sign.IsValid || !isNeedValid))
-                  flags[0] = true;
-              }
-              catch (Exception ex)
-              {
-                //     Logger.Error("Проверка подписи. Ошибка при извлечении сертификата: " + ex.ToString());
-                continue;
-              }
-            }
-            else
-              if (sign.SignatureType == SignatureType.Approval && ((sign.Signatory != null && sign.Signatory.IncludedIn(needSignGroup))
-                                                                   || (sign.SubstitutedUser != null && sign.SubstitutedUser.IncludedIn(needSignGroup))))
-                flags[0] = true;
-          }
-        }
-        
-        var accounting = SBContracts.AccountingDocumentBases.As(document);
-        if (accounting != null)
-        {
-          foreach(var sign in signatures)
-          {
-            if (sign.IsExternal.HasValue && sign.IsExternal.Value)
-            {
-              try
-              {
-                var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(sign.GetDataSignature());
-                string tin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyTIN(certificateInfo.SubjectInfo);
-                if (Equals(tin, accounting.Counterparty.TIN) && (sign.IsValid || !isNeedValid))
-                  flags[1] = true;
-                if (Equals(tin, accounting.BusinessUnit.TIN) && (sign.IsValid || !isNeedValid))
-                  flags[0] = true;
-              }
-              catch (Exception ex)
-              {
-                //      Logger.Error("Проверка подписи. Ошибка при извлечении сертификата: " + ex.ToString());
-                continue;
-              }
-            }
-            else
-              if (sign.SignatureType == SignatureType.Approval && ((sign.Signatory != null && sign.Signatory.IncludedIn(needSignGroup))
-                                                                   || (sign.SubstitutedUser != null && sign.SubstitutedUser.IncludedIn(needSignGroup))))
-                flags[0] = true;
-          }
-        }
+        counterpartyTin = contractual.Counterparty.TIN;
+        businessUnitTin = contractual.BusinessUnit.TIN;
       }
+      else if (accounting != null)
+      {
+        counterpartyTin = accounting.Counterparty.TIN;
+        businessUnitTin = accounting.BusinessUnit.TIN;
+      }
+      else
+      {
+        return flags;
+      }
+      
+      // Проверка наличия нашей подписи
+      flags[0] = signatures.Any(sign =>
+                                (sign.IsExternal.HasValue && sign.IsExternal.Value && IsSignatureFromOrganization(sign, businessUnitTin, isNeedValid)) ||
+                                (sign.SignatureType == SignatureType.Approval &&
+                                 (UserIncludedInGroup(sign.Signatory, needSignGroup) || UserIncludedInGroup(sign.SubstitutedUser, needSignGroup))));
+      
+      // Проверка наличия подписи контрагента
+      flags[1] = signatures.Any(sign =>
+                                sign.IsExternal.HasValue && sign.IsExternal.Value && IsSignatureFromOrganization(sign, counterpartyTin, isNeedValid));
+      
       return flags;
+    }
+
+    /// <summary>
+    /// Проверяет, что подпись принадлежит указанной организации.
+    /// </summary>
+    /// <param name="signature">Подпись.</param>
+    /// <param name="organizationTin">ИНН организации.</param>
+    /// <param name="isNeedValid">Проверять валидность подписи.</param>
+    /// <returns>True, если подпись принадлежит указанной организации.</returns>
+    [Public]
+    private bool IsSignatureFromOrganization(Sungero.Domain.Shared.ISignature signature, string organizationTin, bool isNeedValid)
+    {
+      try
+      {
+        var certificateInfo = Sungero.Docflow.PublicFunctions.Module.GetSignatureCertificateInfo(signature.GetDataSignature());
+        var signatureTin = SBContracts.PublicFunctions.Module.Remote.ParseCertificateSubjectOnlyTIN(certificateInfo.SubjectInfo);
+        return Equals(signatureTin, organizationTin) && (signature.IsValid || !isNeedValid);
+      }
+      catch
+      {
+        return false;
+      }
     }
     
     
