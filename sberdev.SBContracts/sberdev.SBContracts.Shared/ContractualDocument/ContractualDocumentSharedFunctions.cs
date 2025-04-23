@@ -383,7 +383,7 @@ namespace sberdev.SBContracts.Shared
       // Определяем тип текущего документа
       var documentType = _obj.GetType().Name;
       string[] excludedTypes = new string[] { "AppProductPurchase", "AppProductPurchaseProxy", "AppProductPurchase", "AppProductPurchaseProxy"
-          , "GuaranteeLetter", "GuaranteeLetterProxy", "OtherContractDocument", "OtherContractDocumentProxy", "Purchase", "PurchaseProxy"      };
+          , "GuaranteeLetter", "GuaranteeLetterProxy", "OtherContractDocument", "OtherContractDocumentProxy", "Purchase", "PurchaseProxy"};
       var isApplicableDocumentType = !excludedTypes.Contains(documentType);
       
       // Если документ не входит в список исключаемых типов, проверяем метод доставки
@@ -414,7 +414,7 @@ namespace sberdev.SBContracts.Shared
       else
       {
         // Скрываем все поля доставки для исключенных типов документов
-        SetFieldsVisibility(props, false);
+        SetDeliveryFieldsVisibility(props, false);
       }
     }
 
@@ -423,7 +423,7 @@ namespace sberdev.SBContracts.Shared
     /// </summary>
     /// <param name="props">Свойства объекта.</param>
     /// <param name="value">Значение для установки (true/false).</param>
-    private void SetFieldsVisibility(SBContracts.IContractualDocumentPropertyStates props, bool value)
+    private void SetDeliveryFieldsVisibility(SBContracts.IContractualDocumentPropertyStates props, bool value)
     {
       props.EmailSberDev.IsVisible = value;
       props.EmailSberDev.IsEnabled = value;

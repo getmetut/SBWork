@@ -1219,7 +1219,7 @@
           "NameGuid": "0712738a-4dce-4d9c-b4d3-01bc8f7bba35",
           "Name": "PayTypeBaseSungeroSungero",
           "ColumnNumber": 0,
-          "ColumnSpan": 2,
+          "ColumnSpan": 3,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
           "ParentGuid": "73e9df7c-895e-4811-b3d5-76c6f95b87aa",
           "PropertyGuid": "211ac8ab-c64c-419e-8960-5e272e2faa21",

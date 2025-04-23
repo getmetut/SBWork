@@ -50,7 +50,7 @@ namespace sberdev.SBContracts.Shared
       else
       {
         // Скрываем все поля доставки для исключенных типов документов
-        SetFieldsVisibility(props, false);
+        SetDeliveryFieldsVisibility(props, false);
       }
     }
 
@@ -59,7 +59,7 @@ namespace sberdev.SBContracts.Shared
     /// </summary>
     /// <param name="props">Свойства объекта.</param>
     /// <param name="value">Значение для установки (true/false).</param>
-    private void SetFieldsVisibility(SBContracts.IAccountingDocumentBasePropertyStates props, bool value)
+    private void SetDeliveryFieldsVisibility(SBContracts.IAccountingDocumentBasePropertyStates props, bool value)
     {
       props.EmailSberDevSungero.IsVisible = value;
       props.EmailSberDevSungero.IsEnabled = value;
@@ -72,6 +72,22 @@ namespace sberdev.SBContracts.Shared
       props.PhoneNumberSberDevSungero.IsVisible = value;
       props.PhoneNumberSberDevSungero.IsEnabled = value;
       props.PhoneNumberSberDevSungero.IsRequired = value;
+    }
+    
+    public override void ChangeRegistrationPaneVisibility(bool needShow, bool repeatRegister)
+    {
+      base.ChangeRegistrationPaneVisibility(needShow, repeatRegister);
+      // Определяем тип текущего документа
+      var documentType = _obj.GetType().Name;
+      string[] excludedTypes = new string[] { "IncomingInvoice", "IncomingInvoiceProxy", "OutgoingInvoice", "OutgoingInvoiceProxy" };
+      var isApplicableDocumentType = !excludedTypes.Contains(documentType);
+      // Если документ не входит в список исключаемых типов, проверяем метод доставки
+      if (isApplicableDocumentType)
+      {
+        _obj.State.Properties.DeliveryMethod.IsVisible = true;
+        _obj.State.Properties.DeliveryMethod.IsEnabled = true;
+        _obj.State.Properties.DeliveryMethod.IsRequired = true;
+      }
     }
     
     /// <summary>
