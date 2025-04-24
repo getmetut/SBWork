@@ -36,19 +36,19 @@ namespace sberdev.SberContracts.Server
       
       if (roleSC == null)
       {
-//        roleSC = Roles.Create();
-//        roleSC.Name = "Ответсвенный за конфликты синхронизации контрагентов";
-//        roleSC.Description = "Участнику роли приходят задания на решение конфликтов синхронизации контрагентов";
-//        roleSC.Sid = Constants.Module.CpSyncConflictRoleGuid;
-//        roleSC.IsSystem = false;
-//        roleSC.RecipientLinks.AddNew().Member = Users.GetAll().Where(r => r.Id == 10).FirstOrDefault();
-//        roleSC.IsSingleUser = true;
-//        roleSC.Save();
-//        InitializationLogger.Debug("Ответсвенный за фин. вх. документы");
+        roleSC = Roles.Create();
+        roleSC.Name = "Ответственный за конфликты синхронизации контрагентов";
+        roleSC.Description = "Участнику роли приходят задания на решение конфликтов синхронизации контрагентов";
+        roleSC.Sid = Constants.Module.CpSyncConflictRoleGuid;
+        roleSC.IsSystem = false;
+        roleSC.RecipientLinks.AddNew().Member = Users.GetAll().Where(r => r.Id == 10).FirstOrDefault();
+        roleSC.IsSingleUser = true;
+        roleSC.Save();
+        InitializationLogger.Debug("Ответсвенный за фин. вх. документы");
       }
       else
       {
-        roleSC.Name = "Ответсвенный за конфликты синхронизации контрагентов";
+        roleSC.Name = "Ответственный за конфликты синхронизации контрагентов";
         roleSC.Description = "Участнику роли приходят задания на решение конфликтов синхронизации контрагентов.";
         roleSC.Sid = Constants.Module.CpSyncConflictRoleGuid;
         roleSC.IsSystem = false;

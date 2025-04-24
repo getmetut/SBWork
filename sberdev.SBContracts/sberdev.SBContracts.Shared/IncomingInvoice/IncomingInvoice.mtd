@@ -1051,6 +1051,19 @@
           "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "6e257423-019d-4464-9e27-a9701cb02e23",
+          "Name": "ControlATSDev",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+          "ParentGuid": "9addea7b-cece-4a6c-89c9-222001948a11",
+          "PropertyGuid": "e4527417-cb2f-48b0-8124-68e75b0723a8",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -1072,6 +1085,16 @@
   "OpenCardByDefaultInCollection": true,
   "OperationsClass": "",
   "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "bbbc063d-7367-4ea8-a777-5dd1bbe8e216",
+      "Name": "DeliveryMethod",
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "IsRequired"
+      ],
+      "Versions": []
+    },
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "300fb42d-f0f9-462d-b881-588745383002",
