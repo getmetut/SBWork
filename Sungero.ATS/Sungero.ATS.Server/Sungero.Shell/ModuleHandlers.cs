@@ -6,6 +6,15 @@ using Sungero.CoreEntities;
 
 namespace Sungero.ATS.Module.Shell.Server
 {
+  partial class OnApprovalFolderHandlers
+  {
+
+    public override IQueryable<Sungero.Workflow.IAssignmentBase> OnApprovalDataQuery(IQueryable<Sungero.Workflow.IAssignmentBase> query)
+    {
+      return base.OnApprovalDataQuery(query);;
+    }
+  }
+
   partial class FilterApprovalSDevFolderHandlers
   {
 
@@ -141,9 +150,82 @@ namespace Sungero.ATS.Module.Shell.Server
   partial class ApprovalFolderHandlers
   {
 
+    public virtual IQueryable<Sungero.CoreEntities.IGroup> ApprovalAuthorGroupATSDevFiltering(IQueryable<Sungero.CoreEntities.IGroup> query)
+    {
+      query = query.Where(r => r.Status == Sungero.CoreEntities.Group.Status.Active);
+      query = query.Where(g => g.RecipientLinks.Any());
+      return query;
+    }
+
     public override IQueryable<Sungero.Workflow.ITask> ApprovalDataQuery(IQueryable<Sungero.Workflow.ITask> query)
     {
-      return base.ApprovalDataQuery(query);
+      query = base.ApprovalDataQuery(query);
+      if (_filter != null)
+      {
+        if (_filter.AuthorGroupATSDev != null)
+          query = query.Where(au => au.Author.IncludedIn(_filter.AuthorGroupATSDev));
+        
+        if (!_filter.AllATSDev)
+        {
+          //var DocProfit = Sungero.Docflow.ApprovalAssignments.As(cast).DocumentGroup.OfficialDocuments.FirstOrDefault().
+//          if (_filter.ProfitATSDev)       // Доходный
+//          {
+//            List<Sungero.Docflow.IOfficialDocument> DocsProfits = new List<Sungero.Docflow.IOfficialDocument>();
+//            foreach (var doc in sberdev.SBContracts.AccountingDocumentBases.GetAll(d => d.ContrTypeBaseSberDev == sberdev.SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable).ToList())
+//            {
+//              if (Sungero.Docflow.OfficialDocuments.Is(doc))
+//                DocsProfits.Add(Sungero.Docflow.OfficialDocuments.As(doc));
+//            }
+//            foreach (var doc in sberdev.SBContracts.ContractualDocuments.GetAll(d => d.ContrTypeBaseSberDev == sberdev.SBContracts.ContractualDocument.ContrTypeBaseSberDev.Profitable).ToList())
+//            {
+//              if (Sungero.Docflow.OfficialDocuments.Is(doc))
+//                DocsProfits.Add(Sungero.Docflow.OfficialDocuments.As(doc));
+//            }            
+//            query = query.Where(j => sberdev.SBContracts.ApprovalTasks.Is(j)).Select(j => sberdev.SBContracts.ApprovalTasks.As(j)).
+//              Where(j => DocsProfits.Contains(sberdev.SBContracts.ApprovalTasks.As(j).DocumentGroup.OfficialDocuments.FirstOrDefault()));
+//          }
+//            
+//          if (_filter.ConsumableDoATSDev) // До 5 млн. Расходный
+//          {
+//            List<Sungero.Docflow.IOfficialDocument> DocsConsumable = new List<Sungero.Docflow.IOfficialDocument>();
+//            foreach (var doc in sberdev.SBContracts.AccountingDocumentBases.GetAll(d => d.ContrTypeBaseSberDev == sberdev.SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable).
+//                     Where(d => d.TotalAmount < 5000000).ToList())
+//            {
+//              if (Sungero.Docflow.OfficialDocuments.Is(doc))
+//                DocsConsumable.Add(Sungero.Docflow.OfficialDocuments.As(doc));
+//            }
+//            foreach (var doc in sberdev.SBContracts.ContractualDocuments.GetAll(d => d.ContrTypeBaseSberDev == sberdev.SBContracts.ContractualDocument.ContrTypeBaseSberDev.Expendable).
+//                     Where(d => d.TotalAmount < 5000000).ToList())
+//            {
+//              if (Sungero.Docflow.OfficialDocuments.Is(doc))
+//                DocsConsumable.Add(Sungero.Docflow.OfficialDocuments.As(doc));
+//            }            
+//            query = query.Where(j => sberdev.SBContracts.ApprovalTasks.Is(j)).
+//              Select(j => sberdev.SBContracts.ApprovalTasks.As(j)).
+//              Where(j => DocsConsumable.Contains(sberdev.SBContracts.ApprovalTasks.As(j).DocumentGroup.OfficialDocuments.FirstOrDefault()));
+//          }
+//          if (_filter.ConsumablAfterATSDev) // Расходный более 5 млн.
+//          {
+//            List<Sungero.Docflow.IOfficialDocument> DocsConsumable = new List<Sungero.Docflow.IOfficialDocument>();
+//            foreach (var doc in sberdev.SBContracts.AccountingDocumentBases.GetAll(d => d.ContrTypeBaseSberDev == sberdev.SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable).
+//                     Where(d => d.TotalAmount >= 5000000).ToList())
+//            {
+//              if (Sungero.Docflow.OfficialDocuments.Is(doc))
+//                DocsConsumable.Add(Sungero.Docflow.OfficialDocuments.As(doc));
+//            }
+//            foreach (var doc in sberdev.SBContracts.ContractualDocuments.GetAll(d => d.ContrTypeBaseSberDev == sberdev.SBContracts.ContractualDocument.ContrTypeBaseSberDev.Expendable).
+//                     Where(d => d.TotalAmount >= 5000000).ToList())
+//            {
+//              if (Sungero.Docflow.OfficialDocuments.Is(doc))
+//                DocsConsumable.Add(Sungero.Docflow.OfficialDocuments.As(doc));
+//            }            
+//            query = query.Where(j => sberdev.SBContracts.ApprovalTasks.Is(j)).
+//              Select(j => sberdev.SBContracts.ApprovalTasks.As(j)).
+//              Where(j => DocsConsumable.Contains(sberdev.SBContracts.ApprovalTasks.As(j).DocumentGroup.OfficialDocuments.FirstOrDefault()));
+//          }
+        }
+      }
+      return query;
     }
 
     public virtual IQueryable<Sungero.Parties.ICounterparty> ApprovalCounterpartySDevFiltering(IQueryable<Sungero.Parties.ICounterparty> query)

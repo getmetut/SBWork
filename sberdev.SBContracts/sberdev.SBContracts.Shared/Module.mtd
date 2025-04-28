@@ -937,11 +937,11 @@
       "Properties": [
         {
           "Name": "Completed",
-          "TypeFullName": "global::System.Double"
+          "TypeFullName": "global::System.Int32"
         },
         {
           "Name": "Expired",
-          "TypeFullName": "global::System.Double"
+          "TypeFullName": "global::System.Int32"
         }
       ],
       "StructureNamespace": "sberdev.SBContracts.Structures.Module"
@@ -1179,7 +1179,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.0.0.0",
+  "Version": "4.45.2.12",
   "Widgets": [],
   "Versions": [
     {

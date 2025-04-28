@@ -537,6 +537,39 @@
       "Length": 150,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "b94fa283-3c61-401d-99bf-bc86c10d3c68"
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "1ea5f5b4-d834-4758-9e3f-aeeccb68ccbe",
+      "Name": "ContractTypeATSDev",
+      "Code": "ContractTypeAT",
+      "DirectValues": [
+        {
+          "NameGuid": "8d565c24-5a44-438f-a6d1-e88e20621e1d",
+          "Name": "Profitable",
+          "Code": "Profitable"
+        },
+        {
+          "NameGuid": "d97d2ec9-d6b8-4f84-b3b9-4905920d7cc0",
+          "Name": "Expendable",
+          "Code": "Expendable"
+        },
+        {
+          "NameGuid": "9f27f3bb-54da-4761-860f-54efaabe5a07",
+          "Name": "ProfExpen",
+          "Code": "ProfExpen"
+        }
+      ],
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "5af0f9cd-7260-488e-a681-c94f5655b634"
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9b5f099b-b5ac-468c-84b1-6bc3defc82be",
+      "Name": "AmountATSDev",
+      "Code": "AmountATSDev",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "1ea5f5b4-d834-4758-9e3f-aeeccb68ccbe"
     }
   ],
   "PublicConstants": [

@@ -84,7 +84,8 @@
     "Versions": []
   },
   "HandledEvents": [
-    "BeforeCompleteServer"
+    "BeforeCompleteServer",
+    "SavingServer"
   ],
   "IconResourcesKeys": [],
   "IsVisibleThreadText": true,
@@ -105,6 +106,41 @@
       "Overridden": [
         "EntityGuid"
       ],
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "64d08d1b-8163-4bf9-90af-1b871ce012ec",
+      "Name": "AmountATSDevATSDev",
+      "Code": "AmountATSDevA1",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "a80afb40-1b57-4e7a-adf8-d372b945b95f",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "c190a9fa-90cf-4403-9a6c-bcd8cf1980f1",
+      "Name": "ContractTypeATSDevATSDev",
+      "Code": "ContractTypeA1",
+      "DirectValues": [
+        {
+          "NameGuid": "8d565c24-5a44-438f-a6d1-e88e20621e1d",
+          "Name": "Profitable",
+          "Code": "Profitable"
+        },
+        {
+          "NameGuid": "d97d2ec9-d6b8-4f84-b3b9-4905920d7cc0",
+          "Name": "Expendable",
+          "Code": "Expendable"
+        },
+        {
+          "NameGuid": "9f27f3bb-54da-4761-860f-54efaabe5a07",
+          "Name": "ProfExpen",
+          "Code": "ProfExpen"
+        }
+      ],
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "64d08d1b-8163-4bf9-90af-1b871ce012ec",
       "Versions": []
     }
   ],

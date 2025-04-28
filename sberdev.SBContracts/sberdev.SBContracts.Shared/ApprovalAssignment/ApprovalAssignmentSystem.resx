@@ -265,4 +265,19 @@
   <data name="Action_DirectToFinanceSberDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_ContractTypeATSDevATSDev" xml:space="preserve">
+    <value>Тип договора</value>
+  </data>
+  <data name="Enum_ContractTypeATSDevATSDev_Profitable" xml:space="preserve">
+    <value>Доходный</value>
+  </data>
+  <data name="Enum_ContractTypeATSDevATSDev_Expendable" xml:space="preserve">
+    <value>Расходный</value>
+  </data>
+  <data name="Enum_ContractTypeATSDevATSDev_ProfExpen" xml:space="preserve">
+    <value>Доходно-расходный</value>
+  </data>
+  <data name="Property_AmountATSDevATSDev" xml:space="preserve">
+    <value>Сумма по документу</value>
+  </data>
 </root>

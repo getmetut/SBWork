@@ -113,10 +113,7 @@ namespace sberdev.SBContracts.Shared
       if (_obj.AccArtBaseSberDev != null)
       {
         if (_obj.AccArtBaseSberDev.NMA != null)
-        {
-          if (_obj.AccArtBaseSberDev.NMA.Value)
-            NMVisible = true;
-        }
+          NMVisible = _obj.AccArtBaseSberDev.NMA.Value;
       }
       _obj.State.Properties.NMASDev.IsVisible = NMVisible;
     }

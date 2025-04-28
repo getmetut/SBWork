@@ -38,9 +38,35 @@ namespace sberdev.SBContracts
       string er1 = "";
       string er2 = "";
       if (accounting != null)
+      {
         er1 = PublicFunctions.AccountingDocumentBase.BanToSaveForStabs(accounting);
+        if (accounting.TotalAmount.HasValue)
+          _obj.AmountATSDev = accounting.TotalAmount;
+        
+        if (accounting.ContrTypeBaseSberDev.HasValue)
+        {
+          if (accounting.ContrTypeBaseSberDev == SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Profitable;
+          if (accounting.ContrTypeBaseSberDev == SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Expendable;
+        }
+      }
       if (contractual != null)
+      {
         er2 = PublicFunctions.ContractualDocument.BanToSaveForStabs(contractual);
+        if (contractual.TotalAmount.HasValue)
+          _obj.AmountATSDev = contractual.TotalAmount;
+        
+        if (contractual.ContrTypeBaseSberDev.HasValue)
+        {
+          if (contractual.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Profitable)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Profitable;
+          if (contractual.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Expendable)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Expendable;
+          if (contractual.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.ExpendProfitSberDev)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.ProfExpen;
+        }
+      }
       if (er1 != "")
         e.AddError(er1);
       if (er2 != "")
@@ -48,6 +74,18 @@ namespace sberdev.SBContracts
       
       // Механика подтверждения суммы закупки
       var gurantee = SberContracts.GuaranteeLetters.As(document);
+      if (gurantee != null)
+      {
+        if (gurantee.ContrTypeBaseSberDev.HasValue)
+        {
+          if (gurantee.ContrTypeBaseSberDev == SberContracts.GuaranteeLetter.ContrTypeBaseSberDev.Profitable)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Profitable;
+          if (gurantee.ContrTypeBaseSberDev == SberContracts.GuaranteeLetter.ContrTypeBaseSberDev.Expendable)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Expendable;
+          if (gurantee.ContrTypeBaseSberDev == SberContracts.GuaranteeLetter.ContrTypeBaseSberDev.ExpendProfitSberDev)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.ProfExpen;
+        }
+      }
       if (gurantee != null && gurantee.TotalAmount < 5000000 && gurantee.AddendumDocument == null)
       {
         if (!PublicFunctions.ApprovalTask.ShowConfirmationAmountDialog(_obj))
@@ -58,6 +96,19 @@ namespace sberdev.SBContracts
       
       // Механика проверки бездоговорных счетов
       var incInv = SBContracts.IncomingInvoices.As(document);
+      if (incInv != null)
+      {
+        if (incInv.TotalAmount.HasValue)
+          _obj.AmountATSDev = incInv.TotalAmount;
+        
+        if (incInv.ContrTypeBaseSberDev.HasValue)
+        {
+          if (incInv.ContrTypeBaseSberDev == SBContracts.IncomingInvoice.ContrTypeBaseSberDev.Profitable)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Profitable;
+          if (incInv.ContrTypeBaseSberDev == SBContracts.IncomingInvoice.ContrTypeBaseSberDev.Expendable)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Expendable;
+        }
+      }
       if (incInv != null && incInv.NoNeedLeadingDocs.HasValue && incInv.NoNeedLeadingDocs.Value)
       {
         var counter = SberContracts.NonContractInvoiceCounters.GetAll().Where(c => c.Counterparty == incInv.Counterparty
@@ -86,6 +137,18 @@ namespace sberdev.SBContracts
       var appProdPurch = SberContracts.AppProductPurchases.As(document);
       if (appProdPurch != null)
       {
+        if (appProdPurch.TotalAmount.HasValue)
+          _obj.AmountATSDev = appProdPurch.TotalAmount;
+        
+        if (appProdPurch.ContrTypeBaseSberDev.HasValue)
+        {
+          if (appProdPurch.ContrTypeBaseSberDev == SberContracts.AppProductPurchase.ContrTypeBaseSberDev.Profitable)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Profitable;
+          if (appProdPurch.ContrTypeBaseSberDev == SberContracts.AppProductPurchase.ContrTypeBaseSberDev.Expendable)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Expendable;
+          if (appProdPurch.ContrTypeBaseSberDev == SberContracts.AppProductPurchase.ContrTypeBaseSberDev.ExpendProfitSberDev)
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.ProfExpen;
+        }
         bool flag = SBContracts.PublicFunctions.Module.Remote.CheckPropertySignaturesGeneral(appProdPurch.LeadingDocument);
         if (!flag)
           e.AddError(sberdev.SBContracts.ApprovalTasks.Resources.LeadocSignErr);
