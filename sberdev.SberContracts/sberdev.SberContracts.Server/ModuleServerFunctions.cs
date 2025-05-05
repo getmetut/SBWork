@@ -2202,7 +2202,7 @@ namespace sberdev.SberContracts.Server
             // Проверяем соответствие типу документа
             foreach (var assignment in assignmentsBatch)
             {
-              if (PublicFunctions.Module.SafeMatchesDocumentType(assignment, documentType))
+              if (PublicFunctions.Module.AssignmentMatchesDocumentType(assignment, documentType))
               {
                 filteredAssignmentIds.Add((int)assignment.Id);
               }

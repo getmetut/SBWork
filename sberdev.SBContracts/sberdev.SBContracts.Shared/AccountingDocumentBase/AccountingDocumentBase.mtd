@@ -1226,11 +1226,11 @@
       "IsAncestorMetadata": true,
       "IsRequired": true,
       "Overridden": [
-        "IsRequired",
         "IsVisibility",
         "CanBeSearch",
         "IsEnabled",
-        "HandledEvents"
+        "HandledEvents",
+        "IsRequired"
       ],
       "Versions": []
     },
