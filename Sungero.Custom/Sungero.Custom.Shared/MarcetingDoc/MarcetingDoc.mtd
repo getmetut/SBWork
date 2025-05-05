@@ -64,7 +64,7 @@
         {
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "03fde417-8254-4f08-950c-d543871033a8",
-          "Name": "MainGroup",
+          "Name": "HorizontalGroup",
           "ColumnDefinitions": [
             {
               "Percentage": 50.0
@@ -82,7 +82,7 @@
         {
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "72e49225-1e83-4e65-bb33-ea838a458e43",
-          "Name": "LocationStateGroup",
+          "Name": "LocationState",
           "GroupType": "WithTitleNoBorder",
           "IsAncestorMetadata": true,
           "IsVisible": false,

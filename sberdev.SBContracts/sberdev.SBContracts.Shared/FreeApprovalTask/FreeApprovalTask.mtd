@@ -105,6 +105,7 @@
     "IsAncestorMetadata": true,
     "VersionsCounter": 0
   },
+  "UseSchemeFromSettings": true,
   "Versions": [
     {
       "Type": "TaskMetadata",
