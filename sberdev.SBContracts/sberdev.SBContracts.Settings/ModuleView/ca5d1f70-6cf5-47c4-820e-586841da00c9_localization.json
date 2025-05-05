@@ -153,6 +153,7 @@
     "ru-RU": "МВЗ"
   },
   "Name": {
+    "en-US": "Contracts",
     "ru-RU": "Договоры"
   },
   "NonContractualStatisticSberDev_Description_e4e84bb744114c2a9543344876aa7b3a": {
@@ -216,7 +217,7 @@
     "ru-RU": "Продукт-юниты"
   },
   "ReestrNDASungero_Description_34918dcb601a488b814b0152ccca40cd": {
-    "en-US": "Реестр документов типа NDA и Соглашения об ЭДО с фильтрацией"
+    "en-US": "Реестр документов NDA и Соглашения об ЭДО с фильтрацией"
   },
   "ReestrNDASungero_Title_34918dcb601a488b814b0152ccca40cd": {
     "en-US": "Реестр NDA"
