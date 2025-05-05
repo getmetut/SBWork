@@ -40,7 +40,8 @@
       "EntityType": "0aac549f-452c-4b6f-9f30-ffdeb328617e",
       "HandledEvents": [
         "StantartJobStartAssignment"
-      ]
+      ],
+      "ProcessStagesDisplayMode": "Show"
     }
   ],
   "CanBeNavigationPropertyType": true,
@@ -120,7 +121,7 @@
     },
     {
       "Type": "EntityMetadata",
-      "Number": 12
+      "Number": 13
     }
   ]
 }

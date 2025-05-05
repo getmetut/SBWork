@@ -41,7 +41,8 @@
       "EntityType": "321f5d21-9aef-4db8-a98f-96ad59439e80",
       "HandledEvents": [
         "StandartAssignmentStartAssignment"
-      ]
+      ],
+      "ProcessStagesDisplayMode": "Show"
     },
     {
       "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
@@ -51,7 +52,8 @@
       "EntityType": "3a50daaf-e0f2-4710-8120-c22fd6aa2cd7",
       "HandledEvents": [
         "PlusAssignmentStartAssignment"
-      ]
+      ],
+      "ProcessStagesDisplayMode": "Show"
     },
     {
       "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
@@ -61,7 +63,8 @@
       "EntityType": "923b52ef-d0eb-4b24-9e95-e1172404118b",
       "HandledEvents": [
         "DoWorkStartAssignment"
-      ]
+      ],
+      "ProcessStagesDisplayMode": "Show"
     },
     {
       "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
@@ -71,7 +74,8 @@
       "EntityType": "6b6ab7f9-408b-417f-82df-24631d8167f1",
       "HandledEvents": [
         "AuthorJobStartAssignment"
-      ]
+      ],
+      "ProcessStagesDisplayMode": "Show"
     },
     {
       "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
@@ -81,6 +85,7 @@
       "HandledEvents": [
         "EditLifeExecute"
       ],
+      "ProcessStagesDisplayMode": "Hide",
       "Properties": [
         {
           "$type": "Sungero.Metadata.EnumBlockPropertyMetadata, Sungero.Metadata",
@@ -346,7 +351,7 @@
     },
     {
       "Type": "EntityMetadata",
-      "Number": 12
+      "Number": 13
     }
   ]
 }

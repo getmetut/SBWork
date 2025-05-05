@@ -57,7 +57,8 @@
       "NameGuid": "4a3c39b1-dc32-415c-be40-59cbaf16d25d",
       "Name": "StandartBlock",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
-      "EntityType": "0c5a665f-4ec8-4d40-87fd-605c74df1383"
+      "EntityType": "0c5a665f-4ec8-4d40-87fd-605c74df1383",
+      "ProcessStagesDisplayMode": "Show"
     },
     {
       "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
@@ -65,6 +66,7 @@
       "Name": "DorabotkaBlock",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
       "EntityType": "0a8cb025-1657-495d-aa5e-e982898df156",
+      "ProcessStagesDisplayMode": "Show",
       "Properties": [
         {
           "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
@@ -89,6 +91,7 @@
         "MonitoringBlockStart",
         "MonitoringBlockResult"
       ],
+      "ProcessStagesDisplayMode": "Show",
       "Properties": [
         {
           "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
@@ -114,7 +117,8 @@
       "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
         "GenlistSoglExecute"
-      ]
+      ],
+      "ProcessStagesDisplayMode": "Hide"
     }
   ],
   "CanBeNavigationPropertyType": true,
@@ -207,7 +211,7 @@
     },
     {
       "Type": "EntityMetadata",
-      "Number": 12
+      "Number": 13
     }
   ]
 }

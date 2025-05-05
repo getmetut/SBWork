@@ -2,7 +2,6 @@
   "$type": "Sungero.Metadata.ReportMetadata, Sungero.Reporting.Shared",
   "NameGuid": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
   "Name": "ListSogl",
-  "AccessRightsMode": "NoRight",
   "AssociatedGuid": "175ed514-13ac-427b-986e-008c04647eac",
   "BaseGuid": "cef9a810-3f30-4eca-9fe3-30992af0b818",
   "DataSources": [
@@ -18,6 +17,7 @@
   ],
   "IconResourcesKeys": [],
   "IntegrationServiceName": "CustomListSogl",
+  "NonVisualAuthorizationMode": "FullAccess",
   "Overridden": [
     "AccessRightsMode",
     "PublicConstants",
@@ -25,7 +25,9 @@
     "DisplayName",
     "HandledEvents",
     "DataSources",
-    "Parameters"
+    "Parameters",
+    "AccessRightsMode",
+    "NonVisualAuthorizationMode"
   ],
   "Parameters": [
     {
@@ -38,5 +40,10 @@
   ],
   "PublicStructures": [],
   "ResourcesKeys": [],
-  "Versions": []
+  "Versions": [
+    {
+      "Type": "ReportMetadata",
+      "Number": 1
+    }
+  ]
 }

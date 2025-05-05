@@ -41,7 +41,8 @@
       "EntityType": "3a6caaff-6636-4edd-8e77-89d2fdfd451d",
       "HandledEvents": [
         "ClassicBlockStartAssignment"
-      ]
+      ],
+      "ProcessStagesDisplayMode": "Show"
     },
     {
       "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
@@ -51,7 +52,8 @@
       "EntityType": "38bd47eb-ecd8-4823-b84e-c53fbd083eb5",
       "HandledEvents": [
         "ExecutionBlockStartAssignment"
-      ]
+      ],
+      "ProcessStagesDisplayMode": "Show"
     },
     {
       "$type": "Sungero.Metadata.MonitoringBlockMetadata, Sungero.Workflow.Shared",
@@ -62,6 +64,7 @@
         "MonitoringBlockStart",
         "MonitoringBlockResult"
       ],
+      "ProcessStagesDisplayMode": "Show",
       "Properties": [
         {
           "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
@@ -87,6 +90,7 @@
       "HandledEvents": [
         "ScriptEditStageExecute"
       ],
+      "ProcessStagesDisplayMode": "Hide",
       "Properties": [
         {
           "$type": "Sungero.Metadata.EnumBlockPropertyMetadata, Sungero.Metadata",
@@ -148,6 +152,7 @@
         "DroductSoglStart",
         "DroductSoglStartAssignment"
       ],
+      "ProcessStagesDisplayMode": "Show",
       "Properties": [
         {
           "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
@@ -364,7 +369,7 @@
     },
     {
       "Type": "EntityMetadata",
-      "Number": 12
+      "Number": 13
     }
   ]
 }

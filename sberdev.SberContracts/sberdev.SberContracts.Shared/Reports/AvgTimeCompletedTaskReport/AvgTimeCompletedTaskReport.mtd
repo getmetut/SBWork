@@ -48,5 +48,10 @@
   ],
   "PublicStructures": [],
   "ResourcesKeys": [],
-  "Versions": []
+  "Versions": [
+    {
+      "Type": "ReportMetadata",
+      "Number": 1
+    }
+  ]
 }
