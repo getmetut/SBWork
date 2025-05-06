@@ -134,7 +134,7 @@
         "Name": "FilterPanel",
         "Controls": []
       },
-      "IsShow": false,
+      "IsShow": true,
       "Kind": "Computable",
       "NeedShowMarkedCount": false
     }
