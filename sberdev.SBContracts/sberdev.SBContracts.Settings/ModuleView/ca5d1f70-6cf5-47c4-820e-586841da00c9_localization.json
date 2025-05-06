@@ -107,7 +107,9 @@
     "en-US": "New Document",
     "ru-RU": "Создать документ"
   },
-  "Description": {},
+  "Description": {
+    "ru-RU": "шгпщшг"
+  },
   "DevSettings_Title_9ec7adeed6c04c28b096838efec0ac09": {
     "en-US": "Development settings",
     "ru-RU": "Настройки разработки"
