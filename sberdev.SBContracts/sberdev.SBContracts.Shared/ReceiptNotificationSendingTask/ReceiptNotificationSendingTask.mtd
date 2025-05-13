@@ -5,6 +5,20 @@
   "AccessRightsMode": "Both",
   "BaseGuid": "490e66a0-8618-4eb9-aab8-2dbc8a884d98",
   "BlockIds": [],
+  "Blocks": [
+    {
+      "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "721965f1-bb3d-4a02-8f02-e9ff26816e39",
+      "Name": "ReceiptNotificationSendingAssignmentBlock",
+      "BaseGuid": "c305d207-f6cb-4d6d-bd0c-1b6b83e26a70",
+      "EntityType": "ad88c31d-5ae1-4821-9615-7d2fa575726b",
+      "LayeredFromGuid": "c305d207-f6cb-4d6d-bd0c-1b6b83e26a70",
+      "Overridden": [
+        "LayeredFromGuid"
+      ],
+      "ProcessStagesDisplayMode": "Show"
+    }
+  ],
   "CanBeNavigationPropertyType": true,
   "CreationAreaMetadata": {
     "NameGuid": "8d829390-c6cf-4b00-b846-412f2d086650",
@@ -70,6 +84,7 @@
     "IsAncestorMetadata": true,
     "VersionsCounter": 0
   },
+  "UseSchemeFromSettings": true,
   "Versions": [
     {
       "Type": "TaskMetadata",

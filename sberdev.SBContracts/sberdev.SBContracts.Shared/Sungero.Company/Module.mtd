@@ -134,12 +134,12 @@
         "Name": "FilterPanel",
         "Controls": []
       },
-      "IsShow": false,
+      "IsShow": true,
       "Kind": "Computable",
       "NeedShowMarkedCount": false
     }
   ],
-  "Version": "4.9.372.0",
+  "Version": "4.12.153.0",
   "Widgets": [],
   "Versions": [
     {

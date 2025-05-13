@@ -741,7 +741,7 @@
         "NameGuid": "08d2e94a-f948-471b-82d4-902140d57bf1",
         "Name": "SendForAcquaintance",
         "ActionGuid": "1e6ecf1a-fce4-4ed7-8cc6-24bcf9b5201e",
-        "Index": 24,
+        "Index": 26,
         "IsAncestorMetadata": true,
         "IsVisible": false,
         "Overridden": [

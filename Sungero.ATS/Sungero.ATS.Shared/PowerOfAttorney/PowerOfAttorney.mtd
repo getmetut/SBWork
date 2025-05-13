@@ -72,7 +72,7 @@
         {
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "7c356f29-5404-422a-afa6-935b76c6b83d",
-          "Name": "Validity",
+          "Name": "ValidityGroup",
           "GroupType": "WithTitleNoBorder",
           "IsAncestorMetadata": true,
           "Overridden": [

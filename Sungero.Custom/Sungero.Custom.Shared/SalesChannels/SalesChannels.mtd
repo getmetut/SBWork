@@ -123,6 +123,7 @@
       "Code": "Name",
       "IsDisplayValue": true,
       "IsQuickSearchAllowed": true,
+      "IsUnique": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "1dcedc29-5140-4770-ac92-eabc212326a1"
     },
@@ -132,7 +133,6 @@
       "Name": "GUID",
       "Code": "GUID",
       "IsEnabled": false,
-      "IsUnique": true,
       "Length": 50,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "390f9183-d793-47b9-a299-9aaeb636c3b9"

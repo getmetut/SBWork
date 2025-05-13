@@ -1,6 +1,5 @@
 {
   "$type": "Sungero.DataExport.ExportingObject, Sungero.DataExport",
-  "Description": null,
   "Cover": {
     "$type": "Sungero.NoCode.Settings.Interfaces.Models.Cover.CoverSettings, Sungero.NoCode.Settings.Interfaces",
     "NameGuid": "4d6c7663-f0f7-4a07-8b31-d4c5fa4b6c76",
@@ -486,7 +485,7 @@
         },
         "Number": 7,
         "ItemType": "Folder",
-        "NameGuid": "11256dfa-f429-4a13-8360-9cd1035e6cef"
+        "NameGuid": "cb20d811-4a16-4240-ae8d-f7169f4f6343"
       }
     ]
   },
@@ -509,8 +508,12 @@
       }
     ]
   },
+  "ExceptedRecipients": {
+    "$type": "Sungero.DataExport.ExportingObject[], Sungero.DataExport",
+    "$values": []
+  },
   "Uuid": "2dda14d1-12da-49b8-9764-f10673628679",
   "ModuleNameGuid": "b33230d7-1513-4f37-9ea0-7d0db0fb6b72",
   "StoreAsDefaultSetting": true,
-  "Status": "Active"
+  "Status": "Closed"
 }

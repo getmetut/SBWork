@@ -1,0 +1,106 @@
+{
+  "$type": "Sungero.Metadata.LayerModuleMetadata, Sungero.Metadata",
+  "NameGuid": "ff446f8d-c076-4038-9777-c673b36ce023",
+  "Name": "TeamsCommonAPI",
+  "AssociatedGuid": "ed6fc3e0-0fae-4506-8085-885c8222f982",
+  "AsyncHandlers": [
+    {
+      "NameGuid": "3acd50a7-8f62-4eb5-a074-d4a47d90b4eb",
+      "Name": "DeleteDocument",
+      "DelayPeriod": 720,
+      "DelayStrategy": "RegularDelayStrategy",
+      "IsAncestorMetadata": true,
+      "MaxRetryCount": 4,
+      "Parameters": [
+        {
+          "NameGuid": "579086fa-7ca7-48cb-b3b2-af35df96e8a9",
+          "Name": "documentId",
+          "ParameterType": "LongInteger"
+        }
+      ]
+    },
+    {
+      "NameGuid": "5880e385-2794-43f1-9a9a-ddb17db1b3c9",
+      "Name": "UpdateEmployeeStatusInTeams",
+      "DelayPeriod": 15,
+      "DelayStrategy": "ExponentialDelayStrategy",
+      "IsAncestorMetadata": true,
+      "Parameters": [
+        {
+          "NameGuid": "4443f1dc-cf7e-4440-bf22-63a24615d1d3",
+          "Name": "EmployeeId",
+          "ParameterType": "LongInteger"
+        }
+      ]
+    },
+    {
+      "NameGuid": "85b16256-f23e-4651-9411-2c6726cb391e",
+      "Name": "UpdateLicensedRolesMembership",
+      "DelayPeriod": 15,
+      "DelayStrategy": "ExponentialDelayStrategy",
+      "IsAncestorMetadata": true,
+      "Parameters": [
+        {
+          "NameGuid": "78bc0709-893b-46b2-8a48-87175a0a74a0",
+          "Name": "ExecutionContext",
+          "ParameterType": "String"
+        },
+        {
+          "NameGuid": "88381e50-0190-4c75-8f5b-0b8a893c1f53",
+          "Name": "LicensedRoleSid",
+          "ParameterType": "String"
+        },
+        {
+          "NameGuid": "bab082e8-a527-4c47-886d-ed5d64006f91",
+          "Name": "RolesToExclude",
+          "ParameterType": "String"
+        },
+        {
+          "NameGuid": "cbb393c4-5376-4ef5-bedb-57565f6fd928",
+          "Name": "RolesToInclude",
+          "ParameterType": "String"
+        }
+      ]
+    }
+  ],
+  "BaseGuid": "99cfa45a-9de8-410b-bff6-74b493f05154",
+  "ClientBaseAssemblyName": "Sungero.ATS.ClientBase",
+  "ClientBaseNamespace": "Sungero.ATS.Module.TeamsCommonAPI.ClientBase",
+  "Code": "RNDNot1",
+  "CompanyCode": "DirRX",
+  "ExplorerTreeOrder": [],
+  "HandledEvents": [
+    "InitializingServer"
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "IsVisible": false,
+  "Jobs": [
+    {
+      "NameGuid": "1040ce6e-1c82-45be-afe6-6b333c00c828",
+      "Name": "ConsolidatedTasksMonitor",
+      "IsAncestorMetadata": true,
+      "Monthly": "WorkingDays",
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T06:00:00"
+    }
+  ],
+  "LayeredFromGuid": "99cfa45a-9de8-410b-bff6-74b493f05154",
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "Sungero.ATS.Module.TeamsCommonAPI",
+  "ResourcesKeys": [],
+  "SpecialFolders": [],
+  "Version": "1.4.412.4",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "LayerModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    }
+  ]
+}

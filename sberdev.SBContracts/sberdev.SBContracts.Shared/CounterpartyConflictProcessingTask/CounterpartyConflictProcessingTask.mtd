@@ -5,6 +5,20 @@
   "AccessRightsMode": "Both",
   "BaseGuid": "03a51b42-a322-4574-90bb-212ea03ed71e",
   "BlockIds": [],
+  "Blocks": [
+    {
+      "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "814b62bb-1f34-4c74-a1d3-b19428fde95f",
+      "Name": "CounterpartyConflictProcessingAssignmentBlock",
+      "BaseGuid": "bd8e186a-b556-4dc4-a833-823a50d3fffe",
+      "EntityType": "d4870243-705a-483a-bcc2-89e53b80073f",
+      "LayeredFromGuid": "bd8e186a-b556-4dc4-a833-823a50d3fffe",
+      "Overridden": [
+        "LayeredFromGuid"
+      ],
+      "ProcessStagesDisplayMode": "Show"
+    }
+  ],
   "CanBeNavigationPropertyType": true,
   "CreationAreaMetadata": {
     "NameGuid": "8d829390-c6cf-4b00-b846-412f2d086650",
@@ -73,6 +87,7 @@
     "IsAncestorMetadata": true,
     "VersionsCounter": 0
   },
+  "UseSchemeFromSettings": true,
   "Versions": [
     {
       "Type": "TaskMetadata",

@@ -28,7 +28,7 @@
         {
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "4628c89f-a5d0-4a49-b135-7b8076946185",
-          "Name": "ControlGroup",
+          "Name": "CategoryGroup",
           "ColumnDefinitions": [
             {
               "Percentage": 50.0

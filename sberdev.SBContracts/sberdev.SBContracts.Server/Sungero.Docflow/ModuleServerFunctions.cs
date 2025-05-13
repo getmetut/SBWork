@@ -42,10 +42,11 @@ namespace sberdev.SBContracts.Module.Docflow.Server
       base.GeneratePublicBodyForExchangeDocument(document, versionId, exchangeState);
     }
     
-    public override Sungero.Docflow.Structures.OfficialDocument.ConversionToPdfResult GeneratePublicBodyWithSignatureMark(Sungero.Docflow.IOfficialDocument document, long versionId, string signatureMark)
+    public override Sungero.Docflow.Structures.OfficialDocument.IConversionToPdfResult GeneratePublicBodyWithSignatureMark(Sungero.Docflow.IOfficialDocument document, long versionId, string signatureMark)
     {
       SBContracts.OfficialDocuments.As(document).BodyExtSberDev = document.LastVersion.AssociatedApplication.Extension;
       return base.GeneratePublicBodyWithSignatureMark(document, versionId, signatureMark);
     }
+    
   }
 }

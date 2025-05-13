@@ -28,7 +28,7 @@
         {
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "0b8b5e67-c616-452a-9613-e31f30901639",
-          "Name": "MainGroup",
+          "Name": "ConditionGroup",
           "IsAncestorMetadata": true,
           "Overridden": [
             "Controls"

@@ -377,7 +377,7 @@
         "Name": "SendForReview",
         "ActionGuid": "df0a07e9-e59d-49be-9ace-004b762afaae",
         "ButtonSize": "Large",
-        "Index": 1,
+        "Index": 2,
         "IsAncestorMetadata": true,
         "IsVisible": false,
         "Overridden": [

@@ -1,0 +1,246 @@
+{
+  "AccArtSberDev_Title_6d8708c856394683939099685a39614c": {
+    "en-US": "Accounting Articles",
+    "ru-RU": "Статьи управленческого учета"
+  },
+  "AccDocsProductReportSberDev_Description_31cdc49946ca47beb172ac553acfc9f4": {
+    "en-US": "Report on all financial documents. With a list of products.",
+    "ru-RU": "Отчет по финансовым документам. Со списком продуктов."
+  },
+  "AccDocsProductReportSberDev_Title_31cdc49946ca47beb172ac553acfc9f4": {
+    "en-US": "Report on financial documents",
+    "ru-RU": "Отчет по финансовым документам"
+  },
+  "Administration_Title_aa14a69391aa447c88ef2afb6743587c": {
+    "en-US": "Administration",
+    "ru-RU": "Администрирование"
+  },
+  "AnaticsSetup_Title_73575309cc3345758a303d2fe3eae48b": {
+    "en-US": "AnaticsSetup",
+    "ru-RU": "Установки видимости аналитик"
+  },
+  "BudgetItemsSberDev_Title_006560acea7b4a3c829812f8dc3b2a06": {
+    "en-US": "BudgetItems",
+    "ru-RU": "Статьи бух. учета"
+  },
+  "BudgetOwnerReportSberDev_Description_049d9c8ac3184aa49eb60be9df5e65b7": {
+    "en-US": "The report will indicate contract documents for the specified period.",
+    "ru-RU": "В отчете будут указаны договорные документы за указанный период."
+  },
+  "BudgetOwnerReportSberDev_Title_049d9c8ac3184aa49eb60be9df5e65b7": {
+    "en-US": "Budget owner report",
+    "ru-RU": "Отчет по согласующим бюджета"
+  },
+  "CompletedContracts_Description_8b24f304138749e190799692c61384b0": {
+    "en-US": "Contractual documents whose validity period is about to expire.",
+    "ru-RU": "Договорные документы, срок действия которых подходит к концу."
+  },
+  "CompletedContracts_Title_8b24f304138749e190799692c61384b0": {
+    "en-US": "Set to Expire Soon",
+    "ru-RU": "Договоры на завершении"
+  },
+  "Contacts_Description_8ec99555b3994957b5655452751d5615": {
+    "en-US": "Stores information about representatives of your counterparties so you can contact them quickly.",
+    "ru-RU": "Информация о контактных лицах организаций."
+  },
+  "Contacts_Title_8ec99555b3994957b5655452751d5615": {
+    "en-US": "Contact Persons",
+    "ru-RU": "Контакты"
+  },
+  "ContractsAtContractors_Description_e834dd5ea6be4d8ba5fc0073f3626e25": {
+    "en-US": "Contractual and financial documents sent to counterparties for signing that should be returned.",
+    "ru-RU": "Договорные и финансово-хозяйственные документы, которые отправлены контрагентам на подписание и возврат которых необходимо проконтролировать."
+  },
+  "ContractsAtContractors_Title_e834dd5ea6be4d8ba5fc0073f3626e25": {
+    "en-US": "Held by Counterparties",
+    "ru-RU": "Документы у контрагентов"
+  },
+  "ContractsHistory_Description_d6b36bd70dca47e1b5e99d57a4259159": {
+    "en-US": "Contractual documents concluded, executed, terminated or cancelled during a specified period of time.",
+    "ru-RU": "Договорные документы, заключенные, исполненные, расторгнутые или аннулированные за определенный период."
+  },
+  "ContractsHistory_Title_d6b36bd70dca47e1b5e99d57a4259159": {
+    "en-US": "Contract History",
+    "ru-RU": "История договоров"
+  },
+  "ContractsList_Description_1f58bc0fbdbf42dbb4bcd75e41275793": {
+    "en-US": "Contains the list of all contracts.",
+    "ru-RU": "Реестр договоров содержит список всех договоров."
+  },
+  "ContractsList_Title_1f58bc0fbdbf42dbb4bcd75e41275793": {
+    "en-US": "Contract List",
+    "ru-RU": "Реестр договоров"
+  },
+  "ContractualDocumentsWithContractors_Description_0a1852105bfc4d538741dcbb6b22bbc8": {
+    "en-US": "Search for contractual documents related to a specific counterparty.",
+    "ru-RU": "Показать все договорные документы, связанные с указанным контрагентом."
+  },
+  "ContractualDocumentsWithContractors_Title_0a1852105bfc4d538741dcbb6b22bbc8": {
+    "en-US": "Search by Counterparty",
+    "ru-RU": "Договорные документы по контрагенту"
+  },
+  "ContrDocsProductReportSberDev_Description_41fe7372305e467b9ae2ce87bd9749b4": {
+    "en-US": "Report on all contractual documents. With a list of products.",
+    "ru-RU": "Отчет по всем договорным документам. Со списком продуктов."
+  },
+  "ContrDocsProductReportSberDev_Title_41fe7372305e467b9ae2ce87bd9749b4": {
+    "en-US": "Report on contractual documents",
+    "ru-RU": "Отчет по договорным документам"
+  },
+  "Control_Title_74a832322ab34786b5d790dd4c6809b4": {
+    "en-US": "Control",
+    "ru-RU": "Контроль"
+  },
+  "CoverHeaderSettings_Description_7e22ac7711354c32b70cc4715cfe0429": {
+    "en-US": "This module is where you can automate your contract management process.",
+    "ru-RU": "Модуль предназначен для автоматизации работы с договорными документами"
+  },
+  "CoverHeaderSettings_Title_7e22ac7711354c32b70cc4715cfe0429": {
+    "en-US": "Contracts",
+    "ru-RU": "Договоры"
+  },
+  "CreateDocument_Description_6726556c4b0c41fa9fe36b810003ce1a": {
+    "en-US": "Create a new contract, supplemental agreement or appendix to contract.",
+    "ru-RU": "Быстрое создание договоров, дополнительных соглашений, приложений"
+  },
+  "CreateDocument_Title_6726556c4b0c41fa9fe36b810003ce1a": {
+    "en-US": "New Document",
+    "ru-RU": "Создать документ"
+  },
+  "Description": {
+    "ru-RU": "шгпщшг"
+  },
+  "DevSettings_Title_9ec7adeed6c04c28b096838efec0ac09": {
+    "en-US": "Development settings",
+    "ru-RU": "Настройки разработки"
+  },
+  "Documents_Title_136b5b7b053a4ca18f0579af1fc2dffb": {
+    "en-US": "Contractual Documents",
+    "ru-RU": "Договорные документы"
+  },
+  "Groupsberdev_Title_5d4035ebe5034e8fa3cfd35c8023bdd9": {
+    "en-US": "Groupsberdev",
+    "ru-RU": "Служебные справочники"
+  },
+  "HeldByEmployees_Description_557b631d30bf4690ad9abf530b7becd6": {
+    "en-US": "Contractual and financial documents submitted to employees that should be returned.",
+    "ru-RU": "Договорные и финансово-хозяйственные документы, которые выданы сотрудникам и подлежат возврату."
+  },
+  "HeldByEmployees_Title_557b631d30bf4690ad9abf530b7becd6": {
+    "en-US": "Held by Employees",
+    "ru-RU": "Документы у сотрудников"
+  },
+  "IncomingInvoices_Description_d995b550ed2c4fafb0dad246d9638698": {
+    "en-US": "Invoices received from counterparties.",
+    "ru-RU": "Счета на оплату, полученные от контрагентов."
+  },
+  "IncomingInvoices_Title_d995b550ed2c4fafb0dad246d9638698": {
+    "en-US": "Incoming Invoices",
+    "ru-RU": "Входящие счета"
+  },
+  "Invoices_Title_9617fde5c46a4c849f694ae3c6fa12db": {
+    "en-US": "Invoices",
+    "ru-RU": "Счета"
+  },
+  "LinkedInformation_Title_ed4c55bfaeea46b2ac7fb1000bcf2423": {
+    "en-US": "Related Information",
+    "ru-RU": "Связанная информация"
+  },
+  "MarketDirectSberDev_Title_5da859ded78c4ff1ab60b26ed702a18a": {
+    "en-US": "Marketing Directions",
+    "ru-RU": "Направления маркетинга"
+  },
+  "MVZSberDev_Title_cefd83a7f90a47539859cdb1cb1baa7f": {
+    "en-US": "MVZ",
+    "ru-RU": "МВЗ"
+  },
+  "Name": {
+    "en-US": "Contracts",
+    "ru-RU": "Договоры"
+  },
+  "NonContractualStatisticSberDev_Description_e4e84bb744114c2a9543344876aa7b3a": {
+    "en-US": "Directory with statistics of accounts launched for reconciliation.",
+    "ru-RU": "Справочник со статистикой запущенных в согласование счетов."
+  },
+  "NonContractualStatisticSberDev_Title_e4e84bb744114c2a9543344876aa7b3a": {
+    "en-US": "Non-contractual invoices statistic",
+    "ru-RU": "Статистика по внедоговорным счетам"
+  },
+  "Organizations_Description_949b141c2e1848b1ac4239091c95cafb": {
+    "en-US": "Stores information about companies that our company deals with.",
+    "ru-RU": "Организации, с которыми взаимодействует наша компания."
+  },
+  "Organizations_Title_949b141c2e1848b1ac4239091c95cafb": {
+    "en-US": "Companies",
+    "ru-RU": "Организации"
+  },
+  "OutgoingInvoices_Description_0ec742288b96445484fa43dd7d3affd6": {
+    "en-US": "Invoices issued to counterparties.",
+    "ru-RU": "Счета на оплату, выставленные контрагентам."
+  },
+  "OutgoingInvoices_Title_0ec742288b96445484fa43dd7d3affd6": {
+    "en-US": "Outgoing Invoices",
+    "ru-RU": "Исходящие счета"
+  },
+  "PaidInvoiceReportSberDev_Description_e07f1bbdfc67437f8badb65b2b5b0bec": {
+    "en-US": "The report will show all paid incoming invoices for the specified date.",
+    "ru-RU": "В отчете будут указаны все оплаченные входящие счета за указанную дату."
+  },
+  "PaidInvoiceReportSberDev_Title_e07f1bbdfc67437f8badb65b2b5b0bec": {
+    "en-US": "Report on paid invoices",
+    "ru-RU": "Отчет по оплаченным счетам"
+  },
+  "Persons_Description_abdff18bf34c4237b145d2417aa5d5aa": {
+    "en-US": "Stores information about all individuals (counterparties, employees, contacts) that our company deals with.",
+    "ru-RU": "Физические лица (контрагенты, сотрудники, контакты), с которыми взаимодействует наша организация."
+  },
+  "Persons_Title_abdff18bf34c4237b145d2417aa5d5aa": {
+    "en-US": "Persons",
+    "ru-RU": "Персоны"
+  },
+  "PowerOfAttorneyList_Description_4449de7ca5454238a99529cb160a4d3f": {
+    "en-US": "Powers of attorney, including formalized powers of attorney, issued to business unit employees.",
+    "ru-RU": "Доверенности, выданные сотрудникам нашей организации, в том числе электронные."
+  },
+  "PowerOfAttorneyList_Title_4449de7ca5454238a99529cb160a4d3f": {
+    "en-US": "Power of Attorney List",
+    "ru-RU": "Реестр доверенностей"
+  },
+  "PowersOfAttorney_Title_aff028e825194dcba8ab36cd0b777a17": {
+    "en-US": "Powers of Attorney",
+    "ru-RU": "Доверенности"
+  },
+  "ProductsSberDev_Title_de59bcb1a1f042dc87e1695d5a7bac4c": {
+    "en-US": "Products",
+    "ru-RU": "Продукты"
+  },
+  "ProductUnitSberDev_Title_45f775dc524743fdad8a2d7bd0ebdab3": {
+    "en-US": "Product-units",
+    "ru-RU": "Продукт-юниты"
+  },
+  "ReestrNDASungero_Description_34918dcb601a488b814b0152ccca40cd": {
+    "en-US": "Реестр документов NDA и Соглашения об ЭДО с фильтрацией"
+  },
+  "ReestrNDASungero_Title_34918dcb601a488b814b0152ccca40cd": {
+    "en-US": "Реестр NDA"
+  },
+  "ReportsSberDev_Title_d0572c851b5047418c323dc74fb8ed0e": {
+    "en-US": "Reports",
+    "ru-RU": "Отчеты"
+  },
+  "Search_Title_3f655ea9b12d427d97de528d9966cab4": {
+    "en-US": "Document Search",
+    "ru-RU": "Поиск документов"
+  },
+  "SearchByRegistrationData_Description_b7108481b7ee4b4385c5b2e8051d1765": {
+    "en-US": "Search contractual documents by common registration data.",
+    "ru-RU": "Поиск договорных документов по основным регистрационным данным."
+  },
+  "SearchByRegistrationData_Title_b7108481b7ee4b4385c5b2e8051d1765": {
+    "en-US": "Search by Registration Data",
+    "ru-RU": "Поиск по регистрационным данным"
+  },
+  "Tab_Title_0bf75d9d09064fcc89bf64a2a57cbb02": {
+    "en-US": "Tab"
+  }
+}
