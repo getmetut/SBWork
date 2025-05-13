@@ -27,7 +27,8 @@
       "EntityType": "55065882-8b9b-4223-8dde-7a5b0b555202",
       "HandledEvents": [
         "NewsNoticeStartNotice"
-      ]
+      ],
+      "ProcessStagesDisplayMode": "Show"
     }
   ],
   "CanBeNavigationPropertyType": true,
@@ -197,7 +198,7 @@
     },
     {
       "Type": "EntityMetadata",
-      "Number": 12
+      "Number": 13
     }
   ]
 }

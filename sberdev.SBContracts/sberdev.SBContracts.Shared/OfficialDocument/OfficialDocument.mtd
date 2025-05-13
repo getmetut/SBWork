@@ -28,6 +28,7 @@
       "Name": "ImportInNewVersion",
       "GenerateHandler": true,
       "IsAncestorMetadata": true,
+      "IsMainByDefault": true,
       "Overridden": [
         "GenerateHandler"
       ]
@@ -37,6 +38,7 @@
       "Name": "ImportInLastVersion",
       "GenerateHandler": true,
       "IsAncestorMetadata": true,
+      "IsMainByDefault": true,
       "Overridden": [
         "GenerateHandler"
       ]
@@ -46,6 +48,7 @@
       "Name": "ScanInNewVersion",
       "GenerateHandler": true,
       "IsAncestorMetadata": true,
+      "IsMainByDefault": true,
       "Overridden": [
         "GenerateHandler"
       ]
@@ -55,6 +58,7 @@
       "Name": "CreateFromFile",
       "GenerateHandler": true,
       "IsAncestorMetadata": true,
+      "IsMainByDefault": true,
       "Overridden": [
         "GenerateHandler"
       ]
@@ -85,6 +89,7 @@
       "Name": "CreateFromTemplate",
       "GenerateHandler": true,
       "IsAncestorMetadata": true,
+      "IsMainByDefault": true,
       "Overridden": [
         "GenerateHandler"
       ],
@@ -528,7 +533,7 @@
     },
     {
       "Type": "EntityMetadata",
-      "Number": 12
+      "Number": 13
     }
   ]
 }

@@ -13,6 +13,7 @@
         "ReglamentBlockStart",
         "ReglamentBlockResult"
       ],
+      "ProcessStagesDisplayMode": "Show",
       "Properties": [
         {
           "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
@@ -47,7 +48,8 @@
       "NameGuid": "b3eba9eb-e75e-4188-9c21-a8b1094d61a0",
       "Name": "ToSignerJob",
       "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
-      "EntityType": "923b52ef-d0eb-4b24-9e95-e1172404118b"
+      "EntityType": "923b52ef-d0eb-4b24-9e95-e1172404118b",
+      "ProcessStagesDisplayMode": "Show"
     }
   ],
   "ClientAssemblyName": "SDev.BPCustom.Client",

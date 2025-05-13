@@ -46,7 +46,8 @@
       "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
       "HandledEvents": [
         "GenlistSoglExecute"
-      ]
+      ],
+      "ProcessStagesDisplayMode": "Hide"
     },
     {
       "$type": "Sungero.Metadata.MonitoringBlockMetadata, Sungero.Workflow.Shared",
@@ -57,6 +58,7 @@
         "MonitoringBlockStart",
         "MonitoringBlockResult"
       ],
+      "ProcessStagesDisplayMode": "Show",
       "Properties": [
         {
           "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
@@ -84,6 +86,7 @@
       "HandledEvents": [
         "StandartBlockStart"
       ],
+      "ProcessStagesDisplayMode": "Show",
       "Properties": [
         {
           "$type": "Sungero.Metadata.BooleanBlockPropertyMetadata, Sungero.Metadata",
@@ -102,6 +105,7 @@
       "HandledEvents": [
         "IniciatorStart"
       ],
+      "ProcessStagesDisplayMode": "Show",
       "Properties": [
         {
           "$type": "Sungero.Metadata.NavigationBlockPropertyMetadata, Sungero.Metadata",
@@ -315,7 +319,7 @@
     },
     {
       "Type": "EntityMetadata",
-      "Number": 12
+      "Number": 13
     }
   ]
 }

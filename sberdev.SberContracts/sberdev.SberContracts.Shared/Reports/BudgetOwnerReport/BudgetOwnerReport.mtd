@@ -55,5 +55,10 @@
     "PaidInvoiceReportDialog_Expendable",
     "PaidInvoiceReportDialog_Profitable"
   ],
-  "Versions": []
+  "Versions": [
+    {
+      "Type": "ReportMetadata",
+      "Number": 1
+    }
+  ]
 }
