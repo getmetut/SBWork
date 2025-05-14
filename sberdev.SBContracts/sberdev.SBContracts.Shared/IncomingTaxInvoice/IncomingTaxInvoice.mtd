@@ -34,6 +34,9 @@
       "Versions": []
     }
   ],
+  "HandledEvents": [
+    "BeforeSaveServer"
+  ],
   "IconResourcesKeys": [],
   "LayeredFromGuid": "74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a",
   "OpenCardByDefaultInCollection": true,

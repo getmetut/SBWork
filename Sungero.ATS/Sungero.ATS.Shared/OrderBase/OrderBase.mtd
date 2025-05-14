@@ -356,6 +356,9 @@
       "Versions": []
     }
   ],
+  "HandledEvents": [
+    "BeforeSaveServer"
+  ],
   "IconResourcesKeys": [],
   "IsAbstract": true,
   "LayeredFromGuid": "8a57d8c1-a05a-405e-95e7-913565b3e29d",

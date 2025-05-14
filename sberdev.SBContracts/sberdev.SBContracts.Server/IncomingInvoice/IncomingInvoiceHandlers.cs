@@ -45,6 +45,9 @@ namespace sberdev.SBContracts
           _obj.PaymentDueDate = date;
       }
       
+      if (SBContracts.PublicFunctions.Module.IsSystemUser())
+        _obj.State.Properties.DeliveryMethod.IsRequired = false;
+      
 //      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
 //      {
 //        if (_obj.State.IsInserted)

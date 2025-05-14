@@ -27,6 +27,7 @@
   "ExplorerTreeOrder": [],
   "IconResourcesKeys": [],
   "Importance": "Medium",
+  "IsVisible": false,
   "LayeredFromGuid": "243b34ec-8425-4c7e-b66f-27f7b9c8f38d",
   "Overridden": [
     "IsVisible"

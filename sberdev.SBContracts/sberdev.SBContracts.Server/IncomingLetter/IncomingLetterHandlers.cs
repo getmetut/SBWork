@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -9,6 +9,13 @@ namespace sberdev.SBContracts
 {
   partial class IncomingLetterServerHandlers
   {
+
+    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
+    {
+      base.BeforeSave(e);
+      if (SBContracts.PublicFunctions.Module.IsSystemUser())
+        _obj.State.Properties.DeliveryMethod.IsRequired = false;
+    }
 
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {

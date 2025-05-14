@@ -411,6 +411,7 @@
   "IconResourcesKeys": [],
   "Importance": "High",
   "IsLicensed": true,
+  "IsVisible": false,
   "LayeredFromGuid": "3c8b7d3a-187d-4445-8a8c-1d00ece44556",
   "Overridden": [
     "IsVisible"

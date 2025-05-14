@@ -18,6 +18,7 @@
   "IconResourcesKeys": [],
   "Importance": "High",
   "IsLicensed": true,
+  "IsVisible": false,
   "LayeredFromGuid": "51247c94-981f-4bc8-819a-128704b5aa31",
   "Overridden": [
     "IsVisible"

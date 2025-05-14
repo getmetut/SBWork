@@ -20,6 +20,9 @@
     "IsAncestorMetadata": true,
     "Versions": []
   },
+  "HandledEvents": [
+    "BeforeSaveServer"
+  ],
   "IconResourcesKeys": [],
   "LayeredFromGuid": "cf8357c3-8266-490d-b75e-0bd3e46b1ae8",
   "OpenCardByDefaultInCollection": true,

@@ -15,6 +15,9 @@ namespace Sungero.ATS
       base.BeforeSave(e);
       if (_obj.CategorySDev == null)
         e.AddError("Заполнение категории доверенности - обязательно!");
+      
+      if (sberdev.SBContracts.PublicFunctions.Module.IsSystemUser())
+        _obj.State.Properties.DeliveryMethod.IsRequired = false;
     }
 
     public override void Created(Sungero.Domain.CreatedEventArgs e)

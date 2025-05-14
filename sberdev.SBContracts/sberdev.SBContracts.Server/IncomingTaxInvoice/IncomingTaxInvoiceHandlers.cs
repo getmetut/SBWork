@@ -7,4 +7,16 @@ using sberdev.SBContracts.IncomingTaxInvoice;
 
 namespace sberdev.SBContracts
 {
+  partial class IncomingTaxInvoiceServerHandlers
+  {
+
+    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
+    {
+      base.BeforeSave(e);
+      
+      if (SBContracts.PublicFunctions.Module.IsSystemUser())
+        _obj.State.Properties.DeliveryMethod.IsRequired = false;
+    }
+  }
+
 }

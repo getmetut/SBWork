@@ -4,6 +4,7 @@
   "Name": "SalesChannels",
   "BaseGuid": "04581d26-0780-4cfd-b3cd-c2cafc5798b0",
   "CanBeNavigationPropertyType": true,
+  "CanBeUsedInIntegration": true,
   "Code": "SalesChannels",
   "CreationAreaMetadata": {
     "NameGuid": "f7766750-eee2-4fcd-8003-5c06a90d1f44",
@@ -113,7 +114,8 @@
   "IsVisible": false,
   "OperationsClass": "",
   "Overridden": [
-    "IsVisible"
+    "IsVisible",
+    "CanBeUsedInIntegration"
   ],
   "Properties": [
     {

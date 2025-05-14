@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -20,6 +20,9 @@ namespace sberdev.SBContracts
     {
         base.BeforeSave(e);
         Functions.ContractStatement.BeforeSaveFunction(_obj);
+        
+        if (SBContracts.PublicFunctions.Module.IsSystemUser())
+          _obj.State.Properties.DeliveryMethod.IsRequired = false;
       
     }
   }

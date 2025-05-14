@@ -190,7 +190,8 @@
   "HandledEvents": [
     "ShowingClient",
     "BeforeSaveServer",
-    "RefreshClient"
+    "RefreshClient",
+    "CreatedServer"
   ],
   "IconResourcesKeys": [],
   "IsAbstract": true,

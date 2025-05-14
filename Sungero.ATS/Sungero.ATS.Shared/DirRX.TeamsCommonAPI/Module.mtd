@@ -1,6 +1,6 @@
 {
   "$type": "Sungero.Metadata.LayerModuleMetadata, Sungero.Metadata",
-  "NameGuid": "ff446f8d-c076-4038-9777-c673b36ce023",
+  "NameGuid": "e3c5779d-3cc0-485e-a253-420bb65ee850",
   "Name": "TeamsCommonAPI",
   "AssociatedGuid": "ed6fc3e0-0fae-4506-8085-885c8222f982",
   "AsyncHandlers": [

@@ -96,6 +96,7 @@
   ],
   "IconResourcesKeys": [],
   "Importance": "Medium",
+  "IsVisible": false,
   "Jobs": [
     {
       "NameGuid": "85325f8d-84bf-4006-95fd-dea727bfa9ce",

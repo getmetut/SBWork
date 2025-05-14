@@ -492,6 +492,7 @@
   "IconResourcesKeys": [],
   "Importance": "Low",
   "IsolatedAreas": [],
+  "IsVisible": false,
   "Jobs": [
     {
       "NameGuid": "bd4d35ec-198e-4868-9240-305c00653785",
