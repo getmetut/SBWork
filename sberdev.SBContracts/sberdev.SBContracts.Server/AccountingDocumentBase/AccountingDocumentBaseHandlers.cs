@@ -142,6 +142,11 @@ namespace sberdev.SBContracts
       _obj.ModifiedSberDev = Calendar.Now;
       _obj.FrameworkBaseSberDev = false;
       base.Created(e);
+      var DelMeth = Sungero.Docflow.MailDeliveryMethods.GetAll(d => d.Name == "Не определено").FirstOrDefault();
+      if (DelMeth != null)
+        _obj.DeliveryMethod = DelMeth;
+      
+      _obj.Currency = Sungero.Commons.Currencies.Get(1);
     }
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
@@ -154,7 +159,7 @@ namespace sberdev.SBContracts
       Functions.AccountingDocumentBase.CreateOrUpdateAnaliticsCashe(_obj);
       Functions.AccountingDocumentBase.CreateOrUpdateAnaliticsCasheGeneral(_obj);
       _obj.CalcListSDev = PublicFunctions.AccountingDocumentBase.GetCalculationString(_obj);
-       
+      
       var error = Functions.AccountingDocumentBase.BanToSaveForStabs(_obj);
       if (error != "")
         e.AddError(error);
@@ -171,7 +176,11 @@ namespace sberdev.SBContracts
         base.BeforeSave(e);
       
       if (SBContracts.PublicFunctions.Module.IsSystemUser())
+      {
+        _obj.State.Properties.Currency.IsRequired = false;
         _obj.State.Properties.DeliveryMethod.IsRequired = false;
+        _obj.State.Properties.PayTypeBaseSberDev.IsRequired = false;
+      }
     }
   }
 

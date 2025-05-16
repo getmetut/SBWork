@@ -57,9 +57,9 @@ namespace sberdev.SBContracts
     public override void DeliveryMethodChanged(Sungero.Docflow.Shared.OfficialDocumentDeliveryMethodChangedEventArgs e)
     {
       base.DeliveryMethodChanged(e);
-      if (PublicFunctions.Module.IsSystemUser() && e.OldValue != null && e.OldValue != e.NewValue
-          && e.NewValue.Sid == Sungero.Docflow.Constants.MailDeliveryMethod.Exchange)
-        return;
+//      if (PublicFunctions.Module.IsSystemUser() && e.OldValue != null && e.OldValue != e.NewValue
+//          && e.NewValue.Sid == Sungero.Docflow.Constants.MailDeliveryMethod.Exchange)
+//        return;
     }
 
   }
