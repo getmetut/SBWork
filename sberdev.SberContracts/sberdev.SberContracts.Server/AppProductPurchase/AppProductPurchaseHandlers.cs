@@ -7,6 +7,25 @@ using sberdev.SberContracts.AppProductPurchase;
 
 namespace sberdev.SberContracts
 {
+  partial class AppProductPurchaseNDAPropertyFilteringServerHandler<T>
+  {
+
+    public virtual IQueryable<T> NDAFiltering(IQueryable<T> query, Sungero.Domain.PropertyFilteringEventArgs e)
+    {
+      if (_obj.Counterparty != null)
+      {
+        query = query.Where(g => g.Counterparty == _obj.Counterparty);
+        _obj.State.Properties.Counterparty.HighlightColor = Colors.Empty;
+      }
+      else
+      {
+        query = query.Where(g => g.Name == "@#$%^&^%");
+        _obj.State.Properties.Counterparty.HighlightColor = Colors.Common.LightOrange;
+      }
+      return query;
+    }
+  }
+
   partial class AppProductPurchaseServerHandlers
   {
 

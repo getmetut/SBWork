@@ -2214,8 +2214,12 @@
       "Code": "NDA",
       "EntityGuid": "d62141c7-715c-47bb-82b0-cf2ffbe8b6e7",
       "FlatListInStandaloneLookup": true,
+      "HandledEvents": [
+        "LookupServer"
+      ],
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "NeedPassEntityToLookupEvent": true,
       "PreviousPropertyGuid": "47049ad5-43ce-47d7-ba19-17686422c815"
     },
     {
