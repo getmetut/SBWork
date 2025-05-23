@@ -11,7 +11,6 @@ namespace Sungero.Custom.Client
 {
   public class ModuleFunctions
   {
-
     /// <summary>
     /// Тестирование доступности на чтение задач по ИД
     /// </summary>

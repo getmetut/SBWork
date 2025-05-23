@@ -4,10 +4,7 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 
-namespace Sungero.ATS.Module.Parties.Server
+namespace Sungero.ATS.Structures.Parties.CompanyBase
 {
-  partial class ModuleFunctions
-  {
-    
-  }
+
 }

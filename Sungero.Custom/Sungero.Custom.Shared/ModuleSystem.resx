@@ -178,4 +178,13 @@
   <data name="JobDescription_caac1860d81444ac890d2155f358fa38" xml:space="preserve">
     <value>Фоновый процесс обхода договорных документов с целью простановки Продуктов в список</value>
   </data>
+  <data name="CoverGroup_References" xml:space="preserve">
+    <value>Справочники</value>
+  </data>
+  <data name="CoverAction_MailDeliveryMethod" xml:space="preserve">
+    <value>Способы доставки</value>
+  </data>
+  <data name="CoverDescription_MailDeliveryMethod" xml:space="preserve">
+    <value>Справочник способов доставки</value>
+  </data>
 </root>

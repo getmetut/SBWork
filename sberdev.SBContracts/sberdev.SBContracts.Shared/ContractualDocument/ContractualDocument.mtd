@@ -1599,7 +1599,7 @@
       "NameGuid": "795b3664-5b2a-44c1-97d7-a33aa1e0a957",
       "Name": "AdressSberDev",
       "Code": "AdressX",
-      "Length": 30,
+      "Length": 333,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "7890cbf3-a2bf-4717-b1d7-3eb3b6ee40a5",
       "Versions": []

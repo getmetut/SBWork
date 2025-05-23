@@ -38,6 +38,7 @@ namespace sberdev.SBContracts
       base.NameChanged(e);
       if (e.NewValue != null)
       {
+        
         string Name1C = ModifyCompanyName(e.NewValue);
         if (_obj.Name1CSberDev != Name1C)
           _obj.Name1CSberDev = Name1C;
