@@ -8,6 +8,6 @@ namespace Sungero.ATS.Module.Parties.Server
 {
   partial class ModuleFunctions
   {
-
+    
   }
 }

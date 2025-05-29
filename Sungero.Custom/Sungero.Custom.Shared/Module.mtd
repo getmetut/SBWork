@@ -66,6 +66,13 @@
         "FunctionName": "UpdateContractualDoc",
         "GroupId": "87590ec7-b390-4e15-8a60-3e53df37e634",
         "PreviousItemGuid": "d5400d9d-e39d-4731-8b48-fde868e9ca19"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
+        "NameGuid": "eea34f50-4059-4d31-a31e-3dfdc3559e29",
+        "Name": "MailDeliveryMethod",
+        "EntityTypeId": "276d7e4a-ea11-4740-af17-893abc6bc6e9",
+        "GroupId": "5c39611e-8c85-4881-9eb6-9cdba35a0679"
       }
     ],
     "Background": null,
@@ -79,6 +86,14 @@
         "Name": "AdminsBlock",
         "BackgroundPosition": "Stretch",
         "IconName": "GroupIconAdminsBlock_87590ec7b3904e158a603e53df37e634.png",
+        "TabId": "c3bfdbb6-0923-4b41-b9f7-7395802b1a33"
+      },
+      {
+        "NameGuid": "5c39611e-8c85-4881-9eb6-9cdba35a0679",
+        "Name": "References",
+        "BackgroundPosition": "Stretch",
+        "IconName": "GroupIconReferences_5c39611e8c8548819eb69cdba35a0679.png",
+        "PreviousItemGuid": "87590ec7-b390-4e15-8a60-3e53df37e634",
         "TabId": "c3bfdbb6-0923-4b41-b9f7-7395802b1a33"
       }
     ],
@@ -269,12 +284,12 @@
       "PreviousItemId": "d92f163c-796b-412f-80c4-d4bd89753968"
     },
     {
-      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "ItemId": "094f2f1d-6a22-4a77-a792-f393fb5bdaf5",
       "PreviousItemId": "c487a34b-8654-412d-874c-8f244a309556"
     },
     {
-      "ItemId": "094f2f1d-6a22-4a77-a792-f393fb5bdaf5",
-      "PreviousItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a"
+      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "PreviousItemId": "094f2f1d-6a22-4a77-a792-f393fb5bdaf5"
     }
   ],
   "HandledEvents": [
@@ -693,7 +708,7 @@
       "NeedShowMarkedCount": false
     }
   ],
-  "Version": "0.1.1.70",
+  "Version": "0.1.1.76",
   "Widgets": [],
   "Versions": [
     {
