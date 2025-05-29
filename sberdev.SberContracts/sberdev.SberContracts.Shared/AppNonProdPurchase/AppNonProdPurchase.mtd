@@ -566,10 +566,10 @@
           "Name": "ResultGroup",
           "ColumnDefinitions": [
             {
-              "Percentage": 52.8
+              "Percentage": 53.75
             },
             {
-              "Percentage": 45.43
+              "Percentage": 46.25
             }
           ],
           "ColumnNumber": 0,
