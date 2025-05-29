@@ -100,20 +100,12 @@
       "PreviousItemId": "497fb0f7-b0bc-42ca-8eeb-65dda301863b"
     },
     {
-      "ItemId": "be2b4a19-b867-48e9-8724-0a79e289ed0b",
+      "ItemId": "8dad3a32-5b4d-40c7-9113-e915afe29fa4",
       "PreviousItemId": "464c7cc8-5ec8-49ff-8ea1-9d094c025987"
     },
     {
-      "ItemId": "8dad3a32-5b4d-40c7-9113-e915afe29fa4",
-      "PreviousItemId": "be2b4a19-b867-48e9-8724-0a79e289ed0b"
-    },
-    {
-      "ItemId": "0fad7d1c-82f2-4672-bc8d-edd8c9cbfa61",
-      "PreviousItemId": "8dad3a32-5b4d-40c7-9113-e915afe29fa4"
-    },
-    {
       "ItemId": "40564446-1c88-43aa-b1a1-af3f5ebed2fe",
-      "PreviousItemId": "0fad7d1c-82f2-4672-bc8d-edd8c9cbfa61"
+      "PreviousItemId": "8dad3a32-5b4d-40c7-9113-e915afe29fa4"
     },
     {
       "ItemId": "68abea97-0f05-4252-a880-c416bfdb4ac7",
@@ -1013,37 +1005,7 @@
   "ServerNamespace": "sberdev.SberContracts.Server",
   "SharedAssemblyName": "sberdev.SberContracts.Shared",
   "SharedNamespace": "sberdev.SberContracts.Shared",
-  "SpecialFolders": [
-    {
-      "NameGuid": "be2b4a19-b867-48e9-8724-0a79e289ed0b",
-      "Name": "Notice",
-      "DefaultContentType": "ef79164b-2ce7-451b-9ba6-eb59dd9a4a74",
-      "DisplayType": "Inbox",
-      "FilterPanel": {
-        "NameGuid": "995ec699-c24f-4f7d-a22b-6e88e7c69c68",
-        "Name": "FilterPanel",
-        "Controls": []
-      },
-      "IsShow": true,
-      "Kind": "Computable",
-      "NeedShowMarkedCount": true,
-      "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17"
-    },
-    {
-      "NameGuid": "0fad7d1c-82f2-4672-bc8d-edd8c9cbfa61",
-      "Name": "Folder",
-      "DefaultContentType": "ea683a63-273e-43ae-bcf1-7a443698008a",
-      "DisplayType": "Module",
-      "FilterPanel": {
-        "NameGuid": "ca3e5537-2a41-4763-8f43-0c56c20f0ecd",
-        "Name": "FilterPanel",
-        "Controls": []
-      },
-      "IsShow": true,
-      "Kind": "Computable",
-      "NeedShowMarkedCount": false
-    }
-  ],
+  "SpecialFolders": [],
   "Version": "5.0.1.16",
   "Widgets": [
     {

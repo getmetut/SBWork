@@ -205,4 +205,10 @@
   <data name="Enum_PlusMinusSDevSDev_ExpendProfit" xml:space="preserve">
     <value>Доходно-расходный</value>
   </data>
+  <data name="Property_CPProfitTotalAmountSberDev" xml:space="preserve">
+    <value>Минимальная сумма доходных договоров по КА</value>
+  </data>
+  <data name="Enum_ConditionType_CPProfitTotalAm" xml:space="preserve">
+    <value>Минимальная сумма доходных договоров по КА</value>
+  </data>
 </root>

@@ -1980,6 +1980,34 @@
       "PreviousPropertyGuid": "133a690f-43ca-4267-8e47-5eedbe9ea0d7"
     }
   ],
+  "PublicFunctions": [
+    {
+      "Name": "GetAllFocusMarkers",
+      "Parameters": [
+        {
+          "Name": "company",
+          "ParameterType": "global::sberdev.SBContracts.ICompany",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<Sungero.Domain.Shared.IPropertyState>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
+      "Name": "GetProfitableFocusMarkers",
+      "Parameters": [
+        {
+          "Name": "company",
+          "ParameterType": "global::sberdev.SBContracts.ICompany",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<Sungero.Domain.Shared.IPropertyState>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    }
+  ],
   "PublicStructures": [],
   "ResourcesKeys": [
     "SaveError"

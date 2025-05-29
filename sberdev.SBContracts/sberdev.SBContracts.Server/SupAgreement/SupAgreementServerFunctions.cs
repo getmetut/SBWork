@@ -9,7 +9,8 @@ using Sungero.Contracts;
 namespace sberdev.SBContracts.Server
 {
   partial class SupAgreementFunctions
-  {    
+  {
+    
     /// <summary>
     /// Сводка по документу.
     /// </summary>
@@ -99,6 +100,9 @@ namespace sberdev.SBContracts.Server
       // Примечание.
       var note = !string.IsNullOrEmpty(_obj.Note) ? _obj.Note : "-";
       block.AddLabel(string.Format("{0}: {1}", _obj.Info.Properties.Note.LocalizedName, note));
+      
+      if (_obj.IsNeedLegalInfoSberDev.HasValue && _obj.IsNeedLegalInfoSberDev.Value)
+        return PublicFunctions.ContractualDocument.ShowLegalInfo(_obj, documentSummary);
       
       return documentSummary;
     }

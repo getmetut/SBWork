@@ -1746,6 +1746,17 @@
       "FlatListInStandaloneLookup": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "a7df6bc5-1ee3-4d93-b833-c7ec5296c9a0"
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "bda0cf83-b234-4bfb-a0a4-38c9a5dce4dc",
+      "Name": "IsNeedLegalInfoSberDev",
+      "CanBeSearch": false,
+      "Code": "AssigIDLegInf",
+      "IsEnabled": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "12e60252-358d-4f68-9457-d5dcee45e47d"
     }
   ],
   "PublicFunctions": [
@@ -1869,6 +1880,23 @@
       "Placement": "Shared",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "ShowLegalInfo",
+      "Parameters": [
+        {
+          "Name": "contractualDocument",
+          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "info",
+          "ParameterType": "global::Sungero.Core.StateView",
+          "ParameterTypeFullName": "Sungero.Core.StateView, Sungero.Domain.Shared"
+        }
+      ],
+      "ReturnType": "global::Sungero.Core.StateView",
+      "ReturnTypeFullName": "Sungero.Core.StateView, Sungero.Domain.Shared"
     },
     {
       "Name": "ShowOldProductsCalcWarning",

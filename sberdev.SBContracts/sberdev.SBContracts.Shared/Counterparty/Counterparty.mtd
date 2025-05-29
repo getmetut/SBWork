@@ -347,7 +347,19 @@
   ],
   "PublicFunctions": [
     {
-      "Name": "CalculateTotalAmount",
+      "Name": "CalculateExpandableTotalAmount",
+      "Parameters": [
+        {
+          "Name": "counterparty",
+          "ParameterType": "global::sberdev.SBContracts.ICounterparty",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICounterparty, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Double",
+      "ReturnTypeFullName": "System.Double"
+    },
+    {
+      "Name": "CalculateProfitableTotalAmount",
       "Parameters": [
         {
           "Name": "counterparty",

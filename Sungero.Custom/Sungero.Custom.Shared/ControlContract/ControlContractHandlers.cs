@@ -12,12 +12,25 @@ namespace Sungero.Custom
 
     public virtual void CollectionDocsSummChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
     {
+      // Проверяем, что ControlContract существует
+      if (_obj.ControlContract == null)
+        return;
+      
       var DDS = _obj.ControlContract.CollectionDocs;
+      
+      // Проверяем, что Limit имеет значение
+      if (!_obj.ControlContract.Limit.HasValue)
+        return;
+      
       double limit = _obj.ControlContract.Limit.Value;
+      
       foreach (var str in DDS)
       {
-        limit -= str.Summ.Value;
+        // Проверяем, что Summ имеет значение
+        if (str.Summ.HasValue)
+          limit -= str.Summ.Value;
       }
+      
       _obj.ControlContract.TotalLimit = limit;
     }
 
@@ -28,8 +41,12 @@ namespace Sungero.Custom
         var doc = sberdev.SBContracts.SupAgreements.GetAll(d => d.Id == long.Parse(e.NewValue.ToString())).FirstOrDefault();
         if (doc != null)
         {
-          if (doc.TotalAmount > 0.0)
+          // Изменено условие - теперь проверяем HasValue
+          if (doc.TotalAmount.HasValue && doc.TotalAmount.Value > 0.0)
             _obj.Summ = doc.TotalAmount;
+          else
+            _obj.Summ = 0.0; // Устанавливаем 0, если сумма не задана
+          
           _obj.NameDoc = doc.Name;
         }
         else
@@ -40,8 +57,8 @@ namespace Sungero.Custom
         _obj.Summ = 0.0;
       }
     }
-  }
 
+  }
   partial class ControlContractSharedHandlers
   {
 

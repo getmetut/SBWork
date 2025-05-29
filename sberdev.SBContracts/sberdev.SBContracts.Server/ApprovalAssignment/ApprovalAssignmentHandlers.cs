@@ -20,6 +20,7 @@ namespace sberdev.SBContracts
     public override void Saving(Sungero.Domain.SavingEventArgs e)
     {
       base.Saving(e);
+      var task = SBContracts.ApprovalTasks.As(_obj.Task);
       var attach = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
       _obj.DocumentIDSberDev = attach?.Id.ToString();
       
@@ -33,10 +34,16 @@ namespace sberdev.SBContracts
       }
       
       var contractual = SBContracts.ContractualDocuments.As(attach);
+      bool isNeedLegalInfo = PublicFunctions.ApprovalTask.IsNecessaryStage(task, PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
       if (contractual != null)
       {
         _obj.MVZSberDev = contractual.MVZBaseSberDev ?? contractual.MVPBaseSberDev;
         _obj.AccArtSberDev = contractual.AccArtExBaseSberDev ?? contractual.AccArtPrBaseSberDev;
+        if (isNeedLegalInfo)
+        {
+          contractual.IsNeedLegalInfoSberDev = isNeedLegalInfo;
+          contractual.Save();
+        }
       }
       
       var incInv = SBContracts.IncomingInvoices.As(attach);
@@ -72,8 +79,6 @@ namespace sberdev.SBContracts
         else
           _obj.InvApprByTreasSberDev = false;
       }
-      
-      var task = sberdev.SBContracts.ApprovalTasks.As(_obj.Task);
       if (task != null)
       {
         _obj.AmountATSDevATSDev = task.AmountATSDev;

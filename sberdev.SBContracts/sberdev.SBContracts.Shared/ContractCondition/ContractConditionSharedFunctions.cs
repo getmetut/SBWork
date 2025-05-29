@@ -16,6 +16,10 @@ namespace sberdev.SBContracts.Shared
     {
       base.ChangePropertiesAccess();
       
+      var isCPProfitTotalAmount = _obj.ConditionType == ConditionType.CPProfitTotalAm;
+      _obj.State.Properties.CPProfitTotalAmountSberDev.IsVisible = isCPProfitTotalAmount;
+      _obj.State.Properties.CPProfitTotalAmountSberDev.IsRequired = isCPProfitTotalAmount;
+      
       var isProductUnit = _obj.ConditionType == ConditionType.ProductUnit;
       _obj.State.Properties.ProductUnitSberDev.IsVisible = isProductUnit;
       _obj.State.Properties.ProductUnitSberDev.IsRequired = isProductUnit;
@@ -117,22 +121,32 @@ namespace sberdev.SBContracts.Shared
         var cp = SBContracts.Counterparties.As(contr.Counterparty);
         if (cp == null)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
-        if (PublicFunctions.Counterparty.CalculateTotalAmount(cp) > 500000)
+        if (cp.FocusCheckedSberDev.HasValue && cp.FocusCheckedDateSberDev.HasValue)
         {
-          if (cp.FocusCheckedSberDev.HasValue && cp.FocusCheckedDateSberDev.HasValue)
+          if (cp.FocusCheckedSberDev.Value && cp.FocusCheckedDateSberDev.Value.Year >= Calendar.Now.Year)
           {
-            if (cp.FocusCheckedSberDev.Value && cp.FocusCheckedDateSberDev.Value.Year >= Calendar.Now.Year)
-            {
-              return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
-            }
-            else
-              return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(true, string.Empty);
+            return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
           }
           else
             return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(true, string.Empty);
         }
         else
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(true, string.Empty);
+      }
+      #endregion
+      
+      #region Проверка суммы всех заключенных контрактов
+      if (_obj.ConditionType == ConditionType.CPProfitTotalAm)
+      {
+        var contr = SBContracts.ContractualDocuments.As(document);
+        if (contr == null)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
+        var cp = SBContracts.Counterparties.As(contr.Counterparty);
+        if (cp == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
+        var sum = PublicFunctions.Counterparty.CalculateProfitableTotalAmount(cp);
+        bool flag = sum > _obj.CPProfitTotalAmountSberDev;
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
       }
       #endregion
 
@@ -731,7 +745,7 @@ namespace sberdev.SBContracts.Shared
           }
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
         }
-       
+        
         var Purchas = SberContracts.Purchases.As(document);
         if (Purchas != null)
         {
@@ -777,6 +791,10 @@ namespace sberdev.SBContracts.Shared
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.CPProfitTotalAm); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.CPProfitTotalAm); // sup agreement
+      
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.IsProdPurchase); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.IsProdPurchase); // sup agreement
       
