@@ -10,26 +10,116 @@ namespace sberdev.SBContracts.Server
 {
   partial class ContractualDocumentFunctions
   {
-    public void BeforeSaveFunction()
+    
+    #region Функии заглушек
+    
+    [Public, Remote]
+    public void ApplyAnaliticsStabs()
     {
-      SendNotice();
-      CreateOrUpdateAnaliticsCashe();
-      ReplaceProducts();
-      CreateOrUpdateAnaliticsCasheGeneral();
-      _obj.CalcListSDev = PublicFunctions.ContractualDocument.GetCalculationString(_obj);
+      if (_obj.ContrTypeBaseSberDev.HasValue)
+        switch (_obj.ContrTypeBaseSberDev.Value.Value)
+      {
+        case "Expendable" :
+          if (_obj.MVZBaseSberDev == null)
+            _obj.MVZBaseSberDev = MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                               && m.ContrType.ToString() == "Expendable");
+          if (_obj.AccArtExBaseSberDev == null)
+            _obj.AccArtExBaseSberDev = AccountingArticleses.GetAll().FirstOrDefault(a => a.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                                                    && a.ContrType.ToString() == "Expendable");
+          if (!_obj.ProdCollectionExBaseSberDev.Any())
+          {
+            var prod = _obj.ProdCollectionExBaseSberDev.AddNew();
+            prod.Product = ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
+          }
+          break;
+        case "Profitable" :
+          if (_obj.MVPBaseSberDev == null)
+            _obj.MVPBaseSberDev = MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                               && m.ContrType.ToString() == "Profitable");
+          if (_obj.AccArtPrBaseSberDev == null)
+            _obj.AccArtPrBaseSberDev = AccountingArticleses.GetAll().FirstOrDefault(a => a.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                                                    && a.ContrType.ToString() == "Profitable");
+          if (!_obj.ProdCollectionPrBaseSberDev.Any())
+          {
+            var prod = _obj.ProdCollectionPrBaseSberDev.AddNew();
+            prod.Product = ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
+          }
+          break;
+        case "ExpendProfit" :
+          if (_obj.MVZBaseSberDev == null)
+            _obj.MVZBaseSberDev = MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                               && m.ContrType.ToString() == "Expendable");
+          if (_obj.AccArtExBaseSberDev == null)
+            _obj.AccArtExBaseSberDev = AccountingArticleses.GetAll().FirstOrDefault(a => a.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                                                    && a.ContrType.ToString() == "Expendable");
+          if (!_obj.ProdCollectionExBaseSberDev.Any())
+          {
+            var prod = _obj.ProdCollectionExBaseSberDev.AddNew();
+            prod.Product = ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
+          }
+          if (_obj.MVPBaseSberDev == null)
+            _obj.MVPBaseSberDev = MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                               && m.ContrType.ToString() == "Profitable");
+          if (_obj.AccArtPrBaseSberDev == null)
+            _obj.AccArtPrBaseSberDev = AccountingArticleses.GetAll().FirstOrDefault(a => a.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                                                    && a.ContrType.ToString() == "Profitable");
+          if (!_obj.ProdCollectionPrBaseSberDev.Any())
+          {
+            var prod = _obj.ProdCollectionPrBaseSberDev.AddNew();
+            prod.Product = ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
+          }
+          break;
+      }
+      else
+      {
+        _obj.ContrTypeBaseSberDev = ContrTypeBaseSberDev.Profitable;
+        if (_obj.MVPBaseSberDev == null)
+          _obj.MVPBaseSberDev = MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                             && m.ContrType.ToString() == "Profitable");
+        if (_obj.AccArtExBaseSberDev == null)
+          _obj.AccArtExBaseSberDev = AccountingArticleses.GetAll().FirstOrDefault(a => a.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                                                  && a.ContrType.ToString() == "Expendable");
+        if (!_obj.ProdCollectionPrBaseSberDev.Any())
+        {
+          var prod = _obj.ProdCollectionExBaseSberDev.AddNew();
+          prod.Product = ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
+        }
+      }
+      
+      _obj.DeliveryMethod = Sungero.Docflow.MailDeliveryMethods.GetAll().FirstOrDefault(d => d.Id == 1);
     }
     
-    #region Прочие функции
+    #endregion
     
-    public override StateView GetDocumentSummary()
+    /// <summary>
+    /// Функция устанавливает значение закупочной комиссии
+    /// </summary>
+    /// <param name="valArr"></param>
+    [Remote]
+    public void SetPurchComNumber(string str)
     {
-      var info = base.GetDocumentSummary();
-      if (_obj.ContrTypeBaseSberDev == null)
-        return info;
-      var block = info.AddBlock();
-      block.AddLabel("Тип договора: " + _obj.ContrTypeBaseSberDev.Value.Value);
-      block.AddLineBreak();
-      return info;
+      var valArr = str.ToArray();
+      _obj.PurchComNumberSberDev = valArr[0].ToString() + valArr[1].ToString() + valArr[2].ToString() + "." + valArr[3].ToString();
+    }
+    
+    /// <summary>
+    /// Если выбрано много продуктов заменяет их одним - "General"
+    /// </summary>
+    [Public, Remote]
+    public void ReplaceProducts()
+    {
+      if (_obj.ProdCollectionExBaseSberDev.Count > 1)
+      {
+        _obj.ProdCollectionExBaseSberDev.Clear();
+        var genProd = _obj.ProdCollectionExBaseSberDev.AddNew();
+        genProd.Product = SberContracts.PublicFunctions.Module.GetOrCreateGeneralProduct(_obj);
+      }
+      if (_obj.ProdCollectionPrBaseSberDev.Count > 1)
+      {
+        _obj.ProdCollectionPrBaseSberDev.Clear();
+        var genProd = _obj.ProdCollectionPrBaseSberDev.AddNew();
+        genProd.Product = SberContracts.PublicFunctions.Module.GetOrCreateGeneralProduct(_obj);
+      }
     }
     
     [Remote]
@@ -40,6 +130,108 @@ namespace sberdev.SBContracts.Server
       _obj.DeliveryMethod = Sungero.Docflow.MailDeliveryMethods.GetAll().Where(c => c.Id == ids[3]).FirstOrDefault();
       _obj.MVZBaseSberDev = MVZs.GetAll().Where(c => c.Id == ids[4]).FirstOrDefault();
       _obj.AccArtExBaseSberDev = AccountingArticleses.GetAll().Where(c => c.Id == ids[5]).FirstOrDefault();
+    }
+    public void BeforeSaveFunction()
+    {
+      SendNotice();
+      CreateOrUpdateAnaliticsCashe();
+      ReplaceProducts();
+      CreateOrUpdateAnaliticsCasheGeneral();
+      _obj.CalcListSDev = PublicFunctions.ContractualDocument.GetCalculationString(_obj);
+    }
+    
+    #region Прочие функции
+      
+    [Public]
+    public StateView ShowLegalInfo(StateView info)
+    {
+      var cp = _obj.Counterparty;
+      
+      // Определяем, какой список маркеров использовать
+      var focusMarkers = (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
+        ? PublicFunctions.Company.GetProfitableFocusMarkers(Companies.As(cp))
+        : PublicFunctions.Company.GetAllFocusMarkers(Companies.As(cp));
+      
+      var coloredMarkers = new List<string>(); // Для красных и желтых маркеров
+      var emptyColorMarkers = new List<string>(); // Для бесцветных маркеров
+      
+      // Получаем состояние свойств контрагента
+      var cpPropsType = cp.State.Properties.GetType();
+      
+      foreach (var marker in focusMarkers)
+      {
+        // Получаем IPropertyState для маркера
+        var propState = cpPropsType.GetProperty(marker.ToString())?.GetValue(cp.State.Properties) as Sungero.Domain.Shared.IPropertyState;
+        
+        if (propState != null)
+        {
+          // Получаем значение маркера  
+          var markerValue = cp.GetType().GetProperty(marker.ToString())?.GetValue(cp);
+          var displayValue = markerValue?.ToString() == "Yes" ? "Да" : "Нет";
+          var displayName = GetPropertyDisplayName(marker.ToString());
+          
+          // Проверяем цвет
+          if (propState.HighlightColor == Colors.Empty)
+          {
+            emptyColorMarkers.Add($"{displayName}: {displayValue}");
+          }
+          else
+          {
+            // Красный или желтый цвет
+            coloredMarkers.Add($"{displayName}: {displayValue}");
+          }
+        }
+      }
+      
+      // Выводим красные и желтые маркеры по отдельности
+      foreach (var marker in coloredMarkers)
+      {
+        var block = info.AddBlock();
+        block.AddLabel(marker);
+        block.AddLineBreak();
+      }
+      
+      // Выводим бесцветные маркеры одной строкой в конце
+      if (emptyColorMarkers.Any())
+      {
+        var block = info.AddBlock();
+        block.AddLabel(string.Join(", ", emptyColorMarkers));
+        block.AddLineBreak();
+      }
+      
+      return info;
+    }
+
+    // Вспомогательная функция для получения отображаемого имени свойства
+    private string GetPropertyDisplayName(string propertyName)
+    {
+      var displayNames = new Dictionary<string, string>
+      {
+        { "IsResident", "Резидент РФ" },
+        { "IsRoaming", "Роуминговая компания" },
+        { "HasEDS", "Наличие ЭЦП" },
+        // Добавьте другие маркеры для обычных и Profitable документов
+      };
+      
+      return displayNames.ContainsKey(propertyName)
+        ? displayNames[propertyName]
+        : propertyName;
+    }
+
+    // Вспомогательная функция для получения отображаемого имени свойства
+    private string GetFocusPropertyDisplayName(string propertyName)
+    {
+      var displayNames = new Dictionary<string, string>
+      {
+        { "IsResident", "Резидент РФ" },
+        { "IsRoaming", "Роуминговая компания" },
+        { "HasEDS", "Наличие ЭЦП" },
+        // Добавьте другие маркеры
+      };
+      
+      return displayNames.ContainsKey(propertyName)
+        ? displayNames[propertyName]
+        : propertyName;
     }
     
     public override List<Sungero.Docflow.IApprovalRuleBase> GetApprovalRules()
@@ -82,37 +274,6 @@ namespace sberdev.SBContracts.Server
       if (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.ExpendProfitSberDev)
         return sbQuery.Where(q => q.ExpendProfitSberDev == true);
       return sbQuery;
-    }
-    
-    /// <summary>
-    /// Функция устанавливает значение закупочной комиссии
-    /// </summary>
-    /// <param name="valArr"></param>
-    [Remote]
-    public void SetPurchComNumber(string str)
-    {
-      var valArr = str.ToArray();
-      _obj.PurchComNumberSberDev = valArr[0].ToString() + valArr[1].ToString() + valArr[2].ToString() + "." + valArr[3].ToString();
-    }
-    
-    /// <summary>
-    /// Если выбрано много продуктов заменяет их одним - "General"
-    /// </summary>
-    [Public, Remote]
-    public void ReplaceProducts()
-    {
-      if (_obj.ProdCollectionExBaseSberDev.Count > 1)
-      {
-        _obj.ProdCollectionExBaseSberDev.Clear();
-        var genProd = _obj.ProdCollectionExBaseSberDev.AddNew();
-        genProd.Product = SberContracts.PublicFunctions.Module.GetOrCreateGeneralProduct(_obj);
-      }
-      if (_obj.ProdCollectionPrBaseSberDev.Count > 1)
-      {
-        _obj.ProdCollectionPrBaseSberDev.Clear();
-        var genProd = _obj.ProdCollectionPrBaseSberDev.AddNew();
-        genProd.Product = SberContracts.PublicFunctions.Module.GetOrCreateGeneralProduct(_obj);
-      }
     }
     
     /// <summary>
@@ -227,86 +388,6 @@ namespace sberdev.SBContracts.Server
         
         cashe.Save();
       }
-    }
-    
-    #endregion
-    
-    #region Функии заглушек
-    
-    [Public, Remote]
-    public void ApplyAnaliticsStabs()
-    {
-      if (_obj.ContrTypeBaseSberDev.HasValue)
-        switch (_obj.ContrTypeBaseSberDev.Value.Value)
-      {
-        case "Expendable" :
-          if (_obj.MVZBaseSberDev == null)
-            _obj.MVZBaseSberDev = MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                               && m.ContrType.ToString() == "Expendable");
-          if (_obj.AccArtExBaseSberDev == null)
-            _obj.AccArtExBaseSberDev = AccountingArticleses.GetAll().FirstOrDefault(a => a.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                                                    && a.ContrType.ToString() == "Expendable");
-          if (!_obj.ProdCollectionExBaseSberDev.Any())
-          {
-            var prod = _obj.ProdCollectionExBaseSberDev.AddNew();
-            prod.Product = ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
-          }
-          break;
-        case "Profitable" :
-          if (_obj.MVPBaseSberDev == null)
-            _obj.MVPBaseSberDev = MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                               && m.ContrType.ToString() == "Profitable");
-          if (_obj.AccArtPrBaseSberDev == null)
-            _obj.AccArtPrBaseSberDev = AccountingArticleses.GetAll().FirstOrDefault(a => a.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                                                    && a.ContrType.ToString() == "Profitable");
-          if (!_obj.ProdCollectionPrBaseSberDev.Any())
-          {
-            var prod = _obj.ProdCollectionPrBaseSberDev.AddNew();
-            prod.Product = ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
-          }
-          break;
-        case "ExpendProfit" :
-          if (_obj.MVZBaseSberDev == null)
-            _obj.MVZBaseSberDev = MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                               && m.ContrType.ToString() == "Expendable");
-          if (_obj.AccArtExBaseSberDev == null)
-            _obj.AccArtExBaseSberDev = AccountingArticleses.GetAll().FirstOrDefault(a => a.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                                                    && a.ContrType.ToString() == "Expendable");
-          if (!_obj.ProdCollectionExBaseSberDev.Any())
-          {
-            var prod = _obj.ProdCollectionExBaseSberDev.AddNew();
-            prod.Product = ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
-          }
-          if (_obj.MVPBaseSberDev == null)
-            _obj.MVPBaseSberDev = MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                               && m.ContrType.ToString() == "Profitable");
-          if (_obj.AccArtPrBaseSberDev == null)
-            _obj.AccArtPrBaseSberDev = AccountingArticleses.GetAll().FirstOrDefault(a => a.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                                                    && a.ContrType.ToString() == "Profitable");
-          if (!_obj.ProdCollectionPrBaseSberDev.Any())
-          {
-            var prod = _obj.ProdCollectionPrBaseSberDev.AddNew();
-            prod.Product = ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
-          }
-          break;
-      }
-      else
-      {
-        _obj.ContrTypeBaseSberDev = ContrTypeBaseSberDev.Profitable;
-        if (_obj.MVPBaseSberDev == null)
-          _obj.MVPBaseSberDev = MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                             && m.ContrType.ToString() == "Profitable");
-        if (_obj.AccArtExBaseSberDev == null)
-          _obj.AccArtExBaseSberDev = AccountingArticleses.GetAll().FirstOrDefault(a => a.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                                                  && a.ContrType.ToString() == "Expendable");
-        if (!_obj.ProdCollectionPrBaseSberDev.Any())
-        {
-          var prod = _obj.ProdCollectionExBaseSberDev.AddNew();
-          prod.Product = ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
-        }
-      }
-      
-      _obj.DeliveryMethod = Sungero.Docflow.MailDeliveryMethods.GetAll().FirstOrDefault(d => d.Id == 1);
     }
     
     #endregion

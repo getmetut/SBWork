@@ -10,7 +10,11 @@ namespace sberdev.SBContracts.Server
   partial class CounterpartyFunctions
   {
     [Public]
-    public double CalculateTotalAmount()
+    /// <summary>
+    /// Считает сумму всех расходных договоров с контрагентом
+    /// </summary>
+    /// <returns></returns>
+    public double CalculateExpandableTotalAmount()
     {
       var contracts =  SBContracts.ContractualDocuments.GetAll().Where(c => c.Counterparty == _obj && c.TotalAmount.HasValue
                                                                        && (c.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Expendable
@@ -18,6 +22,21 @@ namespace sberdev.SBContracts.Server
       
       return contracts.Sum(a => a.TotalAmount.GetValueOrDefault());
     }
+    
+    [Public]
+    /// <summary>
+    /// Считает сумму всех расходных договоров с контрагентом
+    /// </summary>
+    /// <returns></returns>
+    public double CalculateProfitableTotalAmount()
+    {
+      var contracts =  SBContracts.ContractualDocuments.GetAll().Where(c => c.Counterparty == _obj && c.TotalAmount.HasValue
+                                                                       && (c.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.Profitable
+                                                                           || c.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.ExpendProfitSberDev)).ToList();
+      
+      return contracts.Sum(a => a.TotalAmount.GetValueOrDefault());
+    }
+    
     [Public]
     public double CalculateTotalAmount(Nullable<DateTime> dateFrom, Nullable<DateTime> dateTo)
     {

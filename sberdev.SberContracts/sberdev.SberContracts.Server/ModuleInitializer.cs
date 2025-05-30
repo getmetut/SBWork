@@ -395,10 +395,7 @@ namespace sberdev.SberContracts.Server
     public void GrantRightsOnFolder()
     {
       var allUsers = Roles.AllUsers;
-      SberContracts.SpecialFolders.Notice.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Read);
-      SberContracts.SpecialFolders.Notice.AccessRights.Save();
-
-      InitializationLogger.Debug("Выданы права на вычисляемую папку 'Уведомления'");
+      
     }
     
     public void GrantRightsOnReports()

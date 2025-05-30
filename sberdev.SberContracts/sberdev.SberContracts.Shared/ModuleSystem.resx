@@ -64,14 +64,8 @@
   <data name="CoverTitle" xml:space="preserve">
     <value>Сбер.Девайсы</value>
   </data>
-  <data name="sf_be2b4a19_b867_48e9_8724_0a79e289ed0b" xml:space="preserve">
-    <value>Notice</value>
-  </data>
   <data name="AsyncHandler_Description_04e5249ba2a8480ba3b1ca5f3884d58f" xml:space="preserve">
     <value>DeleteContractById</value>
-  </data>
-  <data name="sf_0fad7d1c_82f2_4672_bc8d_edd8c9cbfa61" xml:space="preserve">
-    <value>Folder</value>
   </data>
   <data name="JobDisplayName_39fa5665940849c78926648128e396db" xml:space="preserve">
     <value>Exposing the full names of pseudo-users.</value>

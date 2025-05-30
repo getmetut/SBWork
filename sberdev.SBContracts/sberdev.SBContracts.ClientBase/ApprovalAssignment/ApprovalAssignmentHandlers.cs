@@ -40,9 +40,8 @@ namespace sberdev.SBContracts
 
       if (shouldHideAmountChangeAction)
         e.HideAction(_obj.Info.Actions.AmountChangesberdev);
-
+         
       base.Showing(e);
-
     }
 
   }

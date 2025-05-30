@@ -45,7 +45,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "77093d43-a29a-4b4d-b095-e3480e91c330",
-          "RowNumber": 1,
+          "RowNumber": 2,
           "RowSpan": 1,
           "Settings": [
             {
@@ -63,7 +63,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "71b63835-fba4-4a8c-9a43-972e4245c03f",
-          "RowNumber": 2,
+          "RowNumber": 3,
           "RowSpan": 1,
           "Settings": [
             {
@@ -81,7 +81,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "b7300094-3d54-4458-80f0-8581cf78d06d",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": [
             {
@@ -99,7 +99,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "1f73eb15-515d-4e02-b5fe-abd662381a66",
-          "RowNumber": 4,
+          "RowNumber": 5,
           "RowSpan": 1,
           "Settings": [
             {
@@ -117,7 +117,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "a2e0ef16-51e7-4331-bada-f669ad9e33a2",
-          "RowNumber": 5,
+          "RowNumber": 6,
           "RowSpan": 1,
           "Settings": [
             {
@@ -135,7 +135,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "5d5f557a-caac-48df-a800-e57c5172db2b",
-          "RowNumber": 6,
+          "RowNumber": 7,
           "RowSpan": 1,
           "Settings": [
             {
@@ -153,7 +153,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "dadd87e0-5e88-41f5-ae98-29aee61a7be0",
-          "RowNumber": 7,
+          "RowNumber": 8,
           "RowSpan": 1,
           "Settings": []
         },
@@ -166,7 +166,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiSelectFromListEditorToCollectionBinder",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "36b7b6f7-aa9d-4ec9-a6ad-3a584ebd37ff",
-          "RowNumber": 0,
+          "RowNumber": 1,
           "RowSpan": 1,
           "Settings": [
             {
@@ -191,7 +191,7 @@
           "ColumnSpan": 1,
           "GroupType": "GroupBox",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
-          "RowNumber": 8,
+          "RowNumber": 9,
           "RowSpan": 1
         },
         {
@@ -243,7 +243,20 @@
           "HeaderLocation": "Top",
           "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
           "PropertyGuid": "2bc54eda-2e77-4d33-8248-bfd0ceb35617",
-          "RowNumber": 9,
+          "RowNumber": 10,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "9e571098-04eb-4753-85b8-d452811ce874",
+          "Name": "CPProfitTotalAmountSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+          "ParentGuid": "f904772f-63c7-4cbf-bbf2-f4b3ff15249d",
+          "PropertyGuid": "9655f5dd-5402-4b09-8c90-ed1075a96a1e",
+          "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
         }
@@ -364,6 +377,11 @@
           "NameGuid": "13550d6b-c2d8-4846-ac94-1b26fcb54109",
           "Name": "INNCollection",
           "Code": "INNCollection"
+        },
+        {
+          "NameGuid": "d0bbe2d2-83f4-4cc0-a1da-a10895e814e5",
+          "Name": "CPProfitTotalAm",
+          "Code": "CPProfitTotalAm"
         }
       ],
       "IsAncestorMetadata": true,
@@ -553,6 +571,16 @@
       "IsShowedInList": false,
       "PreviousPropertyGuid": "1414be84-3e87-4b8c-8d67-6e02dce2fe82",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9655f5dd-5402-4b09-8c90-ed1075a96a1e",
+      "Name": "CPProfitTotalAmountSberDev",
+      "CanBeSearch": false,
+      "Code": "CPProfitTotAm",
+      "IsShowedInList": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "2bc54eda-2e77-4d33-8248-bfd0ceb35617"
     }
   ],
   "PublicStructures": [],

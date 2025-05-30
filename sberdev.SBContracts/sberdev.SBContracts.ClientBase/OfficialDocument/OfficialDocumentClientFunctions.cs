@@ -8,8 +8,7 @@ using sberdev.SBContracts.OfficialDocument;
 namespace sberdev.SBContracts.Client
 {
   partial class OfficialDocumentFunctions
-  {
-    
+  { 
     /// <summary>
     /// Вызывает диалоговое оконо для публикации коментария к задаче
     /// </summary>       

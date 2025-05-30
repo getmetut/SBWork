@@ -430,4 +430,7 @@
   <data name="Property_SalesChannelATSDev" xml:space="preserve">
     <value>Канал продаж</value>
   </data>
+  <data name="Property_IsNeedLegalInfoSberDev" xml:space="preserve">
+    <value>Is Need Lega lInfo in document summary</value>
+  </data>
 </root>
