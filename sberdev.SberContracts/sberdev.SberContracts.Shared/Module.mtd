@@ -212,8 +212,12 @@
       "PreviousItemId": "ec171393-989b-4da6-b472-4c7bd5d014e9"
     },
     {
-      "ItemId": "ea461a5e-67b1-448f-9e88-225bafbf3705",
+      "ItemId": "675e2890-7dba-4d1a-a3bb-8a829bdabd66",
       "PreviousItemId": "c1301170-b79d-45c5-be58-4a518742012d"
+    },
+    {
+      "ItemId": "ea461a5e-67b1-448f-9e88-225bafbf3705",
+      "PreviousItemId": "675e2890-7dba-4d1a-a3bb-8a829bdabd66"
     },
     {
       "ItemId": "8fc24fb9-3645-4ff8-ac1a-f4f416ac4076",
@@ -242,10 +246,6 @@
     {
       "ItemId": "01183f10-af51-4496-a499-e35ca687c014",
       "PreviousItemId": "9cba8907-aa7e-4b16-b291-a18ae0fb6f3e"
-    },
-    {
-      "ItemId": "675e2890-7dba-4d1a-a3bb-8a829bdabd66",
-      "PreviousItemId": "01183f10-af51-4496-a499-e35ca687c014"
     }
   ],
   "HandledEvents": [
@@ -368,6 +368,14 @@
       ],
       "TypeName": "System.Guid",
       "Value": "new System.Guid(\"c48e6195-7f93-4e1b-98cf-293d2a2c862d\")"
+    },
+    {
+      "Name": "AppNonProdPurchaseGuid",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"675e2890-7dba-4d1a-a3bb-8a829bdabd66\")"
     },
     {
       "Name": "AppProductPurchaseGuid",
@@ -1017,38 +1025,8 @@
   "ServerNamespace": "sberdev.SberContracts.Server",
   "SharedAssemblyName": "sberdev.SberContracts.Shared",
   "SharedNamespace": "sberdev.SberContracts.Shared",
-  "SpecialFolders": [
-    {
-      "NameGuid": "be2b4a19-b867-48e9-8724-0a79e289ed0b",
-      "Name": "Notice",
-      "DefaultContentType": "ef79164b-2ce7-451b-9ba6-eb59dd9a4a74",
-      "DisplayType": "Inbox",
-      "FilterPanel": {
-        "NameGuid": "995ec699-c24f-4f7d-a22b-6e88e7c69c68",
-        "Name": "FilterPanel",
-        "Controls": []
-      },
-      "IsShow": true,
-      "Kind": "Computable",
-      "NeedShowMarkedCount": true,
-      "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17"
-    },
-    {
-      "NameGuid": "0fad7d1c-82f2-4672-bc8d-edd8c9cbfa61",
-      "Name": "Folder",
-      "DefaultContentType": "ea683a63-273e-43ae-bcf1-7a443698008a",
-      "DisplayType": "Module",
-      "FilterPanel": {
-        "NameGuid": "ca3e5537-2a41-4763-8f43-0c56c20f0ecd",
-        "Name": "FilterPanel",
-        "Controls": []
-      },
-      "IsShow": true,
-      "Kind": "Computable",
-      "NeedShowMarkedCount": false
-    }
-  ],
-  "Version": "5.0.2.0",
+  "SpecialFolders": [],
+  "Version": "5.0.2.1",
   "Widgets": [
     {
       "NameGuid": "c2f21ab6-4272-410e-a676-52af22433fd1",

@@ -253,10 +253,19 @@ namespace sberdev.SberContracts.Server
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Гарантийное письмо", GuaranteeLetter.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Outgoing, true);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Документы на основе доп. соглашения", AbstractsSupAgreement.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Техническое задание", Specification.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Inner, true);
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Заявка на непроизводственную закупку", AppNonProdPurchase.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Inner, true);
+      
     }
     
     public void CreateDocumentKinds()
     {
+      // Создание вида документа «Заявка на непроизводственную закупку».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Заявка на непроизводственную закупку", "Заявка на непроизводственную закупку",
+                                                                              Sungero.Docflow.DocumentKind.NumberingType.Numerable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true,
+                                                                              AppNonProdPurchase.ClassTypeGuid, new Sungero.Domain.Shared.IActionInfo[]
+                                                                              {Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval},
+                                                                              Constants.Module.AppNonProdPurchaseGuid);     
       // Создание вида документа «Заявка на производ. закупку».
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Заявка на RnD закупку", "Заявка на RnD закупку",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Numerable,
@@ -356,6 +365,7 @@ namespace sberdev.SberContracts.Server
       SberContracts.OtherContractDocuments.AccessRights.Save();
       SberContracts.Purchases.AccessRights.Save();
       SberContracts.GuaranteeLetters.AccessRights.Save();
+      SberContracts.AppNonProdPurchases.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
     }
 
     public static void GrantRightsOnDatabooks()
