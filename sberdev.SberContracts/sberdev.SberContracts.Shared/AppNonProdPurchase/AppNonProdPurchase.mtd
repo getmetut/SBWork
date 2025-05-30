@@ -671,7 +671,9 @@
   "OpenCardByDefaultInCollection": true,
   "OperationsClass": "",
   "Overridden": [
-    "IconName"
+    "IconName",
+    "HideFromCreationArea",
+    "HideFromNavigationEditorCreationArea"
   ],
   "Properties": [
     {
