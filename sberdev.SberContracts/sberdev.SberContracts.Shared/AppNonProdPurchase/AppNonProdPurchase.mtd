@@ -665,6 +665,9 @@
       "Versions": []
     }
   ],
+  "HandledEvents": [
+    "RefreshClient"
+  ],
   "IconName": "AppNonProdPurchase.ico",
   "IconResourcesKeys": [],
   "IntegrationServiceName": "SberContractsDocument",

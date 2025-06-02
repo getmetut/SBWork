@@ -12,10 +12,14 @@ namespace sberdev.SberContracts.Shared
 
     /// <summary>
     /// Обновление отображения полей карточки
-    /// </summary>       
+    /// </summary>   
     public void UpdateCard()
     {
-      
+      base.UpdateCard();
+      foreach (var elem in _obj.State.Properties)
+      {
+        elem.IsRequired = false;
+      }
     }
 
   }
