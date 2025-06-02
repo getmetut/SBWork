@@ -287,12 +287,7 @@
       "Scope": "Both"
     }
   ],
-  "OrderedSpecialFolders": [
-    {
-      "NameGuid": "be2b4a19-b867-48e9-8724-0a79e289ed0b",
-      "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17"
-    }
-  ],
+  "OrderedSpecialFolders": [],
   "PublicConstants": [
     {
       "Name": "AppProductPurchaseTemplateDocxName",
@@ -1179,7 +1174,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.0.2.3",
+  "Version": "5.0.3.0",
   "Widgets": [],
   "Versions": [
     {
