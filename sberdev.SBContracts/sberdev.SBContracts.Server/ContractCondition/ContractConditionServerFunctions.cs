@@ -13,6 +13,11 @@ namespace sberdev.SBContracts.Server
     {
       using (TenantInfo.Culture.SwitchTo())
       {
+        if (_obj.ConditionType == ConditionType.CPProfitTotalAm)
+        {
+          return String.Format("Сумма доходных договоров с КА больше {0} рублей?", _obj.CPProfitTotalAmountSberDev.Value);
+        }
+        
         if (_obj.ConditionType == ConditionType.ProductUnit)
         {
           string head = "В продуктах есть юнит:";
@@ -22,6 +27,7 @@ namespace sberdev.SBContracts.Server
           head += "?";
           return head;
         }
+        
         if (_obj.ConditionType == ConditionType.IsProdPurchase)
         {
           return "Производственная закупка?";
@@ -35,7 +41,7 @@ namespace sberdev.SBContracts.Server
         
         if (_obj.ConditionType == ConditionType.IsNeedCheckCp)
         {
-          return "Сумма расходных договоров по данному КА больше 500 тыс. руб. (за календарный год)?";
+          return "Необходима проверка контрагента?";
         }
         
         if (_obj.ConditionType == ConditionType.EndorseFromSberDev)

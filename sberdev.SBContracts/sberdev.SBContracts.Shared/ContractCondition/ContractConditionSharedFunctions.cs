@@ -135,7 +135,7 @@ namespace sberdev.SBContracts.Shared
       }
       #endregion
       
-      #region Проверка суммы всех заключенных контрактов
+      #region Проверка суммы всех заключенных доходных контрактов
       if (_obj.ConditionType == ConditionType.CPProfitTotalAm)
       {
         var contr = SBContracts.ContractualDocuments.As(document);
