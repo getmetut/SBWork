@@ -100,20 +100,12 @@
       "PreviousItemId": "497fb0f7-b0bc-42ca-8eeb-65dda301863b"
     },
     {
-      "ItemId": "be2b4a19-b867-48e9-8724-0a79e289ed0b",
+      "ItemId": "8dad3a32-5b4d-40c7-9113-e915afe29fa4",
       "PreviousItemId": "464c7cc8-5ec8-49ff-8ea1-9d094c025987"
     },
     {
-      "ItemId": "8dad3a32-5b4d-40c7-9113-e915afe29fa4",
-      "PreviousItemId": "be2b4a19-b867-48e9-8724-0a79e289ed0b"
-    },
-    {
-      "ItemId": "0fad7d1c-82f2-4672-bc8d-edd8c9cbfa61",
-      "PreviousItemId": "8dad3a32-5b4d-40c7-9113-e915afe29fa4"
-    },
-    {
       "ItemId": "40564446-1c88-43aa-b1a1-af3f5ebed2fe",
-      "PreviousItemId": "0fad7d1c-82f2-4672-bc8d-edd8c9cbfa61"
+      "PreviousItemId": "8dad3a32-5b4d-40c7-9113-e915afe29fa4"
     },
     {
       "ItemId": "68abea97-0f05-4252-a880-c416bfdb4ac7",
@@ -520,6 +512,14 @@
       ],
       "TypeName": "System.Guid",
       "Value": "new System.Guid(\"fee545b2-0f1e-40da-8c9d-f7abd565c6cf\")"
+    },
+    {
+      "Name": "PurchaserBySing",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"caadab73-6e42-4d66-984a-126225ddc101\")"
     }
   ],
   "PublicFunctions": [

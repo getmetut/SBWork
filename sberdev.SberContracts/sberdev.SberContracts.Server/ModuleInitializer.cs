@@ -208,6 +208,18 @@ namespace sberdev.SberContracts.Server
         InitializationLogger.Debug("Обновлена роль Контроль подписания Диадок");
       }
       
+      var Purchaser = Roles.GetAll(r => r.Sid == Constants.Module.PurchaserBySing).FirstOrDefault();
+      if (Purchaser == null)
+      {
+        var rolePurch = Roles.Create(); 
+        rolePurch.Name = "Закупщик";
+        rolePurch.Description = "Закупщик (Системная роль для работы в закупками: расширенные права.)";
+        rolePurch.Sid = Constants.Module.PurchaserBySing;
+        rolePurch.IsSystem = false;
+        rolePurch.Save();
+        InitializationLogger.Debug("Создана роль Закупщик");
+      }
+      
     }
     
     // <summary>
