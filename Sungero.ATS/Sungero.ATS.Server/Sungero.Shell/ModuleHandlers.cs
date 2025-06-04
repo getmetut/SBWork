@@ -253,10 +253,9 @@ namespace Sungero.ATS.Module.Shell.Server
 
   partial class NoticesFolderHandlers
   {
-
     public override bool IsNoticesVisible()
     {
-      return false;
+      return true;
     }
   }
 
