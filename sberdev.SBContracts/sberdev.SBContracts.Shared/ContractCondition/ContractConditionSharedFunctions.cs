@@ -358,43 +358,54 @@ namespace sberdev.SBContracts.Shared
       #endregion
 
       #region Проверка категории договора (ContrCategory)
-      if (_obj.ConditionType == ConditionType.ContrCategory)
-      {
-        var contract = SBContracts.Contracts.As(document);
-        var сontrFind = false;
-
-        if (contract != null)
+if (_obj.ConditionType == ConditionType.ContrCategory)
+{
+    var contract = SBContracts.Contracts.As(document);
+    var сontrFind = false;
+    
+    if (contract != null)
+    {
+        // Проверяем, что DocumentGroup не null
+        if (contract.DocumentGroup != null)
         {
-          foreach (var str in _obj.ContrCategorysberdev)
-          {
-            if (contract.DocumentGroup == str.ContrCategory)
+            foreach (var str in _obj.ContrCategorysberdev)
             {
-              сontrFind = true;
+                if (str.ContrCategory != null && contract.DocumentGroup.Equals(str.ContrCategory))
+                {
+                    сontrFind = true;
+                    break; // Можно выйти из цикла, если нашли совпадение
+                }
             }
-          }
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-            .Create(сontrFind, string.Empty);
         }
-
-        var sup = SBContracts.SupAgreements.As(document);
-        if (sup != null)
-        {
-          contract = SBContracts.Contracts.As(sup.LeadingDocument);
-          foreach (var str in _obj.ContrCategorysberdev)
-          {
-            if (contract.DocumentGroup == str.ContrCategory)
-            {
-              сontrFind = true;
-            }
-          }
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-            .Create(сontrFind, string.Empty);
-        }
-
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-          .Create(null, "Условие не может быть вычислено. Не заполнены категории договора.");
-      }
-      #endregion
+            .Create(сontrFind, string.Empty);
+    }
+    
+    var sup = SBContracts.SupAgreements.As(document);
+    if (sup != null)
+    {
+        contract = SBContracts.Contracts.As(sup.LeadingDocument);
+        
+        // Проверяем, что contract и DocumentGroup не null
+        if (contract != null && contract.DocumentGroup != null)
+        {
+            foreach (var str in _obj.ContrCategorysberdev)
+            {
+                if (str.ContrCategory != null && contract.DocumentGroup.Equals(str.ContrCategory))
+                {
+                    сontrFind = true;
+                    break; // Можно выйти из цикла, если нашли совпадение
+                }
+            }
+        }
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult
+            .Create(сontrFind, string.Empty);
+    }
+    
+    return Sungero.Docflow.Structures.ConditionBase.ConditionResult
+        .Create(null, "Условие не может быть вычислено. Не заполнены категории договора.");
+}
+#endregion
 
       #region Проверка МВП (MVP)
       if (_obj.ConditionType == ConditionType.MVP)
