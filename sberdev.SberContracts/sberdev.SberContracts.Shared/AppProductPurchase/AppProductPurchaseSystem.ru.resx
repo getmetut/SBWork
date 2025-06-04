@@ -65,7 +65,7 @@
     <value>Срок производства</value>
   </data>
   <data name="Property_ProdPeriodComment" xml:space="preserve">
-    <value>Комментарий к сроку производства</value>
+    <value>Подтверждение оплаты</value>
   </data>
   <data name="Property_Deposit" xml:space="preserve">
     <value>Депозит (%)</value>
@@ -86,7 +86,7 @@
     <value>План. дата пост. (Мск)</value>
   </data>
   <data name="Property_PlanDelDateComment" xml:space="preserve">
-    <value>Комментарий к плановой дате поставки</value>
+    <value>Плановая дата оплаты</value>
   </data>
   <data name="Property_PickupAddress" xml:space="preserve">
     <value>Адрес забора груза</value>
@@ -347,7 +347,7 @@
     <value>Потенциальные участники закупочной процедуры</value>
   </data>
   <data name="ControlGroup_bdaaa69a2eb44a308aa1f6aa11610f03" xml:space="preserve">
-    <value>Сравнительная таблица ценовых предложений</value>
+    <value>Сравнение ценовых предложений</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Заявка на производ. закупку</value>
@@ -422,7 +422,7 @@
     <value>Агентская схема</value>
   </data>
   <data name="Enum_PaymentMethod_VTB" xml:space="preserve">
-    <value>Счет в ВТБ</value>
+    <value>Прямая оплата</value>
   </data>
   <data name="Enum_PaymentMethod_Chinese" xml:space="preserve">
     <value>Китайское юр. лицо</value>
@@ -447,5 +447,14 @@
   </data>
   <data name="Property_SelectedCounterparty7" xml:space="preserve">
     <value>Выбранный контрагент</value>
+  </data>
+  <data name="Property_MethodPurchase" xml:space="preserve">
+    <value>Способ закупки</value>
+  </data>
+  <data name="Enum_MethodPurchase_SeveralCP" xml:space="preserve">
+    <value>Запрос предложений</value>
+  </data>
+  <data name="Enum_MethodPurchase_OneCP" xml:space="preserve">
+    <value>Eдинственный поставщик</value>
   </data>
 </root>

@@ -62,6 +62,15 @@
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "ba610a74-d0f0-419c-9bf7-6eee3fa5a78b"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "7e9a4592-4188-4b1b-8d41-4a004c2e537d",
+      "Name": "Article",
+      "CanBeSearch": false,
+      "Code": "Article",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "689fa337-7326-49bb-97c6-d4d6baedf7ca"
     }
   ],
   "PublicStructures": [],
