@@ -1750,7 +1750,7 @@
           "HeaderLocation": "Top",
           "ParentGuid": "28a6d4a8-a26a-467b-8fe6-da426092ec4a",
           "PropertyGuid": "8acc52b6-45e7-4b96-8247-0d342e0b5bb8",
-          "RowNumber": 6,
+          "RowNumber": 7,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1777,7 +1777,7 @@
           "HeaderLocation": "Top",
           "ParentGuid": "28a6d4a8-a26a-467b-8fe6-da426092ec4a",
           "PropertyGuid": "192963e9-18c4-4988-b3dd-5c7f86dacf60",
-          "RowNumber": 4,
+          "RowNumber": 5,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1791,7 +1791,7 @@
           "HeaderLocation": "Top",
           "ParentGuid": "28a6d4a8-a26a-467b-8fe6-da426092ec4a",
           "PropertyGuid": "cc4c7f44-1c67-4b5a-9f08-93d86def99b5",
-          "RowNumber": 5,
+          "RowNumber": 6,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1805,6 +1805,32 @@
           "ParentGuid": "2b752d27-75e5-4f7c-8345-361eb5782168",
           "PropertyGuid": "aed7d1f3-f377-4d2f-913b-85fd378d17e5",
           "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "c0c69d6d-7a4d-4781-a327-fbd1a10a2c79",
+          "Name": "NumPortepnost",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+          "ParentGuid": "167d6373-0807-4c28-8d47-48c732408e7f",
+          "PropertyGuid": "098b5c56-c13f-4f7e-ab67-278ed1c5983a",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "2d5711a7-be54-4261-b8e6-ddbeb24ca4fb",
+          "Name": "TochInWork",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "28a6d4a8-a26a-467b-8fe6-da426092ec4a",
+          "PropertyGuid": "cb3706f7-782a-4f6e-9df5-e4aae9cb060d",
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
         }
@@ -2611,6 +2637,41 @@
           "NameGuid": "c20a046a-f69c-4fd8-8edb-5da50d9632ce",
           "Name": "SeveralCP",
           "Code": "SeveralCP"
+        },
+        {
+          "NameGuid": "f32fd5d7-d72b-45b4-b028-565574de11da",
+          "Name": "OfferAnalysis",
+          "Code": "OfferAnalysis"
+        },
+        {
+          "NameGuid": "da983837-78d7-43b0-92d6-bb28bec52bfd",
+          "Name": "Requestquotatio",
+          "Code": "Requestquotatio"
+        },
+        {
+          "NameGuid": "b6c412f4-5eba-4c42-9563-66e76d9cd669",
+          "Name": "ElectronicAuct",
+          "Code": "ElectronicAuct"
+        },
+        {
+          "NameGuid": "8706e7bf-8641-4804-97b9-b16ce28e48a1",
+          "Name": "Competition",
+          "Code": "Competition"
+        },
+        {
+          "NameGuid": "eb032025-d3d9-48b4-8fca-156afb00b0b4",
+          "Name": "AddressableQuo",
+          "Code": "AddressableQuo"
+        },
+        {
+          "NameGuid": "d23200f0-ef52-43df-9fd3-c5f18ecc6c06",
+          "Name": "AddressableReq",
+          "Code": "AddressableReq"
+        },
+        {
+          "NameGuid": "ed3bc5d3-398b-4383-84cc-1db8de177649",
+          "Name": "Accreditation",
+          "Code": "Accreditation"
         }
       ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
@@ -2685,6 +2746,26 @@
       ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "cc4c7f44-1c67-4b5a-9f08-93d86def99b5"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "098b5c56-c13f-4f7e-ab67-278ed1c5983a",
+      "Name": "NumPortepnost",
+      "Code": "NumPortepnost",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "aed7d1f3-f377-4d2f-913b-85fd378d17e5"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "cb3706f7-782a-4f6e-9df5-e4aae9cb060d",
+      "Name": "TochInWork",
+      "Code": "TochInWork",
+      "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
+      "HandledEvents": [
+        "LookupServer"
+      ],
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "098b5c56-c13f-4f7e-ab67-278ed1c5983a"
     }
   ],
   "PublicFunctions": [

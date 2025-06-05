@@ -7,4 +7,13 @@ using sberdev.SBContracts.ContractStatement;
 
 namespace sberdev.SBContracts
 {
+  partial class ContractStatementClientHandlers
+  {
+
+    public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
+    {
+      base.Refresh(e);
+    }
+  }
+
 }

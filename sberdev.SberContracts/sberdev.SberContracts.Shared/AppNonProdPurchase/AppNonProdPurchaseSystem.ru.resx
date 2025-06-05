@@ -221,4 +221,13 @@
   <data name="Control_df857e38d6644b188bc71d019aca30f7_EmptyText" xml:space="preserve">
     <value>В случае срочности необходимо указать риски, которые могут возникнуть у компании при более длительной поставке. При наличии финансовых рисков, необходимо их монетизировать.</value>
   </data>
+  <data name="Property_MethodPurchaseFull" xml:space="preserve">
+    <value>Способ закупки</value>
+  </data>
+  <data name="Enum_MethodPurchaseFull_SeveralCP" xml:space="preserve">
+    <value>Запрос предложений</value>
+  </data>
+  <data name="Enum_MethodPurchaseFull_OneCP" xml:space="preserve">
+    <value>Eдинственный поставщик</value>
+  </data>
 </root>

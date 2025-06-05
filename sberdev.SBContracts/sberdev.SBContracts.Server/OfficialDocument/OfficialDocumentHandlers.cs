@@ -19,6 +19,12 @@ namespace sberdev.SBContracts
         if (DelMeth != null)
           _obj.DeliveryMethod = DelMeth;        
       }
+      else
+      {
+        var responsible = Sungero.Company.Employees.GetAll(r => r.Login == Users.Current.Login).FirstOrDefault();
+        if (responsible != null)
+          _obj.ResponsibleATSDev = responsible;
+      }
     }
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)

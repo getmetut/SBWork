@@ -562,4 +562,31 @@
   <data name="Enum_ProductCategory_OtherDevices" xml:space="preserve">
     <value>Прочие устройства</value>
   </data>
+  <data name="Enum_MethodPurchase_OfferAnalysis" xml:space="preserve">
+    <value>Анализ предложений (применим только для закупок до 500 тыс.руб.)</value>
+  </data>
+  <data name="Enum_MethodPurchase_Requestquotatio" xml:space="preserve">
+    <value>Запрос котировок</value>
+  </data>
+  <data name="Enum_MethodPurchase_ElectronicAuct" xml:space="preserve">
+    <value>Электронный аукцион</value>
+  </data>
+  <data name="Property_NumPortepnost" xml:space="preserve">
+    <value>Номер потребности</value>
+  </data>
+  <data name="Enum_MethodPurchase_Competition" xml:space="preserve">
+    <value>Конкурс</value>
+  </data>
+  <data name="Enum_MethodPurchase_AddressableQuo" xml:space="preserve">
+    <value>Адресный запрос котировок</value>
+  </data>
+  <data name="Enum_MethodPurchase_AddressableReq" xml:space="preserve">
+    <value>Адресный запрос предложений</value>
+  </data>
+  <data name="Enum_MethodPurchase_Accreditation" xml:space="preserve">
+    <value>Аккредитация</value>
+  </data>
+  <data name="Property_TochInWork" xml:space="preserve">
+    <value>Взял в работу</value>
+  </data>
 </root>

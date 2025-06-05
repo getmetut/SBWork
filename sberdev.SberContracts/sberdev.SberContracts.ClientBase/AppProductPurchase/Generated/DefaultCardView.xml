@@ -8,7 +8,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">None</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">507,-524</property>
+            <property name="Location">507,-895</property>
             <property name="Size">220,250</property>
           </property>
           <property name="AllowMoveColumnToDropArea">false</property>
@@ -77,7 +77,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">None</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">519,-773</property>
+            <property name="Location">519,-1144</property>
             <property name="Size">220,250</property>
           </property>
           <property name="AllowMoveColumnToDropArea">false</property>
@@ -170,7 +170,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">None</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">519,-971</property>
+            <property name="Location">519,-1342</property>
             <property name="Size">220,250</property>
           </property>
           <property name="AllowMoveColumnToDropArea">false</property>
@@ -263,7 +263,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">None</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">519,-1169</property>
+            <property name="Location">519,-1540</property>
             <property name="Size">220,250</property>
           </property>
           <property name="AllowMoveColumnToDropArea">false</property>
@@ -356,7 +356,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">None</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">519,-1367</property>
+            <property name="Location">519,-1738</property>
             <property name="Size">220,250</property>
           </property>
           <property name="AllowMoveColumnToDropArea">false</property>
@@ -449,7 +449,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">None</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">519,-1565</property>
+            <property name="Location">519,-1936</property>
             <property name="Size">220,250</property>
           </property>
           <property name="AllowMoveColumnToDropArea">false</property>
@@ -542,7 +542,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">None</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">519,-1763</property>
+            <property name="Location">519,-2134</property>
             <property name="Size">220,250</property>
           </property>
           <property name="AllowMoveColumnToDropArea">false</property>
@@ -635,7 +635,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">None</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">519,-1961</property>
+            <property name="Location">519,-2332</property>
             <property name="Size">220,250</property>
           </property>
           <property name="AllowMoveColumnToDropArea">false</property>

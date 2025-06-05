@@ -520,6 +520,14 @@
       ],
       "TypeName": "System.Guid",
       "Value": "new System.Guid(\"caadab73-6e42-4d66-984a-126225ddc101\")"
+    },
+    {
+      "Name": "TochWorkGUIDRole",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"22eeb7b3-0362-4af2-abc7-ef815fa4b5a9\")"
     }
   ],
   "PublicFunctions": [
@@ -1026,7 +1034,7 @@
   "SharedAssemblyName": "sberdev.SberContracts.Shared",
   "SharedNamespace": "sberdev.SberContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.3.0.0",
+  "Version": "5.3.0.1",
   "Widgets": [
     {
       "NameGuid": "c2f21ab6-4272-410e-a676-52af22433fd1",

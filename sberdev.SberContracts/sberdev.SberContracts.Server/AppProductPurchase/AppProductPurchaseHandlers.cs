@@ -7,6 +7,20 @@ using sberdev.SberContracts.AppProductPurchase;
 
 namespace sberdev.SberContracts
 {
+  partial class AppProductPurchaseTochInWorkPropertyFilteringServerHandler<T>
+  {
+
+    public virtual IQueryable<T> TochInWorkFiltering(IQueryable<T> query, Sungero.Domain.PropertyFilteringEventArgs e)
+    {
+      var Rol = Roles.GetAll(s => s.Sid == Constants.Module.TochWorkGUIDRole).FirstOrDefault();
+      if (Rol != null)
+      {
+        query = query.Where(r => r.IncludedIn(Rol));
+      }
+      return query;
+    }
+  }
+
   partial class AppProductPurchaseNDAPropertyFilteringServerHandler<T>
   {
 

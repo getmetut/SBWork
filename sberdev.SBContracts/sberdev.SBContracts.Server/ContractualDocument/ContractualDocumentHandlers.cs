@@ -209,9 +209,9 @@ namespace sberdev.SBContracts
               prod += strp.Product.Name.ToString() + ";";
           }
         }
-          
-        if (prod.EndsWith(";")) 
-            prod = prod.Substring(0, prod.Length - 1);
+        
+        if (prod.EndsWith(";"))
+          prod = prod.Substring(0, prod.Length - 1);
         
         if (_obj.ProdCollectionStringSDev != prod)
           _obj.ProdCollectionStringSDev = prod;
@@ -235,7 +235,7 @@ namespace sberdev.SBContracts
         base.BeforeSave(e);
         Functions.ContractualDocument.BeforeSaveFunction(_obj);
       }
-   /*   int year = Calendar.Now.Year % 100; // Получаем последние две цифры года
+      /*   int year = Calendar.Now.Year % 100; // Получаем последние две цифры года
       char symbol = 'Z';
       int sequenceNumber = int.Parse(_obj.Id.ToString()); // Пример порядкового номера
       string Num1C = $"{year:D2}{symbol:D}{sequenceNumber:D5}";
