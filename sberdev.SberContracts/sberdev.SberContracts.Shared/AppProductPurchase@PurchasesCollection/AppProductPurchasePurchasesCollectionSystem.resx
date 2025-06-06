@@ -70,4 +70,7 @@
   <data name="Property_Quantity" xml:space="preserve">
     <value>Quantity, pcs.</value>
   </data>
+  <data name="Property_Article" xml:space="preserve">
+    <value>Артикул</value>
+  </data>
 </root>

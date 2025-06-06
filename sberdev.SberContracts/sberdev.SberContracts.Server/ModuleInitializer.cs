@@ -220,6 +220,18 @@ namespace sberdev.SberContracts.Server
         InitializationLogger.Debug("Создана роль Закупщик");
       }
       
+      var TochWork = Roles.GetAll(r => r.Sid == Constants.Module.PurchaserBySing).FirstOrDefault();
+      if (TochWork == null)
+      {
+        var roleTochWork = Roles.Create(); 
+        roleTochWork.Name = "Сотрудники для производственных закупок";
+        roleTochWork.Description = "Сотрудники для выборки в заявках на производственную закупку в поле 'Взял в работу'";
+        roleTochWork.Sid = Constants.Module.TochWorkGUIDRole;
+        roleTochWork.IsSystem = false;
+        roleTochWork.Save();
+        InitializationLogger.Debug("Создана роль сотрудника для производственных заявок");
+      }
+      
     }
     
     // <summary>

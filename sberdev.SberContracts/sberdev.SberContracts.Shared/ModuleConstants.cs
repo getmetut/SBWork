@@ -44,6 +44,8 @@ namespace sberdev.SberContracts.Constants
     [Sungero.Core.PublicAttribute]
     public static readonly Guid PurchaserBySing = Guid.Parse( "caadab73-6e42-4d66-984a-126225ddc101");
     [Sungero.Core.PublicAttribute]
+    public static readonly Guid TochWorkGUIDRole = Guid.Parse( "22eeb7b3-0362-4af2-abc7-ef815fa4b5a9");
+    [Sungero.Core.PublicAttribute]
     public static readonly Guid CounterpartiesResponsibleRole = Guid.Parse( "C719C823-C4BD-4434-A34B-D7E83E524414");
     [Sungero.Core.PublicAttribute]
     public static readonly Guid MVPStabGuid = Guid.Parse("49e415a7-10e3-4046-af50-10f1cd3818b8");

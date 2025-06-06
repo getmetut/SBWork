@@ -555,7 +555,7 @@
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
           "ParentGuid": "b129fb65-3020-4134-b3e9-1f4608541a6d",
-          "PropertyGuid": "95649801-b0b0-4f9d-9614-10eec1befd4e",
+          "PropertyGuid": "8099d1b5-8e9c-40fc-969b-f139c2f8b1a3",
           "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
@@ -816,6 +816,62 @@
       "Code": "Economy",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "95649801-b0b0-4f9d-9614-10eec1befd4e"
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "8099d1b5-8e9c-40fc-969b-f139c2f8b1a3",
+      "Name": "MethodPurchaseFull",
+      "Code": "MethodPurchas3",
+      "DirectValues": [
+        {
+          "NameGuid": "1afcaea9-378a-4cdc-971f-305fd88f813d",
+          "Name": "OneCP",
+          "Code": "OneCounterparty"
+        },
+        {
+          "NameGuid": "c20a046a-f69c-4fd8-8edb-5da50d9632ce",
+          "Name": "SeveralCP",
+          "Code": "SeveralCP"
+        },
+        {
+          "NameGuid": "f32fd5d7-d72b-45b4-b028-565574de11da",
+          "Name": "OfferAnalysis",
+          "Code": "OfferAnalysis"
+        },
+        {
+          "NameGuid": "da983837-78d7-43b0-92d6-bb28bec52bfd",
+          "Name": "Requestquotatio",
+          "Code": "Requestquotatio"
+        },
+        {
+          "NameGuid": "b6c412f4-5eba-4c42-9563-66e76d9cd669",
+          "Name": "ElectronicAuct",
+          "Code": "ElectronicAuct"
+        },
+        {
+          "NameGuid": "8706e7bf-8641-4804-97b9-b16ce28e48a1",
+          "Name": "Competition",
+          "Code": "Competition"
+        },
+        {
+          "NameGuid": "eb032025-d3d9-48b4-8fca-156afb00b0b4",
+          "Name": "AddressableQuo",
+          "Code": "AddressableQuo"
+        },
+        {
+          "NameGuid": "d23200f0-ef52-43df-9fd3-c5f18ecc6c06",
+          "Name": "AddressableReq",
+          "Code": "AddressableReq"
+        },
+        {
+          "NameGuid": "ed3bc5d3-398b-4383-84cc-1db8de177649",
+          "Name": "Accreditation",
+          "Code": "Accreditation"
+        }
+      ],
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "ab966af7-b7f6-4788-8746-ce877b7b8722",
+      "Versions": []
     }
   ],
   "PublicStructures": [],

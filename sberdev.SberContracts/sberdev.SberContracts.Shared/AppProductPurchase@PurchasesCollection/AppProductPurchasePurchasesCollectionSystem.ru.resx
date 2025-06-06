@@ -65,6 +65,6 @@
     <value>Кол-во, шт.</value>
   </data>
   <data name="Property_Product" xml:space="preserve">
-    <value>Наименование закупаемой продукции</value>
+    <value>Наименование</value>
   </data>
 </root>

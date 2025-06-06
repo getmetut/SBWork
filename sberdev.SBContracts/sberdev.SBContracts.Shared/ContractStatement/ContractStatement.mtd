@@ -788,7 +788,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "bdce5773-0456-4467-82e4-6922197b7566",
           "PropertyGuid": "300fb42d-f0f9-462d-b881-588745383002",
-          "RowNumber": 3,
+          "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
         },
@@ -926,7 +926,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "bdce5773-0456-4467-82e4-6922197b7566",
           "PropertyGuid": "ec7a4d15-22d6-45df-964e-a828771daaf6",
-          "RowNumber": 4,
+          "RowNumber": 5,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1091,6 +1091,20 @@
           "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.HyperlinkControlMetadata, Sungero.Metadata",
+          "NameGuid": "21adfb41-7df4-44aa-85cc-4e7952b8d75a",
+          "Name": "ControlATSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.HyperlinkToSourceBinder",
+          "FunctionName": "RefreshTotalAmouInInvoice",
+          "HeaderLocation": "None",
+          "ParentGuid": "bdce5773-0456-4467-82e4-6922197b7566",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -1104,7 +1118,8 @@
   ],
   "HandledEvents": [
     "BeforeSaveServer",
-    "CreatedServer"
+    "CreatedServer",
+    "RefreshClient"
   ],
   "IconResourcesKeys": [],
   "LayeredFromGuid": "f2f5774d-5ca3-4725-b31d-ac618f6b8850",
@@ -1132,6 +1147,21 @@
         "EntityGuid"
       ],
       "Versions": []
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "RefreshTotalAmouInInvoice",
+      "Parameters": [
+        {
+          "Name": "contractStatement",
+          "ParameterType": "global::sberdev.SBContracts.IContractStatement",
+          "ParameterTypeFullName": "sberdev.SBContracts.IContractStatement, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [],

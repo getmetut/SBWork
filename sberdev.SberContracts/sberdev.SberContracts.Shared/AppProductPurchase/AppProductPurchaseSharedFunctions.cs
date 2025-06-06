@@ -9,6 +9,21 @@ namespace sberdev.SberContracts.Shared
 {
   partial class AppProductPurchaseFunctions
   {
+
+    /// <summary>
+    /// Обновление карточки документа
+    /// </summary>       
+    public void UpdateCard()
+    {
+      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
+      {
+        _obj.State.Properties.DDS.IsRequired = true;
+        _obj.State.Properties.ZIP.IsRequired = true;
+        _obj.State.Properties.ResponsibleForProduction.IsRequired = true;
+        _obj.State.Properties.ResponsibleSourcingManager.IsRequired = true;
+        _obj.State.Properties.PaymentMethod.IsRequired = true;
+      }
+    }
     
     /// <summary>
     /// Устанавливает значение false для всех свойств SelectedCounterparty кроме указанного
