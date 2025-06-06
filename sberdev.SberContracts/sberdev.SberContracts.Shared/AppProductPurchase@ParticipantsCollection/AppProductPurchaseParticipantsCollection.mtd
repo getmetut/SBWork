@@ -38,7 +38,6 @@
       "Name": "Number",
       "CanBeSearch": false,
       "Code": "Number",
-      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "fa36e63e-eb29-423a-a082-0820608eb762"
     },

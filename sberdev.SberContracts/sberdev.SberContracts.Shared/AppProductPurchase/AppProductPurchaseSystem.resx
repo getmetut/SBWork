@@ -589,4 +589,7 @@
   <data name="Property_TochInWork" xml:space="preserve">
     <value>Взял в работу</value>
   </data>
+  <data name="Property_LinkPotencial" xml:space="preserve">
+    <value>Сравнение потенциальных предложений</value>
+  </data>
 </root>
