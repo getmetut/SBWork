@@ -146,24 +146,34 @@ namespace sberdev.SBContracts.Server
     #region Прочие функции
     
     [Public]
-    public StateView ShowLegalInfo(StateView info)
-    {
-      var cp = _obj.Counterparty;
-      var company = SBContracts.Companies.As(cp);
-      if (company == null)
-        return info;
+      public StateView ShowLegalInfo(StateView info)
+      {
+        var cp = _obj.Counterparty;
+        var company = SBContracts.Companies.As(cp);
+        if (company == null)
+          return info;
 
-      // Выбираем список маркеров в зависимости от типа договора
-      var focusMarkers = (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
-        ? PublicFunctions.Company.GetProfitableFocusMarkers(company)
-        : PublicFunctions.Company.GetAllFocusMarkers(company);
+        // Выбираем список маркеров в зависимости от типа договора
+        var focusMarkers = (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
+          ? PublicFunctions.Company.GetProfitableFocusMarkers(company)
+          : PublicFunctions.Company.GetAllFocusMarkers(company);
 
-      var coloredMarkers = new List<string>();
-      var emptyColorMarkers = new List<string>();
+        // Списки для отображения маркеров по цвету
+        var redMarkers = new List<string>();
+        var yellowMarkers = new List<string>();
+        var noValueMarkers = new List<string>();
 
-      // Получаем тип контейнера свойств
-      var propsContainerType = company.State.Properties.GetType();
-      var propsContainer = company.State.Properties;
+        var settings = centrvd.KFIntegration.Module.Company.PublicFunctions.Module.Remote.GetKFMarkersSettings();
+        var colorMap = new Dictionary<Nullable<Enumeration>, Color>
+        {
+          { centrvd.Integration.KFMarkersSettingMarkers.Color.Red, Colors.Common.Red },
+          { centrvd.Integration.KFMarkersSettingMarkers.Color.Yellow, Colors.Common.Yellow },
+          { centrvd.Integration.KFMarkersSettingMarkers.Color.Green, Colors.Common.Green }
+        };
+
+        // Получаем тип контейнера свойств
+        var propsContainerType = company.State.Properties.GetType();
+        var propsContainer = company.State.Properties;
 
       // Получаем ВСЕ свойства, включая из интерфейсов
       var companyType = company.GetType();
@@ -184,63 +194,75 @@ namespace sberdev.SBContracts.Server
         .Select(g => g.First())
         .ToList();
 
-      foreach (var propState in focusMarkers)
-      {
-        try
+        foreach (var propState in focusMarkers)
         {
-          if (propState == null)
-            continue;
+          try
+          {
+            if (propState == null)
+              continue;
 
-          // Находим соответствующее свойство состояния
-          var matchingStateProp = propsContainerType
-            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-            .FirstOrDefault(pi => ReferenceEquals(pi.GetValue(propsContainer), propState));
+            // Находим соответствующее свойство состояния
+            var matchingStateProp = propsContainerType
+              .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+              .FirstOrDefault(pi => ReferenceEquals(pi.GetValue(propsContainer), propState));
 
-          if (matchingStateProp == null)
-            continue;
+            if (matchingStateProp == null)
+              continue;
 
-          var propertyName = matchingStateProp.Name;
+            var propertyName = matchingStateProp.Name;
 
-          // Ищем в расширенном списке свойств
-          var companyValueProp = uniqueProps
-            .FirstOrDefault(pi => pi.Name.Equals(propertyName, StringComparison.Ordinal));
+            // Ищем в расширенном списке свойств
+            var companyValueProp = uniqueProps
+              .FirstOrDefault(pi => pi.Name.Equals(propertyName, StringComparison.Ordinal));
 
-          if (companyValueProp == null)
-            continue;
+            if (companyValueProp == null)
+              continue;
 
-          // Получаем значение
-          var markerValue = companyValueProp.GetValue(company);
-          if (markerValue == null)
-            continue;
+            // Получаем значение
+            var markerValue = companyValueProp.GetValue(company);
+            var displayName = GetPropertyDisplayName(propertyName);
 
-          var displayValue = markerValue.ToString() == "Yes" ? "Да" : "Нет";
-          var displayName = GetPropertyDisplayName(propertyName);
+            if (markerValue == null)
+            {
+              noValueMarkers.Add(displayName);
+              continue;
+            }
 
-          if (propState.HighlightColor == Colors.Empty)
-            emptyColorMarkers.Add($"{displayName}: {displayValue}");
-          else
-            coloredMarkers.Add($"{displayName}: {displayValue}");
+            var displayValue = markerValue.ToString() == "Yes" ? "Да" : markerValue.ToString() == "No" ? "Нет" : markerValue.ToString();
+            var color = GetMarkerColor(propertyName, (Enumeration?)markerValue, colorMap, settings);
+
+            if (color == Colors.Common.Red)
+              redMarkers.Add($"{displayName}: {displayValue}");
+            else if (color == Colors.Common.Yellow)
+              yellowMarkers.Add($"{displayName}: {displayValue}");
+          }
+          catch (Exception ex)
+          {
+            Logger.Error($"Ошибка при обработке маркера '{propState?.ToString() ?? "[null]"}'", ex);
+          }
         }
-        catch (Exception ex)
+
+        // Выводим результаты
+        foreach (var marker in redMarkers)
         {
-          Logger.Error($"Ошибка при обработке маркера '{propState?.ToString() ?? "[null]"}'", ex);
+          var block = info.AddBlock();
+          block.AddLabel(marker);
+          block.AddLineBreak();
         }
-      }
 
-      // Выводим результаты
-      foreach (var marker in coloredMarkers)
-      {
-        var block = info.AddBlock();
-        block.AddLabel(marker);
-        block.AddLineBreak();
-      }
+        foreach (var marker in yellowMarkers)
+        {
+          var block = info.AddBlock();
+          block.AddLabel(marker);
+          block.AddLineBreak();
+        }
 
-      if (emptyColorMarkers.Any())
-      {
-        var block = info.AddBlock();
-        block.AddLabel(string.Join(", ", emptyColorMarkers));
-        block.AddLineBreak();
-      }
+        if (noValueMarkers.Any())
+        {
+          var block = info.AddBlock();
+          block.AddLabel(string.Join(", ", noValueMarkers));
+          block.AddLineBreak();
+        }
 
       return info;
     }
@@ -262,20 +284,40 @@ namespace sberdev.SBContracts.Server
     }
 
     // Вспомогательная функция для получения отображаемого имени свойства
-    private string GetFocusPropertyDisplayName(string propertyName)
-    {
-      var displayNames = new Dictionary<string, string>
+      private string GetFocusPropertyDisplayName(string propertyName)
       {
-        { "IsResident", "Резидент РФ" },
-        { "IsRoaming", "Роуминговая компания" },
-        { "HasEDS", "Наличие ЭЦП" },
-        // Добавьте другие маркеры
-      };
-      
-      return displayNames.ContainsKey(propertyName)
-        ? displayNames[propertyName]
-        : propertyName;
-    }
+        var displayNames = new Dictionary<string, string>
+        {
+          { "IsResident", "Резидент РФ" },
+          { "IsRoaming", "Роуминговая компания" },
+          { "HasEDS", "Наличие ЭЦП" },
+          // Добавьте другие маркеры
+        };
+
+        return displayNames.ContainsKey(propertyName)
+          ? displayNames[propertyName]
+          : propertyName;
+      }
+
+      // Получить цвет маркера из настроек Контур.Фокус
+      private Color GetMarkerColor(string propertyName, Enumeration? propertyValue,
+                                   Dictionary<Nullable<Enumeration>, Color> colorMap,
+                                   centrvd.Integration.IKFMarkersSetting settings)
+      {
+        if (settings == null)
+          return Colors.Empty;
+
+        var markerSetting = SBContracts.KFMarkersSettings.As(settings).Markers
+          .FirstOrDefault(marker =>
+                               (marker.Name?.ToString() == propertyName ||
+                                marker.Name?.ToString() == propertyName.Replace("SberDev", "")) &&
+                               marker.Value == propertyValue);
+        Color highlightColor;
+        if (markerSetting != null && markerSetting.Color.HasValue && colorMap.TryGetValue(markerSetting.Color, out highlightColor))
+          return highlightColor;
+
+        return Colors.Empty;
+      }
     
     public override List<Sungero.Docflow.IApprovalRuleBase> GetApprovalRules()
     {
