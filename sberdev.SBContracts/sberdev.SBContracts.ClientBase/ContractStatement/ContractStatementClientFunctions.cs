@@ -20,12 +20,18 @@ namespace sberdev.SBContracts.Client
       {
         if (_obj.InvoiceSberDev.TotalAmount != null)
         {
-          if (_obj.InvoiceSberDev.TotalAmount.Value != _obj.TotalAmount.Value)
+          if (_obj.InvoiceSberDev.TotalAmount != _obj.TotalAmount)
             _obj.InvoiceSberDev.TotalAmount = _obj.TotalAmount;
           if (_obj.InvoiceSberDev.Currency != _obj.Currency)
             _obj.Currency = _obj.Currency;
+          
+          Dialogs.ShowMessage("Информация обновлена!");
         }
+        else
+          Dialogs.ShowMessage("Сумма в счете нулевая!");
       }
+      else
+        Dialogs.ShowMessage("Не указан входящий счет!");
     }
   }
 }
