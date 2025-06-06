@@ -82,7 +82,7 @@ namespace sberdev.SBContracts.Client
 
     public virtual bool CanUnblockAttachSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      return Sungero.Company.Employees.Current.IncludedIn(Roles.GetAll(r => r.Sid == SberContracts.PublicConstants.Module.AdminButtonsUserRoleGuid).FirstOrDefault());
+      return Sungero.Company.Employees.Current.IncludedIn(Roles.GetAll(r => r.Sid == SberContracts.PublicConstants.Module.AdminButtonsUserRoleGuid).FirstOrDefault()) == true;
     }
 
     public override void Approved(Sungero.Workflow.Client.ExecuteResultActionArgs e)
