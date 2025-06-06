@@ -502,4 +502,7 @@
   <data name="Resource_3f253bd3590842ada686d2a20d22f389" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_Unprofitable" xml:space="preserve">
+    <value>Деятельность предприятия убыточна</value>
+  </data>
 </root>

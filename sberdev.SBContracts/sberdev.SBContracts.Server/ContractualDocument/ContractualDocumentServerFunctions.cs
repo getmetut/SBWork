@@ -5,6 +5,9 @@ using Sungero.Core;
 using Sungero.CoreEntities;
 using sberdev.SBContracts.ContractualDocument;
 using sberdev.SberContracts;
+using System.Reflection;
+using Sungero.Domain.Shared;  // чтобы видеть IPropertyState
+
 
 namespace sberdev.SBContracts.Server
 {
@@ -141,64 +144,104 @@ namespace sberdev.SBContracts.Server
     }
     
     #region Прочие функции
-      
+    
     [Public]
     public StateView ShowLegalInfo(StateView info)
     {
       var cp = _obj.Counterparty;
-      
-      // Определяем, какой список маркеров использовать
+      var company = SBContracts.Companies.As(cp);
+      if (company == null)
+        return info;
+
+      // Выбираем список маркеров в зависимости от типа договора
       var focusMarkers = (_obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
-        ? PublicFunctions.Company.GetProfitableFocusMarkers(Companies.As(cp))
-        : PublicFunctions.Company.GetAllFocusMarkers(Companies.As(cp));
+        ? PublicFunctions.Company.GetProfitableFocusMarkers(company)
+        : PublicFunctions.Company.GetAllFocusMarkers(company);
+
+      var coloredMarkers = new List<string>();
+      var emptyColorMarkers = new List<string>();
+
+      // Получаем тип контейнера свойств
+      var propsContainerType = company.State.Properties.GetType();
+      var propsContainer = company.State.Properties;
+
+      // Получаем ВСЕ свойства, включая из интерфейсов
+      var companyType = company.GetType();
+      var allCompanyProps = new List<PropertyInfo>();
       
-      var coloredMarkers = new List<string>(); // Для красных и желтых маркеров
-      var emptyColorMarkers = new List<string>(); // Для бесцветных маркеров
+      // Добавляем свойства самого типа
+      allCompanyProps.AddRange(companyType.GetProperties(BindingFlags.Instance | BindingFlags.Public));
       
-      // Получаем состояние свойств контрагента
-      var cpPropsType = cp.State.Properties.GetType();
-      
-      foreach (var marker in focusMarkers)
+      // Добавляем свойства из всех интерфейсов
+      foreach (var interfaceType in companyType.GetInterfaces())
       {
-        // Получаем IPropertyState для маркера
-        var propState = cpPropsType.GetProperty(marker.ToString())?.GetValue(cp.State.Properties) as Sungero.Domain.Shared.IPropertyState;
-        
-        if (propState != null)
-        {
-          // Получаем значение маркера  
-          var markerValue = cp.GetType().GetProperty(marker.ToString())?.GetValue(cp);
-          var displayValue = markerValue?.ToString() == "Yes" ? "Да" : "Нет";
-          var displayName = GetPropertyDisplayName(marker.ToString());
-          
-          // Проверяем цвет
-          if (propState.HighlightColor == Colors.Empty)
-          {
-            emptyColorMarkers.Add($"{displayName}: {displayValue}");
-          }
-          else
-          {
-            // Красный или желтый цвет
-            coloredMarkers.Add($"{displayName}: {displayValue}");
-          }
-        }
+        allCompanyProps.AddRange(interfaceType.GetProperties());
       }
       
-      // Выводим красные и желтые маркеры по отдельности
+      // Убираем дубликаты по имени
+      var uniqueProps = allCompanyProps
+        .GroupBy(p => p.Name)
+        .Select(g => g.First())
+        .ToList();
+
+      foreach (var propState in focusMarkers)
+      {
+        try
+        {
+          if (propState == null)
+            continue;
+
+          // Находим соответствующее свойство состояния
+          var matchingStateProp = propsContainerType
+            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+            .FirstOrDefault(pi => ReferenceEquals(pi.GetValue(propsContainer), propState));
+
+          if (matchingStateProp == null)
+            continue;
+
+          var propertyName = matchingStateProp.Name;
+
+          // Ищем в расширенном списке свойств
+          var companyValueProp = uniqueProps
+            .FirstOrDefault(pi => pi.Name.Equals(propertyName, StringComparison.Ordinal));
+
+          if (companyValueProp == null)
+            continue;
+
+          // Получаем значение
+          var markerValue = companyValueProp.GetValue(company);
+          if (markerValue == null)
+            continue;
+
+          var displayValue = markerValue.ToString() == "Yes" ? "Да" : "Нет";
+          var displayName = GetPropertyDisplayName(propertyName);
+
+          if (propState.HighlightColor == Colors.Empty)
+            emptyColorMarkers.Add($"{displayName}: {displayValue}");
+          else
+            coloredMarkers.Add($"{displayName}: {displayValue}");
+        }
+        catch (Exception ex)
+        {
+          Logger.Error($"Ошибка при обработке маркера '{propState?.ToString() ?? "[null]"}'", ex);
+        }
+      }
+
+      // Выводим результаты
       foreach (var marker in coloredMarkers)
       {
         var block = info.AddBlock();
         block.AddLabel(marker);
         block.AddLineBreak();
       }
-      
-      // Выводим бесцветные маркеры одной строкой в конце
+
       if (emptyColorMarkers.Any())
       {
         var block = info.AddBlock();
         block.AddLabel(string.Join(", ", emptyColorMarkers));
         block.AddLineBreak();
       }
-      
+
       return info;
     }
 

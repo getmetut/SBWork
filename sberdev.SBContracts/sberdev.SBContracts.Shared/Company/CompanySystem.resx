@@ -523,4 +523,7 @@
   <data name="Control_5ed11931c8af41cdbe667b2be9aa006f_EmptyText" xml:space="preserve">
     <value>Информация о менеджере, контакты, иная информация для отображения в реестре</value>
   </data>
+  <data name="Property_Unprofitable" xml:space="preserve">
+    <value>The company's activities are unprofitable</value>
+  </data>
 </root>
