@@ -18,12 +18,11 @@ namespace sberdev.SBContracts.Client
     {
       if (_obj.InvoiceSberDev != null)
       {
-        if (_obj.InvoiceSberDev.TotalAmount != null)
+        var invoice = _obj.InvoiceSberDev;
+        if (invoice.TotalAmount != null)
         {
-          if (_obj.InvoiceSberDev.TotalAmount != _obj.TotalAmount)
-            _obj.InvoiceSberDev.TotalAmount = _obj.TotalAmount;
-          if (_obj.InvoiceSberDev.Currency != _obj.Currency)
-            _obj.Currency = _obj.Currency;
+            _obj.TotalAmount = invoice.TotalAmount;
+            _obj.Currency = invoice.Currency;
           
           Dialogs.ShowMessage("Информация обновлена!");
         }
