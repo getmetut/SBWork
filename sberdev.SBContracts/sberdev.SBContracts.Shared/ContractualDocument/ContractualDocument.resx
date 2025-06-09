@@ -73,4 +73,13 @@
   <data name="PurchComNumMask" xml:space="preserve">
     <value>The value must be 4 digits or match the mask NNN.N (example: 123.4).</value>
   </data>
+  <data name="TitleCriticalMarkers" xml:space="preserve">
+    <value>Critical markers</value>
+  </data>
+  <data name="TitleWarningMarkers" xml:space="preserve">
+    <value>Warning markers</value>
+  </data>
+  <data name="TitleBlankMarkers" xml:space="preserve">
+    <value>Blank markers</value>
+  </data>
 </root>

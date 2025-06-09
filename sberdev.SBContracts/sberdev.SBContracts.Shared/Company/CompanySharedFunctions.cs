@@ -79,7 +79,7 @@ namespace sberdev.SBContracts.Shared
     {
       return new List<Sungero.Domain.Shared.IPropertyState>()
       {
-        company.State.Properties.UpBankruptcy, company.State.Properties.GainDown,
+        company.State.Properties.RelOrgToLiquid, company.State.Properties.GainDown,
         company.State.Properties.Premium, company.State.Properties.TaxesAndFees,
         company.State.Properties.PledgedProperty, company.State.Properties.CreditPayments,
         company.State.Properties.MassRegistrList, company.State.Properties.TaxArrears,
@@ -165,19 +165,16 @@ namespace sberdev.SBContracts.Shared
     {
       return new List<Sungero.Domain.Shared.IPropertyState>()
       {
-        company.State.Properties.UpBankruptcy, company.State.Properties.GainDown,
-        company.State.Properties.Premium, company.State.Properties.TaxesAndFees,
+        company.State.Properties.OrgBlocking, company.State.Properties.RelOrgToLiquid,
+        company.State.Properties.RelOrgBankrupt, company.State.Properties.Unprofitable,
+        company.State.Properties.TaxArrears, company.State.Properties.CaseAmountTo,
+        company.State.Properties.ExecCaseAmount, company.State.Properties.Bankruptcy,
+        company.State.Properties.BankruptcyTo, company.State.Properties.BankruptcyEnd,
+        company.State.Properties.ArbCaseTo, company.State.Properties.BankruptcyTo,
+        company.State.Properties.ToLiquidation, company.State.Properties.HeadBankrupt,
+        company.State.Properties.HeadDisqual, company.State.Properties.GainDown,
         company.State.Properties.PledgedProperty, company.State.Properties.CreditPayments,
-        company.State.Properties.MassRegistrList, company.State.Properties.TaxArrears,
-        company.State.Properties.OrgBlocking, company.State.Properties.Unprofitable,
-        company.State.Properties.HeadInfo, company.State.Properties.BankruptcyTo,
-        company.State.Properties.BankruptcyEnd, company.State.Properties.ToBankruptcy,
-        company.State.Properties.HeadBankrupt, company.State.Properties.HeadDisqual,
-        company.State.Properties.CaseAmountFrom, company.State.Properties.CaseAmountTo
-        // m1004; Исполнительные производства (наложение ареста)
-        // m1006; Исполнительные производства (взыскание заложенного имущества)
-        // s1008; Исп. пр-ва. Сумма (в рублях) найденных исполнительных производств,
-        // предметом которых являются страховые взносы, в отношении организаций со схожими реквизитами (всего)
+        company.State.Properties.TaxesAndFees, company.State.Properties.Seizure
       };
     }
 
