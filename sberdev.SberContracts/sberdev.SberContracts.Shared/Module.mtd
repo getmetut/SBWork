@@ -1034,7 +1034,7 @@
   "SharedAssemblyName": "sberdev.SberContracts.Shared",
   "SharedNamespace": "sberdev.SberContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.3.0.1",
+  "Version": "5.3.0.6",
   "Widgets": [
     {
       "NameGuid": "c2f21ab6-4272-410e-a676-52af22433fd1",

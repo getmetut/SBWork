@@ -20,12 +20,18 @@ namespace sberdev.SberContracts.Shared
       {
         elem.IsRequired = false;
       }
-      
+
       _obj.State.Properties.CalculationFlagBaseSberDev.IsVisible = true;
       _obj.State.Properties.CalculationDistributeBaseSberDev.IsVisible = true;
       _obj.State.Properties.CalculationBaseSberDev.IsVisible = true;
       _obj.State.Properties.CalculationResidualAmountBaseSberDev.IsVisible = true;
       _obj.State.Properties.CalculationAmountBaseSberDev.IsVisible = true;
+      
+      _obj.State.Properties.CalculationFlagBaseSberDev.IsEnabled = true;
+      _obj.State.Properties.CalculationDistributeBaseSberDev.IsEnabled = true;
+      _obj.State.Properties.CalculationBaseSberDev.IsEnabled = true;
+      _obj.State.Properties.CalculationResidualAmountBaseSberDev.IsEnabled = true;
+      _obj.State.Properties.CalculationAmountBaseSberDev.IsEnabled = true;
 
       var Purchaser = Roles.GetAll(r => r.Sid == Constants.Module.PurchaserBySing).FirstOrDefault();
       if (Purchaser != null)
