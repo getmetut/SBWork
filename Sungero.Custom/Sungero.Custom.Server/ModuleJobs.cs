@@ -33,8 +33,9 @@ namespace Sungero.Custom.Server
       }
     }
     
-    private void GenAccesRef(long UsID, long PdrID, bool Edit)
+    private string GenAccesRef(long UsID, long PdrID, bool Edit)
     {
+      string log = "";
       var us = Sungero.Company.Employees.Get(UsID);
       var Departament = Sungero.Company.Departments.Get(PdrID);
       var tasks = new List<System.Threading.Tasks.Task>();
@@ -43,9 +44,11 @@ namespace Sungero.Custom.Server
       {
         foreach (var elem in Departament.RecipientLinks)
         {
+          log += "В обработке сотрудник: " + elem.Id.ToString();
           if (Sungero.Company.Employees.Is(elem.Member))
           {
             var Tasks = PublicFunctions.Module.GetListTask(elem.Member.Id, us, Edit);
+            log += "Задач на обрабтку: " + Tasks.Count.ToString();
             if (Tasks.Count > 0)
             {
               foreach (var task in Tasks)
@@ -64,12 +67,14 @@ namespace Sungero.Custom.Server
                   
                   RefAcc.Name = us.Name + " => " + task.Subject;
                   RefAcc.Save();
+                  log += "Создана запись в справочнике: " + RefAcc.Name.ToString();
                 }
               }
             }
           }
         }
       }
+      return log;
     }
 
     /// <summary>
@@ -77,27 +82,35 @@ namespace Sungero.Custom.Server
     /// </summary>
     public virtual void JobAddAccesToUser()
     {
+      string logall = Calendar.Now.ToString();
       var requestList = Custom.RequestAccesTaskToUses.GetAll(r => r.Status == Custom.RequestAccesTaskToUs.Status.Active).ToArray();
+      try
+      {
       if (requestList.Count() > 0)
       {
         foreach (var req in requestList)
         {
+          logall += '\n' + "Получена заявка на выдачу прав: " + req.Name.ToString();
           GenAccesRef(req.Employee.Id, req.Department.Id, req.EditAcces.Value);
         }
       }
 
       //======================================================================================
-      
+      logall += '\n' + "Выдача прав по заявкам завершена: " + Calendar.Now.ToString();
+      logall += '\n' + "Начало обработки справочника: " + Calendar.Now.ToString();
       var RefAcc = Custom.AccesUserToTasks.GetAll(t => t.Control == false).ToList();
+      logall += '\n' + "Записей: " + RefAcc.Count.ToString();
       if (RefAcc.Count > 0)
       {
         foreach (var str in RefAcc)
         {
           var task = str.Task;
+          logall += '\n' + "В работе задача: " + task.Id.ToString();
           foreach (var prop in task.State.Properties)
           {
             prop.IsRequired = false;
           }
+          
           string log = "";
           var us = str.Recipient;
           var DefAccBool = str.EditAcces.HasValue ? str.EditAcces.Value : false;
@@ -134,10 +147,17 @@ namespace Sungero.Custom.Server
               }
             }
           }
+          logall += '\n' + "ЛОГ: " + log.ToString();
           str.Control = true;
           str.HistoryNote = log;
           str.Save();
         }
+      }
+      Logger.Debug(logall);
+      }
+      catch (Exception er)
+      {
+        Logger.Debug("ЗАВЕРШЕНИЕ ФП с ошибкой: " + logall + '\n' + er.Message.ToString());
       }
     }
 
