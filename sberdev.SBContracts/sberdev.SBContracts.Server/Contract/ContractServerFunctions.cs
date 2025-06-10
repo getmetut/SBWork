@@ -116,6 +116,9 @@ namespace sberdev.SBContracts.Server
       documentBlock.AddLabel(noteText);
       documentBlock.AddLabel(note);
       
+      if (_obj.IsNeedLegalInfoSberDev.HasValue && _obj.IsNeedLegalInfoSberDev.Value)
+        return PublicFunctions.ContractualDocument.ShowLegalInfo(_obj, documentSummary);
+      
       return documentSummary;
     }
     
