@@ -2012,19 +2012,6 @@
       "Parameters": [
         {
           "Name": "company",
-          "ParameterType": "global::centrvd.KFIntegration.ICompany",
-          "ParameterTypeFullName": "centrvd.KFIntegration.ICompany, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::System.Collections.Generic.List<Sungero.Domain.Shared.IPropertyState>",
-      "ReturnTypeFullName": "System.Collections.Generic.List"
-    },
-    {
-      "Name": "GetProfitableFocusMarkers",
-      "Parameters": [
-        {
-          "Name": "company",
           "ParameterType": "global::sberdev.SBContracts.ICompany",
           "ParameterTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
         }

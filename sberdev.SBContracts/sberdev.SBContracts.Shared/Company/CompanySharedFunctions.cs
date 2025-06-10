@@ -75,30 +75,6 @@ namespace sberdev.SBContracts.Shared
     /// <summary>
     /// Возвращает список свойств маркеров Контур.Фокус
     /// </summary>
-    public static List<Sungero.Domain.Shared.IPropertyState> GetProfitableFocusMarkers(centrvd.KFIntegration.ICompany company)
-    {
-      return new List<Sungero.Domain.Shared.IPropertyState>()
-      {
-        company.State.Properties.RelOrgToLiquid, company.State.Properties.GainDown,
-        company.State.Properties.Premium, company.State.Properties.TaxesAndFees,
-        company.State.Properties.PledgedProperty, company.State.Properties.CreditPayments,
-        company.State.Properties.MassRegistrList, company.State.Properties.TaxArrears,
-        company.State.Properties.OrgBlocking, company.State.Properties.Unprofitable,
-        company.State.Properties.HeadInfo, company.State.Properties.BankruptcyTo,
-        company.State.Properties.BankruptcyEnd, company.State.Properties.ToBankruptcy,
-        company.State.Properties.HeadBankrupt, company.State.Properties.HeadDisqual,
-        company.State.Properties.CaseAmountFrom, company.State.Properties.CaseAmountTo
-        // m1004; Исполнительные производства (наложение ареста)
-        // m1006; Исполнительные производства (взыскание заложенного имущества)
-        // s1008; Исп. пр-ва. Сумма (в рублях) найденных исполнительных производств,
-        // предметом которых являются страховые взносы, в отношении организаций со схожими реквизитами (всего)
-      };
-    }
-    
-        [Public]
-    /// <summary>
-    /// Возвращает список свойств маркеров Контур.Фокус
-    /// </summary>
     public static List<Sungero.Domain.Shared.IPropertyState> GetAllFocusMarkers(sberdev.SBContracts.ICompany company)
     {
       return new List<Sungero.Domain.Shared.IPropertyState>()
