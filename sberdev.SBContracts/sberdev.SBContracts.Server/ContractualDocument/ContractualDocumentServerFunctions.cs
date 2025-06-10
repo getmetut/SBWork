@@ -391,7 +391,7 @@ namespace sberdev.SBContracts.Server
         { "MarkerQ2035", "Marker Q2035" },
         { "MarkerY3601BChangedDate", "Marker Y3601B ChangedDate" },
         { "ArbPractice", "Наличие арбитражной практики" },
-        { "RelOrgExecCases", "Значительная сумма исполнительных производств по связанным организациям" }
+        { "RelOrgExecCases", "Значительная сумма исполнительных производств по связанным организациям" },
         { "LowAvgHeadSberDev", "Низкая среднесписочная численность работников" }
       };
       
