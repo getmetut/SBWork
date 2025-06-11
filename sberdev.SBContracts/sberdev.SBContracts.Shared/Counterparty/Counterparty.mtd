@@ -359,6 +359,28 @@
       "ReturnTypeFullName": "System.Double"
     },
     {
+      "Name": "CalculateExpendableTotalAmount",
+      "Parameters": [
+        {
+          "Name": "counterparty",
+          "ParameterType": "global::sberdev.SBContracts.ICounterparty",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICounterparty, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "dateFrom",
+          "ParameterType": "global::System.Nullable<global::System.DateTime>",
+          "ParameterTypeFullName": "System.Nullable"
+        },
+        {
+          "Name": "dateTo",
+          "ParameterType": "global::System.Nullable<global::System.DateTime>",
+          "ParameterTypeFullName": "System.Nullable"
+        }
+      ],
+      "ReturnType": "global::System.Double",
+      "ReturnTypeFullName": "System.Double"
+    },
+    {
       "Name": "CalculateProfitableTotalAmount",
       "Parameters": [
         {
@@ -371,7 +393,7 @@
       "ReturnTypeFullName": "System.Double"
     },
     {
-      "Name": "CalculateTotalAmount",
+      "Name": "CalculateProfitableTotalAmount",
       "Parameters": [
         {
           "Name": "counterparty",

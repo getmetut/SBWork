@@ -252,11 +252,14 @@ namespace sberdev.SBContracts.Server
       block.AddLabel(sberdev.SBContracts.ContractualDocuments.Resources.TitleCriticalMarkers, blockTitleStyle);
       block.AddLineBreak();
       
-      foreach (var marker in redMarkers)
+      if (redMarkers.Count > 0)
+        foreach (var marker in redMarkers)
       {
         block.AddLabel(marker);
         block.AddLineBreak();
       }
+      else
+        block.AddLabel("Отсутсвуют");
       
       block = info.AddBlock();
       blockTitleStyle = StateBlockLabelStyle.Create();
@@ -265,11 +268,14 @@ namespace sberdev.SBContracts.Server
       block.AddLabel(sberdev.SBContracts.ContractualDocuments.Resources.TitleWarningMarkers, blockTitleStyle);
       block.AddLineBreak();
 
-      foreach (var marker in yellowMarkers)
+      if (yellowMarkers.Count > 0)
+        foreach (var marker in yellowMarkers)
       {
         block.AddLabel(marker);
         block.AddLineBreak();
       }
+      else
+        block.AddLabel("Отсутсвуют");
       
       block = info.AddBlock();
       blockTitleStyle = StateBlockLabelStyle.Create();
@@ -283,7 +289,9 @@ namespace sberdev.SBContracts.Server
         block.AddLabel(string.Join(", ", noValueMarkers));
         block.AddLineBreak();
       }
-
+      else
+        block.AddLabel("Отсутсвуют");
+      
       return info;
     }
     
@@ -383,13 +391,13 @@ namespace sberdev.SBContracts.Server
         { "RelOrgActivePub", "Активность в государственных торгах у связанных организаций" },
         { "RelOrgOld", "Значительная часть связанных организаций существует более 5 лет" },
         { "RelOrgAccount", "Наличие бухгалтерской отчетности у связанных организаций" },
-        { "MarkerQ2031ChangedDate", "Marker Q2031 ChangedDate" },
-        { "MarkerQ2032ChangedDate", "Marker Q2032 ChangedDate" },
-        { "MarkerQ2035ChangedDate", "Marker Q2035 ChangedDate" },
-        { "MarkerY3601B", "Marker Y3601B" },
-        { "MarkerQ2031", "Marker Q2031" },
-        { "MarkerQ2035", "Marker Q2035" },
-        { "MarkerY3601BChangedDate", "Marker Y3601B ChangedDate" },
+        { "MarkerQ2031ChangedDate", "" },
+        { "MarkerQ2032ChangedDate", "" },
+        { "MarkerQ2035ChangedDate", "" },
+        { "MarkerY3601B", "" },
+        { "MarkerQ2031", "" },
+        { "MarkerQ2035", "" },
+        { "MarkerY3601BChangedDate", "" },
         { "ArbPractice", "Наличие арбитражной практики" },
         { "RelOrgExecCases", "Значительная сумма исполнительных производств по связанным организациям" },
         { "LowAvgHeadSberDev", "Низкая среднесписочная численность работников" }

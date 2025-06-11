@@ -17,11 +17,8 @@ namespace sberdev.SBContracts.Module.Integration.Server
       var dateFrom = Calendar.Now.BeginningOfYear();
       var dateTo = Calendar.Now.EndOfYear();
       var allCounterparties = contracts.Select(c => c.Counterparty).Distinct().ToList();
-      var filteredParties = allCounterparties.Where(cp =>
-                                                    {
-                                                      var totalAmount = PublicFunctions.Counterparty.CalculateTotalAmount(SBContracts.Counterparties.As(cp), dateFrom, dateTo);
-                                                      return totalAmount >= 500000;
-                                                    }).ToList();
+      var filteredParties = allCounterparties.Where(cp => PublicFunctions.Counterparty.CalculateProfitableTotalAmount(SBContracts.Counterparties.As(cp), dateFrom, dateTo) > 100000
+                                                   || PublicFunctions.Counterparty.CalculateExpendableTotalAmount(SBContracts.Counterparties.As(cp), dateFrom, dateTo) > 0).ToList();
       var partiesChecked = parties.Where(q => SBContracts.Companies.As(q).ActiveLicense.HasValue).ToList();
       parties = parties.Where(q => q.Status == Sungero.CoreEntities.DatabookEntry.Status.Active && filteredParties.Contains(q));
       var partiesList = parties.ToList();
