@@ -72,7 +72,7 @@ namespace sberdev.SBContracts
         var allCounterparties = contracts.Select(c => c.Counterparty).Distinct().ToList();
         var filteredParties = allCounterparties.Where(cp =>
                                                       {
-                                                        var totalAmount = PublicFunctions.Counterparty.CalculateProfitableTotalAmount(SBContracts.Counterparties.As(cp), dateFrom, dateTo)
+                                                        var totalAmount = PublicFunctions.Counterparty.CalculateProfitableTotalAmount(SBContracts.Counterparties.As(cp)) //, dateFrom, dateTo)
                                                           + PublicFunctions.Counterparty.CalculateExpendableTotalAmount(SBContracts.Counterparties.As(cp), dateFrom, dateTo);
                                                         return (_filter.AmountLess100k && totalAmount <= 100000 && totalAmount != 0) ||
                                                           (_filter.AmountLess500k && totalAmount > 100000 && totalAmount < 500000) ||
