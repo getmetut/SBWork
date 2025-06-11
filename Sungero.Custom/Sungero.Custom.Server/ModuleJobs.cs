@@ -113,6 +113,8 @@ namespace Sungero.Custom.Server
           
           string log = "";
           var us = str.Recipient;
+          log += "---------------------------------------------" + '\n';
+          log += "В работе сотрудник: " + str.Recipient.Id.ToString() + '\n';
           var DefAccBool = str.EditAcces.HasValue ? str.EditAcces.Value : false;
           var DefAcc = str.EditAcces.HasValue ? (str.EditAcces.Value ? DefaultAccessRightsTypes.Change :  DefaultAccessRightsTypes.Read) : DefaultAccessRightsTypes.Read;
           log += PublicFunctions.Module.AddAccesToObject(task, DefAccBool, us);
@@ -153,11 +155,11 @@ namespace Sungero.Custom.Server
           str.Save();
         }
       }
-      Logger.Debug(logall);
+      //Logger.Debug(logall);
       }
       catch (Exception er)
       {
-        Logger.Debug("ЗАВЕРШЕНИЕ ФП с ошибкой: " + logall + '\n' + er.Message.ToString());
+        //Logger.Debug("ЗАВЕРШЕНИЕ ФП с ошибкой: " + logall + '\n' + er.Message.ToString());
       }
     }
 
