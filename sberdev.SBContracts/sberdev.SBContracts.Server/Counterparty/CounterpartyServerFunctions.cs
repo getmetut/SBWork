@@ -79,13 +79,13 @@ namespace sberdev.SBContracts.Server
                                                                           || c.ContrTypeBaseSberDev == SBContracts.ContractualDocument.ContrTypeBaseSberDev.ExpendProfitSberDev)
                                                                       && (c.LifeCycleState != SBContracts.Contract.LifeCycleState.Terminated && c.LifeCycleState != SBContracts.Contract.LifeCycleState.Obsolete)).ToList();
       if (dateFrom.HasValue && !dateTo.HasValue)
-        contracts = contracts.Where(l => l.DocumentDate > dateFrom).ToList();
+        contracts = contracts.Where(l => l.Created > dateFrom).ToList();
       
       if (dateTo.HasValue && !dateFrom.HasValue)
-        contracts = contracts.Where(l => l.DocumentDate < dateTo).ToList();
+        contracts = contracts.Where(l => l.Created < dateTo).ToList();
       
       if (dateFrom.HasValue && dateTo.HasValue)
-        contracts = contracts.Where(l => l.DocumentDate > dateFrom && l.DocumentDate < dateTo).ToList();
+        contracts = contracts.Where(l => l.Created > dateFrom && l.DocumentDate < dateTo).ToList();
       
       return contracts.Sum(a => a.TotalAmount.GetValueOrDefault());
     }
