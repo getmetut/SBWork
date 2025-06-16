@@ -61,4 +61,10 @@
   <data name="Enum_Operation_Checking" xml:space="preserve">
     <value>Сhecked</value>
   </data>
+  <data name="Enum_Operation_ChangeMarkers" xml:space="preserve">
+    <value>Marker(s) changed</value>
+  </data>
+  <data name="Enum_OperationDetailed_ChangeMarkers" xml:space="preserve">
+    <value>New values: {0}</value>
+  </data>
 </root>
