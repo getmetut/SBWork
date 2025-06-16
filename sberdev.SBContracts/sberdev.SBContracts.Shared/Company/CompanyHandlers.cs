@@ -10,6 +10,11 @@ namespace sberdev.SBContracts
   partial class CompanySharedHandlers
   {
 
+    public override void OrgLiquidatedChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      base.OrgLiquidatedChanged(e);
+    }
+
     public override void HeadCompanyChanged(Sungero.Parties.Shared.CompanyBaseHeadCompanyChangedEventArgs e)
     {
       base.HeadCompanyChanged(e);

@@ -1846,6 +1846,19 @@
   "OperationsClass": "",
   "Properties": [
     {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "1fef04de-dd0f-4440-8dd9-c8e7cda47e07",
+      "Name": "OrgLiquidated",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
+    {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "8e14d1b1-02b8-466c-aed8-a69a4d95c0fa",
       "Name": "HeadCompany",
