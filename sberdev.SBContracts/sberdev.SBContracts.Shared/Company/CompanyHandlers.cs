@@ -51,6 +51,108 @@ namespace sberdev.SBContracts
         if (!_obj.IPSberDev.Value)
           _obj.PersonSberDev = null;
     }
+
+    private void WriteMarkerHistory(string markerName, Enumeration? value)
+    {
+      var operation = new Enumeration("ChangeMarkers");
+      var comment = string.Format("{0}: {1}", markerName, value != null ? value.ToString() : string.Empty);
+      _obj.History.Write(operation, operation, comment);
+    }
+
+    public virtual void OrgBlockingChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.OrgBlocking.LocalizedName, e.NewValue);
+    }
+
+    public virtual void RelOrgToLiquidChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.RelOrgToLiquid.LocalizedName, e.NewValue);
+    }
+
+    public virtual void RelOrgBankruptChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.RelOrgBankrupt.LocalizedName, e.NewValue);
+    }
+
+    public virtual void UnprofitableChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.Unprofitable.LocalizedName, e.NewValue);
+    }
+
+    public virtual void TaxArrearsChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.TaxArrears.LocalizedName, e.NewValue);
+    }
+
+    public virtual void CaseAmountToChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.CaseAmountTo.LocalizedName, e.NewValue);
+    }
+
+    public virtual void ExecCaseAmountChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.ExecCaseAmount.LocalizedName, e.NewValue);
+    }
+
+    public virtual void BankruptcyChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.Bankruptcy.LocalizedName, e.NewValue);
+    }
+
+    public virtual void BankruptcyToChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.BankruptcyTo.LocalizedName, e.NewValue);
+    }
+
+    public virtual void BankruptcyEndChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.BankruptcyEnd.LocalizedName, e.NewValue);
+    }
+
+    public virtual void ArbCaseToChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.ArbCaseTo.LocalizedName, e.NewValue);
+    }
+
+    public virtual void ToLiquidationChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.ToLiquidation.LocalizedName, e.NewValue);
+    }
+
+    public virtual void HeadBankruptChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.HeadBankrupt.LocalizedName, e.NewValue);
+    }
+
+    public virtual void HeadDisqualChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.HeadDisqual.LocalizedName, e.NewValue);
+    }
+
+    public virtual void GainDownChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.GainDown.LocalizedName, e.NewValue);
+    }
+
+    public virtual void PledgedPropertyChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.PledgedProperty.LocalizedName, e.NewValue);
+    }
+
+    public virtual void CreditPaymentsChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.CreditPayments.LocalizedName, e.NewValue);
+    }
+
+    public virtual void TaxesAndFeesChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.TaxesAndFees.LocalizedName, e.NewValue);
+    }
+
+    public virtual void SeizureChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      WriteMarkerHistory(_obj.Info.Properties.Seizure.LocalizedName, e.NewValue);
+    }
     
     static string ModifyCompanyName(string companyName)
     {
