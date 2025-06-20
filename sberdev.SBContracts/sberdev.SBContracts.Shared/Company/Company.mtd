@@ -2125,7 +2125,7 @@
     {
       "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
       "NameGuid": "dbbc36ec-8cda-4970-bce3-656a61f3a93c",
-      "Name": "ArbCaseTo",
+      "Name": "UpArbCaseTo",
       "HandledEvents": [
         "ChangedShared"
       ],
@@ -2177,7 +2177,7 @@
     {
       "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
       "NameGuid": "aed0f010-8a0e-451a-a6d9-91d2a28ca5e2",
-      "Name": "GainDown",
+      "Name": "RelOrgGainDown",
       "HandledEvents": [
         "ChangedShared"
       ],
@@ -2283,7 +2283,8 @@
   ],
   "PublicStructures": [],
   "ResourcesKeys": [
-    "SaveError"
+    "SaveError",
+    "Enum_Operation_ChangeMarkers"
   ],
   "RibbonCardMetadata": {
     "NameGuid": "ef639e70-c25f-4f3d-8500-304139973f89",
