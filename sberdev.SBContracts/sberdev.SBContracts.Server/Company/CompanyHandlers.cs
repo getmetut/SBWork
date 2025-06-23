@@ -63,41 +63,26 @@ namespace sberdev.SBContracts
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
+      #region Тарас
       if (!SBContracts.PublicFunctions.Module.IsSystemUser())
       {
-        bool rezident = true;
-        if (_obj.Nonresident.HasValue)
+        // Проверяем только резидентов
+        bool isResident = !(_obj.Nonresident.HasValue && _obj.Nonresident.Value);
+        
+        if (isResident)
         {
-          if (_obj.Nonresident.Value)
-            rezident = false;
-        }
-        if (rezident)
-        {
-          bool err = false;
-          if (_obj.Account == null)
-            err = true;
-          else
-          {
-            if (_obj.Account.Length < 5)
-              err = true;
-          }
-          if (err)
+          // Проверка банковского счета
+          if (string.IsNullOrEmpty(_obj.Account) || _obj.Account.Length < 5)
           {
             _obj.State.Properties.Account.HighlightColor = Colors.Common.Red;
             e.AddError("Необходимо заполнить Счет в банковских реквизитах!");
           }
           
-          if (_obj.HeadCompany == null)
+          // Проверка головной организации для филиалов
+          if (_obj.HeadCompany == null &&
+              (!_obj.HeadOrgSDev.HasValue || !_obj.HeadOrgSDev.Value))
           {
-            if (_obj.HeadOrgSDev.HasValue)
-            {
-              if (!_obj.HeadOrgSDev.Value)
-                e.AddError("Добавление филиала без указания головной организации - запрещано.");
-            }
-            else
-            {
-              e.AddError("Добавление филиала без указания головной организации - запрещано.");
-            }
+            e.AddError("Добавление филиала без указания головной организации - запрещено.");
           }
         }
       }
@@ -121,6 +106,19 @@ namespace sberdev.SBContracts
             _obj.LegalName = NewName;
           }
         }
+      }
+      #endregion
+      
+      var changedMarkers = _obj.MarkersChanges.Where(m => m.ChangeDateTime.Value.Date == Calendar.Now.Date);
+      if (changedMarkers.Any())
+      {
+        foreach (var marker in changedMarkers)
+        {
+          var operation = new Enumeration("ChangeMarkers");
+          string comment = String.Format("{0}: {1} -> {2}", marker.Name.Value.Value, marker.OldValue.Value.Value, marker.NewValue.Value.Value);
+          _obj.History.Write(operation, operation, comment);
+        }
+        _obj.FocusCheckedSberDev = false;
       }
     }
   }

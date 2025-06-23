@@ -696,6 +696,34 @@ namespace sberdev.SBContracts.Server
     #region Прочее
     
     /// <summary>
+    /// Сравнить значение свойства объекта
+    /// </summary>
+    /// <param name="obj">Объект</param>
+    /// <param name="propertyName">Имя свойства</param>
+    /// <param name="newValue">Значение для сравнения</param>
+    [Public]
+    public bool IsPropertyValueChanged(object obj, string propertyName, object newValue)
+    {
+      var propertyInfo = obj.GetType().GetProperty(propertyName);
+      if (propertyInfo == null) return false;
+      
+      var currentValue = propertyInfo.GetValue(obj);
+      return !Equals(currentValue, newValue);
+    }
+    
+    /// <summary>
+    /// Получить свойство объекта по имени
+    /// </summary>
+    /// <param name="obj">Объект</param>
+    /// <param name="propertyName">Имя свойства</param>
+    [Public]
+    public object GetPropertyValue(object obj, string propertyName)
+    {
+      var propertyInfo = obj.GetType().GetProperty(propertyName);
+      return propertyInfo?.GetValue(obj);
+    }
+    
+    /// <summary>
     /// Функция послыает запрос на удаление записи блокировки сушности в базу
     /// </summary>
     [Public, Remote]
@@ -1284,7 +1312,7 @@ namespace sberdev.SBContracts.Server
       #endregion
       
       #region Таблицы по контрагентам
-       /*
+      /*
       // Настройки таблиц
       boldRows = new List<int> { 0 }; // Общая настройка для всех таблиц
       columnWidths = new List<int> { 5, 25, 7, 10, 15, 15, 20, 20, 20 };
@@ -1411,7 +1439,7 @@ namespace sberdev.SBContracts.Server
       
       // Удаление всех неиспользуемых плейсхолдеров
       RemovePlaceholders(body, placeholdersToRemove);
-    */
+       */
       #endregion
     }
     #endregion

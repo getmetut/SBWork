@@ -10,11 +10,6 @@ namespace sberdev.SBContracts
   partial class CompanySharedHandlers
   {
 
-    public override void PledgedPropertyChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
-    {
-      base.PledgedPropertyChanged(e);
-    }
-
     public override void HeadCompanyChanged(Sungero.Parties.Shared.CompanyBaseHeadCompanyChangedEventArgs e)
     {
       base.HeadCompanyChanged(e);
@@ -55,21 +50,6 @@ namespace sberdev.SBContracts
       if (_obj.IPSberDev.HasValue)
         if (!_obj.IPSberDev.Value)
           _obj.PersonSberDev = null;
-    }
-
-    public virtual void ArbCaseToChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
-    {
-      WriteMarkerHistory(_obj.Info.Properties.ArbCaseTo.LocalizedName, e.NewValue);
-    }
-
-    public virtual void GainDownChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
-    {
-      WriteMarkerHistory(_obj.Info.Properties.GainDown.LocalizedName, e.NewValue);
-    }
-
-    public virtual void PledgedPropertyChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
-    {
-      WriteMarkerHistory(_obj.Info.Properties.PledgedProperty.LocalizedName, e.NewValue);
     }
     
     static string ModifyCompanyName(string companyName)

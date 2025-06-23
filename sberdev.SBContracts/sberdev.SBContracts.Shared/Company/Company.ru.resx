@@ -62,6 +62,6 @@
     <value>Пользователи не входящие в группу "Делопроизводители" не могут создавать карточки контрагентов.</value>
   </data>
   <data name="Enum_Operation_ChangeMarkers" xml:space="preserve">
-    <value>Изменены маркеры</value>
+    <value>Изменен маркер</value>
   </data>
 </root>

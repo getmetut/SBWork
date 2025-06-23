@@ -743,6 +743,21 @@
       "ReturnTypeFullName": "sberdev.SberContracts.IProductsAndDevices, Sungero.Domain.Interfaces"
     },
     {
+      "Name": "GetPropertyValue",
+      "Parameters": [
+        {
+          "Name": "obj",
+          "ParameterType": "System.Object"
+        },
+        {
+          "Name": "propertyName",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "System.Object"
+    },
+    {
       "Name": "GetSignatureCertificateInfo",
       "Parameters": [
         {
@@ -791,6 +806,26 @@
         }
       ],
       "Placement": "Shared",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
+      "Name": "IsPropertyValueChanged",
+      "Parameters": [
+        {
+          "Name": "obj",
+          "ParameterType": "System.Object"
+        },
+        {
+          "Name": "propertyName",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "newValue",
+          "ParameterType": "System.Object"
+        }
+      ],
       "ReturnType": "global::System.Boolean",
       "ReturnTypeFullName": "System.Boolean"
     },
