@@ -470,7 +470,7 @@
           "ColumnSpan": 1,
           "GroupType": "WithTitleNoBorder",
           "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 11,
+          "RowNumber": 10,
           "RowSpan": 1,
           "Versions": []
         },
@@ -481,7 +481,7 @@
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 12,
+          "RowNumber": 11,
           "RowSpan": 1,
           "Versions": []
         },
@@ -687,7 +687,7 @@
           "GroupType": "WithTitleNoBorder",
           "IsVisible": false,
           "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 10,
+          "RowNumber": 9,
           "RowSpan": 1
         },
         {
@@ -1047,7 +1047,7 @@
           "GroupType": "WithTitleNoBorder",
           "IsVisible": false,
           "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 8,
+          "RowNumber": 7,
           "RowSpan": 1
         },
         {
@@ -1076,9 +1076,8 @@
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "GroupType": "Expander",
-          "IsVisible": false,
           "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "RowNumber": 9,
+          "RowNumber": 8,
           "RowSpan": 1
         },
         {
@@ -1834,25 +1833,6 @@
           "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "ce914e95-8da2-4815-b70c-84b1cdac0788",
-          "Name": "LinkPotencial",
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
-          "HeaderLocation": "Top",
-          "ParentGuid": "b8017e22-88d6-43da-8d6d-8d11917b1dd6",
-          "PropertyGuid": "4270f819-2688-4713-837f-b7bc48fa36c2",
-          "RowNumber": 7,
-          "RowSpan": 1,
-          "Settings": [
-            {
-              "Name": "Height",
-              "Value": 45
-            }
-          ]
         }
       ],
       "IsAncestorMetadata": true,
@@ -2222,6 +2202,7 @@
       "HandledEvents": [
         "AddedShared"
       ],
+      "IsRequired": true,
       "IsShowedInList": false,
       "PreviousPropertyGuid": "e003d9c1-995b-4906-b818-bd234ab0010c"
     },
@@ -2309,6 +2290,7 @@
       "HandledEvents": [
         "ValueInputClient"
       ],
+      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "f2f182bf-6683-4e0f-9475-7175b98ba565"
     },
@@ -2784,15 +2766,6 @@
       ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "098b5c56-c13f-4f7e-ab67-278ed1c5983a"
-    },
-    {
-      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "4270f819-2688-4713-837f-b7bc48fa36c2",
-      "Name": "LinkPotencial",
-      "Code": "LinkPotencial",
-      "Length": 1000,
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
-      "PreviousPropertyGuid": "cb3706f7-782a-4f6e-9df5-e4aae9cb060d"
     }
   ],
   "PublicFunctions": [

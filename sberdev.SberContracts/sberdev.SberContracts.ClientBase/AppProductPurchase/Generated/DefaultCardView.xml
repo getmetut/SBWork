@@ -1,6 +1,729 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
   <ViewName>Default</ViewName>
+<<<<<<< HEAD
+=======
+  <Collection7fb27264717741b9963bb07e536607d6 FormGuid="fa03f748-4397-42ef-bdc2-22119af7bf7f">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">507,-895</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="5">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_PurchasesCollection_Number</property>
+            <property name="FieldName">Number</property>
+            <property name="VisibleIndex">0</property>
+            <property name="Width">49</property>
+            <property name="ActualWidth">7*</property>
+          </property>
+          <property name="Item2" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_PurchasesCollection_Product</property>
+            <property name="FieldName">Product</property>
+            <property name="VisibleIndex">1</property>
+            <property name="Width">120</property>
+            <property name="ActualWidth">17*</property>
+          </property>
+          <property name="Item3" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_PurchasesCollection_PriceUnit</property>
+            <property name="FieldName">PriceUnit</property>
+            <property name="VisibleIndex">2</property>
+            <property name="Width">92</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item4" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_PurchasesCollection_Quantity</property>
+            <property name="FieldName">Quantity</property>
+            <property name="VisibleIndex">3</property>
+            <property name="Width">99</property>
+            <property name="ActualWidth">14*</property>
+          </property>
+          <property name="Item5" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_PurchasesCollection_Article</property>
+            <property name="FieldName">Article</property>
+            <property name="VisibleIndex">4</property>
+            <property name="Width">78</property>
+            <property name="ActualWidth">11*</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collection7fb27264717741b9963bb07e536607d6>
+  <Collectiona6243a7b14c6418ab26e86ef083bb086 FormGuid="fa03f748-4397-42ef-bdc2-22119af7bf7f">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">519,-1144</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="8">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection1_Number</property>
+            <property name="FieldName">Number</property>
+            <property name="VisibleIndex">0</property>
+            <property name="Width">50</property>
+            <property name="ActualWidth">7*</property>
+          </property>
+          <property name="Item2" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection1_Product</property>
+            <property name="FieldName">Product</property>
+            <property name="VisibleIndex">1</property>
+            <property name="Width">129</property>
+            <property name="ActualWidth">18*</property>
+          </property>
+          <property name="Item3" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection1_PriceUnit</property>
+            <property name="FieldName">PriceUnit</property>
+            <property name="VisibleIndex">2</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item4" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection1_PaymentTerms</property>
+            <property name="FieldName">PaymentTerms</property>
+            <property name="VisibleIndex">3</property>
+            <property name="Width">122</property>
+            <property name="ActualWidth">17*</property>
+          </property>
+          <property name="Item5" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection1_DeliveryPer</property>
+            <property name="FieldName">DeliveryPer</property>
+            <property name="VisibleIndex">4</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item6" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection1_Advantages</property>
+            <property name="FieldName">Advantages</property>
+            <property name="VisibleIndex">5</property>
+            <property name="Width">115</property>
+            <property name="ActualWidth">16*</property>
+          </property>
+          <property name="Item7" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection1_Risks</property>
+            <property name="FieldName">Risks</property>
+            <property name="VisibleIndex">6</property>
+            <property name="Width">65</property>
+            <property name="ActualWidth">9*</property>
+          </property>
+          <property name="Item8" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection1_Quantity</property>
+            <property name="FieldName">Quantity</property>
+            <property name="VisibleIndex">7</property>
+            <property name="Width">72</property>
+            <property name="ActualWidth">10*</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collectiona6243a7b14c6418ab26e86ef083bb086>
+  <Collection29c2e9647cee47349ff77a9c1e989d57 FormGuid="fa03f748-4397-42ef-bdc2-22119af7bf7f">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">519,-1342</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="8">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection2_Number</property>
+            <property name="FieldName">Number</property>
+            <property name="VisibleIndex">0</property>
+            <property name="Width">50</property>
+            <property name="ActualWidth">7*</property>
+          </property>
+          <property name="Item2" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection2_Product</property>
+            <property name="FieldName">Product</property>
+            <property name="VisibleIndex">1</property>
+            <property name="Width">129</property>
+            <property name="ActualWidth">18*</property>
+          </property>
+          <property name="Item3" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection2_PriceUnit</property>
+            <property name="FieldName">PriceUnit</property>
+            <property name="VisibleIndex">2</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item4" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection2_PaymentTerms</property>
+            <property name="FieldName">PaymentTerms</property>
+            <property name="VisibleIndex">3</property>
+            <property name="Width">122</property>
+            <property name="ActualWidth">17*</property>
+          </property>
+          <property name="Item5" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection2_DeliveryPer</property>
+            <property name="FieldName">DeliveryPer</property>
+            <property name="VisibleIndex">4</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item6" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection2_Advantages</property>
+            <property name="FieldName">Advantages</property>
+            <property name="VisibleIndex">5</property>
+            <property name="Width">115</property>
+            <property name="ActualWidth">16*</property>
+          </property>
+          <property name="Item7" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection2_Risks</property>
+            <property name="FieldName">Risks</property>
+            <property name="VisibleIndex">6</property>
+            <property name="Width">65</property>
+            <property name="ActualWidth">9*</property>
+          </property>
+          <property name="Item8" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection2_Quantity</property>
+            <property name="FieldName">Quantity</property>
+            <property name="VisibleIndex">7</property>
+            <property name="Width">72</property>
+            <property name="ActualWidth">10*</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collection29c2e9647cee47349ff77a9c1e989d57>
+  <Collection6b289aa25c2841ecbc4c33b4c153ad1f FormGuid="fa03f748-4397-42ef-bdc2-22119af7bf7f">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">519,-1540</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="8">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection3_Number</property>
+            <property name="FieldName">Number</property>
+            <property name="VisibleIndex">0</property>
+            <property name="Width">50</property>
+            <property name="ActualWidth">7*</property>
+          </property>
+          <property name="Item2" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection3_Product</property>
+            <property name="FieldName">Product</property>
+            <property name="VisibleIndex">1</property>
+            <property name="Width">129</property>
+            <property name="ActualWidth">18*</property>
+          </property>
+          <property name="Item3" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection3_PriceUnit</property>
+            <property name="FieldName">PriceUnit</property>
+            <property name="VisibleIndex">2</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item4" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection3_PaymentTerms</property>
+            <property name="FieldName">PaymentTerms</property>
+            <property name="VisibleIndex">3</property>
+            <property name="Width">122</property>
+            <property name="ActualWidth">17*</property>
+          </property>
+          <property name="Item5" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection3_DeliveryPer</property>
+            <property name="FieldName">DeliveryPer</property>
+            <property name="VisibleIndex">4</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item6" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection3_Advantages</property>
+            <property name="FieldName">Advantages</property>
+            <property name="VisibleIndex">5</property>
+            <property name="Width">115</property>
+            <property name="ActualWidth">16*</property>
+          </property>
+          <property name="Item7" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection3_Risks</property>
+            <property name="FieldName">Risks</property>
+            <property name="VisibleIndex">6</property>
+            <property name="Width">65</property>
+            <property name="ActualWidth">9*</property>
+          </property>
+          <property name="Item8" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection3_Quantity</property>
+            <property name="FieldName">Quantity</property>
+            <property name="VisibleIndex">7</property>
+            <property name="Width">72</property>
+            <property name="ActualWidth">10*</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collection6b289aa25c2841ecbc4c33b4c153ad1f>
+  <Collectionf95ba60c9bb84b8eb1427ad428f5227e FormGuid="fa03f748-4397-42ef-bdc2-22119af7bf7f">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">519,-1738</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="8">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection4_Number</property>
+            <property name="FieldName">Number</property>
+            <property name="VisibleIndex">0</property>
+            <property name="Width">50</property>
+            <property name="ActualWidth">7*</property>
+          </property>
+          <property name="Item2" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection4_Product</property>
+            <property name="FieldName">Product</property>
+            <property name="VisibleIndex">1</property>
+            <property name="Width">129</property>
+            <property name="ActualWidth">18*</property>
+          </property>
+          <property name="Item3" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection4_PriceUnit</property>
+            <property name="FieldName">PriceUnit</property>
+            <property name="VisibleIndex">2</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item4" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection4_PaymentTerms</property>
+            <property name="FieldName">PaymentTerms</property>
+            <property name="VisibleIndex">3</property>
+            <property name="Width">122</property>
+            <property name="ActualWidth">17*</property>
+          </property>
+          <property name="Item5" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection4_DeliveryPer</property>
+            <property name="FieldName">DeliveryPer</property>
+            <property name="VisibleIndex">4</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item6" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection4_Advantages</property>
+            <property name="FieldName">Advantages</property>
+            <property name="VisibleIndex">5</property>
+            <property name="Width">115</property>
+            <property name="ActualWidth">16*</property>
+          </property>
+          <property name="Item7" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection4_Risks</property>
+            <property name="FieldName">Risks</property>
+            <property name="VisibleIndex">6</property>
+            <property name="Width">65</property>
+            <property name="ActualWidth">9*</property>
+          </property>
+          <property name="Item8" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection4_Quantity</property>
+            <property name="FieldName">Quantity</property>
+            <property name="VisibleIndex">7</property>
+            <property name="Width">72</property>
+            <property name="ActualWidth">10*</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collectionf95ba60c9bb84b8eb1427ad428f5227e>
+  <Collection1f74e0ae17f54ad09f4d4c8b2be42e8a FormGuid="fa03f748-4397-42ef-bdc2-22119af7bf7f">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">519,-1936</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="8">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection5_Number</property>
+            <property name="FieldName">Number</property>
+            <property name="VisibleIndex">0</property>
+            <property name="Width">50</property>
+            <property name="ActualWidth">7*</property>
+          </property>
+          <property name="Item2" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection5_Product</property>
+            <property name="FieldName">Product</property>
+            <property name="VisibleIndex">1</property>
+            <property name="Width">129</property>
+            <property name="ActualWidth">18*</property>
+          </property>
+          <property name="Item3" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection5_PriceUnit</property>
+            <property name="FieldName">PriceUnit</property>
+            <property name="VisibleIndex">2</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item4" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection5_PaymentTerms</property>
+            <property name="FieldName">PaymentTerms</property>
+            <property name="VisibleIndex">3</property>
+            <property name="Width">122</property>
+            <property name="ActualWidth">17*</property>
+          </property>
+          <property name="Item5" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection5_DeliveryPer</property>
+            <property name="FieldName">DeliveryPer</property>
+            <property name="VisibleIndex">4</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item6" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection5_Advantages</property>
+            <property name="FieldName">Advantages</property>
+            <property name="VisibleIndex">5</property>
+            <property name="Width">115</property>
+            <property name="ActualWidth">16*</property>
+          </property>
+          <property name="Item7" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection5_Risks</property>
+            <property name="FieldName">Risks</property>
+            <property name="VisibleIndex">6</property>
+            <property name="Width">65</property>
+            <property name="ActualWidth">9*</property>
+          </property>
+          <property name="Item8" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection5_Quantity</property>
+            <property name="FieldName">Quantity</property>
+            <property name="VisibleIndex">7</property>
+            <property name="Width">72</property>
+            <property name="ActualWidth">10*</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collection1f74e0ae17f54ad09f4d4c8b2be42e8a>
+  <Collection48a8985a4ae5453f81f0b272443b9566 FormGuid="fa03f748-4397-42ef-bdc2-22119af7bf7f">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">519,-2134</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="8">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection6_Number</property>
+            <property name="FieldName">Number</property>
+            <property name="VisibleIndex">0</property>
+            <property name="Width">50</property>
+            <property name="ActualWidth">7*</property>
+          </property>
+          <property name="Item2" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection6_Product</property>
+            <property name="FieldName">Product</property>
+            <property name="VisibleIndex">1</property>
+            <property name="Width">129</property>
+            <property name="ActualWidth">18*</property>
+          </property>
+          <property name="Item3" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection6_PriceUnit</property>
+            <property name="FieldName">PriceUnit</property>
+            <property name="VisibleIndex">2</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item4" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection6_PaymentTerms</property>
+            <property name="FieldName">PaymentTerms</property>
+            <property name="VisibleIndex">3</property>
+            <property name="Width">122</property>
+            <property name="ActualWidth">17*</property>
+          </property>
+          <property name="Item5" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection6_DeliveryPer</property>
+            <property name="FieldName">DeliveryPer</property>
+            <property name="VisibleIndex">4</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item6" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection6_Advantages</property>
+            <property name="FieldName">Advantages</property>
+            <property name="VisibleIndex">5</property>
+            <property name="Width">115</property>
+            <property name="ActualWidth">16*</property>
+          </property>
+          <property name="Item7" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection6_Risks</property>
+            <property name="FieldName">Risks</property>
+            <property name="VisibleIndex">6</property>
+            <property name="Width">65</property>
+            <property name="ActualWidth">9*</property>
+          </property>
+          <property name="Item8" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection6_Quantity</property>
+            <property name="FieldName">Quantity</property>
+            <property name="VisibleIndex">7</property>
+            <property name="Width">72</property>
+            <property name="ActualWidth">10*</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collection48a8985a4ae5453f81f0b272443b9566>
+  <Collection2f5344a7a97f4d9e85a500667b010be7 FormGuid="fa03f748-4397-42ef-bdc2-22119af7bf7f">
+    <XtraSerializer version="1.0" application="GridControl">
+      <property name="#LayoutVersion" isnull="true" />
+      <property name="$GridControl" iskey="true" value="GridControl">
+        <property name="View" isnull="true" iskey="true">
+          <property name="LinesPerRowMode">None</property>
+          <property name="ColumnChooserState" isnull="true" iskey="true">
+            <property name="Location">519,-2332</property>
+            <property name="Size">220,250</property>
+          </property>
+          <property name="AllowMoveColumnToDropArea">false</property>
+          <property name="AllowColumnMoving">true</property>
+          <property name="AllowSorting">true</property>
+          <property name="ShowTotalSummary">false</property>
+          <property name="IsRowCellMenuEnabled">false</property>
+          <property name="ShowGroupPanel">false</property>
+          <property name="AutoWidth">false</property>
+          <property name="AllowGrouping">false</property>
+        </property>
+        <property name="TotalSummary" iskey="true" value="0" />
+        <property name="SortInfo" iskey="true" value="0" />
+        <property name="GroupSummary" iskey="true" value="0" />
+        <property name="GroupCount">0</property>
+        <property name="Columns" iskey="true" value="8">
+          <property name="Item1" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection7_Number</property>
+            <property name="FieldName">Number</property>
+            <property name="VisibleIndex">0</property>
+            <property name="Width">50</property>
+            <property name="ActualWidth">7*</property>
+          </property>
+          <property name="Item2" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection7_Product</property>
+            <property name="FieldName">Product</property>
+            <property name="VisibleIndex">1</property>
+            <property name="Width">129</property>
+            <property name="ActualWidth">18*</property>
+          </property>
+          <property name="Item3" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection7_PriceUnit</property>
+            <property name="FieldName">PriceUnit</property>
+            <property name="VisibleIndex">2</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item4" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection7_PaymentTerms</property>
+            <property name="FieldName">PaymentTerms</property>
+            <property name="VisibleIndex">3</property>
+            <property name="Width">122</property>
+            <property name="ActualWidth">17*</property>
+          </property>
+          <property name="Item5" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection7_DeliveryPer</property>
+            <property name="FieldName">DeliveryPer</property>
+            <property name="VisibleIndex">4</property>
+            <property name="Width">93</property>
+            <property name="ActualWidth">13*</property>
+          </property>
+          <property name="Item6" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection7_Advantages</property>
+            <property name="FieldName">Advantages</property>
+            <property name="VisibleIndex">5</property>
+            <property name="Width">115</property>
+            <property name="ActualWidth">16*</property>
+          </property>
+          <property name="Item7" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection7_Risks</property>
+            <property name="FieldName">Risks</property>
+            <property name="VisibleIndex">6</property>
+            <property name="Width">65</property>
+            <property name="ActualWidth">9*</property>
+          </property>
+          <property name="Item8" isnull="true" iskey="true">
+            <property name="Visible">true</property>
+            <property name="Name">AppProductPurchase_ComparativeCollection7_Quantity</property>
+            <property name="FieldName">Quantity</property>
+            <property name="VisibleIndex">7</property>
+            <property name="Width">72</property>
+            <property name="ActualWidth">10*</property>
+          </property>
+        </property>
+        <property name="GroupSummarySortInfo" iskey="true" value="0" />
+      </property>
+    </XtraSerializer>
+  </Collection2f5344a7a97f4d9e85a500667b010be7>
+>>>>>>> parent of 67a0bb9 (Корректировки производственных закупок)
   <AccessRightsAccessRightEntryCardGrid_38106a151b4548f2900c4f02ff9fa8b2>
     <XtraSerializer version="1.0" application="GridControl">
       <property name="#LayoutVersion" isnull="true" />
