@@ -640,6 +640,19 @@
       "ReturnTypeFullName": "sberdev.SberContracts.IDevSettings, Sungero.Domain.Interfaces"
     },
     {
+      "Name": "GetFocusPropertyDisplayName",
+      "Parameters": [
+        {
+          "Name": "propertyName",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "GetGroup",
       "IsRemote": true,
       "Parameters": [

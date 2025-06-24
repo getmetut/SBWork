@@ -1846,16 +1846,6 @@
   "OperationsClass": "",
   "Properties": [
     {
-      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "c23a7c24-2209-4886-9c21-7f1845f95095",
-      "Name": "OrgBlocking",
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "IsEnabled"
-      ],
-      "Versions": []
-    },
-    {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "8e14d1b1-02b8-466c-aed8-a69a4d95c0fa",
       "Name": "HeadCompany",
@@ -1950,6 +1940,7 @@
           "Code": "No"
         }
       ],
+      "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "ebd512ce-b725-4e02-9fc9-c4ab3180b618",
       "Versions": []

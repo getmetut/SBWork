@@ -109,13 +109,17 @@ namespace sberdev.SBContracts
       }
       #endregion
       
+      var operation = new Enumeration("ChangeMarkers");
+      var hasDayFocusHistory = _obj.History.GetAll().Where(h => h.Operation == operation && h.HistoryDate.Value.Date == Calendar.Now.Date).Any();
+      if (hasDayFocusHistory == true)
+        return;
       var changedMarkers = _obj.MarkersChanges.Where(m => m.ChangeDateTime.Value.Date == Calendar.Now.Date);
       if (changedMarkers.Any())
       {
         foreach (var marker in changedMarkers)
         {
-          var operation = new Enumeration("ChangeMarkers");
-          string comment = String.Format("{0}: {1} -> {2}", marker.Name.Value.Value, marker.OldValue.Value.Value, marker.NewValue.Value.Value);
+          string comment = String.Format("{0}: {1} -> {2}", PublicFunctions.Module.GetFocusPropertyDisplayName(marker.Name.Value.Value),
+                                         marker.OldValue.Value.Value, marker.NewValue.Value.Value);
           _obj.History.Write(operation, operation, comment);
         }
         _obj.FocusCheckedSberDev = false;
