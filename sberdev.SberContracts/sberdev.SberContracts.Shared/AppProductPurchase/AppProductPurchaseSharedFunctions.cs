@@ -111,6 +111,7 @@ namespace sberdev.SberContracts.Shared
     {
       base.SetPropertiesAccess();
       var properties = _obj.State.Properties;
+      properties.DeliveryMethod.IsRequired = false;
       properties.MarketDirectSberDev.IsRequired = false;
       properties.PurchComNumberSberDev.IsRequired = false;
       properties.ContrTypeBaseSberDev.IsEnabled = false;

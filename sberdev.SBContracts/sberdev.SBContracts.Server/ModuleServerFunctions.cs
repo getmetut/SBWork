@@ -1312,7 +1312,6 @@ namespace sberdev.SBContracts.Server
       #endregion
       
       #region Таблицы по контрагентам
-      /*
       // Настройки таблиц
       boldRows = new List<int> { 0 }; // Общая настройка для всех таблиц
       columnWidths = new List<int> { 5, 25, 7, 10, 15, 15, 20, 20, 20 };
@@ -1439,7 +1438,7 @@ namespace sberdev.SBContracts.Server
       
       // Удаление всех неиспользуемых плейсхолдеров
       RemovePlaceholders(body, placeholdersToRemove);
-       */
+       
       #endregion
     }
     #endregion
