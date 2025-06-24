@@ -8,6 +8,7 @@ using sberdev.SberContracts.Purchase;
 namespace sberdev.SberContracts
 {
 
+
   partial class PurchaseServerHandlers
   {
 
