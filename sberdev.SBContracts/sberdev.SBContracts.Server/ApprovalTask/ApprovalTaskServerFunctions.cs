@@ -203,7 +203,7 @@ namespace sberdev.SBContracts.Server
     }
     
     /// <summary>
-    /// 
+    /// Проверяет необходимость и устанавливает исполнителя в доп этапе
     /// </summary>
     /// <param name="e"></param>
     public void SetSupStagePerformer(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
@@ -212,10 +212,11 @@ namespace sberdev.SBContracts.Server
       {
         var lastAssign = GetLastTaskAssigment(_obj, null);
         var typedAssign = SBContracts.ApprovalAssignments.As(lastAssign);
-        if (typedAssign?.IsNeedSupStageSberDev == false)
+        if (typedAssign == null && typedAssign?.IsNeedSupStageSberDev != true)
           e.Block.Performers.Clear();
       }
     }
+    
     #endregion
     
     public override void UpdateDocumentApprovalState(Sungero.Docflow.IOfficialDocument document, Nullable<Enumeration> state)
