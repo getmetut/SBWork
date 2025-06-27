@@ -2202,7 +2202,6 @@
       "HandledEvents": [
         "AddedShared"
       ],
-      "IsRequired": true,
       "IsShowedInList": false,
       "PreviousPropertyGuid": "e003d9c1-995b-4906-b818-bd234ab0010c"
     },

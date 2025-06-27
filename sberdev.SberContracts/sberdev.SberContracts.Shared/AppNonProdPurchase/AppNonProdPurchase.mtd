@@ -666,7 +666,8 @@
     }
   ],
   "HandledEvents": [
-    "RefreshClient"
+    "RefreshClient",
+    "BeforeSaveServer"
   ],
   "IconName": "AppNonProdPurchase.ico",
   "IconResourcesKeys": [],

@@ -7,4 +7,13 @@ using sberdev.SberContracts.AppNonProdPurchase;
 
 namespace sberdev.SberContracts
 {
+  partial class AppNonProdPurchaseServerHandlers
+  {
+
+    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
+    {
+      base.BeforeSave(e);
+    }
+  }
+
 }

@@ -1280,35 +1280,38 @@ namespace sberdev.SBContracts.Server
       #endregion
       
       #region Таблица ресипиентов
-      // Настройки таблицы
-      boldRows = new List<int> { 0};
-      columnWidths = new List<int> { 10, 40, 60 };
-
-      // Инициализация таблицы
-      rowCount = purch.ParticipantsCollection.Count + 1;
-      string[,] recipTable = new string[rowCount, 3];
-
-      // Заполнение заголовка таблицы
-      string[] headers1 = { "№", "Наименование компании", "Контакты"};
-      for (int i = 0; i < headers1.Length; i++)
-        recipTable[0, i] = headers1[i];
-
-      // Заполнение строк данных
-      counter = 1;
-      foreach (var elem in purch.ParticipantsCollection)
+      if (purch.ParticipantsCollection.Any())
       {
-        recipTable[counter, 0] = counter.ToString();
-        recipTable[counter, 1] = elem.Counterparty;
-        recipTable[counter, 2] = elem.Contacts;
-        counter++;
+        // Настройки таблицы
+        boldRows = new List<int> { 0};
+        columnWidths = new List<int> { 10, 40, 60 };
+
+        // Инициализация таблицы
+        rowCount = purch.ParticipantsCollection.Count + 1;
+        string[,] recipTable = new string[rowCount, 3];
+
+        // Заполнение заголовка таблицы
+        string[] headers1 = { "№", "Наименование компании", "Контакты"};
+        for (int i = 0; i < headers1.Length; i++)
+          recipTable[0, i] = headers1[i];
+
+        // Заполнение строк данных
+        counter = 1;
+        foreach (var elem in purch.ParticipantsCollection)
+        {
+          recipTable[counter, 0] = counter.ToString();
+          recipTable[counter, 1] = elem.Counterparty;
+          recipTable[counter, 2] = elem.Contacts;
+          counter++;
+        }
+        
+        // Вставка таблицы в документ
+        ReplacePlaceholderWithTable(
+          body,
+          "[RecipTable]",
+          CreateTableByArray(body, recipTable, boldRows, columnWidths, "Times New Roman", 10)
+         );
       }
-      
-      // Вставка таблицы в документ
-      ReplacePlaceholderWithTable(
-        body,
-        "[RecipTable]",
-        CreateTableByArray(body, recipTable, boldRows, columnWidths, "Times New Roman", 10)
-       );
       #endregion
       
       #region Таблицы по контрагентам
@@ -1438,7 +1441,7 @@ namespace sberdev.SBContracts.Server
       
       // Удаление всех неиспользуемых плейсхолдеров
       RemovePlaceholders(body, placeholdersToRemove);
-       
+      
       #endregion
     }
     #endregion
