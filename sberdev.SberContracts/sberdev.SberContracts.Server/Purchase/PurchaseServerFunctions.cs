@@ -55,7 +55,7 @@ namespace sberdev.SberContracts.Server
         documentBlock.AddLabel("Направление маркетинга: " +  Hyperlinks.Get(_obj.MarketDirectSberDev));
         documentBlock.AddLineBreak();
       }
-      documentBlock.AddLabel("Стоимость: " + _obj.PurchaseAmount + " " + _obj.Currency.ShortName + (_obj.VAT.Value ? " с учетом НДС" : " без учсета НДС"));
+      documentBlock.AddLabel("Стоимость: " + _obj.PurchaseAmount + " " + _obj.Currency.ShortName + (_obj.VAT.Value ? " с учетом НДС" : " без учета НДС"));
       documentBlock.AddLineBreak();
       documentBlock.AddLabel("Поставщик: " + Hyperlinks.Get(_obj.Counterparty));
       documentBlock.AddLineBreak();
