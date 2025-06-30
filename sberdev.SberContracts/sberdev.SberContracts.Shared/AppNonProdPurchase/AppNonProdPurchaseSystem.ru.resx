@@ -59,13 +59,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DisplayName" xml:space="preserve">
-    <value>Непроизводственная закупка</value>
+    <value>Заявка на непроизводственную закупку</value>
   </data>
   <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Непроизводственную закупку</value>
+    <value>Заявку на непроизводственную закупку</value>
   </data>
   <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Непроизводственные закупки</value>
+    <value>Заявки на непроизводственную закупку</value>
   </data>
   <data name="Property_PurchaseItemDescription" xml:space="preserve">
     <value>Предмет закупки и описание приобретаемых товаров</value>
