@@ -474,6 +474,18 @@
         "Number": 6,
         "ItemType": "Folder",
         "NameGuid": "37d0e546-5b38-4b60-b680-5ab862dcea47"
+      },
+      {
+        "$type": "Sungero.DataExport.ExportingObject, Sungero.DataExport",
+        "Uuid": "d0948ba3-7de2-4dd5-b18a-571f2d3f6905",
+        "ModuleView": {
+          "$type": "Sungero.DataExport.ExportingObjectId, Sungero.DataExport",
+          "TypeGuid": "f7cba906-f4c9-4f02-97e8-a6c6155a8ee6",
+          "Identifier": "ca5d1f70-6cf5-47c4-820e-586841da00c9"
+        },
+        "Number": 7,
+        "ItemType": "Folder",
+        "NameGuid": "009798ca-99db-481f-aef1-5733e42996df"
       }
     ]
   },

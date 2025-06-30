@@ -11,7 +11,10 @@ left join sberdev_SberCon_MVZ m on e.MVZBaseSberDev_SBContr_sberdev = m.Id or e.
 left join sberdev_SberCon_AccountingArti a on e.AccArtBaseSber_SBContr_sberdev = a.Id
 left join Sungero_Parties_Counterparty r on e.AccCParty_Docflow_Sungero = r.Id
 where e.Discriminator = 'A523A263-BC00-40F9-810D-F582BAE2205D' and e.HasVersions = 1 and e.LifeCycleState_Docflow_Sungero = 'Paid'
-and e.Created >= @startDate and e.Created <= @endDate and e.ContrTypeBaseS_SBContr_sberdev = @type)
+and e.Created >= @startDate and e.Created <= @endDate and e.ContrTypeBaseS_SBContr_sberdev = @type
+-- Доработка в рамках задачи DRX-799.
+and e.AccTotalAmount_Docflow_Sungero > 0 and e.DocumentKind_Docflow_Sungero = (select Id from Sungero_Docflow_DocumentKind where Id = e.DocumentKind_Docflow_Sungero)
+--)
 
 select distinct Id, DocumentName,  Contrtype, MVZ_MVP, AccArt,
   stuff((
