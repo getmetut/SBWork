@@ -949,6 +949,11 @@
       "ReturnTypeFullName": "System.String"
     },
     {
+      "Name": "ReSaveServer",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "SafeMatchesDocumentType",
       "Parameters": [
         {
