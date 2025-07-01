@@ -640,6 +640,19 @@
       "ReturnTypeFullName": "sberdev.SberContracts.IDevSettings, Sungero.Domain.Interfaces"
     },
     {
+      "Name": "GetFocusPropertyDisplayName",
+      "Parameters": [
+        {
+          "Name": "propertyName",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "GetGroup",
       "IsRemote": true,
       "Parameters": [
@@ -743,6 +756,21 @@
       "ReturnTypeFullName": "sberdev.SberContracts.IProductsAndDevices, Sungero.Domain.Interfaces"
     },
     {
+      "Name": "GetPropertyValue",
+      "Parameters": [
+        {
+          "Name": "obj",
+          "ParameterType": "System.Object"
+        },
+        {
+          "Name": "propertyName",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "System.Object"
+    },
+    {
       "Name": "GetSignatureCertificateInfo",
       "Parameters": [
         {
@@ -791,6 +819,26 @@
         }
       ],
       "Placement": "Shared",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
+      "Name": "IsPropertyValueChanged",
+      "Parameters": [
+        {
+          "Name": "obj",
+          "ParameterType": "System.Object"
+        },
+        {
+          "Name": "propertyName",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "newValue",
+          "ParameterType": "System.Object"
+        }
+      ],
       "ReturnType": "global::System.Boolean",
       "ReturnTypeFullName": "System.Boolean"
     },
@@ -1174,7 +1222,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.3.1.8",
+  "Version": "5.3.1.6",
   "Widgets": [],
   "Versions": [
     {

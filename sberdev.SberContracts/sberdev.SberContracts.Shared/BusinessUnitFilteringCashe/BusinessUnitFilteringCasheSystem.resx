@@ -62,7 +62,7 @@
     <value>Name</value>
   </data>
   <data name="AdditionalInfoTemplate" xml:space="preserve">
-    <value>В этот справочник сохраняется выбранная пользователем Наша организация, по которой у него будут фильтроваться аналитики в диалоговом окне глобального поиска.</value>
+    <value>This directory saves the Our Organization selected by the user, by which he will filter analytics in the global search dialog box.</value>
   </data>
   <data name="Property_User" xml:space="preserve">
     <value>User</value>

@@ -2023,7 +2023,8 @@
   ],
   "PublicStructures": [],
   "ResourcesKeys": [
-    "SaveError"
+    "SaveError",
+    "Enum_Operation_ChangeMarkers"
   ],
   "RibbonCardMetadata": {
     "NameGuid": "ef639e70-c25f-4f3d-8500-304139973f89",

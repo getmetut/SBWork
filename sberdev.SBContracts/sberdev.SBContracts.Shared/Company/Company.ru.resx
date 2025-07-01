@@ -61,4 +61,7 @@
   <data name="SaveError" xml:space="preserve">
     <value>Пользователи не входящие в группу "Делопроизводители" не могут создавать карточки контрагентов.</value>
   </data>
+  <data name="Enum_Operation_ChangeMarkers" xml:space="preserve">
+    <value>Изменен маркер</value>
+  </data>
 </root>

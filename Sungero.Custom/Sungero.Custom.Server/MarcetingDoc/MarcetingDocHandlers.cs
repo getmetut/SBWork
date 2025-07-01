@@ -59,8 +59,11 @@ namespace Sungero.Custom
     {
       base.BeforeSave(e);
       if (_obj.ActionName != null)
-        if (_obj.Name != _obj.ActionName + " ID" + _obj.Id.ToString())
-          _obj.Name = _obj.ActionName + " ID" + _obj.Id.ToString();
+      {
+        string name = _obj.ActionName + " ID" + _obj.Id.ToString();
+        if (_obj.Name != name)
+          _obj.Name = name;
+      }
       
       if (_obj.CtrlKolvo != 0.0)
         e.AddError("Нарушен контроль кол-ва позиций в Продуктах и Каналах! Индекс: " + _obj.CtrlKolvo.ToString());

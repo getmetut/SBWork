@@ -512,7 +512,6 @@ namespace sberdev.SBContracts.Shared
     
     #region Прочие
     
-    
     /// <summary>
     /// Формирует строку с продуктами
     /// </summary>
@@ -638,6 +637,46 @@ namespace sberdev.SBContracts.Shared
       return error;
     }
     
+    // Серверная функция для сборки строки продуктов из коллекций
+    [Public]
+    public string BuildProductsString()
+    {
+      var productNames = new System.Collections.Generic.List<string>();
+      
+      // Собираем продукты из первой коллекции
+      if (_obj.ProdCollectionExBaseSberDev != null && _obj.ProdCollectionExBaseSberDev.Count > 0)
+      {
+        foreach (var item in _obj.ProdCollectionExBaseSberDev)
+        {
+          if (item.Product != null && !string.IsNullOrEmpty(item.Product.Name))
+            productNames.Add(item.Product.Name);
+        }
+      }
+      
+      // Собираем продукты из второй коллекции
+      if (_obj.ProdCollectionPrBaseSberDev != null && _obj.ProdCollectionPrBaseSberDev.Count > 0)
+      {
+        foreach (var item in _obj.ProdCollectionPrBaseSberDev)
+        {
+          if (item.Product != null && !string.IsNullOrEmpty(item.Product.Name))
+            productNames.Add(item.Product.Name);
+        }
+      }
+      
+      // Объединяем в строку через точку с запятой
+      return string.Join(";", productNames);
+    }
+
+    // Серверная функция для обновления строки продуктов
+    [Public]
+    public void UpdateProductsString()
+    {
+      var newProductsString = Functions.ContractualDocument.BuildProductsString(_obj);
+      
+      if (_obj.ProdCollectionStringSDev != newProductsString)
+        _obj.ProdCollectionStringSDev = newProductsString;
+    }
+
     #endregion
     
   }

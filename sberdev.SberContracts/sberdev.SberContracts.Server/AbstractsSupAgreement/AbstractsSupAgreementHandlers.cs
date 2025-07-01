@@ -20,7 +20,8 @@ namespace sberdev.SberContracts
       query = query.Where(c => !Equals(c.LifeCycleState, Sungero.Contracts.ContractBase.LifeCycleState.Obsolete) &&
                           !Equals(c.LifeCycleState, Sungero.Contracts.ContractBase.LifeCycleState.Closed) &&
                           !Equals(c.LifeCycleState, Sungero.Contracts.ContractBase.LifeCycleState.Terminated) &&
-                          Equals(c.ContrTypeBaseSberDev, ContrTypeBaseSberDev.Expendable));
+                          Equals(c.ContrTypeBaseSberDev, ContrTypeBaseSberDev.Expendable) &&
+                          (SBContracts.Contracts.Is(c) || SBContracts.SupAgreements.Is(c)));
 
       // В процессе верификации при смене типа с договора на доп. соглашение
       // сущность может быть еще договором (до первого сохранения после смены),

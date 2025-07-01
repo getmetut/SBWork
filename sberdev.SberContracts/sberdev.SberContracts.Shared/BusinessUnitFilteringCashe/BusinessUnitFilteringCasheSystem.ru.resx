@@ -62,6 +62,6 @@
     <value>Имя</value>
   </data>
   <data name="AdditionalInfoTemplate" xml:space="preserve">
-    <value />
+    <value>В этот справочник сохраняется выбранная пользователем Наша организация, по которой у него будут фильтроваться аналитики в диалоговом окне глобального поиска.</value>
   </data>
 </root>

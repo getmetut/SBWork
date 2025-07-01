@@ -61,4 +61,10 @@
   <data name="Enum_Operation_Checking" xml:space="preserve">
     <value>Проверен</value>
   </data>
+  <data name="Enum_Operation_ChangeMarkers" xml:space="preserve">
+    <value>Изменен(-ы) маркер(-ы)</value>
+  </data>
+  <data name="Enum_OperationDetailed_ChangeMarkers" xml:space="preserve">
+    <value>Новые значения: {0}</value>
+  </data>
 </root>

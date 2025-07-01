@@ -61,4 +61,7 @@
   <data name="SaveError" xml:space="preserve">
     <value>Users not included in the \"Делопроизводители\" group cannot create counterparty cards.</value>
   </data>
+  <data name="Enum_Operation_ChangeMarkers" xml:space="preserve">
+    <value>Change marker</value>
+  </data>
 </root>
