@@ -55,26 +55,11 @@ namespace sberdev.SberContracts.Client
     /// </summary>
     public virtual void ReSaveCompany()
     {
-      var CompanyList = sberdev.SBContracts.Companies.GetAll(c => c.Status == sberdev.SBContracts.Company.Status.Active);
-      string log = "";
-      int ind = 0;
-      foreach (var comp in CompanyList)
-      {
-        try
-        {
-          comp.Name = comp.Name;
-          comp.Save();
-        }
-        catch (Exception e)
-        {
-          log += comp.Name.ToString() + "| Ошибка: " + e.Message.ToString();
-        }
-        ind += 1;
-      }
+      string log = PublicFunctions.Module.ReSaveServer();
       if (log != "")
         Dialogs.ShowMessage(log);
       else
-        Dialogs.ShowMessage("Все записи пересохранены. Всего: " + ind.ToString());
+        Dialogs.ShowMessage("Все записи пересохранены.");
     }
 
     /// <summary>

@@ -86,76 +86,76 @@ namespace Sungero.Custom.Server
       var requestList = Custom.RequestAccesTaskToUses.GetAll(r => r.Status == Custom.RequestAccesTaskToUs.Status.Active).ToArray();
       try
       {
-      if (requestList.Count() > 0)
-      {
-        foreach (var req in requestList)
+        if (requestList.Count() > 0)
         {
-          logall += '\n' + "Получена заявка на выдачу прав: " + req.Name.ToString();
-          GenAccesRef(req.Employee.Id, req.Department.Id, req.EditAcces.Value);
+          foreach (var req in requestList)
+          {
+            logall += '\n' + "Получена заявка на выдачу прав: " + req.Name.ToString();
+            GenAccesRef(req.Employee.Id, req.Department.Id, req.EditAcces.Value);
+          }
         }
-      }
 
-      //======================================================================================
-      logall += '\n' + "Выдача прав по заявкам завершена: " + Calendar.Now.ToString();
-      logall += '\n' + "Начало обработки справочника: " + Calendar.Now.ToString();
-      var RefAcc = Custom.AccesUserToTasks.GetAll(t => t.Control == false).ToList();
-      logall += '\n' + "Записей: " + RefAcc.Count.ToString();
-      if (RefAcc.Count > 0)
-      {
-        foreach (var str in RefAcc)
+        //======================================================================================
+        logall += '\n' + "Выдача прав по заявкам завершена: " + Calendar.Now.ToString();
+        logall += '\n' + "Начало обработки справочника: " + Calendar.Now.ToString();
+        var RefAcc = Custom.AccesUserToTasks.GetAll(t => t.Control == false).ToList();
+        logall += '\n' + "Записей: " + RefAcc.Count.ToString();
+        if (RefAcc.Count > 0)
         {
-          var task = str.Task;
-          logall += '\n' + "В работе задача: " + task.Id.ToString();
-          foreach (var prop in task.State.Properties)
+          foreach (var str in RefAcc)
           {
-            prop.IsRequired = false;
-          }
-          
-          string log = "";
-          var us = str.Recipient;
-          log += "---------------------------------------------" + '\n';
-          log += "В работе сотрудник: " + str.Recipient.Id.ToString() + '\n';
-          var DefAccBool = str.EditAcces.HasValue ? str.EditAcces.Value : false;
-          var DefAcc = str.EditAcces.HasValue ? (str.EditAcces.Value ? DefaultAccessRightsTypes.Change :  DefaultAccessRightsTypes.Read) : DefaultAccessRightsTypes.Read;
-          log += PublicFunctions.Module.AddAccesToObject(task, DefAccBool, us);
-          try
-          {
-            task.AccessRights.Grant(us, DefAcc);
-            task.AccessRights.Save();
-            log += "Выданы права на задачу: " + task.DisplayValue.ToString() + '\n';
-          }
-          catch (Exception e)
-          {
-            log += "Ошибка при выдаче прав на задачу: " + e.Message.ToString() + '\n';
-          }
-
-          if (task.Attachments.Count > 0)
-          {
-            foreach (var attach in task.Attachments)
+            var task = str.Task;
+            logall += '\n' + "В работе задача: " + task.Id.ToString();
+            foreach (var prop in task.State.Properties)
             {
-              if (!attach.AccessRights.IsGrantedWithoutSubstitution(DefAcc, us))
+              prop.IsRequired = false;
+            }
+            
+            string log = "";
+            var us = str.Recipient;
+            log += "---------------------------------------------" + '\n';
+            log += "В работе сотрудник: " + str.Recipient.Id.ToString() + '\n';
+            var DefAccBool = str.EditAcces.HasValue ? str.EditAcces.Value : false;
+            var DefAcc = str.EditAcces.HasValue ? (str.EditAcces.Value ? DefaultAccessRightsTypes.Change :  DefaultAccessRightsTypes.Read) : DefaultAccessRightsTypes.Read;
+            log += PublicFunctions.Module.AddAccesToObject(task, DefAccBool, us);
+            try
+            {
+              task.AccessRights.Grant(us, DefAcc);
+              task.AccessRights.Save();
+              log += "Выданы права на задачу: " + task.DisplayValue.ToString() + '\n';
+            }
+            catch (Exception e)
+            {
+              log += "Ошибка при выдаче прав на задачу: " + e.Message.ToString() + '\n';
+            }
+
+            if (task.Attachments.Count > 0)
+            {
+              foreach (var attach in task.Attachments)
               {
-                log += PublicFunctions.Module.AddAccesToObject(attach, DefAccBool, us);
-                try
+                if (!attach.AccessRights.IsGrantedWithoutSubstitution(DefAcc, us))
                 {
-                  attach.AccessRights.Grant(us, DefAcc);
-                  attach.AccessRights.Save();
-                  log += "Выданы права на вложение: " + attach.DisplayValue.ToString() + '\n';
-                }
-                catch (Exception e)
-                {
-                  log += "Ошибка при выдаче прав на документ: " + e.Message.ToString() + '\n';
+                  log += PublicFunctions.Module.AddAccesToObject(attach, DefAccBool, us);
+                  try
+                  {
+                    attach.AccessRights.Grant(us, DefAcc);
+                    attach.AccessRights.Save();
+                    log += "Выданы права на вложение: " + attach.DisplayValue.ToString() + '\n';
+                  }
+                  catch (Exception e)
+                  {
+                    log += "Ошибка при выдаче прав на документ: " + e.Message.ToString() + '\n';
+                  }
                 }
               }
             }
+            logall += '\n' + "ЛОГ: " + log.ToString();
+            str.Control = true;
+            str.HistoryNote = log;
+            str.Save();
           }
-          logall += '\n' + "ЛОГ: " + log.ToString();
-          str.Control = true;
-          str.HistoryNote = log;
-          str.Save();
         }
-      }
-      //Logger.Debug(logall);
+        //Logger.Debug(logall);
       }
       catch (Exception er)
       {
@@ -390,19 +390,26 @@ namespace Sungero.Custom.Server
         else if (targetDate.DayOfWeek == DayOfWeek.Sunday)
           targetDate.AddDays(-2);
       }
-      var Contractuals = sberdev.SBContracts.Contracts.GetAll(d => d.ValidTill.HasValue).Where(c => ((targetDates.Contains(c.ValidTill.Value)) && (c.LifeCycleState == sberdev.SBContracts.Contract.LifeCycleState.Active)));
+      var Contractuals = sberdev.SBContracts.Contracts.GetAll(d => d.ValidTill.HasValue).Where(c => ((targetDates.Contains(c.ValidTill.Value)) &&
+                                                                                                     (c.LifeCycleState == sberdev.SBContracts.Contract.LifeCycleState.Active)));
       if (Contractuals.Count() > 0)
       {
         foreach (var cons in Contractuals)
         {
-          var Empl = Sungero.Company.Employees.GetAll(r => r.Login == cons.Author.Login).FirstOrDefault();
-          if (Empl != null)
+          if (cons.Assignee != null)
           {
-            var task = FreedomicTasks.Create();
-            task.Employee = Empl;
-            task.Subject = "Заканчивается срок действия договора: " + cons.Name;
-            task.OtherAttachment.ElectronicDocuments.Add(cons);
-            task.Start();
+            if (cons.Assignee.Login != null)
+            {
+              var Empl = Sungero.Company.Employees.GetAll(r => r.Login == cons.Assignee.Login).FirstOrDefault();
+              if (Empl != null)
+              {
+                var task = FreedomicTasks.Create();
+                task.Employee = Empl;
+                task.Subject = "Заканчивается срок действия договора: " + cons.Name;
+                task.OtherAttachment.ElectronicDocuments.Add(cons);
+                task.Start();
+              }
+            }
           }
         }
       }

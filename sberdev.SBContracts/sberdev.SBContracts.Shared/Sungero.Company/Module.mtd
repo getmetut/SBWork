@@ -92,11 +92,6 @@
     {
       "ItemId": "17da0a5e-4f34-4e65-86cd-1cc4d972b10d",
       "PreviousItemId": "163d6b95-01e0-4da2-88b0-46ff0864a45d"
-    },
-    {
-      "IsAncestorMetadata": true,
-      "ItemId": "e2684a31-6b48-402e-a5e2-5c3abb4b6de8",
-      "PreviousItemId": "17da0a5e-4f34-4e65-86cd-1cc4d972b10d"
     }
   ],
   "IconResourcesKeys": [],
