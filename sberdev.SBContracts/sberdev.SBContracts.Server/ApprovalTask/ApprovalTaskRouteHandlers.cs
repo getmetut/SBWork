@@ -22,6 +22,31 @@ namespace sberdev.SBContracts.Server
     {
       base.StartAssignment6(assignment, e);
       Functions.ApprovalTask.SetSubstitutePerformer(_obj, assignment);
+      
+      // Доработка в рамках задачи DRX-660.
+      var mainTask = ApprovalTasks.As(assignment.MainTask);
+      if (mainTask != null) {
+        var author = mainTask.Author;
+        if (author != null) {
+          List<IOfficialDocument> documents = new List<IOfficialDocument>();
+          var leadDoc = mainTask.DocumentGroup.OfficialDocuments.FirstOrDefault();
+          if (leadDoc != null && OfficialDocuments.Is(leadDoc))
+            documents.Add(OfficialDocuments.As(leadDoc));
+          
+          foreach(var doc in mainTask.AddendaGroup.OfficialDocuments) {
+            if (doc != null && OfficialDocuments.Is(doc))
+              documents.Add(OfficialDocuments.As(doc));
+          }
+          
+          foreach(var doc in documents) {
+            if (!doc.AccessRights.IsGranted(DefaultAccessRightsTypes.Change, author)) {
+              doc.AccessRights.Grant(author, DefaultAccessRightsTypes.Change);
+              doc.AccessRights.Save();
+              Logger.Debug("SBDev DEBUG: Grant Change Access Rights for User Id {0} on Document Id {1}", author.Id, doc.Id);
+            }
+          }
+        }
+      }
     }
     
     public override void CompleteAssignment6(Sungero.Docflow.IApprovalAssignment assignment, Sungero.Docflow.Server.ApprovalAssignmentArguments e)
