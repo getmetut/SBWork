@@ -27,6 +27,7 @@ namespace sberdev.SberContracts.Shared
       _obj.State.Properties.CalculationResidualAmountBaseSberDev.IsVisible = true;
       _obj.State.Properties.CalculationAmountBaseSberDev.IsVisible = true;
       _obj.State.Properties.MVZBaseSberDev.IsVisible = true;
+      _obj.State.Properties.MVZBaseSberDev.IsEnabled = true;
       
       _obj.State.Properties.CalculationFlagBaseSberDev.IsEnabled = true;
       _obj.State.Properties.CalculationDistributeBaseSberDev.IsEnabled = true;
