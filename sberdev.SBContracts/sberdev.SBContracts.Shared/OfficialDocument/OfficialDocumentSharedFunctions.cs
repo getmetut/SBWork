@@ -10,6 +10,44 @@ namespace sberdev.SBContracts.Shared
   partial class OfficialDocumentFunctions
   {
     /// <summary>
+    /// Проверяет откуда создан документ
+    /// </summary>
+    /// <param name="document"></param>
+    /// <param name="source">Константы из OfficialDocument с приставкой "LS"</param>
+    /// <returns>Словарь с результатами проверки вхождения строк</returns>
+    [Public]
+    public System.Collections.Generic.Dictionary<string, bool> CheckLocationState(string[] source)
+    {
+      var result = new Dictionary<string, bool>();
+      
+      if (source == null || source.Length == 0)
+        return result;
+      
+      string locationState = _obj?.LocationState ?? string.Empty;
+      
+      foreach (string sourceItem in source)
+      {
+        if (!string.IsNullOrEmpty(sourceItem))
+        {
+          result[sourceItem] = locationState.Contains(sourceItem);
+        }
+      }
+      
+      return result;
+    }
+    
+    /// <summary>
+    /// Проверяет создан ли документ системой
+    /// </summary>
+    /// <param name="document">Документ для проверки</param>
+    /// <returns></returns>
+    public static bool IsCreatedBySystem(IOfficialDocument document)
+    {
+      long[] adminIds = new long[] {9, 10, 11, 12};
+      return adminIds.Contains(document.Author.Id);
+    }
+    
+    /// <summary>
     /// Выключает обязательность невидимых свойств
     /// </summary>
     [Public]

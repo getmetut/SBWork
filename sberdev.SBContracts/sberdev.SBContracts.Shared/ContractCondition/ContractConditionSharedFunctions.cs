@@ -99,7 +99,18 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
-      #region Проверка, является ли МВЗ для производственных закупок(IsProdPurchase)
+      #region Проверка источника документа (Source)
+      if (_obj.ConditionType == ConditionType.Source)
+      {
+        bool flag = false;
+         var doc = SBContracts.OfficialDocuments.As(document);
+        if (doc != null)
+          flag = PublicFunctions.OfficialDocument.CheckLocationState(doc, new string[]{Constants.Docflow.OfficialDocument.LSDiadocReceived}).FirstOrDefault().Value;
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      #endregion
+      
+      #region Проверка, является ли МВЗ для производственных закупок (IsProdPurchase)
       if (_obj.ConditionType == ConditionType.IsProdPurchase)
       {
         bool flag = false;
@@ -110,7 +121,7 @@ namespace sberdev.SBContracts.Shared
             ?? false;
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
       }
-      #endregion
+      #endregion 
 
       #region Проверка необходимости проверки контрагента (IsNeedCheckCp)
       if (_obj.ConditionType == ConditionType.IsNeedCheckCp)
@@ -802,6 +813,9 @@ if (_obj.ConditionType == ConditionType.ContrCategory)
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.Source); // сontract statement
+      baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.Source); // other contractual document
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.CPProfitTotalAm); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.CPProfitTotalAm); // sup agreement

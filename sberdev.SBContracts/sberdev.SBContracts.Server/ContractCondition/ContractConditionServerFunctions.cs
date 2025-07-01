@@ -13,6 +13,11 @@ namespace sberdev.SBContracts.Server
     {
       using (TenantInfo.Culture.SwitchTo())
       {
+        if (_obj.ConditionType == ConditionType.Source)
+        {
+          return sberdev.SBContracts.ContractConditions.Resources.ConditionSource;
+        }
+        
         if (_obj.ConditionType == ConditionType.CPProfitTotalAm)
         {
           return String.Format("Сумма доходных договоров с КА больше {0} рублей?", _obj.CPProfitTotalAmountSberDev.Value);

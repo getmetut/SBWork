@@ -241,4 +241,7 @@
   <data name="Enum_ConditionType_CPProfitTotalAm" xml:space="preserve">
     <value>Minimal summary profitable contracts by CP</value>
   </data>
+  <data name="Enum_ConditionType_Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
 </root>

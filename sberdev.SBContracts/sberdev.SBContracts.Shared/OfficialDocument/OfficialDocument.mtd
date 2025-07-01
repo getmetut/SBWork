@@ -406,6 +406,23 @@
   ],
   "PublicFunctions": [
     {
+      "Name": "CheckLocationState",
+      "Parameters": [
+        {
+          "Name": "officialDocument",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "source",
+          "ParameterType": "global::System.String[]",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "System.Collections.Generic.Dictionary<global::System.String, global::System.Boolean>"
+    },
+    {
       "Name": "ClearPublicComment",
       "IsRemote": true,
       "Parameters": [

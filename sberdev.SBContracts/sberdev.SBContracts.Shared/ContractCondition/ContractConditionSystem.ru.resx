@@ -211,4 +211,7 @@
   <data name="Enum_ConditionType_CPProfitTotalAm" xml:space="preserve">
     <value>Минимальная сумма доходных договоров по КА</value>
   </data>
+  <data name="Enum_ConditionType_Source" xml:space="preserve">
+    <value>Источник</value>
+  </data>
 </root>

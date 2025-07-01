@@ -382,6 +382,11 @@
           "NameGuid": "d0bbe2d2-83f4-4cc0-a1da-a10895e814e5",
           "Name": "CPProfitTotalAm",
           "Code": "CPProfitTotalAm"
+        },
+        {
+          "NameGuid": "f63bf70f-3946-41ff-bbd8-c9101205b74e",
+          "Name": "Source",
+          "Code": "Source"
         }
       ],
       "IsAncestorMetadata": true,
@@ -584,7 +589,9 @@
     }
   ],
   "PublicStructures": [],
-  "ResourcesKeys": [],
+  "ResourcesKeys": [
+    "ConditionSource"
+  ],
   "RibbonCardMetadata": {
     "NameGuid": "5d576e98-7758-4e85-b6bb-663ba3106919",
     "Name": "RibbonCard",

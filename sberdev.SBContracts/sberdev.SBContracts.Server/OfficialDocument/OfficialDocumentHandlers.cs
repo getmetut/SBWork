@@ -13,6 +13,7 @@ namespace sberdev.SBContracts
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       base.Created(e);
+      
       if (sberdev.SBContracts.PublicFunctions.Module.IsSystemUser())
       {
         var DelMeth = Sungero.Docflow.MailDeliveryMethods.GetAll(d => d.Name == "Не определено").FirstOrDefault();
