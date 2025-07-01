@@ -5,6 +5,7 @@
   "AccessRightsMode": "Both",
   "BaseGuid": "178d3053-5516-4f14-9f3d-4d75e3f352d4",
   "CanBeNavigationPropertyType": true,
+  "CanBeSearch": true,
   "CreationAreaMetadata": {
     "NameGuid": "3cea7122-33c3-4e25-914f-dbcd03b58f7e",
     "Name": "CreationArea",
@@ -677,7 +678,8 @@
   "Overridden": [
     "IconName",
     "HideFromCreationArea",
-    "HideFromNavigationEditorCreationArea"
+    "HideFromNavigationEditorCreationArea",
+    "CanBeSearch"
   ],
   "Properties": [
     {

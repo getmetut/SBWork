@@ -20,13 +20,20 @@ namespace sberdev.SberContracts.Shared
       {
         elem.IsRequired = false;
       }
-
+      
+      _obj.State.Properties.PurchaseItemDescription.IsRequired = true;
+      _obj.State.Properties.PurchaseJustification.IsRequired = true;
+      _obj.State.Properties.ExpectedDeliveryDate.IsRequired = true;
+      _obj.State.Properties.EstimatedDeliveryCost.IsRequired = true;
+      _obj.State.Properties.BusinessUnit.IsRequired = true;
+      
       _obj.State.Properties.CalculationFlagBaseSberDev.IsVisible = true;
       _obj.State.Properties.CalculationDistributeBaseSberDev.IsVisible = true;
       _obj.State.Properties.CalculationBaseSberDev.IsVisible = true;
       _obj.State.Properties.CalculationResidualAmountBaseSberDev.IsVisible = true;
       _obj.State.Properties.CalculationAmountBaseSberDev.IsVisible = true;
       _obj.State.Properties.MVZBaseSberDev.IsVisible = true;
+      _obj.State.Properties.MVZBaseSberDev.IsEnabled = true;
       
       _obj.State.Properties.CalculationFlagBaseSberDev.IsEnabled = true;
       _obj.State.Properties.CalculationDistributeBaseSberDev.IsEnabled = true;
@@ -43,7 +50,7 @@ namespace sberdev.SberContracts.Shared
         _obj.State.Properties.Counterparty.IsEnabled = Users.Current.IncludedIn(Purchaser);
         _obj.State.Properties.PurchaseOrderNumber.IsEnabled = Users.Current.IncludedIn(Purchaser);
         _obj.State.Properties.ValidFrom.IsEnabled = Users.Current.IncludedIn(Purchaser);
-        _obj.State.Properties.AddendumDocument.IsEnabled = Users.Current.IncludedIn(Purchaser);
+        _obj.State.Properties.AddendumDocument.IsEnabled = Users.Current.IncludedIn(Purchaser); 
       }
       
     }

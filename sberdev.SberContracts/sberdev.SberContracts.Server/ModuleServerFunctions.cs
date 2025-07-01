@@ -14,6 +14,31 @@ namespace sberdev.SberContracts.Server
 {
   public class ModuleFunctions
   {
+
+    /// <summary>
+    /// Функция пересоханения всех записей КА
+    /// </summary>
+    [Public]
+    public string ReSaveServer()
+    {
+      var CompanyList = sberdev.SBContracts.Companies.GetAll(c => c.Status == sberdev.SBContracts.Company.Status.Active);
+      string log = "";
+      int ind = 0;
+      foreach (var comp in CompanyList)
+      {
+        try
+        {
+          comp.Name = comp.Name;
+          comp.Save();
+        }
+        catch (Exception e)
+        {
+          log += comp.Name.ToString() + "| Ошибка: " + e.Message.ToString();
+        }
+        ind += 1;
+      }
+      return log;
+    }
     
     #region Минифункции
     
