@@ -400,6 +400,19 @@
           "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "cb83f92e-9d3f-4594-bb9a-5bf1d0cb617f",
+          "Name": "FrameworkNonMonetaryATSDevATSDev",
+          "ColumnNumber": 2,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+          "ParentGuid": "01764d26-7ac6-4022-842e-9cf325a074d5",
+          "PropertyGuid": "b8f7e9f8-557f-4bc4-b47e-bda33afe244c",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -453,6 +466,14 @@
       "Code": "ReklamaSDev",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "46bf1721-57e4-4b7d-ad4e-39b398a4139f"
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "b8f7e9f8-557f-4bc4-b47e-bda33afe244c",
+      "Name": "FrameworkNonMonetaryATSDev",
+      "Code": "FrameworkNonMo",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "c9b14e67-bea6-4f79-8a6b-e740bf6a203b"
     }
   ],
   "PublicStructures": [],
