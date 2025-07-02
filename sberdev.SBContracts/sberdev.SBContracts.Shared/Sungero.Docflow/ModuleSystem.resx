@@ -94,4 +94,7 @@
   <data name="JobDescription_c8b6a264c04d4916bbeceede8bb3f60d" xml:space="preserve">
     <value>The process reviews tasks for return control. If the task is more than {System settings. Settings of the FP "Sending subtasks about return control". Text parameter 1} days old, it sends the subtask to the task initiator. If there is no response from the initiator for another {Text parameter 2} days, the subtask is liquidated. Every {Text parameter 3} days, a notification will be sent for the created subtask</value>
   </data>
+  <data name="sf_daa5fc92_0c78_4ba7_afc8_c07fbe10238f" xml:space="preserve">
+    <value>Folder</value>
+  </data>
 </root>

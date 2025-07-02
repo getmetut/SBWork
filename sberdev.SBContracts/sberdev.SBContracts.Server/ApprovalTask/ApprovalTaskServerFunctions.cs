@@ -9,6 +9,38 @@ namespace sberdev.SBContracts.Server
 {
   partial class ApprovalTaskFunctions
   {
+    public void SetChangeAccessRightsOnDocs(Sungero.Docflow.IApprovalAssignment assignment) {
+      // Доработка в рамках задачи DRX-660.
+      var task = ApprovalTasks.As(assignment.Task);
+      if (task != null) {
+        var author = task.Author;
+        if (author != null) {
+          List<IOfficialDocument> documents = new List<IOfficialDocument>();
+          var leadDoc = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
+          if (leadDoc != null && OfficialDocuments.Is(leadDoc))
+            documents.Add(OfficialDocuments.As(leadDoc));
+          
+          foreach(var doc in task.AddendaGroup.OfficialDocuments) {
+            if (doc != null && OfficialDocuments.Is(doc))
+              documents.Add(OfficialDocuments.As(doc));
+          }
+          
+          foreach(var doc in task.OtherGroup.All) {
+            if (doc != null && OfficialDocuments.Is(doc))
+              documents.Add(OfficialDocuments.As(doc));
+          }
+          
+          foreach(var doc in documents) {
+            if (!doc.AccessRights.IsGranted(DefaultAccessRightsTypes.Change, author)) {
+              doc.AccessRights.Grant(author, DefaultAccessRightsTypes.Change);
+              doc.AccessRights.Save();
+              Logger.Debug("SBDev DEBUG: Grant Change Access Rights for User Id {0} on Document Id {1}", author.Id, doc.Id);
+            }
+          }
+        }
+      }
+    }
+    
     public void ChangeNameCheckCPStage(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
     {
       bool isCheckingCPStage = PublicFunctions.ApprovalTask.IsNecessaryStage(_obj, PublicConstants.Docflow.ApprovalTask.CheckingCPStage);

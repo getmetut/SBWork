@@ -8,7 +8,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">OneLineMode</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">754,-176</property>
+            <property name="Location">754,-215</property>
             <property name="Size">220,250</property>
           </property>
           <property name="WaitIndicatorType">Panel</property>
