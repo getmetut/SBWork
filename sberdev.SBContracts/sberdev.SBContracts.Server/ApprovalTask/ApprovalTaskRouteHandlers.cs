@@ -22,6 +22,7 @@ namespace sberdev.SBContracts.Server
     {
       base.StartAssignment6(assignment, e);
       Functions.ApprovalTask.SetSubstitutePerformer(_obj, assignment);
+      Functions.ApprovalTask.SetChangeAccessRightsOnDocs(_obj, assignment);
     }
     
     public override void CompleteAssignment6(Sungero.Docflow.IApprovalAssignment assignment, Sungero.Docflow.Server.ApprovalAssignmentArguments e)

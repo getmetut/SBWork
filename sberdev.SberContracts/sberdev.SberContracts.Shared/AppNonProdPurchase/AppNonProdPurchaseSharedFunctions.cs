@@ -40,6 +40,7 @@ namespace sberdev.SberContracts.Shared
       _obj.State.Properties.CalculationBaseSberDev.IsEnabled = true;
       _obj.State.Properties.CalculationResidualAmountBaseSberDev.IsEnabled = true;
       _obj.State.Properties.CalculationAmountBaseSberDev.IsEnabled = true;
+      _obj.State.Properties.MVPBaseSberDev.IsEnabled = true;
 
       var Purchaser = Roles.GetAll(r => r.Sid == Constants.Module.PurchaserBySing).FirstOrDefault();
       if (Purchaser != null)

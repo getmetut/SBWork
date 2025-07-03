@@ -601,6 +601,16 @@ namespace sberdev.SBContracts.Shared
             _obj.State.Properties.ValidFrom.IsRequired = kind.SaveDocSDev.Value;
             _obj.State.Properties.ValidTill.IsRequired = kind.SaveDocSDev.Value;
           }
+          if (kind.FrameworkNonMonetaryATSDev.HasValue)
+          {
+            if (kind.FrameworkNonMonetaryATSDev == true) // Да, этот контроль не случаен и как выше сделано - уже не выйдет.
+            {
+              _obj.State.Properties.MVZBaseSberDev.IsRequired = false;
+              _obj.State.Properties.AccArtExBaseSberDev.IsRequired = false;
+              _obj.State.Properties.AccArtPrBaseSberDev.IsRequired = false;
+              _obj.State.Properties.Currency.IsRequired = false;
+            }
+          }
         }
       }
     }

@@ -139,4 +139,7 @@
   <data name="Resource_d5de8de90c954ca98ef9060b43c1a9ca" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_FrameworkNonMonetaryATSDev" xml:space="preserve">
+    <value>Рамочный/Безденежный</value>
+  </data>
 </root>
