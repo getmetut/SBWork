@@ -256,7 +256,7 @@ namespace sberdev.SberContracts.Server
         
         bool isSubtaskAssignment = assignment.Task != assignment.MainTask;
         
-      /*  if(!assignment.Attachments.Any())
+        /*  if(!assignment.Attachments.Any())
         {
           Logger.Error($"AssignmentMatchesDocumentType: Нет вложений для задания {assignment?.Id}");
           return false;
