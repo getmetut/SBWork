@@ -68,9 +68,15 @@ namespace sberdev.SBContracts
         }
       }
       if (er1 != "")
-        e.AddError(er1);
+      {
+        if (!SberContracts.NonContractInvoiceCounters.Is(document))
+          e.AddError(er1);
+      }
       if (er2 != "")
-        e.AddError(er2);
+      {
+        if (!SberContracts.NonContractInvoiceCounters.Is(document))
+          e.AddError(er2);
+      }
       
       // Механика подтверждения суммы закупки
       var gurantee = SberContracts.GuaranteeLetters.As(document);
