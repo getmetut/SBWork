@@ -738,7 +738,7 @@ namespace sberdev.SberContracts.Server
       
       #region Договорные
       var contractual = sberdev.SBContracts.ContractualDocuments.As(doc);
-      if ((contractual != null) && (!sberdev.SberContracts.AppNonProdPurchases.Is(doc)))
+      if (contractual != null)
       {
         contractual.CalculationBaseSberDev.Clear();
         
