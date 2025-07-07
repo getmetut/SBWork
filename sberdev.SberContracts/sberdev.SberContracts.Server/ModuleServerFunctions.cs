@@ -738,6 +738,7 @@ namespace sberdev.SberContracts.Server
       
       #region Договорные
       var contractual = sberdev.SBContracts.ContractualDocuments.As(doc);
+      var NonProdDoc = sberdev.SberContracts.AppNonProdPurchases.As(doc);
       if (contractual != null)
       {
         contractual.CalculationBaseSberDev.Clear();
@@ -820,11 +821,14 @@ namespace sberdev.SberContracts.Server
             && contractual.CalculationDistributeBaseSberDev.Value != SBContracts.ContractualDocument.CalculationDistributeBaseSberDev.Tamplate)
           if (contractual.CalculationFlagBaseSberDev == SBContracts.Contract.CalculationFlagBaseSberDev.Absolute)
         {
-          double amountPart = Math.Round(contractual.TotalAmount.Value / contractual.CalculationBaseSberDev.Count, 2, MidpointRounding.AwayFromZero);
-          foreach (var prop in contractual.CalculationBaseSberDev)
-            prop.AbsoluteCalc = amountPart;
-          if (contractual.CalculationResidualAmountBaseSberDev != 0)
-            contractual.CalculationBaseSberDev.Last().AbsoluteCalc += contractual.CalculationResidualAmountBaseSberDev;
+          if (NonProdDoc == null)
+          {
+            double amountPart = Math.Round(contractual.TotalAmount.Value / contractual.CalculationBaseSberDev.Count, 2, MidpointRounding.AwayFromZero);
+            foreach (var prop in contractual.CalculationBaseSberDev)
+              prop.AbsoluteCalc = amountPart;
+            if (contractual.CalculationResidualAmountBaseSberDev != 0)
+              contractual.CalculationBaseSberDev.Last().AbsoluteCalc += contractual.CalculationResidualAmountBaseSberDev;
+          }
         }
         else
         {

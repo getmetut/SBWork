@@ -16,6 +16,9 @@ namespace Sungero.Custom.Constants
     // Уникальный идентификатор для типа «Спецификация».
     public static readonly Guid Specs = Guid.Parse("1ac4917b-556d-4743-8cb2-0fdd4c8976b3");
     
+    // Уникальный идентификатор для типа «Протокол выбора способа закупки».
+    public static readonly Guid PurchaseProtocol = Guid.Parse("b4c6255c-cdb4-4b07-b405-243790ee8ccc");
+    
     // Уникальный идентификатор для типа «Маркетинговые акции».
     public static readonly Guid Marketing = Guid.Parse("17b4a41d-2ea8-43d3-b2c2-39dc966189db");
     
