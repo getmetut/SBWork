@@ -127,4 +127,79 @@
   <data name="Enum_IthemPurchase_PO" xml:space="preserve">
     <value>Программное обеспечение</value>
   </data>
+  <data name="Property_FormPay" xml:space="preserve">
+    <value>Форма оплаты</value>
+  </data>
+  <data name="Enum_FormPay_PostPayment" xml:space="preserve">
+    <value>Постоплата</value>
+  </data>
+  <data name="Enum_FormPay_Prepaid50" xml:space="preserve">
+    <value>Аванс в размере не более 50%</value>
+  </data>
+  <data name="Enum_FormPay_Prepaid100" xml:space="preserve">
+    <value>Аванс в размере не более 100%</value>
+  </data>
+  <data name="Property_PurchaseMethod" xml:space="preserve">
+    <value>Способ закупки</value>
+  </data>
+  <data name="Property_TextPurpose" xml:space="preserve">
+    <value>Для реализации целей по</value>
+  </data>
+  <data name="Property_Necessary" xml:space="preserve">
+    <value>Необходимо</value>
+  </data>
+  <data name="Property_Justification" xml:space="preserve">
+    <value>Обоснование выбора поставщика</value>
+  </data>
+  <data name="ControlGroup_7e0a7c780b444d29a26355fc495c77f5" xml:space="preserve">
+    <value>Договорная информация</value>
+  </data>
+  <data name="Property_ContrTypeBaseSberDev" xml:space="preserve">
+    <value>Contract type</value>
+  </data>
+  <data name="Enum_ContrTypeBaseSberDev_Profitable" xml:space="preserve">
+    <value>Profitable</value>
+  </data>
+  <data name="Enum_ContrTypeBaseSberDev_Expendable" xml:space="preserve">
+    <value>Expendable</value>
+  </data>
+  <data name="Enum_ContrTypeBaseSberDev_ProfExpen" xml:space="preserve">
+    <value>Revenue and expenditure</value>
+  </data>
+  <data name="Property_FormInteraction" xml:space="preserve">
+    <value>Форма взаимодействия</value>
+  </data>
+  <data name="Enum_FormInteraction_Contract" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="Enum_FormInteraction_OneTimeAccount" xml:space="preserve">
+    <value>Разовый счет</value>
+  </data>
+  <data name="Property_TotalSumm" xml:space="preserve">
+    <value>Сумма договора/счета</value>
+  </data>
+  <data name="Property_Counterparty" xml:space="preserve">
+    <value>Counterparty</value>
+  </data>
+  <data name="Property_Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="ControlGroup_c69202dc92964a849f9c39accd0f77de" xml:space="preserve">
+    <value>Информация о подписанте</value>
+  </data>
+  <data name="Property_BusinessUnit" xml:space="preserve">
+    <value>Business unit</value>
+  </data>
+  <data name="Property_OurSignatory" xml:space="preserve">
+    <value>Signed by</value>
+  </data>
+  <data name="Property_BasisDecision" xml:space="preserve">
+    <value>Основание принятия решения</value>
+  </data>
+  <data name="Property_Department" xml:space="preserve">
+    <value>Подразделение инициатора закупки</value>
+  </data>
+  <data name="Property_PreparedBy" xml:space="preserve">
+    <value>Ответственный от Инициатора</value>
+  </data>
 </root>
