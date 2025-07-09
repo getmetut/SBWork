@@ -21,6 +21,14 @@ namespace sberdev.SberContracts.Shared
         elem.IsRequired = false;
       }
       
+      _obj.State.Properties.ProdCollectionExBaseSberDev.IsVisible = true;
+      _obj.State.Properties.ProdCollectionPrBaseSberDev.IsVisible = true;
+      _obj.State.Properties.AccArtExBaseSberDev.IsVisible = true;
+      
+      _obj.State.Properties.ProdCollectionExBaseSberDev.IsEnabled = true;
+      _obj.State.Properties.ProdCollectionPrBaseSberDev.IsEnabled = true;
+      _obj.State.Properties.AccArtExBaseSberDev.IsEnabled = true;
+      
       _obj.State.Properties.PurchaseItemDescription.IsRequired = true;
       _obj.State.Properties.PurchaseJustification.IsRequired = true;
       _obj.State.Properties.ExpectedDeliveryDate.IsRequired = true;
@@ -51,7 +59,7 @@ namespace sberdev.SberContracts.Shared
         _obj.State.Properties.Counterparty.IsEnabled = Users.Current.IncludedIn(Purchaser);
         _obj.State.Properties.PurchaseOrderNumber.IsEnabled = Users.Current.IncludedIn(Purchaser);
         _obj.State.Properties.ValidFrom.IsEnabled = Users.Current.IncludedIn(Purchaser);
-        _obj.State.Properties.AddendumDocument.IsEnabled = Users.Current.IncludedIn(Purchaser); 
+        _obj.State.Properties.AddendumDocument.IsEnabled = Users.Current.IncludedIn(Purchaser);
       }
       
     }
