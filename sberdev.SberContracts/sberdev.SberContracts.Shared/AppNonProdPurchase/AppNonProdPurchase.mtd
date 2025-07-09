@@ -720,9 +720,13 @@
       "NameGuid": "15ae2efe-a515-4325-bf1d-1b02b5d33f76",
       "Name": "CalculationBaseSberDev",
       "EntityGuid": "444ab01b-e72a-4ba8-842c-4eb118b3ac4f",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
       "IsAncestorMetadata": true,
       "Overridden": [
-        "EntityGuid"
+        "EntityGuid",
+        "HandledEvents"
       ],
       "Versions": []
     },

@@ -61,7 +61,23 @@ namespace sberdev.SberContracts.Shared
         _obj.State.Properties.ValidFrom.IsEnabled = Users.Current.IncludedIn(Purchaser);
         _obj.State.Properties.AddendumDocument.IsEnabled = Users.Current.IncludedIn(Purchaser);
       }
-      
+
+      if (_obj.CalculationFlagBaseSberDev != null)
+      {
+        if ((_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Absolute) && (_obj.CalculationBaseSberDev.Count > 0))
+        {
+          if (_obj.TotalAmount.HasValue)
+          {
+            if (_obj.CalculationResidualAmountBaseSberDev != _obj.TotalAmount - _obj.CalculationBaseSberDev.Sum(s => s.AbsoluteCalc))
+              _obj.CalculationResidualAmountBaseSberDev = _obj.TotalAmount - _obj.CalculationBaseSberDev.Sum(s => s.AbsoluteCalc);
+          }
+        }
+        else
+        {
+          if (_obj.CalculationResidualAmountBaseSberDev != 100 - _obj.CalculationBaseSberDev.Sum(s => s.PercentCalc))
+            _obj.CalculationResidualAmountBaseSberDev = 100 - _obj.CalculationBaseSberDev.Sum(s => s.PercentCalc);
+        }
+      }
     }
 
   }
