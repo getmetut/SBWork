@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Протокол выбора способа закупки</value>
+  </data>
+  <data name="AccusativeDisplayName" xml:space="preserve">
+    <value>Протокол выбора способа закупки</value>
+  </data>
+  <data name="CollectionDisplayName" xml:space="preserve">
+    <value>Протоколы выбора способа закупки</value>
+  </data>
+  <data name="Property_RouteType" xml:space="preserve">
+    <value>Маршрут согласования</value>
+  </data>
+  <data name="Enum_RouteType_Purchase500" xml:space="preserve">
+    <value>Закупка до 500 тыс. руб</value>
+  </data>
+  <data name="Enum_RouteType_PurchaseFramewo" xml:space="preserve">
+    <value>Закупка в рамках закупочной комиссии</value>
+  </data>
+  <data name="Enum_RouteType_PurchaseUL" xml:space="preserve">
+    <value>Закупка в рамках Уполномоченного лица</value>
+  </data>
+  <data name="Resource_fc50c88831554ff196e8ff7064894ead" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_fc50c88831554ff196e8ff7064894ead_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ddf41ead829a4a3f8d12d40a52b7440c" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_ddf41ead829a4a3f8d12d40a52b7440c_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f0607051ea774af2b7966d11cd8a7374" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_f0607051ea774af2b7966d11cd8a7374_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Enum_ApprovalStage_Approval" xml:space="preserve">
+    <value>Утверждение закупочной документации</value>
+  </data>
+  <data name="Property_ApprovalStage" xml:space="preserve">
+    <value>Этап согласования</value>
+  </data>
+  <data name="Enum_ApprovalStage_Summing" xml:space="preserve">
+    <value>Подведение итогов закупки</value>
+  </data>
+  <data name="Property_DocumentFooting" xml:space="preserve">
+    <value>Документ основание для проведения Закупки</value>
+  </data>
+  <data name="ControlGroup_6f4f4097b8e544ef9342d7ec0d767534" xml:space="preserve">
+    <value>ЗАКУПОЧНАЯ ИНФОРМАЦИЯ</value>
+  </data>
+  <data name="Property_NMCDPurchase" xml:space="preserve">
+    <value>НМЦД закупки</value>
+  </data>
+  <data name="Property_IthemPurchase" xml:space="preserve">
+    <value>Предмет закупки</value>
+  </data>
+  <data name="Enum_IthemPurchase_TMC" xml:space="preserve">
+    <value>ТМЦ</value>
+  </data>
+  <data name="Enum_IthemPurchase_ServiceWors" xml:space="preserve">
+    <value>Услуги/работы</value>
+  </data>
+  <data name="Enum_IthemPurchase_PO" xml:space="preserve">
+    <value>Программное обеспечение</value>
+  </data>
+  <data name="Property_FormPay" xml:space="preserve">
+    <value>Форма оплаты</value>
+  </data>
+  <data name="Enum_FormPay_PostPayment" xml:space="preserve">
+    <value>Постоплата</value>
+  </data>
+  <data name="Enum_FormPay_Prepaid50" xml:space="preserve">
+    <value>Аванс в размере не более 50%</value>
+  </data>
+  <data name="Enum_FormPay_Prepaid100" xml:space="preserve">
+    <value>Аванс в размере не более 100%</value>
+  </data>
+  <data name="Property_PurchaseMethod" xml:space="preserve">
+    <value>Способ закупки</value>
+  </data>
+  <data name="Property_TextPurpose" xml:space="preserve">
+    <value>Для реализации целей по</value>
+  </data>
+  <data name="Property_Necessary" xml:space="preserve">
+    <value>Необходимо</value>
+  </data>
+  <data name="Property_Justification" xml:space="preserve">
+    <value>Обоснование выбора поставщика</value>
+  </data>
+  <data name="ControlGroup_7e0a7c780b444d29a26355fc495c77f5" xml:space="preserve">
+    <value>Договорная информация</value>
+  </data>
+  <data name="Property_ContrTypeBaseSberDev" xml:space="preserve">
+    <value>Contract type</value>
+  </data>
+  <data name="Enum_ContrTypeBaseSberDev_Profitable" xml:space="preserve">
+    <value>Profitable</value>
+  </data>
+  <data name="Enum_ContrTypeBaseSberDev_Expendable" xml:space="preserve">
+    <value>Expendable</value>
+  </data>
+  <data name="Enum_ContrTypeBaseSberDev_ProfExpen" xml:space="preserve">
+    <value>Revenue and expenditure</value>
+  </data>
+  <data name="Property_FormInteraction" xml:space="preserve">
+    <value>Форма взаимодействия</value>
+  </data>
+  <data name="Enum_FormInteraction_Contract" xml:space="preserve">
+    <value>Договор</value>
+  </data>
+  <data name="Enum_FormInteraction_OneTimeAccount" xml:space="preserve">
+    <value>Разовый счет</value>
+  </data>
+  <data name="Property_TotalSumm" xml:space="preserve">
+    <value>Сумма договора/счета</value>
+  </data>
+  <data name="Property_Counterparty" xml:space="preserve">
+    <value>Counterparty</value>
+  </data>
+  <data name="Property_Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="ControlGroup_c69202dc92964a849f9c39accd0f77de" xml:space="preserve">
+    <value>Информация о подписанте</value>
+  </data>
+  <data name="Property_BusinessUnit" xml:space="preserve">
+    <value>Business unit</value>
+  </data>
+  <data name="Property_OurSignatory" xml:space="preserve">
+    <value>Signed by</value>
+  </data>
+  <data name="Property_BasisDecision" xml:space="preserve">
+    <value>Основание принятия решения</value>
+  </data>
+  <data name="Property_Department" xml:space="preserve">
+    <value>Подразделение инициатора закупки</value>
+  </data>
+  <data name="Property_PreparedBy" xml:space="preserve">
+    <value>Ответственный от Инициатора</value>
+  </data>
+</root>
