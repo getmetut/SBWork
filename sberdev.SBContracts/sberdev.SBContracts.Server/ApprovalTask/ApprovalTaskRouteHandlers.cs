@@ -23,6 +23,8 @@ namespace sberdev.SBContracts.Server
       base.StartAssignment6(assignment, e);
       Functions.ApprovalTask.SetSubstitutePerformer(_obj, assignment);
       Functions.ApprovalTask.SetChangeAccessRightsOnDocs(_obj, assignment);
+      Functions.ApprovalTask.RemoveCPCheckingPerformer(_obj, assignment);
+      Functions.ApprovalTask.MarkCPAsChecking(_obj, assignment);
     }
     
     public override void CompleteAssignment6(Sungero.Docflow.IApprovalAssignment assignment, Sungero.Docflow.Server.ApprovalAssignmentArguments e)
@@ -40,7 +42,7 @@ namespace sberdev.SBContracts.Server
         base.CompleteAssignment6(assignment, e);
         
         if (blok.AmountChanges.GetValueOrDefault())
-          Functions.ApprovalTask.AddMVZApprovers(_obj, e, blok);
+          Functions.ApprovalTask.AddMVZApprovers(_obj, blok);
         
         if (assignment.Result == Sungero.Docflow.ApprovalAssignment.Result.ForRevision && assignment.CompletedBy != null)
           Functions.ApprovalTask.SaveSubstitutePerformer(_obj, assignment);
@@ -60,7 +62,7 @@ namespace sberdev.SBContracts.Server
     public override void StartBlock31(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
     {
       base.StartBlock31(e);
-      Functions.ApprovalTask.SetSupStagePerformer(_obj, e);
+      Functions.ApprovalTask.RemoveSupStagePerformer(_obj, e);
       Functions.ApprovalTask.RemoveOneTimeCompletePerformers(_obj, e);
     }
 

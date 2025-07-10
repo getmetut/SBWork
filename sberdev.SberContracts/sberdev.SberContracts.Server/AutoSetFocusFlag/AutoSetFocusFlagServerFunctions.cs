@@ -25,6 +25,7 @@ namespace sberdev.SberContracts.Server
         SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(cp);
         cp.FocusCheckedSberDev = true;
         cp.FocusCheckedDateSberDev = Calendar.Now;
+        cp.FocusCheckingSberDev = false;
         cp.Save();
         return this.GetSuccessResult();
       }
