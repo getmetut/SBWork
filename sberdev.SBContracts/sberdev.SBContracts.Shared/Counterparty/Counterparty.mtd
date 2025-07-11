@@ -327,6 +327,7 @@
       "HandledEvents": [
         "ChangedShared"
       ],
+      "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
       "PreviousPropertyGuid": "48aa3e2d-135d-41a3-8bf4-423deb2540c9"
     },
@@ -343,6 +344,18 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "8040b198-5278-4621-b31c-cbe5632609f6",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "c38efcc5-962a-483d-90fb-6623be29a68d",
+      "Name": "FocusCheckingSberDev",
+      "CanBeSearch": false,
+      "Code": "FocusChecking",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "c02d6685-e66c-4958-ac04-ddf574a6099c"
     }
   ],
   "PublicFunctions": [

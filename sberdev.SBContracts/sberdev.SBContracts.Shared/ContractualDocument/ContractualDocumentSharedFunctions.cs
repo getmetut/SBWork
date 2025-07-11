@@ -369,6 +369,38 @@ namespace sberdev.SBContracts.Shared
       return flag;
     }
     
+    /// <summary>
+    /// Функция возвращает текст ошибки, если в каком либо поле выбраны заглушки
+    /// </summary>
+    [Public]
+    public string BanToSaveForStabs()
+    {
+      var error = "";
+      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
+      {
+        if (_obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
+          error += ", МВП";
+        if (_obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
+          error += ", МВЗ";
+        if (_obj.AccArtExBaseSberDev != null && _obj.AccArtExBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
+          error += ", Статья упр. учета (рас.)";
+        if (_obj.AccArtPrBaseSberDev != null && _obj.AccArtPrBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
+          error += ", Статья упр. учета (дох.)";
+        if (_obj.ProdCollectionExBaseSberDev.FirstOrDefault() != null
+            && _obj.ProdCollectionExBaseSberDev.Select(p => p.Product.Name).Any(p => p == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"))
+          error += ", Продукт (рас.)";
+        if (_obj.ProdCollectionPrBaseSberDev.FirstOrDefault() != null
+            && _obj.ProdCollectionPrBaseSberDev.Select(p => p.Product.Name).Any(p => p == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"))
+          error += ", Продукт (дох.)";
+        
+        if (error != "")
+        {
+          error = "Выберите нужные значения вместо заглушек в полях:" + error.TrimStart(',') + ". Документ: " + _obj.Name;
+        }
+      }
+      return error;
+    }
+    
     #endregion
     
     #region Контроль разных свойств
@@ -623,38 +655,6 @@ namespace sberdev.SBContracts.Shared
           }
         }
       }
-    }
-    
-    /// <summary>
-    /// Функция возвращает текст ошибки, если в каком либо поле выбраны заглушки
-    /// </summary>
-    [Public]
-    public string BanToSaveForStabs()
-    {
-      var error = "";
-      if ((!SBContracts.PublicFunctions.Module.IsSystemUser()) && (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj)))
-      {
-        if (_obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
-          error += ", МВП";
-        if (_obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
-          error += ", МВЗ";
-        if (_obj.AccArtExBaseSberDev != null && _obj.AccArtExBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
-          error += ", Статья упр. учета (рас.)";
-        if (_obj.AccArtPrBaseSberDev != null && _obj.AccArtPrBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
-          error += ", Статья упр. учета (дох.)";
-        if (_obj.ProdCollectionExBaseSberDev.FirstOrDefault() != null
-            && _obj.ProdCollectionExBaseSberDev.Select(p => p.Product.Name).Any(p => p == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"))
-          error += ", Продукт (рас.)";
-        if (_obj.ProdCollectionPrBaseSberDev.FirstOrDefault() != null
-            && _obj.ProdCollectionPrBaseSberDev.Select(p => p.Product.Name).Any(p => p == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"))
-          error += ", Продукт (дох.)";
-        
-        if (error != "")
-        {
-          error = "Выберите нужные значения вместо заглушек в полях:" + error.TrimStart(',') + ". Документ: " + _obj.Name;
-        }
-      }
-      return error;
     }
     
     // Серверная функция для сборки строки продуктов из коллекций
