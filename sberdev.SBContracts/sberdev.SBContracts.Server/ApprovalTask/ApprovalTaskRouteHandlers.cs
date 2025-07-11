@@ -23,7 +23,7 @@ namespace sberdev.SBContracts.Server
       base.StartAssignment6(assignment, e);
       Functions.ApprovalTask.SetSubstitutePerformer(_obj, assignment);
       Functions.ApprovalTask.SetChangeAccessRightsOnDocs(_obj, assignment);
-      Functions.ApprovalTask.RemoveCPCheckingPerformer(_obj, assignment);
+  //    Functions.ApprovalTask.RemoveCPCheckingPerformer(_obj, assignment);
       Functions.ApprovalTask.MarkCPAsChecking(_obj, assignment);
     }
     

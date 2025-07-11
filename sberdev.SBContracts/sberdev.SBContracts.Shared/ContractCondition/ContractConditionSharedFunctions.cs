@@ -134,7 +134,7 @@ namespace sberdev.SBContracts.Shared
         
         // Получаем контрагента
         var cp = SBContracts.Counterparties.As(contr.Counterparty);
-        if (cp == null)
+        if (cp == null || cp.FocusCheckingSberDev == true)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
         
         // Проверяем результаты предыдущей проверки
