@@ -44,10 +44,10 @@
           "Name": "HorizontalGroup",
           "ColumnDefinitions": [
             {
-              "Percentage": 69.33
+              "Percentage": 50.0
             },
             {
-              "Percentage": 29.64
+              "Percentage": 50.0
             }
           ],
           "IsAncestorMetadata": true,
