@@ -21,17 +21,20 @@ namespace sberdev.SBContracts
             if (_obj.RegistrationDate == null)
               _obj.RegistrationDate = _obj.Created;
         
+        // Проверка корректности заполнения полей договора
         if (!_obj.ValidTill.HasValue)
         {
-          if (_obj.IsAutomaticRenewal.HasValue)
-          {
-            if (_obj.IsAutomaticRenewal.Value == false)
+            // Если дата окончания не указана, проверяем автопролонгацию
+            if (_obj.IsAutomaticRenewal.HasValue && _obj.IsAutomaticRenewal.Value == false)
             {
-              _obj.State.Properties.IsAutomaticRenewal.HighlightColor = Colors.Common.Red;
-              _obj.State.Properties.ValidTill.HighlightColor = Colors.Common.Red;
-              e.AddError("Для сохранения документа необходимо указать признак действия договора: \"Действует до\" или \"С автопролонгацией\"!");
+                // Подсвечиваем поля красным цветом для привлечения внимания
+                _obj.State.Properties.IsAutomaticRenewal.HighlightColor = Colors.Common.Red;
+                _obj.State.Properties.ValidTill.HighlightColor = Colors.Common.Red;
+                
+                // Добавляем ошибку валидации
+                e.AddError("Для сохранения документа необходимо указать признак действия договора: " +
+                          "\"Действует до\" или \"С автопролонгацией\"!");
             }
-          }
         }
       }
     }
