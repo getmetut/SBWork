@@ -376,7 +376,7 @@ namespace sberdev.SBContracts.Shared
     public string BanToSaveForStabs()
     {
       var error = "";
-      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
+      if ((!SBContracts.PublicFunctions.Module.IsSystemUser()) && (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj)))
       {
         if (_obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
           error += ", МВП";
@@ -554,11 +554,21 @@ namespace sberdev.SBContracts.Shared
       if (_obj.CalculationBaseSberDev.Count > 0)
       {
         if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Absolute)
+        {
           foreach (var elem in _obj.CalculationBaseSberDev)
-            spisokCalc += elem.ProductCalc.Name + " " + Math.Round((decimal)elem.AbsoluteCalc.Value, 2) + "; ";
-          else
-            foreach (var elem in _obj.CalculationBaseSberDev)
+          {
+            if ((elem.ProductCalc != null) && (elem.AbsoluteCalc.HasValue))
+              spisokCalc += elem.ProductCalc.Name + " " + Math.Round((decimal)elem.AbsoluteCalc.Value, 2) + "; ";
+          }
+        }
+        else
+        {
+          foreach (var elem in _obj.CalculationBaseSberDev)
+          {
+            if ((elem.ProductCalc != null) && (elem.InterestCalc.HasValue))
               spisokCalc += elem.ProductCalc.Name + " " + Math.Round((decimal)elem.InterestCalc.Value, 2) + "; ";
+          }
+        }
       }
       else
       {
