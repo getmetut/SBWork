@@ -45,6 +45,12 @@ namespace Sungero.Custom.Server
                                                                               PurchaseProtocol.ClassTypeGuid,      
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },      
                                                                               Constants.Module.PurchaseProtocol);
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Протокол утверждения поставщика", "Протокол утверждения поставщика",      
+                                                                              Sungero.Docflow.DocumentKind.NumberingType.Numerable,      
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, false,      
+                                                                              PurchaseProtocol.ClassTypeGuid,      
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },      
+                                                                              Constants.Module.PurchaseProtocol);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Маркетинговые акции", "Маркетинговые акции",      
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Numerable,      
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, false,      

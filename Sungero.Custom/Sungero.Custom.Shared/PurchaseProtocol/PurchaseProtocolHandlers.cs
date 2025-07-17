@@ -10,5 +10,15 @@ namespace Sungero.Custom
   partial class PurchaseProtocolSharedHandlers
   {
 
+    public virtual void RouteTypeChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      PublicFunctions.PurchaseProtocol.UpdateCard(_obj);
+    }
+
+    public virtual void TotalSummChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
+    {
+      PublicFunctions.PurchaseProtocol.UpdateCard(_obj);
+    }
+
   }
 }
