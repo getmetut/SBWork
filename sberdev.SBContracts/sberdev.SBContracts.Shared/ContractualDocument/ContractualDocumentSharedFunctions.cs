@@ -64,8 +64,11 @@ namespace sberdev.SBContracts.Shared
       }
       else
       {
-        _obj.State.Properties.TotalAmount.IsEnabled = true;
-        _obj.State.Properties.Currency.IsEnabled = true;
+        if (_obj.State.IsInserted)
+        {
+          _obj.State.Properties.TotalAmount.IsEnabled = true;
+          _obj.State.Properties.Currency.IsEnabled = true;
+        }
       }
       ChangeDeliveryInfoAccess();
       ChangePropertiesAccessByKind();
