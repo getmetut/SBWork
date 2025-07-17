@@ -25,7 +25,7 @@
         </property>
         <property name="GroupSummary" iskey="true" value="0" />
         <property name="GroupCount">0</property>
-        <property name="Columns" iskey="true" value="17">
+        <property name="Columns" iskey="true" value="16">
           <property name="Item1" isnull="true" iskey="true">
             <property name="MinWidth">32</property>
             <property name="FixedWidth">true</property>
@@ -155,15 +155,6 @@
           </property>
           <property name="Item15" isnull="true" iskey="true">
             <property name="Visible">false</property>
-            <property name="AutoFilterCondition">Contains</property>
-            <property name="Name">String_Новость_о</property>
-            <property name="FieldName">String_Новость_о</property>
-            <property name="VisibleIndex">14</property>
-            <property name="SortMode">Custom</property>
-            <property name="ActualWidth">NaN</property>
-          </property>
-          <property name="Item16" isnull="true" iskey="true">
-            <property name="Visible">false</property>
             <property name="AutoFilterCondition">Equals</property>
             <property name="Name">DateTime_New_deadline</property>
             <property name="FieldName">DateTime_New_deadline</property>
@@ -171,7 +162,7 @@
             <property name="SortMode">Custom</property>
             <property name="ActualWidth">11*</property>
           </property>
-          <property name="Item17" isnull="true" iskey="true">
+          <property name="Item16" isnull="true" iskey="true">
             <property name="Visible">false</property>
             <property name="AutoFilterCondition">Equals</property>
             <property name="Name">DateTime_Previous_deadline</property>
