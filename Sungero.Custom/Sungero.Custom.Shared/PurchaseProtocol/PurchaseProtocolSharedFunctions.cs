@@ -16,7 +16,11 @@ namespace Sungero.Custom.Shared
     [Public]
     public void UpdateCard()
     {
-      
+      _obj.State.Properties.DocumentFooting.IsRequired = false;
+      if (_obj.TotalSumm.HasValue)
+      {
+        _obj.State.Properties.DocumentFooting.IsRequired = ((_obj.TotalSumm > 500000) || (_obj.RouteType == Custom.PurchaseProtocol.RouteType.PurchaseFramewo));
+      }
     }
 
   }
