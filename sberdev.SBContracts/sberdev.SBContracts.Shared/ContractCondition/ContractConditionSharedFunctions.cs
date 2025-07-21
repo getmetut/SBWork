@@ -132,7 +132,7 @@ namespace sberdev.SBContracts.Shared
         if (contr == null)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
         
-        // Получаем контрагента
+        // Получаем контрагента если Контрагент уже проверяется - не требуется проверка
         var cp = SBContracts.Counterparties.As(contr.Counterparty);
         if (cp == null || cp.FocusCheckingSberDev == true)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
@@ -141,7 +141,7 @@ namespace sberdev.SBContracts.Shared
         if (cp.FocusCheckedSberDev.HasValue && cp.FocusCheckedDateSberDev.HasValue)
         {
           // Если проверка прошла успешно и дата проверки в текущем году
-          if (cp.FocusCheckedSberDev.Value && cp.FocusCheckedDateSberDev.Value.Year >= Calendar.Now.Year)
+          if (cp.FocusCheckedSberDev.Value && cp.FocusCheckedDateSberDev.Value.Year == Calendar.Now.Year)
           {
             return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
           }
