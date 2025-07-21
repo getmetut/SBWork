@@ -275,4 +275,7 @@ In the absence of these trainings, the following reputational risks are possible
   <data name="Enum_MethodPurchaseFull_Accreditation" xml:space="preserve">
     <value>Аккредитация</value>
   </data>
+  <data name="Property_TextObosn" xml:space="preserve">
+    <value>Обоснование выбора поставщика</value>
+  </data>
 </root>
