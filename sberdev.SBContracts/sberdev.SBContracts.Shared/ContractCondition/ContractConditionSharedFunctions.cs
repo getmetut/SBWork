@@ -282,39 +282,50 @@ namespace sberdev.SBContracts.Shared
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
       }
       #endregion
-
-      #region Проверка изменения документа (DocumentChanged)
+      
+      #region Проверка: Изменён ли документ после первой подписи (DocumentChanged)
       if (_obj.ConditionType == ConditionType.DocumentChanged)
       {
-        var acc = SBContracts.AccountingDocumentBases.As(document);
-        var contr = SBContracts.ContractualDocuments.As(document);
+        var official = SBContracts.OfficialDocuments.As(document);
+        if (official == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            false,
+            "Документ не является официальным.");
+        
         var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).FirstOrDefault();
         if (firstApprove == null)
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-            .Create(false, "Отбивка. Маршрут будет вычеслен по ходу согласования.");
+        {
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            true,
+            "Нет согласований на последней версии документа, необходима проверка.");
+        }
         
-        if (acc != null)
-        {
-          if (acc.ModifiedSberDev == null)
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-              .Create(false, "Отбивка. Маршрут будет вычеслен по ходу согласования.");
-          else
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-              .Create(Calendar.Between(acc.ModifiedSberDev, firstApprove.SigningDate.AddHours(3), Calendar.Now)
-                      || Calendar.Between(acc.LastVersion.Modified, firstApprove.SigningDate.AddHours(3), Calendar.Now),
-                      string.Empty);
-        }
-        if (contr != null)
-        {
-          if (contr.ModifiedSberDev == null)
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-              .Create(false, "Отбивка. Маршрут будет вычеслен по ходу согласования.");
-          else
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-              .Create(Calendar.Between(contr.ModifiedSberDev, firstApprove.SigningDate.AddHours(3), Calendar.Now)
-                      || Calendar.Between(contr.LastVersion.Modified, firstApprove.SigningDate.AddHours(3), Calendar.Now),
-                      string.Empty);
-        }
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        var accounting = SBContracts.AccountingDocumentBases.As(document);
+        var modified = contractual?.ModifiedSberDev;
+        modified = accounting?.ModifiedSberDev;
+        if (modified == null)
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(official.Modified,
+                             firstApprove.SigningDate.AddHours(3),
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                firstApprove.SigningDate.AddHours(3),
+                                Calendar.Now),
+            string.Empty);
+        
+        else
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(modified,
+                             firstApprove.SigningDate.AddHours(3),
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                firstApprove.SigningDate.AddHours(3),
+                                Calendar.Now),
+            string.Empty);
+        
       }
       #endregion
 
