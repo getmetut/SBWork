@@ -3,6 +3,7 @@
   "NameGuid": "b33230d7-1513-4f37-9ea0-7d0db0fb6b72",
   "Name": "SBContracts",
   "AsyncHandlers": [],
+  "BaseSolutionsDesktopViewsDisabled": true,
   "ClientAssemblyName": "sberdev.SBContracts.Client",
   "ClientBaseAssemblyName": "sberdev.SBContracts.ClientBase",
   "ClientBaseNamespace": "sberdev.SBContracts.ClientBase",
@@ -1222,7 +1223,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.4.2.0",
+  "Version": "5.4.3.0",
   "Widgets": [],
   "Versions": [
     {
