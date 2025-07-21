@@ -179,7 +179,7 @@
     <value>Согласующий</value>
   </data>
   <data name="Enum_ConditionType_IsNeedCheckCp" xml:space="preserve">
-    <value>Сумма договоров по ка &gt; 500 тыс. руб.</value>
+    <value>Нужна ли проверка контрагента?</value>
   </data>
   <data name="Enum_ConditionType_InvApprBySberDev" xml:space="preserve">
     <value>Вх. счет согласован</value>

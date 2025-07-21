@@ -9,6 +9,9 @@ namespace sberdev.SberContracts.Server
 {
   partial class AppRnDPurchaseFunctions
   {
-
+    public override void BeforeSaveFunction()
+    {
+    //  base.BeforeSaveFunction();
+    }
   }
 }

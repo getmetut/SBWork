@@ -359,33 +359,46 @@ namespace sberdev.SBContracts.Shared
       #region Проверка: Изменён ли документ после первой подписи (DocumentChanged)
       if (_obj.ConditionType == ConditionType.DocumentChanged)
       {
-        var contr = SBContracts.ContractualDocuments.As(document);
+        var official = SBContracts.OfficialDocuments.As(document);
+        if (official == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            false,
+            "Документ не является официальным.");
+        
         var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).FirstOrDefault();
         if (firstApprove == null)
         {
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            false,
-            "Отбивка. Маршрут будет вычеслен по ходу согласования.");
+            true,
+            "Нет согласований на последней версии документа, необходима проверка.");
         }
-
-        if (contr.ModifiedSberDev == null)
-        {
+        
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        var accounting = SBContracts.AccountingDocumentBases.As(document);
+        var modified = contractual?.ModifiedSberDev;
+        modified = accounting?.ModifiedSberDev;
+        if (modified == null)
+          
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            false,
-            "Отбивка. Маршрут будет вычеслен по ходу согласования.");
-        }
-
-        if (contr != null)
-        {
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            Calendar.Between(contr.ModifiedSberDev,
+            Calendar.Between(official.Modified,
                              firstApprove.SigningDate.AddHours(3),
                              Calendar.Now)
-            || Calendar.Between(contr.LastVersion.Modified,
+            || Calendar.Between(document.LastVersion.Modified,
                                 firstApprove.SigningDate.AddHours(3),
                                 Calendar.Now),
             string.Empty);
-        }
+        
+        else
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(modified,
+                             firstApprove.SigningDate.AddHours(3),
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                firstApprove.SigningDate.AddHours(3),
+                                Calendar.Now),
+            string.Empty);
+        
       }
       #endregion
 
@@ -924,7 +937,7 @@ namespace sberdev.SBContracts.Shared
           }
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
         }
-       
+        
         var Purchas = SberContracts.Purchases.As(document);
         if (Purchas != null)
         {
@@ -937,7 +950,7 @@ namespace sberdev.SBContracts.Shared
           }
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
         }
-       
+        
         if (!find)
         {
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
@@ -991,6 +1004,7 @@ namespace sberdev.SBContracts.Shared
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.ManuallyCheck); // входящий счет
       
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.DocumentChanged); // закупка
+      baseSupport["09584896-81e2-4c83-8f6c-70eb8321e1d0"].Add(ConditionType.DocumentChanged); // простой документ
 
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.PayType); // входящий счет
       
