@@ -20,7 +20,7 @@ namespace sberdev.SBContracts
           if (_obj.DocumentKind == DOff)
             if (_obj.RegistrationDate == null)
               _obj.RegistrationDate = _obj.Created;
-        
+        /*
         // Проверка корректности заполнения полей договора
         if (!_obj.ValidTill.HasValue)
         {
@@ -35,7 +35,7 @@ namespace sberdev.SBContracts
                 e.AddError("Для сохранения документа необходимо указать признак действия договора: " +
                           "\"Действует до\" или \"С автопролонгацией\"!");
             }
-        }
+        } */
       }
     }
 
