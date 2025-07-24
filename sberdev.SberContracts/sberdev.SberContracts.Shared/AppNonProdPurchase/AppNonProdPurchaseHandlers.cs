@@ -13,7 +13,6 @@ namespace sberdev.SberContracts
     public override void CalculationBaseSberDevChanged(Sungero.Domain.Shared.CollectionPropertyChangedEventArgs e)
     {
       base.CalculationBaseSberDevChanged(e);
-      Functions.AppNonProdPurchase.UpdateCard(_obj);
     }
 
   }
