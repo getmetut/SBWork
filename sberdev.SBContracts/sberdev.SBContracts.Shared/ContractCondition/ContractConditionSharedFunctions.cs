@@ -208,11 +208,19 @@ namespace sberdev.SBContracts.Shared
       if (_obj.ConditionType == ConditionType.IsPrepayment)
       {
         bool flag = false;
+        
         var acc = SBContracts.AccountingDocumentBases.As(document);
         if (acc != null && acc.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Prepayment)
         {
           flag = true;
         }
+        
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        if (contractual != null && contractual.PayTypeBaseSungero == SBContracts.ContractualDocument.PayTypeBaseSungero.Prepayment)
+        {
+          flag = true;
+        }
+        
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
       }
       #endregion
@@ -859,6 +867,8 @@ namespace sberdev.SBContracts.Shared
       baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.ProductUnit); // waybill
       baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.ProductUnit); // other contractual document
       
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.IsPrepayment); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.IsPrepayment); // sup agreement
       baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.IsPrepayment); // other contractual document
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.IsPrepayment); // сontract statement
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.IsPrepayment); // universal transfer document
