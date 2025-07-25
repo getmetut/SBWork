@@ -415,4 +415,7 @@
   <data name="Property_IsNeedLegalInfoSberDev" xml:space="preserve">
     <value>Нужна ли юридическая инфа в сводке по документу</value>
   </data>
+  <data name="Property_Number1CSberDev" xml:space="preserve">
+    <value>Номер 1С</value>
+  </data>
 </root>
