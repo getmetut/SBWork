@@ -219,6 +219,7 @@ namespace sberdev.SBContracts.Shared
       
       ChangeDeliveryInfoAccess();
       CancelRequiredPropeties();
+      ChangeNumber1CAccess();
     }
     
     public void ChangeCalculationAccess(bool flag)
@@ -385,6 +386,26 @@ namespace sberdev.SBContracts.Shared
       }
       else
         return "";
+    }
+
+    /// <summary>
+    /// Управление доступностью поля "Номер 1С".
+    /// </summary>
+    public void ChangeNumber1CAccess()
+    {
+      var setting = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Подразделения с обязательным полем \"Номер 1С\"");
+      var responsible = _obj.ResponsibleEmployee;
+      var department = responsible != null ? responsible.Department : null;
+
+      bool visible = false;
+      if (setting != null && !string.IsNullOrWhiteSpace(setting.Text) && department != null)
+      {
+        var ids = setting.Text.Split(',').Select(s => int.Parse(s.Trim())).ToList();
+        visible = ids.Contains(department.Id);
+      }
+
+      _obj.State.Properties.Number1CSberDev.IsVisible = visible;
+      _obj.State.Properties.Number1CSberDev.IsRequired = visible;
     }
   }
 }
