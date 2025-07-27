@@ -745,6 +745,8 @@ namespace sberdev.SberContracts.Server
                         "1) Категория - С поставщиком 2) Контрагент - Xiongxin 3) Валюта - Юань " +
                         "4) Способ доставки - По ел. почте 5) МВЗ - PROD 6) Статья упр. учета - Оплата товаров и услуг в составе себестоимости. " +
                         "Перечилслить ИД необходимых сущностей в текстовом параметре");
+      settingsNames.Add("Подразделения с обязательным полем \"Номер 1С\"",
+                       "В текстовом параметре перечислите ИД подразделений через запятую, в которых должно отображаться поле \"Номер 1С\".");
       foreach(var settingName in settingsNames)
       {
         var devSet = SBContracts.PublicFunctions.Module.Remote.GetDevSetting(settingName.Key);
@@ -753,6 +755,8 @@ namespace sberdev.SberContracts.Server
           devSet = DevSettingses.Create();
           devSet.Name = settingName.Key;
           devSet.Discription = settingName.Value;
+          if (Equals(settingName.Key, "Подразделения с обязательным Номером 1С"))
+            devSet.Text = "51,437";
           devSet.Save();
         }
       }
