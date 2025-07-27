@@ -703,15 +703,24 @@ namespace sberdev.SBContracts.Shared
     /// </summary>
     public void ChangeNumber1CAccess()
     {
-      var setting = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Подразделения с обязательным полем \"Номер 1С\"");
+      var depSetting = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Подразделения с обязательным полем \"Номер 1С\"");
+      var kindSetting = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Виды документов с обязательным полем \"Номер 1С\"");
+
       var responsible = _obj.ResponsibleEmployee;
       var department = responsible != null ? responsible.Department : null;
+      var docKind = _obj.DocumentKind;
 
       bool visible = false;
-      if (setting != null && !string.IsNullOrWhiteSpace(setting.Text) && department != null)
+      if (depSetting != null && !string.IsNullOrWhiteSpace(depSetting.Text) && department != null)
       {
-        var ids = setting.Text.Split(',').Select(s => int.Parse(s.Trim())).ToList();
+        var ids = depSetting.Text.Split(',').Select(s => int.Parse(s.Trim())).ToList();
         visible = ids.Contains(department.Id);
+      }
+
+      if (!visible && kindSetting != null && !string.IsNullOrWhiteSpace(kindSetting.Text) && docKind != null)
+      {
+        var kindIds = kindSetting.Text.Split(',').Select(s => int.Parse(s.Trim())).ToList();
+        visible = kindIds.Contains(docKind.Id);
       }
 
       _obj.State.Properties.Number1CSberDev.IsVisible = visible;
