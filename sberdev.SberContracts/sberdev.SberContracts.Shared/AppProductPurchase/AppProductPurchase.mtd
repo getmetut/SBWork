@@ -2765,6 +2765,26 @@
       ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "098b5c56-c13f-4f7e-ab67-278ed1c5983a"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "879a4116-67af-476e-8393-dfc3200e48c6",
+      "Name": "ReqNumber",
+      "Code": "ReqNumber",
+      "IsRequired": true,
+      "Length": 100,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "cb3706f7-782a-4f6e-9df5-e4aae9cb060d"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "8ac4b064-a3b6-46cb-a993-b573f42f4f25",
+      "Name": "ProcMethod",
+      "Code": "ProcMethod",
+      "IsRequired": true,
+      "Length": 100,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "879a4116-67af-476e-8393-dfc3200e48c6"
     }
   ],
   "PublicFunctions": [
