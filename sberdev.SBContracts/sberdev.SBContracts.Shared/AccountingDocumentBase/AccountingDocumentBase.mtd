@@ -1827,6 +1827,16 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "de2cf091-94bb-41f9-8233-58a9bb290ef7",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "320dc514-e840-4472-a10e-ad468278c5f7",
+      "Name": "Number1CSberDev",
+      "Code": "Number1CAcc",
+      "Length": 100,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "4034ccbf-f3b5-4283-bcae-195d3e5be67f",
+      "Versions": []
     }
   ],
   "PublicFunctions": [

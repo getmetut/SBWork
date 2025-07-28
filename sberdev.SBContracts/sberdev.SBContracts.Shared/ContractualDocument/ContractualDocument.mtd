@@ -1770,6 +1770,15 @@
       "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "12e60252-358d-4f68-9457-d5dcee45e47d"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "95f7be74-afed-4df1-918d-54b96b205f1c",
+      "Name": "Number1CSberDev",
+      "Code": "Number1CContr",
+      "Length": 100,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "bda0cf83-b234-4bfb-a0a4-38c9a5dce4dc"
     }
   ],
   "PublicFunctions": [

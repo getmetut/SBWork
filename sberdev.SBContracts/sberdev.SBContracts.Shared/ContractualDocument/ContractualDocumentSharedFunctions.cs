@@ -70,6 +70,7 @@ namespace sberdev.SBContracts.Shared
       ChangeDeliveryInfoAccess();
       ChangePropertiesAccessByKind();
       CancelRequiredPropeties();
+      ChangeNumber1CAccess();
     }
     #endregion
     
@@ -692,9 +693,37 @@ namespace sberdev.SBContracts.Shared
     public void UpdateProductsString()
     {
       var newProductsString = Functions.ContractualDocument.BuildProductsString(_obj);
-      
+
       if (_obj.ProdCollectionStringSDev != newProductsString)
         _obj.ProdCollectionStringSDev = newProductsString;
+    }
+
+    /// <summary>
+    /// Управление доступностью поля "Номер 1С".
+    /// </summary>
+    public void ChangeNumber1CAccess()
+    {
+      var depSetting = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Подразделения с обязательным полем \"Номер 1С\"");
+      var kindSetting = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Виды документов с обязательным полем \"Номер 1С\"");
+
+      var department = _obj.Department;
+      var docKind = _obj.DocumentKind;
+
+      bool visible = false;
+      if (depSetting != null && !string.IsNullOrWhiteSpace(depSetting.Text) && department != null)
+      {
+        var ids = depSetting.Text.Split(',').Select(s => long.Parse(s.Trim())).ToList();
+        visible = ids.Contains(department.Id);
+      }
+
+      if (visible && kindSetting != null && !string.IsNullOrWhiteSpace(kindSetting.Text) && docKind != null)
+      {
+        var kindIds = kindSetting.Text.Split(',').Select(s => long.Parse(s.Trim())).ToList();
+        visible = kindIds.Contains(docKind.Id);
+      }
+
+      _obj.State.Properties.Number1CSberDev.IsVisible = visible;
+      _obj.State.Properties.Number1CSberDev.IsRequired = visible;
     }
 
     #endregion
