@@ -64,12 +64,13 @@ namespace sberdev.SBContracts.Shared
       }
       else
       {
-        _obj.State.Properties.TotalAmount.IsEnabled = true;
-        _obj.State.Properties.Currency.IsEnabled = true;
+          _obj.State.Properties.TotalAmount.IsEnabled = true;
+          _obj.State.Properties.Currency.IsEnabled = true;
       }
       ChangeDeliveryInfoAccess();
       ChangePropertiesAccessByKind();
       CancelRequiredPropeties();
+      ChangeNumber1CAccess();
     }
     #endregion
     
@@ -369,6 +370,38 @@ namespace sberdev.SBContracts.Shared
       return flag;
     }
     
+    /// <summary>
+    /// Функция возвращает текст ошибки, если в каком либо поле выбраны заглушки
+    /// </summary>
+    [Public]
+    public string BanToSaveForStabs()
+    {
+      var error = "";
+      if ((!SBContracts.PublicFunctions.Module.IsSystemUser()) && (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj)))
+      {
+        if (_obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
+          error += ", МВП";
+        if (_obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
+          error += ", МВЗ";
+        if (_obj.AccArtExBaseSberDev != null && _obj.AccArtExBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
+          error += ", Статья упр. учета (рас.)";
+        if (_obj.AccArtPrBaseSberDev != null && _obj.AccArtPrBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
+          error += ", Статья упр. учета (дох.)";
+        if (_obj.ProdCollectionExBaseSberDev.FirstOrDefault() != null
+            && _obj.ProdCollectionExBaseSberDev.Select(p => p.Product.Name).Any(p => p == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"))
+          error += ", Продукт (рас.)";
+        if (_obj.ProdCollectionPrBaseSberDev.FirstOrDefault() != null
+            && _obj.ProdCollectionPrBaseSberDev.Select(p => p.Product.Name).Any(p => p == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"))
+          error += ", Продукт (дох.)";
+        
+        if (error != "")
+        {
+          error = "Выберите нужные значения вместо заглушек в полях:" + error.TrimStart(',') + ". Документ: " + _obj.Name;
+        }
+      }
+      return error;
+    }
+    
     #endregion
     
     #region Контроль разных свойств
@@ -522,11 +555,21 @@ namespace sberdev.SBContracts.Shared
       if (_obj.CalculationBaseSberDev.Count > 0)
       {
         if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Absolute)
+        {
           foreach (var elem in _obj.CalculationBaseSberDev)
-            spisokCalc += elem.ProductCalc.Name + " " + Math.Round((decimal)elem.AbsoluteCalc.Value, 2) + "; ";
-          else
-            foreach (var elem in _obj.CalculationBaseSberDev)
+          {
+            if ((elem.ProductCalc != null) && (elem.AbsoluteCalc.HasValue))
+              spisokCalc += elem.ProductCalc.Name + " " + Math.Round((decimal)elem.AbsoluteCalc.Value, 2) + "; ";
+          }
+        }
+        else
+        {
+          foreach (var elem in _obj.CalculationBaseSberDev)
+          {
+            if ((elem.ProductCalc != null) && (elem.InterestCalc.HasValue))
               spisokCalc += elem.ProductCalc.Name + " " + Math.Round((decimal)elem.InterestCalc.Value, 2) + "; ";
+          }
+        }
       }
       else
       {
@@ -601,40 +644,18 @@ namespace sberdev.SBContracts.Shared
             _obj.State.Properties.ValidFrom.IsRequired = kind.SaveDocSDev.Value;
             _obj.State.Properties.ValidTill.IsRequired = kind.SaveDocSDev.Value;
           }
+          if (kind.FrameworkNonMonetaryATSDev.HasValue)
+          {
+            if (kind.FrameworkNonMonetaryATSDev == true) // Да, этот контроль не случаен и как выше сделано - уже не выйдет.
+            {
+              _obj.State.Properties.MVZBaseSberDev.IsRequired = false;
+              _obj.State.Properties.AccArtExBaseSberDev.IsRequired = false;
+              _obj.State.Properties.AccArtPrBaseSberDev.IsRequired = false;
+              _obj.State.Properties.Currency.IsRequired = false;
+            }
+          }
         }
       }
-    }
-    
-    /// <summary>
-    /// Функция возвращает текст ошибки, если в каком либо поле выбраны заглушки
-    /// </summary>
-    [Public]
-    public string BanToSaveForStabs()
-    {
-      var error = "";
-      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
-      {
-        if (_obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
-          error += ", МВП";
-        if (_obj.MVZBaseSberDev != null && _obj.MVZBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
-          error += ", МВЗ";
-        if (_obj.AccArtExBaseSberDev != null && _obj.AccArtExBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
-          error += ", Статья упр. учета (рас.)";
-        if (_obj.AccArtPrBaseSberDev != null && _obj.AccArtPrBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
-          error += ", Статья упр. учета (дох.)";
-        if (_obj.ProdCollectionExBaseSberDev.FirstOrDefault() != null
-            && _obj.ProdCollectionExBaseSberDev.Select(p => p.Product.Name).Any(p => p == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"))
-          error += ", Продукт (рас.)";
-        if (_obj.ProdCollectionPrBaseSberDev.FirstOrDefault() != null
-            && _obj.ProdCollectionPrBaseSberDev.Select(p => p.Product.Name).Any(p => p == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"))
-          error += ", Продукт (дох.)";
-        
-        if (error != "")
-        {
-          error = "Выберите нужные значения вместо заглушек в полях:" + error.TrimStart(',') + ". Документ: " + _obj.Name;
-        }
-      }
-      return error;
     }
     
     // Серверная функция для сборки строки продуктов из коллекций
@@ -672,9 +693,37 @@ namespace sberdev.SBContracts.Shared
     public void UpdateProductsString()
     {
       var newProductsString = Functions.ContractualDocument.BuildProductsString(_obj);
-      
+
       if (_obj.ProdCollectionStringSDev != newProductsString)
         _obj.ProdCollectionStringSDev = newProductsString;
+    }
+
+    /// <summary>
+    /// Управление доступностью поля "Номер 1С".
+    /// </summary>
+    public void ChangeNumber1CAccess()
+    {
+      var depSetting = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Подразделения с обязательным полем \"Номер 1С\"");
+      var kindSetting = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Виды документов с обязательным полем \"Номер 1С\"");
+
+      var department = _obj.Department;
+      var docKind = _obj.DocumentKind;
+
+      bool visible = false;
+      if (depSetting != null && !string.IsNullOrWhiteSpace(depSetting.Text) && department != null)
+      {
+        var ids = depSetting.Text.Split(',').Select(s => long.Parse(s.Trim())).ToList();
+        visible = ids.Contains(department.Id);
+      }
+
+      if (visible && kindSetting != null && !string.IsNullOrWhiteSpace(kindSetting.Text) && docKind != null)
+      {
+        var kindIds = kindSetting.Text.Split(',').Select(s => long.Parse(s.Trim())).ToList();
+        visible = kindIds.Contains(docKind.Id);
+      }
+
+      _obj.State.Properties.Number1CSberDev.IsVisible = visible;
+      _obj.State.Properties.Number1CSberDev.IsRequired = visible;
     }
 
     #endregion

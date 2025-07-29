@@ -199,7 +199,7 @@ namespace sberdev.SBContracts
         _obj.State.Properties.DeliveryMethod.IsRequired = false;
       
       // Проверка расчетов
-      if (_obj.CalculationBaseSberDev.Count > 0)
+      if ((_obj.CalculationBaseSberDev.Count > 0) && (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj)))
       {
         if (_obj.CalculationAmountBaseSberDev == _obj.TotalAmount)
         {

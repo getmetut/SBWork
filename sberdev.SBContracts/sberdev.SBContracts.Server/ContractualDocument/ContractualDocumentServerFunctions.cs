@@ -134,7 +134,7 @@ namespace sberdev.SBContracts.Server
       _obj.MVZBaseSberDev = MVZs.GetAll().Where(c => c.Id == ids[4]).FirstOrDefault();
       _obj.AccArtExBaseSberDev = AccountingArticleses.GetAll().Where(c => c.Id == ids[5]).FirstOrDefault();
     }
-    public void BeforeSaveFunction()
+    public virtual void BeforeSaveFunction()
     {
       SendNotice();
       CreateOrUpdateAnaliticsCashe();

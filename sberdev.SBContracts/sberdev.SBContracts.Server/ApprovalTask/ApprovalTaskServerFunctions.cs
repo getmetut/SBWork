@@ -9,6 +9,66 @@ namespace sberdev.SBContracts.Server
 {
   partial class ApprovalTaskFunctions
   {
+    #region Сеты*
+    
+    /// <summary>
+    /// Удаляет исполнителя у этапа проверки ка, если он проверяется в данный момент
+    /// </summary>
+    /// <param name="assignment"></param>
+    public void RemoveCPCheckingPerformer(Sungero.Docflow.IApprovalAssignment assignment)
+    {
+      var sberAssign = SBContracts.ApprovalAssignments.As(assignment);
+      var stage = GetStage();
+      if (stage == null)
+        return;
+      
+      bool flag = IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
+      if (!flag)
+        return;
+      
+      var contractual = SBContracts.ContractualDocuments.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault());
+      if (contractual == null)
+        return;
+      
+      var cp = SBContracts.Counterparties.As(contractual.Counterparty);
+      if (cp == null)
+        return;
+      
+      if (cp.FocusCheckingSberDev == true)
+        sberAssign.Performer = null;
+    }
+    
+    /// <summary>
+    /// Изменяет статус ка на "Не проверяется в данный момент"
+    /// </summary>
+    /// <param name="assignment"></param>
+    public void MarkCPAsChecking(Sungero.Docflow.IApprovalAssignment assignment)
+    {
+      var sberAssign = SBContracts.ApprovalAssignments.As(assignment);
+      var stage = GetStage();
+      if (stage == null)
+        return;
+      
+      bool flag = IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
+      if (!flag)
+        return;
+      
+      var contractual = SBContracts.ContractualDocuments.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault());
+      if (contractual == null)
+        return;
+      
+      var cp = SBContracts.Counterparties.As(contractual.Counterparty);
+      if (cp == null)
+        return;
+      
+      if (cp.FocusCheckingSberDev != true)
+      {
+        SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(cp);
+        cp.FocusCheckingSberDev = true;
+        cp.Save();
+      }
+    }
+    
     public void SetChangeAccessRightsOnDocs(Sungero.Docflow.IApprovalAssignment assignment) {
       // Доработка в рамках задачи DRX-660.
       var task = ApprovalTasks.As(assignment.Task);
@@ -54,7 +114,7 @@ namespace sberdev.SBContracts.Server
       }
     }
     
-    public void AddMVZApprovers(Sungero.Docflow.Server.ApprovalAssignmentArguments e, SBContracts.IApprovalAssignment blok)
+    public void AddMVZApprovers(SBContracts.IApprovalAssignment blok)
     {
       var document = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
       
@@ -85,6 +145,47 @@ namespace sberdev.SBContracts.Server
         }
       }
     }
+    
+    /// <summary>
+    /// Проверяет необходимость и удаля исполнителя в доп этапе
+    /// </summary>
+    /// <param name="e"></param>
+    public void RemoveSupStagePerformer(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
+    {
+      if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.SupplementalStage))
+      {
+        var lastAssign = GetLastTaskAssigment(_obj, null);
+        var typedAssign = SBContracts.ApprovalAssignments.As(lastAssign);
+        if (typedAssign != null && typedAssign?.IsNeedSupStageSberDev != true)
+          e.Block.Performers.Clear();
+      }
+    }
+    
+    /// <summary>
+    /// Функция для того чтобы убарть скип согласования
+    /// </summary>
+    /// <param name="e"></param>
+    public void CancelApproveSkip(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
+    {
+      var stage = GetStage();
+      if (stage == null)
+        return;
+      if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.CancelApproveSkipStage))
+      {
+        var approvers = Sungero.Docflow.PublicFunctions.ApprovalStage.Remote.GetStagePerformers(_obj, GetStage());
+        foreach (var approver in approvers)
+          e.Block.Performers.Add(approver);
+      }
+    }
+    
+    public override void UpdateDocumentApprovalState(Sungero.Docflow.IOfficialDocument document, Nullable<Enumeration> state)
+    {
+      var invoice = SBContracts.IncomingInvoices.As(document);
+      if (invoice == null)
+        base.UpdateDocumentApprovalState(document, state);
+    }
+    
+    #endregion
     
     #region Переадресация задания на замещающего
     /// <summary>
@@ -213,50 +314,10 @@ namespace sberdev.SBContracts.Server
         }
       }
     }
-    #endregion
-    
-    #region Прочие функции используемые в событиях схемы задачи
-    
-    /// <summary>
-    /// Функция для того чтобы убарть скип согласования
-    /// </summary>
-    /// <param name="e"></param>
-    public void CancelApproveSkip(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
-    {
-      var stage = GetStage();
-      if (stage == null)
-        return;
-      if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.CancelApproveSkipStage))
-      {
-        var approvers = Sungero.Docflow.PublicFunctions.ApprovalStage.Remote.GetStagePerformers(_obj, GetStage());
-        foreach (var approver in approvers)
-          e.Block.Performers.Add(approver);
-      }
-    }
-    
-    /// <summary>
-    /// Проверяет необходимость и устанавливает исполнителя в доп этапе
-    /// </summary>
-    /// <param name="e"></param>
-    public void SetSupStagePerformer(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
-    {
-      if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.SupplementalStage))
-      {
-        var lastAssign = GetLastTaskAssigment(_obj, null);
-        var typedAssign = SBContracts.ApprovalAssignments.As(lastAssign);
-        if (typedAssign == null && typedAssign?.IsNeedSupStageSberDev != true)
-          e.Block.Performers.Clear();
-      }
-    }
     
     #endregion
     
-    public override void UpdateDocumentApprovalState(Sungero.Docflow.IOfficialDocument document, Nullable<Enumeration> state)
-    {
-      var invoice = SBContracts.IncomingInvoices.As(document);
-      if (invoice == null)
-        base.UpdateDocumentApprovalState(document, state);
-    }
+    #region Геты*
     
     /// <summary>
     /// Определить тот ли ето этап что нужен
@@ -272,7 +333,7 @@ namespace sberdev.SBContracts.Server
     }
     
     /// <summary>
-    /// Определить текущий этап
+    /// Получить текущий этап
     /// </summary>
     /// <returns></returns>
     [Public]
@@ -280,6 +341,10 @@ namespace sberdev.SBContracts.Server
     {
       return SBContracts.ApprovalStages.As(_obj.ApprovalRule.Stages.FirstOrDefault(s => s.Number == _obj.StageNumber)?.Stage);
     }
+    
+    #endregion
+    
+    #region Создающие функции
     
     /// <summary>
     /// Функция создания и отправки задачи по настройке Диадока
@@ -307,6 +372,9 @@ namespace sberdev.SBContracts.Server
       task.NeedsReview = false;
       task.Start();
     }
+    #endregion
+    
+    #region Валидация
     
     /// <summary>
     /// Функция возвращает true если в согласуемом документе указаны закрытые аналитики
@@ -350,5 +418,6 @@ namespace sberdev.SBContracts.Server
       }
       return flag;
     }
+    #endregion
   }
 }

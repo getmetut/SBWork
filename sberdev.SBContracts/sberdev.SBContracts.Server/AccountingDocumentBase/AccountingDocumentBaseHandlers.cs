@@ -161,16 +161,21 @@ namespace sberdev.SBContracts
       _obj.CalcListSDev = PublicFunctions.AccountingDocumentBase.GetCalculationString(_obj);
       
       var error = Functions.AccountingDocumentBase.BanToSaveForStabs(_obj);
-      if (error != "")
-        e.AddError(error);
-      if (_obj.CalculationBaseSberDev.Count > 0)
+      if (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj))
       {
-        if (_obj.CalculationAmountBaseSberDev == _obj.TotalAmount)
+        if (error != "")
+          e.AddError(error);
+        if (_obj.CalculationBaseSberDev.Count > 0)
         {
-          base.BeforeSave(e);
+          if (_obj.CalculationAmountBaseSberDev == _obj.TotalAmount)
+          {
+            base.BeforeSave(e);
+          }
+          else
+            e.AddError(sberdev.SBContracts.Contracts.Resources.CalculationCondition);
         }
         else
-          e.AddError(sberdev.SBContracts.Contracts.Resources.CalculationCondition);
+          base.BeforeSave(e);
       }
       else
         base.BeforeSave(e);

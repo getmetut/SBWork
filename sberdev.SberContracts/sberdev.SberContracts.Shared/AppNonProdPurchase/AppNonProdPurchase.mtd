@@ -3,6 +3,18 @@
   "NameGuid": "675e2890-7dba-4d1a-a3bb-8a829bdabd66",
   "Name": "AppNonProdPurchase",
   "AccessRightsMode": "Both",
+  "Actions": [
+    {
+      "NameGuid": "14ecec8f-f34b-46af-b0b1-bc9ded6086f0",
+      "Name": "Register",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "GenerateHandler"
+      ],
+      "Versions": []
+    }
+  ],
   "BaseGuid": "178d3053-5516-4f14-9f3d-4d75e3f352d4",
   "CanBeNavigationPropertyType": true,
   "CanBeSearch": true,
@@ -577,7 +589,7 @@
           "ColumnSpan": 1,
           "GroupType": "GroupBox",
           "ParentGuid": "b129fb65-3020-4134-b3e9-1f4608541a6d",
-          "RowNumber": 1,
+          "RowNumber": 2,
           "RowSpan": 1
         },
         {
@@ -657,6 +669,20 @@
           "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "3bbb3797-b36e-45dc-8330-7bdae500544f",
+          "Name": "TextObosn",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
+          "HeaderLocation": "Top",
+          "ParentGuid": "b129fb65-3020-4134-b3e9-1f4608541a6d",
+          "PropertyGuid": "04a3fc53-4747-498b-8ff3-2081e172bcb1",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -720,9 +746,13 @@
       "NameGuid": "15ae2efe-a515-4325-bf1d-1b02b5d33f76",
       "Name": "CalculationBaseSberDev",
       "EntityGuid": "444ab01b-e72a-4ba8-842c-4eb118b3ac4f",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
       "IsAncestorMetadata": true,
       "Overridden": [
-        "EntityGuid"
+        "EntityGuid",
+        "HandledEvents"
       ],
       "Versions": []
     },
@@ -875,6 +905,14 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "ab966af7-b7f6-4788-8746-ce877b7b8722",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.TextPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "04a3fc53-4747-498b-8ff3-2081e172bcb1",
+      "Name": "TextObosn",
+      "Code": "TextObosn",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToTextBinder",
+      "PreviousPropertyGuid": "8099d1b5-8e9c-40fc-969b-f139c2f8b1a3"
     }
   ],
   "PublicStructures": [],

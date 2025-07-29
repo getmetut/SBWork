@@ -103,7 +103,7 @@ namespace sberdev.SBContracts.Shared
       if (_obj.ConditionType == ConditionType.Source)
       {
         bool flag = false;
-         var doc = SBContracts.OfficialDocuments.As(document);
+        var doc = SBContracts.OfficialDocuments.As(document);
         if (doc != null)
           flag = PublicFunctions.OfficialDocument.CheckLocationState(doc, new string[]{Constants.Docflow.OfficialDocument.LSDiadocReceived}).FirstOrDefault().Value;
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
@@ -121,29 +121,43 @@ namespace sberdev.SBContracts.Shared
             ?? false;
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
       }
-      #endregion 
+      #endregion
 
       #region Проверка необходимости проверки контрагента (IsNeedCheckCp)
+
       if (_obj.ConditionType == ConditionType.IsNeedCheckCp)
       {
+        // Приводим документ к договорному типу
         var contr = SBContracts.ContractualDocuments.As(document);
         if (contr == null)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
+        
+        // Получаем контрагента если Контрагент уже проверяется - не требуется проверка
         var cp = SBContracts.Counterparties.As(contr.Counterparty);
-        if (cp == null)
+        if (cp == null || cp.FocusCheckingSberDev == true)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
+        
+        // Проверяем результаты предыдущей проверки
         if (cp.FocusCheckedSberDev.HasValue && cp.FocusCheckedDateSberDev.HasValue)
         {
-          if (cp.FocusCheckedSberDev.Value && cp.FocusCheckedDateSberDev.Value.Year >= Calendar.Now.Year)
+          // Если проверка прошла успешно и дата проверки в текущем году
+          if (cp.FocusCheckedSberDev.Value && cp.FocusCheckedDateSberDev.Value.Year == Calendar.Now.Year)
           {
             return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
           }
           else
+          {
+            // Проверка не прошла или устарела - требуется новая проверка
             return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(true, string.Empty);
+          }
         }
         else
+        {
+          // Контрагент еще не проверялся - требуется проверка
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(true, string.Empty);
+        }
       }
+
       #endregion
       
       #region Проверка суммы всех заключенных доходных контрактов
@@ -194,11 +208,19 @@ namespace sberdev.SBContracts.Shared
       if (_obj.ConditionType == ConditionType.IsPrepayment)
       {
         bool flag = false;
+        
         var acc = SBContracts.AccountingDocumentBases.As(document);
         if (acc != null && acc.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Prepayment)
         {
           flag = true;
         }
+        
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        if (contractual != null && contractual.PayTypeBaseSungero == SBContracts.ContractualDocument.PayTypeBaseSungero.Prepayment)
+        {
+          flag = true;
+        }
+        
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
       }
       #endregion
@@ -268,39 +290,50 @@ namespace sberdev.SBContracts.Shared
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
       }
       #endregion
-
-      #region Проверка изменения документа (DocumentChanged)
+      
+      #region Проверка: Изменён ли документ после первой подписи (DocumentChanged)
       if (_obj.ConditionType == ConditionType.DocumentChanged)
       {
-        var acc = SBContracts.AccountingDocumentBases.As(document);
-        var contr = SBContracts.ContractualDocuments.As(document);
+        var official = SBContracts.OfficialDocuments.As(document);
+        if (official == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            false,
+            "Документ не является официальным.");
+        
         var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).FirstOrDefault();
         if (firstApprove == null)
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-            .Create(false, "Отбивка. Маршрут будет вычеслен по ходу согласования.");
+        {
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            true,
+            "Нет согласований на последней версии документа, необходима проверка.");
+        }
         
-        if (acc != null)
-        {
-          if (acc.ModifiedSberDev == null)
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-              .Create(false, "Отбивка. Маршрут будет вычеслен по ходу согласования.");
-          else
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-              .Create(Calendar.Between(acc.ModifiedSberDev, firstApprove.SigningDate.AddHours(3), Calendar.Now)
-                      || Calendar.Between(acc.LastVersion.Modified, firstApprove.SigningDate.AddHours(3), Calendar.Now),
-                      string.Empty);
-        }
-        if (contr != null)
-        {
-          if (contr.ModifiedSberDev == null)
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-              .Create(false, "Отбивка. Маршрут будет вычеслен по ходу согласования.");
-          else
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-              .Create(Calendar.Between(contr.ModifiedSberDev, firstApprove.SigningDate.AddHours(3), Calendar.Now)
-                      || Calendar.Between(contr.LastVersion.Modified, firstApprove.SigningDate.AddHours(3), Calendar.Now),
-                      string.Empty);
-        }
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        var accounting = SBContracts.AccountingDocumentBases.As(document);
+        var modified = contractual?.ModifiedSberDev;
+        modified = accounting?.ModifiedSberDev;
+        if (modified == null)
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(official.Modified,
+                             firstApprove.SigningDate.AddHours(3),
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                firstApprove.SigningDate.AddHours(3),
+                                Calendar.Now),
+            string.Empty);
+        
+        else
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(modified,
+                             firstApprove.SigningDate.AddHours(3),
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                firstApprove.SigningDate.AddHours(3),
+                                Calendar.Now),
+            string.Empty);
+        
       }
       #endregion
 
@@ -369,54 +402,54 @@ namespace sberdev.SBContracts.Shared
       #endregion
 
       #region Проверка категории договора (ContrCategory)
-if (_obj.ConditionType == ConditionType.ContrCategory)
-{
-    var contract = SBContracts.Contracts.As(document);
-    var сontrFind = false;
-    
-    if (contract != null)
-    {
-        // Проверяем, что DocumentGroup не null
-        if (contract.DocumentGroup != null)
-        {
-            foreach (var str in _obj.ContrCategorysberdev)
-            {
-                if (str.ContrCategory != null && contract.DocumentGroup.Equals(str.ContrCategory))
-                {
-                    сontrFind = true;
-                    break; // Можно выйти из цикла, если нашли совпадение
-                }
-            }
-        }
-        return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-            .Create(сontrFind, string.Empty);
-    }
-    
-    var sup = SBContracts.SupAgreements.As(document);
-    if (sup != null)
-    {
-        contract = SBContracts.Contracts.As(sup.LeadingDocument);
+      if (_obj.ConditionType == ConditionType.ContrCategory)
+      {
+        var contract = SBContracts.Contracts.As(document);
+        var сontrFind = false;
         
-        // Проверяем, что contract и DocumentGroup не null
-        if (contract != null && contract.DocumentGroup != null)
+        if (contract != null)
         {
+          // Проверяем, что DocumentGroup не null
+          if (contract.DocumentGroup != null)
+          {
             foreach (var str in _obj.ContrCategorysberdev)
             {
-                if (str.ContrCategory != null && contract.DocumentGroup.Equals(str.ContrCategory))
-                {
-                    сontrFind = true;
-                    break; // Можно выйти из цикла, если нашли совпадение
-                }
+              if (str.ContrCategory != null && contract.DocumentGroup.Equals(str.ContrCategory))
+              {
+                сontrFind = true;
+                break; // Можно выйти из цикла, если нашли совпадение
+              }
             }
-        }
-        return Sungero.Docflow.Structures.ConditionBase.ConditionResult
+          }
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult
             .Create(сontrFind, string.Empty);
-    }
-    
-    return Sungero.Docflow.Structures.ConditionBase.ConditionResult
-        .Create(null, "Условие не может быть вычислено. Не заполнены категории договора.");
-}
-#endregion
+        }
+        
+        var sup = SBContracts.SupAgreements.As(document);
+        if (sup != null)
+        {
+          contract = SBContracts.Contracts.As(sup.LeadingDocument);
+          
+          // Проверяем, что contract и DocumentGroup не null
+          if (contract != null && contract.DocumentGroup != null)
+          {
+            foreach (var str in _obj.ContrCategorysberdev)
+            {
+              if (str.ContrCategory != null && contract.DocumentGroup.Equals(str.ContrCategory))
+              {
+                сontrFind = true;
+                break; // Можно выйти из цикла, если нашли совпадение
+              }
+            }
+          }
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult
+            .Create(сontrFind, string.Empty);
+        }
+        
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult
+          .Create(null, "Условие не может быть вычислено. Не заполнены категории договора.");
+      }
+      #endregion
 
       #region Проверка МВП (MVP)
       if (_obj.ConditionType == ConditionType.MVP)
@@ -814,7 +847,11 @@ if (_obj.ConditionType == ConditionType.ContrCategory)
     {
       var baseSupport = base.GetSupportedConditions();
       
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.Source); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.Source); // sup agreement
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.Source); // сontract statement
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.Source); // universal transfer document
+      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.Source); // waybill
       baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.Source); // other contractual document
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.CPProfitTotalAm); // contract
@@ -830,6 +867,8 @@ if (_obj.ConditionType == ConditionType.ContrCategory)
       baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.ProductUnit); // waybill
       baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.ProductUnit); // other contractual document
       
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.IsPrepayment); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.IsPrepayment); // sup agreement
       baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.IsPrepayment); // other contractual document
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.IsPrepayment); // сontract statement
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.IsPrepayment); // universal transfer document
@@ -847,8 +886,8 @@ if (_obj.ConditionType == ConditionType.ContrCategory)
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.EndorseFromSberDev); // sup agreement
       
       baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.ContrType); // other contractual document
-      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.ContrType);
-      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.ContrType);
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.ContrType); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.ContrType); // sup agreement
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.ContrType); // упд
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.ContrType); // акт выполненых работ
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.ContrType); // исходящий счет

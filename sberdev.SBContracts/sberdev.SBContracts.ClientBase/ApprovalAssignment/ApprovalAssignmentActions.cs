@@ -67,7 +67,12 @@ namespace sberdev.SBContracts.Client
 
     public virtual bool CanDirectToFinanceSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
-      return PublicFunctions.ApprovalTask.IsNecessaryStage(SBContracts.ApprovalTasks.As(_obj.Task), PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
+      var task = SBContracts.ApprovalTasks.As(_obj.Task);
+      if (task != null)
+        return PublicFunctions.ApprovalTask.IsNecessaryStage(task, PublicConstants.Docflow.ApprovalTask.CheckingCPStage)
+          && task.Status == ApprovalTask.Status.InProcess;
+      else
+        return false;
     }
 
     public virtual void UnblockAttachSberDev(Sungero.Domain.Client.ExecuteActionArgs e)

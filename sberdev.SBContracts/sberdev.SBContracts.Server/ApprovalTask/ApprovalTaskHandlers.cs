@@ -35,6 +35,7 @@ namespace sberdev.SBContracts
       // Механика проверки обязательных свойств и заглушек
       var accounting = SBContracts.AccountingDocumentBases.As(document);
       var contractual = SBContracts.ContractualDocuments.As(document);
+      var nonprodpurch = sberdev.SberContracts.AppNonProdPurchases.Is(document);
       string er1 = "";
       string er2 = "";
       if (accounting != null)
@@ -67,11 +68,19 @@ namespace sberdev.SBContracts
             _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.ProfExpen;
         }
       }
-      if (er1 != "")
-        e.AddError(er1);
-      if (er2 != "")
-        e.AddError(er2);
-      
+      if (!nonprodpurch)
+      {
+        if (er1 != "")
+        {
+          if (!SberContracts.NonContractInvoiceCounters.Is(document))
+            e.AddError(er1);
+        }
+        if (er2 != "")
+        {
+          if (!SberContracts.NonContractInvoiceCounters.Is(document))
+            e.AddError(er2);
+        }
+      }
       // Механика подтверждения суммы закупки
       var gurantee = SberContracts.GuaranteeLetters.As(document);
       if (gurantee != null)

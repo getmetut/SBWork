@@ -171,16 +171,16 @@ namespace Sungero.Custom.Server
       var Jobs = Sungero.Workflow.Assignments.GetAll(j => ((j.Created >= Sungero.Core.Calendar.BeginningOfWeek(Sungero.Core.Calendar.AddWorkingDays(Sungero.Core.Calendar.Now,-2)))
                                                            && (j.Subject.Contains("Проконтролируйте возврат")) && (!j.Subject.Contains(">>")))).ToArray();
       
-      string htmlContent = "<html><head><meta charset='utf-8'><title>Отчет Контроль возврата</title></head><body>";
-      htmlContent += "<h1>Отчет Контроль возврата на " + Sungero.Core.Calendar.Now.ToString() + "</h1>";
-      htmlContent += "<table border='1'><tr><th>Тип</th><th>Тема</th><th>Создан</th><th>Срок</th><th>Инициатор</th><th>Исполнитель</th><th>e-mail</th><th>Руководитель</th><th>e-mail</th></tr>";
+      //string htmlContent = "<html><head><meta charset='utf-8'><title>Отчет Контроль возврата</title></head><body>";
+      //htmlContent += "<h1>Отчет Контроль возврата на " + Sungero.Core.Calendar.Now.ToString() + "</h1>";
+      //htmlContent += "<table border='1'><tr><th>Тип</th><th>Тема</th><th>Создан</th><th>Срок</th><th>Инициатор</th><th>Исполнитель</th><th>e-mail</th><th>Руководитель</th><th>e-mail</th></tr>";
       
       if (Jobs.Count() > 0)
       {
         string Data = "Тип|Тема|От|Срок|Инициатор|Исполнитель|e-mail|Руководитель|e-mail";
         foreach (var job in Jobs)
         {
-          /*Data += '\n' + "Контроль возврата";
+          Data += '\n' + "Контроль возврата";
           Data += "|" + job.Subject.ToString();
           Data += "|" + job.Created.ToString();
           Data += "|" + (job.Deadline.HasValue ? job.Deadline.ToString() : "Без срока");
@@ -198,8 +198,9 @@ namespace Sungero.Custom.Server
         Data = Data.Replace('|',';');
         string TekDat = Sungero.Core.Calendar.Now.ToString();
         TekDat = TekDat.Replace(':', '-').Replace('.', '-').Replace(' ', '_');
-        string filePath = @"C:\temp\Report_" + TekDat + ".csv"; */
-          
+        string filePath = @"C:\temp\Report_" + TekDat + ".csv";
+        
+        /*
           htmlContent += "<tr>";
           htmlContent += "<td>Контроль возврата</td>";
           htmlContent += "<td>" + job.Subject + "</td>";
@@ -220,14 +221,14 @@ namespace Sungero.Custom.Server
             htmlContent += "<td></td><td></td><td></td>";
           }
 
-          htmlContent += "</tr>";
-        }
+          htmlContent += "</tr>";*/
+        
 
-        htmlContent += "</table></body></html>";
+        /*htmlContent += "</table></body></html>";
 
         string TekDat = Sungero.Core.Calendar.Now.ToString();
         TekDat = TekDat.Replace(':', '-').Replace('.', '-').Replace(' ', '_');
-        string filePath = @"C:\temp\Report_" + TekDat + ".html";
+        string filePath = @"C:\temp\Report_" + TekDat + ".html"; */
         
         
         try
@@ -255,9 +256,9 @@ namespace Sungero.Custom.Server
         {
           Logger.Debug("Возникла проблема в фоновом процессе: " + ex.Message.ToString());
         }
-        
       }
     }
+    
 
     /// <summary>
     /// Процесс поиска и расстановки уровней подчиненности среди организаций

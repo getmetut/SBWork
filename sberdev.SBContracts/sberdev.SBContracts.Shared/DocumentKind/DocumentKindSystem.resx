@@ -151,4 +151,7 @@
   <data name="Property_ReklamaSDev" xml:space="preserve">
     <value>Маркетинг/реклама (не финансовый)</value>
   </data>
+  <data name="Property_FrameworkNonMonetaryATSDev" xml:space="preserve">
+    <value>Framework/Non-monetary</value>
+  </data>
 </root>

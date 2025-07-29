@@ -140,7 +140,7 @@ namespace sberdev.SBContracts.Server
     public string BanToSaveForStabs()
     {
       var error = "";
-      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
+      if ((!SBContracts.PublicFunctions.Module.IsSystemUser()) && (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj)))
       {
         
         if (_obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")

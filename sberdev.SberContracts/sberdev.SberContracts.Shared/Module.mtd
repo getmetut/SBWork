@@ -208,11 +208,11 @@
       "PreviousItemId": "c1301170-b79d-45c5-be58-4a518742012d"
     },
     {
-      "ItemId": "f4599a5a-3d62-44e4-8ca7-03354c941c1a",
+      "ItemId": "ea461a5e-67b1-448f-9e88-225bafbf3705",
       "PreviousItemId": "675e2890-7dba-4d1a-a3bb-8a829bdabd66"
     },
     {
-      "ItemId": "d2d32ec4-2381-427f-bc8b-478183690d59",
+"ItemId": "d2d32ec4-2381-427f-bc8b-478183690d59",
       "PreviousItemId": "f4599a5a-3d62-44e4-8ca7-03354c941c1a"
     },
     {
@@ -1047,7 +1047,7 @@
   "SharedAssemblyName": "sberdev.SberContracts.Shared",
   "SharedNamespace": "sberdev.SberContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.4.0.1",
+  "Version": "5.4.0.0",
   "Widgets": [
     {
       "NameGuid": "c2f21ab6-4272-410e-a676-52af22433fd1",

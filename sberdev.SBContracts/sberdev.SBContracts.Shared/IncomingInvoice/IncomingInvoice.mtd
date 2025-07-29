@@ -1064,6 +1064,19 @@
           "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "09a86c4a-4e4b-47c1-90f3-fc1ac0e3157b",
+          "Name": "ControlSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+          "ParentGuid": "9addea7b-cece-4a6c-89c9-222001948a11",
+          "PropertyGuid": "320dc514-e840-4472-a10e-ad468278c5f7",
+          "RowNumber": 5,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,

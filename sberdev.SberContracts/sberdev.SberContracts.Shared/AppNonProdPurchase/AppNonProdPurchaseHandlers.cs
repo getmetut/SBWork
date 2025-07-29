@@ -10,5 +10,10 @@ namespace sberdev.SberContracts
   partial class AppNonProdPurchaseSharedHandlers
   {
 
+    public override void CalculationBaseSberDevChanged(Sungero.Domain.Shared.CollectionPropertyChangedEventArgs e)
+    {
+      base.CalculationBaseSberDevChanged(e);
+    }
+
   }
 }

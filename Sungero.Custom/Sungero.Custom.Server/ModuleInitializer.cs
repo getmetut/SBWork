@@ -31,6 +31,7 @@ namespace Sungero.Custom.Server
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("NDA", NDA.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Неформализованный отчет", FacelessTochet.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Inner, true);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Спецификация", Specs.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Incoming, true);
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Протокол выбора способа закупки", PurchaseProtocol.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Incoming, true);
     }
     
     public void CreateDocumentKinds()
@@ -38,6 +39,18 @@ namespace Sungero.Custom.Server
       // Создание вида документа «Маркетинговые акции».
       // Чтобы документы можно было регистрировать, задается свойство Registrable.
       // В качестве ИД вида документа используется константа ExplanLettersKind.
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Протокол выбора способа закупки", "Протокол выбора способа закупки",      
+                                                                              Sungero.Docflow.DocumentKind.NumberingType.Numerable,      
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, false,      
+                                                                              PurchaseProtocol.ClassTypeGuid,      
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },      
+                                                                              Constants.Module.PurchaseProtocol);
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Протокол утверждения поставщика", "Протокол утверждения поставщика",      
+                                                                              Sungero.Docflow.DocumentKind.NumberingType.Numerable,      
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, false,      
+                                                                              PurchaseProtocol.ClassTypeGuid,      
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },      
+                                                                              Constants.Module.PurchaseProtocol);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Маркетинговые акции", "Маркетинговые акции",      
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Numerable,      
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, false,      
@@ -90,6 +103,7 @@ namespace Sungero.Custom.Server
       Sungero.Custom.SupAgreementPluses.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
       Custom.NDAs.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
       Custom.FacelessTochets.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
+      Custom.PurchaseProtocols.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
     }
     
     public static void CreateSystemRole()

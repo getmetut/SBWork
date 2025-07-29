@@ -11,6 +11,16 @@ namespace sberdev.SBContracts.Client
 {
   partial class ApprovalSigningAssignmentActions
   {
+    public override void EditActiveText(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      base.EditActiveText(e);
+    }
+
+    public override bool CanEditActiveText(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return base.CanEditActiveText(e);
+    }
+
     public virtual void UnblockAttachSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       var attach = SBContracts.OfficialDocuments.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault());

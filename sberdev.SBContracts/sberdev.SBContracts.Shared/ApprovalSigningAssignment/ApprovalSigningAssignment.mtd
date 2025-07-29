@@ -5,6 +5,16 @@
   "AccessRightsMode": "Instance",
   "Actions": [
     {
+      "NameGuid": "7c0c105f-f502-4a05-949a-b3fb863a3099",
+      "Name": "EditActiveText",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "IsVisibleInDesktopClient": false,
+      "Overridden": [
+        "GenerateHandler"
+      ]
+    },
+    {
       "NameGuid": "4cf20f0c-3545-4655-a200-0bc6c6ebd27c",
       "Name": "ActionSignedSberDev",
       "ActionArea": "Collection",
