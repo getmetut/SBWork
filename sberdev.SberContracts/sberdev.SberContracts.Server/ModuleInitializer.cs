@@ -18,6 +18,7 @@ namespace sberdev.SberContracts.Server
       CreateDocumentKinds();
       GrantCreateRightsOnInfoDocument();
       GrantRightsOnFolder();
+      GrantRightsOnTasks();
       CreateMVZ();
       CreateStages();
       CreateGroupsForJobChangeFakePersonsNames();
@@ -211,7 +212,7 @@ namespace sberdev.SberContracts.Server
       var Purchaser = Roles.GetAll(r => r.Sid == Constants.Module.PurchaserBySing).FirstOrDefault();
       if (Purchaser == null)
       {
-        var rolePurch = Roles.Create(); 
+        var rolePurch = Roles.Create();
         rolePurch.Name = "Закупщик";
         rolePurch.Description = "Закупщик (Системная роль для работы в закупками: расширенные права.)";
         rolePurch.Sid = Constants.Module.PurchaserBySing;
@@ -223,7 +224,7 @@ namespace sberdev.SberContracts.Server
       var TochWork = Roles.GetAll(r => r.Sid == Constants.Module.PurchaserBySing).FirstOrDefault();
       if (TochWork == null)
       {
-        var roleTochWork = Roles.Create(); 
+        var roleTochWork = Roles.Create();
         roleTochWork.Name = "Сотрудники для производственных закупок";
         roleTochWork.Description = "Сотрудники для выборки в заявках на производственную закупку в поле 'Взял в работу'";
         roleTochWork.Sid = Constants.Module.TochWorkGUIDRole;
@@ -289,7 +290,7 @@ namespace sberdev.SberContracts.Server
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true,
                                                                               AppNonProdPurchase.ClassTypeGuid, new Sungero.Domain.Shared.IActionInfo[]
                                                                               {Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval},
-                                                                              Constants.Module.AppNonProdPurchaseGuid);     
+                                                                              Constants.Module.AppNonProdPurchaseGuid);
       // Создание вида документа «Заявка на производ. закупку».
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Заявка на RnD закупку", "Заявка на RnD закупку",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Numerable,
@@ -305,7 +306,7 @@ namespace sberdev.SberContracts.Server
                                                                               {Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval},
                                                                               Constants.Module.AppProductPurchaseGuid);
       // Создание вида документа «Договор Xiongxin».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Договор Xiongxin", "Договор Xiongxin",                                                                             
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Договор Xiongxin", "Договор Xiongxin",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
                                                                               Sungero.Contracts.Server.Contract.ClassTypeGuid,
@@ -449,10 +450,17 @@ namespace sberdev.SberContracts.Server
     public void GrantRightsOnTasks()
     {
       InitializationLogger.Debug("Init: Выдача прав на Задачи");
-      var allUsers = Roles.AllUsers;
+      // FIXME: если не закомментировать выдачу прав на эту задачу, то инициализация падает по таймауту.
+      //      var allUsers = Roles.AllUsers;
+      //      SberContracts.DiadocSettingsTasks.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.FullAccess);
+      //      SberContracts.DiadocSettingsTasks.AccessRights.Save();
       
-      SberContracts.DiadocSettingsTasks.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.FullAccess);
-      SberContracts.DiadocSettingsTasks.AccessRights.Save();
+      // Доработка в рамках задачи DRX-868.
+      var purchaser = Roles.GetAll().Where(r => r.Sid == Constants.Module.PurchaserBySing).FirstOrDefault();
+      if (purchaser != null) {
+        SberContracts.CorpEndorseTasks.AccessRights.Grant(purchaser, DefaultAccessRightsTypes.FullAccess);
+        SberContracts.CorpEndorseTasks.AccessRights.Save();
+      }
     }
 
     #endregion

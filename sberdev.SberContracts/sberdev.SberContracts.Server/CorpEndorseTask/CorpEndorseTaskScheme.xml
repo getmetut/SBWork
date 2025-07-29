@@ -22,8 +22,8 @@
     <BlockBase xsi:type="AssignmentBlock">
       <Id>3</Id>
       <BlockTypeId xsi:nil="true" />
-      <CreatedInTaskGuid>caadab73-6e42-4d66-984a-126225ddc101</CreatedInTaskGuid>
-      <Title>Заданине на проверку обмена с контрагентом</Title>
+      <CreatedInTaskGuid>f4599a5a-3d62-44e4-8ca7-03354c941c1a</CreatedInTaskGuid>
+      <Title>Задание на корпоративное одобрение</Title>
       <ProcessStagesDisplayMode xsi:nil="true" />
       <CustomProperties />
       <ParameterOperations />
@@ -31,7 +31,7 @@
       <Author>00000000-0000-0000-0000-000000000000</Author>
       <GroupsAttachmentsRights />
       <AttachmentGroupsSettings />
-      <TypeGuid>7008bd90-30d7-4624-8d4f-f2a72f3e6061</TypeGuid>
+      <TypeGuid>d2d32ec4-2381-427f-bc8b-478183690d59</TypeGuid>
       <CreatedEntitiesIds />
       <DefaultViewForm xsi:nil="true" />
       <EmbeddedViewForm xsi:nil="true" />
@@ -75,14 +75,14 @@
         <Bounds>
           <Location>
             <X>5</X>
-            <Y>-47.5</Y>
+            <Y>-42.001000000000005</Y>
           </Location>
           <Size>
             <Width>48</Width>
             <Height>48</Height>
           </Size>
           <X>5</X>
-          <Y>-47.5</Y>
+          <Y>-42.001000000000005</Y>
           <Width>48</Width>
           <Height>48</Height>
         </Bounds>
@@ -92,14 +92,14 @@
         <Bounds>
           <Location>
             <X>5</X>
-            <Y>330.5</Y>
+            <Y>155.999</Y>
           </Location>
           <Size>
             <Width>48</Width>
             <Height>48</Height>
           </Size>
           <X>5</X>
-          <Y>330.5</Y>
+          <Y>155.999</Y>
           <Width>48</Width>
           <Height>48</Height>
         </Bounds>
@@ -109,14 +109,14 @@
         <Bounds>
           <Location>
             <X>-96</X>
-            <Y>40.5</Y>
+            <Y>45.998999999999995</Y>
           </Location>
           <Size>
             <Width>250</Width>
             <Height>70</Height>
           </Size>
           <X>-96</X>
-          <Y>40.5</Y>
+          <Y>45.998999999999995</Y>
           <Width>250</Width>
           <Height>70</Height>
         </Bounds>
@@ -128,49 +128,53 @@
         <EdgeId>1</EdgeId>
         <EndPoint>
           <X>29</X>
-          <Y>40.5</Y>
+          <Y>45.998999999999995</Y>
         </EndPoint>
         <OriginAnchor>-1</OriginAnchor>
         <Points>
           <Point>
             <X>29</X>
-            <Y>0.5</Y>
+            <Y>5.9989999999999952</Y>
           </Point>
           <Point>
             <X>29</X>
-            <Y>40.5</Y>
+            <Y>45.998999999999995</Y>
+          </Point>
+          <Point>
+            <X>29</X>
+            <Y>45.998999999999995</Y>
           </Point>
         </Points>
         <StartPoint>
           <X>29</X>
-          <Y>0.5</Y>
+          <Y>5.9989999999999952</Y>
         </StartPoint>
       </EdgeLayout>
       <EdgeLayout>
-        <DestinationAnchor>-1</DestinationAnchor>
+        <DestinationAnchor>1</DestinationAnchor>
         <EdgeId>2</EdgeId>
         <EndPoint>
           <X>29</X>
-          <Y>330.5</Y>
+          <Y>155.999</Y>
         </EndPoint>
         <OriginAnchor>10</OriginAnchor>
         <Points>
           <Point>
             <X>29</X>
-            <Y>110.5</Y>
+            <Y>115.999</Y>
           </Point>
           <Point>
             <X>29</X>
-            <Y>330.5</Y>
+            <Y>155.999</Y>
           </Point>
           <Point>
             <X>29</X>
-            <Y>330.5</Y>
+            <Y>155.999</Y>
           </Point>
         </Points>
         <StartPoint>
           <X>29</X>
-          <Y>110.5</Y>
+          <Y>115.999</Y>
         </StartPoint>
       </EdgeLayout>
     </EdgesLayout>

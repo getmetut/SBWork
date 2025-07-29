@@ -17,6 +17,7 @@ namespace sberdev.SBContracts.Module.ContractsUI.Server
       string purchaseNonProd = "Закупка непроизводственная";
       string purchaseProd = "Закупка производственная";
       string purchaseStudy = "Закупка учебная";
+      string purchaseAdvertise = "Рекламная заявка";
       if (_filter != null)
       {
         #region Document state.
@@ -43,6 +44,7 @@ namespace sberdev.SBContracts.Module.ContractsUI.Server
                               && (q.DocumentKind.Name.Contains(purchase)
                                   || q.DocumentKind.Name.Contains(purchaseProd)
                                   || q.DocumentKind.Name.Contains(purchaseStudy)
+                                  || q.DocumentKind.Name.Contains(purchaseAdvertise)
                                  ));
         #endregion
         #region Main section.
@@ -58,9 +60,11 @@ namespace sberdev.SBContracts.Module.ContractsUI.Server
         #endregion
         #region Period section.
         if (_filter.DateRangeFrom != null)
-          query = query.Where(q => q.RegistrationDate >= _filter.DateRangeFrom);
+          query = query.Where(q => q.RegistrationDate >= _filter.DateRangeFrom
+                             || q.RegistrationDate == null);
         if (_filter.DateRangeTo != null)
-          query = query.Where(q => q.RegistrationDate <= _filter.DateRangeTo);
+          query = query.Where(q => q.RegistrationDate <= _filter.DateRangeTo
+                              || q.RegistrationDate == null);
         #endregion
       }
       return query.Where(q => q.DocumentKind != null 
