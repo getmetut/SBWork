@@ -370,6 +370,11 @@
       "NameGuid": "bdc4ab7b-7836-4131-9677-f8662d2ef6bd",
       "Name": "RabbitMQ",
       "Scope": "Both"
+    },
+    {
+      "NameGuid": "613bd488-0e41-44aa-9bd0-4493a5190f38",
+      "Name": "EPPlus",
+      "Scope": "Both"
     }
   ],
   "PublicFunctions": [
