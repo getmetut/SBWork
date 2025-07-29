@@ -373,9 +373,6 @@
   <data name="ControlGroup_2154b02f66b84d1494b5af4064f01f00" xml:space="preserve">
     <value>Potential participants in the procurement procedure</value>
   </data>
-  <data name="ControlGroup_bdaaa69a2eb44a308aa1f6aa11610f03" xml:space="preserve">
-    <value>Comparative table of price offers</value>
-  </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Application for prod. purchase</value>
   </data>
@@ -411,9 +408,6 @@
   </data>
   <data name="Property_AgencyFlagPAO" xml:space="preserve">
     <value>An application for payment via PJSC is required</value>
-  </data>
-  <data name="ControlGroup_e7300cf3ffe34ac3939aa487ad7407bc" xml:space="preserve">
-    <value />
   </data>
   <data name="ControlGroup_2e902bd913584feeb911892b21cf945d" xml:space="preserve">
     <value />
@@ -475,9 +469,6 @@
   <data name="Enum_PaymentMethod_Chinese" xml:space="preserve">
     <value>Chinese legal entity</value>
   </data>
-  <data name="ControlGroup_16d47185fb0a4462ade1ba6ed442b6de" xml:space="preserve">
-    <value />
-  </data>
   <data name="Property_SelectedCounterparty1" xml:space="preserve">
     <value>Selected Counterparty</value>
   </data>
@@ -499,21 +490,6 @@
   <data name="Property_SelectedCounterparty7" xml:space="preserve">
     <value>Selected Counterparty</value>
   </data>
-  <data name="ControlGroup_7cf9531455b74cfe9a30fcca2107652d" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_b086381cd05f4faa862c61cb77bc4c7e" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_2045f13732aa4140af1a2daeeae8ffe9" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_29fdb7efd0af4cb4a6bfb216a11be0dc" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_374a5428a59544b9a471c17bc6eafd0a" xml:space="preserve">
-    <value />
-  </data>
   <data name="Property_DDS" xml:space="preserve">
     <value>ДДС</value>
   </data>
@@ -526,10 +502,10 @@
   <data name="Enum_PurchaseMethod_OneCP" xml:space="preserve">
     <value>One counterparty</value>
   </data>
-  <data name="Property_ProdResponsible" xml:space="preserve">
+  <data name="Property_ResponsibleProd" xml:space="preserve">
     <value>Ответственный от Производства</value>
   </data>
-  <data name="Property_SourcingResponsible" xml:space="preserve">
+  <data name="Property_ResponsibleSourcing" xml:space="preserve">
     <value>Responsible sourcing manager</value>
   </data>
   <data name="Property_ProductCategory" xml:space="preserve">
@@ -586,13 +562,16 @@
   <data name="Property_TochInWork" xml:space="preserve">
     <value>Взял в работу</value>
   </data>
-  <data name="Property_ReqNumber" xml:space="preserve">
-    <value>Requirement number</value>
-  </data>
   <data name="Property_ProdCategory" xml:space="preserve">
     <value>Product category</value>
   </data>
   <data name="Property_STA" xml:space="preserve">
     <value>STA</value>
+  </data>
+  <data name="Property_ReqNumber" xml:space="preserve">
+    <value>Requirement number</value>
+  </data>
+  <data name="Property_ProcMethod" xml:space="preserve">
+    <value>ProcMethod</value>
   </data>
 </root>

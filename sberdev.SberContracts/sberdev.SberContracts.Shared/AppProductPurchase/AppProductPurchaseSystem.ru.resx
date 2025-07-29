@@ -346,9 +346,6 @@
   <data name="ControlGroup_2154b02f66b84d1494b5af4064f01f00" xml:space="preserve">
     <value>Потенциальные участники закупочной процедуры</value>
   </data>
-  <data name="ControlGroup_bdaaa69a2eb44a308aa1f6aa11610f03" xml:space="preserve">
-    <value>Сравнение ценовых предложений</value>
-  </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Заявка на производ. закупку</value>
   </data>
@@ -457,10 +454,7 @@
   <data name="Enum_PurchaseMethod_OneCP" xml:space="preserve">
     <value>Eдинственный поставщик</value>
   </data>
-  <data name="Property_ReqNumber" xml:space="preserve">
-    <value>Номер потребности</value>
-  </data>
-  <data name="Property_SourcingResponsible" xml:space="preserve">
+  <data name="Property_ResponsibleSourcing" xml:space="preserve">
     <value>Ответственный менеджер сорсинга</value>
   </data>
   <data name="Property_ProdCategory" xml:space="preserve">
@@ -480,5 +474,8 @@
   </data>
   <data name="Property_ZIP" xml:space="preserve">
     <value>ЗИП</value>
+  </data>
+  <data name="Property_ReqNumber" xml:space="preserve">
+    <value>Номер потребности</value>
   </data>
 </root>

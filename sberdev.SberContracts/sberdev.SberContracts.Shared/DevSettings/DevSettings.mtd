@@ -167,6 +167,36 @@
       "PreviousPropertyGuid": "db41fc1f-7378-4ecd-903c-5c4983c5a619"
     }
   ],
+  "PublicFunctions": [
+    {
+      "Name": "GetDevSetting",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::sberdev.SberContracts.IDevSettings",
+      "ReturnTypeFullName": "sberdev.SberContracts.IDevSettings, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "GetDevSettingTextIDs",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::System.Int64>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    }
+  ],
   "PublicStructures": [],
   "ResourcesKeys": [],
   "RibbonCardMetadata": {

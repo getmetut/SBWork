@@ -279,17 +279,6 @@ namespace sberdev.SBContracts.Server
     }
     
     /// <summary>
-    /// Получить элемент справочника "Настройки разработки".
-    /// </summary>
-    /// <param name="name">Имя настройки.</param>
-    /// <returns>Элемент справочника "Настройки разработки".</returns>
-    [Public, Remote]
-    public sberdev.SberContracts.IDevSettings GetDevSetting(string name)
-    {
-      return SberContracts.DevSettingses.GetAll().Where(n => Equals(n.Name, name)).FirstOrDefault();
-    }
-    
-    /// <summary>
     /// 
     /// </summary>
     /// <param name="type">Expendable или profitable</param>
@@ -770,7 +759,7 @@ namespace sberdev.SBContracts.Server
     [Remote, Public]
     public void CreateBodyByProperties(IOfficialDocument doc)
     {
-      string pathTemplate = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Путь к папке с шаблонами").Text;
+      string pathTemplate = SberContracts.PublicFunctions.DevSettings.Remote.GetDevSetting("Путь к папке с шаблонами").Text;
       Aspose.Words.Document body = null;
       var typeName = doc.GetEntityTypeFullName();
       switch (typeName)
