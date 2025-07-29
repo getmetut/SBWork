@@ -751,7 +751,7 @@ namespace sberdev.SberContracts.Server
                        "В текстовом параметре перечислите ИД видов документов через запятую, в которых должно отображаться поле \"Номер 1С\".");
       foreach(var settingName in settingsNames)
       {
-        var devSet = SBContracts.PublicFunctions.Module.Remote.GetDevSetting(settingName.Key);
+        var devSet = SberContracts.PublicFunctions.DevSettings.Remote.GetDevSetting(settingName.Key);
         if (devSet == null)
         {
           devSet = DevSettingses.Create();

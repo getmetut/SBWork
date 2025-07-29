@@ -279,17 +279,6 @@ namespace sberdev.SBContracts.Server
     }
     
     /// <summary>
-    /// Получить элемент справочника "Настройки разработки".
-    /// </summary>
-    /// <param name="name">Имя настройки.</param>
-    /// <returns>Элемент справочника "Настройки разработки".</returns>
-    [Public, Remote]
-    public sberdev.SberContracts.IDevSettings GetDevSetting(string name)
-    {
-      return SberContracts.DevSettingses.GetAll().Where(n => Equals(n.Name, name)).FirstOrDefault();
-    }
-    
-    /// <summary>
     /// 
     /// </summary>
     /// <param name="type">Expendable или profitable</param>
@@ -770,7 +759,7 @@ namespace sberdev.SBContracts.Server
     [Remote, Public]
     public void CreateBodyByProperties(IOfficialDocument doc)
     {
-      string pathTemplate = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Путь к папке с шаблонами").Text;
+      string pathTemplate = SberContracts.PublicFunctions.DevSettings.Remote.GetDevSetting("Путь к папке с шаблонами").Text;
       Aspose.Words.Document body = null;
       var typeName = doc.GetEntityTypeFullName();
       switch (typeName)
@@ -1279,6 +1268,9 @@ namespace sberdev.SBContracts.Server
        );
       #endregion
       
+      #region Закомменчено
+     /*
+      
       #region Таблица ресипиентов
       if (purch.ParticipantsCollection.Any())
       {
@@ -1312,9 +1304,7 @@ namespace sberdev.SBContracts.Server
           CreateTableByArray(body, recipTable, boldRows, columnWidths, "Times New Roman", 10)
          );
       }
-      #endregion
-      
-      #region Таблицы по контрагентам
+      #endregion #region Таблицы по контрагентам
       // Настройки таблиц
       boldRows = new List<int> { 0 }; // Общая настройка для всех таблиц
       columnWidths = new List<int> { 5, 25, 7, 10, 15, 15, 20, 20, 20 };
@@ -1442,8 +1432,10 @@ namespace sberdev.SBContracts.Server
       // Удаление всех неиспользуемых плейсхолдеров
       RemovePlaceholders(body, placeholdersToRemove);
       
-      #endregion
+      #endregion */
     }
+      #endregion 
+      
     #endregion
     
     #region Вспомогательные функции для построения документа

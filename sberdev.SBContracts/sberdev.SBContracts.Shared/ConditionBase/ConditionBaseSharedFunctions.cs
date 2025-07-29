@@ -23,7 +23,16 @@ namespace sberdev.SBContracts.Shared
       return base.CheckCondition(document, task);
     }
     
-        /// <summary>
+    public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckDeliveryMethod(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
+    {
+      if (document != null)
+      return Sungero.Docflow.Structures.ConditionBase.ConditionResult
+        .Create(_obj.DeliveryMethods.Any(d => Equals(d.DeliveryMethod, document.DeliveryMethod)), string.Empty);
+      
+      return base.CheckDeliveryMethod(document, task);
+    }
+    
+    /// <summary>
     /// Получить контрагента-организацию из OfficialDocument.
     /// </summary>
     /// <param name="document">Документ.</param>

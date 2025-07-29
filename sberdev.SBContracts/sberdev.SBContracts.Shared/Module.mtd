@@ -627,20 +627,6 @@
       "ReturnTypeFullName": "Sungero.Company.IDepartment, Sungero.Domain.Interfaces"
     },
     {
-      "Name": "GetDevSetting",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "name",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::sberdev.SberContracts.IDevSettings",
-      "ReturnTypeFullName": "sberdev.SberContracts.IDevSettings, Sungero.Domain.Interfaces"
-    },
-    {
       "Name": "GetFocusPropertyDisplayName",
       "Parameters": [
         {
