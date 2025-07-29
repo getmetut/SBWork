@@ -82,4 +82,7 @@
   <data name="Enum_Filter_PurchaseUL" xml:space="preserve">
     <value>Закупка в рамках Уполномоченного лица</value>
   </data>
+  <data name="Property_Instruction" xml:space="preserve">
+    <value>Инструкция</value>
+  </data>
 </root>

@@ -278,4 +278,13 @@ In the absence of these trainings, the following reputational risks are possible
   <data name="Property_TextObosn" xml:space="preserve">
     <value>Обоснование выбора поставщика</value>
   </data>
+  <data name="Property_TochInWork" xml:space="preserve">
+    <value>Взял в работу</value>
+  </data>
+  <data name="Property_ResponsibleProd" xml:space="preserve">
+    <value>Ответственный от Производства</value>
+  </data>
+  <data name="Resource_4628212b0304439ab3fb29f0a1ea289e" xml:space="preserve">
+    <value />
+  </data>
 </root>
