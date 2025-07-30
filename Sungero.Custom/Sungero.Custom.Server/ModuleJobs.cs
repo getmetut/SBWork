@@ -213,7 +213,7 @@ namespace Sungero.Custom.Server
           Data += "|" + (job.Deadline.HasValue ? job.Deadline.ToString() : "Без срока");
           Data += "|" + (job.Author != null ? job.Author.Name.ToString() : "");
           Data += "|" + (job.Performer != null ? job.Performer.Name.ToString() : "");
-          var Performer = Sungero.Company.Employees.GetAll(r => r.Login == job.Task.Author.Login).FirstOrDefault();
+          var Performer = Sungero.Company.Employees.GetAll(r => r.Login == job.Performer.Login).FirstOrDefault();
           if (Performer != null)
           {
             Data += "|" + (Performer.Email != null ? Performer.Email.ToString() : "");

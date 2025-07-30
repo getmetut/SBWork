@@ -109,7 +109,4 @@
   <data name="Property_Assignee" xml:space="preserve">
     <value>Ответственный за закупку</value>
   </data>
-  <data name="Property_ChooseCpJustif" xml:space="preserve">
-    <value>Обоснование выбора поставщика</value>
-  </data>
 </root>
