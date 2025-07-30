@@ -497,6 +497,9 @@
       "Name": "DocumentFooting",
       "Code": "DocumentFootin",
       "EntityGuid": "030d8d67-9b94-4f0d-bcc6-691016eb70f3",
+      "HandledEvents": [
+        "LookupServer"
+      ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "0edc92f4-6f0d-4dc9-a525-9745f795b447"
     },
