@@ -587,7 +587,7 @@
         },
         {
           "NameGuid": "502e6592-8a87-4168-bc84-5fea238ef1d5",
-          "Name": "DocumentChanged",
+          "Name": "DocChangedApprSberDev",
           "Code": "DocumentChanged"
         },
         {

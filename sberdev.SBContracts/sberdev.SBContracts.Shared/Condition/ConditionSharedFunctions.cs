@@ -356,8 +356,8 @@ namespace sberdev.SBContracts.Shared
       }
       #endregion
 
-      #region Проверка: Изменён ли документ после первой подписи (DocumentChanged)
-      if (_obj.ConditionType == ConditionType.DocumentChanged)
+      #region Проверка: Изменён ли документ после первой подписи (DocChangedAppr)
+      if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
       {
         var official = SBContracts.OfficialDocuments.As(document);
         if (official == null)
@@ -1003,8 +1003,8 @@ namespace sberdev.SBContracts.Shared
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.ManuallyCheck); // входящий счет
       
-      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.DocumentChanged); // закупка
-      baseSupport["09584896-81e2-4c83-8f6c-70eb8321e1d0"].Add(ConditionType.DocumentChanged); // простой документ
+      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.DocChangedApprSberDev); // закупка
+      baseSupport["09584896-81e2-4c83-8f6c-70eb8321e1d0"].Add(ConditionType.DocChangedApprSberDev); // простой документ
 
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.PayType); // входящий счет
       
