@@ -75,6 +75,25 @@
           "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "9b8bb26d-ee79-4f93-ae43-9a9ef67e3257",
+          "Name": "Instruction",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
+          "HeaderLocation": "Top",
+          "ParentGuid": "9ee0418e-b041-4807-87c4-6ab7b5a61a69",
+          "PropertyGuid": "9a16bdf7-5aed-4541-86e3-84f616fc94f3",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "Height",
+              "Value": 150
+            }
+          ]
         }
       ]
     }
@@ -120,6 +139,14 @@
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "12e0bf4f-33a0-4000-8236-6d60e489da1f"
+    },
+    {
+      "$type": "Sungero.Metadata.TextPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "9a16bdf7-5aed-4541-86e3-84f616fc94f3",
+      "Name": "Instruction",
+      "Code": "Instruction",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToTextBinder",
+      "PreviousPropertyGuid": "3448921b-0771-4851-958a-bbeb9e508b9c"
     }
   ],
   "PublicStructures": [],
