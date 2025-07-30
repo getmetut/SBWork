@@ -9,22 +9,6 @@ namespace sberdev.SberContracts.Shared
 {
   partial class AppProductPurchaseFunctions
   {
-
-    /// <summary>
-    /// Обновление карточки документа
-    /// </summary>       
-    public void UpdateCard()
-    {
-      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
-      {
-        _obj.State.Properties.DDS.IsRequired = true;
-        _obj.State.Properties.ZIP.IsRequired = true;
-        _obj.State.Properties.ResponsibleProd.IsRequired = true;
-        _obj.State.Properties.ResponsibleSourcing.IsRequired = true;
-        _obj.State.Properties.PaymentMethod.IsRequired = true;
-      }
-    }
-    
     /// <summary>
     /// Устанавливает значение false для всех свойств SelectedCounterparty кроме указанного
     /// </summary>
@@ -75,38 +59,6 @@ namespace sberdev.SberContracts.Shared
       }
     }
 
-    [Public]
-    public string TranslatePaymentMethod(string enumValue)
-    {
-      switch (enumValue)
-      {
-        case "Agent":
-          return "Агентская схема";
-        case "VTB":
-          return "Счет в ВТБ";
-        case "Chinese":
-          return "Китайское юр. лицо";
-        default:
-          return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
-      }
-    }
-    
-    [Public]
-    public string TranslatePlanDelType(string enumValue)
-    {
-      switch (enumValue)
-      {
-        case "Air":
-          return "Авиа";
-        case "Railway":
-          return "Ж/д";
-        case "Auto":
-          return "Авто";
-        default:
-          return enumValue; // Возвращает оригинальное значение, если сопоставление не найдено
-      }
-    }
-
     public override void SetPropertiesAccess()
     {
       base.SetPropertiesAccess();
@@ -134,7 +86,14 @@ namespace sberdev.SberContracts.Shared
         prop.IsRequired = isAgentScheme;
       }
       
-      var numberMapping = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+      _obj.State.Properties.DDS.IsRequired = true;
+      _obj.State.Properties.ZIP.IsRequired = true;
+      _obj.State.Properties.ResponsibleProd.IsRequired = true;
+      _obj.State.Properties.ResponsibleSourcing.IsRequired = true;
+      _obj.State.Properties.PaymentMethod.IsRequired = true;
+      
+      #region Закоменченный код по контролю таблиц контрагентов
+      /*     var numberMapping = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
       {
         { "one", 1 },
         { "two", 2 },
@@ -167,7 +126,8 @@ namespace sberdev.SberContracts.Shared
         collections[i].IsRequired = i < cpNum;
         collections[i].IsVisible = i < cpNum;
       }
-
+       */
+      #endregion
     }
 
   }

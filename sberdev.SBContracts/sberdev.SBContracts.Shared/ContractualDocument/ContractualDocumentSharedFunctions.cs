@@ -420,7 +420,7 @@ namespace sberdev.SBContracts.Shared
 
       bool visible = false;
       
-      if (depIDs != null && kindIDs != null)
+      if (depIDs != null && kindIDs != null && department != null && docKind != null)
       {
         visible = kindIDs.Contains(docKind.Id) && depIDs.Contains(department.Id);
       }
