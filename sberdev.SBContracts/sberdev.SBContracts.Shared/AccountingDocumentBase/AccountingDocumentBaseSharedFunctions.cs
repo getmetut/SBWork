@@ -404,7 +404,10 @@ namespace sberdev.SBContracts.Shared
       
       if (depIDs != null && kindIDs != null)
       {
-        visible = kindIDs.Contains(docKind.Id) && depIDs.Contains(department.Id);
+        if ((department != null) && (docKind != null))
+          visible = kindIDs.Contains(docKind.Id) && depIDs.Contains(department.Id);
+        else
+          throw new Exception("Не переданы обязательные параметры: Подразделение или Вид документа!");
       }
       else
       {
