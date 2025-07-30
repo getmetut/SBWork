@@ -2306,7 +2306,6 @@
       "Name": "ProcMethod",
       "Code": "ProcMethod",
       "EntityGuid": "c531e3c3-5d09-4aad-a1ee-0ffec0d7529c",
-      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "cb3706f7-782a-4f6e-9df5-e4aae9cb060d"
     }
@@ -2333,42 +2332,6 @@
       "Placement": "Shared",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
-    },
-    {
-      "Name": "TranslatePaymentMethod",
-      "Parameters": [
-        {
-          "Name": "appProductPurchase",
-          "ParameterType": "global::sberdev.SberContracts.IAppProductPurchase",
-          "ParameterTypeFullName": "sberdev.SberContracts.IAppProductPurchase, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "enumValue",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::System.String",
-      "ReturnTypeFullName": "System.String"
-    },
-    {
-      "Name": "TranslatePlanDelType",
-      "Parameters": [
-        {
-          "Name": "appProductPurchase",
-          "ParameterType": "global::sberdev.SberContracts.IAppProductPurchase",
-          "ParameterTypeFullName": "sberdev.SberContracts.IAppProductPurchase, Sungero.Domain.Interfaces"
-        },
-        {
-          "Name": "enumValue",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::System.String",
-      "ReturnTypeFullName": "System.String"
     }
   ],
   "PublicStructures": [],

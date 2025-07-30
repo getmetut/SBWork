@@ -9,6 +9,9 @@ namespace sberdev.SberContracts.Server
 {
   partial class AppProductPurchaseFunctions
   {
-
+    public override void BeforeSaveFunction()
+    {
+      // Убран базовый обработчик
+    }
   }
 }

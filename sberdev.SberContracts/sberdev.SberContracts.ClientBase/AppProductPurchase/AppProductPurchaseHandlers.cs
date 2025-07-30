@@ -13,7 +13,6 @@ namespace sberdev.SberContracts
     public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
     {
       base.Refresh(e);
-      Functions.AppProductPurchase.UpdateCard(_obj);
     }
 
     public virtual void PaymentMethodValueInput(Sungero.Presentation.EnumerationValueInputEventArgs e)

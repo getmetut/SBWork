@@ -406,6 +406,32 @@ namespace sberdev.SBContracts.Shared
     #endregion
     
     #region Контроль разных свойств
+
+    /// <summary>
+    /// Управление доступностью поля "Номер 1С".
+    /// </summary>
+    public void ChangeNumber1CAccess()
+    {
+      var depIDs = DevSettings.Remote.GetDevSettingTextIDs("Подразделения с обязательным полем \"Номер 1С\"");
+      var kindIDs = DevSettings.Remote.GetDevSettingTextIDs("Виды документов с обязательным полем \"Номер 1С\"");
+
+      var department = _obj.Department;
+      var docKind = _obj.DocumentKind;
+
+      bool visible = false;
+      
+      if (depIDs != null && kindIDs != null && department != null && docKind != null)
+      {
+        visible = kindIDs.Contains(docKind.Id) && depIDs.Contains(department.Id);
+      }
+      else
+      {
+        throw new Exception("Не созданы или не заданы DevSettings: Подразделения с обязательным полем \"Номер 1С\"; Виды документов с обязательным полем \"Номер 1С\".");
+      }
+      
+      _obj.State.Properties.Number1CSberDev.IsVisible = visible;
+      _obj.State.Properties.Number1CSberDev.IsRequired = visible;
+    }
     
     /// <summary>
     /// Изменяет доступность и обязательность полей доставки в зависимости от метода доставки и типа документа.
@@ -697,32 +723,6 @@ namespace sberdev.SBContracts.Shared
 
       if (_obj.ProdCollectionStringSDev != newProductsString)
         _obj.ProdCollectionStringSDev = newProductsString;
-    }
-
-    /// <summary>
-    /// Управление доступностью поля "Номер 1С".
-    /// </summary>
-    public void ChangeNumber1CAccess()
-    {
-      var depIDs = DevSettings.Remote.GetDevSettingTextIDs("Подразделения с обязательным полем \"Номер 1С\"");
-      var kindIDs = DevSettings.Remote.GetDevSettingTextIDs("Виды документов с обязательным полем \"Номер 1С\"");
-
-      var department = _obj.Department;
-      var docKind = _obj.DocumentKind;
-
-      bool visible = false;
-      
-      if (depIDs != null && kindIDs != null)
-      {
-        visible = kindIDs.Contains(docKind.Id) && depIDs.Contains(department.Id);
-      }
-      else
-      {
-        throw new Exception("Не созданы или не заданы DevSettings: Подразделения с обязательным полем \"Номер 1С\"; Виды документов с обязательным полем \"Номер 1С\".");
-      }
-      
-      _obj.State.Properties.Number1CSberDev.IsVisible = visible;
-      _obj.State.Properties.Number1CSberDev.IsRequired = visible;
     }
 
     #endregion
