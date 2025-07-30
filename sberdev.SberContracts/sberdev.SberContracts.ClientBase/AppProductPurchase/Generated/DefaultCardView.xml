@@ -8,7 +8,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">None</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">550,-116</property>
+            <property name="Location">550,-806</property>
             <property name="Size">220,250</property>
           </property>
           <property name="AllowMoveColumnToDropArea">false</property>
@@ -30,7 +30,7 @@
             <property name="Name">AppProductPurchase_PurchasesCollection_Number</property>
             <property name="FieldName">Number</property>
             <property name="VisibleIndex">0</property>
-            <property name="Width">47</property>
+            <property name="Width">44</property>
             <property name="ActualWidth">6*</property>
           </property>
           <property name="Item2" isnull="true" iskey="true">
@@ -38,7 +38,7 @@
             <property name="Name">AppProductPurchase_PurchasesCollection_Product</property>
             <property name="FieldName">Product</property>
             <property name="VisibleIndex">1</property>
-            <property name="Width">126</property>
+            <property name="Width">116</property>
             <property name="ActualWidth">16*</property>
           </property>
           <property name="Item3" isnull="true" iskey="true">
@@ -46,7 +46,7 @@
             <property name="Name">AppProductPurchase_PurchasesCollection_PriceUnit</property>
             <property name="FieldName">PriceUnit</property>
             <property name="VisibleIndex">2</property>
-            <property name="Width">102</property>
+            <property name="Width">94</property>
             <property name="ActualWidth">13*</property>
           </property>
           <property name="Item4" isnull="true" iskey="true">
@@ -54,7 +54,7 @@
             <property name="Name">AppProductPurchase_PurchasesCollection_Quantity</property>
             <property name="FieldName">Quantity</property>
             <property name="VisibleIndex">3</property>
-            <property name="Width">102</property>
+            <property name="Width">94</property>
             <property name="ActualWidth">13*</property>
           </property>
           <property name="Item5" isnull="true" iskey="true">
@@ -62,7 +62,7 @@
             <property name="Name">AppProductPurchase_PurchasesCollection_Article</property>
             <property name="FieldName">Article</property>
             <property name="VisibleIndex">4</property>
-            <property name="Width">86</property>
+            <property name="Width">80</property>
             <property name="ActualWidth">11*</property>
           </property>
         </property>
