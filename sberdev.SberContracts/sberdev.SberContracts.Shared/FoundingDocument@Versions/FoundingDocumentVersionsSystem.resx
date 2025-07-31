@@ -58,34 +58,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Action_ExtendDeadlineSungero" xml:space="preserve">
-    <value>Deadline Extension</value>
-  </data>
-  <data name="Action_ExtendDeadlineSungeroDescription" xml:space="preserve">
-    <value>Extend the assignment deadline</value>
-  </data>
-  <data name="Action_ExtendDeadlineSungeroHint" xml:space="preserve">
-    <value>Deadline Extension</value>
-  </data>
-  <data name="Action_ExtendDeadlineSungeroConfirmationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Action_ExtendDeadlineSungeroConfirmationDescription" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Action_CreateVersionFromFileSBDEV" xml:space="preserve">
-    <value>Create Version From File</value>
-  </data>
-  <data name="Action_CreateVersionFromFileSBDEVDescription" xml:space="preserve">
-    <value>Создать новую версию документа из файла.</value>
-  </data>
-  <data name="Action_CreateVersionFromFileSBDEVHint" xml:space="preserve">
-    <value>Создать новую версию документа из файла.</value>
-  </data>
-  <data name="Action_CreateVersionFromFileSBDEVConfirmationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Action_CreateVersionFromFileSBDEVConfirmationDescription" xml:space="preserve">
-    <value />
-  </data>
 </root>

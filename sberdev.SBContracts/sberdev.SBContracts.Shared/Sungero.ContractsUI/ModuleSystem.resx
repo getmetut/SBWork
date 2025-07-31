@@ -445,4 +445,103 @@
   <data name="sf_aa69a857_8596_4999_9286_a410e3ba633e" xml:space="preserve">
     <value>Constituent Documents Registry</value>
   </data>
+  <data name="sf_841eda7d_1426_4384_9db4_14bee8af2a2a" xml:space="preserve">
+    <value>Founding Document Registry</value>
+  </data>
+  <data name="FilterPanel_DateRange_7b43d980b00742f1be12da075c09103a" xml:space="preserve">
+    <value>Registered</value>
+  </data>
+  <data name="FilterPanel_BusinessUnit_879fe5b6633343109ffa960325cb3f0f" xml:space="preserve">
+    <value>Business unit</value>
+  </data>
+  <data name="FilterPanel_IsSecretGroupSBDEV_468123fa51054e70bacca90498ae8e84" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="FilterPanel_Main_67492a665b064d4180c5968bbbc0f9d0" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="FilterPanel_Period_7483d32492a74d0e8e6753d9cde9d995" xml:space="preserve">
+    <value>Document date</value>
+  </data>
+  <data name="FilterPanel_State_18f2825385f54547ba6869516202ee5c" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="FilterPanel_Draft_61bdd8658be34ef990148f93c365d5ce" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="FilterPanel_Active_1fa014f84a78413fbfa8cb9db38a5dcb" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="FilterPanel_Obsolete_578a32a372924305a3066092d304ed48" xml:space="preserve">
+    <value>Obsolete</value>
+  </data>
+  <data name="FilterPanel_SecretSBDEV_9646e7105ff54c5aa1ddc37b7c7e4c3f" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="FilterPanel_CommonSBDEV_349ec6afe22d45e1a0a7e5834d6b7759" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="FilterPanel_Department_b2c847c1712147bd835bd116db315d1c" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="FilterPanel_DocumentKindGroupSBDEV_0a444f3ca8844efd8aa0875662e1d6c6" xml:space="preserve">
+    <value>Document Kind</value>
+  </data>
+  <data name="FilterPanel_Last30days_8877ae20f56d4485917add5cc35fc3c3" xml:space="preserve">
+    <value>Last 30 days</value>
+  </data>
+  <data name="FilterPanel_ManualPeriod_ab0e0901383e4f509e8af2d235d8d9fb" xml:space="preserve">
+    <value>User-defined period:</value>
+  </data>
+  <data name="FilterPanel_BusinessUnit_e0702a4e10a44c5dbfc05af11c644d13" xml:space="preserve">
+    <value>Business unit</value>
+  </data>
+  <data name="FilterPanel_Contractor_2adc8d2d997642c4802c82e20699077d" xml:space="preserve">
+    <value>Counterparty</value>
+  </data>
+  <data name="FilterPanel_Main_e561d48480844132870f5156359a3978" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="FilterPanel_Period_384dc2d88a6946809a555186fe6a1262" xml:space="preserve">
+    <value>Document date</value>
+  </data>
+  <data name="FilterPanel_Category_531d1ac5ad7d40b4bc9742af237abdb1" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="FilterPanel_State_3cd5a14f50bf440e94bedaca4c2f8783" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="FilterPanel_Draft_d333c7b4b61842a686411383811cca90" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="FilterPanel_Active_e6034db33690496094b6208e41b0cacf" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="FilterPanel_Executed_7906e82d24a4486c88fc09fa08140acd" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="FilterPanel_Terminated_c633b2f3ef1f42fbbbc6d0f051f26673" xml:space="preserve">
+    <value>Terminated</value>
+  </data>
+  <data name="FilterPanel_Cancelled_cd382af6d6f74881bbcecdf554447788" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="FilterPanel_DocumentKind_d27880601b714b11ac171ea000c87c42" xml:space="preserve">
+    <value>Document kind</value>
+  </data>
+  <data name="FilterPanel_Last365days_a0a91a718858434cb77d3e888d656c97" xml:space="preserve">
+    <value>Last 365 days</value>
+  </data>
+  <data name="FilterPanel_Department_a0b90086de3c4a9cb3ebf9fe2162dabd" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="FilterPanel_SupAgreements_5ce6d611bd6f400e93d98540838d3cdb" xml:space="preserve">
+    <value>Supp. agreements</value>
+  </data>
+  <data name="FilterPanel_Contracts_d646f5e3dbec4ad49d5f62705b805c9a" xml:space="preserve">
+    <value>Contracts</value>
+  </data>
+  <data name="FilterPanel_DocumentTypeGroup_b8ac06d46caf4e179aa0599c41105929" xml:space="preserve">
+    <value>Document types</value>
+  </data>
 </root>

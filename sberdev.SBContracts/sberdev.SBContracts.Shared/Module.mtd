@@ -3,7 +3,7 @@
   "NameGuid": "b33230d7-1513-4f37-9ea0-7d0db0fb6b72",
   "Name": "SBContracts",
   "AsyncHandlers": [],
-"BaseSolutionsDesktopViewsDisabled": true,
+  "BaseSolutionsDesktopViewsDisabled": true,
   "ClientAssemblyName": "sberdev.SBContracts.Client",
   "ClientBaseAssemblyName": "sberdev.SBContracts.ClientBase",
   "ClientBaseNamespace": "sberdev.SBContracts.ClientBase",

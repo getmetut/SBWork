@@ -10,26 +10,9 @@ namespace sberdev.SBContracts.Server
 {
   partial class ApprovalTaskRouteHandlers
   {
-
     public override void StartAssignment28(Sungero.Docflow.IApprovalSendingAssignment assignment, Sungero.Docflow.Server.ApprovalSendingAssignmentArguments e)
     {
       base.StartAssignment28(assignment, e);
-      // Доработка в рамках задачи DRX-700.
-      var overridedAssignment = SBContracts.ApprovalSendingAssignments.As(assignment);
-      if (assignment != null) {
-        // Делопроизводитель ПП.
-        var emp = Sungero.Company.Employees.Get(431);
-        var document = overridedAssignment.DocumentGroup.OfficialDocuments.FirstOrDefault();
-        if (document != null) {
-          if (assignment.Performer != null && assignment.Performer == emp
-              && (!document.AccessRights.Current.Select(rights => rights.Recipient).Contains(emp)
-                  || !document.AccessRights.Current.Any(rights => rights.Recipient == emp && rights.AccessRightsType == DefaultAccessRightsTypes.FullAccess))
-             ) {
-            document.AccessRights.Grant(emp, DefaultAccessRightsTypes.FullAccess);
-            document.AccessRights.Save();
-          }
-        }
-      }
     }
     public override void StartBlock6(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
     {
