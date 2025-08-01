@@ -10,9 +10,18 @@ namespace sberdev.SberContracts
   partial class AppProductPurchaseClientHandlers
   {
 
+    public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
+    {
+      base.Showing(e);
+      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
+        _obj.State.Properties.Lot.IsRequired = _obj.ProductCategory != null ? _obj.ProductCategory == AppProductPurchase.ProductCategory.TVown : false;
+    }
+
     public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
     {
       base.Refresh(e);
+      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
+        _obj.State.Properties.Lot.IsRequired = _obj.ProductCategory != null ? _obj.ProductCategory == AppProductPurchase.ProductCategory.TVown : false;
     }
 
     public virtual void PaymentMethodValueInput(Sungero.Presentation.EnumerationValueInputEventArgs e)
