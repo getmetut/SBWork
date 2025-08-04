@@ -157,8 +157,8 @@
   <data name="Enum_ConditionType_PricesAgreed" xml:space="preserve">
     <value>Цены согласованы</value>
   </data>
-  <data name="Enum_ConditionType_DocumentChanged" xml:space="preserve">
-    <value>Документ был изменен</value>
+  <data name="Enum_ConditionType_DocChangedApprSberDev" xml:space="preserve">
+    <value>Документ изменен после первого согласования</value>
   </data>
   <data name="Enum_ConditionType_ManuallyCheck" xml:space="preserve">
     <value>Необходима ручная проверка договорных документов</value>
