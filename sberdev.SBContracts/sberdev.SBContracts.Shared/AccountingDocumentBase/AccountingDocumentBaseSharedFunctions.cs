@@ -402,16 +402,16 @@ namespace sberdev.SBContracts.Shared
 
       bool visible = false;
       
-      if (department != null && docKind != null)
+      if (depIDs != null && kindIDs != null && department != null && docKind != null)
       {
-        if (depIDs != null && kindIDs != null)
-        {
+        if ((department != null) && (docKind != null))
           visible = kindIDs.Contains(docKind.Id) && depIDs.Contains(department.Id);
-        }
         else
-        {
-          Logger.Error("Не созданы или не заданы DevSettings: Подразделения с обязательным полем \"Номер 1С\"; Виды документов с обязательным полем \"Номер 1С\".");
-        }
+          throw new Exception("Не переданы обязательные параметры: Подразделение или Вид документа!");
+      }
+      else
+      {
+        throw new Exception("Не созданы или не заданы DevSettings: Подразделения с обязательным полем \"Номер 1С\"; Виды документов с обязательным полем \"Номер 1С\".");
       }
       
       _obj.State.Properties.Number1CSberDev.IsVisible = visible;

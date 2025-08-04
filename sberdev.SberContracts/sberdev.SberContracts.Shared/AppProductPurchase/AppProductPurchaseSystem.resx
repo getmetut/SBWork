@@ -574,4 +574,7 @@
   <data name="Property_ProcMethod" xml:space="preserve">
     <value>ProcMethod</value>
   </data>
+  <data name="Property_Lot" xml:space="preserve">
+    <value>Лот</value>
+  </data>
 </root>

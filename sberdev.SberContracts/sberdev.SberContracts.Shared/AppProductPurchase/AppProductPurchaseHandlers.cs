@@ -92,6 +92,12 @@ namespace sberdev.SberContracts
   partial class AppProductPurchaseSharedHandlers
   {
 
+    public virtual void ProductCategoryChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
+    {
+      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
+        _obj.State.Properties.Lot.IsRequired = _obj.ProductCategory != null ? _obj.ProductCategory == AppProductPurchase.ProductCategory.TVown : false;
+    }
+
     public virtual void PurchasesCollectionChanged(Sungero.Domain.Shared.CollectionPropertyChangedEventArgs e)
     {
       if (_obj.PurchasesCollection.Count > 0)

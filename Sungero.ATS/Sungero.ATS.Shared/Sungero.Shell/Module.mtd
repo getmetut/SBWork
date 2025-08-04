@@ -37,6 +37,50 @@
   "Overridden": [
     "IsVisible"
   ],
+  "PublicFunctions": [
+    {
+      "Name": "ApplyCommonSubfolderFilters",
+      "Parameters": [
+        {
+          "Name": "query",
+          "ParameterType": "global::System.Linq.IQueryable<global::Sungero.Workflow.IAssignmentBase>",
+          "ParameterTypeFullName": "System.Linq.IQueryable"
+        },
+        {
+          "Name": "inProcess",
+          "ParameterType": "global::System.Boolean",
+          "ParameterTypeFullName": "System.Boolean"
+        },
+        {
+          "Name": "shortPeriod",
+          "ParameterType": "global::System.Boolean",
+          "ParameterTypeFullName": "System.Boolean"
+        },
+        {
+          "Name": "middlePeriod",
+          "ParameterType": "global::System.Boolean",
+          "ParameterTypeFullName": "System.Boolean"
+        },
+        {
+          "Name": "longPeriod",
+          "ParameterType": "global::System.Boolean",
+          "ParameterTypeFullName": "System.Boolean"
+        },
+        {
+          "Name": "verylongPeriod",
+          "ParameterType": "global::System.Boolean",
+          "ParameterTypeFullName": "System.Boolean"
+        },
+        {
+          "Name": "longPeriodToCompleted",
+          "ParameterType": "global::System.Boolean",
+          "ParameterTypeFullName": "System.Boolean"
+        }
+      ],
+      "ReturnType": "global::System.Linq.IQueryable<global::Sungero.Workflow.IAssignmentBase>",
+      "ReturnTypeFullName": "System.Linq.IQueryable"
+    }
+  ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "Sungero.ATS.Module.Shell",
@@ -353,6 +397,13 @@
               "IsVisible"
             ],
             "Versions": []
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "bdb805d4-fb7d-4fa7-8c16-aac8cb9b8cad",
+            "Name": "Last10EarsATSDev",
+            "ParentGuid": "0bf1c231-9ce1-462a-a7cc-82f91d82ab42",
+            "PreviousGuid": "d35109ab-9675-429d-9d03-f34c294ca33c"
           }
         ],
         "IsAncestorMetadata": true,
@@ -361,13 +412,17 @@
         ],
         "Versions": []
       },
+      "HandledEvents": [
+        "DataQueryServer"
+      ],
       "IconPath": "OnDocumentProcessing_1ead1abe1b7e48339e01ee7f8404537a.ico",
       "IsAncestorMetadata": true,
       "IsShow": true,
       "IsViewSettingsByFolder": true,
       "NeedShowMarkedCount": true,
       "Overridden": [
-        "FilterPanel"
+        "FilterPanel",
+        "HandledEvents"
       ],
       "Versions": []
     },
