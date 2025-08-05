@@ -346,9 +346,6 @@
   <data name="ControlGroup_2154b02f66b84d1494b5af4064f01f00" xml:space="preserve">
     <value>Потенциальные участники закупочной процедуры</value>
   </data>
-  <data name="ControlGroup_bdaaa69a2eb44a308aa1f6aa11610f03" xml:space="preserve">
-    <value>Сравнение ценовых предложений</value>
-  </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Заявка на производ. закупку</value>
   </data>
@@ -448,13 +445,37 @@
   <data name="Property_SelectedCounterparty7" xml:space="preserve">
     <value>Выбранный контрагент</value>
   </data>
-  <data name="Property_MethodPurchase" xml:space="preserve">
+  <data name="Property_PurchaseMethod" xml:space="preserve">
     <value>Способ закупки</value>
   </data>
-  <data name="Enum_MethodPurchase_SeveralCP" xml:space="preserve">
+  <data name="Enum_PurchaseMethod_SeveralCP" xml:space="preserve">
     <value>Запрос предложений</value>
   </data>
-  <data name="Enum_MethodPurchase_OneCP" xml:space="preserve">
+  <data name="Enum_PurchaseMethod_OneCP" xml:space="preserve">
     <value>Eдинственный поставщик</value>
+  </data>
+  <data name="Property_ResponsibleSourcing" xml:space="preserve">
+    <value>Ответственный менеджер сорсинга</value>
+  </data>
+  <data name="Property_ProdCategory" xml:space="preserve">
+    <value>Категория товара</value>
+  </data>
+  <data name="Property_STA" xml:space="preserve">
+    <value>ЗИП</value>
+  </data>
+  <data name="Enum_PurchaseMethod_OfferAnalysis" xml:space="preserve">
+    <value>Анализ предложений (применим только для закупок до 500 тыс.руб.)</value>
+  </data>
+  <data name="Enum_PurchaseMethod_Requestquotatio" xml:space="preserve">
+    <value>Запрос котировок</value>
+  </data>
+  <data name="Enum_PurchaseMethod_ElectronicAuct" xml:space="preserve">
+    <value>Электронный аукцион</value>
+  </data>
+  <data name="Property_ZIP" xml:space="preserve">
+    <value>ЗИП</value>
+  </data>
+  <data name="Property_ReqNumber" xml:space="preserve">
+    <value>Номер потребности</value>
   </data>
 </root>

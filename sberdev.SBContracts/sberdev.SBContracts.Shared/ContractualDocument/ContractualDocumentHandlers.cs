@@ -159,7 +159,7 @@ namespace sberdev.SBContracts
         var name = e.NewValue.Name;
         if (name == "Договор Xiongxin" || name == "Дополнительное соглашение Xiongxin")
         {
-          List<int> ids = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("ИД сущностей для договора Xiongxin").Text.Split(',').Select(s => Int32.Parse(s)).ToList();
+          List<int> ids = SberContracts.PublicFunctions.DevSettings.Remote.GetDevSetting("ИД сущностей для договора Xiongxin").Text.Split(',').Select(s => Int32.Parse(s)).ToList();
           _obj.ContrTypeBaseSberDev = ContrTypeBaseSberDev.Expendable;
           Functions.ContractualDocument.Remote.SetXiongxinProps(_obj, ids);
         }

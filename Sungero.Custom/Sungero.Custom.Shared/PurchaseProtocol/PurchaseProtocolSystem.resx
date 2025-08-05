@@ -229,4 +229,13 @@
   <data name="Action_SendToTMConfirmationDescription" xml:space="preserve">
     <value />
   </data>
+  <data name="Enum_ApprovalStage_ZKommissin" xml:space="preserve">
+    <value>Закупка в рамках закупочной комиссии;</value>
+  </data>
+  <data name="ControlGroup_5a57a2f2c87f4740b797a76a82e6853a" xml:space="preserve">
+    <value>Обоснование выбора поставщика</value>
+  </data>
+  <data name="Property_ChooseCpJustif" xml:space="preserve">
+    <value>Justif. for choosing a counterparty</value>
+  </data>
 </root>

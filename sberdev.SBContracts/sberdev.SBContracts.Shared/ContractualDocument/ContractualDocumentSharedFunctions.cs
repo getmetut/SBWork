@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
+using sberdev.SberContracts.PublicFunctions;
 using sberdev.SBContracts.ContractualDocument;
 
 namespace sberdev.SBContracts.Shared
@@ -64,8 +65,8 @@ namespace sberdev.SBContracts.Shared
       }
       else
       {
-          _obj.State.Properties.TotalAmount.IsEnabled = true;
-          _obj.State.Properties.Currency.IsEnabled = true;
+        _obj.State.Properties.TotalAmount.IsEnabled = true;
+        _obj.State.Properties.Currency.IsEnabled = true;
       }
       ChangeDeliveryInfoAccess();
       ChangePropertiesAccessByKind();
@@ -405,6 +406,35 @@ namespace sberdev.SBContracts.Shared
     #endregion
     
     #region Контроль разных свойств
+
+    /// <summary>
+    /// Управление доступностью поля "Номер 1С".
+    /// </summary>
+    public void ChangeNumber1CAccess()
+    {
+      var depIDs = DevSettings.Remote.GetDevSettingTextIDs("Подразделения с обязательным полем \"Номер 1С\"");
+      var kindIDs = DevSettings.Remote.GetDevSettingTextIDs("Виды документов с обязательным полем \"Номер 1С\"");
+
+      var department = _obj.Department;
+      var docKind = _obj.DocumentKind;
+
+      bool visible = false;
+      
+      if (department != null && docKind != null)
+      {
+        if (depIDs != null && kindIDs != null)
+        {
+          visible = kindIDs.Contains(docKind.Id) && depIDs.Contains(department.Id);
+        }
+        else
+        {
+          Logger.Error("Не созданы или не заданы DevSettings: Подразделения с обязательным полем \"Номер 1С\"; Виды документов с обязательным полем \"Номер 1С\".");
+        }
+      }
+      
+      _obj.State.Properties.Number1CSberDev.IsVisible = visible;
+      _obj.State.Properties.Number1CSberDev.IsRequired = visible;
+    }
     
     /// <summary>
     /// Изменяет доступность и обязательность полей доставки в зависимости от метода доставки и типа документа.
@@ -696,34 +726,6 @@ namespace sberdev.SBContracts.Shared
 
       if (_obj.ProdCollectionStringSDev != newProductsString)
         _obj.ProdCollectionStringSDev = newProductsString;
-    }
-
-    /// <summary>
-    /// Управление доступностью поля "Номер 1С".
-    /// </summary>
-    public void ChangeNumber1CAccess()
-    {
-      var depSetting = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Подразделения с обязательным полем \"Номер 1С\"");
-      var kindSetting = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Виды документов с обязательным полем \"Номер 1С\"");
-
-      var department = _obj.Department;
-      var docKind = _obj.DocumentKind;
-
-      bool visible = false;
-      if (depSetting != null && !string.IsNullOrWhiteSpace(depSetting.Text) && department != null)
-      {
-        var ids = depSetting.Text.Split(',').Select(s => long.Parse(s.Trim())).ToList();
-        visible = ids.Contains(department.Id);
-      }
-
-      if (visible && kindSetting != null && !string.IsNullOrWhiteSpace(kindSetting.Text) && docKind != null)
-      {
-        var kindIds = kindSetting.Text.Split(',').Select(s => long.Parse(s.Trim())).ToList();
-        visible = kindIds.Contains(docKind.Id);
-      }
-
-      _obj.State.Properties.Number1CSberDev.IsVisible = visible;
-      _obj.State.Properties.Number1CSberDev.IsRequired = visible;
     }
 
     #endregion

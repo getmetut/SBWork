@@ -18,7 +18,7 @@ namespace sberdev.SBContracts
         var kind = e.NewValue.Name;
         if (kind == "Договор Xiongxin" || kind == "Дополнительное соглашение Xiongxin")
         {
-          List<int> ids = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("ИД сущностей для договора Xiongxin").Text.Split(',').Select(s => Int32.Parse(s)).ToList();
+          List<int> ids = SberContracts.PublicFunctions.DevSettings.Remote.GetDevSetting("ИД сущностей для договора Xiongxin").Text.Split(',').Select(s => Int32.Parse(s)).ToList();
           Functions.Contract.Remote.SetXiongxinContractProps(_obj, ids);
         }
         bool isAcc = kind == "Счет-договор" || kind == "Договор-оферта";

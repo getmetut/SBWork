@@ -373,9 +373,6 @@
   <data name="ControlGroup_2154b02f66b84d1494b5af4064f01f00" xml:space="preserve">
     <value>Potential participants in the procurement procedure</value>
   </data>
-  <data name="ControlGroup_bdaaa69a2eb44a308aa1f6aa11610f03" xml:space="preserve">
-    <value>Comparative table of price offers</value>
-  </data>
   <data name="DisplayName" xml:space="preserve">
     <value>Application for prod. purchase</value>
   </data>
@@ -411,9 +408,6 @@
   </data>
   <data name="Property_AgencyFlagPAO" xml:space="preserve">
     <value>An application for payment via PJSC is required</value>
-  </data>
-  <data name="ControlGroup_e7300cf3ffe34ac3939aa487ad7407bc" xml:space="preserve">
-    <value />
   </data>
   <data name="ControlGroup_2e902bd913584feeb911892b21cf945d" xml:space="preserve">
     <value />
@@ -475,9 +469,6 @@
   <data name="Enum_PaymentMethod_Chinese" xml:space="preserve">
     <value>Chinese legal entity</value>
   </data>
-  <data name="ControlGroup_16d47185fb0a4462ade1ba6ed442b6de" xml:space="preserve">
-    <value />
-  </data>
   <data name="Property_SelectedCounterparty1" xml:space="preserve">
     <value>Selected Counterparty</value>
   </data>
@@ -499,41 +490,23 @@
   <data name="Property_SelectedCounterparty7" xml:space="preserve">
     <value>Selected Counterparty</value>
   </data>
-  <data name="ControlGroup_7cf9531455b74cfe9a30fcca2107652d" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_b086381cd05f4faa862c61cb77bc4c7e" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_2045f13732aa4140af1a2daeeae8ffe9" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_29fdb7efd0af4cb4a6bfb216a11be0dc" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ControlGroup_374a5428a59544b9a471c17bc6eafd0a" xml:space="preserve">
-    <value />
-  </data>
   <data name="Property_DDS" xml:space="preserve">
     <value>ДДС</value>
   </data>
-  <data name="Property_ZIP" xml:space="preserve">
-    <value>ЗИП</value>
+  <data name="Property_PurchaseMethod" xml:space="preserve">
+    <value>Purchase method</value>
   </data>
-  <data name="Property_MethodPurchase" xml:space="preserve">
-    <value>Method of purchase</value>
-  </data>
-  <data name="Enum_MethodPurchase_SeveralCP" xml:space="preserve">
+  <data name="Enum_PurchaseMethod_SeveralCP" xml:space="preserve">
     <value>Request for proposals</value>
   </data>
-  <data name="Enum_MethodPurchase_OneCP" xml:space="preserve">
+  <data name="Enum_PurchaseMethod_OneCP" xml:space="preserve">
     <value>One counterparty</value>
   </data>
-  <data name="Property_ResponsibleForProduction" xml:space="preserve">
+  <data name="Property_ResponsibleProd" xml:space="preserve">
     <value>Ответственный от Производства</value>
   </data>
-  <data name="Property_ResponsibleSourcingManager" xml:space="preserve">
-    <value>Ответственный менеджер сорсинга</value>
+  <data name="Property_ResponsibleSourcing" xml:space="preserve">
+    <value>Responsible sourcing manager</value>
   </data>
   <data name="Property_ProductCategory" xml:space="preserve">
     <value>Категория товара</value>
@@ -562,31 +535,43 @@
   <data name="Enum_ProductCategory_OtherDevices" xml:space="preserve">
     <value>Прочие устройства</value>
   </data>
-  <data name="Enum_MethodPurchase_OfferAnalysis" xml:space="preserve">
-    <value>Анализ предложений (применим только для закупок до 500 тыс.руб.)</value>
+  <data name="Enum_PurchaseMethod_OfferAnalysis" xml:space="preserve">
+    <value>Proposal analysis (only applicable for purchases up to 500,000 RUB)</value>
   </data>
-  <data name="Enum_MethodPurchase_Requestquotatio" xml:space="preserve">
-    <value>Запрос котировок</value>
+  <data name="Enum_PurchaseMethod_Requestquotatio" xml:space="preserve">
+    <value>Request for quotations"</value>
   </data>
-  <data name="Enum_MethodPurchase_ElectronicAuct" xml:space="preserve">
-    <value>Электронный аукцион</value>
+  <data name="Enum_PurchaseMethod_ElectronicAuct" xml:space="preserve">
+    <value>Electronic auction</value>
   </data>
-  <data name="Property_NumPortepnost" xml:space="preserve">
-    <value>Номер потребности</value>
+  <data name="Property_ZIP" xml:space="preserve">
+    <value>ЗИП</value>
   </data>
-  <data name="Enum_MethodPurchase_Competition" xml:space="preserve">
-    <value>Конкурс</value>
+  <data name="Enum_PurchaseMethod_Competition" xml:space="preserve">
+    <value>Competition</value>
   </data>
-  <data name="Enum_MethodPurchase_AddressableQuo" xml:space="preserve">
-    <value>Адресный запрос котировок</value>
+  <data name="Enum_PurchaseMethod_AddressableQuo" xml:space="preserve">
+    <value>Targeted request for quotations</value>
   </data>
-  <data name="Enum_MethodPurchase_AddressableReq" xml:space="preserve">
-    <value>Адресный запрос предложений</value>
+  <data name="Enum_PurchaseMethod_AddressableReq" xml:space="preserve">
+    <value>Targeted request for proposals</value>
   </data>
-  <data name="Enum_MethodPurchase_Accreditation" xml:space="preserve">
-    <value>Аккредитация</value>
+  <data name="Enum_PurchaseMethod_Accreditation" xml:space="preserve">
+    <value>Accreditation</value>
   </data>
   <data name="Property_TochInWork" xml:space="preserve">
     <value>Взял в работу</value>
+  </data>
+  <data name="Property_ProdCategory" xml:space="preserve">
+    <value>Product category</value>
+  </data>
+  <data name="Property_STA" xml:space="preserve">
+    <value>STA</value>
+  </data>
+  <data name="Property_ReqNumber" xml:space="preserve">
+    <value>Requirement number</value>
+  </data>
+  <data name="Property_ProcMethod" xml:space="preserve">
+    <value>ProcMethod</value>
   </data>
 </root>
