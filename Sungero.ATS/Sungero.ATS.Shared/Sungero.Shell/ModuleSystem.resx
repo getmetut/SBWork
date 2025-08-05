@@ -199,4 +199,7 @@
   <data name="FilterPanel_AuthorGroupATSDev_7d402897750e4287b0361dde295c2f63" xml:space="preserve">
     <value>Группа инициатора</value>
   </data>
+  <data name="FilterPanel_Last10EarsATSDev_bdb805d4fb7d4fa78c16aac8cb9b8cad" xml:space="preserve">
+    <value>За 10 лет</value>
+  </data>
 </root>

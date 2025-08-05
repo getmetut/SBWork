@@ -238,4 +238,22 @@
   <data name="Property_ChooseCpJustif" xml:space="preserve">
     <value>Justif. for choosing a counterparty</value>
   </data>
+  <data name="Control_6082fa00be0d466da065292bd8552098_DisplayValue" xml:space="preserve">
+    <value>Инструкция по заполнению</value>
+  </data>
+  <data name="Action_SendToTask" xml:space="preserve">
+    <value>На согласование</value>
+  </data>
+  <data name="Action_SendToTaskDescription" xml:space="preserve">
+    <value>Функция отправки документа на согласование по бизнес-процессу</value>
+  </data>
+  <data name="Action_SendToTaskHint" xml:space="preserve">
+    <value>Функция отправки документа на согласование по бизнес-процессу</value>
+  </data>
+  <data name="Action_SendToTaskConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SendToTaskConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
 </root>

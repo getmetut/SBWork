@@ -1101,10 +1101,13 @@
           "Name": "ControlGroup",
           "ColumnDefinitions": [
             {
-              "Percentage": 52.72
+              "Percentage": 50.35
             },
             {
-              "Percentage": 47.28
+              "Percentage": 23.93
+            },
+            {
+              "Percentage": 25.73
             }
           ],
           "ColumnNumber": 0,
@@ -1368,6 +1371,19 @@
           "RowNumber": 5,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "ec45f0de-813c-49e6-9113-be655b90f97e",
+          "Name": "Lot",
+          "ColumnNumber": 2,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+          "ParentGuid": "3d9c0592-d6ce-4fb2-9600-2e9a0783b6fb",
+          "PropertyGuid": "833076e2-847b-4961-8934-fe49641b2b70",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -1381,7 +1397,8 @@
   ],
   "HandledEvents": [
     "CreatedServer",
-    "RefreshClient"
+    "RefreshClient",
+    "ShowingClient"
   ],
   "IconName": "AppProductPurchase.ico",
   "IconResourcesKeys": [],
@@ -2277,6 +2294,9 @@
           "Code": "OtherDevices"
         }
       ],
+      "HandledEvents": [
+        "ChangedShared"
+      ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "cc4c7f44-1c67-4b5a-9f08-93d86def99b5"
     },
@@ -2308,6 +2328,14 @@
       "EntityGuid": "c531e3c3-5d09-4aad-a1ee-0ffec0d7529c",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "cb3706f7-782a-4f6e-9df5-e4aae9cb060d"
+    },
+    {
+      "$type": "Sungero.Metadata.IntegerPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "833076e2-847b-4961-8934-fe49641b2b70",
+      "Name": "Lot",
+      "Code": "Lot",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
+      "PreviousPropertyGuid": "8ac4b064-a3b6-46cb-a993-b573f42f4f25"
     }
   ],
   "PublicFunctions": [

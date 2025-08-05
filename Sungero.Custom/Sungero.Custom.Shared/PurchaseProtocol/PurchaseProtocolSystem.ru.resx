@@ -112,4 +112,7 @@
   <data name="Property_ChooseCpJustif" xml:space="preserve">
     <value>Обоснование выбора поставщика</value>
   </data>
+  <data name="Control_6082fa00be0d466da065292bd8552098_DisplayValue" xml:space="preserve">
+    <value>Инструкция по заполнению</value>
+  </data>
 </root>

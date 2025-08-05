@@ -3,6 +3,16 @@
   "NameGuid": "b4c6255c-cdb4-4b07-b405-243790ee8ccc",
   "Name": "PurchaseProtocol",
   "AccessRightsMode": "Both",
+  "Actions": [
+    {
+      "NameGuid": "444ce151-01df-4801-81e8-7524ba5bd7d8",
+      "Name": "SendToTask",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_SendToTask_large_444ce15101df480181e87524ba5bd7d8.png",
+      "SmallIconName": "Action_SendToTask_small_444ce15101df480181e87524ba5bd7d8.png"
+    }
+  ],
   "BaseGuid": "509e1035-d2a8-4e56-8f25-452ad1d903b9",
   "CanBeNavigationPropertyType": true,
   "CanBeSearch": true,
@@ -22,6 +32,17 @@
     "Versions": []
   },
   "Forms": [
+    {
+      "$type": "Sungero.Metadata.InplaceFormMetadata, Sungero.Metadata",
+      "NameGuid": "30d15053-0c64-40f2-89b8-b68c0c9fd574",
+      "Name": "Tracking",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ],
+      "Versions": []
+    },
     {
       "$type": "Sungero.Metadata.StandaloneFormMetadata, Sungero.Metadata",
       "NameGuid": "fa03f748-4397-42ef-bdc2-22119af7bf7f",
@@ -409,7 +430,7 @@
         {
           "$type": "Sungero.Metadata.HyperlinkControlMetadata, Sungero.Metadata",
           "NameGuid": "6082fa00-be0d-466d-a065-292bd8552098",
-          "Name": "Control1",
+          "Name": "ShowJustifCooseCpFAQ",
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.HyperlinkToSourceBinder",
@@ -753,7 +774,88 @@
     "NameGuid": "3778d6f7-88d6-4127-a95b-1a71f0bcda05",
     "Name": "RibbonCard",
     "Categories": [],
-    "Elements": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonStaticDropDownButtonMetadata, Sungero.Metadata",
+        "NameGuid": "1b49aedf-b54e-43d8-b0ea-20ee3f732312",
+        "Name": "AdministrationMenuSberDev",
+        "Index": 52,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "47ddd865-23d8-4c48-ba0b-80da8279d73d",
+        "Name": "SetCommentSberDevSberDev",
+        "ActionGuid": "d7afae31-1b02-46ea-9cad-6e4ce6ab672a",
+        "Index": 53,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "adf7510f-5d4b-40b1-91d4-390dd4d96e81",
+        "Name": "OpenDocumentRead",
+        "ActionGuid": "570684a1-4b68-463e-a2ee-1546ad9e4596",
+        "ButtonSize": "Large",
+        "Index": 21,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "c0f642e9-81fe-46b3-bc7f-f9921564bd76",
+        "Name": "CreateVersionFromLastVersion",
+        "ActionGuid": "cff11896-d843-428c-b768-dc6c7fe62d7a",
+        "Index": 31,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonStaticDropDownButtonMetadata, Sungero.Metadata",
+        "NameGuid": "79d7acaa-bca4-4e99-9fb2-947a236ec1a8",
+        "Name": "ImportDocument",
+        "Index": 41,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "c43817e9-9654-4640-99a3-e3804c48a2e2",
+        "Name": "ExportVersion",
+        "ActionGuid": "623e47f7-f308-49b5-95e1-8432fb324f3f",
+        "Index": 51,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "c79ccb0c-77ad-4428-b19b-0dd7c27d6ea3",
+        "Name": "SendToTask",
+        "ActionGuid": "444ce151-01df-4801-81e8-7524ba5bd7d8",
+        "ButtonSize": "Large",
+        "Index": 11,
+        "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
+      }
+    ],
     "Groups": [],
     "IsAncestorMetadata": true,
     "Pages": [],

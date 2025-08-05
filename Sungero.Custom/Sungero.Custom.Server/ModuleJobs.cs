@@ -204,15 +204,14 @@ namespace Sungero.Custom.Server
       
       if (Jobs.Count() > 0)
       {
-        string Data = "Тип|Тема|От|Срок|Инициатор|Исполнитель|e-mail|Руководитель|e-mail";
+        string Data = "Тема|От|Срок|Инициатор|e-mail|Руководитель|e-mail";
         foreach (var job in Jobs)
         {
-          Data += '\n' + "Контроль возврата";
-          Data += "|" + job.Subject.ToString();
+          Data += '\n' + job.Subject.ToString();
           Data += "|" + job.Created.ToString();
           Data += "|" + (job.Deadline.HasValue ? job.Deadline.ToString() : "Без срока");
           Data += "|" + (job.Author != null ? job.Author.Name.ToString() : "");
-          Data += "|" + (job.Performer != null ? job.Performer.Name.ToString() : "");
+         // Data += "|" + (job.Performer != null ? job.Performer.Name.ToString() : "");
           var Performer = Sungero.Company.Employees.GetAll(r => r.Login == job.Task.Author.Login).FirstOrDefault();
           if (Performer != null)
           {
