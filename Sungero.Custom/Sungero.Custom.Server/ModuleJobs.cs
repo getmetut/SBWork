@@ -4,6 +4,7 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using System.IO;
+using OfficeOpenXml;
 
 namespace Sungero.Custom.Server
 {
@@ -31,6 +32,32 @@ namespace Sungero.Custom.Server
           //Res += "-";
         }
       }
+    }
+    
+    public static string ConvertCsvToXlsx(string csvFilePath)
+    {
+        string xlsxFilePath = Path.ChangeExtension(csvFilePath, ".xlsx");
+        using (var reader = new StreamReader(csvFilePath))
+        {
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Report");
+                int row = 1;
+
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(';');
+                    for (int column = 0; column < values.Length; column++)
+                    {
+                        worksheet.Cells[row, column + 1].Value = values[column];
+                    }
+                    row++;
+                }
+                package.SaveAs(new FileInfo(xlsxFilePath));
+            }
+        }
+        return xlsxFilePath;
     }
     
     private string GenAccesRef(long UsID, long PdrID, bool Edit)
@@ -186,7 +213,7 @@ namespace Sungero.Custom.Server
           Data += "|" + (job.Deadline.HasValue ? job.Deadline.ToString() : "Без срока");
           Data += "|" + (job.Author != null ? job.Author.Name.ToString() : "");
           Data += "|" + (job.Performer != null ? job.Performer.Name.ToString() : "");
-          var Performer = Sungero.Company.Employees.GetAll(r => r.Login == job.Performer.Login).FirstOrDefault();
+          var Performer = Sungero.Company.Employees.GetAll(r => r.Login == job.Task.Author.Login).FirstOrDefault();
           if (Performer != null)
           {
             Data += "|" + (Performer.Email != null ? Performer.Email.ToString() : "");
@@ -234,6 +261,7 @@ namespace Sungero.Custom.Server
         try
         {
           File.WriteAllText(filePath, Data, new System.Text.UTF8Encoding(true));
+          filePath = ConvertCsvToXlsx(filePath);
           var doc = Sungero.Docflow.SimpleDocuments.CreateFrom(filePath);
           doc.DocumentKind = Sungero.Docflow.DocumentKinds.GetAll(d => d.Name == "Простой документ").FirstOrDefault();
           doc.Subject = "Отчет Контроль возврата на " + Sungero.Core.Calendar.Now.ToString();

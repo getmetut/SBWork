@@ -21,6 +21,8 @@ namespace Sungero.Custom.Shared
       {
         _obj.State.Properties.DocumentFooting.IsRequired = ((_obj.TotalSumm > 500000) || (_obj.RouteType == Custom.PurchaseProtocol.RouteType.PurchaseFramewo));
       }
+      
+      
     }
 
   }

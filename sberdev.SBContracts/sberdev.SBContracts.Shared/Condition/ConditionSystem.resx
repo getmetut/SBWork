@@ -157,8 +157,8 @@
   <data name="Enum_ConditionType_PricesAgreed" xml:space="preserve">
     <value>Prices Agreed</value>
   </data>
-  <data name="Enum_ConditionType_DocumentChanged" xml:space="preserve">
-    <value>Document has been modified</value>
+  <data name="Enum_ConditionType_DocChangedApprSberDev" xml:space="preserve">
+    <value>Document has been modified after first approve</value>
   </data>
   <data name="Enum_ConditionType_ManuallyCheck" xml:space="preserve">
     <value>Manual verification of contract documents is required</value>

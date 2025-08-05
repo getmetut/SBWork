@@ -14,7 +14,7 @@ namespace sberdev.SBContracts.Module.Docflow.Server
     /// </summary>
     public virtual void SendCheckReturnNotificationsSberDev()
     {
-      var devSet = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Настройка рассылки подзадач по контролю возврата");
+      var devSet = SberContracts.PublicFunctions.DevSettings.Remote.GetDevSetting("Настройка рассылки подзадач по контролю возврата");
       var exeptCPList = devSet.Counterparties.Select(c => c.Counterparty).ToList();
       var devSetArr = devSet.Text.Split(',');
       

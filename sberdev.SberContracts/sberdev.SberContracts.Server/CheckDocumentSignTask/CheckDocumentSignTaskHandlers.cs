@@ -12,7 +12,7 @@ namespace sberdev.SberContracts
 
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
-      var devSet = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Настройка рассылки подзадач по контролю возврата").Text.Split(',');
+      var devSet = SberContracts.PublicFunctions.DevSettings.Remote.GetDevSetting("Настройка рассылки подзадач по контролю возврата").Text.Split(',');
       int period;
       if (!int.TryParse(devSet[1], out period))
         throw new ArgumentException("Укажите корректные значениея в текстовом параметре. Модуль Договоры -> Системные настройки -> Настройка рассылки подзадач по контролю возврата");

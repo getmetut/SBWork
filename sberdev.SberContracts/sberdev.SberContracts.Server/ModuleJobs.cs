@@ -462,7 +462,7 @@ namespace sberdev.SberContracts.Server
     public virtual void DownloadAllContractsAndInvoices()
     {
       var contracts = SBContracts.Contracts.GetAll();
-      string contrPath = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Путь к папке с договорами").Text;
+      string contrPath = SberContracts.PublicFunctions.DevSettings.Remote.GetDevSetting("Путь к папке с договорами").Text;
       var pathes = Directory.GetDirectories(contrPath);
       foreach (var contract in contracts)
       {
@@ -511,7 +511,7 @@ namespace sberdev.SberContracts.Server
     /// </summary>
     public virtual void DeletingLogs()
     {
-      string logspath = SBContracts.PublicFunctions.Module.Remote.GetDevSetting("Путь к папке с логами").Text;
+      string logspath = SberContracts.PublicFunctions.DevSettings.Remote.GetDevSetting("Путь к папке с логами").Text;
       string[] pathes = Directory.GetDirectories(logspath);
       List<string> files = new List<string>();
       

@@ -69,6 +69,7 @@
       "Name": "Article",
       "CanBeSearch": false,
       "Code": "Article",
+      "Length": 100,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "689fa337-7326-49bb-97c6-d4d6baedf7ca"
     }

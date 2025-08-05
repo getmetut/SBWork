@@ -125,8 +125,8 @@ namespace sberdev.SBContracts.Server
         if (_obj.ConditionType == ConditionType.ManuallyCheck)
           return "Необходима ручная проверка договорных документов?";
         
-        if (_obj.ConditionType == ConditionType.DocumentChanged)
-          return "Документ был изменен?";
+        if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
+          return "Документ изменен после первого согласования?";
 
         if (_obj.ConditionType == ConditionType.PayType)
           return ("Постоплата?");

@@ -5,11 +5,6 @@ namespace Sungero.Custom.Constants
 {
   public static class Module
   {
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public const string Constant1 = "";
     // Уникальный идентификатор для типа «Неформализованный отчет».
     public static readonly Guid FacelessTochet = Guid.Parse("c61b0478-a42d-4138-88da-bf33e487a62c");
     
