@@ -73,19 +73,4 @@
   <data name="Action_ExtendDeadlineSungeroConfirmationDescription" xml:space="preserve">
     <value />
   </data>
-  <data name="Action_CreateVersionFromFileSBDEV" xml:space="preserve">
-    <value>Create Version From File</value>
-  </data>
-  <data name="Action_CreateVersionFromFileSBDEVDescription" xml:space="preserve">
-    <value>Создать новую версию документа из файла.</value>
-  </data>
-  <data name="Action_CreateVersionFromFileSBDEVHint" xml:space="preserve">
-    <value>Создать новую версию документа из файла.</value>
-  </data>
-  <data name="Action_CreateVersionFromFileSBDEVConfirmationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Action_CreateVersionFromFileSBDEVConfirmationDescription" xml:space="preserve">
-    <value />
-  </data>
 </root>
