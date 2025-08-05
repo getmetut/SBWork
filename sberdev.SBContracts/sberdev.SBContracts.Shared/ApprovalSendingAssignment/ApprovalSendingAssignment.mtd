@@ -12,9 +12,58 @@
       "LargeIconName": "Action_ExtendDeadlineSungero_large_45a8c63e9b4e4687bb19efc52dabc1db.png",
       "SmallIconName": "Action_ExtendDeadlineSungero_small_45a8c63e9b4e4687bb19efc52dabc1db.png",
       "Versions": []
+    },
+    {
+      "NameGuid": "a890a5f0-e269-47d3-9668-11380233a696",
+      "Name": "CreateVersionFromFileSBDEV",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_CreateVersionFromFileSBDEV_large_a890a5f0e26947d3966811380233a696.png",
+      "SmallIconName": "Action_CreateVersionFromFileSBDEV_small_a890a5f0e26947d3966811380233a696.png"
     }
   ],
   "AssociatedGuid": "d7041916-1429-42e2-869b-661edeef70e5",
+  "AttachmentGroups": [
+    {
+      "NameGuid": "08e1ef90-521f-41a1-a13f-c6f175007e54",
+      "Name": "DocumentGroup",
+      "CanDeleteTaskFamilyAttachments": true,
+      "Constraints": [],
+      "IsAncestorMetadata": true,
+      "IsAssociatedEntityGroup": true,
+      "IsEnabled": false,
+      "IsRequired": true,
+      "Overridden": [
+        "Title",
+        "Description"
+      ],
+      "Versions": []
+    },
+    {
+      "NameGuid": "852b3e7d-f178-47d3-8fad-a64021065cfd",
+      "Name": "AddendaGroup",
+      "Constraints": [],
+      "IsAncestorMetadata": true,
+      "IsAssociatedEntityGroup": true,
+      "Overridden": [
+        "Title",
+        "Description"
+      ],
+      "Versions": []
+    },
+    {
+      "NameGuid": "bd87e6b5-e247-485a-93bf-52f24a64af5a",
+      "Name": "OtherGroup",
+      "Constraints": [],
+      "IsAncestorMetadata": true,
+      "IsAssociatedEntityGroup": true,
+      "Overridden": [
+        "Title",
+        "Description"
+      ],
+      "Versions": []
+    }
+  ],
   "BaseGuid": "5d86a6e4-ae51-497a-9122-8a812eba0fc7",
   "CanBeNavigationPropertyType": true,
   "CreationAreaMetadata": {
@@ -85,6 +134,14 @@
         "ButtonSize": "Large",
         "Index": 3,
         "ParentGuid": "ac82503a-7a47-49d0-b90c-9bb512c4559c"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "82647888-3cac-4e4e-b6cc-2b14b65febe6",
+        "Name": "CreateVersionFromFileSBDEVSBDEV",
+        "ActionGuid": "a890a5f0-e269-47d3-9668-11380233a696",
+        "Index": 51,
+        "ParentGuid": "f3b0ddcd-9d1e-4ca3-8780-695ae25a9e8b"
       }
     ],
     "Groups": [],

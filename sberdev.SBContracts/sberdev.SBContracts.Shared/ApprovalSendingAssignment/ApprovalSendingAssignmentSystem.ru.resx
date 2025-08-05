@@ -67,4 +67,7 @@
   <data name="Action_ExtendDeadlineSungeroHint" xml:space="preserve">
     <value>Продлить срок</value>
   </data>
+  <data name="Action_CreateVersionFromFileSBDEV" xml:space="preserve">
+    <value>Создать версию из файла</value>
+  </data>
 </root>
