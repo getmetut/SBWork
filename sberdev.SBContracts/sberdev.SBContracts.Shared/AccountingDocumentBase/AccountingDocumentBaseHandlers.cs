@@ -40,7 +40,7 @@ namespace sberdev.SBContracts
           var comp = SBContracts.Companies.As(e.NewValue);
           _obj.CounterpartyTINSberDev = comp.TIN;
           _obj.CouterpartyTRRCSberDev = comp.TRRC;
-          if ((comp.HeadOrgSDev != true) && (!SBContracts.PublicFunctions.Module.IsSystemUser()))
+          if ((comp.HeadOrgSDev != true) && (SBContracts.PublicFunctions.Module.IsSystemUser()))
           {
             var OrgTrue = PublicFunctions.AccountingDocumentBase.Remote.GetHeadCompanies(_obj, comp);
             if ((OrgTrue != null) && (OrgTrue != comp))

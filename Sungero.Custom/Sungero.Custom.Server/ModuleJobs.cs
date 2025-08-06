@@ -195,13 +195,8 @@ namespace Sungero.Custom.Server
     /// </summary>
     public virtual void JobControlFeedback()
     {
-      var Jobs = Sungero.Workflow.Assignments.GetAll(j => ((j.Created >= Sungero.Core.Calendar.BeginningOfWeek(Sungero.Core.Calendar.AddWorkingDays(Sungero.Core.Calendar.Now,-2)))
-                                                           && (j.Subject.Contains("Проконтролируйте возврат")) && (!j.Subject.Contains(">>")))).ToArray();
-      
-      //string htmlContent = "<html><head><meta charset='utf-8'><title>Отчет Контроль возврата</title></head><body>";
-      //htmlContent += "<h1>Отчет Контроль возврата на " + Sungero.Core.Calendar.Now.ToString() + "</h1>";
-      //htmlContent += "<table border='1'><tr><th>Тип</th><th>Тема</th><th>Создан</th><th>Срок</th><th>Инициатор</th><th>Исполнитель</th><th>e-mail</th><th>Руководитель</th><th>e-mail</th></tr>";
-      
+      var Jobs = Sungero.Workflow.Assignments.GetAll(j => ((j.Subject.Contains("Проконтролируйте возврат")) && (!j.Subject.Contains(">>")))).Where(j => j.Created >= Calendar.AddWorkingDays(Calendar.Now, -130)).ToArray();
+     
       if (Jobs.Count() > 0)
       {
         string Data = "Тема|От|Срок|Инициатор|e-mail|Руководитель|e-mail";
@@ -225,37 +220,6 @@ namespace Sungero.Custom.Server
         string TekDat = Sungero.Core.Calendar.Now.ToString();
         TekDat = TekDat.Replace(':', '-').Replace('.', '-').Replace(' ', '_');
         string filePath = @"C:\temp\Report_" + TekDat + ".csv";
-        
-        /*
-          htmlContent += "<tr>";
-          htmlContent += "<td>Контроль возврата</td>";
-          htmlContent += "<td>" + job.Subject + "</td>";
-          htmlContent += "<td>" + job.Created.ToString() + "</td>";
-          htmlContent += "<td>" + (job.Deadline.HasValue ? job.Deadline.ToString() : "Без срока") + "</td>";
-          htmlContent += "<td>" + (job.Author != null ? job.Author.Name : "") + "</td>";
-          htmlContent += "<td>" + (job.Performer != null ? job.Performer.Name : "") + "</td>";
-
-          var Performer = Sungero.Company.Employees.GetAll(r => r.Login == job.Performer.Login).FirstOrDefault();
-          if (Performer != null)
-          {
-            htmlContent += "<td>" + (Performer.Email != null ? Performer.Email : "") + "</td>";
-            htmlContent += "<td>" + (Performer.Department.Manager != null ? Performer.Department.Manager.ToString() : "Не указан") + "</td>";
-            htmlContent += "<td>" + (Performer.Department.Manager != null ? (Performer.Department.Manager.Email != null ? Performer.Department.Manager.Email : "Нет") : "Нет") + "</td>";
-          }
-          else
-          {
-            htmlContent += "<td></td><td></td><td></td>";
-          }
-
-          htmlContent += "</tr>";*/
-        
-
-        /*htmlContent += "</table></body></html>";
-
-        string TekDat = Sungero.Core.Calendar.Now.ToString();
-        TekDat = TekDat.Replace(':', '-').Replace('.', '-').Replace(' ', '_');
-        string filePath = @"C:\temp\Report_" + TekDat + ".html"; */
-        
         
         try
         {
