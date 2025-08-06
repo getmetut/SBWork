@@ -22,10 +22,9 @@ namespace sberdev.SberContracts
           if (!Users.Current.IncludedIn(rolesorsing))
           {
             if (_obj.CalculationAmountBaseSberDev > 500000)
-              e.AddError("Сумма закупки превышает 500 тыс. руб. Пожалуйста, оформите заявку через портал Сорсинга https://tasks.sberdevices.ru/servicedesk/customer/portal/47");
+              e.AddInformation("Сумма закупки превышает 500 тыс. руб. Пожалуйста, оформите заявку через портал Сорсинга https://tasks.sberdevices.ru/servicedesk/customer/portal/47");
           }
         }
-        
       }
     }
   }
