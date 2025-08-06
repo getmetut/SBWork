@@ -12,7 +12,7 @@ namespace sberdev.SberContracts
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
-      //base.BeforeSave(e);
+      base.BeforeSave(e);
       _obj.State.Properties.Counterparty.IsRequired = false;
       if (!SBContracts.PublicFunctions.Module.IsSystemUser())
         if (_obj.CalculationAmountBaseSberDev > 500000)

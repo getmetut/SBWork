@@ -18,6 +18,7 @@ namespace sberdev.SberContracts.Server
       CreateDocumentKinds();
       GrantCreateRightsOnInfoDocument();
       GrantRightsOnFolder();
+      GrantRightsOnTasks();
       CreateMVZ();
       CreateStages();
       CreateGroupsForJobChangeFakePersonsNames();
@@ -211,7 +212,7 @@ namespace sberdev.SberContracts.Server
       var Purchaser = Roles.GetAll(r => r.Sid == Constants.Module.PurchaserBySing).FirstOrDefault();
       if (Purchaser == null)
       {
-        var rolePurch = Roles.Create(); 
+        var rolePurch = Roles.Create();
         rolePurch.Name = "Закупщик";
         rolePurch.Description = "Закупщик (Системная роль для работы в закупками: расширенные права.)";
         rolePurch.Sid = Constants.Module.PurchaserBySing;
@@ -223,7 +224,7 @@ namespace sberdev.SberContracts.Server
       var TochWork = Roles.GetAll(r => r.Sid == Constants.Module.PurchaserBySing).FirstOrDefault();
       if (TochWork == null)
       {
-        var roleTochWork = Roles.Create(); 
+        var roleTochWork = Roles.Create();
         roleTochWork.Name = "Сотрудники для производственных закупок";
         roleTochWork.Description = "Сотрудники для выборки в заявках на производственную закупку в поле 'Взял в работу'";
         roleTochWork.Sid = Constants.Module.TochWorkGUIDRole;
@@ -278,7 +279,8 @@ namespace sberdev.SberContracts.Server
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Документы на основе доп. соглашения", AbstractsSupAgreement.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Техническое задание", Specification.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Inner, true);
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Заявка на непроизводственную закупку", AppNonProdPurchase.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Inner, true);
-      
+      // Доработка в рамках задачи DRX-669.
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Учредительный документ", FoundingDocument.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Inner, true);
     }
     
     public void CreateDocumentKinds()
@@ -289,7 +291,7 @@ namespace sberdev.SberContracts.Server
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true,
                                                                               AppNonProdPurchase.ClassTypeGuid, new Sungero.Domain.Shared.IActionInfo[]
                                                                               {Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval},
-                                                                              Constants.Module.AppNonProdPurchaseGuid);     
+                                                                              Constants.Module.AppNonProdPurchaseGuid);
       // Создание вида документа «Заявка на производ. закупку».
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Заявка на RnD закупку", "Заявка на RnD закупку",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Numerable,
@@ -305,7 +307,7 @@ namespace sberdev.SberContracts.Server
                                                                               {Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval},
                                                                               Constants.Module.AppProductPurchaseGuid);
       // Создание вида документа «Договор Xiongxin».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Договор Xiongxin", "Договор Xiongxin",                                                                             
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Договор Xiongxin", "Договор Xiongxin",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
                                                                               Sungero.Contracts.Server.Contract.ClassTypeGuid,
@@ -371,6 +373,63 @@ namespace sberdev.SberContracts.Server
                                                                               true, true, Specification.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval },
                                                                               Constants.Module.Specification);
+      #region Виды документов для типа "Учредительный документ" (доработка в рамках задачи DRX-669).
+      // Создание вида документа «Протокол ВОСУ».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Протокол ВОСУ", "Протокол ВОСУ", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocVOSUProtocol);
+      // Создание вида документа «Протокол Совета директоров».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Протокол Совета директоров", "Протокол Совета директоров", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocDirectProtocol);
+      // Создание вида документа «Решение единственного участника».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Решение единственного участника", "Решение единственного участника", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocSingleSolution);
+      // Создание вида документа «Выписка».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Выписка", "Выписка", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocOrdering);
+      // Создание вида документа «Лист записи».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Лист записи", "Лист записи", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocOrderPage);
+      // Создание вида документа «Свидетельство».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Свидетельство", "Свидетельство", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocCertificate);
+      // Создание вида документа «Письмо».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Письмо", "Письмо", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocLetter);
+      // Создание вида документа «Справка».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Справка", "Справка", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocInquiry);
+      // Создание вида документа «Уведомление».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Уведомление", "Уведомление", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocNotification);
+      // Создание вида документа «Карточка компании».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Карточка компании", "Карточка компании", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocCompanyCard);
+      // Создание вида документа «Иные».
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Иные", "Иные", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+                                                                              Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
+                                                                              new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocOther);
+      #endregion
     }
     
     #endregion
@@ -390,6 +449,8 @@ namespace sberdev.SberContracts.Server
       SberContracts.Purchases.AccessRights.Save();
       SberContracts.GuaranteeLetters.AccessRights.Save();
       SberContracts.AppNonProdPurchases.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
+      SberContracts.FoundingDocuments.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
+      SberContracts.FoundingDocuments.AccessRights.Save();
     }
 
     public static void GrantRightsOnDatabooks()
@@ -450,9 +511,15 @@ namespace sberdev.SberContracts.Server
     {
       InitializationLogger.Debug("Init: Выдача прав на Задачи");
       var allUsers = Roles.AllUsers;
-      
       SberContracts.DiadocSettingsTasks.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.FullAccess);
       SberContracts.DiadocSettingsTasks.AccessRights.Save();
+      
+      // Доработка в рамках задачи DRX-868.
+      var purchaser = Roles.GetAll().Where(r => r.Sid == Constants.Module.PurchaserBySing).FirstOrDefault();
+      if (purchaser != null) {
+        SberContracts.CorpEndorseTasks.AccessRights.Grant(purchaser, DefaultAccessRightsTypes.FullAccess);
+        SberContracts.CorpEndorseTasks.AccessRights.Save();
+      }
     }
 
     #endregion
