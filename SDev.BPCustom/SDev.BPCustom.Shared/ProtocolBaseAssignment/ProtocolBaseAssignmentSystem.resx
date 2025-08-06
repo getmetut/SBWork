@@ -58,13 +58,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Action_ExtendDeadlineSungero" xml:space="preserve">
-    <value>Продлить срок</value>
+  <data name="Enum_Result_Complete" xml:space="preserve">
+    <value>Complete</value>
   </data>
-  <data name="Action_ExtendDeadlineSungeroDescription" xml:space="preserve">
-    <value>Продленить срок задания</value>
+  <data name="Action_Complete" xml:space="preserve">
+    <value>Complete</value>
   </data>
-  <data name="Action_ExtendDeadlineSungeroHint" xml:space="preserve">
-    <value>Продлить срок</value>
+  <data name="Action_CompleteHint" xml:space="preserve">
+    <value>Complete with Result "Complete"</value>
+  </data>
+  <data name="Action_CompleteConfirmationMessage" xml:space="preserve">
+    <value>Complete the assignment with result "Complete"?</value>
+  </data>
+  <data name="Action_CompleteDescription" xml:space="preserve">
+    <value>Complete the assignment with result "Complete"</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Блок согласования с переадрессацией</value>
+  </data>
+  <data name="AccusativeDisplayName" xml:space="preserve">
+    <value>Блок согласования с переадрессацией</value>
+  </data>
+  <data name="CollectionDisplayName" xml:space="preserve">
+    <value>Блоки согласования с переадрессацией</value>
+  </data>
+  <data name="Enum_Result_ReDirect" xml:space="preserve">
+    <value>ReDirect</value>
+  </data>
+  <data name="Action_ReDirect" xml:space="preserve">
+    <value>ReDirect</value>
+  </data>
+  <data name="Action_ReDirectHint" xml:space="preserve">
+    <value>Complete with Result "ReDirect"</value>
+  </data>
+  <data name="Action_ReDirectConfirmationMessage" xml:space="preserve">
+    <value>Complete the assignment with result "ReDirect"?</value>
+  </data>
+  <data name="Action_ReDirectDescription" xml:space="preserve">
+    <value>Complete the assignment with result "ReDirect"</value>
+  </data>
+  <data name="Property_Assigner" xml:space="preserve">
+    <value>Переназначить</value>
+  </data>
+  <data name="Resource_c9c4beefec5b4b3796d4959c17991279" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_c9c4beefec5b4b3796d4959c17991279_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_45c3f7afea6f40948e21e643b6358f4a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_45c3f7afea6f40948e21e643b6358f4a_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ad03c4af7bfe4967aa2cdaa3265bdbe3" xml:space="preserve">
+    <value />
   </data>
 </root>

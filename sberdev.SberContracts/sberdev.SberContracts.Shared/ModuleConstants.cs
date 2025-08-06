@@ -80,63 +80,6 @@ namespace sberdev.SberContracts.Constants
     // Уникальный идентификатор для вида «Техническое задание».
     public static readonly Guid Specification = Guid.Parse("68a41ea6-e83e-4fe7-a62e-a0df6a79ec94");
     
-    #region Идентификаторы видов документов для типа "Учредительный документ" (доработка в рамках задачи DRX-669).
-    /// <summary>
-    /// Вид "Протокол ВОСУ".
-    /// </summary>
-    public static readonly Guid FoundDocVOSUProtocol = Guid.Parse("42AF1470-0636-4E4D-B9CA-7994D1CD5971");
-    
-    /// <summary>
-    /// Вид "Протокол Совета директоров".
-    /// </summary>
-    public static readonly Guid FoundDocDirectProtocol = Guid.Parse("3C51133B-063E-4945-B996-DA6AFCA62C98");
-    
-    /// <summary>
-    /// Вид "Решение единственного участника".
-    /// </summary>
-    public static readonly Guid FoundDocSingleSolution = Guid.Parse("1404C6C6-3DA8-43D1-8461-FDE4096F6A65");
-    
-    /// <summary>
-    /// Вид "Выписка".
-    /// </summary>
-    public static readonly Guid FoundDocOrdering = Guid.Parse("FC95B821-97F3-40C1-B12B-D23CA38B8673");
-    
-    /// <summary>
-    /// Вид "Лист записи".
-    /// </summary>
-    public static readonly Guid FoundDocOrderPage = Guid.Parse("879E9A8C-F12A-4D8E-A125-149607DA8CFA");
-    
-    /// <summary>
-    /// Вид "Свидетельство".
-    /// </summary>
-    public static readonly Guid FoundDocCertificate = Guid.Parse("44BA35FC-C0BC-4838-AF8E-C59773DA6B94");
-    
-    /// <summary>
-    /// Вид "Письмо".
-    /// </summary>
-    public static readonly Guid FoundDocLetter = Guid.Parse("EC80587A-9B61-4B38-9155-64AC6A9AD16F");
-    
-    /// <summary>
-    /// Вид "Справка".
-    /// </summary>
-    public static readonly Guid FoundDocInquiry = Guid.Parse("49ABA7A3-0F58-46DD-B735-6E696903276C");
-    
-    /// <summary>
-    /// Вид "Уведомление".
-    /// </summary>
-    public static readonly Guid FoundDocNotification = Guid.Parse("030D76D1-B2EC-49B2-B549-045CEA7DCBB8");
-    
-    /// <summary>
-    /// Вид "Карточка компании".
-    /// </summary>
-    public static readonly Guid FoundDocCompanyCard = Guid.Parse("A7A99161-ED63-476F-A789-162EA8AE4909");
-    
-    /// <summary>
-    /// Вид "Иные".
-    /// </summary>
-    public static readonly Guid FoundDocOther = Guid.Parse("B8DC4F10-1A8D-4945-9927-60409EFB32DC");
-    #endregion
-    
     // Уникальный идентификатор для этапа «Проверка договорных документов Делопроизводителем».
     public static readonly Guid ApprovalStageManuallyChecking = Guid.Parse("61589cbf-7f0f-4773-9c15-be99a726a6be");
     // Уникальный идентификатор для этапа «Запуск согласования ГП по маршруту "Договор"».
