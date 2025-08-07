@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Core.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;Sungero.Domain.Shared&#13;&#10;Sungero.CoreEntities.Shared&#13;&#10;Sungero.Reporting.Shared&#13;&#10;CommonLibrary&#13;&#10;Sungero.Localization&#13;&#10;Sungero.Declension&#13;&#10;Sungero.Domain.Interfaces&#13;&#10;sberdev.SberContracts.Shared&#13;&#10;sberdev.SberContracts.Server" ReportInfo.CreatorVersion="2020.2.12.0">
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;FastReport.Compat.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;FastReport.DataVisualization.dll&#13;&#10;Sungero.Domain.Shared&#13;&#10;Sungero.CoreEntities.Shared&#13;&#10;Sungero.Reporting.Shared&#13;&#10;CommonLibrary&#13;&#10;Sungero.Localization&#13;&#10;Sungero.Declension&#13;&#10;Sungero.Domain.Interfaces&#13;&#10;sberdev.SberContracts.Shared&#13;&#10;sberdev.SberContracts.Server" ReportInfo.CreatorVersion="2024.2.19.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -41,23 +41,25 @@ namespace FastReport
         <Column Name="Number" DataType="System.String" PropName="Column1"/>
         <Column Name="Conterparty" DataType="System.String" PropName="Column2"/>
         <Column Name="Amount" DataType="System.Double" PropName="Column3"/>
+        <Column Name="Hyperlink" DataType="System.String" PropName="Column"/>
+        <Column Name="DocumentKind" DataType="System.String" PropName="Column"/>
         <CommandParameter Name="StartDate" DataType="6" IsDbType="true" Expression="[StartDate]"/>
         <CommandParameter Name="EndDate" DataType="6" IsDbType="true" Expression="[EndDate]"/>
         <CommandParameter Name="Type" DataType="16" IsDbType="true" Expression="[Type]"/>
       </TableDataSource>
     </SungeroSqlDataConnection>
-    <SungeroParameter Name="SungeroConnectionString" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties, DontShow" Id="c5b81ab6-ab88-472e-bc29-514d2e7bfb1a" IsRequired="false" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
-    <SungeroParameter Name="StartDate" Id="fc71c956-44db-4125-926f-92a4ccea275a" IsRequired="true" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
-    <SungeroParameter Name="EndDate" Id="cbf847e6-4abe-4887-b002-3d2530ab0a85" IsRequired="true" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
-    <SungeroParameter Name="Type" Id="d5a4642c-c479-4547-8334-815f8cc30ee7" IsRequired="true" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="SungeroConnectionString" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties, DontShow" AsString="" Id="c5b81ab6-ab88-472e-bc29-514d2e7bfb1a" IsRequired="false" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="StartDate" AsString="" Id="fc71c956-44db-4125-926f-92a4ccea275a" IsRequired="true" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="EndDate" AsString="" Id="cbf847e6-4abe-4887-b002-3d2530ab0a85" IsRequired="true" IsCollection="false" InternalDataType="System.DateTime" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="Type" AsString="" Id="d5a4642c-c479-4547-8334-815f8cc30ee7" IsRequired="true" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
   </Dictionary>
   <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
-    <DataBand Name="Data1" Top="22.9" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table">
-      <TextObject Name="Text6" Width="56.7" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.Id]" Font="Arial, 8pt"/>
+    <DataBand Name="Data1" Top="22.1" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Table">
+      <TextObject Name="Text6" Width="56.7" Height="18.9" Border.Lines="All" Hyperlink.Expression="[PaidInvoiceTable.Hyperlink]" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.Id]" Font="Arial, 8pt"/>
       <TextObject Name="Text7" Left="122.85" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.Number]" Font="Arial, 8pt"/>
-      <TextObject Name="Text8" Left="415.8" Width="113.4" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.MVZ_MVP]" Font="Arial, 8pt"/>
-      <TextObject Name="Text9" Left="529.2" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.AccArt]" Font="Arial, 8pt"/>
-      <TextObject Name="Text10" Left="623.7" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.ProductName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text8" Left="415.8" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.MVZ_MVP]" Font="Arial, 8pt"/>
+      <TextObject Name="Text9" Left="481.95" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.AccArt]" Font="Arial, 8pt"/>
+      <TextObject Name="Text10" Left="548.1" Width="85.05" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.ProductName]" Font="Arial, 8pt"/>
       <TextObject Name="Text11" Left="349.65" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.AccDate]" Font="Arial, 8pt">
         <Formats>
           <GeneralFormat/>
@@ -67,16 +69,18 @@ namespace FastReport
       <TextObject Name="Text12" Left="283.5" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.Amount]" Font="Arial, 8pt"/>
       <TextObject Name="Text13" Left="189" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.Conterparty]" Font="Arial, 8pt"/>
       <TextObject Name="Text18" Left="56.7" Width="66.15" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.DocumentName]" Font="Arial, 8pt"/>
+      <TextObject Name="Text20" Left="633.15" Width="85.05" Height="18.9" Border.Lines="All" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[PaidInvoiceTable.DocumentKind]" Font="Arial, 8pt"/>
       <DataHeaderBand Name="DataHeader1" Width="718.2" Height="18.9" CanGrow="true" CanShrink="true">
         <TextObject Name="Text1" Width="56.7" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="ИД" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text2" Left="122.85" Width="66.15" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Номер счета" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text3" Left="415.8" Width="113.4" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="МВЗ/МВП" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text4" Left="529.2" Width="94.5" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Статья" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
-        <TextObject Name="Text5" Left="623.7" Width="94.5" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Направление" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text3" Left="415.8" Width="66.15" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="МВЗ/МВП" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text4" Left="481.95" Width="66.15" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Статья" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text5" Left="548.1" Width="85.05" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Направление" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text14" Left="189" Width="94.5" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Контрагент" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text15" Left="283.5" Width="66.15" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Сумма" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text16" Left="349.65" Width="66.15" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="От" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
         <TextObject Name="Text17" Left="56.7" Width="66.15" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Название документа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
+        <TextObject Name="Text19" Left="633.15" Width="85.05" Height="18.9" Border.Lines="All" Fill.Color="Silver" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="Вид документа" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
       </DataHeaderBand>
       <Sort>
         <Sort Expression="[PaidInvoiceTable.Id]"/>

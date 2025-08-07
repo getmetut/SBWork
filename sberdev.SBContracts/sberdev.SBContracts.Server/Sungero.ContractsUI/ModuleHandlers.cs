@@ -12,7 +12,8 @@ namespace sberdev.SBContracts.Module.ContractsUI.Server
 
     public virtual IQueryable<Sungero.Docflow.IDocumentKind> FoundDocRegistrySBDEVDocumentKindSBDEVFiltering(IQueryable<Sungero.Docflow.IDocumentKind> query)
     {
-      return query.Where(kind => kind.DocumentType.Name.Contains("Учредительный документ"));
+      return query.Where(kind => SberContracts.FoundingDocuments.Is(kind.DocumentType)
+                         && kind.DocumentType.Name.Contains("Учредительный документ"));
     }
 
     public virtual IQueryable<sberdev.SberContracts.IFoundingDocument> FoundDocRegistrySBDEVDataQuery(IQueryable<sberdev.SberContracts.IFoundingDocument> query)
