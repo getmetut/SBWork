@@ -3,7 +3,8 @@
   <query key="PaidInvoiceQuery">
     <mssql><![CDATA[WITH CTE AS ( select e.Id, e.Name as DocumentName, FORMAT(e.AccDate_Docflow_Sungero, 'yyyy-MM-dd') as AccDate, e.AccNumber_Docflow_Sungero as Number,
 m.Name as MVZ_MVP, a.Name as AccArt, s.Name as ProductName, e.ContrTypeBaseS_SBContr_sberdev as Contrtype, r.Name as Conterparty,
-e.AccTotalAmount_Docflow_Sungero as Amount
+e.AccTotalAmount_Docflow_Sungero as Amount,
+e.Discriminator as DocGuid, (select Name from dbo.Sungero_Docflow_DocumentKind where dbo.Sungero_Docflow_DocumentKind.Id = DocumentKind_Docflow_Sungero) as DocumentKind
 from Sungero_Content_EDoc e
 left join sberdev_SBContr_AccountingDocu p on e.Id = p.EDoc
 inner join sberdev_SberCon_ProductsAndDev s on p.Product = s.Id
@@ -14,7 +15,7 @@ where e.Discriminator = 'A523A263-BC00-40F9-810D-F582BAE2205D' and e.HasVersions
 and e.Created >= @startDate and e.Created <= @endDate and e.ContrTypeBaseS_SBContr_sberdev = @type
 -- Доработка в рамках задачи DRX-799.
 and e.AccTotalAmount_Docflow_Sungero > 0 and e.DocumentKind_Docflow_Sungero = (select Id from Sungero_Docflow_DocumentKind where Id = e.DocumentKind_Docflow_Sungero)
---)
+)
 
 select distinct Id, DocumentName,  Contrtype, MVZ_MVP, AccArt,
   stuff((
@@ -23,7 +24,10 @@ select distinct Id, DocumentName,  Contrtype, MVZ_MVP, AccArt,
     where Id=t.Id 
     order by ProductName 
     for XML path('')
-    ),1,1,'') ProductName, AccDate, Number, Conterparty, Amount
+    ),1,1,'') ProductName, AccDate, Number, Conterparty, Amount,
+    -- Доработка в рамках задачи DRX-875.
+    DocumentKind,
+    CONCAT('https://directum.sberdevices.ru/DrxWeb/#/card/', DocGuid, '/', Id) as Hyperlink
 from CTE t]]></mssql>
   </query>
 </queries>
