@@ -58,28 +58,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DisplayName" xml:space="preserve">
-    <value>Согласование протокола выбора способа закупки</value>
-  </data>
-  <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Согласование протокола выбора способа закупки</value>
-  </data>
-  <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Согласования протокола выбора способа закупки</value>
-  </data>
-  <data name="AttachmentGroup_BaseAttachmentTitle" xml:space="preserve">
-    <value>Протокол выбора способа закупки</value>
-  </data>
-  <data name="AttachmentGroup_BaseAttachmentInformationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="AttachmentGroup_OtherAttachmentTitle" xml:space="preserve">
-    <value>Сопроводительные документы</value>
-  </data>
-  <data name="AttachmentGroup_OtherAttachmentInformationMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Block_4b76fc2127c5426a94f1be8450d92256" xml:space="preserve">
-    <value>Согласование с переадресацией</value>
-  </data>
 </root>
