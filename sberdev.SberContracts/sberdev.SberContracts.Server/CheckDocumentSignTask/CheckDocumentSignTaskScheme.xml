@@ -4,14 +4,18 @@
     <BlockBase xsi:type="StartBlock">
       <Id>1</Id>
       <BlockTypeId xsi:nil="true" />
+      <ProcessStagesDisplayMode xsi:nil="true" />
       <CustomProperties />
       <ParameterOperations />
+      <Operations />
     </BlockBase>
     <BlockBase xsi:type="FinishBlock">
       <Id>2</Id>
       <BlockTypeId xsi:nil="true" />
+      <ProcessStagesDisplayMode xsi:nil="true" />
       <CustomProperties />
       <ParameterOperations />
+      <Operations />
       <UnderReview>false</UnderReview>
       <ReviewAssignmentId>0</ReviewAssignmentId>
     </BlockBase>
@@ -20,26 +24,36 @@
       <BlockTypeId xsi:nil="true" />
       <CreatedInTaskGuid>caadab73-6e42-4d66-984a-126225ddc101</CreatedInTaskGuid>
       <Title>Заданине на проверку обмена с контрагентом</Title>
+      <ProcessStagesDisplayMode xsi:nil="true" />
       <CustomProperties />
       <ParameterOperations />
+      <Operations />
+      <Author>00000000-0000-0000-0000-000000000000</Author>
       <GroupsAttachmentsRights />
       <AttachmentGroupsSettings />
       <TypeGuid>7008bd90-30d7-4624-8d4f-f2a72f3e6061</TypeGuid>
       <CreatedEntitiesIds />
+      <DefaultViewForm xsi:nil="true" />
+      <EmbeddedViewForm xsi:nil="true" />
       <Performers />
       <IsStopped>false</IsStopped>
       <IsParallel>false</IsParallel>
+      <IsCompetitive>false</IsCompetitive>
       <AbsoluteDeadline>0001-01-01T00:00:00</AbsoluteDeadline>
       <RelativeDeadline>00:00:00</RelativeDeadline>
       <RelativeDeadlineDays xsi:nil="true" />
       <RelativeDeadlineHours xsi:nil="true" />
       <RelativeDeadlineTimeBase xsi:nil="true" />
+      <AbsoluteDeadlineInternal>0001-01-01T00:00:00</AbsoluteDeadlineInternal>
       <AbsoluteStopAssignmentsDeadline>0001-01-01T00:00:00</AbsoluteStopAssignmentsDeadline>
       <RelativeStopAssignmentsDeadline>00:00:00</RelativeStopAssignmentsDeadline>
       <RelativeStopDeadlineDays xsi:nil="true" />
       <RelativeStopDeadlineHours xsi:nil="true" />
       <AbsoluteStopAssignmentsDeadlineInternal>0001-01-01T00:00:00</AbsoluteStopAssignmentsDeadlineInternal>
       <ExecutionResults />
+      <CustomExecutionResults />
+      <StopResults />
+      <ElevatedTaskAccessRightsUsers />
     </BlockBase>
   </Blocks>
   <Edges>

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
-using SDev.BPCustom.ProtocolBaseAssignment;
+using sberdev.SberContracts.FoundingDocument;
 
-namespace SDev.BPCustom
+namespace sberdev.SberContracts.Client
 {
-  partial class ProtocolBaseAssignmentSharedHandlers
+  partial class FoundingDocumentFunctions
   {
 
   }

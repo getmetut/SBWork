@@ -1372,19 +1372,6 @@
           "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
-        },
-        {
-          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
-          "NameGuid": "328e392f-44f6-494d-8104-d1faf8dda6ea",
-          "Name": "SalesChannelATSDevATSDev",
-          "ColumnNumber": 0,
-          "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
-          "ParentGuid": "6527ab75-6028-4500-9be5-e12e3355d156",
-          "PropertyGuid": "12e60252-358d-4f68-9457-d5dcee45e47d",
-          "RowNumber": 1,
-          "RowSpan": 1,
-          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,

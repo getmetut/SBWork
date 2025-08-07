@@ -4,7 +4,7 @@ using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
 
-namespace SDev.BPCustom.Structures.ProtocolBaseAssignment
+namespace sberdev.SberContracts.Structures.CorpEndorseTask
 {
 
 }
