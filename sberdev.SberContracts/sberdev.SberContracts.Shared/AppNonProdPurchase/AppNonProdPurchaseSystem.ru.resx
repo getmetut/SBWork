@@ -233,4 +233,7 @@
   <data name="Resource_4628212b0304439ab3fb29f0a1ea289e" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_ResponsibleSourcing" xml:space="preserve">
+    <value>Ответственный от заказчика</value>
+  </data>
 </root>
