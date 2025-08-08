@@ -24,6 +24,9 @@ namespace sberdev.SBContracts.Server
     {
       using (TenantInfo.Culture.SwitchTo())
       {
+        if (_obj.ConditionType == ConditionType.DocChangedStart)
+          return "Документ был изменен после начала согласования?";
+        
         if (_obj.ConditionType == ConditionType.Product)
         {
           string head = "Документ по любому из продуктов:";

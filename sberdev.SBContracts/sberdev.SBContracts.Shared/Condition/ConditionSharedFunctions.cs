@@ -119,6 +119,49 @@ namespace sberdev.SBContracts.Shared
       Sungero.Docflow.IOfficialDocument document,
       Sungero.Docflow.IApprovalTask task)
     {
+
+      #region Проверка: Изменён ли документ после первой подписи (DocChangedAppr)
+      if (_obj.ConditionType == ConditionType.DocChangedStart)
+      {
+        var official = SBContracts.OfficialDocuments.As(document);
+        if (official == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            false,
+            "Документ не является официальным.");
+        
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        var accounting = SBContracts.AccountingDocumentBases.As(document);
+        var modified = contractual?.ModifiedSberDev;
+        modified = accounting?.ModifiedSberDev;
+        
+        if (task.Started == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, "Условие не может быть вычеслено, задача не стартована");
+        
+        if (modified == null)
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(official.Modified,
+                             task.Started.Value,
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                task.Started.Value,
+                                Calendar.Now),
+            string.Empty);
+        
+        else
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(modified,
+                             task.Started.Value,
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                task.Started.Value,
+                                Calendar.Now),
+            string.Empty);
+        
+      }
+      #endregion
+      
       #region Проверка на наличие указанных продуктов (Product)
       if (_obj.ConditionType == ConditionType.Product)
       {
@@ -971,6 +1014,9 @@ namespace sberdev.SBContracts.Shared
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      
+      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.DocChangedStart); // закупка
+      baseSupport["09584896-81e2-4c83-8f6c-70eb8321e1d0"].Add(ConditionType.DocChangedStart); // простой документ
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.Product); // входящий счет
       
