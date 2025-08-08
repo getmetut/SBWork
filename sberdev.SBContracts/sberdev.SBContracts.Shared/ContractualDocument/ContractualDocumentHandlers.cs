@@ -75,7 +75,7 @@ namespace sberdev.SBContracts
       base.ResponsibleEmployeeChanged(e);
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
     }
 
@@ -84,7 +84,7 @@ namespace sberdev.SBContracts
       base.ValidTillChanged(e);
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
     }
 
@@ -93,7 +93,7 @@ namespace sberdev.SBContracts
       base.ValidFromChanged(e);
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
     }
 
@@ -102,7 +102,7 @@ namespace sberdev.SBContracts
       base.CurrencyChanged(e);
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
     }
 
@@ -111,7 +111,7 @@ namespace sberdev.SBContracts
       base.IsStandardChanged(e);
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
     }
 
@@ -120,7 +120,7 @@ namespace sberdev.SBContracts
       base.SubjectChanged(e);
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
     }
 
@@ -129,7 +129,7 @@ namespace sberdev.SBContracts
       base.DocumentKindChanged(e);
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
         _obj.FrameworkBaseSberDev = false;
 
         var kind = e.NewValue;
@@ -171,7 +171,7 @@ namespace sberdev.SBContracts
       base.BusinessUnitChanged(e);
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
       
       if (e.NewValue != null)
@@ -194,7 +194,7 @@ namespace sberdev.SBContracts
       base.DepartmentChanged(e);
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
       
       if ((e.NewValue != null) && (_obj.ContrTypeBaseSberDev == sberdev.SBContracts.ContractualDocument.ContrTypeBaseSberDev.Profitable) && (_obj.MVPBaseSberDev == null))
@@ -220,7 +220,7 @@ namespace sberdev.SBContracts
       base.TotalAmountChanged(e);
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
       
       if ( _obj.CalculationBaseSberDev.Any())
@@ -244,7 +244,7 @@ namespace sberdev.SBContracts
     {
       base.LeadingDocumentChanged(e);
       if (e.NewValue != e.OldValue)
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       
       if (e.NewValue != null)
       {
@@ -261,7 +261,7 @@ namespace sberdev.SBContracts
 
     public virtual void CalculationBaseSberDevChanged(Sungero.Domain.Shared.CollectionPropertyChangedEventArgs e)
     {
-      _obj.ModifiedSberDev = Calendar.Now;
+     
       double? amount = 0;
       if (_obj.CalculationBaseSberDev.Any())
       {
@@ -334,7 +334,7 @@ namespace sberdev.SBContracts
       }
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
     }
 
@@ -351,7 +351,7 @@ namespace sberdev.SBContracts
           _obj.CalculationBaseSberDev.Clear();
         }
       }
-      _obj.ModifiedSberDev = Calendar.Now;
+     
     }
 
     public virtual void MVPBaseSberDevChanged(sberdev.SBContracts.Shared.ContractualDocumentMVPBaseSberDevChangedEventArgs e)
@@ -362,7 +362,7 @@ namespace sberdev.SBContracts
         _obj.CalculationDistributeBaseSberDev = null;
         _obj.CalculationResidualAmountBaseSberDev = 0;
         _obj.CalculationBaseSberDev.Clear();
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
     }
 
@@ -374,7 +374,7 @@ namespace sberdev.SBContracts
       }
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
     }
 
@@ -391,7 +391,7 @@ namespace sberdev.SBContracts
           _obj.CalculationBaseSberDev.Clear();
         }
       }
-      _obj.ModifiedSberDev = Calendar.Now;
+     
     }
 
     public virtual void MVZBaseSberDevChanged(sberdev.SBContracts.Shared.ContractualDocumentMVZBaseSberDevChangedEventArgs e)
@@ -402,7 +402,7 @@ namespace sberdev.SBContracts
         _obj.CalculationDistributeBaseSberDev = null;
         _obj.CalculationResidualAmountBaseSberDev = 0;
         _obj.CalculationBaseSberDev.Clear();
-        _obj.ModifiedSberDev = Calendar.Now;
+       
         _obj.MarketDirectSberDev = null;
       }
     }
@@ -411,7 +411,7 @@ namespace sberdev.SBContracts
     {
       if (e.NewValue != e.OldValue)
       {
-        _obj.ModifiedSberDev = Calendar.Now;
+       
       }
       _obj.DocumentGroup = null;
       if (e.NewValue == ContrTypeBaseSberDev.Profitable)

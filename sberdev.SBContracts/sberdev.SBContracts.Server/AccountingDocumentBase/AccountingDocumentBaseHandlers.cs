@@ -139,7 +139,7 @@ namespace sberdev.SBContracts
     {
       string disc = _obj.GetEntityMetadata().GetOriginal().NameGuid.ToString().ToLower();
       _obj.CardURLSberDev = "https://directum.sberdevices.ru/DrxWeb/#/sat/card/" + disc + "/" + _obj.Id;
-      _obj.ModifiedSberDev = Calendar.Now;
+     
       _obj.FrameworkBaseSberDev = false;
       base.Created(e);
       var DelMeth = Sungero.Docflow.MailDeliveryMethods.GetAll(d => d.Name == "Не определено").FirstOrDefault();
