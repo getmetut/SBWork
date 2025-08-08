@@ -402,6 +402,15 @@
       "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "fd239c42-c921-47e7-bf9e-ace020fff245"
+    },
+    {
+      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "7a95b0d1-a1d9-42a6-8cc2-f1caaed534bc",
+      "Name": "ModifiedSberDev",
+      "Code": "ModifiedSberDe",
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+      "PreviousPropertyGuid": "6d5c41b3-618b-41e5-861c-604925443843"
     }
   ],
   "PublicFunctions": [

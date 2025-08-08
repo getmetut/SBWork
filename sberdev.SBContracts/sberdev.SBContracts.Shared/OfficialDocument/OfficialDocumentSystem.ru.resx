@@ -160,4 +160,7 @@
   <data name="Control_7df27ccda54245dfb05240089a659cbf_EmptyText" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_ModifiedSberDev" xml:space="preserve">
+    <value>Изменено (SberDev)</value>
+  </data>
 </root>
