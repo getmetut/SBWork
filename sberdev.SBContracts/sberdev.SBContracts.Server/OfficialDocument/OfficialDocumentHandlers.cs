@@ -33,6 +33,7 @@ namespace sberdev.SBContracts
       base.BeforeSave(e);
       if (SBContracts.PublicFunctions.Module.IsSystemUser())
         _obj.State.Properties.DeliveryMethod.IsRequired = false;
+      Functions.OfficialDocument.LogPropertyChangesAndUpdateDate(_obj);
     }
   }
 
