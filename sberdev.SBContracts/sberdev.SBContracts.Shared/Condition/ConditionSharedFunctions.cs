@@ -1049,6 +1049,7 @@ namespace sberdev.SBContracts.Shared
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.ManuallyCheck); // входящий счет
       
+      baseSupport["675e2890-7dba-4d1a-a3bb-8a829bdabd66"].Add(ConditionType.DocChangedApprSberDev); // непроизводственная закупка
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.DocChangedApprSberDev); // закупка
       baseSupport["09584896-81e2-4c83-8f6c-70eb8321e1d0"].Add(ConditionType.DocChangedApprSberDev); // простой документ
 
