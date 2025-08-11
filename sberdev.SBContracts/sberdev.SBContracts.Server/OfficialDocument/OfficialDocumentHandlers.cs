@@ -18,7 +18,7 @@ namespace sberdev.SBContracts
       {
         var DelMeth = Sungero.Docflow.MailDeliveryMethods.GetAll(d => d.Name == "Не определено").FirstOrDefault();
         if (DelMeth != null)
-          _obj.DeliveryMethod = DelMeth;        
+          _obj.DeliveryMethod = DelMeth;          
       }
       else
       {
@@ -33,6 +33,10 @@ namespace sberdev.SBContracts
       base.BeforeSave(e);
       if (SBContracts.PublicFunctions.Module.IsSystemUser())
         _obj.State.Properties.DeliveryMethod.IsRequired = false;
+      var changeList = Functions.OfficialDocument.GetChangedPropertiesList(_obj);
+      if (changeList.Count > 0)
+        _obj.ModifiedSberDev = Calendar.Now;
+      Functions.OfficialDocument.LoggingPropertyChanges(_obj, Functions.OfficialDocument.GetChangedPropertiesList(_obj));
     }
   }
 

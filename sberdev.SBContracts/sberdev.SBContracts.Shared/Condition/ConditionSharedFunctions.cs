@@ -129,10 +129,7 @@ namespace sberdev.SBContracts.Shared
             false,
             "Документ не является официальным.");
         
-        var contractual = SBContracts.ContractualDocuments.As(document);
-        var accounting = SBContracts.AccountingDocumentBases.As(document);
-        var modified = contractual?.ModifiedSberDev;
-        modified = accounting?.ModifiedSberDev;
+        var modified = official?.ModifiedSberDev;
         
         if (task.Started == null)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, "Условие не может быть вычеслено, задача не стартована");
@@ -416,10 +413,7 @@ namespace sberdev.SBContracts.Shared
             "Нет согласований на последней версии документа, необходима проверка.");
         }
         
-        var contractual = SBContracts.ContractualDocuments.As(document);
-        var accounting = SBContracts.AccountingDocumentBases.As(document);
-        var modified = contractual?.ModifiedSberDev;
-        modified = accounting?.ModifiedSberDev;
+        var modified = official?.ModifiedSberDev;
         if (modified == null)
           
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
@@ -1015,6 +1009,7 @@ namespace sberdev.SBContracts.Shared
     {
       var baseSupport = base.GetSupportedConditions();
       
+      baseSupport["675e2890-7dba-4d1a-a3bb-8a829bdabd66"].Add(ConditionType.DocChangedStart); // непроизводственная закупка
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.DocChangedStart); // закупка
       baseSupport["09584896-81e2-4c83-8f6c-70eb8321e1d0"].Add(ConditionType.DocChangedStart); // простой документ
       
