@@ -182,40 +182,45 @@ namespace sberdev.SBContracts
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
-      Functions.ContractualDocument.CancelRequiredPropeties(_obj);
-      
-      string errOldProdCalc = PublicFunctions.ContractualDocument.ShowOldProductsCalcWarning(_obj);
-      if (!string.IsNullOrEmpty(errOldProdCalc))
-        e.AddError(errOldProdCalc);
-      
-      var error = Functions.ContractualDocument.BanToSaveForStabs(_obj);
-      if (!string.IsNullOrEmpty(error))
-        e.AddError(error);
-      
-      // Обновляем строку продуктов
-      PublicFunctions.ContractualDocument.UpdateProductsString(_obj);
-      
-      if (SBContracts.PublicFunctions.Module.IsSystemUser())
-        _obj.State.Properties.DeliveryMethod.IsRequired = false;
-      
-      // Проверка расчетов
-      if ((_obj.CalculationBaseSberDev.Count > 0) && (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj)))
+      if (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj))
       {
-        if (_obj.CalculationAmountBaseSberDev == _obj.TotalAmount)
+        Functions.ContractualDocument.CancelRequiredPropeties(_obj);
+        
+        string errOldProdCalc = PublicFunctions.ContractualDocument.ShowOldProductsCalcWarning(_obj);
+        if (!string.IsNullOrEmpty(errOldProdCalc))
+          e.AddError(errOldProdCalc);
+        
+        var error = Functions.ContractualDocument.BanToSaveForStabs(_obj);
+        if (!string.IsNullOrEmpty(error))
+          e.AddError(error);
+        
+        // Обновляем строку продуктов
+        PublicFunctions.ContractualDocument.UpdateProductsString(_obj);
+        
+        if (SBContracts.PublicFunctions.Module.IsSystemUser())
+          _obj.State.Properties.DeliveryMethod.IsRequired = false;
+        
+        // Проверка расчетов
+        if ((_obj.CalculationBaseSberDev.Count > 0) && (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj)))
+        {
+          if (_obj.CalculationAmountBaseSberDev == _obj.TotalAmount)
+          {
+            base.BeforeSave(e);
+            Functions.ContractualDocument.BeforeSaveFunction(_obj);
+          }
+          else
+          {
+            e.AddError(sberdev.SBContracts.Contracts.Resources.CalculationCondition);
+          }
+        }
+        else
         {
           base.BeforeSave(e);
           Functions.ContractualDocument.BeforeSaveFunction(_obj);
         }
-        else
-        {
-          e.AddError(sberdev.SBContracts.Contracts.Resources.CalculationCondition);
-        }
       }
       else
-      {
         base.BeforeSave(e);
-        Functions.ContractualDocument.BeforeSaveFunction(_obj);
-      }
       
       /* Закомментированный код для генерации номера 1C
   int year = Calendar.Now.Year % 100;

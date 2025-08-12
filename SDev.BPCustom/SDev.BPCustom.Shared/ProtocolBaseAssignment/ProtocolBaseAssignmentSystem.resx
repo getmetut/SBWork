@@ -58,4 +58,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Property_Assigner" xml:space="preserve">
+    <value>Переадресация на</value>
+  </data>
+  <data name="Enum_Result_Complete" xml:space="preserve">
+    <value>Согласовано</value>
+  </data>
+  <data name="Action_Complete" xml:space="preserve">
+    <value>Согласовано</value>
+  </data>
+  <data name="Action_CompleteHint" xml:space="preserve">
+    <value>Complete assignment</value>
+  </data>
+  <data name="Action_CompleteDescription" xml:space="preserve">
+    <value>Complete the assignment and close the card.</value>
+  </data>
+  <data name="Enum_Result_ReDirect" xml:space="preserve">
+    <value>Переадресовать</value>
+  </data>
+  <data name="Action_ReDirect" xml:space="preserve">
+    <value>Переадресовать</value>
+  </data>
+  <data name="Action_ReDirectHint" xml:space="preserve">
+    <value>Переадресовать</value>
+  </data>
+  <data name="Action_ReDirectDescription" xml:space="preserve">
+    <value>Переадресовать</value>
+  </data>
+  <data name="Action_ReDirectConfirmationMessage" xml:space="preserve">
+    <value>Переадресовать?</value>
+  </data>
 </root>
