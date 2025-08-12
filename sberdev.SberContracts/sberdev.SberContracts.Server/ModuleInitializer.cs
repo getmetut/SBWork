@@ -472,6 +472,8 @@ namespace sberdev.SberContracts.Server
       SberContracts.MarketingDirections.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Read);
       SberContracts.NonContractInvoiceCounters.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Read);
       SberContracts.NonContractInvoiceCounters.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Create);
+      // Доработки в рамках задачи DRX-558.
+      SberContracts.MVZCalculationSettingses.AccessRights.Grant(allUsers, DefaultAccessRightsTypes.Change);
       SberContracts.NonContractInvoiceCounters.AccessRights.Save();
       SberContracts.MarketingDirections.AccessRights.Save();
       SberContracts.AccountingArticleses.AccessRights.Save();
@@ -485,6 +487,7 @@ namespace sberdev.SberContracts.Server
       SberContracts.BusinessUnitFilteringCashes.AccessRights.Save();
       SberContracts.AnaliticsCashes.AccessRights.Save();
       SberContracts.AnaliticsCasheGenerals.AccessRights.Save();
+      SberContracts.MVZCalculationSettingses.AccessRights.Save();
     }
 
     public void GrantRightsOnFolder()

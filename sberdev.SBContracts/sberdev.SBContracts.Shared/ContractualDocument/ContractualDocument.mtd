@@ -1903,6 +1903,25 @@
       "ReturnTypeFullName": "Sungero.CoreEntities.IUser, Sungero.Domain.Shared"
     },
     {
+      "Name": "GetMVZCalcReset",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "contractualDocument",
+          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "emp",
+          "ParameterType": "global::Sungero.Company.IEmployee",
+          "ParameterTypeFullName": "Sungero.Company.IEmployee, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
       "Name": "ReplaceProducts",
       "IsRemote": true,
       "Parameters": [
