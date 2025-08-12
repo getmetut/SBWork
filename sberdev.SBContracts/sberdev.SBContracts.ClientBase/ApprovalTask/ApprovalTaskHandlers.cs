@@ -10,6 +10,12 @@ namespace sberdev.SBContracts
   partial class ApprovalTaskClientHandlers
   {
 
+    public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
+    {
+      base.Showing(e);
+      _obj.State.Properties.StrHighImportanceATSDev.IsVisible = _obj.Importance == Importance.High; 
+    }
+
     public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
     {
       base.Refresh(e);
@@ -23,6 +29,8 @@ namespace sberdev.SBContracts
           _obj.ExchangeService = null;
         }
       }
+      
+      _obj.State.Properties.StrHighImportanceATSDev.IsVisible = _obj.Importance == Importance.High;      
     }
   }
 

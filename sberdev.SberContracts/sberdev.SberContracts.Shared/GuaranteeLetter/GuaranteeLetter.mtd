@@ -1109,12 +1109,17 @@
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "806c1528-169a-4b5a-9a40-913fec5bd7b7",
       "Name": "AddendumDocument",
-      "EntityGuid": "7aa8969f-f81d-462c-b0d8-761ccd59253f",
+      "EntityGuid": "178d3053-5516-4f14-9f3d-4d75e3f352d4",
+      "HandledEvents": [
+        "LookupServer"
+      ],
       "IsAncestorMetadata": true,
       "Overridden": [
         "EntityGuid",
         "IsShowedInList",
-        "CanBeSearch"
+        "CanBeSearch",
+        "FlatListInStandaloneLookup",
+        "HandledEvents"
       ]
     }
   ],

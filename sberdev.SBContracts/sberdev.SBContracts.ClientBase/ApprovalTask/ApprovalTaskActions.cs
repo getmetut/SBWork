@@ -9,6 +9,16 @@ namespace sberdev.SBContracts.Client
 {
   partial class ApprovalTaskActions
   {
+    public virtual void HighImportanceInsATSDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      PublicFunctions.ApprovalTask.HighImportanceIns(_obj);
+    }
+
+    public virtual bool CanHighImportanceInsATSDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
 
 
     public override void Start(Sungero.Domain.Client.ExecuteActionArgs e)
