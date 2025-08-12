@@ -16,6 +16,13 @@ namespace sberdev.SberContracts.Server
   {
 
     /// <summary>
+    /// 
+    /// </summary>
+    public void Function1()
+    {
+    }
+
+    /// <summary>
     /// Функция пересоханения всех записей КА
     /// </summary>
     [Public]

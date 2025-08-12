@@ -416,6 +416,9 @@
       "PreviousItemId": "009798ca-99db-481f-aef1-5733e42996df"
     }
   ],
+  "HandledEvents": [
+    "InitializingServer"
+  ],
   "IconResourcesKeys": [],
   "Importance": "High",
   "IsLicensed": true,

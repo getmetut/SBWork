@@ -396,8 +396,14 @@ namespace sberdev.SBContracts
 
     public virtual void MVZBaseSberDevChanged(sberdev.SBContracts.Shared.ContractualDocumentMVZBaseSberDevChangedEventArgs e)
     {
-      if (e.NewValue != e.OldValue)
-      {
+      bool flag = true;
+      // Доработки в рамках задачи DRX-558.
+      var emp = Sungero.Company.Employees.Current;
+      if (emp != null)
+        flag = PublicFunctions.ContractualDocument.Remote.GetMVZCalcReset(_obj, emp);
+      
+      // Если МВЗ изменен и в настройках сброса калькуляции установлена галочка, то сбросить калькуляцию.
+      if (e.NewValue != e.OldValue && flag) {
         _obj.CalculationFlagBaseSberDev = null;
         _obj.CalculationDistributeBaseSberDev = null;
         _obj.CalculationResidualAmountBaseSberDev = 0;
@@ -406,7 +412,7 @@ namespace sberdev.SBContracts
         _obj.MarketDirectSberDev = null;
       }
     }
-
+    
     public virtual void ContrTypeBaseSberDevChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
     {
       if (e.NewValue != e.OldValue)
