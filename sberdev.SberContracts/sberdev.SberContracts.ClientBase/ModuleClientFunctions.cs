@@ -10,6 +10,31 @@ namespace sberdev.SberContracts.Client
   {
 
     /// <summary>
+    /// Открыть запись справочника "Настройки калькуляции МВЗ".
+    /// </summary>
+    [Public]
+    public void OpenMVZCalcSettings()
+    {
+      var emp = Sungero.Company.Employees.Current;
+      if (emp != null) {
+        var settings = MVZCalculationSettingses.GetAll()
+          .Where(s => s.Employee != null && s.Employee == emp)
+          .FirstOrDefault();
+        
+        // Если в справочнике не найдены настройки МВЗ для текущего пользователя.
+        if (settings == null) {
+          settings = MVZCalculationSettingses.Create();
+          settings.Name = $"Настройки калькуляции МВЗ сотрудника {emp.Name}";
+          settings.Employee = emp;
+          // По умолчанию калькуляция сбрасывается.
+          settings.ResetCalc = true;
+        }
+        
+        settings.ShowModal();
+      }
+    }
+
+    /// <summary>
     /// Вызывает диалоговое окно для выбора Продукт-юнита и возвращает выбранный элемент
     /// </summary>
     [Public]

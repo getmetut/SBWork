@@ -9,6 +9,26 @@ namespace sberdev.SBContracts.Client
 {
   partial class ApprovalTaskFunctions
   {
+
+    /// <summary>
+    /// Установка срочности для задачи
+    /// </summary> 
+    [Public]
+    public void HighImportanceIns()
+    {
+      if (_obj.Importance != Importance.High)
+      {
+        var Dial = Dialogs.CreateInputDialog("Введите обоснование срочности задачи");
+        var obosn = Dial.AddMultilineString("Обоснование",true);
+        if (Dial.Show() == DialogButtons.Ok)
+        {
+          _obj.Importance = Importance.High;
+          _obj.StrHighImportanceATSDev = obosn.Value.ToString();
+        }
+      }
+      else
+        Dialogs.ShowMessage("У задачи уже установлена высокая важность.");
+    }
     
     [Public]
     public bool ShowConfirmationAmountDialog()

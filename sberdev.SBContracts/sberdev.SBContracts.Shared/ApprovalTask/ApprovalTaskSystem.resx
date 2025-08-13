@@ -205,4 +205,22 @@
   <data name="Property_AmountATSDev" xml:space="preserve">
     <value>Сумма по документу</value>
   </data>
+  <data name="Action_HighImportanceInsATSDev" xml:space="preserve">
+    <value>Срочная задача</value>
+  </data>
+  <data name="Property_StrHighImportanceATSDev" xml:space="preserve">
+    <value>Обоснование срочности</value>
+  </data>
+  <data name="Action_HighImportanceInsATSDevDescription" xml:space="preserve">
+    <value>Установка на задачу флага высокой срочности/важности</value>
+  </data>
+  <data name="Action_HighImportanceInsATSDevHint" xml:space="preserve">
+    <value>Установка на задачу флага высокой срочности/важности</value>
+  </data>
+  <data name="Action_HighImportanceInsATSDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_HighImportanceInsATSDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
 </root>

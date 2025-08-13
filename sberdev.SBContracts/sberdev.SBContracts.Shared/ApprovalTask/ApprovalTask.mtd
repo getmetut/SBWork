@@ -14,6 +14,14 @@
         "GenerateHandler"
       ],
       "Versions": []
+    },
+    {
+      "NameGuid": "d790a6bd-99f4-4b30-a1b7-47177d1b2503",
+      "Name": "HighImportanceInsATSDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_HighImportanceInsATSDev_large_d790a6bd99f44b30a1b747177d1b2503.png",
+      "SmallIconName": "Action_HighImportanceInsATSDev_small_d790a6bd99f44b30a1b747177d1b2503.png"
     }
   ],
   "AttachmentGroups": [
@@ -88,7 +96,7 @@
           "NameGuid": "5ad7d1df-a549-4ca2-a75f-92fff58ccdaa",
           "Name": "SubjectControl",
           "ColumnNumber": 0,
-          "ColumnSpan": 1,
+          "ColumnSpan": 2,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
           "ParentGuid": "787ba8b7-315b-44aa-a441-4d8b4c4d0cfb",
           "PropertyGuid": "58d89475-4f17-45b6-bfd2-916bd9cf434d",
@@ -107,7 +115,7 @@
           "NameGuid": "0ce73296-e5eb-4a70-a38f-d5628e84313e",
           "Name": "Rule",
           "ColumnNumber": 0,
-          "ColumnSpan": 1,
+          "ColumnSpan": 2,
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "787ba8b7-315b-44aa-a441-4d8b4c4d0cfb",
           "PropertyGuid": "04542147-81ea-47cd-bc8e-76de810c12cf",
@@ -120,6 +128,14 @@
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "787ba8b7-315b-44aa-a441-4d8b4c4d0cfb",
           "Name": "TaskGroup",
+          "ColumnDefinitions": [
+            {
+              "Percentage": 50.0
+            },
+            {
+              "Percentage": 50.0
+            }
+          ],
           "ColumnNumber": 0,
           "ColumnSpan": 1,
           "ParentGuid": "b5b71d13-e783-420d-8d4d-4916dd2b80f0",
@@ -387,6 +403,24 @@
           "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "c90e9702-0c8e-49d3-8766-4b1e8fe78491",
+          "Name": "StrHighImportanceATSDevATSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
+          "ParentGuid": "b5b71d13-e783-420d-8d4d-4916dd2b80f0",
+          "PropertyGuid": "4702830a-019e-44dc-83f7-a75cdc80ac62",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "Height",
+              "Value": 65
+            }
+          ]
         }
       ],
       "IsAncestorMetadata": true,
@@ -402,7 +436,8 @@
     "BeforeAbortServer",
     "BeforeStartServer",
     "CreatedServer",
-    "RefreshClient"
+    "RefreshClient",
+    "ShowingClient"
   ],
   "IconResourcesKeys": [],
   "IsCreateVersionsOnLayerForbidden": true,
@@ -571,6 +606,16 @@
       "Code": "AmountATSDev",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "1ea5f5b4-d834-4758-9e3f-aeeccb68ccbe"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "4702830a-019e-44dc-83f7-a75cdc80ac62",
+      "Name": "StrHighImportanceATSDev",
+      "Code": "StrHighImporta",
+      "IsEnabled": false,
+      "Length": 1000,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "9b5f099b-b5ac-468c-84b1-6bc3defc82be"
     }
   ],
   "PublicConstants": [
@@ -643,6 +688,19 @@
       ],
       "ReturnType": "global::sberdev.SBContracts.IApprovalStage",
       "ReturnTypeFullName": "sberdev.SBContracts.IApprovalStage, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "HighImportanceIns",
+      "Parameters": [
+        {
+          "Name": "approvalTask",
+          "ParameterType": "global::sberdev.SBContracts.IApprovalTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
     },
     {
       "Name": "IsNecessaryStage",
@@ -765,7 +823,58 @@
     "NameGuid": "3918540e-fee5-48d2-9e92-0b2e7bc06a16",
     "Name": "RibbonCard",
     "Categories": [],
-    "Elements": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonCustomToggleButtonMetadata, Sungero.Metadata",
+        "NameGuid": "e15644d5-b673-43bb-821e-96fedc043b13",
+        "Name": "IsHighImportance",
+        "AllowLivePreview": true,
+        "CustomButtonTypeName": "Sungero.Presentation.BarItems.CustomBarToggleButtonItem",
+        "Index": 51,
+        "IsAncestorMetadata": true,
+        "IsVisible": false,
+        "Overridden": [
+          "IsVisible"
+        ],
+        "ParentGuid": "91104789-9e63-4f9c-abfe-49a0d6bb7cca",
+        "PropertyBindingPath": "IsHighImportance"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonCustomToggleButtonMetadata, Sungero.Metadata",
+        "NameGuid": "02c5ee2f-62d2-4850-8781-d0e66c094421",
+        "Name": "IsLowImportance",
+        "AllowLivePreview": true,
+        "CustomButtonTypeName": "Sungero.Presentation.BarItems.CustomBarToggleButtonItem",
+        "Index": 55,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "91104789-9e63-4f9c-abfe-49a0d6bb7cca",
+        "PropertyBindingPath": "IsLowImportance"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonCustomToggleButtonMetadata, Sungero.Metadata",
+        "NameGuid": "b2c6f511-586e-49a4-8143-503f6e979e6a",
+        "Name": "IsAuthorVisible",
+        "CustomButtonTypeName": "Sungero.Presentation.BarItems.CustomBarToggleButtonItem",
+        "Index": 56,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "91104789-9e63-4f9c-abfe-49a0d6bb7cca",
+        "PropertyBindingPath": "IsAuthorVisible"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "d5660684-084b-499b-be7a-118b50f72314",
+        "Name": "HighImportanceIns",
+        "ActionGuid": "d790a6bd-99f4-4b30-a1b7-47177d1b2503",
+        "Index": 52,
+        "ParentGuid": "91104789-9e63-4f9c-abfe-49a0d6bb7cca"
+      }
+    ],
     "Groups": [],
     "IsAncestorMetadata": true,
     "Pages": [],

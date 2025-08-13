@@ -144,6 +144,19 @@ namespace sberdev.SBContracts.Server
     }
     
     #region Прочие функции
+    // Доработки в рамках задачи DRX-558.
+    [Public, Remote]
+    public bool GetMVZCalcReset(Sungero.Company.IEmployee emp) {
+      bool flag = true;
+      
+      var settings = SberContracts.MVZCalculationSettingses.GetAll()
+        .Where(s => s.Employee != null && s.Employee == emp)
+        .FirstOrDefault();
+      if (settings != null && settings.ResetCalc != null)
+        flag = settings.ResetCalc.Value;
+      
+      return flag;
+    }
     
     [Public]
     public StateView ShowLegalInfo(StateView info)
