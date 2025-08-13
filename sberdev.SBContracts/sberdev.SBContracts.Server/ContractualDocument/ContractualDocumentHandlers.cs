@@ -182,8 +182,6 @@ namespace sberdev.SBContracts
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
-      if (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj))
-      {
         Functions.ContractualDocument.CancelRequiredPropeties(_obj);
         
         string errOldProdCalc = PublicFunctions.ContractualDocument.ShowOldProductsCalcWarning(_obj);
@@ -218,9 +216,6 @@ namespace sberdev.SBContracts
           base.BeforeSave(e);
           Functions.ContractualDocument.BeforeSaveFunction(_obj);
         }
-      }
-      else
-        base.BeforeSave(e);
       
       /* Закомментированный код для генерации номера 1C
   int year = Calendar.Now.Year % 100;
