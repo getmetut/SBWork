@@ -33,9 +33,7 @@ namespace sberdev.SBContracts
       base.BeforeSave(e);
       if (SBContracts.PublicFunctions.Module.IsSystemUser())
         _obj.State.Properties.DeliveryMethod.IsRequired = false;
-      var changeList = Functions.OfficialDocument.GetChangedPropertiesList(_obj);
-      if (changeList.Count > 0)
-        _obj.ModifiedSberDev = Calendar.Now;
+      Functions.OfficialDocument.UpdateModifiedSberDevIfAnyChange(_obj);
       Functions.OfficialDocument.LoggingPropertyChanges(_obj, Functions.OfficialDocument.GetChangedPropertiesList(_obj));
     }
   }
