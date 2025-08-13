@@ -120,7 +120,7 @@ namespace sberdev.SBContracts.Shared
       Sungero.Docflow.IApprovalTask task)
     {
 
-      #region Проверка: Изменён ли документ после первой подписи (DocChangedAppr)
+      #region Проверка: Изменён ли документ после старта согласования (DocChangedStart)
       if (_obj.ConditionType == ConditionType.DocChangedStart)
       {
         var official = SBContracts.OfficialDocuments.As(document);
@@ -153,6 +153,49 @@ namespace sberdev.SBContracts.Shared
                              Calendar.Now)
             || Calendar.Between(document.LastVersion.Modified,
                                 task.Started.Value,
+                                Calendar.Now),
+            string.Empty);
+        
+      }
+      #endregion
+
+      #region Проверка: Изменён ли документ после первой подписи (DocChangedAppr)
+      if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
+      {
+        var official = SBContracts.OfficialDocuments.As(document);
+        if (official == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            false,
+            "Документ не является официальным.");
+        
+        var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).FirstOrDefault();
+        if (firstApprove == null)
+        {
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            true,
+            "Нет согласований на последней версии документа, необходима проверка.");
+        }
+        
+        var modified = official?.ModifiedSberDev;
+        if (modified == null)
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(official.Modified,
+                             firstApprove.SigningDate.AddHours(3),
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                firstApprove.SigningDate.AddHours(3),
+                                Calendar.Now),
+            string.Empty);
+        
+        else
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(modified,
+                             firstApprove.SigningDate.AddHours(3),
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                firstApprove.SigningDate.AddHours(3),
                                 Calendar.Now),
             string.Empty);
         
@@ -393,49 +436,6 @@ namespace sberdev.SBContracts.Shared
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
         else
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
-      }
-      #endregion
-
-      #region Проверка: Изменён ли документ после первой подписи (DocChangedAppr)
-      if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
-      {
-        var official = SBContracts.OfficialDocuments.As(document);
-        if (official == null)
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            false,
-            "Документ не является официальным.");
-        
-        var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).FirstOrDefault();
-        if (firstApprove == null)
-        {
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            true,
-            "Нет согласований на последней версии документа, необходима проверка.");
-        }
-        
-        var modified = official?.ModifiedSberDev;
-        if (modified == null)
-          
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            Calendar.Between(official.Modified,
-                             firstApprove.SigningDate.AddHours(3),
-                             Calendar.Now)
-            || Calendar.Between(document.LastVersion.Modified,
-                                firstApprove.SigningDate.AddHours(3),
-                                Calendar.Now),
-            string.Empty);
-        
-        else
-          
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            Calendar.Between(modified,
-                             firstApprove.SigningDate.AddHours(3),
-                             Calendar.Now)
-            || Calendar.Between(document.LastVersion.Modified,
-                                firstApprove.SigningDate.AddHours(3),
-                                Calendar.Now),
-            string.Empty);
-        
       }
       #endregion
 

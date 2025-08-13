@@ -104,56 +104,6 @@ namespace sberdev.SBContracts.Server
     #endregion
     
     #region Функции фиксации изменения свойств (с кешами)
-
-    #region Заготовки
-    private static readonly System.Collections.Generic.HashSet<string> SkipProps =
-      new System.Collections.Generic.HashSet<string>(new[] {
-                                                       "Modified","ModifiedBy","Created","CreatedBy","ModifiedSberDev",
-                                                       "LastVersion","VersionId","LocationState"
-                                                     });
-    
-    private static readonly System.Collections.Generic.HashSet<string> SkipPropsForModifiedSberDev =
-      new System.Collections.Generic.HashSet<string>(new[] {
-                                                       "Modified","ModifiedBy","Created","CreatedBy","ModifiedSberDev",
-                                                       "LastVersion","VersionId","LocationState"
-                                                     });
-
-    // ==== КЭШИ ====
-    private static readonly System.Collections.Concurrent.ConcurrentDictionary<System.Type, Sungero.Metadata.EntityMetadata> _mdCache =
-      new System.Collections.Concurrent.ConcurrentDictionary<System.Type, Sungero.Metadata.EntityMetadata>();
-
-    // (Type-of-StateProperties, PropertyName) -> PropertyInfo
-    private static readonly System.Collections.Concurrent.ConcurrentDictionary<System.Tuple<System.Type,string>, System.Reflection.PropertyInfo> _statePropCache =
-      new System.Collections.Concurrent.ConcurrentDictionary<System.Tuple<System.Type,string>, System.Reflection.PropertyInfo>();
-
-    // PropertyState<T> caches
-    private static readonly System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.PropertyInfo> _propStateIsChangedCache =
-      new System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.PropertyInfo>();
-    private static readonly System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.PropertyInfo> _propStateOriginalCache =
-      new System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.PropertyInfo>();
-
-    // Collection state caches
-    private static readonly System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.PropertyInfo> _collStateIsChangedCache =
-      new System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.PropertyInfo>();
-    private static readonly System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.PropertyInfo> _collStateAddedCache =
-      new System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.PropertyInfo>();
-    private static readonly System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.PropertyInfo> _collStateRemovedCache =
-      new System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.PropertyInfo>();
-
-    // Enumerator caches
-    private static readonly System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.MethodInfo> _getEnumeratorCache =
-      new System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.MethodInfo>();
-    private static readonly System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.MethodInfo> _moveNextCache =
-      new System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.MethodInfo>();
-    private static readonly System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.PropertyInfo> _currentPropCache =
-      new System.Collections.Concurrent.ConcurrentDictionary<System.Type, System.Reflection.PropertyInfo>();
-
-    // Настройка усечения длинных значений
-    private const int TRUNCATE_LEN = 120;
-    private const bool LOG_PER_LINE = true;
-    private const bool SUPPRESS_SCALARS_ON_CREATE = true; // true — не логировать скаляры при создании
-    private const bool SHOW_CREATE_AS_FROM_NULL   = false; // если SUPPRESS=false: false => "Field = New", true => "null -> New"
-    #endregion
     
     #region Основные функции
 
@@ -163,7 +113,7 @@ namespace sberdev.SBContracts.Server
 
       var header = $"CHANGE LOG: {_obj.GetType().GetFinalType().FullName} Id={_obj.Id}";
 
-      if (LOG_PER_LINE)
+      if (Constants.Docflow.OfficialDocument.LOG_PER_LINE)
       {
         Logger.Debug(header);
         foreach (var line in changes)
@@ -182,83 +132,110 @@ namespace sberdev.SBContracts.Server
     /// </summary>
     public virtual void UpdateModifiedSberDevIfAnyChange()
     {
-      if (HasMeaningfulChanges(_obj, SkipPropsForModifiedSberDev))
+      if (HasMeaningfulChanges(_obj))
         _obj.ModifiedSberDev = Calendar.Now;
     }
 
     /// <summary>
     /// Быстрая проверка: изменилось ли хоть одно свойство (скаляр/коллекция), не входящее в skipProps.
     /// </summary>
-    private static bool HasMeaningfulChanges(
-      Sungero.Domain.Shared.IEntity entity,
-      System.Collections.Generic.ISet<string> skipProps)
+    private static bool HasMeaningfulChanges(Sungero.Domain.Shared.IEntity entity)
     {
-      if (entity == null)
-        return false;
+      if (entity == null || !entity.State.IsChanged) return false;
 
-      // Ранняя отсечка на уровне всей сущности
-      if (!entity.State.IsChanged)
-        return false;
-
-      var objType = entity.GetType().GetFinalType();
-      var md = _mdCache.GetOrAdd(objType, t => t.GetEntityMetadata());
+      var md = entity.GetType().GetFinalType().GetEntityMetadata();
+      var skip = Functions.OfficialDocument.GetSkipProps();
 
       foreach (var pm in md.Properties)
       {
-        // --- Коллекции ---
-        var colMeta = pm as Sungero.Metadata.CollectionPropertyMetadata;
-        if (colMeta != null)
+        // Коллекции
+        var col = pm as Sungero.Metadata.CollectionPropertyMetadata;
+        if (col != null)
         {
-          // State коллекции
           var stateProps = entity.State.Properties;
-          var spi = SafeGetPropertyByName(stateProps, colMeta.Name);
-          if (spi == null)
-            continue;
-
+          var spi = SafeGetPropertyByName(stateProps, col.Name);
+          if (spi == null) continue;
           var collState = spi.GetValue(stateProps);
-          if (collState == null)
-            continue;
+          if (collState == null) continue;
 
-          // Любой из быстрых признаков — достаточно, чтобы считать "что-то изменилось"
-          var collIsChangedPi = GetCollStateIsChanged(collState.GetType());
-          if (collIsChangedPi != null && (bool)collIsChangedPi.GetValue(collState))
-            return true;
+          var piIsChanged = GetCollStateIsChanged(collState.GetType());
+          if (piIsChanged != null && (bool)piIsChanged.GetValue(collState)) return true;
 
-          if (HasAny(collState, GetCollStateAdded(collState.GetType())))
-            return true;
+          if (HasAny(collState, GetCollStateAdded(collState.GetType())))   return true;
+          if (HasAny(collState, GetCollStateRemoved(collState.GetType()))) return true;
 
-          if (HasAny(collState, GetCollStateRemoved(collState.GetType())))
-            return true;
+          var items = col.GetValue(entity) as System.Collections.Generic.IEnumerable<object>;
+          if (items == null) continue;
 
-          // Изменения внутри строк коллекции
-          var current = colMeta.GetValue(entity) as System.Collections.Generic.IEnumerable<object>;
-          if (HasAnyChangedItemsFast(current))
-            return true;
-
+          foreach (var it in items)
+          {
+            var ch = it as Sungero.Domain.Shared.IEntity;
+            if (ch == null) continue;
+            if (ch.Id == 0) return true; // новая строка
+            if (!ch.State.IsChanged) continue;
+            if (HasChildScalarDiffFast(ch, skip)) return true;
+          }
           continue;
         }
 
-        // --- Скаляры ---
-        if (skipProps != null && skipProps.Contains(pm.Name))
+        // Скаляры
+        if (skip != null && skip.Contains(pm.Name)) continue;
+
+        // Подавление скаляров на создании
+        if (entity.State.IsInserted && Constants.Docflow.OfficialDocument.SUPPRESS_SCALARS_ON_CREATE)
           continue;
 
-        var statePropsScalar = entity.State.Properties;
-        var spScalar = SafeGetPropertyByName(statePropsScalar, pm.Name);
-        if (spScalar == null)
-          continue;
+        var sprops = entity.State.Properties;
+        var spiS = SafeGetPropertyByName(sprops, pm.Name);
+        if (spiS == null) continue;
+        var pstate = spiS.GetValue(sprops);
+        if (pstate == null) continue;
 
-        var pstate = spScalar.GetValue(statePropsScalar);
-        if (pstate == null)
-          continue;
+        var op = GetPropStateOriginal(pstate.GetType());
+        if (op == null) continue;
 
-        // Быстрый флаг IsChanged у state свойства
-        var isChangedPi = GetPropStateIsChanged(pstate.GetType());
-        if (isChangedPi != null && (bool)isChangedPi.GetValue(pstate))
-          return true;
+        object orig;
+        try { orig = op.GetValue(pstate); }
+        catch (System.Reflection.TargetInvocationException tie) when (tie.InnerException is System.NotSupportedException) { continue; }
+
+        var cur = pm.GetValue(entity);
+        if (!AreValuesEqual(orig, cur)) return true;
       }
 
       return false;
     }
+
+    private static bool HasChildScalarDiffFast(Sungero.Domain.Shared.IEntity child,
+                                               System.Collections.Generic.ISet<string> skip)
+    {
+      var md = child.GetType().GetFinalType().GetEntityMetadata();
+
+      foreach (var p in md.Properties)
+      {
+        if (p is Sungero.Metadata.CollectionPropertyMetadata) continue;
+        if (skip != null && skip.Contains(p.Name)) continue;
+
+        var sprops = child.State.Properties;
+        var spi = SafeGetPropertyByName(sprops, p.Name);
+        if (spi == null) continue;
+
+        var pstate = spi.GetValue(sprops);
+        if (pstate == null) continue;
+
+        var op = GetPropStateOriginal(pstate.GetType());
+        if (op == null) continue;
+
+        object orig;
+        try { orig = op.GetValue(pstate); }
+        catch (System.Reflection.TargetInvocationException tie) when (tie.InnerException is System.NotSupportedException) { continue; }
+
+        var cur = p.GetValue(child);
+        if (!AreValuesEqual(orig, cur)) return true;
+      }
+
+      return false;
+    }
+
     
     public virtual System.Collections.Generic.List<string> GetChangedPropertiesList()
     {
@@ -267,7 +244,7 @@ namespace sberdev.SBContracts.Server
 
       var result = new System.Collections.Generic.List<string>();
       var objType = _obj.GetType().GetFinalType();
-      var objMetadata = _mdCache.GetOrAdd(objType, t => t.GetEntityMetadata());
+      var objMetadata = GetEntityMetadataCached(objType);
 
       foreach (var propertyMetadata in objMetadata.Properties)
       {
@@ -298,7 +275,7 @@ namespace sberdev.SBContracts.Server
       if (propertyMetadata is Sungero.Metadata.CollectionPropertyMetadata)
         return string.Empty;
 
-      if (SkipProps.Contains(propertyMetadata.Name))
+      if (Functions.OfficialDocument.GetSkipProps().Contains(propertyMetadata.Name))
         return string.Empty;
 
       var stateProperties = entity.State.Properties;
@@ -336,14 +313,14 @@ namespace sberdev.SBContracts.Server
       // === Поведение на первом сохранении ===
       if (entity.State.IsInserted)
       {
-        if (SUPPRESS_SCALARS_ON_CREATE)
+        if (Constants.Docflow.OfficialDocument.SUPPRESS_SCALARS_ON_CREATE)
           return string.Empty;
 
         if (newValue == null)
           return string.Empty;
 
         // Показать скаляр на создании человекочитаемо
-        if (SHOW_CREATE_AS_FROM_NULL)
+        if (Constants.Docflow.OfficialDocument.SHOW_CREATE_AS_FROM_NULL)
           return string.Format("{0} : {1} -> {2}",
                                propertyMetadata.Name,
                                "null",
@@ -463,14 +440,14 @@ namespace sberdev.SBContracts.Server
       var diffs = new System.Collections.Generic.List<string>();
 
       var type = child.GetType().GetFinalType();
-      var md = _mdCache.GetOrAdd(type, t => t.GetEntityMetadata());
+      var md = GetEntityMetadataCached(type);
 
       foreach (var prop in md.Properties)
       {
         if (prop is Sungero.Metadata.CollectionPropertyMetadata)
           continue;
 
-        if (SkipProps.Contains(prop.Name))
+        if (Functions.OfficialDocument.GetSkipProps().Contains(prop.Name))
           continue;
 
         var stateProps = child.State.Properties;
@@ -481,10 +458,8 @@ namespace sberdev.SBContracts.Server
         if (pstate == null) continue;
 
         var pIsChangedPi = GetPropStateIsChanged(pstate.GetType());
-        if (pIsChangedPi != null && !(bool)pIsChangedPi.GetValue(pstate))
-          continue;
-
-        var newValue = prop.GetValue(child);
+        bool? isCh = pIsChangedPi != null ? (bool?)pIsChangedPi.GetValue(pstate) : null;
+        
         object originalValue;
         try
         {
@@ -499,9 +474,12 @@ namespace sberdev.SBContracts.Server
           continue;
         }
 
-        if (!AreValuesEqual(newValue, originalValue))
-          diffs.Add(string.Format("{0} : {1} -> {2}",
-                                  prop.Name, FormatValue(originalValue), FormatValue(newValue)));
+        var newValue = prop.GetValue(child);
+        if (isCh == false && AreValuesEqual(originalValue, newValue))
+          continue;
+        
+        if (!AreValuesEqual(originalValue, newValue))
+          diffs.Add($"{prop.Name} : {FormatValue(originalValue)} -> {FormatValue(newValue)}");
       }
 
       return diffs;
@@ -510,83 +488,119 @@ namespace sberdev.SBContracts.Server
     #endregion
 
     #region Хелперы
-
-    private static System.Reflection.PropertyInfo SafeGetPropertyByName(object statePropsObj, string name)
+    
+    #region Кеширование
+    private static System.Collections.Concurrent.ConcurrentDictionary<string, object> GetBucket(string name)
     {
-      var type = statePropsObj.GetType();
-      var key = System.Tuple.Create(type, name);
+      var k = "SBContracts.Cache." + name;
+      var obj = System.AppDomain.CurrentDomain.GetData(k) as System.Collections.Concurrent.ConcurrentDictionary<string, object>;
+      if (obj != null) return obj;
+      var dict = new System.Collections.Concurrent.ConcurrentDictionary<string, object>();
+      System.AppDomain.CurrentDomain.SetData(k, dict);
+      return dict;
+    }
 
-      if (_statePropCache.TryGetValue(key, out var cached))
-        return cached;
+    private static T GetOrAddCached<T>(string bucket, string key, System.Func<T> factory)
+    {
+      var b = GetBucket(bucket);
+      object boxed;
+      if (b.TryGetValue(key, out boxed))
+        return (T)boxed;
 
-      // Ищем однозначно по иерархии
-      var t = type;
-      while (t != null)
-      {
-        var pi = t.GetProperty(name,
-                               System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly);
-        if (pi != null)
-        {
-          _statePropCache[key] = pi;
-          return pi;
-        }
-        t = t.BaseType;
-      }
+      var created = factory();
+      b[key] = created;
+      return created;
+    }
 
-      _statePropCache[key] = null;
-      return null;
+    private static string Key2(System.Type t, string name)
+    {
+      return t.AssemblyQualifiedName + "|" + name;
+    }
+
+    private static Sungero.Metadata.EntityMetadata GetEntityMetadataCached(System.Type t)
+    {
+      return GetOrAddCached<Sungero.Metadata.EntityMetadata>("MD", t.AssemblyQualifiedName, () => t.GetEntityMetadata());
     }
 
     private static System.Reflection.PropertyInfo GetPropStateIsChanged(System.Type propStateType)
     {
-      if (_propStateIsChangedCache.TryGetValue(propStateType, out var pi))
-        return pi;
-      pi = propStateType.GetProperty("IsChanged",
-                                     System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-      _propStateIsChangedCache[propStateType] = pi;
-      return pi;
+      return GetOrAddCached<System.Reflection.PropertyInfo>("PS_ISCH", propStateType.AssemblyQualifiedName, () =>
+                                                            propStateType.GetProperty("IsChanged",
+                                                                                      System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance));
     }
 
     private static System.Reflection.PropertyInfo GetPropStateOriginal(System.Type propStateType)
     {
-      if (_propStateOriginalCache.TryGetValue(propStateType, out var pi))
-        return pi;
-      pi = propStateType.GetProperty("OriginalValue",
-                                     System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-      _propStateOriginalCache[propStateType] = pi;
-      return pi;
+      return GetOrAddCached<System.Reflection.PropertyInfo>("PS_ORIG", propStateType.AssemblyQualifiedName, () =>
+                                                            propStateType.GetProperty("OriginalValue",
+                                                                                      System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance));
     }
 
     private static System.Reflection.PropertyInfo GetCollStateIsChanged(System.Type collStateType)
     {
-      if (_collStateIsChangedCache.TryGetValue(collStateType, out var pi))
-        return pi;
-      pi = collStateType.GetProperty("IsChanged",
-                                     System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-      _collStateIsChangedCache[collStateType] = pi;
-      return pi;
+      return GetOrAddCached<System.Reflection.PropertyInfo>("CS_ISCH", collStateType.AssemblyQualifiedName, () =>
+                                                            collStateType.GetProperty("IsChanged",
+                                                                                      System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance));
     }
 
     private static System.Reflection.PropertyInfo GetCollStateAdded(System.Type collStateType)
     {
-      if (_collStateAddedCache.TryGetValue(collStateType, out var pi))
-        return pi;
-      pi = collStateType.GetProperty("Added",
-                                     System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-      _collStateAddedCache[collStateType] = pi;
-      return pi;
+      return GetOrAddCached<System.Reflection.PropertyInfo>("CS_ADD", collStateType.AssemblyQualifiedName, () =>
+                                                            collStateType.GetProperty("Added",
+                                                                                      System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance));
     }
 
     private static System.Reflection.PropertyInfo GetCollStateRemoved(System.Type collStateType)
     {
-      if (_collStateRemovedCache.TryGetValue(collStateType, out var pi))
-        return pi;
-      pi = collStateType.GetProperty("Removed",
-                                     System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-      _collStateRemovedCache[collStateType] = pi;
-      return pi;
+      return GetOrAddCached<System.Reflection.PropertyInfo>("CS_REM", collStateType.AssemblyQualifiedName, () =>
+                                                            collStateType.GetProperty("Removed",
+                                                                                      System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance));
     }
 
+    private static object GetEnumerator(object enumerable)
+    {
+      if (enumerable == null) return null;
+      var t = enumerable.GetType();
+      var mi = GetOrAddCached<System.Reflection.MethodInfo>("MI_GETENUM", t.AssemblyQualifiedName, () =>
+                                                            t.GetMethod("GetEnumerator",
+                                                                        System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance));
+      return mi != null ? mi.Invoke(enumerable, null) : null;
+    }
+
+    private static System.Reflection.MethodInfo GetMoveNext(System.Type enumeratorType)
+    {
+      return GetOrAddCached<System.Reflection.MethodInfo>("MI_MOVENEXT", enumeratorType.AssemblyQualifiedName, () =>
+                                                          enumeratorType.GetMethod("MoveNext",
+                                                                                   System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance));
+    }
+
+    private static System.Reflection.PropertyInfo GetCurrentProp(System.Type enumeratorType)
+    {
+      return GetOrAddCached<System.Reflection.PropertyInfo>("PI_CURRENT", enumeratorType.AssemblyQualifiedName, () =>
+                                                            enumeratorType.GetProperty("Current",
+                                                                                       System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance));
+    }
+    #endregion
+
+    private static System.Reflection.PropertyInfo SafeGetPropertyByName(object statePropsObj, string name)
+    {
+      var type = statePropsObj.GetType();
+      return GetOrAddCached<System.Reflection.PropertyInfo>("SPI", Key2(type, name), () =>
+                                                            {
+                                                              var t = type;
+                                                              while (t != null)
+                                                              {
+                                                                var pi = t.GetProperty(name,
+                                                                                       System.Reflection.BindingFlags.Public |
+                                                                                       System.Reflection.BindingFlags.Instance |
+                                                                                       System.Reflection.BindingFlags.DeclaredOnly);
+                                                                if (pi != null) return pi;
+                                                                t = t.BaseType;
+                                                              }
+                                                              return null;
+                                                            });
+    }
+    
     private static bool HasAny(object hostObj, System.Reflection.PropertyInfo collectionPi)
     {
       if (collectionPi == null || hostObj == null) return false;
@@ -631,42 +645,6 @@ namespace sberdev.SBContracts.Server
         list.Add(currentProp.GetValue(enumerator));
 
       return list;
-    }
-
-    private static object GetEnumerator(object enumerable)
-    {
-      if (enumerable == null) return null;
-      var t = enumerable.GetType();
-
-      if (_getEnumeratorCache.TryGetValue(t, out var mi))
-        return mi != null ? mi.Invoke(enumerable, null) : null;
-
-      mi = t.GetMethod("GetEnumerator",
-                       System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-      _getEnumeratorCache[t] = mi;
-      return mi != null ? mi.Invoke(enumerable, null) : null;
-    }
-
-    private static System.Reflection.MethodInfo GetMoveNext(System.Type enumeratorType)
-    {
-      if (_moveNextCache.TryGetValue(enumeratorType, out var mi))
-        return mi;
-
-      mi = enumeratorType.GetMethod("MoveNext",
-                                    System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-      _moveNextCache[enumeratorType] = mi;
-      return mi;
-    }
-
-    private static System.Reflection.PropertyInfo GetCurrentProp(System.Type enumeratorType)
-    {
-      if (_currentPropCache.TryGetValue(enumeratorType, out var pi))
-        return pi;
-
-      pi = enumeratorType.GetProperty("Current",
-                                      System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-      _currentPropCache[enumeratorType] = pi;
-      return pi;
     }
 
     private static bool HasAnyChangedItemsFast(System.Collections.Generic.IEnumerable<object> current)
@@ -727,15 +705,15 @@ namespace sberdev.SBContracts.Server
 
       var s = v.ToString() ?? "";
       s = s.Replace(System.Environment.NewLine, " ");
-      if (s.Length > TRUNCATE_LEN)
-        s = s.Substring(0, TRUNCATE_LEN) + "...";
+      if (s.Length > Constants.Docflow.OfficialDocument.TRUNCATE_LEN)
+        s = s.Substring(0, Constants.Docflow.OfficialDocument.TRUNCATE_LEN) + "...";
       return s;
     }
 
     private static string Trunc(string s)
     {
       if (string.IsNullOrEmpty(s)) return s ?? "";
-      return s.Length <= TRUNCATE_LEN ? s : s.Substring(0, TRUNCATE_LEN) + "...";
+      return s.Length <= Constants.Docflow.OfficialDocument.TRUNCATE_LEN ? s : s.Substring(0, Constants.Docflow.OfficialDocument.TRUNCATE_LEN) + "...";
     }
 
     #endregion

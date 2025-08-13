@@ -330,7 +330,7 @@
         },
         {
           "NameGuid": "86b63716-77ae-426b-b0d3-ac510c39b9ac",
-          "Name": "DocumentChanged",
+          "Name": "DocChangedApprSberDev",
           "Code": "DocumentChanged"
         },
         {
@@ -387,6 +387,11 @@
           "NameGuid": "f63bf70f-3946-41ff-bbd8-c9101205b74e",
           "Name": "Source",
           "Code": "Source"
+        },
+        {
+          "NameGuid": "23553a47-80ce-499e-a774-6a1e7155bca8",
+          "Name": "DocChangedStart",
+          "Code": "DocChangedStart"
         }
       ],
       "IsAncestorMetadata": true,
