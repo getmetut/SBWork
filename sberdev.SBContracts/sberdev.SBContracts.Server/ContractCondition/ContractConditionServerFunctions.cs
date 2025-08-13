@@ -13,6 +13,13 @@ namespace sberdev.SBContracts.Server
     {
       using (TenantInfo.Culture.SwitchTo())
       {
+        
+        if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
+          return "Документ изменен после первого согласования?";
+          
+        if (_obj.ConditionType == ConditionType.DocChangedStart)
+          return "Документ изменен после начала согласования?";
+        
         if (_obj.ConditionType == ConditionType.Source)
         {
           return sberdev.SBContracts.ContractConditions.Resources.ConditionSource;
@@ -62,11 +69,6 @@ namespace sberdev.SBContracts.Server
           head = head.TrimEnd(';');
           head += "?";
           return head;
-        }
-        
-        if (_obj.ConditionType == ConditionType.DocumentChanged)
-        {
-          return "Документ был изменен?";
         }
         
         if (_obj.ConditionType == ConditionType.InitiatorsDepartment)

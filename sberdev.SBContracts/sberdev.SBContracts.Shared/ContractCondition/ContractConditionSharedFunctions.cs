@@ -99,6 +99,89 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      
+      #region Проверка: Изменён ли документ после старта согласования (DocChangedStart)
+      if (_obj.ConditionType == ConditionType.DocChangedStart)
+      {
+        var official = SBContracts.OfficialDocuments.As(document);
+        if (official == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            false,
+            "Документ не является официальным.");
+        
+        var modified = official?.ModifiedSberDev;
+        
+        if (task.Started == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, "Условие не может быть вычеслено, задача не стартована");
+        
+        if (modified == null)
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(official.Modified,
+                             task.Started.Value,
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                task.Started.Value,
+                                Calendar.Now),
+            string.Empty);
+        
+        else
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(modified,
+                             task.Started.Value,
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                task.Started.Value,
+                                Calendar.Now),
+            string.Empty);
+        
+      }
+      #endregion
+
+      #region Проверка: Изменён ли документ после первой подписи (DocChangedAppr)
+      if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
+      {
+        var official = SBContracts.OfficialDocuments.As(document);
+        if (official == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            false,
+            "Документ не является официальным.");
+        
+        var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).FirstOrDefault();
+        if (firstApprove == null)
+        {
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            true,
+            "Нет согласований на последней версии документа, необходима проверка.");
+        }
+        
+        var modified = official?.ModifiedSberDev;
+        if (modified == null)
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(official.Modified,
+                             firstApprove.SigningDate.AddHours(3),
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                firstApprove.SigningDate.AddHours(3),
+                                Calendar.Now),
+            string.Empty);
+        
+        else
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(modified,
+                             firstApprove.SigningDate.AddHours(3),
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                firstApprove.SigningDate.AddHours(3),
+                                Calendar.Now),
+            string.Empty);
+        
+      }
+      #endregion
+      
       #region Проверка источника документа (Source)
       if (_obj.ConditionType == ConditionType.Source)
       {
@@ -288,52 +371,6 @@ namespace sberdev.SBContracts.Shared
         }
         
         return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
-      }
-      #endregion
-      
-      #region Проверка: Изменён ли документ после первой подписи (DocumentChanged)
-      if (_obj.ConditionType == ConditionType.DocumentChanged)
-      {
-        var official = SBContracts.OfficialDocuments.As(document);
-        if (official == null)
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            false,
-            "Документ не является официальным.");
-        
-        var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).FirstOrDefault();
-        if (firstApprove == null)
-        {
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            true,
-            "Нет согласований на последней версии документа, необходима проверка.");
-        }
-        
-        var contractual = SBContracts.ContractualDocuments.As(document);
-        var accounting = SBContracts.AccountingDocumentBases.As(document);
-        var modified = contractual?.ModifiedSberDev;
-        modified = accounting?.ModifiedSberDev;
-        if (modified == null)
-          
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            Calendar.Between(official.Modified,
-                             firstApprove.SigningDate.AddHours(3),
-                             Calendar.Now)
-            || Calendar.Between(document.LastVersion.Modified,
-                                firstApprove.SigningDate.AddHours(3),
-                                Calendar.Now),
-            string.Empty);
-        
-        else
-          
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            Calendar.Between(modified,
-                             firstApprove.SigningDate.AddHours(3),
-                             Calendar.Now)
-            || Calendar.Between(document.LastVersion.Modified,
-                                firstApprove.SigningDate.AddHours(3),
-                                Calendar.Now),
-            string.Empty);
-        
       }
       #endregion
 
@@ -847,6 +884,20 @@ namespace sberdev.SBContracts.Shared
     {
       var baseSupport = base.GetSupportedConditions();
       
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.DocChangedApprSberDev); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.DocChangedApprSberDev); // sup agreement
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.DocChangedApprSberDev); // сontract statement
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.DocChangedApprSberDev); // universal transfer document
+      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.DocChangedApprSberDev); // waybill
+      baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.DocChangedApprSberDev); // other contractual document
+      
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.DocChangedStart); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.DocChangedStart); // sup agreement
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.DocChangedStart); // сontract statement
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.DocChangedStart); // universal transfer document
+      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.DocChangedStart); // waybill
+      baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.DocChangedStart); // other contractual document
+      
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.Source); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.Source); // sup agreement
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.Source); // сontract statement
@@ -903,13 +954,6 @@ namespace sberdev.SBContracts.Shared
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.MarketDirect); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.MarketDirect); // sup agreement
-      
-      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.DocumentChanged); // contract
-      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.DocumentChanged); // sup agreement
-      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.DocumentChanged); // сontract statement
-      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.DocumentChanged); // universal transfer document
-      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.DocumentChanged); // waybill
-      baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.DocumentChanged); // other contractual document
       
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.ContrCategory); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.ContrCategory); // sup agreement
