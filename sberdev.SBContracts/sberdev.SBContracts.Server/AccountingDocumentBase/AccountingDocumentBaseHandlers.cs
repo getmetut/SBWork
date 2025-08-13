@@ -139,7 +139,7 @@ namespace sberdev.SBContracts
     {
       string disc = _obj.GetEntityMetadata().GetOriginal().NameGuid.ToString().ToLower();
       _obj.CardURLSberDev = "https://directum.sberdevices.ru/DrxWeb/#/sat/card/" + disc + "/" + _obj.Id;
-     
+      
       _obj.FrameworkBaseSberDev = false;
       base.Created(e);
       var DelMeth = Sungero.Docflow.MailDeliveryMethods.GetAll(d => d.Name == "Не определено").FirstOrDefault();
@@ -161,21 +161,17 @@ namespace sberdev.SBContracts
       _obj.CalcListSDev = PublicFunctions.AccountingDocumentBase.GetCalculationString(_obj);
       
       var error = Functions.AccountingDocumentBase.BanToSaveForStabs(_obj);
-      if (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj))
+      if (error != "")
+        e.AddError(error);
+      
+      if (_obj.CalculationBaseSberDev.Count > 0)
       {
-        if (error != "")
-          e.AddError(error);
-        if (_obj.CalculationBaseSberDev.Count > 0)
+        if (_obj.CalculationAmountBaseSberDev == _obj.TotalAmount)
         {
-          if (_obj.CalculationAmountBaseSberDev == _obj.TotalAmount)
-          {
-            base.BeforeSave(e);
-          }
-          else
-            e.AddError(sberdev.SBContracts.Contracts.Resources.CalculationCondition);
+          base.BeforeSave(e);
         }
         else
-          base.BeforeSave(e);
+          e.AddError(sberdev.SBContracts.Contracts.Resources.CalculationCondition);
       }
       else
         base.BeforeSave(e);

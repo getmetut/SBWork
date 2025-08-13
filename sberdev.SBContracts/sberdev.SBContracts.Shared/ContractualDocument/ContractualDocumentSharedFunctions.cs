@@ -375,10 +375,10 @@ namespace sberdev.SBContracts.Shared
     /// Функция возвращает текст ошибки, если в каком либо поле выбраны заглушки
     /// </summary>
     [Public]
-    public string BanToSaveForStabs()
+    public virtual string BanToSaveForStabs()
     {
       var error = "";
-      if ((!SBContracts.PublicFunctions.Module.IsSystemUser()) && (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj)))
+      if (!SBContracts.PublicFunctions.Module.IsSystemUser())
       {
         if (_obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)")
           error += ", МВП";
