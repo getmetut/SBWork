@@ -9,12 +9,22 @@ namespace sberdev.SberContracts.Shared
 {
   partial class AppNonProdPurchaseFunctions
   {
+
+    public override string ShowOldProductsCalcWarning()
+    {
+      return ""; //base.ShowOldProductsCalcWarning();
+    }
+    
+    public override void CancelRequiredPropeties()
+    {
+      //base.CancelRequiredPropeties();
+    }
     
     public override string BanToSaveForStabs()
     {
       return "";
     }
-
+    
     /// <summary>
     /// Обновление отображения полей карточки
     /// </summary>
