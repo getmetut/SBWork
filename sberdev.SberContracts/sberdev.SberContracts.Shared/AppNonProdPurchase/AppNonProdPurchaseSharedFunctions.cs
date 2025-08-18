@@ -75,6 +75,12 @@ namespace sberdev.SberContracts.Shared
         _obj.State.Properties.PurchaseOrderNumber.IsEnabled = Users.Current.IncludedIn(Purchaser);
         _obj.State.Properties.ValidFrom.IsEnabled = Users.Current.IncludedIn(Purchaser);
         _obj.State.Properties.AddendumDocument.IsEnabled = Users.Current.IncludedIn(Purchaser);
+        
+        _obj.State.Properties.DateActivate.IsEnabled = Users.Current.IncludedIn(Purchaser);
+        _obj.State.Properties.DateCreate.IsEnabled = Users.Current.IncludedIn(Purchaser);
+        _obj.State.Properties.DateFinish.IsEnabled = Users.Current.IncludedIn(Purchaser);
+        _obj.State.Properties.DateInWork.IsEnabled = Users.Current.IncludedIn(Purchaser);
+        
       }
 
       if (_obj.CalculationFlagBaseSberDev != null)
