@@ -13,9 +13,9 @@ namespace SDev.BPCustom
     public override void BeforeStart(Sungero.Workflow.Server.BeforeStartEventArgs e)
     {
       var basedoc = _obj.BaseAttachments.ElectronicDocuments.FirstOrDefault();
-      if (sberdev.SberContracts.AppNonProdPurchases.Is(sberdoc))
+      if (sberdev.SberContracts.AppNonProdPurchases.Is(basedoc))
       {
-        var AppNonProdPurchas = sberdev.SberContracts.AppNonProdPurchases.As(sberdoc);
+        var AppNonProdPurchas = sberdev.SberContracts.AppNonProdPurchases.As(basedoc);
         AppNonProdPurchas.TochInWork = _obj.Performer;
         AppNonProdPurchas.LifeCycleState = sberdev.SberContracts.AppNonProdPurchase.LifeCycleState.Assigned;
         AppNonProdPurchas.Save();
