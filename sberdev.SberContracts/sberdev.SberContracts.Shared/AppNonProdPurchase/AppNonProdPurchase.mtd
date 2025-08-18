@@ -1309,7 +1309,28 @@
     "NameGuid": "e5d86ed4-eadb-499d-962d-1a25a1e1c2b0",
     "Name": "RibbonCard",
     "Categories": [],
-    "Elements": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "ba316d61-626c-49ac-b6c7-1979effe0d47",
+        "Name": "ActionButtonSDev",
+        "ActionGuid": "d021d43d-7949-4bdf-b0a0-4db25547f388",
+        "Index": 52,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "f3b0ddcd-9d1e-4ca3-8780-695ae25a9e8b"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "998db0f0-f9d4-4b8f-b7f9-3cee6368f3fd",
+        "Name": "SendToBPTaskBase",
+        "ActionGuid": "5342164d-bfab-47f6-976d-192b43a1331a",
+        "Index": 51,
+        "ParentGuid": "f3b0ddcd-9d1e-4ca3-8780-695ae25a9e8b"
+      }
+    ],
     "Groups": [],
     "IsAncestorMetadata": true,
     "Pages": [],
