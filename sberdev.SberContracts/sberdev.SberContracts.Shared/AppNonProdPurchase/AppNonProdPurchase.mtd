@@ -95,10 +95,10 @@
           "Name": "MainGroupSberDev",
           "ColumnDefinitions": [
             {
-              "Percentage": 69.4
+              "Percentage": 66.89
             },
             {
-              "Percentage": 29.59
+              "Percentage": 32.1
             }
           ],
           "IsAncestorMetadata": true,

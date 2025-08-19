@@ -353,4 +353,49 @@ In the absence of these trainings, the following reputational risks are possible
   <data name="Property_CategoryPurchase" xml:space="preserve">
     <value>Категория закупок</value>
   </data>
+  <data name="Property_InternalApprovalState" xml:space="preserve">
+    <value>Internal approval</value>
+  </data>
+  <data name="Enum_InternalApprovalState_Aborted" xml:space="preserve">
+    <value>Aborted</value>
+  </data>
+  <data name="Enum_InternalApprovalState_Signed" xml:space="preserve">
+    <value>Signed</value>
+  </data>
+  <data name="Enum_InternalApprovalState_PendingSign" xml:space="preserve">
+    <value>Pending signature</value>
+  </data>
+  <data name="Enum_InternalApprovalState_OnRework" xml:space="preserve">
+    <value>On rework</value>
+  </data>
+  <data name="Enum_InternalApprovalState_OnApproval" xml:space="preserve">
+    <value>On approval</value>
+  </data>
+  <data name="Enum_ExecutionState_Aborted" xml:space="preserve">
+    <value>Aborted</value>
+  </data>
+  <data name="Enum_ExecutionState_Executed" xml:space="preserve">
+    <value>Executed</value>
+  </data>
+  <data name="Enum_ExecutionState_OnExecution" xml:space="preserve">
+    <value>On execution</value>
+  </data>
+  <data name="Enum_ExecutionState_WithoutExecut" xml:space="preserve">
+    <value>Execution not required</value>
+  </data>
+  <data name="Enum_ExecutionState_Sending" xml:space="preserve">
+    <value>Sending for execution</value>
+  </data>
+  <data name="Enum_ExecutionState_OnReview" xml:space="preserve">
+    <value>On review</value>
+  </data>
+  <data name="Enum_LifeCycleState_Obsolete" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="Enum_LifeCycleState_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Enum_LifeCycleState_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
 </root>

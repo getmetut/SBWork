@@ -31,6 +31,119 @@
   ],
   "BaseGuid": "d795d1f6-45c1-4e5e-9677-b53fb7280c7e",
   "BlockIds": [],
+  "Blocks": [
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "527caf4d-11f1-48dc-bbd5-010aada7aaf7",
+      "Name": "LifeCicleDoc",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "LifeCicleDocExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide",
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.EnumBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "39fc1ca4-2b4e-47ea-80de-80beb2432a81",
+          "Name": "InternalApprovalState",
+          "DirectValues": [
+            {
+              "NameGuid": "76d45ba3-559c-4db2-8199-0f9fcedd4ffd",
+              "Name": "OnApproval",
+              "Code": "OnApproval"
+            },
+            {
+              "NameGuid": "40bb6e2e-b91b-46b2-baeb-c5a09435dea2",
+              "Name": "OnRework",
+              "Code": "OnRework"
+            },
+            {
+              "NameGuid": "e7d97b16-df15-44c1-9f97-708ca741e354",
+              "Name": "PendingSign",
+              "Code": "PendingSign"
+            },
+            {
+              "NameGuid": "fdf7d6e8-dbed-4be8-a96b-4bf493a236b4",
+              "Name": "Signed",
+              "Code": "Signed"
+            },
+            {
+              "NameGuid": "f82e3879-ec38-450c-bdfe-3810d8c4aad2",
+              "Name": "Aborted",
+              "Code": "Aborted"
+            }
+          ],
+          "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
+        },
+        {
+          "$type": "Sungero.Metadata.EnumBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "2f8922d7-4fc4-4942-bb68-96119ce90e05",
+          "Name": "ExecutionState",
+          "DirectValues": [
+            {
+              "NameGuid": "2da24f39-1d08-433e-acbc-e1246610e9ea",
+              "Name": "OnReview",
+              "Code": "OnReview"
+            },
+            {
+              "NameGuid": "cd4f0967-9f3a-417b-b349-ed271131c420",
+              "Name": "Sending",
+              "Code": "Sending"
+            },
+            {
+              "NameGuid": "f72ad2ec-c5c6-468f-9893-0c32d77866a9",
+              "Name": "WithoutExecut",
+              "Code": "WithoutExecut"
+            },
+            {
+              "NameGuid": "186e0a10-e756-46a1-a29b-df7c563557bb",
+              "Name": "OnExecution",
+              "Code": "OnExecution"
+            },
+            {
+              "NameGuid": "e23c3fec-6dfd-4d1a-8b1e-dab18823a9e9",
+              "Name": "Executed",
+              "Code": "Executed"
+            },
+            {
+              "NameGuid": "24f20a80-6f30-482f-8420-c8fdeb973046",
+              "Name": "Aborted",
+              "Code": "Aborted"
+            }
+          ],
+          "PreviousPropertyGuid": "39fc1ca4-2b4e-47ea-80de-80beb2432a81"
+        },
+        {
+          "$type": "Sungero.Metadata.EnumBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "8d358536-1eb1-4c60-9310-3f419b15d664",
+          "Name": "LifeCycleState",
+          "DirectValues": [
+            {
+              "NameGuid": "a5281b34-2d2f-4197-8cd8-2b2ec5262a3b",
+              "Name": "Draft",
+              "Code": "Draft"
+            },
+            {
+              "NameGuid": "63568ee5-0a0e-4c9c-b83a-0413fa533b0f",
+              "Name": "Active",
+              "Code": "Active"
+            },
+            {
+              "NameGuid": "2f4cc5de-32eb-4c69-8ccc-1102e5b93452",
+              "Name": "Obsolete",
+              "Code": "Obsolete"
+            },
+            {
+              "NameGuid": "54558987-5fdb-48f5-acab-f300cd8954c6",
+              "Name": "Assigned",
+              "Code": "Assigned"
+            }
+          ],
+          "PreviousPropertyGuid": "2f8922d7-4fc4-4942-bb68-96119ce90e05"
+        }
+      ]
+    }
+  ],
   "CanBeNavigationPropertyType": true,
   "CanBeSearch": false,
   "CreationAreaMetadata": {
