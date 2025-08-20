@@ -5,6 +5,5 @@ using Sungero.Core;
 using Sungero.CoreEntities;
 
 namespace sberdev.SBContracts.Structures.Docflow.OfficialDocument
-{
-
+{ 
 }

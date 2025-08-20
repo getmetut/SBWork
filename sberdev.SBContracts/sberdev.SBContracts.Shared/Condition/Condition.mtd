@@ -679,6 +679,11 @@
           "NameGuid": "ccfcb3a9-70bf-4c7f-a7d2-915d7d05f066",
           "Name": "INNCollection",
           "Code": "INNCollection"
+        },
+        {
+          "NameGuid": "78fe7f34-a171-4a60-8ee6-69394aa7e6f9",
+          "Name": "DocChangedStart",
+          "Code": "DocChangedStart"
         }
       ],
       "IsAncestorMetadata": true,

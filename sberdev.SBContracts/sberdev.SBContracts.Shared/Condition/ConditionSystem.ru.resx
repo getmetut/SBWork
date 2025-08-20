@@ -241,4 +241,7 @@
   <data name="Enum_ConditionType_INNCollection" xml:space="preserve">
     <value>Соответствие КА списку ИНН</value>
   </data>
+  <data name="Enum_ConditionType_DocChangedStart" xml:space="preserve">
+    <value>Документ изменен после запуска задачи</value>
+  </data>
 </root>

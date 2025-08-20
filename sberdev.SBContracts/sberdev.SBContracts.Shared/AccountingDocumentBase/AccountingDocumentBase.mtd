@@ -1676,18 +1676,6 @@
       "PreviousPropertyGuid": "ec7a4d15-22d6-45df-964e-a828771daaf6"
     },
     {
-      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
-      "NameGuid": "401165db-5e03-4339-90be-abf04c16912c",
-      "Name": "ModifiedSberDev",
-      "CanBeSearch": false,
-      "Code": "ModifiedSpecA",
-      "DateTimeFormat": "DateTime",
-      "IsEnabled": false,
-      "IsVisibility": false,
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
-      "PreviousPropertyGuid": "ffc819f8-634d-466f-8c06-29e30ce79fe3"
-    },
-    {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "6543d8ba-230c-4615-87c4-5cd3c9470cdc",
       "Name": "MarketDirectSberDev",
@@ -1705,7 +1693,7 @@
       "IsVisibility": false,
       "Length": 1000,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
-      "PreviousPropertyGuid": "401165db-5e03-4339-90be-abf04c16912c"
+      "PreviousPropertyGuid": "ffc819f8-634d-466f-8c06-29e30ce79fe3"
     },
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",

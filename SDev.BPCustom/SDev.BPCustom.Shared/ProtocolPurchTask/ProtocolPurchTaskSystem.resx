@@ -79,4 +79,7 @@
   <data name="AttachmentGroup_OtherAttachmentInformationMessage" xml:space="preserve">
     <value />
   </data>
+  <data name="Block_4b76fc2127c5426a94f1be8450d92256" xml:space="preserve">
+    <value>Согласование с переадресацией</value>
+  </data>
 </root>

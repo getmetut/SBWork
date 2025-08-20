@@ -16,10 +16,10 @@ namespace Sungero.ATS
       if (e.NewValue != null)
       {
         var comp = sberdev.SBContracts.Companies.As(e.NewValue);
-        if ((comp.HeadOrgSDev != true) && (!sberdev.SBContracts.PublicFunctions.Module.IsSystemUser()))
+        if (comp != null && comp.HeadOrgSDev != true && !sberdev.SBContracts.PublicFunctions.Module.IsSystemUser())
         {
           var OrgTrue = PublicFunctions.UniversalTransferDocument.Remote.GetHeadCompanies(_obj, comp);
-          if ((OrgTrue != null) && (OrgTrue != comp))
+          if (OrgTrue != null && OrgTrue != comp)
           {
             if (_obj.Counterparty != OrgTrue)
               _obj.Counterparty = OrgTrue;

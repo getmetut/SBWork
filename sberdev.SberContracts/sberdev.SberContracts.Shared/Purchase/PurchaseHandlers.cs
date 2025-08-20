@@ -45,7 +45,7 @@ namespace sberdev.SberContracts
     public override void LeadingDocumentChanged(Sungero.Docflow.Shared.OfficialDocumentLeadingDocumentChangedEventArgs e)
     {
       base.LeadingDocumentChanged(e);
-      _obj.ModifiedSberDev = Calendar.Now;
+     
       _obj.Relations.AddFromOrUpdate("Purchase", e.OldValue, e.NewValue);
     }
 
@@ -54,7 +54,7 @@ namespace sberdev.SberContracts
       if (Equals(e.NewValue, e.OldValue))
         return;
       
-      _obj.ModifiedSberDev = Calendar.Now;
+     
       _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
     }
 
@@ -63,7 +63,7 @@ namespace sberdev.SberContracts
       if (Equals(e.NewValue, e.OldValue))
         return;
       
-      _obj.ModifiedSberDev = Calendar.Now;
+     
       _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
     }
 
@@ -72,7 +72,7 @@ namespace sberdev.SberContracts
       if (Equals(e.NewValue, e.OldValue))
         return;
       
-      _obj.ModifiedSberDev = Calendar.Now;
+     
       _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
     }
 

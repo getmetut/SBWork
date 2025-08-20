@@ -119,6 +119,89 @@ namespace sberdev.SBContracts.Shared
       Sungero.Docflow.IOfficialDocument document,
       Sungero.Docflow.IApprovalTask task)
     {
+
+      #region Проверка: Изменён ли документ после старта согласования (DocChangedStart)
+      if (_obj.ConditionType == ConditionType.DocChangedStart)
+      {
+        var official = SBContracts.OfficialDocuments.As(document);
+        if (official == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            false,
+            "Документ не является официальным.");
+        
+        var modified = official?.ModifiedSberDev;
+        
+        if (task.Started == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, "Условие не может быть вычеслено, задача не стартована");
+        
+        if (modified == null)
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(official.Modified,
+                             task.Started.Value,
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                task.Started.Value,
+                                Calendar.Now),
+            string.Empty);
+        
+        else
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(modified,
+                             task.Started.Value,
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                task.Started.Value,
+                                Calendar.Now),
+            string.Empty);
+        
+      }
+      #endregion
+
+      #region Проверка: Изменён ли документ после первой подписи (DocChangedAppr)
+      if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
+      {
+        var official = SBContracts.OfficialDocuments.As(document);
+        if (official == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            false,
+            "Документ не является официальным.");
+        
+        var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).FirstOrDefault();
+        if (firstApprove == null)
+        {
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            true,
+            "Нет согласований на последней версии документа, необходима проверка.");
+        }
+        
+        var modified = official?.ModifiedSberDev;
+        if (modified == null)
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(official.Modified,
+                             firstApprove.SigningDate.AddHours(3),
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                firstApprove.SigningDate.AddHours(3),
+                                Calendar.Now),
+            string.Empty);
+        
+        else
+          
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            Calendar.Between(modified,
+                             firstApprove.SigningDate.AddHours(3),
+                             Calendar.Now)
+            || Calendar.Between(document.LastVersion.Modified,
+                                firstApprove.SigningDate.AddHours(3),
+                                Calendar.Now),
+            string.Empty);
+        
+      }
+      #endregion
+      
       #region Проверка на наличие указанных продуктов (Product)
       if (_obj.ConditionType == ConditionType.Product)
       {
@@ -353,52 +436,6 @@ namespace sberdev.SBContracts.Shared
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
         else
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
-      }
-      #endregion
-
-      #region Проверка: Изменён ли документ после первой подписи (DocChangedAppr)
-      if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
-      {
-        var official = SBContracts.OfficialDocuments.As(document);
-        if (official == null)
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            false,
-            "Документ не является официальным.");
-        
-        var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).FirstOrDefault();
-        if (firstApprove == null)
-        {
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            true,
-            "Нет согласований на последней версии документа, необходима проверка.");
-        }
-        
-        var contractual = SBContracts.ContractualDocuments.As(document);
-        var accounting = SBContracts.AccountingDocumentBases.As(document);
-        var modified = contractual?.ModifiedSberDev;
-        modified = accounting?.ModifiedSberDev;
-        if (modified == null)
-          
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            Calendar.Between(official.Modified,
-                             firstApprove.SigningDate.AddHours(3),
-                             Calendar.Now)
-            || Calendar.Between(document.LastVersion.Modified,
-                                firstApprove.SigningDate.AddHours(3),
-                                Calendar.Now),
-            string.Empty);
-        
-        else
-          
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-            Calendar.Between(modified,
-                             firstApprove.SigningDate.AddHours(3),
-                             Calendar.Now)
-            || Calendar.Between(document.LastVersion.Modified,
-                                firstApprove.SigningDate.AddHours(3),
-                                Calendar.Now),
-            string.Empty);
-        
       }
       #endregion
 
@@ -972,6 +1009,10 @@ namespace sberdev.SBContracts.Shared
     {
       var baseSupport = base.GetSupportedConditions();
       
+      baseSupport["675e2890-7dba-4d1a-a3bb-8a829bdabd66"].Add(ConditionType.DocChangedStart); // непроизводственная закупка
+      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.DocChangedStart); // закупка
+      baseSupport["09584896-81e2-4c83-8f6c-70eb8321e1d0"].Add(ConditionType.DocChangedStart); // простой документ
+      
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.Product); // входящий счет
       
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.IsProdPurchase); // purchase
@@ -1003,6 +1044,7 @@ namespace sberdev.SBContracts.Shared
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.ManuallyCheck); // входящий счет
       
+      baseSupport["675e2890-7dba-4d1a-a3bb-8a829bdabd66"].Add(ConditionType.DocChangedApprSberDev); // непроизводственная закупка
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.DocChangedApprSberDev); // закупка
       baseSupport["09584896-81e2-4c83-8f6c-70eb8321e1d0"].Add(ConditionType.DocChangedApprSberDev); // простой документ
 

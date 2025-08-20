@@ -98,7 +98,7 @@
     <value>Наша организация</value>
   </data>
   <data name="Property_OurSignatory" xml:space="preserve">
-    <value>Подписал</value>
+    <value>Подписывает</value>
   </data>
   <data name="Property_Department" xml:space="preserve">
     <value>Подразделение инициатора закупки</value>

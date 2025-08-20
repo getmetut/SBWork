@@ -265,4 +265,7 @@
   <data name="Enum_ConditionType_INNCollection" xml:space="preserve">
     <value>Compliance of the CA with the INN list</value>
   </data>
+  <data name="Enum_ConditionType_DocChangedStart" xml:space="preserve">
+    <value>Document changes after task starts</value>
+  </data>
 </root>

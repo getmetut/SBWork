@@ -358,9 +358,6 @@
   <data name="Enum_CalculationDistributeBaseSberDev_Tamplate" xml:space="preserve">
     <value>Шаблон</value>
   </data>
-  <data name="Property_ModifiedSberDev" xml:space="preserve">
-    <value>Изменено (особ.)</value>
-  </data>
   <data name="Property_MarketDirectSberDev" xml:space="preserve">
     <value>Направление маркетинга</value>
   </data>

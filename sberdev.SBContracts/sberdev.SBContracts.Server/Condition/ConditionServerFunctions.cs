@@ -24,6 +24,13 @@ namespace sberdev.SBContracts.Server
     {
       using (TenantInfo.Culture.SwitchTo())
       {
+        
+        if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
+          return "Документ изменен после первого согласования?";
+        
+        if (_obj.ConditionType == ConditionType.DocChangedStart)
+          return "Документ изменен после начала согласования?";
+        
         if (_obj.ConditionType == ConditionType.Product)
         {
           string head = "Документ по любому из продуктов:";
@@ -124,9 +131,6 @@ namespace sberdev.SBContracts.Server
         
         if (_obj.ConditionType == ConditionType.ManuallyCheck)
           return "Необходима ручная проверка договорных документов?";
-        
-        if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
-          return "Документ изменен после первого согласования?";
 
         if (_obj.ConditionType == ConditionType.PayType)
           return ("Постоплата?");

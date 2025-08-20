@@ -174,7 +174,7 @@ namespace sberdev.SBContracts
     {
       string disc = _obj.GetEntityMetadata().GetOriginal().NameGuid.ToString().ToLower();
       _obj.CardURLSberDev = "https://directum.sberdevices.ru/DrxWeb/#/sat/card/" + disc + "/" + _obj.Id;
-      _obj.ModifiedSberDev = Calendar.Now;
+     
       _obj.OriginalBaseSberDev = false;
       _obj.FrameworkBaseSberDev = false;
       base.Created(e);
@@ -199,7 +199,7 @@ namespace sberdev.SBContracts
         _obj.State.Properties.DeliveryMethod.IsRequired = false;
       
       // Проверка расчетов
-      if ((_obj.CalculationBaseSberDev.Count > 0) && (!sberdev.SberContracts.AppNonProdPurchases.Is(_obj)))
+      if (_obj.CalculationBaseSberDev.Count > 0)
       {
         if (_obj.CalculationAmountBaseSberDev == _obj.TotalAmount)
         {

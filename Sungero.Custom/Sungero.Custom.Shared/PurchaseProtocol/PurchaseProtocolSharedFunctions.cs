@@ -12,7 +12,7 @@ namespace Sungero.Custom.Shared
 
     /// <summary>
     /// Обновление формы карточки в зависимости от выбора пользователя
-    /// </summary>  
+    /// </summary>
     [Public]
     public void UpdateCard()
     {
@@ -22,6 +22,9 @@ namespace Sungero.Custom.Shared
         _obj.State.Properties.DocumentFooting.IsRequired = ((_obj.TotalSumm > 500000) || (_obj.RouteType == Custom.PurchaseProtocol.RouteType.PurchaseFramewo));
       }
       
+      if (_obj.RouteType != null)
+        if (_obj.RouteType == RouteType.PurchaseFramewo)
+          _obj.State.Properties.OurSignatory.IsRequired = false;
       
     }
 

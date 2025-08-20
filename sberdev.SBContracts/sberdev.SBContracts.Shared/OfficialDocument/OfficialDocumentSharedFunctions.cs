@@ -8,7 +8,16 @@ using sberdev.SBContracts.OfficialDocument;
 namespace sberdev.SBContracts.Shared
 {
   partial class OfficialDocumentFunctions
-  {
+  {    
+    
+    public static System.Collections.Generic.HashSet<string> GetSkipProps()
+    {
+      return new System.Collections.Generic.HashSet<string>(new[] {
+                                                       "Modified","ModifiedBy","Created","CreatedBy","ModifiedSberDev",
+                                                       "LastVersion","VersionId","LocationState"
+                                                     });
+    }
+    
     /// <summary>
     /// Проверяет откуда создан документ
     /// </summary>

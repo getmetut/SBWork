@@ -147,14 +147,14 @@ namespace sberdev.SberContracts
 
     public virtual void AgencyContractChanged(sberdev.SberContracts.Shared.AppProductPurchaseAgencyContractChangedEventArgs e)
     {
-      _obj.ModifiedSberDev = Calendar.Now;
+     
       _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
     }
 
     public override void LeadingDocumentChanged(Sungero.Docflow.Shared.OfficialDocumentLeadingDocumentChangedEventArgs e)
     {
       base.LeadingDocumentChanged(e);
-      _obj.ModifiedSberDev = Calendar.Now;
+     
       _obj.Relations.AddFromOrUpdate("Purchase", e.OldValue, e.NewValue);
     }
 
