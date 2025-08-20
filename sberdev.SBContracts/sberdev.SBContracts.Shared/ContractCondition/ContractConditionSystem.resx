@@ -244,7 +244,16 @@
   <data name="Enum_ConditionType_Source" xml:space="preserve">
     <value>Source</value>
   </data>
-  <data name="Enum_ConditionType_DocChangedStart" xml:space="preserve">
-    <value>Document changes after task starts</value>
+  <data name="Enum_ConditionType_Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Property_ProductsSberDevSBDEV" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="Resource_ce92a62378814de5933560c5cf500bc1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_7956d56e382a4aa0b1a54e3aa2ac803e" xml:space="preserve">
+    <value />
   </data>
 </root>
