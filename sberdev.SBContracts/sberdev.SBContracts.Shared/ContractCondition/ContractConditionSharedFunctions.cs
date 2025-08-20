@@ -63,6 +63,11 @@ namespace sberdev.SBContracts.Shared
       var isINN = _obj.ConditionType == ConditionType.INNCollection;
       _obj.State.Properties.CollectionINNSDevSDev.IsVisible = isINN;
       _obj.State.Properties.CollectionINNSDevSDev.IsRequired = isINN;
+      
+      // Доработки в рамках задачи DRX-917.
+      var isProduct = _obj.ConditionType == ConditionType.Product;
+      _obj.State.Properties.ProductsSberDevSBDEV.IsVisible = isProduct;
+      _obj.State.Properties.ProductsSberDevSBDEV.IsRequired = isProduct;
     }
 
     public override void ClearHiddenProperties()
@@ -836,6 +841,46 @@ namespace sberdev.SBContracts.Shared
       }
       #endregion
       
+      #region Проверка: Продукты (доработки в рамках задачи DRX-917).
+      if (_obj.ConditionType == ConditionType.Product)
+      {
+        bool included = false;
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        var supAgreement = SBContracts.SupAgreements.As(document);
+        List<SberContracts.IProductsAndDevices> docProducts = new List<sberdev.SberContracts.IProductsAndDevices>();
+        
+        if (contractual != null) {
+          var prodsPr = contractual.ProdCollectionExBaseSberDev;
+          var prodsEx = contractual.ProdCollectionExBaseSberDev;
+          
+          if (prodsPr != null && prodsPr.Count > 0)
+            docProducts.AddRange(prodsPr.Select(p => p.Product).ToList());
+
+          if (prodsEx != null && prodsEx.Count > 0)
+            docProducts.AddRange(prodsEx.Select(p => p.Product).ToList());
+        }
+        
+        if (supAgreement != null) {
+          var prodsPr = supAgreement.ProdCollectionExBaseSberDev;
+          var prodsEx = supAgreement.ProdCollectionExBaseSberDev;
+          
+          if (prodsPr != null && prodsPr.Count > 0)
+            docProducts.AddRange(prodsPr.Select(p => p.Product).ToList());
+
+          if (prodsEx != null && prodsEx.Count > 0)
+            docProducts.AddRange(prodsEx.Select(p => p.Product).ToList());
+        }
+        
+        foreach (var prod in docProducts) {
+          if (_obj.ProductsSberDevSBDEV.Select(p => p.Product).ToList().Contains(prod)) {
+            included = true;
+            break;
+          }
+        }
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(included, string.Empty);
+      }
+      #endregion
+      
       #endregion
       
       return base.CheckCondition(document, task);
@@ -970,6 +1015,15 @@ namespace sberdev.SBContracts.Shared
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.INNCollection); // purchase
       
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.PayType);
+      
+      #region Доработки в рамках задачи DRX-917.
+      baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.Product); // contract
+      baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.Product); // sup agreement
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.Product); // сontract statement
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.Product); // universal transfer document
+      baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.Product); // waybill
+      baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.Product); // other contractual document
+      #endregion
       
       return baseSupport;
     }

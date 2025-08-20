@@ -165,10 +165,24 @@ namespace sberdev.SBContracts.Server
           itg += _obj.TotalSummSDevSDev.Value.ToString();
           
           return (itg);
-        }        
+        }
         
         if (_obj.ConditionType == ConditionType.INNCollection)
           return ("Контроль по ИНН КА");
+        
+        // Доработки в рамках задачи DRX-917.
+        if (_obj.ConditionType == ConditionType.Product)
+        {
+          string text;
+          text = "Продукты включены в ";
+          foreach (var str in _obj.ProductsSberDevSBDEV )
+          {
+            text = text + str.Product.Name + ", ";
+          }
+          text = text.TrimEnd(',');
+          text += "?";
+          return text;
+        }
       }
 
       return base.GetConditionName();
