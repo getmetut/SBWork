@@ -9,20 +9,29 @@ namespace sberdev.SberContracts.Shared
 {
   partial class AppNonProdPurchaseFunctions
   {
-
-    public override string ShowOldProductsCalcWarning()
+    public override void UpdateProductsString()
     {
-      return ""; //base.ShowOldProductsCalcWarning();
+      // Удаление базового
+    }
+
+    public override string CheckOldProductsinCalc()
+    {
+      return ""; // Удаление базового
     }
     
     public override void CancelRequiredPropeties()
     {
-      //base.CancelRequiredPropeties();
+      // Удаление базового
     }
     
-    public override string BanToSaveForStabs()
+    public override string CheckAnaliticsStabs()
     {
-      return "";
+      return ""; // Удаление базового
+    }
+    
+    public override string CheckCalculationAmount()
+    {
+      return ""; // Удаление базового
     }
     
     /// <summary>

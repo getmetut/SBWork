@@ -54,7 +54,7 @@ namespace sberdev.SBContracts
       }
       if (contractual != null)
       {
-        er2 = PublicFunctions.ContractualDocument.BanToSaveForStabs(contractual);
+        er2 = PublicFunctions.ContractualDocument.CheckAnaliticsStabs(contractual);
         if (contractual.TotalAmount.HasValue)
           _obj.AmountATSDev = contractual.TotalAmount;
         

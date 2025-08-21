@@ -1802,19 +1802,6 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "BanToSaveForStabs",
-      "Parameters": [
-        {
-          "Name": "contractualDocument",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::System.String",
-      "ReturnTypeFullName": "System.String"
-    },
-    {
       "Name": "BuildProductsString",
       "Parameters": [
         {
@@ -1862,6 +1849,45 @@
       "Placement": "Shared",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "CheckAnaliticsStabs",
+      "Parameters": [
+        {
+          "Name": "contractualDocument",
+          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "CheckCalculationAmount",
+      "Parameters": [
+        {
+          "Name": "contractualDocument",
+          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "CheckOldProductsinCalc",
+      "Parameters": [
+        {
+          "Name": "contractualDocument",
+          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
     },
     {
       "Name": "GetCalculationString",
@@ -1938,19 +1964,6 @@
       ],
       "ReturnType": "global::Sungero.Core.StateView",
       "ReturnTypeFullName": "Sungero.Core.StateView, Sungero.Domain.Shared"
-    },
-    {
-      "Name": "ShowOldProductsCalcWarning",
-      "Parameters": [
-        {
-          "Name": "contractualDocument",
-          "ParameterType": "global::sberdev.SBContracts.IContractualDocument",
-          "ParameterTypeFullName": "sberdev.SBContracts.IContractualDocument, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::System.String",
-      "ReturnTypeFullName": "System.String"
     },
     {
       "Name": "UpdateProductsString",

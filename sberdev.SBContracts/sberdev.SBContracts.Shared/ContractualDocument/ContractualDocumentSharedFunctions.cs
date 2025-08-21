@@ -261,10 +261,27 @@ namespace sberdev.SBContracts.Shared
     
     #endregion
     
-    #region Разные по аналитикам
+    #region Валидация карточки
     
+    /// <summary>
+    /// Возвращает текст ошибки, если есть расхождение общей суммы и общей суммы калькуляции
+    /// </summary>
+    /// <returns></returns>
     [Public]
-    public virtual string ShowOldProductsCalcWarning()
+    public virtual string CheckCalculationAmount()
+    {
+      if (_obj.CalculationBaseSberDev.Count > 0 && _obj.CalculationAmountBaseSberDev != _obj.TotalAmount)
+        return sberdev.SBContracts.Contracts.Resources.CalculationCondition;
+      else
+        return "";
+    }
+    
+    /// <summary>
+    /// Возвращает текст ошибки, если есть ли закрытые продукты в таблице калькуляции
+    /// </summary>
+    /// <returns></returns>
+    [Public]
+    public virtual string CheckOldProductsinCalc()
     {
       if (!SBContracts.PublicFunctions.Module.IsSystemUser() && _obj.State.IsInserted)
       {
@@ -286,43 +303,9 @@ namespace sberdev.SBContracts.Shared
         return "";
     }
     
-    [Public]
-    public void ApplyAnaliticSetup(SberContracts.IAnaticsSetup analiticSetup)
-    {
-      if ( _obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
-      {
-        _obj.State.Properties.MVZBaseSberDev.IsEnabled = !analiticSetup.MVZIsEnabled.GetValueOrDefault() ;
-        _obj.State.Properties.MVPBaseSberDev.IsEnabled = !analiticSetup.MVPIsEnabled.GetValueOrDefault() ;
-        _obj.State.Properties.MVZBaseSberDev.IsVisible = analiticSetup.MVZIsVisible.GetValueOrDefault() ;
-        _obj.State.Properties.MVPBaseSberDev.IsVisible = analiticSetup.MVPIsVisible.GetValueOrDefault() ;
-        _obj.State.Properties.MVZBaseSberDev.IsRequired = analiticSetup.MVZIsRequired.GetValueOrDefault() ;
-        _obj.State.Properties.MVPBaseSberDev.IsRequired = analiticSetup.MVPIsRequired.GetValueOrDefault() ;
-      }
-      if ( _obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable)
-      {
-        _obj.State.Properties.MVZBaseSberDev.IsEnabled = !analiticSetup.MVZIsEnabled.GetValueOrDefault() ;
-        _obj.State.Properties.MVPBaseSberDev.IsEnabled = !analiticSetup.MVPIsEnabled.GetValueOrDefault() ;
-        _obj.State.Properties.MVZBaseSberDev.IsVisible = analiticSetup.MVZIsVisible.GetValueOrDefault() ;
-        _obj.State.Properties.MVPBaseSberDev.IsVisible = analiticSetup.MVZIsVisible.GetValueOrDefault() ;
-        _obj.State.Properties.MVZBaseSberDev.IsRequired = analiticSetup.MVZIsRequired.GetValueOrDefault() ;
-        _obj.State.Properties.MVPBaseSberDev.IsRequired = analiticSetup.MVPIsRequired.GetValueOrDefault() ;
-      }
-      _obj.State.Properties.AccArtPrBaseSberDev.IsRequired = analiticSetup.AccArtsIsRequired.GetValueOrDefault() ;
-      _obj.State.Properties.AccArtPrBaseSberDev.IsEnabled = !analiticSetup.AccArtsIsEnabled.GetValueOrDefault() ;
-      _obj.State.Properties.AccArtPrBaseSberDev.IsVisible = analiticSetup.AccArtsIsVisible.GetValueOrDefault() ;
-      _obj.State.Properties.AccArtExBaseSberDev.IsRequired = analiticSetup.AccArtsIsRequired.GetValueOrDefault() ;
-      _obj.State.Properties.AccArtExBaseSberDev.IsEnabled = !analiticSetup.AccArtsIsEnabled.GetValueOrDefault() ;
-      _obj.State.Properties.AccArtExBaseSberDev.IsVisible = analiticSetup.AccArtsIsVisible.GetValueOrDefault() ;
-      _obj.State.Properties.ProdCollectionPrBaseSberDev.IsVisible = analiticSetup.ProdIsVisible.GetValueOrDefault() ;
-      _obj.State.Properties.ProdCollectionPrBaseSberDev.IsEnabled = !analiticSetup.ProdIsEnabled.GetValueOrDefault() ;
-      _obj.State.Properties.ProdCollectionPrBaseSberDev.IsRequired = analiticSetup.ProdIsRequired.GetValueOrDefault() ;
-      _obj.State.Properties.ProdCollectionExBaseSberDev.IsVisible = analiticSetup.ProdIsVisible.GetValueOrDefault() ;
-      _obj.State.Properties.ProdCollectionExBaseSberDev.IsEnabled = !analiticSetup.ProdIsEnabled.GetValueOrDefault() ;
-      _obj.State.Properties.ProdCollectionExBaseSberDev.IsRequired = analiticSetup.ProdIsRequired.GetValueOrDefault() ;
-      
-      CancelRequiredPropeties();
-    }
-    
+    /// <summary>
+    /// Подсвечивает закрыте аналитики
+    /// </summary>
     public void HighlightClosedAnalitics()
     {
       _obj.State.Properties.MVPBaseSberDev.HighlightColor = _obj.MVPBaseSberDev != null && _obj.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Closed ?
@@ -372,10 +355,10 @@ namespace sberdev.SBContracts.Shared
     }
     
     /// <summary>
-    /// Функция возвращает текст ошибки, если в каком либо поле выбраны заглушки
+    /// Возвращает текст ошибки, если в каком либо поле выбраны заглушки
     /// </summary>
     [Public]
-    public virtual string BanToSaveForStabs()
+    public virtual string CheckAnaliticsStabs()
     {
       var error = "";
       if (!SBContracts.PublicFunctions.Module.IsSystemUser())
@@ -509,10 +492,14 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.DeliveryMethod.IsRequired = true;
     }
     
+    /// <summary>
+    /// Выключает обязательность некоторых полей для действий системы. Не знаю нужна ли эта функция вооьще сейчас, но отключать не рискую пока что
+    /// </summary>
     public virtual void CancelRequiredPropeties()
     {
       if (SBContracts.PublicFunctions.Module.IsSystemUser())
       {
+        _obj.State.Properties.DeliveryMethod.IsRequired = false;
         _obj.State.Properties.MVZBaseSberDev.IsRequired = false;
         _obj.State.Properties.MVPBaseSberDev.IsRequired = false;
         _obj.State.Properties.TotalAmount.IsRequired = false;
@@ -720,12 +707,49 @@ namespace sberdev.SBContracts.Shared
 
     // Серверная функция для обновления строки продуктов
     [Public]
-    public void UpdateProductsString()
+    public virtual void UpdateProductsString()
     {
       var newProductsString = Functions.ContractualDocument.BuildProductsString(_obj);
 
       if (_obj.ProdCollectionStringSDev != newProductsString)
         _obj.ProdCollectionStringSDev = newProductsString;
+    }
+    
+    [Public]
+    public void ApplyAnaliticSetup(SberContracts.IAnaticsSetup analiticSetup)
+    {
+      if ( _obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Profitable)
+      {
+        _obj.State.Properties.MVZBaseSberDev.IsEnabled = !analiticSetup.MVZIsEnabled.GetValueOrDefault() ;
+        _obj.State.Properties.MVPBaseSberDev.IsEnabled = !analiticSetup.MVPIsEnabled.GetValueOrDefault() ;
+        _obj.State.Properties.MVZBaseSberDev.IsVisible = analiticSetup.MVZIsVisible.GetValueOrDefault() ;
+        _obj.State.Properties.MVPBaseSberDev.IsVisible = analiticSetup.MVPIsVisible.GetValueOrDefault() ;
+        _obj.State.Properties.MVZBaseSberDev.IsRequired = analiticSetup.MVZIsRequired.GetValueOrDefault() ;
+        _obj.State.Properties.MVPBaseSberDev.IsRequired = analiticSetup.MVPIsRequired.GetValueOrDefault() ;
+      }
+      if ( _obj.ContrTypeBaseSberDev == ContrTypeBaseSberDev.Expendable)
+      {
+        _obj.State.Properties.MVZBaseSberDev.IsEnabled = !analiticSetup.MVZIsEnabled.GetValueOrDefault() ;
+        _obj.State.Properties.MVPBaseSberDev.IsEnabled = !analiticSetup.MVPIsEnabled.GetValueOrDefault() ;
+        _obj.State.Properties.MVZBaseSberDev.IsVisible = analiticSetup.MVZIsVisible.GetValueOrDefault() ;
+        _obj.State.Properties.MVPBaseSberDev.IsVisible = analiticSetup.MVZIsVisible.GetValueOrDefault() ;
+        _obj.State.Properties.MVZBaseSberDev.IsRequired = analiticSetup.MVZIsRequired.GetValueOrDefault() ;
+        _obj.State.Properties.MVPBaseSberDev.IsRequired = analiticSetup.MVPIsRequired.GetValueOrDefault() ;
+      }
+      _obj.State.Properties.AccArtPrBaseSberDev.IsRequired = analiticSetup.AccArtsIsRequired.GetValueOrDefault() ;
+      _obj.State.Properties.AccArtPrBaseSberDev.IsEnabled = !analiticSetup.AccArtsIsEnabled.GetValueOrDefault() ;
+      _obj.State.Properties.AccArtPrBaseSberDev.IsVisible = analiticSetup.AccArtsIsVisible.GetValueOrDefault() ;
+      _obj.State.Properties.AccArtExBaseSberDev.IsRequired = analiticSetup.AccArtsIsRequired.GetValueOrDefault() ;
+      _obj.State.Properties.AccArtExBaseSberDev.IsEnabled = !analiticSetup.AccArtsIsEnabled.GetValueOrDefault() ;
+      _obj.State.Properties.AccArtExBaseSberDev.IsVisible = analiticSetup.AccArtsIsVisible.GetValueOrDefault() ;
+      _obj.State.Properties.ProdCollectionPrBaseSberDev.IsVisible = analiticSetup.ProdIsVisible.GetValueOrDefault() ;
+      _obj.State.Properties.ProdCollectionPrBaseSberDev.IsEnabled = !analiticSetup.ProdIsEnabled.GetValueOrDefault() ;
+      _obj.State.Properties.ProdCollectionPrBaseSberDev.IsRequired = analiticSetup.ProdIsRequired.GetValueOrDefault() ;
+      _obj.State.Properties.ProdCollectionExBaseSberDev.IsVisible = analiticSetup.ProdIsVisible.GetValueOrDefault() ;
+      _obj.State.Properties.ProdCollectionExBaseSberDev.IsEnabled = !analiticSetup.ProdIsEnabled.GetValueOrDefault() ;
+      _obj.State.Properties.ProdCollectionExBaseSberDev.IsRequired = analiticSetup.ProdIsRequired.GetValueOrDefault() ;
+      
+      CancelRequiredPropeties();
     }
 
     #endregion
