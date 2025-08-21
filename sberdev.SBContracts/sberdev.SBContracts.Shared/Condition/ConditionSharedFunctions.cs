@@ -127,7 +127,12 @@ namespace sberdev.SBContracts.Shared
         if (official == null)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
             false,
-            "Документ не является официальным.");
+            "Условие не может быть вычеслено, документ не является официальным.");
+        
+        if (official.LastVersion == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            false,
+            "Условие не может быть вычеслено, у документа нет версий.");
         
         var modified = official?.ModifiedSberDev;
         
@@ -168,7 +173,8 @@ namespace sberdev.SBContracts.Shared
             false,
             "Документ не является официальным.");
         
-        var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).FirstOrDefault();
+        var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).Where(s => s.SignatureType == SignatureType.Approval
+                                                                                            || s.SignatureType == SignatureType.Endorsing).FirstOrDefault();
         if (firstApprove == null)
         {
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(

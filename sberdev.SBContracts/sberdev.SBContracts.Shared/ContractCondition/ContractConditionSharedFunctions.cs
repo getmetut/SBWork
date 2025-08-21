@@ -105,7 +105,7 @@ namespace sberdev.SBContracts.Shared
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
       
-      #region Проверка: Изменён ли документ после старта согласования (DocChangedStart)
+      #region Проверка: Изменён ли документ после запуска задачи (DocChangedStart)
       if (_obj.ConditionType == ConditionType.DocChangedStart)
       {
         var official = SBContracts.OfficialDocuments.As(document);
@@ -113,6 +113,11 @@ namespace sberdev.SBContracts.Shared
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
             false,
             "Документ не является официальным.");
+        
+        if (official.LastVersion == null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            false,
+            "Условие не может быть вычеслено, у документа нет версий.");
         
         var modified = official?.ModifiedSberDev;
         
@@ -153,7 +158,8 @@ namespace sberdev.SBContracts.Shared
             false,
             "Документ не является официальным.");
         
-        var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).FirstOrDefault();
+        var firstApprove = PublicFunctions.Module.GetSignatures(document.LastVersion).Where(s => s.SignatureType == SignatureType.Approval
+                                                                                            || s.SignatureType == SignatureType.Endorsing).FirstOrDefault();
         if (firstApprove == null)
         {
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(

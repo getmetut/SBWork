@@ -17,7 +17,7 @@ namespace sberdev.SBContracts.Server
           return "Документ изменен после первого согласования?";
           
         if (_obj.ConditionType == ConditionType.DocChangedStart)
-          return "Документ изменен после старта задачи?";
+          return "Документ изменен после запуска задачи?";
         
         if (_obj.ConditionType == ConditionType.Source)
         {

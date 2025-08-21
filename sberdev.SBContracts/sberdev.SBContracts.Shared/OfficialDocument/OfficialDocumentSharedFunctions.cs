@@ -12,10 +12,32 @@ namespace sberdev.SBContracts.Shared
     
     public static System.Collections.Generic.HashSet<string> GetSkipProps()
     {
-      return new System.Collections.Generic.HashSet<string>(new[] {
+     return new System.Collections.Generic.HashSet<string>(new[] {
                                                        "Modified","ModifiedBy","Created","CreatedBy","ModifiedSberDev",
-                                                       "LastVersion","VersionId","LocationState"
+                                                       "LastVersion","VersionId","LocationState", "InternalApprovalState", "ExternalApprovalState", "ExecutionState", "", "ControlExecutionState",
+                                                       
+                                                       "Index", "RegistrationNumber", "LifeCycleState", "DocumentRegister",
+                                                       "RegistrationDate", "CaseFile", "PlacedToCaseFileDate", "Tracking", "IsReturnRequired", "IsHeldByCounterParty", "DeliveredTo", "ReturnDeadline",
+                                                       "ReturnDate","RegistrationState",
+                                                       
+                                                       "ScheduledReturnDateFromCounterparty", "HasRelations"
                                                      });
+      
+      /*  new System.Collections.Generic.HashSet<string>(new[] {
+                                                       "Modified","ModifiedBy","Created","CreatedBy","ModifiedSberDev",
+                                                       "LastVersion","VersionId","LocationState", "Index", "RegistrationNumber", "", "", "",
+                                                       "RegistrationDate", "", "", "", "", "", "", "", "",
+                                                       "", "", "", "", "", "", "", "", ""
+                                                         "", "", "", "", "", "", "", "", ""
+                                                         "", "", "", "", "", "", "", "", ""
+                                                     });
+      new System.Collections.Generic.HashSet<string>(new[] {
+                                                       "Index", "RegistrationNumber", "", "", "",
+                                                       "RegistrationDate", "", "", "", "", "", "", "", "",
+                                                       "", "", "", "", "", "", "", "", ""
+                                                         "", "", "", "", "", "", "", "", ""
+                                                         "", "", "", "", "", "", "", "", ""
+                                                     });*/
     }
     
     /// <summary>
