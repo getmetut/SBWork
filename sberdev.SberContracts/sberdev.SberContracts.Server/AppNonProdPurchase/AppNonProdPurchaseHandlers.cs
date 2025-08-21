@@ -10,6 +10,13 @@ namespace sberdev.SberContracts
   partial class AppNonProdPurchaseServerHandlers
   {
 
+    public override void Created(Sungero.Domain.CreatedEventArgs e)
+    {
+      base.Created(e);
+      _obj.LifeCycleState = LifeCycleState.Draft;
+      _obj.DateCreate = Calendar.Today;
+    }
+
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
       base.BeforeSave(e);

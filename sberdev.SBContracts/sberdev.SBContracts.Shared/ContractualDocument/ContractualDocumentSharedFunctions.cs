@@ -264,7 +264,7 @@ namespace sberdev.SBContracts.Shared
     #region Разные по аналитикам
     
     [Public]
-    public string ShowOldProductsCalcWarning()
+    public virtual string ShowOldProductsCalcWarning()
     {
       if (!SBContracts.PublicFunctions.Module.IsSystemUser() && _obj.State.IsInserted)
       {
@@ -509,7 +509,7 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.DeliveryMethod.IsRequired = true;
     }
     
-    public void CancelRequiredPropeties()
+    public virtual void CancelRequiredPropeties()
     {
       if (SBContracts.PublicFunctions.Module.IsSystemUser())
       {

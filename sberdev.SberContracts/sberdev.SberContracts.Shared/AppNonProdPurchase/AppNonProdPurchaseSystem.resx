@@ -290,4 +290,112 @@ In the absence of these trainings, the following reputational risks are possible
   <data name="Property_ResponsibleSourcing" xml:space="preserve">
     <value>Responsible from the customer</value>
   </data>
+  <data name="Action_SendToBPTaskBase" xml:space="preserve">
+    <value>Направить исполнителю</value>
+  </data>
+  <data name="Action_SendToBPTaskBaseDescription" xml:space="preserve">
+    <value>Направление документа на исполнение исполнителю</value>
+  </data>
+  <data name="Action_SendToBPTaskBaseHint" xml:space="preserve">
+    <value>Направление документа на исполнение исполнителю</value>
+  </data>
+  <data name="Action_SendToBPTaskBaseConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SendToBPTaskBaseConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Enum_LifeCycleState_Assigned" xml:space="preserve">
+    <value>На исполнении</value>
+  </data>
+  <data name="Property_DateCreate" xml:space="preserve">
+    <value>Дата поступления заявки</value>
+  </data>
+  <data name="Property_DateInWork" xml:space="preserve">
+    <value>Дата принятия заявки в работу</value>
+  </data>
+  <data name="Property_DateActivate" xml:space="preserve">
+    <value>Дата исполнения Заявки</value>
+  </data>
+  <data name="Property_DateFinish" xml:space="preserve">
+    <value>Дата поставки/начала оказания услуг</value>
+  </data>
+  <data name="Resource_91cff7df37834f868122f6238e9ba7c0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_91cff7df37834f868122f6238e9ba7c0_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_670056d3a80d41c290537ace73f8c3e3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ec742a73eb834925a43ca0a7cf42eae0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_ec742a73eb834925a43ca0a7cf42eae0_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_cef9fb71a92045359bc5a2f6aa08adb7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f670edc2a3f4483f844d7fbdd10edc38" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_f670edc2a3f4483f844d7fbdd10edc38_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ControlGroup_ec1bb0c206a54cc4beec05e614596003" xml:space="preserve">
+    <value>Информация по закупке</value>
+  </data>
+  <data name="Property_NumPosition" xml:space="preserve">
+    <value>Номер строки плана закупок</value>
+  </data>
+  <data name="Property_CategoryPurchase" xml:space="preserve">
+    <value>Категория закупок</value>
+  </data>
+  <data name="Property_InternalApprovalState" xml:space="preserve">
+    <value>Internal approval</value>
+  </data>
+  <data name="Enum_InternalApprovalState_Aborted" xml:space="preserve">
+    <value>Aborted</value>
+  </data>
+  <data name="Enum_InternalApprovalState_Signed" xml:space="preserve">
+    <value>Signed</value>
+  </data>
+  <data name="Enum_InternalApprovalState_PendingSign" xml:space="preserve">
+    <value>Pending signature</value>
+  </data>
+  <data name="Enum_InternalApprovalState_OnRework" xml:space="preserve">
+    <value>On rework</value>
+  </data>
+  <data name="Enum_InternalApprovalState_OnApproval" xml:space="preserve">
+    <value>On approval</value>
+  </data>
+  <data name="Enum_ExecutionState_Aborted" xml:space="preserve">
+    <value>Aborted</value>
+  </data>
+  <data name="Enum_ExecutionState_Executed" xml:space="preserve">
+    <value>Executed</value>
+  </data>
+  <data name="Enum_ExecutionState_OnExecution" xml:space="preserve">
+    <value>On execution</value>
+  </data>
+  <data name="Enum_ExecutionState_WithoutExecut" xml:space="preserve">
+    <value>Execution not required</value>
+  </data>
+  <data name="Enum_ExecutionState_Sending" xml:space="preserve">
+    <value>Sending for execution</value>
+  </data>
+  <data name="Enum_ExecutionState_OnReview" xml:space="preserve">
+    <value>On review</value>
+  </data>
+  <data name="Enum_LifeCycleState_Obsolete" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="Enum_LifeCycleState_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Enum_LifeCycleState_Draft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
 </root>

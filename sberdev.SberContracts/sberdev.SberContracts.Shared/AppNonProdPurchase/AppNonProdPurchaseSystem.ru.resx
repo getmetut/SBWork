@@ -236,4 +236,73 @@
   <data name="Property_ResponsibleSourcing" xml:space="preserve">
     <value>Ответственный от заказчика</value>
   </data>
+  <data name="Resource_91cff7df37834f868122f6238e9ba7c0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_91cff7df37834f868122f6238e9ba7c0_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_670056d3a80d41c290537ace73f8c3e3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_ec742a73eb834925a43ca0a7cf42eae0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_ec742a73eb834925a43ca0a7cf42eae0_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_cef9fb71a92045359bc5a2f6aa08adb7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_f670edc2a3f4483f844d7fbdd10edc38" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_f670edc2a3f4483f844d7fbdd10edc38_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_InternalApprovalState" xml:space="preserve">
+    <value>Согласование</value>
+  </data>
+  <data name="Enum_InternalApprovalState_Aborted" xml:space="preserve">
+    <value>Прекращено</value>
+  </data>
+  <data name="Enum_InternalApprovalState_Signed" xml:space="preserve">
+    <value>Подписан</value>
+  </data>
+  <data name="Enum_InternalApprovalState_PendingSign" xml:space="preserve">
+    <value>На подписании</value>
+  </data>
+  <data name="Enum_InternalApprovalState_OnRework" xml:space="preserve">
+    <value>На доработке</value>
+  </data>
+  <data name="Enum_InternalApprovalState_OnApproval" xml:space="preserve">
+    <value>На согласовании</value>
+  </data>
+  <data name="Enum_ExecutionState_Aborted" xml:space="preserve">
+    <value>Прекращено</value>
+  </data>
+  <data name="Enum_ExecutionState_Executed" xml:space="preserve">
+    <value>Исполнен</value>
+  </data>
+  <data name="Enum_ExecutionState_OnExecution" xml:space="preserve">
+    <value>На исполнении</value>
+  </data>
+  <data name="Enum_ExecutionState_WithoutExecut" xml:space="preserve">
+    <value>Не требует исполнения</value>
+  </data>
+  <data name="Enum_ExecutionState_Sending" xml:space="preserve">
+    <value>Отправка на исполнение</value>
+  </data>
+  <data name="Enum_ExecutionState_OnReview" xml:space="preserve">
+    <value>На рассмотрении</value>
+  </data>
+  <data name="Enum_LifeCycleState_Obsolete" xml:space="preserve">
+    <value>Аннулирован</value>
+  </data>
+  <data name="Enum_LifeCycleState_Active" xml:space="preserve">
+    <value>Действующий</value>
+  </data>
+  <data name="Enum_LifeCycleState_Draft" xml:space="preserve">
+    <value>В разработке</value>
+  </data>
 </root>
