@@ -12,33 +12,6 @@ namespace sberdev.SBContracts.Server
     #region Сеты*
     
     /// <summary>
-    /// Удаляет исполнителя у этапа проверки ка, если он проверяется в данный момент
-    /// </summary>
-    /// <param name="assignment"></param>
-    public void RemoveCPCheckingPerformer(Sungero.Docflow.IApprovalAssignment assignment)
-    {
-      var sberAssign = SBContracts.ApprovalAssignments.As(assignment);
-      var stage = GetStage();
-      if (stage == null)
-        return;
-      
-      bool flag = IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
-      if (!flag)
-        return;
-      
-      var contractual = SBContracts.ContractualDocuments.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault());
-      if (contractual == null)
-        return;
-      
-      var cp = SBContracts.Counterparties.As(contractual.Counterparty);
-      if (cp == null)
-        return;
-      
-      if (cp.FocusCheckingSberDev == true)
-        sberAssign.Performer = null;
-    }
-    
-    /// <summary>
     /// Изменяет статус ка на "Не проверяется в данный момент"
     /// </summary>
     /// <param name="assignment"></param>
@@ -154,10 +127,13 @@ namespace sberdev.SBContracts.Server
     {
       if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.SupplementalStage))
       {
+        var performers = e.Block.Performers;
+        e.Block.Performers.Clear();
         var lastAssign = GetLastTaskAssigment(_obj, null);
         var typedAssign = SBContracts.ApprovalAssignments.As(lastAssign);
-        if (typedAssign != null && typedAssign?.IsNeedSupStageSberDev != true)
-          e.Block.Performers.Clear();
+        if (typedAssign != null && typedAssign?.IsNeedSupStageSberDev == true)
+          foreach (var performer in performers)
+            e.Block.Performers.Add(performer);
       }
     }
     

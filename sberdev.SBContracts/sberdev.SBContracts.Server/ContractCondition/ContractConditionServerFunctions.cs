@@ -12,13 +12,12 @@ namespace sberdev.SBContracts.Server
     public override string GetConditionName()
     {
       using (TenantInfo.Culture.SwitchTo())
-      {
-        
+      {        
         if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
           return "Документ изменен после первого согласования?";
           
         if (_obj.ConditionType == ConditionType.DocChangedStart)
-          return "Документ изменен после начала согласования?";
+          return "Документ изменен после старта задачи?";
         
         if (_obj.ConditionType == ConditionType.Source)
         {

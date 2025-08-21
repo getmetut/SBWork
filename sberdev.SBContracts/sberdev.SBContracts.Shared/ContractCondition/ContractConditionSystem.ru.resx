@@ -214,6 +214,9 @@
   <data name="Enum_ConditionType_Source" xml:space="preserve">
     <value>Источник</value>
   </data>
+  <data name="Enum_ConditionType_DocChangedStart" xml:space="preserve">
+    <value>Документ изменен после запуска задачи</value>
+	</data>
   <data name="Enum_ConditionType_Product" xml:space="preserve">
     <value>Продукт</value>
   </data>

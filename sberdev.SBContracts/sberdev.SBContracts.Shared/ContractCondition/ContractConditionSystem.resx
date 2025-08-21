@@ -244,6 +244,9 @@
   <data name="Enum_ConditionType_Source" xml:space="preserve">
     <value>Source</value>
   </data>
+  <data name="Enum_ConditionType_DocChangedStart" xml:space="preserve">
+   <value>Document changes after task starts</value>
+   </data>
   <data name="Enum_ConditionType_Product" xml:space="preserve">
     <value>Product</value>
   </data>

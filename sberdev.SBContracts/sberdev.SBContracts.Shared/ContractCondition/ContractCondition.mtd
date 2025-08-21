@@ -671,6 +671,11 @@
           "Code": "Source"
         },
         {
+          "NameGuid": "23553a47-80ce-499e-a774-6a1e7155bca8",
+          "Name": "DocChangedStart",
+          "Code": "DocChangedStart"
+        },
+        {
           "NameGuid": "5f6900fb-7803-4883-81ce-34df4e885c08",
           "Name": "Product",
           "Code": "Product"
