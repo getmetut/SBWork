@@ -8,6 +8,6 @@ namespace sberdev.SBContracts.Module.Docflow.Client
 {
   partial class ModuleFunctions
   {
-
+    
   }
 }

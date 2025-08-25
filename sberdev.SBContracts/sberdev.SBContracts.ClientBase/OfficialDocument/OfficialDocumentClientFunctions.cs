@@ -30,6 +30,6 @@ namespace sberdev.SBContracts.Client
         CDT.RegistrationDate = CDT.Created;
       
       return CDT;
-    }
+    }    
   }
 }

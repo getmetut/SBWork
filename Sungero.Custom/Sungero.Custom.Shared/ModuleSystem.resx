@@ -187,4 +187,10 @@
   <data name="CoverDescription_MailDeliveryMethod" xml:space="preserve">
     <value>Справочник способов доставки</value>
   </data>
+  <data name="CoverAction_InJiraAction" xml:space="preserve">
+    <value>Создать заявку на непроизводственную закупку</value>
+  </data>
+  <data name="CoverDescription_InJiraAction" xml:space="preserve">
+    <value>Ссылка для действия "Создать заявку на непроизводственную закупку"</value>
+  </data>
 </root>

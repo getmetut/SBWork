@@ -30,6 +30,14 @@
       },
       {
         "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
+        "NameGuid": "88cb13a1-62c3-4588-9b71-94120f496e4a",
+        "Name": "InJiraAction",
+        "FunctionName": "GenerateNonProdPurchase",
+        "GroupId": "5c39611e-8c85-4881-9eb6-9cdba35a0679",
+        "PreviousItemGuid": "eea34f50-4059-4d31-a31e-3dfdc3559e29"
+      },
+      {
+        "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
         "NameGuid": "b74e4928-9ab4-4130-a225-5c4d6854645f",
         "Name": "ReSaveUsers",
         "FunctionName": "ReSaveEmpl",
@@ -298,6 +306,10 @@
     {
       "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
       "PreviousItemId": "43dd816c-6f76-47bc-bde4-d0f18d2af388"
+    },
+    {
+      "ItemId": "97506b84-f32f-4902-b990-9b4e847ffa70",
+      "PreviousItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a"
     }
   ],
   "HandledEvents": [

@@ -11,6 +11,16 @@ namespace Sungero.Custom.Client
 {
   public class ModuleFunctions
   {
+
+    /// <summary>
+    /// Создать заявку на непроизводственную закупку
+    /// </summary>
+    public virtual void GenerateNonProdPurchase()
+    {
+      var nonprodpurch = sberdev.SberContracts.AppNonProdPurchases.Create();
+      nonprodpurch.Show();
+    }
+    
     /// <summary>
     /// Тестирование доступности на чтение задач по ИД
     /// </summary>

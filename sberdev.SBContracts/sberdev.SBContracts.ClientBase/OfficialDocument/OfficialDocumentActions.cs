@@ -232,6 +232,33 @@ namespace sberdev.SBContracts.Client
       //PublicFunctions.OfficialDocument.Remote.NullingManuallyChecked(_obj);
       base.CreateFromTemplate(e);
     }
+    
+    private void CreateApprovalTask(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      var availableApprovalRules = Sungero.Docflow.PublicFunctions.OfficialDocument.Remote.GetApprovalRules(_obj).ToList();
+
+      if (availableApprovalRules.Any())
+      {
+        var task = Sungero.Docflow.PublicFunctions.Module.Remote.CreateApprovalTask(_obj);
+        if (sberdev.SBContracts.IncomingInvoices.Is(_obj))
+        {
+          var incinv = sberdev.SBContracts.IncomingInvoices.As(_obj);
+          if (incinv.ResponsibleObserverATSDev != null)
+          {
+            var newpos = task.Observers.AddNew();
+            newpos.Observer = incinv.ResponsibleObserverATSDev;
+          }
+        }
+        task.Show();
+        e.CloseFormAfterAction = true;
+      }
+      else
+      {
+        // Если по документу нет регламента, вывести сообщение.
+        Dialogs.ShowMessage(OfficialDocuments.Resources.NoApprovalRuleWarning, MessageType.Warning);
+        throw new OperationCanceledException();
+      }
+    }
 
     public override bool CanCreateFromTemplate(Sungero.Domain.Client.CanExecuteActionArgs e)
     {
