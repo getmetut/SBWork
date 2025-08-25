@@ -9,6 +9,7 @@ namespace sberdev.SBContracts.Server
 {
   partial class CounterpartyFunctions
   {
+    #region Подсчет сумм договоров по КА
     [Public]
     /// <summary>
     /// Считает сумму всех расходных договоров с контрагентом
@@ -88,6 +89,21 @@ namespace sberdev.SBContracts.Server
         contracts = contracts.Where(l => l.Created > dateFrom && l.DocumentDate < dateTo).ToList();
       
       return contracts.Sum(a => a.TotalAmount.GetValueOrDefault());
+    }
+    #endregion
+
+    [Public]
+    /// <summary>
+    /// Устанавливает значение в поле FocusChecking
+    /// </summary>       
+    public void SetFocusCheckingValue(bool value)
+    {
+      if (_obj.FocusCheckingSberDev != value)
+      {
+        SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(_obj);
+        _obj.FocusCheckingSberDev = value;
+        _obj.Save();
+      }
     }
   }
 }

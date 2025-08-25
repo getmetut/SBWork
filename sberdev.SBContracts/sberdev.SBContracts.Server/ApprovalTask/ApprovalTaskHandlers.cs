@@ -92,7 +92,7 @@ namespace sberdev.SBContracts
           if (gurantee.ContrTypeBaseSberDev == SberContracts.GuaranteeLetter.ContrTypeBaseSberDev.Expendable)
             _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Expendable;
           if (gurantee.ContrTypeBaseSberDev == SberContracts.GuaranteeLetter.ContrTypeBaseSberDev.ExpendProfitSberDev)
-            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.ProfExpen;
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.ProfExpen;  
         }
       }
       if (gurantee != null && gurantee.TotalAmount < 5000000 && gurantee.AddendumDocument == null)
@@ -166,29 +166,16 @@ namespace sberdev.SBContracts
 
     public override void BeforeAbort(Sungero.Workflow.Server.BeforeAbortEventArgs e)
     {
-      if (_obj.NeedAbort.GetValueOrDefault())
-      {
-        var document = _obj.DocumentGroup.OfficialDocuments.First();
-        var subject = string.Format(Sungero.Exchange.Resources.TaskSubjectTemplate, "Прекращено согласование", Sungero.Docflow.PublicFunctions.Module.TrimSpecialSymbols(document.Name));
-        var task = SimpleTasks.CreateAsSubtask(_obj);
-        task.Subject = subject ;
-        task.ThreadSubject = "Прекращено согласование";
-        task.ActiveText = _obj.AbortingReason;
-        task.NeedsReview = false;
-        task.Author = _obj.Author;
-        var routeStep = task.RouteSteps.AddNew();
-        routeStep.AssignmentType = Sungero.Workflow.SimpleTaskRouteSteps.AssignmentType.Notice;
-        routeStep.Performer = _obj.Author;
-        routeStep.Deadline = null;
-        task.Start();
-      }
-      else
-      {
-        base.BeforeAbort(e);
-      }
+      base.BeforeAbort(e);
+      
+      var contractual = SBContracts.ContractualDocuments.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault());
+      if (contractual == null)
+        return;
+      
+      var cp = SBContracts.Counterparties.As(contractual.Counterparty);
+      if (cp == null)
+        return;
+      PublicFunctions.Counterparty.SetFocusCheckingValue(cp, false);
     }
   }
-
-
-
 }

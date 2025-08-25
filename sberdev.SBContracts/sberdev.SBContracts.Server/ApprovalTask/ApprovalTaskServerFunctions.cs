@@ -12,10 +12,10 @@ namespace sberdev.SBContracts.Server
     #region Сеты*
     
     /// <summary>
-    /// Изменяет статус ка на "Не проверяется в данный момент"
+    /// Ставит статус ка "проверяется в данный момент"
     /// </summary>
     /// <param name="assignment"></param>
-    public void MarkCPAsChecking(Sungero.Docflow.IApprovalAssignment assignment)
+    public void SetCPCheckingProperty(Sungero.Docflow.IApprovalAssignment assignment)
     {
       var sberAssign = SBContracts.ApprovalAssignments.As(assignment);
       var stage = GetStage();
@@ -34,12 +34,7 @@ namespace sberdev.SBContracts.Server
       if (cp == null)
         return;
       
-      if (cp.FocusCheckingSberDev != true)
-      {
-        SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(cp);
-        cp.FocusCheckingSberDev = true;
-        cp.Save();
-      }
+      PublicFunctions.Counterparty.SetFocusCheckingValue(cp, true);
     }
     
     public void SetChangeAccessRightsOnDocs(Sungero.Docflow.IApprovalAssignment assignment)
@@ -78,7 +73,7 @@ namespace sberdev.SBContracts.Server
       for (var attempt = 1; attempt <= maxAttempts; attempt++)
       {
         // аккуратно пробуем захватить
-        if (!Sungero.Domain.Locks.TryLock(doc))
+        if (!Locks.TryLock(doc))
         {
           System.Threading.Thread.Sleep(300 * attempt);
           continue;
@@ -90,7 +85,7 @@ namespace sberdev.SBContracts.Server
           doc.AccessRights.Save();
           return;
         }
-        catch (Sungero.Database.DbCommandTimeoutException)
+        catch (Sungero.Domain.Shared.Exceptions.OperationRetryTimeoutException)
         {
           if (attempt == maxAttempts) throw;
           System.Threading.Thread.Sleep(500 * attempt);
@@ -102,12 +97,12 @@ namespace sberdev.SBContracts.Server
         }
         finally
         {
-          Sungero.Domain.Locks.Unlock(doc);
+          Locks.Unlock(doc);
         }
       }
     }
 
-    public void ChangeNameCheckCPStage(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
+    public void SetCheckCPStageName(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
     {
       bool isCheckingCPStage = PublicFunctions.ApprovalTask.IsNecessaryStage(_obj, PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
       if (isCheckingCPStage)
@@ -160,11 +155,11 @@ namespace sberdev.SBContracts.Server
     {
       if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.SupplementalStage))
       {
-        var performers = e.Block.Performers;
+        var performers = e.Block.Performers.ToList();
         e.Block.Performers.Clear();
         var lastAssign = GetLastTaskAssigment(_obj, null);
         var typedAssign = SBContracts.ApprovalAssignments.As(lastAssign);
-        if (typedAssign != null && typedAssign?.IsNeedSupStageSberDev == true)
+        if (typedAssign?.IsNeedSupStageSberDev == true)
           foreach (var performer in performers)
             e.Block.Performers.Add(performer);
       }
@@ -426,6 +421,31 @@ namespace sberdev.SBContracts.Server
             flag = true;
       }
       return flag;
+    }
+    #endregion
+    
+    #region Переопределенные функции
+    
+    public override void SendApprovalAbortNotice()
+    {
+      if (_obj.NeedAbort.GetValueOrDefault() )
+      {
+        var document = _obj.DocumentGroup.OfficialDocuments.First();
+        var subject = string.Format(Sungero.Exchange.Resources.TaskSubjectTemplate, "Прекращено согласование", Sungero.Docflow.PublicFunctions.Module.TrimSpecialSymbols(document.Name));
+        var task = Sungero.Workflow.SimpleTasks.CreateAsSubtask(_obj);
+        task.Subject = subject ;
+        task.ThreadSubject = "Прекращено согласование";
+        task.ActiveText = _obj.AbortingReason;
+        task.NeedsReview = false;
+        task.Author = _obj.Author;
+        var routeStep = task.RouteSteps.AddNew();
+        routeStep.AssignmentType = Sungero.Workflow.SimpleTaskRouteSteps.AssignmentType.Notice;
+        routeStep.Performer = _obj.Author;
+        routeStep.Deadline = null;
+        task.Start();
+      }
+      else
+        base.SendApprovalAbortNotice();
     }
     #endregion
   }

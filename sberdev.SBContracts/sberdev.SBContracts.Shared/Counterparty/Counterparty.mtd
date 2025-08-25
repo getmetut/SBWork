@@ -426,6 +426,23 @@
       ],
       "ReturnType": "global::System.Double",
       "ReturnTypeFullName": "System.Double"
+    },
+    {
+      "Name": "SetFocusCheckingValue",
+      "Parameters": [
+        {
+          "Name": "counterparty",
+          "ParameterType": "global::sberdev.SBContracts.ICounterparty",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICounterparty, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "value",
+          "ParameterType": "global::System.Boolean",
+          "ParameterTypeFullName": "System.Boolean"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [],

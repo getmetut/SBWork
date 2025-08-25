@@ -19,7 +19,7 @@ namespace sberdev.SBContracts.Server
       base.StartBlock6(e);
       Functions.ApprovalTask.RemoveOneTimeCompletePerformers(_obj, e);
       Functions.ApprovalTask.CancelApproveSkip(_obj, e);
-      Functions.ApprovalTask.ChangeNameCheckCPStage(_obj, e);
+      Functions.ApprovalTask.SetCheckCPStageName(_obj, e);
     }
 
     public override void StartAssignment6(Sungero.Docflow.IApprovalAssignment assignment, Sungero.Docflow.Server.ApprovalAssignmentArguments e)
@@ -27,7 +27,7 @@ namespace sberdev.SBContracts.Server
       base.StartAssignment6(assignment, e);
       Functions.ApprovalTask.SetSubstitutePerformer(_obj, assignment);
       Functions.ApprovalTask.SetChangeAccessRightsOnDocs(_obj, assignment);
-      Functions.ApprovalTask.MarkCPAsChecking(_obj, assignment);
+      Functions.ApprovalTask.SetCPCheckingProperty(_obj, assignment);
     }
     
     public override void CompleteAssignment6(Sungero.Docflow.IApprovalAssignment assignment, Sungero.Docflow.Server.ApprovalAssignmentArguments e)
