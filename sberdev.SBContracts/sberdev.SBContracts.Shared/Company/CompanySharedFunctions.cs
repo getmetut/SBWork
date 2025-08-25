@@ -63,11 +63,8 @@ namespace sberdev.SBContracts.Shared
         company.State.Properties.StateContracts, company.State.Properties.ActiveLicense,
         company.State.Properties.ActiveTrademark, company.State.Properties.RelOrgActiveArb,
         company.State.Properties.RelOrgActivePub, company.State.Properties.RelOrgOld,
-        company.State.Properties.RelOrgAccount, company.State.Properties.MarkerQ2031ChangedDate,
-        company.State.Properties.MarkerQ2032ChangedDate, company.State.Properties.MarkerQ2035ChangedDate,
-        company.State.Properties.MarkerY3601B, company.State.Properties.MarkerQ2031,
-        company.State.Properties.MarkerQ2035, company.State.Properties.MarkerY3601BChangedDate,
-        company.State.Properties.ArbPractice, company.State.Properties.RelOrgExecCases
+        company.State.Properties.RelOrgAccount, company.State.Properties.ArbPractice,
+        company.State.Properties.RelOrgExecCases
       };
     }
     
@@ -124,12 +121,8 @@ namespace sberdev.SBContracts.Shared
         company.State.Properties.StateContracts, company.State.Properties.ActiveLicense,
         company.State.Properties.ActiveTrademark, company.State.Properties.RelOrgActiveArb,
         company.State.Properties.RelOrgActivePub, company.State.Properties.RelOrgOld,
-        company.State.Properties.RelOrgAccount, company.State.Properties.MarkerQ2031ChangedDate,
-        company.State.Properties.MarkerQ2032ChangedDate, company.State.Properties.MarkerQ2035ChangedDate,
-        company.State.Properties.MarkerY3601B, company.State.Properties.MarkerQ2031,
-        company.State.Properties.MarkerQ2035, company.State.Properties.MarkerY3601BChangedDate,
-        company.State.Properties.ArbPractice, company.State.Properties.RelOrgExecCases,
-        company.State.Properties.LowAvgHeadSberDev
+        company.State.Properties.RelOrgAccount, company.State.Properties.ArbPractice,
+        company.State.Properties.RelOrgExecCases,company.State.Properties.LowAvgHeadSberDev
       };
     }
     
