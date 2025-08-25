@@ -42,38 +42,71 @@ namespace sberdev.SBContracts.Server
       }
     }
     
-    public void SetChangeAccessRightsOnDocs(Sungero.Docflow.IApprovalAssignment assignment) {
-      // Доработка в рамках задачи DRX-660.
-      var task = ApprovalTasks.As(assignment.Task);
-      if (task != null) {
-        var author = task.Author;
-        if (author != null) {
-          List<IOfficialDocument> documents = new List<IOfficialDocument>();
-          var leadDoc = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
-          if (leadDoc != null && OfficialDocuments.Is(leadDoc))
-            documents.Add(OfficialDocuments.As(leadDoc));
-          
-          foreach(var doc in task.AddendaGroup.OfficialDocuments) {
-            if (doc != null && OfficialDocuments.Is(doc))
-              documents.Add(OfficialDocuments.As(doc));
-          }
-          
-          foreach(var doc in task.OtherGroup.All) {
-            if (doc != null && OfficialDocuments.Is(doc))
-              documents.Add(OfficialDocuments.As(doc));
-          }
-          
-          foreach(var doc in documents) {
-            if (!doc.AccessRights.IsGranted(DefaultAccessRightsTypes.Change, author)) {
-              doc.AccessRights.Grant(author, DefaultAccessRightsTypes.Change);
-              doc.AccessRights.Save();
-              Logger.Debug("SBDev DEBUG: Grant Change Access Rights for User Id {0} on Document Id {1}", author.Id, doc.Id);
-            }
-          }
+    public void SetChangeAccessRightsOnDocs(Sungero.Docflow.IApprovalAssignment assignment)
+    {
+      var task = Sungero.Docflow.ApprovalTasks.As(assignment.Task);
+      if (task == null || task.Author == null)
+        return;
+
+      var author = task.Author;
+
+      var docs = new System.Collections.Generic.List<Sungero.Docflow.IOfficialDocument>();
+      var lead = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      if (lead != null && Sungero.Docflow.OfficialDocuments.Is(lead))
+        docs.Add(Sungero.Docflow.OfficialDocuments.As(lead));
+
+      foreach (var d in task.AddendaGroup.OfficialDocuments)
+        if (d != null && Sungero.Docflow.OfficialDocuments.Is(d))
+          docs.Add(Sungero.Docflow.OfficialDocuments.As(d));
+
+      foreach (var any in task.OtherGroup.All)
+        if (any != null && Sungero.Docflow.OfficialDocuments.Is(any))
+          docs.Add(Sungero.Docflow.OfficialDocuments.As(any));
+
+      foreach (var doc in docs)
+        GrantChangeRightSafe(doc, author);
+    }
+
+    private static void GrantChangeRightSafe(Sungero.Docflow.IOfficialDocument doc, Sungero.CoreEntities.IUser user)
+    {
+      // уже есть право — выходим
+      if (doc.AccessRights.IsGranted(Sungero.Core.DefaultAccessRightsTypes.Change, user))
+        return;
+
+      const int maxAttempts = 3;
+
+      for (var attempt = 1; attempt <= maxAttempts; attempt++)
+      {
+        // аккуратно пробуем захватить
+        if (!Sungero.Domain.Locks.TryLock(doc))
+        {
+          System.Threading.Thread.Sleep(300 * attempt);
+          continue;
+        }
+
+        try
+        {
+          doc.AccessRights.Grant(user, Sungero.Core.DefaultAccessRightsTypes.Change);
+          doc.AccessRights.Save();
+          return;
+        }
+        catch (Sungero.Database.DbCommandTimeoutException)
+        {
+          if (attempt == maxAttempts) throw;
+          System.Threading.Thread.Sleep(500 * attempt);
+        }
+        catch (Sungero.Domain.Shared.Exceptions.LockManagementException)
+        {
+          if (attempt == maxAttempts) throw;
+          System.Threading.Thread.Sleep(500 * attempt);
+        }
+        finally
+        {
+          Sungero.Domain.Locks.Unlock(doc);
         }
       }
     }
-    
+
     public void ChangeNameCheckCPStage(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
     {
       bool isCheckingCPStage = PublicFunctions.ApprovalTask.IsNecessaryStage(_obj, PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
