@@ -320,6 +320,12 @@
       "WebApiRequestType": "Post"
     },
     {
+      "Name": "CreateAppNonProdPurchase",
+      "ReturnType": "global::sberdev.SberContracts.IAppNonProdPurchase",
+      "ReturnTypeFullName": "sberdev.SberContracts.IAppNonProdPurchase, Sungero.Domain.Interfaces",
+      "WebApiRequestType": "Get"
+    },
+    {
       "Name": "GetClosedDocs",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String",
@@ -2415,7 +2421,7 @@
   "SharedAssemblyName": "Sungero.POST.Shared",
   "SharedNamespace": "Sungero.POST.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.326",
+  "Version": "0.0.1.328",
   "Widgets": [],
   "Versions": [
     {

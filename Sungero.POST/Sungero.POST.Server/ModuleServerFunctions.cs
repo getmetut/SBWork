@@ -224,6 +224,16 @@ namespace Sungero.POST.Server
     /// <summary>
     /// Функция передачи актов выполненных работ
     /// </summary>
+    [Public(WebApiRequestType = RequestType.Get)]
+    public sberdev.SberContracts.IAppNonProdPurchase CreateAppNonProdPurchase()
+    {
+      var nonprodpurch = sberdev.SberContracts.AppNonProdPurchases.Create();      
+      return nonprodpurch;
+    }
+    
+    /// <summary>
+    /// Функция передачи актов выполненных работ
+    /// </summary>
     [Public(WebApiRequestType = RequestType.Post)]
     public List<Sungero.POST.Structures.Module.IStructContractStatement> ContractStatements(string till, string from)
     {
