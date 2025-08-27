@@ -1,0 +1,58 @@
+{
+  "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
+  "NameGuid": "d39e1147-866b-4bc3-b24e-bc59f549c8b6",
+  "Name": "IncomingInvoiceResponsibleObserversATSDev",
+  "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
+  "CanBeNavigationPropertyType": true,
+  "Code": "ResponsibleOb",
+  "ExtraSearchProperties": [],
+  "IsChildEntity": true,
+  "Properties": [
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "ba8f57f9-b530-43df-a7b1-24bd76e8bbdb",
+      "Name": "IncomingInvoice",
+      "CanBeSearch": false,
+      "Code": "EDoc",
+      "EntityGuid": "01058774-127f-42c9-940c-023df2f641e3",
+      "IsReferenceToRootEntity": true,
+      "IsShowedInList": false
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "ff7f91b0-b448-4a65-ba7e-c9f51094a175",
+      "Name": "Observer",
+      "CanBeSearch": false,
+      "Code": "Observer",
+      "EntityGuid": "b7905516-2be5-4931-961c-cb38d5677565",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "ba8f57f9-b530-43df-a7b1-24bd76e8bbdb"
+    }
+  ],
+  "PublicStructures": [],
+  "RibbonCardMetadata": {
+    "NameGuid": "c784371b-8457-494e-8cbc-2f6ba48aa8a3",
+    "Name": "RibbonCard",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": [],
+    "RibbonKind": "Card"
+  },
+  "RibbonCollectionMetadata": {
+    "NameGuid": "737171a4-190c-43ba-8fad-32c273db2e5d",
+    "Name": "RibbonCollection",
+    "Categories": [],
+    "Elements": [],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Pages": []
+  },
+  "Versions": [
+    {
+      "Type": "EntityMetadata",
+      "Number": 13
+    }
+  ]
+}

@@ -598,4 +598,7 @@
   <data name="Control_b07ee674c9054b4db6db7840bb65eb7d_EmptyText" xml:space="preserve">
     <value>"https://tasks.sberdevices.ru/browse/ABC-123" или просто "ABC-123"</value>
   </data>
+  <data name="Property_ResponsibleObserversATSDev" xml:space="preserve">
+    <value>Ответственные наблюдатели</value>
+  </data>
 </root>

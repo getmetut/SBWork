@@ -619,7 +619,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "519f2394-febe-4501-adca-a34ee883d986",
           "PropertyGuid": "184ab537-5748-454f-8a9c-cdbdd506321e",
-          "RowNumber": 2,
+          "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1372,6 +1372,28 @@
           "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "0f720f5d-4902-4dc8-95c1-e383fac4d102",
+          "Name": "ResponsibleObserversATSDevATSDevATSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiLikeEditorToCollectionBinder",
+          "ParentGuid": "519f2394-febe-4501-adca-a34ee883d986",
+          "PropertyGuid": "db346472-e37e-474f-bc28-e9f0b178eab7",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "IsDuplicatesAllowed",
+              "Value": false
+            },
+            {
+              "Name": "NavigationPropertyGuid",
+              "Value": "2260e26c-0a83-4d99-bb25-bbd0e46133e5"
+            }
+          ]
         }
       ],
       "IsAncestorMetadata": true,
@@ -1547,6 +1569,16 @@
       "Length": 500,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "4cd50cd5-d7fd-47be-b766-37b6bc088e38",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "db346472-e37e-474f-bc28-e9f0b178eab7",
+      "Name": "ResponsibleObserversATSDevATSDev",
+      "Code": "SupAgreementRe",
+      "EntityGuid": "8827f5d2-efeb-498f-8ef1-8f695e8ee24b",
+      "IsShowedInList": false,
+      "PreviousPropertyGuid": "8a5c4355-f34a-4a2e-b4f4-8ba5b331c0ae",
       "Versions": []
     }
   ],

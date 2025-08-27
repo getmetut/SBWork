@@ -243,10 +243,14 @@ namespace sberdev.SBContracts.Client
         if (sberdev.SBContracts.IncomingInvoices.Is(_obj))
         {
           var incinv = sberdev.SBContracts.IncomingInvoices.As(_obj);
-          if (incinv.ResponsibleObserverATSDev != null)
+          if (incinv.ResponsibleObserversATSDev.Count > 0)
           {
-            var newpos = task.Observers.AddNew();
-            newpos.Observer = incinv.ResponsibleObserverATSDev;
+            foreach (var str in incinv.ResponsibleObserversATSDev)
+            {
+              var newpos = task.Observers.AddNew();
+              newpos.Observer = str.Observer;
+            }
+            
           }
         }
         task.Show();

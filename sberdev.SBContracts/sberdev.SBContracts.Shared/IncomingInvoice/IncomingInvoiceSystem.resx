@@ -280,7 +280,7 @@
   <data name="Property_PurchaseATSDev" xml:space="preserve">
     <value>Закупка или заявка на закупку</value>
   </data>
-  <data name="Property_ResponsibleObserverATSDev" xml:space="preserve">
-    <value>Ответственный наблюдатель</value>
+  <data name="Property_ResponsibleObserversATSDev" xml:space="preserve">
+    <value>Ответственные наблюдатели</value>
   </data>
 </root>

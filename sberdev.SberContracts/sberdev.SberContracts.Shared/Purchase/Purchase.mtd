@@ -648,7 +648,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "519f2394-febe-4501-adca-a34ee883d986",
           "PropertyGuid": "184ab537-5748-454f-8a9c-cdbdd506321e",
-          "RowNumber": 2,
+          "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1853,6 +1853,28 @@
           "RowNumber": 4,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "8d6592a0-29b0-41a5-9a9b-3f35fb5cfa19",
+          "Name": "ResponsibleObserversATSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.MultiLikeEditorToCollectionBinder",
+          "ParentGuid": "519f2394-febe-4501-adca-a34ee883d986",
+          "PropertyGuid": "dc6adb46-3146-4c56-82be-c461192bd64f",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "NavigationPropertyGuid",
+              "Value": "cc9e5504-ba46-4db7-b6a2-1e8c9d65edb1"
+            },
+            {
+              "Name": "IsDuplicatesAllowed",
+              "Value": false
+            }
+          ]
         }
       ],
       "IsAncestorMetadata": true,
@@ -2592,6 +2614,16 @@
       "Length": 1000,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "5af6a38a-46ba-426d-9a70-fad3197c7550"
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "dc6adb46-3146-4c56-82be-c461192bd64f",
+      "Name": "ResponsibleObserversATSDev",
+      "Code": "PurchaseRespon",
+      "EntityGuid": "68e03069-f99d-4f6b-b78a-a7023258ba98",
+      "IsShowedInList": false,
+      "PreviousPropertyGuid": "d19fa541-79f0-403a-8168-be2da528e1b7",
+      "Versions": []
     }
   ],
   "PublicFunctions": [
