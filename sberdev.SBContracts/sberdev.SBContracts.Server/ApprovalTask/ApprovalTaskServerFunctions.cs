@@ -12,10 +12,10 @@ namespace sberdev.SBContracts.Server
     #region Сеты*
     
     /// <summary>
-    /// Изменяет статус ка на "Не проверяется в данный момент"
+    /// Ставит статус ка "проверяется в данный момент"
     /// </summary>
     /// <param name="assignment"></param>
-    public void MarkCPAsChecking(Sungero.Docflow.IApprovalAssignment assignment)
+    public void SetCPCheckingProperty(Sungero.Docflow.IApprovalAssignment assignment)
     {
       var sberAssign = SBContracts.ApprovalAssignments.As(assignment);
       var stage = GetStage();
@@ -34,47 +34,75 @@ namespace sberdev.SBContracts.Server
       if (cp == null)
         return;
       
-      if (cp.FocusCheckingSberDev != true)
-      {
-        SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(cp);
-        cp.FocusCheckingSberDev = true;
-        cp.Save();
-      }
+      PublicFunctions.Counterparty.SetFocusCheckingValue(cp, true);
     }
     
-    public void SetChangeAccessRightsOnDocs(Sungero.Docflow.IApprovalAssignment assignment) {
-      // Доработка в рамках задачи DRX-660.
-      var task = ApprovalTasks.As(assignment.Task);
-      if (task != null) {
-        var author = task.Author;
-        if (author != null) {
-          List<IOfficialDocument> documents = new List<IOfficialDocument>();
-          var leadDoc = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
-          if (leadDoc != null && OfficialDocuments.Is(leadDoc))
-            documents.Add(OfficialDocuments.As(leadDoc));
-          
-          foreach(var doc in task.AddendaGroup.OfficialDocuments) {
-            if (doc != null && OfficialDocuments.Is(doc))
-              documents.Add(OfficialDocuments.As(doc));
-          }
-          
-          foreach(var doc in task.OtherGroup.All) {
-            if (doc != null && OfficialDocuments.Is(doc))
-              documents.Add(OfficialDocuments.As(doc));
-          }
-          
-          foreach(var doc in documents) {
-            if (!doc.AccessRights.IsGranted(DefaultAccessRightsTypes.Change, author)) {
-              doc.AccessRights.Grant(author, DefaultAccessRightsTypes.Change);
-              doc.AccessRights.Save();
-              Logger.Debug("SBDev DEBUG: Grant Change Access Rights for User Id {0} on Document Id {1}", author.Id, doc.Id);
-            }
-          }
+    public void SetChangeAccessRightsOnDocs(Sungero.Docflow.IApprovalAssignment assignment)
+    {
+      var task = Sungero.Docflow.ApprovalTasks.As(assignment.Task);
+      if (task == null || task.Author == null)
+        return;
+
+      var author = task.Author;
+
+      var docs = new System.Collections.Generic.List<Sungero.Docflow.IOfficialDocument>();
+      var lead = task.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      if (lead != null && Sungero.Docflow.OfficialDocuments.Is(lead))
+        docs.Add(Sungero.Docflow.OfficialDocuments.As(lead));
+
+      foreach (var d in task.AddendaGroup.OfficialDocuments)
+        if (d != null && Sungero.Docflow.OfficialDocuments.Is(d))
+          docs.Add(Sungero.Docflow.OfficialDocuments.As(d));
+
+      foreach (var any in task.OtherGroup.All)
+        if (any != null && Sungero.Docflow.OfficialDocuments.Is(any))
+          docs.Add(Sungero.Docflow.OfficialDocuments.As(any));
+
+      foreach (var doc in docs)
+        GrantChangeRightSafe(doc, author);
+    }
+
+    private static void GrantChangeRightSafe(Sungero.Docflow.IOfficialDocument doc, Sungero.CoreEntities.IUser user)
+    {
+      // уже есть право — выходим
+      if (doc.AccessRights.IsGranted(Sungero.Core.DefaultAccessRightsTypes.Change, user))
+        return;
+
+      const int maxAttempts = 3;
+
+      for (var attempt = 1; attempt <= maxAttempts; attempt++)
+      {
+        // аккуратно пробуем захватить
+        if (!Locks.TryLock(doc))
+        {
+          System.Threading.Thread.Sleep(300 * attempt);
+          continue;
+        }
+
+        try
+        {
+          doc.AccessRights.Grant(user, Sungero.Core.DefaultAccessRightsTypes.Change);
+          doc.AccessRights.Save();
+          return;
+        }
+        catch (Sungero.Domain.Shared.Exceptions.OperationRetryTimeoutException)
+        {
+          if (attempt == maxAttempts) throw;
+          System.Threading.Thread.Sleep(500 * attempt);
+        }
+        catch (Sungero.Domain.Shared.Exceptions.LockManagementException)
+        {
+          if (attempt == maxAttempts) throw;
+          System.Threading.Thread.Sleep(500 * attempt);
+        }
+        finally
+        {
+          Locks.Unlock(doc);
         }
       }
     }
-    
-    public void ChangeNameCheckCPStage(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
+
+    public void SetCheckCPStageName(Sungero.Docflow.Server.ApprovalAssignmentArguments e)
     {
       bool isCheckingCPStage = PublicFunctions.ApprovalTask.IsNecessaryStage(_obj, PublicConstants.Docflow.ApprovalTask.CheckingCPStage);
       if (isCheckingCPStage)
@@ -127,11 +155,11 @@ namespace sberdev.SBContracts.Server
     {
       if (IsNecessaryStage(PublicConstants.Docflow.ApprovalTask.SupplementalStage))
       {
-        var performers = e.Block.Performers;
+        var performers = e.Block.Performers.ToList();
         e.Block.Performers.Clear();
         var lastAssign = GetLastTaskAssigment(_obj, null);
         var typedAssign = SBContracts.ApprovalAssignments.As(lastAssign);
-        if (typedAssign != null && typedAssign?.IsNeedSupStageSberDev == true)
+        if (typedAssign?.IsNeedSupStageSberDev == true)
           foreach (var performer in performers)
             e.Block.Performers.Add(performer);
       }
@@ -393,6 +421,31 @@ namespace sberdev.SBContracts.Server
             flag = true;
       }
       return flag;
+    }
+    #endregion
+    
+    #region Переопределенные функции
+    
+    public override void SendApprovalAbortNotice()
+    {
+      if (_obj.NeedAbort.GetValueOrDefault() )
+      {
+        var document = _obj.DocumentGroup.OfficialDocuments.First();
+        var subject = string.Format(Sungero.Exchange.Resources.TaskSubjectTemplate, "Прекращено согласование", Sungero.Docflow.PublicFunctions.Module.TrimSpecialSymbols(document.Name));
+        var task = Sungero.Workflow.SimpleTasks.CreateAsSubtask(_obj);
+        task.Subject = subject ;
+        task.ThreadSubject = "Прекращено согласование";
+        task.ActiveText = _obj.AbortingReason;
+        task.NeedsReview = false;
+        task.Author = _obj.Author;
+        var routeStep = task.RouteSteps.AddNew();
+        routeStep.AssignmentType = Sungero.Workflow.SimpleTaskRouteSteps.AssignmentType.Notice;
+        routeStep.Performer = _obj.Author;
+        routeStep.Deadline = null;
+        task.Start();
+      }
+      else
+        base.SendApprovalAbortNotice();
     }
     #endregion
   }
