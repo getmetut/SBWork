@@ -9,6 +9,21 @@ namespace Sungero.ATS.Client
 {
   partial class PowerOfAttorneyActions
   {
+    public virtual void SendToBPATSDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      _obj.Save();
+      e.CloseFormAfterAction = true;
+      var task = Sungero.Custom.TaskToPowerOfAttorneys.Create();
+      task.BaseAttachments.PowerOfAttorneys.Add(_obj);
+      task.Subject = "Согласование: " + _obj.Name;
+      task.Show();
+    }
+
+    public virtual bool CanSendToBPATSDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
     public override void SendForApproval(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       base.SendForApproval(e);
