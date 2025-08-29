@@ -719,5 +719,9 @@ namespace sberdev.SBContracts.Server
     #endregion
     
     #endregion
+    
+    #region Переопределенные
+    
+    #endregion
   }
 }

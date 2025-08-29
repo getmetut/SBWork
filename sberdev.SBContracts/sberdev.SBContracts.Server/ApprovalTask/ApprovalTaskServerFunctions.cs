@@ -11,6 +11,21 @@ namespace sberdev.SBContracts.Server
   {
     #region Сеты*
     
+    [Public]
+    public static void ClearPublicComment(Sungero.Workflow.IAssignment assignment)
+    {
+      var sberAssign = SBContracts.ApprovalAssignments.As(assignment);
+      var task = sberdev.SBContracts.ApprovalTasks.As(assignment.Task);
+      if (task == null)
+        return;
+      
+      var official = SBContracts.OfficialDocuments.As(task.DocumentGroup.OfficialDocuments.FirstOrDefault());
+      if (official == null)
+        return;
+      
+      PublicFunctions.OfficialDocument.Remote.ClearPublicComment(official);
+    }
+    
     /// <summary>
     /// Ставит статус ка "проверяется в данный момент"
     /// </summary>

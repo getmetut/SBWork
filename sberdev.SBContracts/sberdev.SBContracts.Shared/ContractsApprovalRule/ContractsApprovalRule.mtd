@@ -209,7 +209,8 @@
     }
   ],
   "HandledEvents": [
-    "CreatedServer"
+    "CreatedServer",
+    "CreatingFromServer"
   ],
   "IconResourcesKeys": [],
   "LayeredFromGuid": "dcbf9c6f-9bb6-4b61-b501-db35df320207",

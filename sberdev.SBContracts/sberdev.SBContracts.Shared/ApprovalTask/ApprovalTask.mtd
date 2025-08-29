@@ -678,6 +678,18 @@
   ],
   "PublicFunctions": [
     {
+      "Name": "ClearPublicComment",
+      "Parameters": [
+        {
+          "Name": "assignment",
+          "ParameterType": "global::Sungero.Workflow.IAssignment",
+          "ParameterTypeFullName": "Sungero.Workflow.IAssignment, Sungero.Workflow.Interfaces"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
       "Name": "GetStage",
       "Parameters": [
         {
