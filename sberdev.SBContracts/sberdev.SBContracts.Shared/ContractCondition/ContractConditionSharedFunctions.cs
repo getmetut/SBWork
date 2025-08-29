@@ -887,40 +887,15 @@ namespace sberdev.SBContracts.Shared
       #region Проверка: Продукты (доработки в рамках задачи DRX-917).
       if (_obj.ConditionType == ConditionType.Product)
       {
-        bool included = false;
-        var contractual = SBContracts.ContractualDocuments.As(document);
-        var supAgreement = SBContracts.SupAgreements.As(document);
-        List<SberContracts.IProductsAndDevices> docProducts = new List<sberdev.SberContracts.IProductsAndDevices>();
+        bool flag = false;
+        var products = SBContracts.PublicFunctions.OfficialDocument.GetDocumentProducts(SBContracts.OfficialDocuments.As(document));
+        if (!products.Any())
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+        var targetProductList = _obj.ProductsSberDevSBDEV.Select(p => p.Product);
+        var targetProductsIds = new HashSet<long>(targetProductList.Select(p => p.Id));
+        flag = products.Any(product => targetProductsIds.Contains(product.Id));
         
-        if (contractual != null) {
-          var prodsPr = contractual.ProdCollectionExBaseSberDev;
-          var prodsEx = contractual.ProdCollectionExBaseSberDev;
-          
-          if (prodsPr != null && prodsPr.Count > 0)
-            docProducts.AddRange(prodsPr.Select(p => p.Product).ToList());
-
-          if (prodsEx != null && prodsEx.Count > 0)
-            docProducts.AddRange(prodsEx.Select(p => p.Product).ToList());
-        }
-        
-        if (supAgreement != null) {
-          var prodsPr = supAgreement.ProdCollectionExBaseSberDev;
-          var prodsEx = supAgreement.ProdCollectionExBaseSberDev;
-          
-          if (prodsPr != null && prodsPr.Count > 0)
-            docProducts.AddRange(prodsPr.Select(p => p.Product).ToList());
-
-          if (prodsEx != null && prodsEx.Count > 0)
-            docProducts.AddRange(prodsEx.Select(p => p.Product).ToList());
-        }
-        
-        foreach (var prod in docProducts) {
-          if (_obj.ProductsSberDevSBDEV.Select(p => p.Product).ToList().Contains(prod)) {
-            included = true;
-            break;
-          }
-        }
-        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(included, string.Empty);
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
       }
       #endregion
       
