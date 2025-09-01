@@ -526,4 +526,13 @@
   <data name="Property_Unprofitable" xml:space="preserve">
     <value>The company's activities are unprofitable</value>
   </data>
+  <data name="ControlGroup_b66ee5773de644c29fa5e42928089b97" xml:space="preserve">
+    <value>What markers show:</value>
+  </data>
+  <data name="Property_AllMarkersSberDev" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Property_ProfitMarkersSberDev" xml:space="preserve">
+    <value>Profitable</value>
+  </data>
 </root>

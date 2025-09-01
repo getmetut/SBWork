@@ -12,7 +12,7 @@ namespace sberdev.SBContracts
 
     public virtual void IPSberDevValueInput(Sungero.Presentation.BooleanValueInputEventArgs e)
     {
-      Functions.Company.UpdInterface(_obj);
+      // активация события обновления
     }
 
     public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
@@ -24,7 +24,6 @@ namespace sberdev.SBContracts
     public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
     {
       base.Showing(e);
-      Functions.Company.UpdInterface(_obj);
       Functions.Company.HideEmptyFocusMarkers(_obj);
     }
   }

@@ -505,4 +505,13 @@
   <data name="Property_Unprofitable" xml:space="preserve">
     <value>Деятельность предприятия убыточна</value>
   </data>
+  <data name="ControlGroup_b66ee5773de644c29fa5e42928089b97" xml:space="preserve">
+    <value>Какие маркеры показывать:</value>
+  </data>
+  <data name="Property_AllMarkersSberDev" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Property_ProfitMarkersSberDev" xml:space="preserve">
+    <value>Доходные</value>
+  </data>
 </root>

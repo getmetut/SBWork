@@ -10,6 +10,85 @@ namespace sberdev.SBContracts.Shared
 {
   partial class CompanyFunctions
   {
+    /// <summary>
+    /// Обновить интерфейс карточки в зависимости от условий.
+    /// </summary>
+    public void UpdInterface()
+    {
+      // === Флаги состояния ===
+      var isNonresident = _obj.Nonresident.HasValue && _obj.Nonresident.Value;   // true = нерезидент
+      var isIPSberDev   = _obj.IPSberDev.HasValue && _obj.IPSberDev.Value;       // true = ИП СберДев
+      var hasHeadCompany = _obj.HeadCompany != null;
+
+      // === Блок ИНН/КПП (TIN/TRRC) в зависимости от резидентности и ИП СберДев ===
+      // Правила:
+      // - Нерезидент: TIN/TRRC не обязательны, TRRC скрыт.
+      // - IPSberDev: TRRC не обязателен и скрыт.
+      // - Nonresident == null трактуем как "резидент" по умолчанию (как в исходнике).
+      var trrcMustBeVisible = !isNonresident && !isIPSberDev;
+      _obj.State.Properties.TIN.IsRequired  = !isNonresident;   // при нерезиденте — false
+      _obj.State.Properties.TRRC.IsRequired = !isNonresident && !isIPSberDev;
+      _obj.State.Properties.TRRC.IsVisible  = trrcMustBeVisible;
+
+      // === Блок "ИП СберДев" / "Физлицо" / "Головная компания" / "Нерезидент" ===
+      // При IPSberDev показываем и требуем PersonSberDev, прячем HeadCompany и Nonresident.
+      _obj.State.Properties.PersonSberDev.IsVisible  = isIPSberDev;
+      _obj.State.Properties.PersonSberDev.IsRequired = isIPSberDev;
+
+      _obj.State.Properties.HeadCompany.IsVisible = !isIPSberDev;
+      _obj.State.Properties.Nonresident.IsVisible = !isIPSberDev;
+
+      // === Автозаполнение Name1CSberDev при наличии Name ===
+      if (_obj.Name1CSberDev == null && _obj.Name != null)
+        _obj.Name1CSberDev = ModifyCompanyName(_obj.Name);
+
+      // === Доступность HeadOrgSDev зависит от наличия HeadCompany ===
+      _obj.State.Properties.HeadOrgSDev.IsEnabled = !hasHeadCompany;
+    }
+    
+    /// <summary>
+    /// Преобразует полное наименование компании в сокращённый формат.
+    /// </summary>
+    static string ModifyCompanyName(string companyName)
+    {
+      if (string.IsNullOrWhiteSpace(companyName))
+        return companyName;
+
+      // Словарь замен длинных форм на сокращённые
+      var replacements = new Dictionary<string, string>
+      {
+        { "Общество с ограниченной ответственностью", "ООО" },
+        { "Публичное акционерное общество", "ПАО" },
+        { "Открытое акционерное общество", "ОАО" },
+        { "Закрытое акционерное общество", "ЗАО" },
+        { "Индивидуальный предприниматель", "ИП" },
+        { "Акционерное общество", "АО" }
+      };
+
+      var result = companyName;
+
+      // Замена длинных форм на аббревиатуры
+      foreach (var pair in replacements)
+        result = result.Replace(pair.Key, pair.Value);
+
+      // Замена кавычек-ёлочек на обычные
+      result = result.Replace('«', '"').Replace('»', '"');
+
+      // Разделяем правовую форму и название
+      var parts = result.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+      if (parts.Length < 2)
+        return companyName;
+
+      var legalForm = parts[0];
+      var name = string.Join(" ", parts.Skip(1)).Trim('"').ToUpper();
+
+      // Если форма из допустимых, возвращаем "НАЗВАНИЕ ФОРМА"
+      var validForms = new HashSet<string> { "ООО", "ЗАО", "ОАО", "АО", "ПАО", "ИП" };
+      return validForms.Contains(legalForm)
+        ? $"{name} {legalForm}"
+        : companyName;
+    }
+
     [Public]
     /// <summary>
     /// Возвращает список свойств маркеров Контур.Фокус
