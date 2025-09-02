@@ -26,6 +26,10 @@
     {
       "ItemId": "cbf06a91-fa8b-48e1-9540-d7cd86895b64",
       "PreviousItemId": "780b62c6-1e7d-4ebf-8878-8e3f252ca358"
+    },
+    {
+      "ItemId": "51b47acd-7bf9-4364-a61a-d36c4d1d9e61",
+      "PreviousItemId": "cbf06a91-fa8b-48e1-9540-d7cd86895b64"
     }
   ],
   "IconResourcesKeys": [],
@@ -701,6 +705,22 @@
       "SupportedDescendantsTypes": [
         "01be6c28-8785-4f74-9877-e3270704452e"
       ]
+    },
+    {
+      "NameGuid": "51b47acd-7bf9-4364-a61a-d36c4d1d9e61",
+      "Name": "ControlKAATSDev",
+      "DefaultContentType": "723b6591-e3af-4223-a500-4c7624b9ac43",
+      "DisplayType": "Inbox",
+      "FilterPanel": {
+        "NameGuid": "e9a4c586-654d-47ea-8080-468251be92b7",
+        "Name": "FilterPanel",
+        "Controls": []
+      },
+      "IconPath": "ControlKAATSDev_51b47acd7bf94364a61ad36c4d1d9e61.ico",
+      "IsShow": true,
+      "Kind": "Computable",
+      "NeedShowMarkedCount": true,
+      "ParentFolderId": "eb72a985-606c-4647-ba0c-1389928a4e17"
     }
   ],
   "Version": "4.12.153.0",

@@ -193,4 +193,25 @@
   <data name="CoverDescription_InJiraAction" xml:space="preserve">
     <value>Ссылка для действия "Создать заявку на непроизводственную закупку"</value>
   </data>
+  <data name="sf_03a54c2d_47a7_4277_b23d_0ca80d79b03f" xml:space="preserve">
+    <value>Протоколы закупки</value>
+  </data>
+  <data name="FilterPanel_RouteType_819c6a9c161146afbb65e91aece398b0" xml:space="preserve">
+    <value>Группа фильтрации</value>
+  </data>
+  <data name="FilterPanel_PurchaseRouteFilter_8932cbb1748a4aaeba41460dfaa5735d" xml:space="preserve">
+    <value>Маршрутизация</value>
+  </data>
+  <data name="FilterPanel_Purchase500_d03823d27bce4bf8bd923ea92c5780da" xml:space="preserve">
+    <value>Закупка до 500 тыс. руб</value>
+  </data>
+  <data name="FilterPanel_PurchaseFramewo_765af15e43ee457b9bf5004422994c8c" xml:space="preserve">
+    <value>Закупка в рамках закупочной комиссии</value>
+  </data>
+  <data name="FilterPanel_PurchaseUL_646dd4d1447f413fbb75205982076a4f" xml:space="preserve">
+    <value>Закупка в рамках Уполномоченного лица</value>
+  </data>
+  <data name="FilterPanel_All_7266c45de47047b0befe1266d011fdcd" xml:space="preserve">
+    <value>Все</value>
+  </data>
 </root>

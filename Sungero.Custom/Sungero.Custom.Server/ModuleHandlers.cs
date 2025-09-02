@@ -6,6 +6,26 @@ using Sungero.CoreEntities;
 
 namespace Sungero.Custom.Server
 {
+  partial class ProtocolsFolderHandlers
+  {
+
+    public virtual IQueryable<Sungero.Custom.IPurchaseProtocol> ProtocolsDataQuery(IQueryable<Sungero.Custom.IPurchaseProtocol> query)
+    {
+      if (_filter != null)
+      {
+        if (_filter.Purchase500)
+          query = query.Where(p => p.RouteType == Sungero.Custom.PurchaseProtocol.RouteType.Purchase500);
+        
+        if (_filter.PurchaseFramewo)
+          query = query.Where(p => p.RouteType == Sungero.Custom.PurchaseProtocol.RouteType.PurchaseFramewo);
+        
+        if (_filter.PurchaseUL)
+          query = query.Where(p => p.RouteType == Sungero.Custom.PurchaseProtocol.RouteType.PurchaseUL);
+      }
+      return query;
+    }
+  }
+
   partial class ReestrNDAFolderHandlers
   {
 
