@@ -1305,7 +1305,6 @@
           "Name": "FormSettingsSberDev",
           "ColumnNumber": 0,
           "ColumnSpan": 1,
-          "GroupType": "GroupBox",
           "ParentGuid": "95a10ae7-233b-4b84-aca6-8a0f182bb2e5",
           "RowNumber": 0,
           "RowSpan": 1
@@ -1935,7 +1934,6 @@
       "Name": "IPSberDev",
       "Code": "IPSberDev",
       "HandledEvents": [
-        "ValueInputClient",
         "ChangedShared"
       ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
@@ -2019,35 +2017,30 @@
     {
       "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
       "NameGuid": "3ce56f30-41d8-44c0-9a75-471c58ee7f5a",
-      "Name": "AllMarkersSberDev",
-      "Code": "AllMarkers",
+      "Name": "ControlMarkersFlags1SberDev",
+      "Code": "CMFlags1",
+      "HandledEvents": [
+        "ChangedShared",
+        "ValueInputClient"
+      ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "c4e0756f-9556-4b28-af85-1193f09d3632"
     },
     {
       "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
       "NameGuid": "8c809bd6-80cb-4676-be05-93ba020f8f63",
-      "Name": "ProfitMarkersSberDev",
-      "Code": "ProfitMarkersS",
+      "Name": "ControlMarkersFlags2SberDev",
+      "Code": "CMFlags2",
+      "HandledEvents": [
+        "ChangedShared",
+        "ValueInputClient"
+      ],
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "3ce56f30-41d8-44c0-9a75-471c58ee7f5a",
       "Versions": []
     }
   ],
   "PublicFunctions": [
-    {
-      "Name": "GetAllFocusMarkers",
-      "Parameters": [
-        {
-          "Name": "company",
-          "ParameterType": "global::centrvd.KFIntegration.ICompany",
-          "ParameterTypeFullName": "centrvd.KFIntegration.ICompany, Sungero.Domain.Interfaces"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::System.Collections.Generic.List<Sungero.Domain.Shared.IPropertyState>",
-      "ReturnTypeFullName": "System.Collections.Generic.List"
-    },
     {
       "Name": "GetAllFocusMarkers",
       "Parameters": [

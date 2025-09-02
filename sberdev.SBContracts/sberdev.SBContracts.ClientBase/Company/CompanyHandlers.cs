@@ -10,9 +10,14 @@ namespace sberdev.SBContracts
   partial class CompanyClientHandlers
   {
 
-    public virtual void IPSberDevValueInput(Sungero.Presentation.BooleanValueInputEventArgs e)
+    public virtual void ControlMarkersFlags2SberDevValueInput(Sungero.Presentation.BooleanValueInputEventArgs e)
     {
-      // активация события обновления
+      Functions.Company.ShowFocusMarkers(_obj, true);
+    }
+
+    public virtual void ControlMarkersFlags1SberDevValueInput(Sungero.Presentation.BooleanValueInputEventArgs e)
+    {
+      Functions.Company.ShowFocusMarkers(_obj, false);
     }
 
     public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
@@ -24,7 +29,7 @@ namespace sberdev.SBContracts
     public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
     {
       base.Showing(e);
-      Functions.Company.HideEmptyFocusMarkers(_obj);
+      Functions.Company.ShowFocusMarkers(_obj, false);
     }
   }
 }

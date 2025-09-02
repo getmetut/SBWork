@@ -529,10 +529,10 @@
   <data name="ControlGroup_b66ee5773de644c29fa5e42928089b97" xml:space="preserve">
     <value>What markers show:</value>
   </data>
-  <data name="Property_AllMarkersSberDev" xml:space="preserve">
+  <data name="Property_ControlMarkersFlags1SberDev" xml:space="preserve">
     <value>All</value>
   </data>
-  <data name="Property_ProfitMarkersSberDev" xml:space="preserve">
+  <data name="Property_ControlMarkersFlags2SberDev" xml:space="preserve">
     <value>Profitable</value>
   </data>
 </root>
