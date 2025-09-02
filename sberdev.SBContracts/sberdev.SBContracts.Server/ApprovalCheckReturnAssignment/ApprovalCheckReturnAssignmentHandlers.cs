@@ -13,7 +13,8 @@ namespace sberdev.SBContracts
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       base.Created(e);
-      var doc = _obj.DocumentGroup?.OfficialDocuments?.FirstOrDefault();
+      /*
+      var doc = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
       if (doc != null)
       {
         if ((sberdev.SBContracts.SupAgreements.Is(doc)) || (sberdev.SBContracts.IncomingInvoices.Is(doc)) ||
@@ -68,7 +69,7 @@ namespace sberdev.SBContracts
             notif.Start();
           }
         }
-      }
+      }*/
     }
 
     public override void BeforeComplete(Sungero.Workflow.Server.BeforeCompleteEventArgs e)
