@@ -612,6 +612,12 @@
       "ReturnTypeFullName": "System.Collections.Generic.List"
     },
     {
+      "Name": "GetCompanyCodesList",
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::System.String>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
       "Name": "GetDepartment",
       "IsRemote": true,
       "Parameters": [
@@ -861,6 +867,53 @@
       "Placement": "Shared",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "RemoveAllCompanyCodes",
+      "Parameters": [
+        {
+          "Name": "input",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "RemoveCompanyCodeFromEnd",
+      "Parameters": [
+        {
+          "Name": "input",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "ResetBooleanGroupSelections",
+      "Parameters": [
+        {
+          "Name": "entity",
+          "ParameterType": "System.Object"
+        },
+        {
+          "Name": "e",
+          "ParameterType": "Sungero.Domain.Shared.BooleanPropertyChangedEventArgs"
+        },
+        {
+          "Name": "propertyName",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
     },
     {
       "Name": "SetMetadataID",
@@ -1208,7 +1261,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.6.2.0",
+  "Version": "5.7.0.0",
   "Widgets": [],
   "Versions": [
     {

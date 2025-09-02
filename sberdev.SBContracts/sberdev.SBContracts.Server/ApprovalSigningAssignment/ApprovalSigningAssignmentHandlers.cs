@@ -24,7 +24,7 @@ namespace sberdev.SBContracts
     public override void BeforeComplete(Sungero.Workflow.Server.BeforeCompleteEventArgs e)
     {
       base.BeforeComplete(e);
-      PublicFunctions.OfficialDocument.Remote.ClearPublicComment(SBContracts.OfficialDocuments.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault()));
+      PublicFunctions.ApprovalTask.ClearPublicComment(_obj);
     }
   }
 

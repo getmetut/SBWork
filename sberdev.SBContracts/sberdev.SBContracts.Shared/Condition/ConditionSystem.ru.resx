@@ -190,7 +190,7 @@
   <data name="Property_ProductUnitSberDev" xml:space="preserve">
     <value>Бизненс юнит</value>
   </data>
-  <data name="Enum_ConditionType_Contrtype" xml:space="preserve">
+  <data name="Enum_ConditionType_ContrTypeSberDev" xml:space="preserve">
     <value>Тип договора</value>
   </data>
   <data name="Property_PurchaseAmountSberDev" xml:space="preserve">

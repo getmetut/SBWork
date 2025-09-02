@@ -8,87 +8,9 @@ using sberdev.SBContracts.OfficialDocument;
 namespace sberdev.SBContracts.Shared
 {
   partial class OfficialDocumentFunctions
-  {    
+  {
     
-    public static System.Collections.Generic.HashSet<string> GetSkipProps()
-    {
-     return new System.Collections.Generic.HashSet<string>(new[] {
-                                                       "Modified","ModifiedBy","Created","CreatedBy","ModifiedSberDev",
-                                                       "LastVersion","VersionId","LocationState", "InternalApprovalState", "ExternalApprovalState", "ExecutionState", "", "ControlExecutionState",
-                                                       
-                                                       "Index", "RegistrationNumber", "LifeCycleState", "DocumentRegister",
-                                                       "RegistrationDate", "CaseFile", "PlacedToCaseFileDate", "Tracking", "IsReturnRequired", "IsHeldByCounterParty", "DeliveredTo", "ReturnDeadline",
-                                                       "ReturnDate","RegistrationState",
-                                                       
-                                                       "ScheduledReturnDateFromCounterparty", "HasRelations"
-                                                     });
-      
-      /*  new System.Collections.Generic.HashSet<string>(new[] {
-                                                       "Modified","ModifiedBy","Created","CreatedBy","ModifiedSberDev",
-                                                       "LastVersion","VersionId","LocationState", "Index", "RegistrationNumber", "", "", "",
-                                                       "RegistrationDate", "", "", "", "", "", "", "", "",
-                                                       "", "", "", "", "", "", "", "", ""
-                                                         "", "", "", "", "", "", "", "", ""
-                                                         "", "", "", "", "", "", "", "", ""
-                                                     });
-      new System.Collections.Generic.HashSet<string>(new[] {
-                                                       "Index", "RegistrationNumber", "", "", "",
-                                                       "RegistrationDate", "", "", "", "", "", "", "", "",
-                                                       "", "", "", "", "", "", "", "", ""
-                                                         "", "", "", "", "", "", "", "", ""
-                                                         "", "", "", "", "", "", "", "", ""
-                                                     });*/
-    }
-    
-    /// <summary>
-    /// Проверяет откуда создан документ
-    /// </summary>
-    /// <param name="document"></param>
-    /// <param name="source">Константы из OfficialDocument с приставкой "LS"</param>
-    /// <returns>Словарь с результатами проверки вхождения строк</returns>
-    [Public]
-    public System.Collections.Generic.Dictionary<string, bool> CheckLocationState(string[] source)
-    {
-      var result = new Dictionary<string, bool>();
-      
-      if (source == null || source.Length == 0)
-        return result;
-      
-      string locationState = _obj?.LocationState ?? string.Empty;
-      
-      foreach (string sourceItem in source)
-      {
-        if (!string.IsNullOrEmpty(sourceItem))
-        {
-          result[sourceItem] = locationState.Contains(sourceItem);
-        }
-      }
-      
-      return result;
-    }
-    
-    /// <summary>
-    /// Проверяет создан ли документ системой
-    /// </summary>
-    /// <param name="document">Документ для проверки</param>
-    /// <returns></returns>
-    public static bool IsCreatedBySystem(IOfficialDocument document)
-    {
-      long[] adminIds = new long[] {9, 10, 11, 12};
-      return adminIds.Contains(document.Author.Id);
-    }
-    
-    /// <summary>
-    /// Выключает обязательность невидимых свойств
-    /// </summary>
-    [Public]
-    public void ValidationRequierdProperties()
-    {
-      var unvisProps = _obj.State.Properties.Where(p => p.IsVisible == false);
-      foreach (var prop in unvisProps)
-        prop.IsRequired = false;
-    }
-    
+    #region Геты
     /// <summary>
     /// Получить список всех продуктов
     /// </summary>
@@ -142,6 +64,71 @@ namespace sberdev.SBContracts.Shared
       return products.Distinct().ToList();
     }
     
+    public static System.Collections.Generic.HashSet<string> GetSkipProps()
+    {
+      return new System.Collections.Generic.HashSet<string>(new[] {
+                                                              "Modified","ModifiedBy","Created","CreatedBy","ModifiedSberDev",
+                                                              "LastVersion","VersionId","LocationState", "InternalApprovalState", "ExternalApprovalState", "ExecutionState", "", "ControlExecutionState",
+                                                              "Index", "RegistrationNumber", "LifeCycleState", "DocumentRegister",
+                                                              "RegistrationDate", "CaseFile", "PlacedToCaseFileDate", "Tracking", "IsReturnRequired", "IsHeldByCounterParty", "DeliveredTo", "ReturnDeadline",
+                                                              "ReturnDate","RegistrationState","ScheduledReturnDateFromCounterparty", "HasRelations"
+                                                            });
+    }
+    #endregion
+    
+    #region Валидация
+    /// <summary>
+    /// Проверяет откуда создан документ
+    /// </summary>
+    /// <param name="document"></param>
+    /// <param name="source">Константы из OfficialDocument с приставкой "LS"</param>
+    /// <returns>Словарь с результатами проверки вхождения строк</returns>
+    [Public]
+    public System.Collections.Generic.Dictionary<string, bool> CheckLocationState(string[] source)
+    {
+      var result = new Dictionary<string, bool>();
+      
+      if (source == null || source.Length == 0)
+        return result;
+      
+      string locationState = _obj?.LocationState ?? string.Empty;
+      
+      foreach (string sourceItem in source)
+      {
+        if (!string.IsNullOrEmpty(sourceItem))
+        {
+          result[sourceItem] = locationState.Contains(sourceItem);
+        }
+      }
+      
+      return result;
+    }
+    
+    /// <summary>
+    /// Проверяет создан ли документ системой
+    /// </summary>
+    /// <param name="document">Документ для проверки</param>
+    /// <returns></returns>
+    public static bool IsCreatedBySystem(IOfficialDocument document)
+    {
+      long[] adminIds = new long[] {9, 10, 11, 12};
+      return adminIds.Contains(document.Author.Id);
+    }
+    
+    /// <summary>
+    /// Выключает обязательность невидимых свойств
+    /// </summary>
+    [Public]
+    public void ValidationRequierdProperties()
+    {
+      var unvisProps = _obj.State.Properties.Where(p => p.IsVisible == false);
+      foreach (var prop in unvisProps)
+        prop.IsRequired = false;
+    }
+    #endregion
+    
+    #region Текстовые
+    
     public Nullable<Enumeration> GetIntApprEnum(string value)
     {
       switch (value)
@@ -174,5 +161,7 @@ namespace sberdev.SBContracts.Shared
           return null;
       }
     }
+    #endregion
+    
   }
 }

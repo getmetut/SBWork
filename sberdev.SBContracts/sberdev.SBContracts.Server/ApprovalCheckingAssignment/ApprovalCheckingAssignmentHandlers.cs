@@ -69,7 +69,7 @@ namespace sberdev.SBContracts
     public override void BeforeComplete(Sungero.Workflow.Server.BeforeCompleteEventArgs e)
     {
       base.BeforeComplete(e);
-      PublicFunctions.OfficialDocument.Remote.ClearPublicComment(SBContracts.OfficialDocuments.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault()));
+      PublicFunctions.ApprovalTask.ClearPublicComment(_obj);
       if (_obj.NeedAbort.GetValueOrDefault())
       {
         e.Result = sberdev.SberContracts.Resources.NotApprove;
@@ -77,6 +77,7 @@ namespace sberdev.SBContracts
       
       var incInv = IncomingInvoices.As(_obj.DocumentGroup.OfficialDocuments?.First());
       
+      //TODO: нормально привязать этапы и вынести в отдельнуюю функцию
       if (incInv != null)
       {
         var accounting = incInv.AccDocSberDev;

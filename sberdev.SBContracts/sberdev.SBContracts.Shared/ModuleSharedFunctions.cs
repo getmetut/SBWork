@@ -3,13 +3,128 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
+using System.Reflection;
+using System.Linq.Expressions;
 
 namespace sberdev.SBContracts.Shared
 {
   public class ModuleFunctions
   {
     
+    #region "Радиопереключатель"
+    
+    /// <summary>
+    /// Сбросить в false все булевы свойства семейства, кроме указанного.
+    /// Функция для создания семейства булевых свойств вида "Радиопереключатель".
+    /// Чтобы работало, нужно создать набор свойсв с названиями по типу *Название семейства_Номер*.
+    /// Пример : SelectedCounterparty1..SelectedCounterpartyN.
+    /// И поместить в событие изменения каждого свойсва из семейства
+    /// </summary>
+    /// <param name="doc">Документ.</param>
+    /// <param name="arg">Аргумент изменения значения.</param>
+    /// <param name="changedPropertySelector">Имя свойства</param>
+    [Public]
+    public void ResetBooleanGroupSelections(object entity, Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e, string propertyName)
+    {
+      if (entity == null || e == null || e.NewValue != true || string.IsNullOrWhiteSpace(propertyName))
+        return;
+      
+      string pn = RemoveCompanyCodeFromEnd(propertyName);
+      var prefix = GetFamilyPrefix(pn);
+      if (string.IsNullOrEmpty(prefix))
+        return;
+
+      var props = entity.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+
+      foreach (var p in props)
+      {
+        if (!p.Name.StartsWith(prefix) || p.Name == propertyName)
+          continue;
+
+        var pt = p.PropertyType;
+        var isBool = pt == typeof(bool) || pt == typeof(bool?);
+        if (!isBool || !p.CanRead || !p.CanWrite)
+          continue;
+
+        var value = p.GetValue(entity);
+        if ((pt == typeof(bool) && value is bool b && b) ||
+            (pt == typeof(bool?) && value is bool nb && nb))
+          p.SetValue(entity, false);
+      }
+    }
+
+
+    /// <summary>
+    /// Получить префикс имени свойства (например, "SelectedCounterparty3" → "SelectedCounterparty").
+    /// </summary>
+    private string GetFamilyPrefix(string propertyName)
+    {
+      if (string.IsNullOrEmpty(propertyName))
+        return null;
+
+      var i = propertyName.Length - 1;
+      while (i >= 0 && char.IsDigit(propertyName[i]))
+        i--;
+
+      return propertyName.Substring(0, i + 1);
+    }
+
+    #endregion
+    
     #region Текстовые
+    
+    /// <summary>
+    /// Удаляет код компании с конца строки, если он там присутствует.
+    /// </summary>
+    /// <param name="input">Исходная строка.</param>
+    /// <returns>Строка без кода компании на конце.</returns>
+    [Public]
+    public string RemoveCompanyCodeFromEnd(string input)
+    {
+      if (string.IsNullOrWhiteSpace(input))
+        return input;
+
+      var codes = GetCompanyCodesList();
+      foreach (var code in codes)
+      {
+        if (input.EndsWith(code, StringComparison.Ordinal))
+          return input.Substring(0, input.Length - code.Length);
+      }
+
+      return input;
+    }
+
+    /// <summary>
+    /// Удаляет все вхождения кодов компаний из строки (независимо от позиции).
+    /// </summary>
+    /// <param name="input">Исходная строка.</param>
+    /// <returns>Строка без кодов компаний.</returns>
+    [Public]
+    public string RemoveAllCompanyCodes(string input)
+    {
+      if (string.IsNullOrWhiteSpace(input))
+        return input;
+
+      var codes = GetCompanyCodesList();
+      foreach (var code in codes)
+        input = input.Replace(code, string.Empty);
+
+      return input;
+    }
+
+    /// <summary>
+    /// Возвращает список кодов компаний. (то что ставится в конец названий свойств)
+    /// </summary>
+    /// <returns></returns>
+    [Public]
+    public System.Collections.Generic.List<string> GetCompanyCodesList()
+    {
+      var list = new List<string>
+      {
+        "SberDev","SDev"
+      };
+      return list;
+    }
     
     [Public]
     // Вспомогательная функция для получения отображаемого имени свойства
@@ -303,6 +418,8 @@ namespace sberdev.SBContracts.Shared
     }
     #endregion
     
+    #region Рабочий календарь
+    
     /// <summary>
     /// Вычисляет количество рабочих дней между двумя датами.
     /// </summary>
@@ -365,6 +482,7 @@ namespace sberdev.SBContracts.Shared
         return 0;
       }
     }
+    #endregion
     
     /// <summary>
     /// Функция проверяет является ли пользователь системным
