@@ -13,9 +13,9 @@ namespace sberdev.SBContracts
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       base.Created(e);
-      if (_obj.DocumentGroup.OfficialDocuments.FirstOrDefault() != null)
+      var doc = _obj.DocumentGroup?.OfficialDocuments?.FirstOrDefault();
+      if (doc != null)
       {
-        var doc = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
         if ((sberdev.SBContracts.SupAgreements.Is(doc)) || (sberdev.SBContracts.IncomingInvoices.Is(doc)) ||
             (sberdev.SberContracts.Purchases.Is(doc)) || (sberdev.SberContracts.Specifications.Is(doc)))
         {
