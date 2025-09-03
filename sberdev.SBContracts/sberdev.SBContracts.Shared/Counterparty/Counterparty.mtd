@@ -288,8 +288,7 @@
     }
   ],
   "HandledEvents": [
-    "FilteringServer",
-    "BeforeSaveServer"
+    "FilteringServer"
   ],
   "IconResourcesKeys": [],
   "IsAbstract": true,

@@ -315,8 +315,8 @@ namespace sberdev.SBContracts.Shared
       }
       #endregion
 
-      #region Проверка: Тип договора (Contrtype)
-      if (_obj.ConditionType == ConditionType.Contrtype)
+      #region Проверка: Тип договора (ContrTypeSberDev)
+      if (_obj.ConditionType == ConditionType.ContrTypeSberDev)
       {
         var acc = SBContracts.AccountingDocumentBases.As(document);
         bool flag = acc.ContrTypeBaseSberDev == SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable;
@@ -858,7 +858,7 @@ namespace sberdev.SBContracts.Shared
       }
       #endregion
       
-      #region Проверка: Контроль документа на указанный признак доходности
+      #region Проверка: Контроль документа на указанный признак доходности (PlusMinus)
       if (_obj.ConditionType == ConditionType.PlusMinus)
       {
         var contra = false;
@@ -1017,9 +1017,14 @@ namespace sberdev.SBContracts.Shared
       
       baseSupport["675e2890-7dba-4d1a-a3bb-8a829bdabd66"].Add(ConditionType.DocChangedStart); // непроизводственная закупка
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.DocChangedStart); // закупка
+      baseSupport["50114491-2005-49ad-b0d6-49c695c44b8d"].Add(ConditionType.DocChangedStart); // производственная закупка
       baseSupport["09584896-81e2-4c83-8f6c-70eb8321e1d0"].Add(ConditionType.DocChangedStart); // простой документ
       
+      baseSupport["50114491-2005-49ad-b0d6-49c695c44b8d"].Add(ConditionType.Product); // производственная закупка
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.Product); // входящий счет
+      baseSupport["675e2890-7dba-4d1a-a3bb-8a829bdabd66"].Add(ConditionType.Product); // непроизводственная закупка
+      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.Product); // закупка
+      baseSupport["9d7a0ce3-e5c5-45b9-956d-7b26daedfdd2"].Add(ConditionType.Product); // гарантийное письмо
       
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.IsProdPurchase); // purchase
       
@@ -1032,11 +1037,14 @@ namespace sberdev.SBContracts.Shared
       
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.PurchAmount); // purchase
       
-      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.Contrtype); // входящий счет
+      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.ContrTypeSberDev); // входящий счет
+      baseSupport["74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a"].Add(ConditionType.ContrTypeSberDev); // счет фактура полученный
+      baseSupport["f50c4d8a-56bc-43ef-bac3-856f57ca70be"].Add(ConditionType.ContrTypeSberDev); // счет фактура выставленный
+      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.ContrTypeSberDev); // исходящий счет
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.ProductUnit); // incoming invoice
       
-      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.AmountIsMore);
+      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.AmountIsMore); // purchase
       
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.EndorseFromSberDev); // purchase
       
@@ -1063,7 +1071,6 @@ namespace sberdev.SBContracts.Shared
       baseSupport["74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a"].Add(ConditionType.Framework); // счет фактура полученный
       baseSupport["f50c4d8a-56bc-43ef-bac3-856f57ca70be"].Add(ConditionType.Framework); // счет фактура выставленный
       
-      
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.MVZ); // входящий счет
       baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.MVZ); // исходящее письмо
       baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.MVZ); // Входящее письмо
@@ -1076,6 +1083,8 @@ namespace sberdev.SBContracts.Shared
       baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.AccArts); // исходящее письмо
       baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.AccArts); // Входящее письмо
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.AccArts); // исходящий счет
+      baseSupport["74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a"].Add(ConditionType.AccArts); // счет фактура полученный
+      baseSupport["f50c4d8a-56bc-43ef-bac3-856f57ca70be"].Add(ConditionType.AccArts); // счет фактура выставленный
 
       baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.ActExists); // исходящее письмо
       baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.DeviceExists); // исходящее письмо
@@ -1086,11 +1095,8 @@ namespace sberdev.SBContracts.Shared
       baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.FactOfPayment); // Входящее письмо
       baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.PricesAgreed); // Входящее письмо
       
-      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.PlusMinus); // Sungero.FinancialArchive.UniversalTransferDocument
-      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.INNCollection); // Sungero.FinancialArchive.UniversalTransferDocument
-
-      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.PlusMinus); // Sungero.FinancialArchive.ContractStatement
-      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.INNCollection); // Sungero.FinancialArchive.ContractStatement
+      baseSupport["58ad01fb-6805-426b-9152-4de16d83b258"].Add(ConditionType.PlusMinus); // outgoing invoice
+      baseSupport["58ad01fb-6805-426b-9152-4de16d83b258"].Add(ConditionType.INNCollection); // outgoing invoice
       
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.INNCollection); // purchase
 
