@@ -13,7 +13,7 @@ namespace sberdev.SBContracts
 
     public override void AfterSave(Sungero.Domain.AfterSaveEventArgs e)
     {
-   //   Functions.ExchangeDocumentProcessingAssignment.DistributeFormalizedDocument(_obj);
+      //   Functions.ExchangeDocumentProcessingAssignment.DistributeFormalizedDocument(_obj);
       base.AfterSave(e);
     }
 
@@ -28,6 +28,7 @@ namespace sberdev.SBContracts
     public override void BeforeComplete(Sungero.Workflow.Server.BeforeCompleteEventArgs e)
     {
       base.BeforeComplete(e);
+      PublicFunctions.ApprovalTask.ClearPublicComment(_obj);
       if (_obj.NeedAbort.GetValueOrDefault())
       {
         e.Result = sberdev.SberContracts.Resources.NotApprove;

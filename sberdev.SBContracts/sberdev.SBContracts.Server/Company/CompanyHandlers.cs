@@ -58,7 +58,9 @@ namespace sberdev.SBContracts
     {
       base.Created(e);
       _obj.IPSberDev = false;
-      _obj.HeadOrgSDev = false;
+      _obj.HeadOrgSDev = true;
+      _obj.ControlMarkersFlags1SberDev = true;
+      _obj.ControlMarkersFlags2SberDev = false;
     }
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)

@@ -90,7 +90,7 @@ namespace sberdev.SBContracts.Server
           return "Продление ранней доверенности";
         }
         
-        if (_obj.ConditionType == ConditionType.Contrtype)
+        if (_obj.ConditionType == ConditionType.ContrTypeSberDev)
         {
           return "Документ доходный?";
         }

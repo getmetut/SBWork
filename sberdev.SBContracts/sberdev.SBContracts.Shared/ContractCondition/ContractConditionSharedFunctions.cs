@@ -672,7 +672,7 @@ namespace sberdev.SBContracts.Shared
       
       #endregion
       
-      #region Проверка: Контроль документа на указанный признак доходности
+      #region Проверка: Контроль документа на указанный признак доходности (PlusMinus)
       if (_obj.ConditionType == ConditionType.PlusMinus)
       {
         var contra = false;
@@ -806,7 +806,7 @@ namespace sberdev.SBContracts.Shared
       }
       #endregion
       
-      #region Проверка: Коллекция ИНН (ИНН)
+      #region Проверка: Коллекция ИНН (INNCollection)
       if (_obj.ConditionType == ConditionType.INNCollection)
       {
         var find = false;
@@ -884,43 +884,18 @@ namespace sberdev.SBContracts.Shared
       }
       #endregion
       
-      #region Проверка: Продукты (доработки в рамках задачи DRX-917).
+      #region Проверка: Продукты (Product).
       if (_obj.ConditionType == ConditionType.Product)
       {
-        bool included = false;
-        var contractual = SBContracts.ContractualDocuments.As(document);
-        var supAgreement = SBContracts.SupAgreements.As(document);
-        List<SberContracts.IProductsAndDevices> docProducts = new List<sberdev.SberContracts.IProductsAndDevices>();
+        bool flag = false;
+        var products = SBContracts.PublicFunctions.OfficialDocument.GetDocumentProducts(SBContracts.OfficialDocuments.As(document));
+        if (!products.Any())
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+        var targetProductList = _obj.ProductsSberDevSBDEV.Select(p => p.Product);
+        var targetProductsIds = new HashSet<long>(targetProductList.Select(p => p.Id));
+        flag = products.Any(product => targetProductsIds.Contains(product.Id));
         
-        if (contractual != null) {
-          var prodsPr = contractual.ProdCollectionExBaseSberDev;
-          var prodsEx = contractual.ProdCollectionExBaseSberDev;
-          
-          if (prodsPr != null && prodsPr.Count > 0)
-            docProducts.AddRange(prodsPr.Select(p => p.Product).ToList());
-
-          if (prodsEx != null && prodsEx.Count > 0)
-            docProducts.AddRange(prodsEx.Select(p => p.Product).ToList());
-        }
-        
-        if (supAgreement != null) {
-          var prodsPr = supAgreement.ProdCollectionExBaseSberDev;
-          var prodsEx = supAgreement.ProdCollectionExBaseSberDev;
-          
-          if (prodsPr != null && prodsPr.Count > 0)
-            docProducts.AddRange(prodsPr.Select(p => p.Product).ToList());
-
-          if (prodsEx != null && prodsEx.Count > 0)
-            docProducts.AddRange(prodsEx.Select(p => p.Product).ToList());
-        }
-        
-        foreach (var prod in docProducts) {
-          if (_obj.ProductsSberDevSBDEV.Select(p => p.Product).ToList().Contains(prod)) {
-            included = true;
-            break;
-          }
-        }
-        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(included, string.Empty);
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
       }
       #endregion
       
@@ -935,6 +910,7 @@ namespace sberdev.SBContracts.Shared
     {
       var baseSupport = base.GetSupportedConditions();
       
+      // В блоке ниже перечислены все типы для которых работает этот справочник
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.DocChangedApprSberDev); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.DocChangedApprSberDev); // sup agreement
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.DocChangedApprSberDev); // сontract statement
@@ -992,10 +968,7 @@ namespace sberdev.SBContracts.Shared
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.ContrType); // sup agreement
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.ContrType); // упд
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.ContrType); // акт выполненых работ
-      baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.ContrType); // исходящий счет
       baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.ContrType); // накладная
-      baseSupport["74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a"].Add(ConditionType.ContrType); // счет фактура полученный
-      baseSupport["f50c4d8a-56bc-43ef-bac3-856f57ca70be"].Add(ConditionType.ContrType); // счет фактура выставленный
       
       baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.MarketDirect); // other contractual document
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.MarketDirect); // сontract statement
@@ -1032,8 +1005,6 @@ namespace sberdev.SBContracts.Shared
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.AccountAticles); // sup agreement
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.AccountAticles); // сontract statement
       baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.AccountAticles); // накладная
-      baseSupport["74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a"].Add(ConditionType.AccountAticles); // счет фактура полученный
-      baseSupport["f50c4d8a-56bc-43ef-bac3-856f57ca70be"].Add(ConditionType.AccountAticles); // счет фактура выставленный
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.AccountAticles); // упд
       baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.AccountAticles); // other contractual document
       
@@ -1050,30 +1021,23 @@ namespace sberdev.SBContracts.Shared
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.PlusMinus); // incomming
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.INNCollection); // incomming
       
-      baseSupport["58ad01fb-6805-426b-9152-4de16d83b258"].Add(ConditionType.PlusMinus); // outgoing
-      baseSupport["58ad01fb-6805-426b-9152-4de16d83b258"].Add(ConditionType.INNCollection); // outgoing
-      
-      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.PlusMinus); // Sungero.FinancialArchive.UniversalTransferDocument
-      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.INNCollection); // Sungero.FinancialArchive.UniversalTransferDocument
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.PlusMinus); // упд
+      baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.INNCollection); // упд
       
       baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.PlusMinus);
       baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.INNCollection);
       
-      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.PlusMinus); // Sungero.FinancialArchive.ContractStatement
-      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.INNCollection); // Sungero.FinancialArchive.ContractStatement
-      
-      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.INNCollection); // purchase
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.PlusMinus); // сontract statement
+      baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.INNCollection); // сontract statement
       
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.PayType);
       
-      #region Доработки в рамках задачи DRX-917.
       baseSupport["f37c7e63-b134-4446-9b5b-f8811f6c9666"].Add(ConditionType.Product); // contract
       baseSupport["265f2c57-6a8a-4a15-833b-ca00e8047fa5"].Add(ConditionType.Product); // sup agreement
       baseSupport["f2f5774d-5ca3-4725-b31d-ac618f6b8850"].Add(ConditionType.Product); // сontract statement
       baseSupport["58986e23-2b0a-4082-af37-bd1991bc6f7e"].Add(ConditionType.Product); // universal transfer document
       baseSupport["4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"].Add(ConditionType.Product); // waybill
       baseSupport["464c7cc8-5ec8-49ff-8ea1-9d094c025987"].Add(ConditionType.Product); // other contractual document
-      #endregion
       
       return baseSupport;
     }

@@ -94,13 +94,4 @@ namespace sberdev.SBContracts
     }
   }
 
-  partial class CounterpartyServerHandlers
-  {
-
-    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
-    {
-      base.BeforeSave(e);
-    }
-  }
-
 }
