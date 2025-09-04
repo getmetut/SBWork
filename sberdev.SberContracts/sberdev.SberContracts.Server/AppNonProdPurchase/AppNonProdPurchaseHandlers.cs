@@ -30,6 +30,8 @@ namespace sberdev.SberContracts
           {
             if (_obj.CalculationAmountBaseSberDev > 500000)
               e.AddInformation("Сумма закупки превышает 500 тыс. руб. Пожалуйста, оформите заявку через портал Сорсинга https://tasks.sberdevices.ru/servicedesk/customer/portal/47");
+            if (_obj.EstimatedDeliveryCost > 500000)
+              e.AddInformation("Сумма закупки превышает 500 тыс. руб. Пожалуйста, оформите заявку через портал Сорсинга https://tasks.sberdevices.ru/servicedesk/customer/portal/47");
           }
         }
       }

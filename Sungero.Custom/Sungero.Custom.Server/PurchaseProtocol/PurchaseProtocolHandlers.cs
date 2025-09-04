@@ -33,7 +33,7 @@ namespace Sungero.Custom
 
     public virtual IQueryable<T> DocumentFootingFiltering(IQueryable<T> query, Sungero.Domain.PropertyFilteringEventArgs e)
     {
-      query = query.Where(d =>((sberdev.SberContracts.AppProductPurchases.Is(d)) || (sberdev.SberContracts.AppNonProdPurchases.Is(d))));
+      query = query.Where(d =>((sberdev.SberContracts.AppProductPurchases.Is(d)) || (sberdev.SberContracts.AppNonProdPurchases.Is(d)) || (sberdev.SberContracts.AppRnDPurchases.Is(d))));
       return query;
     }
   }
