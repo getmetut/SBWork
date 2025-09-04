@@ -1000,6 +1000,19 @@
   ],
   "Properties": [
     {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "f72f5dba-0004-4b1b-ad6b-8d6ba20f0145",
+      "Name": "Note",
+      "HandledEvents": [
+        "ChangedShared"
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "HandledEvents"
+      ],
+      "Versions": []
+    },
+    {
       "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
       "NameGuid": "ec082683-e3d8-4cf2-8cfa-1461ee0e6fc0",
       "Name": "LifeCycleState",
@@ -1301,6 +1314,18 @@
       "EntityGuid": "97506b84-f32f-4902-b990-9b4e847ffa70",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "4136e134-7207-42fc-8476-0e70f3a3bc5d"
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e689229f-2980-4a94-869f-fdf76ded6b31",
+      "Name": "EditPrim",
+      "CanBeSearch": false,
+      "Code": "EditPrim",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "2392c214-1eb9-4f12-9da8-9f7fd092c748"
     }
   ],
   "PublicStructures": [],

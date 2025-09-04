@@ -398,4 +398,7 @@ In the absence of these trainings, the following reputational risks are possible
   <data name="Enum_LifeCycleState_Draft" xml:space="preserve">
     <value>Draft</value>
   </data>
+  <data name="Property_EditPrim" xml:space="preserve">
+    <value>Изменено примечание документа</value>
+  </data>
 </root>

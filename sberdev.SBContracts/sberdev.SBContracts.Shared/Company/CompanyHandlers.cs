@@ -34,8 +34,11 @@ namespace sberdev.SBContracts
         var HeadOrg = sberdev.SBContracts.Companies.GetAll(c => c.HeadOrgSDev.HasValue).Where(c => ((c.TIN == _obj.TIN) && (c.HeadOrgSDev == true))).FirstOrDefault();
         if (HeadOrg != null)
         {
-          PublicFunctions.Module.ShowInfoMessage("Для данного ИНН уже существует головная организация: " + HeadOrg.Name.ToString());
-          _obj.HeadOrgSDev = false;
+          if (!SBContracts.PublicFunctions.Module.IsSystemUser())
+          {
+            PublicFunctions.Module.ShowInfoMessage("Для данного ИНН уже существует головная организация: " + HeadOrg.Name.ToString());
+            _obj.HeadOrgSDev = false;
+          }
         }
       }
     }
