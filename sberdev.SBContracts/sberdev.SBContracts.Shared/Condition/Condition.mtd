@@ -684,6 +684,11 @@
           "NameGuid": "78fe7f34-a171-4a60-8ee6-69394aa7e6f9",
           "Name": "DocChangedStart",
           "Code": "DocChangedStart"
+        },
+        {
+          "NameGuid": "8ae85baa-fb18-47d0-9c90-30be43e720fa",
+          "Name": "Counterparty",
+          "Code": "Counterparty"
         }
       ],
       "IsAncestorMetadata": true,
@@ -903,6 +908,15 @@
       "EntityGuid": "6fe39937-048a-4157-94e0-52553af3fad5",
       "IsShowedInList": false,
       "PreviousPropertyGuid": "a3340da9-69d8-48fd-a3d4-65beca53c238"
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "c7cc686a-174d-45aa-9771-74b787c38bac",
+      "Name": "CounterpartiesCollectionSberDev",
+      "Code": "CPColCond",
+      "EntityGuid": "48480319-d4b8-4dfe-89c8-12a5e014252f",
+      "IsShowedInList": false,
+      "PreviousPropertyGuid": "b26f8bae-19ef-4c57-bfb6-45be8a71c212"
     }
   ],
   "PublicStructures": [],

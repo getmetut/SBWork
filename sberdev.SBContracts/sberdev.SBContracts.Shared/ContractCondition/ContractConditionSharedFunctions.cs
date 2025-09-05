@@ -16,6 +16,10 @@ namespace sberdev.SBContracts.Shared
     {
       base.ChangePropertiesAccess();
       
+      var isCounterparty = _obj.ConditionType == ConditionType.Counterparty;
+      _obj.State.Properties.CounterpartiesCollectionSberDev.IsVisible = isCounterparty;
+      _obj.State.Properties.CounterpartiesCollectionSberDev.IsRequired = isCounterparty;
+      
       var isCPProfitTotalAmount = _obj.ConditionType == ConditionType.CPProfitTotalAm;
       _obj.State.Properties.CPProfitTotalAmountSberDev.IsVisible = isCPProfitTotalAmount;
       _obj.State.Properties.CPProfitTotalAmountSberDev.IsRequired = isCPProfitTotalAmount;
@@ -25,8 +29,8 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.ProductUnitSberDev.IsRequired = isProductUnit;
       
       var isEndorseFrom = _obj.ConditionType == ConditionType.EndorseFromSberDev || _obj.ConditionType == ConditionType.InvApprBySberDev;
-      _obj.State.Properties.EndorserSberDev.IsVisible = isEndorseFrom;
-      _obj.State.Properties.EndorserSberDev.IsRequired = isEndorseFrom;
+      _obj.State.Properties.EndorserContrSberDev.IsVisible = isEndorseFrom;
+      _obj.State.Properties.EndorserContrSberDev.IsRequired = isEndorseFrom;
       
       var isContrType = _obj.ConditionType == ConditionType.ContrCategory;
       _obj.State.Properties.ContrCategorysberdev.IsVisible = isContrType;
@@ -56,9 +60,9 @@ namespace sberdev.SBContracts.Shared
       _obj.State.Properties.PlusMinusSDevSDev.IsVisible = isPlMin;
       _obj.State.Properties.PlusMinusSDevSDev.IsRequired = isPlMin;
       _obj.State.Properties.SummPriznSDevSDev.IsVisible = isPlMin;
-      _obj.State.Properties.TotalSummSDevSDev.IsVisible = isPlMin;
+      _obj.State.Properties.TotalSummSberDev.IsVisible = isPlMin;
       _obj.State.Properties.SummPriznSDevSDev.IsRequired = isPlMin;
-      _obj.State.Properties.TotalSummSDevSDev.IsRequired = isPlMin;
+      _obj.State.Properties.TotalSummSberDev.IsRequired = isPlMin;
       
       var isINN = _obj.ConditionType == ConditionType.INNCollection;
       _obj.State.Properties.CollectionINNSDevSDev.IsVisible = isINN;
@@ -73,8 +77,12 @@ namespace sberdev.SBContracts.Shared
     public override void ClearHiddenProperties()
     {
       base.ClearHiddenProperties();
-      if(!_obj.State.Properties.EndorserSberDev.IsVisible)
-        _obj.EndorserSberDev = null;
+      
+      if(!_obj.State.Properties.CounterpartiesCollectionSberDev.IsVisible)
+        _obj.CounterpartiesCollectionSberDev.Clear();
+      
+      if(!_obj.State.Properties.EndorserContrSberDev.IsVisible)
+        _obj.EndorserContrSberDev = null;
       
       if(!_obj.State.Properties.ProductUnitSberDev.IsVisible)
         _obj.ProductUnitSberDev.Clear();
@@ -104,6 +112,22 @@ namespace sberdev.SBContracts.Shared
     
     public override Sungero.Docflow.Structures.ConditionBase.ConditionResult CheckCondition(Sungero.Docflow.IOfficialDocument document, Sungero.Docflow.IApprovalTask task)
     {
+      #region Проверка контрагента (Counterparty)
+      if (_obj.ConditionType == ConditionType.Counterparty)
+      {
+        var flag = false;
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        var accounting = SBContracts.AccountingDocumentBases.As(document);
+        if (contractual != null || accounting != null)
+        {
+          var cp = contractual.Counterparty ?? accounting.Counterparty;
+          if (cp != null)
+            flag = _obj.CounterpartiesCollectionSberDev.Select(c => c.Counterparty).ToList().Contains(cp);
+        }
+        
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      #endregion
       
       #region Проверка: Изменён ли документ после запуска задачи (DocChangedStart)
       if (_obj.ConditionType == ConditionType.DocChangedStart)
@@ -226,9 +250,11 @@ namespace sberdev.SBContracts.Shared
         if (contr == null)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
         
-        // Получаем контрагента если Контрагент уже проверяется - не требуется проверка
+        // Получаем контрагента
+        // Eсли Контрагент проверяется в данный момент - не требуется проверка
+        // Если контрагент из нашей группы компаний проверка не нужна
         var cp = SBContracts.Counterparties.As(contr.Counterparty);
-        if (cp == null || cp.FocusCheckingSberDev == true)
+        if (cp == null || cp.FocusCheckingSberDev == true || cp.IsNeedFocusCheckSberDev == false)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
         
         // Проверяем результаты предыдущей проверки
@@ -330,8 +356,8 @@ namespace sberdev.SBContracts.Shared
           var signInfos = PublicFunctions.Module.GetSignatures(inv.LastVersion);
           foreach (var signInfo in signInfos)
           {
-            if (signInfo.IsValid && (signInfo.SubstitutedUser == _obj.EndorserSberDev
-                                     || signInfo.Signatory == _obj.EndorserSberDev))
+            if (signInfo.IsValid && (signInfo.SubstitutedUser == _obj.EndorserContrSberDev
+                                     || signInfo.Signatory == _obj.EndorserContrSberDev))
             {
               flag = true;
               break;
@@ -349,7 +375,7 @@ namespace sberdev.SBContracts.Shared
         bool flag = false;
         foreach (var singInfo in signInfos)
         {
-          if ((singInfo.Signatory == _obj.EndorserSberDev || singInfo.SubstitutedUser == _obj.EndorserSberDev)
+          if ((singInfo.Signatory == _obj.EndorserContrSberDev || singInfo.SubstitutedUser == _obj.EndorserContrSberDev)
               && singInfo.SignatureType != SignatureType.NotEndorsing)
           {
             flag = true;
@@ -703,13 +729,13 @@ namespace sberdev.SBContracts.Shared
             ctrl = false;
             
             if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Big)
-              ctrl = ContraSumm2 > _obj.TotalSummSDevSDev.Value;
+              ctrl = ContraSumm2 > _obj.TotalSummSberDev.Value;
             
             if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Little)
-              ctrl = ContraSumm2 < _obj.TotalSummSDevSDev.Value;
+              ctrl = ContraSumm2 < _obj.TotalSummSberDev.Value;
             
             if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
-              ctrl = ContraSumm2 == _obj.TotalSummSDevSDev.Value;
+              ctrl = ContraSumm2 == _obj.TotalSummSberDev.Value;
           }
           
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
@@ -743,13 +769,13 @@ namespace sberdev.SBContracts.Shared
             ctrl = false;
             
             if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Big)
-              ctrl = ContraSumm2 > _obj.TotalSummSDevSDev.Value;
+              ctrl = ContraSumm2 > _obj.TotalSummSberDev.Value;
             
             if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Little)
-              ctrl = ContraSumm2 < _obj.TotalSummSDevSDev.Value;
+              ctrl = ContraSumm2 < _obj.TotalSummSberDev.Value;
             
             if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
-              ctrl = ContraSumm2 == _obj.TotalSummSDevSDev.Value;
+              ctrl = ContraSumm2 == _obj.TotalSummSberDev.Value;
           }
           
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
@@ -783,13 +809,13 @@ namespace sberdev.SBContracts.Shared
             ctrl = false;
             
             if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Big)
-              ctrl = ContraSumm2 > _obj.TotalSummSDevSDev.Value;
+              ctrl = ContraSumm2 > _obj.TotalSummSberDev.Value;
             
             if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Little)
-              ctrl = ContraSumm2 < _obj.TotalSummSDevSDev.Value;
+              ctrl = ContraSumm2 < _obj.TotalSummSberDev.Value;
             
             if (_obj.SummPriznSDevSDev == SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
-              ctrl = ContraSumm2 == _obj.TotalSummSDevSDev.Value;
+              ctrl = ContraSumm2 == _obj.TotalSummSberDev.Value;
           }
           
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(

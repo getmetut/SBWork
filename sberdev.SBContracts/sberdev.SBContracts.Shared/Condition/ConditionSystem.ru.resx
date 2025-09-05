@@ -244,4 +244,10 @@
   <data name="Enum_ConditionType_DocChangedStart" xml:space="preserve">
     <value>Документ изменен после запуска задачи</value>
   </data>
+  <data name="Enum_ConditionType_Counterparty" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
+  <data name="Property_CounterpartiesCollectionSberDev" xml:space="preserve">
+    <value>Контрагенты</value>
+  </data>
 </root>

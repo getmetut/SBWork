@@ -679,6 +679,11 @@
           "NameGuid": "5f6900fb-7803-4883-81ce-34df4e885c08",
           "Name": "Product",
           "Code": "Product"
+        },
+        {
+          "NameGuid": "87cce664-24da-4116-a542-07b3c34d9278",
+          "Name": "Counterparty",
+          "Code": "Counterparty"
         }
       ],
       "IsAncestorMetadata": true,
@@ -777,9 +782,9 @@
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "dadd87e0-5e88-41f5-ae98-29aee61a7be0",
-      "Name": "EndorserSberDev",
+      "Name": "EndorserContrSberDev",
       "CanBeSearch": false,
-      "Code": "EndorsCondCont",
+      "Code": "EndorsCCond",
       "EntityGuid": "243c2d26-f5f7-495f-9faf-951d91215c77",
       "IsShowedInList": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
@@ -797,9 +802,9 @@
     {
       "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
       "NameGuid": "f8b6b6dc-c9ae-475b-bd62-ac058815f10f",
-      "Name": "TotalSummSDevSDev",
+      "Name": "TotalSummSberDev",
       "CanBeSearch": false,
-      "Code": "TotalSummSDevS",
+      "Code": "TotalSummCond",
       "IsShowedInList": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "36b7b6f7-aa9d-4ec9-a6ad-3a584ebd37ff",
@@ -888,6 +893,15 @@
       "IsShowedInList": false,
       "PreviousPropertyGuid": "9655f5dd-5402-4b09-8c90-ed1075a96a1e",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.CollectionPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "f9e6d0ed-873e-4057-ac40-2cf17b5111fe",
+      "Name": "CounterpartiesCollectionSberDev",
+      "Code": "CPColCCond",
+      "EntityGuid": "b67d6088-8e1a-4134-9e8a-18725dbf73a8",
+      "IsShowedInList": false,
+      "PreviousPropertyGuid": "e230b9a2-a178-431a-ae44-25baeb101aa4"
     }
   ],
   "PublicStructures": [],

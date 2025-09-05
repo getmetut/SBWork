@@ -175,7 +175,7 @@
   <data name="Enum_ConditionType_EndorseFromSberDev" xml:space="preserve">
     <value>There is approve from</value>
   </data>
-  <data name="Property_EndorserSberDev" xml:space="preserve">
+  <data name="Property_EndorserContrSberDev" xml:space="preserve">
     <value>Endorser</value>
   </data>
   <data name="Enum_ConditionType_IsNeedCheckCp" xml:space="preserve">
@@ -196,7 +196,7 @@
   <data name="Enum_ConditionType_IsProdPurchase" xml:space="preserve">
     <value>Production purchase</value>
   </data>
-  <data name="Property_TotalSummSDevSDev" xml:space="preserve">
+  <data name="Property_TotalSummSberDev" xml:space="preserve">
     <value>Сумма документа</value>
   </data>
   <data name="Property_PlusMinusSDevSDev" xml:space="preserve">
@@ -245,8 +245,8 @@
     <value>Source</value>
   </data>
   <data name="Enum_ConditionType_DocChangedStart" xml:space="preserve">
-   <value>Document changes after task starts</value>
-   </data>
+    <value>Document changes after task starts</value>
+  </data>
   <data name="Enum_ConditionType_Product" xml:space="preserve">
     <value>Product</value>
   </data>
@@ -258,5 +258,11 @@
   </data>
   <data name="Resource_7956d56e382a4aa0b1a54e3aa2ac803e" xml:space="preserve">
     <value />
+  </data>
+  <data name="Enum_ConditionType_Counterparty" xml:space="preserve">
+    <value>Counterparty</value>
+  </data>
+  <data name="Property_CounterpartiesCollectionSberDev" xml:space="preserve">
+    <value>Counterparties</value>
   </data>
 </root>

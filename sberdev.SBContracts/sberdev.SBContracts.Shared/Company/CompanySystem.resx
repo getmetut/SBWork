@@ -535,4 +535,7 @@
   <data name="Property_ControlMarkersFlags2SberDev" xml:space="preserve">
     <value>Profitable</value>
   </data>
+  <data name="Property_IsNeedFocusCheckSberDev" xml:space="preserve">
+    <value>A check in the approval task is required</value>
+  </data>
 </root>

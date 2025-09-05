@@ -1334,6 +1334,19 @@
           "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "caebbb34-fb8f-43e1-90f7-76bee4ba87f8",
+          "Name": "IsNeedFocusCheckSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+          "ParentGuid": "df1dbb22-faab-484b-9e19-0899b9ce2d04",
+          "PropertyGuid": "291f5106-4200-4277-95a0-4389f2ee29e1",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,

@@ -175,7 +175,7 @@
   <data name="Enum_ConditionType_EndorseFromSberDev" xml:space="preserve">
     <value> Есть согласование от</value>
   </data>
-  <data name="Property_EndorserSberDev" xml:space="preserve">
+  <data name="Property_EndorserContrSberDev" xml:space="preserve">
     <value>Согласующий</value>
   </data>
   <data name="Enum_ConditionType_IsNeedCheckCp" xml:space="preserve">
@@ -216,7 +216,7 @@
   </data>
   <data name="Enum_ConditionType_DocChangedStart" xml:space="preserve">
     <value>Документ изменен после запуска задачи</value>
-	</data>
+  </data>
   <data name="Enum_ConditionType_Product" xml:space="preserve">
     <value>Продукт</value>
   </data>
@@ -228,5 +228,11 @@
   </data>
   <data name="Resource_7956d56e382a4aa0b1a54e3aa2ac803e" xml:space="preserve">
     <value />
+  </data>
+  <data name="Enum_ConditionType_Counterparty" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
+  <data name="Property_CounterpartiesCollectionSberDev" xml:space="preserve">
+    <value>Контрагенты</value>
   </data>
 </root>

@@ -12,10 +12,20 @@ namespace sberdev.SBContracts.Server
     public override string GetConditionName()
     {
       using (TenantInfo.Culture.SwitchTo())
-      {        
+      {
+        if (_obj.ConditionType == ConditionType.Counterparty)
+        {
+          string head = "Контрагент =";
+          foreach (var dir in _obj.CounterpartiesCollectionSberDev)
+            head += String.Format(" {0};", dir.Counterparty.Name);
+          head = head.TrimEnd(';');
+          head += "?";
+          return head;
+        }
+        
         if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
           return "Документ изменен после первого согласования?";
-          
+        
         if (_obj.ConditionType == ConditionType.DocChangedStart)
           return "Документ изменен после запуска задачи?";
         
@@ -48,7 +58,7 @@ namespace sberdev.SBContracts.Server
           return "Тип оплаты = предоплата?";
         
         if (_obj.ConditionType == ConditionType.InvApprBySberDev)
-          return String.Format("Есть согласование на счете от {0}?", _obj.EndorserSberDev.Name);
+          return String.Format("Есть согласование на счете от {0}?", _obj.EndorserContrSberDev.Name);
         
         if (_obj.ConditionType == ConditionType.IsNeedCheckCp)
         {
@@ -57,7 +67,7 @@ namespace sberdev.SBContracts.Server
         
         if (_obj.ConditionType == ConditionType.EndorseFromSberDev)
         {
-          return "Есть согласование от " + _obj.EndorserSberDev.Name + "?";
+          return "Есть согласование от " + _obj.EndorserContrSberDev.Name + "?";
         }
         
         if (_obj.ConditionType == ConditionType.MarketDirect)
@@ -163,7 +173,7 @@ namespace sberdev.SBContracts.Server
           if (_obj.SummPriznSDevSDev == sberdev.SBContracts.ContractCondition.SummPriznSDevSDev.Identy)
             itg += "= ";
           
-          itg += _obj.TotalSummSDevSDev.Value.ToString();
+          itg += _obj.TotalSummSberDev.Value.ToString();
           
           return (itg);
         }

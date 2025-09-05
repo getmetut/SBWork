@@ -514,4 +514,7 @@
   <data name="Property_ControlMarkersFlags2SberDev" xml:space="preserve">
     <value>Доходные</value>
   </data>
+  <data name="Property_IsNeedFocusCheckSberDev" xml:space="preserve">
+    <value>Необходима проверка в задаче на согласование</value>
+  </data>
 </root>

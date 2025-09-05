@@ -15,6 +15,10 @@ namespace sberdev.SBContracts.Shared
     {
       base.ChangePropertiesAccess();
       
+      var isCounterparty = _obj.ConditionType == ConditionType.Counterparty;
+      _obj.State.Properties.CounterpartiesCollectionSberDev.IsVisible = isCounterparty;
+      _obj.State.Properties.CounterpartiesCollectionSberDev.IsRequired = isCounterparty;
+      
       var isProduct = _obj.ConditionType == ConditionType.Product;
       _obj.State.Properties.ProductsSberDev.IsVisible = isProduct;
       _obj.State.Properties.ProductsSberDev.IsRequired = isProduct;
@@ -71,6 +75,9 @@ namespace sberdev.SBContracts.Shared
     {
       base.ClearHiddenProperties();
       
+      if(!_obj.State.Properties.CounterpartiesCollectionSberDev.IsVisible)
+        _obj.CounterpartiesCollectionSberDev.Clear();
+      
       if(!_obj.State.Properties.ProductsSberDev.IsVisible)
         _obj.ProductsSberDev.Clear();
       
@@ -119,6 +126,22 @@ namespace sberdev.SBContracts.Shared
       Sungero.Docflow.IOfficialDocument document,
       Sungero.Docflow.IApprovalTask task)
     {
+      #region Проверка контрагента (Counterparty)
+      if (_obj.ConditionType == ConditionType.Counterparty)
+      {
+        var flag = false;
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        var accounting = SBContracts.AccountingDocumentBases.As(document);
+        if (contractual != null || accounting != null)
+        {
+          var cp = contractual.Counterparty ?? accounting.Counterparty;
+          if (cp != null)
+            flag = _obj.CounterpartiesCollectionSberDev.Select(c => c.Counterparty).ToList().Contains(cp);
+        }
+        
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(flag, string.Empty);
+      }
+      #endregion
 
       #region Проверка: Изменён ли документ после старта согласования (DocChangedStart)
       if (_obj.ConditionType == ConditionType.DocChangedStart)
