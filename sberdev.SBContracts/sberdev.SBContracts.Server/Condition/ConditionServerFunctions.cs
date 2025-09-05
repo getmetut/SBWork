@@ -24,6 +24,15 @@ namespace sberdev.SBContracts.Server
     {
       using (TenantInfo.Culture.SwitchTo())
       {
+        if (_obj.ConditionType == ConditionType.Counterparty)
+        {
+          string head = "Контрагент =";
+          foreach (var dir in _obj.CounterpartiesCollectionSberDev)
+            head += String.Format(" {0};", dir.Counterparty.Name);
+          head = head.TrimEnd(';');
+          head += "?";
+          return head;
+        }
         
         if (_obj.ConditionType == ConditionType.DocChangedApprSberDev)
           return "Документ изменен после первого согласования?";

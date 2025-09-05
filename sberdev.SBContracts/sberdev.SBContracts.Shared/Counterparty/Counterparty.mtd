@@ -355,6 +355,16 @@
       "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "c02d6685-e66c-4958-ac04-ddf574a6099c"
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "291f5106-4200-4277-95a0-4389f2ee29e1",
+      "Name": "IsNeedFocusCheckSberDev",
+      "Code": "IsNeedFocusChe",
+      "IsRequired": true,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "c38efcc5-962a-483d-90fb-6623be29a68d",
+      "Versions": []
     }
   ],
   "PublicFunctions": [

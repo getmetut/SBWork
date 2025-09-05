@@ -214,4 +214,7 @@
   <data name="Property_FocusCheckingSberDev" xml:space="preserve">
     <value>FocusChecking</value>
   </data>
+  <data name="Property_IsNeedFocusCheckSberDev" xml:space="preserve">
+    <value>A check in the approval task is required</value>
+  </data>
 </root>

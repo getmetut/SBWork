@@ -268,4 +268,10 @@
   <data name="Enum_ConditionType_DocChangedStart" xml:space="preserve">
     <value>Document changes after task starts</value>
   </data>
+  <data name="Property_CounterpartiesCollectionSberDev" xml:space="preserve">
+    <value>Counterparties</value>
+  </data>
+  <data name="Enum_ConditionType_Counterparty" xml:space="preserve">
+    <value>Counterparty</value>
+  </data>
 </root>
