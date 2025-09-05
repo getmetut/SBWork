@@ -30,6 +30,28 @@ namespace sberdev.SberContracts
           {
             if (_obj.CalculationAmountBaseSberDev > 500000)
               e.AddInformation("Сумма закупки превышает 500 тыс. руб. Пожалуйста, оформите заявку через портал Сорсинга https://tasks.sberdevices.ru/servicedesk/customer/portal/47");
+            if (_obj.EstimatedDeliveryCost > 500000)
+              e.AddInformation("Сумма закупки превышает 500 тыс. руб. Пожалуйста, оформите заявку через портал Сорсинга https://tasks.sberdevices.ru/servicedesk/customer/portal/47");
+          }
+        }
+      }
+      
+      if (_obj.EditPrim.HasValue)
+      {
+        if (_obj.EditPrim.Value)
+        {
+          var author = Sungero.Company.Employees.GetAll(u => u.Login == _obj.Author.Login).FirstOrDefault();
+          if (author != null)
+          {
+            if ((author.Email != null) && (_obj.Name != null))
+            {
+              var users = Users.GetAll(u => u.Login == _obj.Author.Login).ToArray();
+              var mail = Sungero.Workflow.SimpleTasks.CreateWithNotices("Внесены изменения в примечание документа: " + _obj.Name, users);
+              mail.ActiveText = "В поле примечания документа: " + _obj.Name + '\n' + "Внесены изменения: " + _obj.Note.ToString() + '\n' + Hyperlinks.Get(_obj);
+              mail.Attachments.Add(_obj);
+              mail.Start();
+              _obj.EditPrim = false;
+            }
           }
         }
       }

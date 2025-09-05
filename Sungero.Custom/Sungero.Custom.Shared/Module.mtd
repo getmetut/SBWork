@@ -308,11 +308,15 @@
       "PreviousItemId": "43dd816c-6f76-47bc-bde4-d0f18d2af388"
     },
     {
-      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "ItemId": "efab257d-bf33-4ef1-ba72-93a232f8befd",
       "PreviousItemId": "97506b84-f32f-4902-b990-9b4e847ffa70"
     },
     {
-      "ItemId": "efab257d-bf33-4ef1-ba72-93a232f8befd",
+      "ItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a",
+      "PreviousItemId": "efab257d-bf33-4ef1-ba72-93a232f8befd"
+    },
+    {
+      "ItemId": "03a54c2d-47a7-4277-b23d-0ca80d79b03f",
       "PreviousItemId": "1c0b0286-d3a3-4619-ae62-bea7cc1ef94a"
     }
   ],
@@ -732,6 +736,64 @@
       "HandledEvents": [
         "DataQueryServer"
       ],
+      "IsShow": true,
+      "Kind": "Computable",
+      "NeedShowMarkedCount": false
+    },
+    {
+      "NameGuid": "03a54c2d-47a7-4277-b23d-0ca80d79b03f",
+      "Name": "Protocols",
+      "DefaultContentType": "b4c6255c-cdb4-4b07-b405-243790ee8ccc",
+      "DisplayType": "Module",
+      "FilterPanel": {
+        "NameGuid": "607ef701-dabe-451b-ab13-a481598b9398",
+        "Name": "FilterPanel",
+        "Controls": [
+          {
+            "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+            "NameGuid": "819c6a9c-1611-46af-bb65-e91aece398b0",
+            "Name": "RouteType"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+            "NameGuid": "8932cbb1-748a-4aae-ba41-460dfaa5735d",
+            "Name": "PurchaseRouteFilter",
+            "ParentGuid": "819c6a9c-1611-46af-bb65-e91aece398b0"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "d03823d2-7bce-4bf8-bd92-3ea92c5780da",
+            "Name": "Purchase500",
+            "ParentGuid": "8932cbb1-748a-4aae-ba41-460dfaa5735d"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "765af15e-43ee-457b-9bf5-004422994c8c",
+            "Name": "PurchaseFramewo",
+            "ParentGuid": "8932cbb1-748a-4aae-ba41-460dfaa5735d",
+            "PreviousGuid": "d03823d2-7bce-4bf8-bd92-3ea92c5780da"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "646dd4d1-447f-413f-bb75-205982076a4f",
+            "Name": "PurchaseUL",
+            "ParentGuid": "8932cbb1-748a-4aae-ba41-460dfaa5735d",
+            "PreviousGuid": "765af15e-43ee-457b-9bf5-004422994c8c"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "7266c45d-e470-47b0-befe-1266d011fdcd",
+            "Name": "All",
+            "IsSelected": true,
+            "ParentGuid": "8932cbb1-748a-4aae-ba41-460dfaa5735d",
+            "PreviousGuid": "646dd4d1-447f-413f-bb75-205982076a4f"
+          }
+        ]
+      },
+      "HandledEvents": [
+        "DataQueryServer"
+      ],
+      "IconPath": "Protocols_03a54c2d47a74277b23d0ca80d79b03f.ico",
       "IsShow": true,
       "Kind": "Computable",
       "NeedShowMarkedCount": false
