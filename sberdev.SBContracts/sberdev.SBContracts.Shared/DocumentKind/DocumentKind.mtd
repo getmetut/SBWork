@@ -474,6 +474,31 @@
       "Code": "FrameworkNonMo",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "c9b14e67-bea6-4f79-8a6b-e740bf6a203b"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e022029f-53bd-4478-ab85-4a5a8898c840",
+      "Name": "SidSberDev",
+      "Code": "SidSberDev",
+      "Length": 40,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "b8f7e9f8-557f-4bc4-b47e-bda33afe244c"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "GetDocumentKind",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.Guid",
+          "ParameterTypeFullName": "System.Guid"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::sberdev.SBContracts.IDocumentKind",
+      "ReturnTypeFullName": "sberdev.SBContracts.IDocumentKind, Sungero.Domain.Interfaces"
     }
   ],
   "PublicStructures": [],

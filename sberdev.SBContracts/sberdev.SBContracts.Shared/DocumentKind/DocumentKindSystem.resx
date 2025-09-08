@@ -154,4 +154,7 @@
   <data name="Property_FrameworkNonMonetaryATSDev" xml:space="preserve">
     <value>Framework/Non-monetary</value>
   </data>
+  <data name="Property_SidSberDev" xml:space="preserve">
+    <value>Sid</value>
+  </data>
 </root>
