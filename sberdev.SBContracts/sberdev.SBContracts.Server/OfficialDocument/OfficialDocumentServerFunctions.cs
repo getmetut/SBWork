@@ -92,6 +92,7 @@ namespace sberdev.SBContracts.Server
     #endregion
 
     #region Разное
+    
     /// <summary>
     /// Обнуляет флаг ручной проверки
     /// </summary>
@@ -100,6 +101,18 @@ namespace sberdev.SBContracts.Server
     {
       _obj.InternalApprovalState = null;
       _obj.ExternalApprovalState = null;
+    }
+    
+    /// <summary>
+    /// True - если тип документа есть в списке
+    /// </summary>
+    /// <param name="doc">Документ</param>
+    /// <param name="kinds">Список видов для сравнения</param>
+    /// <returns></returns>
+    [Public]
+    public static bool EqualsDocumentKinds(SBContracts.IOfficialDocument doc, System.Collections.Generic.List<SBContracts.IDocumentKind> kinds)
+    {
+      return kinds.Any(k => doc.DocumentKind.Equals(k));
     }
     #endregion
     

@@ -5,6 +5,7 @@ using System.IO;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using Sungero.Domain.Initialization;
+using sberdev.SBContracts;
 
 namespace sberdev.SberContracts.Server
 {
@@ -283,152 +284,205 @@ namespace sberdev.SberContracts.Server
       Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentType("Учредительный документ", FoundingDocument.ClassTypeGuid, Sungero.Docflow.DocumentType.DocumentFlow.Inner, true);
     }
     
+    /// <summary>
+    /// Создать вид документа с указанием sid
+    /// </summary>
+    /// <param name="name">Имя.</param>
+    /// <param name="shortName">Сокращенное имя.</param>
+    /// <param name="sid">Sid</param>
+    /// <param name="numerationType">Нумерация.</param>
+    /// <param name="direction">Документопоток.</param>
+    /// <param name="autoFormattedName">Признак автоформирования имени.</param>
+    /// <param name="autoNumerable">Признак автонумерации.</param>
+    /// <param name="typeGuid">Доступный тип документа.</param>
+    /// <param name="actions">Действия отправки по умолчанию.</param>
+    /// <param name="projectAccounting">Признак ведения учета документа по проектам.</param>
+    /// <param name="grantRightsToProject">Выдавать права участникам проектов на экземпляры вида документа.</param>
+    /// <param name="entityId">ИД инициализации.</param>
+    /// <param name="isDefault">Признак вида документа по умолчанию.</param>
+    /// <param name="defaultMediumType">Вид носителя документа по умолчанию.</param>
+    private static void CreateDocumentKindSDev(string name, string shortName, Enumeration numerationType, Enumeration direction,
+                                               bool autoFormattedName, bool autoNumerable, Guid typeGuid, Sungero.Domain.Shared.IActionInfo[] actions,
+                                               Guid entityId, bool isDefault)
+    {
+      var docKindbySid = DocumentKinds.GetAll().Where(d => d.SidSberDev == entityId.ToString()).FirstOrDefault();
+      if (docKindbySid != null)
+        return;
+      
+      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind(name, shortName, numerationType, direction, autoFormattedName, autoNumerable,
+                                                                              typeGuid, actions, false, false, entityId, isDefault, null);
+      var docKindbyName = DocumentKinds.GetAll().Where(d => d.Name == name && d.ShortName == shortName && d.Status == Sungero.Docflow.DocumentKind.Status.Active).FirstOrDefault();
+      if (docKindbyName != null)
+      {
+        docKindbyName.SidSberDev = entityId.ToString();
+        docKindbyName.Save();
+      };
+    }
+    
     public void CreateDocumentKinds()
     {
+      // Создание вида документа «Акт МХ».
+      CreateDocumentKindSDev("Акт МХ", "Акт МХ",
+                             Sungero.Docflow.DocumentKind.NumberingType.Numerable,
+                             Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, false,
+                             Sungero.Docflow.Server.SimpleDocument.ClassTypeGuid, new Sungero.Domain.Shared.IActionInfo[]
+                             {Sungero.Docflow.OfficialDocuments.Info.Actions.SendActionItem,
+                               Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                               Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval},
+                             Constants.Module.ActMHGuid, false);
+      // Создание вида документа «АПП Сервис».
+      CreateDocumentKindSDev("АПП Сервис", "АПП Сервис",
+                             Sungero.Docflow.DocumentKind.NumberingType.Numerable,
+                             Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, false,
+                             Sungero.Docflow.Server.SimpleDocument.ClassTypeGuid, new Sungero.Domain.Shared.IActionInfo[]
+                             {Sungero.Docflow.OfficialDocuments.Info.Actions.SendActionItem,
+                               Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
+                               Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval},
+                             Constants.Module.APPServiceGuid, false);
       // Создание вида документа «Заявка на непроизводственную закупку».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Заявка на непроизводственную закупку", "Заявка на непроизводственную закупку",
+      CreateDocumentKindSDev("Заявка на непроизводственную закупку", "Заявка на непроизводственную закупку",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Numerable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true,
                                                                               AppNonProdPurchase.ClassTypeGuid, new Sungero.Domain.Shared.IActionInfo[]
                                                                               {Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval},
-                                                                              Constants.Module.AppNonProdPurchaseGuid);
+                                                                              Constants.Module.AppNonProdPurchaseGuid, false);
       // Создание вида документа «Заявка на производ. закупку».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Заявка на RnD закупку", "Заявка на RnD закупку",
+      CreateDocumentKindSDev("Заявка на RnD закупку", "Заявка на RnD закупку",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Numerable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true,
                                                                               AppRnDPurchase.ClassTypeGuid, new Sungero.Domain.Shared.IActionInfo[]
                                                                               {Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval},
-                                                                              Constants.Module.AppRnDPurchaseGuid);
+                                                                              Constants.Module.AppRnDPurchaseGuid, false);
       // Создание вида документа «Заявка на производ. закупку».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Заявка на производ. закупку", "Заявка на производ. закупку",
+      CreateDocumentKindSDev("Заявка на производ. закупку", "Заявка на производ. закупку",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true,
                                                                               AppProductPurchase.ClassTypeGuid, new Sungero.Domain.Shared.IActionInfo[]
                                                                               {Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval},
-                                                                              Constants.Module.AppProductPurchaseGuid);
+                                                                              Constants.Module.AppProductPurchaseGuid, false);
       // Создание вида документа «Договор Xiongxin».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Договор Xiongxin", "Договор Xiongxin",
+      CreateDocumentKindSDev("Договор Xiongxin", "Договор Xiongxin",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
                                                                               Sungero.Contracts.Server.Contract.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
                                                                                 Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },
-                                                                              Constants.Module.ContractXiongxin);
+                                                                              Constants.Module.ContractXiongxin, false);
       // Создание вида документа «Заказ Xiongxin».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Заказ Xiongxin", "Заказ Xiongxin",
+      CreateDocumentKindSDev("Заказ Xiongxin", "Заказ Xiongxin",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
                                                                               Sungero.Contracts.Server.SupAgreement.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
                                                                                 Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },
-                                                                              Constants.Module.OrderXiongxin);
+                                                                              Constants.Module.OrderXiongxin, false);
       // Создание вида документа «Спецификация ПАО».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Спецификация ПАО", "Спецификация ПАО",
+      CreateDocumentKindSDev("Спецификация ПАО", "Спецификация ПАО",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
                                                                               Sungero.Contracts.Server.SupAgreement.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
                                                                                 Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },
-                                                                              Constants.Module.SpecificationPAO);
+                                                                              Constants.Module.SpecificationPAO, false);
       // Создание вида документа «Гарантийное письмо».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Гарантийное письмо", "Гарантийное письмо",
+      CreateDocumentKindSDev("Гарантийное письмо", "Гарантийное письмо",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Outgoing, true, true,
                                                                               GuaranteeLetter.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
                                                                                 Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval },
-                                                                              Constants.Module.GuaranteeLetter);
+                                                                              Constants.Module.GuaranteeLetter, false);
       
       // Создание вида документа «Объяснительная записка».
       // Чтобы документы можно было регистрировать, задается свойство Registrable.
       // В качестве ИД вида документа используется константа ExplanLettersKind.
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Отчет", "Отчет",
+      CreateDocumentKindSDev("Отчет", "Отчет",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Numerable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Contracts, true, true,
                                                                               OtherContractDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval },
-                                                                              Constants.Module.Otchet);
+                                                                              Constants.Module.Otchet, false);
       
 
       // Создание вида документа «Закупка».
       // Чтобы документы можно было регистрировать, задается свойство Registrable.
       // В качестве ИД вида документа используется константа ExplanLettersKind.
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Закупка", "Закупка", Sungero.Docflow.DocumentKind.NumberingType.Numerable,
+      CreateDocumentKindSDev("Закупка", "Закупка", Sungero.Docflow.DocumentKind.NumberingType.Numerable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, Purchase.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
-                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.Purchase);
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.Purchase, false);
 
       // Создание вида документа «Заявление».
       // Чтобы документы можно было регистрировать, задается свойство Registrable.
       // В качестве ИД вида документа используется константа StatementsKind.
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Иные документы", "Иные документы",
+      CreateDocumentKindSDev("Иные документы", "Иные документы",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Numerable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Contracts,
                                                                               true, true, OtherContractDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval },
-                                                                              Constants.Module.OtherDoc);
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Техническое задание", "Техническое задание",
+                                                                              Constants.Module.OtherDoc, false);
+      CreateDocumentKindSDev("Техническое задание", "Техническое задание",
                                                                               Sungero.Docflow.DocumentKind.NumberingType.Numerable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner,
                                                                               true, true, Specification.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval },
-                                                                              Constants.Module.Specification);
+                                                                              Constants.Module.Specification, false);
       #region Виды документов для типа "Учредительный документ" (доработка в рамках задачи DRX-669).
       // Создание вида документа «Протокол ВОСУ».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Протокол ВОСУ", "Протокол ВОСУ", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+      CreateDocumentKindSDev("Протокол ВОСУ", "Протокол ВОСУ", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
-                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocVOSUProtocol);
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocVOSUProtocol, false);
       // Создание вида документа «Протокол Совета директоров».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Протокол Совета директоров", "Протокол Совета директоров", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+      CreateDocumentKindSDev("Протокол Совета директоров", "Протокол Совета директоров", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
-                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocDirectProtocol);
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocDirectProtocol, false);
       // Создание вида документа «Решение единственного участника».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Решение единственного участника", "Решение единственного участника", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+      CreateDocumentKindSDev("Решение единственного участника", "Решение единственного участника", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
-                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocSingleSolution);
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocSingleSolution, false);
       // Создание вида документа «Выписка».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Выписка", "Выписка", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+      CreateDocumentKindSDev("Выписка", "Выписка", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
-                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocOrdering);
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocOrdering, false);
       // Создание вида документа «Лист записи».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Лист записи", "Лист записи", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+      CreateDocumentKindSDev("Лист записи", "Лист записи", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
-                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocOrderPage);
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocOrderPage, false);
       // Создание вида документа «Свидетельство».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Свидетельство", "Свидетельство", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+      CreateDocumentKindSDev("Свидетельство", "Свидетельство", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
-                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocCertificate);
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocCertificate, false);
       // Создание вида документа «Письмо».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Письмо", "Письмо", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+      CreateDocumentKindSDev("Письмо", "Письмо", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
-                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocLetter);
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocLetter, false);
       // Создание вида документа «Справка».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Справка", "Справка", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+      CreateDocumentKindSDev("Справка", "Справка", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
-                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocInquiry);
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocInquiry, false);
       // Создание вида документа «Уведомление».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Уведомление", "Уведомление", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+      CreateDocumentKindSDev("Уведомление", "Уведомление", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
-                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocNotification);
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocNotification, false);
       // Создание вида документа «Карточка компании».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Карточка компании", "Карточка компании", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+      CreateDocumentKindSDev("Карточка компании", "Карточка компании", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
-                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocCompanyCard);
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocCompanyCard, false);
       // Создание вида документа «Иные».
-      Sungero.Docflow.PublicInitializationFunctions.Module.CreateDocumentKind("Иные", "Иные", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
+      CreateDocumentKindSDev("Иные", "Иные", Sungero.Docflow.DocumentKind.NumberingType.Registrable,
                                                                               Sungero.Docflow.DocumentType.DocumentFlow.Inner, true, true, FoundingDocument.ClassTypeGuid,
                                                                               new Sungero.Domain.Shared.IActionInfo[] { Sungero.Docflow.OfficialDocuments.Info.Actions.SendForFreeApproval,
-                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocOther);
+                                                                                Sungero.Docflow.OfficialDocuments.Info.Actions.SendForApproval}, Constants.Module.FoundDocOther, false);
       #endregion
     }
     
@@ -702,9 +756,15 @@ namespace sberdev.SberContracts.Server
     }
 
     #endregion
+    
+    #region Подразделения
+    
+    private static void CreateDepartments()
+    {
+    }
+    #endregion
 
     #region Прочее
-    
     public static void CreateMVZ()
     {
       var OldMVZ = SberContracts.MVZs.GetAll(r => r.GUID == Constants.Module.OldMVZGuid.ToString()).FirstOrDefault();
@@ -816,9 +876,9 @@ namespace sberdev.SberContracts.Server
                         "4) Способ доставки - По ел. почте 5) МВЗ - PROD 6) Статья упр. учета - Оплата товаров и услуг в составе себестоимости. " +
                         "Перечилслить ИД необходимых сущностей в текстовом параметре");
       settingsNames.Add("Подразделения с обязательным полем \"Номер 1С\"",
-                       "В текстовом параметре перечислите ИД подразделений через запятую, в которых должно отображаться поле \"Номер 1С\".");
+                        "В текстовом параметре перечислите ИД подразделений через запятую, в которых должно отображаться поле \"Номер 1С\".");
       settingsNames.Add("Виды документов с обязательным полем \"Номер 1С\"",
-                       "В текстовом параметре перечислите ИД видов документов через запятую, в которых должно отображаться поле \"Номер 1С\".");
+                        "В текстовом параметре перечислите ИД видов документов через запятую, в которых должно отображаться поле \"Номер 1С\".");
       foreach(var settingName in settingsNames)
       {
         var devSet = SberContracts.PublicFunctions.DevSettings.Remote.GetDevSetting(settingName.Key);

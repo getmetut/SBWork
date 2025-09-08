@@ -447,6 +447,23 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "EqualsDocumentKinds",
+      "Parameters": [
+        {
+          "Name": "doc",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "kinds",
+          "ParameterType": "global::System.Collections.Generic.List<global::sberdev.SBContracts.IDocumentKind>",
+          "ParameterTypeFullName": "System.Collections.Generic.List"
+        }
+      ],
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
       "Name": "GetDocumentProducts",
       "Parameters": [
         {

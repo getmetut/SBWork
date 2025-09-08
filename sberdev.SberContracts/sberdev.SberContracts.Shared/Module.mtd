@@ -460,6 +460,14 @@
       "Value": "new System.Guid(\"c054a467-183b-44d5-87b1-c3e4e03c93ec\")"
     },
     {
+      "Name": "ActMHGuid",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"85b96f50-bb5d-4ab1-adea-996f48182ba8\")"
+    },
+    {
       "Name": "AdminButtonsUserRoleGuid",
       "ParentClasses": [
         "Module"
@@ -490,6 +498,14 @@
       ],
       "TypeName": "System.Guid",
       "Value": "new System.Guid(\"5363e3b0-3af0-4788-b341-b769d45daaa4\")"
+    },
+    {
+      "Name": "APPServiceGuid",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.Guid",
+      "Value": "new System.Guid(\"a5943e93-df2b-4c0a-869c-36c42e713465\")"
     },
     {
       "Name": "BusinessControlerRoleGuid",
@@ -1151,7 +1167,7 @@
   "SharedAssemblyName": "sberdev.SberContracts.Shared",
   "SharedNamespace": "sberdev.SberContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.7.1.0",
+  "Version": "5.8.0.0",
   "Widgets": [
     {
       "NameGuid": "c2f21ab6-4272-410e-a676-52af22433fd1",
