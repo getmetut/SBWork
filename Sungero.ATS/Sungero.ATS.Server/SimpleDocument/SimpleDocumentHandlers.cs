@@ -13,8 +13,9 @@ namespace Sungero.ATS
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
       base.BeforeSave(e);
-      if (sberdev.SBContracts.PublicFunctions.Module.IsSystemUser())
-        _obj.State.Properties.DeliveryMethod.IsRequired = false;
+      var isSystem = sberdev.SBContracts.PublicFunctions.Module.IsSystemUser();
+      _obj.State.Properties.DeliveryMethod.IsRequired = !isSystem;
+      _obj.State.Properties.CounterpartySberDev.IsRequired = !isSystem;
     }
   }
 
