@@ -77,7 +77,7 @@
     <value>Ожидаемый срок поставки</value>
   </data>
   <data name="Property_EstimatedDeliveryCost" xml:space="preserve">
-    <value>НМЦД (Начально максимальная цена договора)</value>
+    <value>НМЦД (начально максимальная цена договора) без учета НДС</value>
   </data>
   <data name="ControlGroup_406e14dc17444a7f85d8f6eef8abaa3f" xml:space="preserve">
     <value>Основное</value>
@@ -107,7 +107,7 @@
     <value>Способ закупки</value>
   </data>
   <data name="Property_TotalAmount" xml:space="preserve">
-    <value>Сумма договора</value>
+    <value>Итого с НДС</value>
   </data>
   <data name="Enum_MethodPurchase_SeveralCP" xml:space="preserve">
     <value>Запрос предложений</value>
@@ -304,5 +304,8 @@
   </data>
   <data name="Enum_LifeCycleState_Draft" xml:space="preserve">
     <value>В разработке</value>
+  </data>
+  <data name="Property_NetAmount" xml:space="preserve">
+    <value>Сумма договора без НДС</value>
   </data>
 </root>

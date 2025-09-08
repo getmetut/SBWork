@@ -77,7 +77,7 @@
     <value>Expected delivery date</value>
   </data>
   <data name="Property_EstimatedDeliveryCost" xml:space="preserve">
-    <value>НМЦД (Начально максимальная цена договора)</value>
+    <value>НМЦД (начально максимальная цена договора) без учета НДС</value>
   </data>
   <data name="ControlGroup_406e14dc17444a7f85d8f6eef8abaa3f" xml:space="preserve">
     <value>Main</value>
@@ -116,7 +116,7 @@
     <value>Победитель</value>
   </data>
   <data name="Property_TotalAmount" xml:space="preserve">
-    <value>Сумма договора</value>
+    <value>Итого с НДС</value>
   </data>
   <data name="ControlGroup_c9bf6aa37f844f9ca8c0545962ae09fd" xml:space="preserve">
     <value>Результаты</value>
@@ -400,5 +400,8 @@ In the absence of these trainings, the following reputational risks are possible
   </data>
   <data name="Property_EditPrim" xml:space="preserve">
     <value>Изменено примечание документа</value>
+  </data>
+  <data name="Property_NetAmount" xml:space="preserve">
+    <value>Net amount</value>
   </data>
 </root>

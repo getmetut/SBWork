@@ -45,6 +45,13 @@ namespace sberdev.SberContracts.Shared
         elem.IsRequired = false;
       }
       
+      // НДС и иже с ним
+      if ((_obj.NetAmount != null) && (_obj.VatAmount != null))
+      {
+        if (_obj.TotalAmount != _obj.NetAmount + _obj.VatAmount)
+          _obj.TotalAmount = _obj.NetAmount + _obj.VatAmount;
+      }
+      
       _obj.State.Properties.ProdCollectionExBaseSberDev.IsVisible = true;
       _obj.State.Properties.ProdCollectionPrBaseSberDev.IsVisible = true;
       _obj.State.Properties.AccArtExBaseSberDev.IsVisible = true;
