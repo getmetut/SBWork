@@ -59,10 +59,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DisplayName" xml:space="preserve">
-    <value>SberContracts</value>
+    <value>Закупки</value>
   </data>
   <data name="CoverTitle" xml:space="preserve">
-    <value>Сбер.Девайсы</value>
+    <value>Закупки</value>
   </data>
   <data name="AsyncHandler_Description_04e5249ba2a8480ba3b1ca5f3884d58f" xml:space="preserve">
     <value>DeleteContractById</value>
@@ -80,19 +80,19 @@
     <value>The process clears the log folder on the server and leaves logs for the last week only.</value>
   </data>
   <data name="CoverDescription" xml:space="preserve">
-    <value>Среда разработки и инструментарий администрирования</value>
+    <value>Раздел закупок для ведения реестров и создания новых записей</value>
   </data>
   <data name="CoverTab_FirstTab" xml:space="preserve">
     <value>FirstTab</value>
   </data>
-  <data name="CoverGroup_AdminsScripts" xml:space="preserve">
-    <value>Средства администрирования</value>
+  <data name="CoverGroup_Reestrs" xml:space="preserve">
+    <value>Реестры закупок и протоколы</value>
   </data>
-  <data name="CoverAction_ReSaveCompanies" xml:space="preserve">
-    <value>Пересохранение справочника Компаний</value>
+  <data name="CoverAction_Purchase" xml:space="preserve">
+    <value>Закупки</value>
   </data>
-  <data name="CoverDescription_ReSaveCompanies" xml:space="preserve">
-    <value>Скрипт полного прохождения компаний из справочника с функциоей пересохранения и обновления</value>
+  <data name="CoverDescription_Purchase" xml:space="preserve">
+    <value>Полный рестр закупок</value>
   </data>
   <data name="JobDisplayName_499c5bcfa84b4b188d549fe14247c3ff" xml:space="preserve">
     <value>Выгрузка договоров на сервер</value>
@@ -315,5 +315,62 @@
   </data>
   <data name="Enum_ApprovalAnalytics_DocumentTypes_AbstractContr" xml:space="preserve">
     <value>Purschases (not only)</value>
+  </data>
+  <data name="CoverAction_AppRnDPurchase" xml:space="preserve">
+    <value>Заявки на RnD закупку</value>
+  </data>
+  <data name="CoverDescription_AppRnDPurchase" xml:space="preserve">
+    <value>Реестр заявок на RnD закупку</value>
+  </data>
+  <data name="CoverAction_AppProductPurchase" xml:space="preserve">
+    <value>Заявки на производ. закупку</value>
+  </data>
+  <data name="CoverDescription_AppProductPurchase" xml:space="preserve">
+    <value>Реестр заявок на производ. закупку</value>
+  </data>
+  <data name="CoverAction_AppNonProdPurchase" xml:space="preserve">
+    <value>Заявки на непроизводственную закупку</value>
+  </data>
+  <data name="CoverDescription_AppNonProdPurchase" xml:space="preserve">
+    <value>Реестр заявоки на непроизводственную закупку</value>
+  </data>
+  <data name="CoverAction_PurchaseProtocol" xml:space="preserve">
+    <value>Протоколы выбора способа закупки</value>
+  </data>
+  <data name="CoverDescription_PurchaseProtocol" xml:space="preserve">
+    <value>Реестр протоколов выбора способа закупки</value>
+  </data>
+  <data name="CoverGroup_CreationsPurch" xml:space="preserve">
+    <value>Создание документов</value>
+  </data>
+  <data name="CoverAction_CreatePurchase" xml:space="preserve">
+    <value>Создать закупку</value>
+  </data>
+  <data name="CoverDescription_CreatePurchase" xml:space="preserve">
+    <value>Действие создания документа закупки</value>
+  </data>
+  <data name="CoverAction_CreateAppRnDPurchase" xml:space="preserve">
+    <value>Создать заявку на закупку</value>
+  </data>
+  <data name="CoverDescription_CreateAppRnDPurchase" xml:space="preserve">
+    <value>Действие создания заявки на закупку</value>
+  </data>
+  <data name="CoverAction_CreateAppProductPurchase" xml:space="preserve">
+    <value>Создать заявку на производственную закупку</value>
+  </data>
+  <data name="CoverDescription_CreateAppProductPurchase" xml:space="preserve">
+    <value>Действие создания заявки на производственную закупку</value>
+  </data>
+  <data name="CoverAction_CreateAppNonProdPurchase" xml:space="preserve">
+    <value>Создать заявку на непроизводственную закупку</value>
+  </data>
+  <data name="CoverDescription_CreateAppNonProdPurchase" xml:space="preserve">
+    <value>Действие создания документа заявки на непроизводственную закупку</value>
+  </data>
+  <data name="CoverAction_CreatePurchaseProtocol" xml:space="preserve">
+    <value>Создать протокол выбора способа закупки</value>
+  </data>
+  <data name="CoverDescription_CreatePurchaseProtocol" xml:space="preserve">
+    <value>Действие создания протокола выбора способа закупки</value>
   </data>
 </root>
