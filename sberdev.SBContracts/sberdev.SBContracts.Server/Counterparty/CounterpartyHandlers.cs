@@ -8,6 +8,16 @@ using sberdev.SBContracts.ContractualDocument;
 
 namespace sberdev.SBContracts
 {
+  partial class CounterpartyServerHandlers
+  {
+
+    public override void Created(Sungero.Domain.CreatedEventArgs e)
+    {
+      base.Created(e);
+      _obj.IsNeedFocusCheckSberDev = true;
+    }
+  }
+
   partial class CounterpartyOtvBuchSberDevSearchPropertyFilteringServerHandler<T>
   {
 
