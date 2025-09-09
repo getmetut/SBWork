@@ -132,9 +132,10 @@ namespace sberdev.SBContracts.Shared
         var flag = false;
         var contractual = SBContracts.ContractualDocuments.As(document);
         var accounting = SBContracts.AccountingDocumentBases.As(document);
-        if (contractual != null || accounting != null)
+        var simple = Sungero.ATS.SimpleDocuments.As(document);
+        if (contractual != null || accounting != null || simple != null)
         {
-          var cp = contractual.Counterparty ?? accounting.Counterparty;
+          var cp = contractual.Counterparty ?? accounting.Counterparty ?? simple.CounterpartySberDev;
           if (cp != null)
             flag = _obj.CounterpartiesCollectionSberDev.Select(c => c.Counterparty).ToList().Contains(cp);
         }
@@ -1037,6 +1038,8 @@ namespace sberdev.SBContracts.Shared
     public override System.Collections.Generic.Dictionary<string, List<Enumeration?>> GetSupportedConditions()
     {
       var baseSupport = base.GetSupportedConditions();
+      
+      baseSupport["09584896-81e2-4c83-8f6c-70eb8321e1d0"].Add(ConditionType.Counterparty); // простой документ
       
       baseSupport["675e2890-7dba-4d1a-a3bb-8a829bdabd66"].Add(ConditionType.DocChangedStart); // непроизводственная закупка
       baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.DocChangedStart); // закупка

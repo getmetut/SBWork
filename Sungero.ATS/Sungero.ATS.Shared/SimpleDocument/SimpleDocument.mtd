@@ -643,7 +643,7 @@
           "Name": "CounterpartySberDevSberDev",
           "ColumnNumber": 0,
           "ColumnSpan": 1,
-          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "406e14dc-1744-4a7f-85d8-f6eef8abaa3f",
           "PropertyGuid": "b19d3124-79b4-474a-be13-944422481af9",
           "RowNumber": 2,
@@ -692,11 +692,12 @@
       "Versions": []
     },
     {
-      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "b19d3124-79b4-474a-be13-944422481af9",
       "Name": "CounterpartySberDev",
       "Code": "CPSimplDoc",
-      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "EntityGuid": "294767f1-009f-4fbd-80fc-f98c49ddc560",
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "7a95b0d1-a1d9-42a6-8cc2-f1caaed534bc"
     }
   ],

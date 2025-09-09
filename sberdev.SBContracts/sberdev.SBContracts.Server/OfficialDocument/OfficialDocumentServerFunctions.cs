@@ -112,7 +112,10 @@ namespace sberdev.SBContracts.Server
     [Public]
     public static bool EqualsDocumentKinds(SBContracts.IOfficialDocument doc, System.Collections.Generic.List<SBContracts.IDocumentKind> kinds)
     {
-      return kinds.Any(k => doc.DocumentKind.Equals(k));
+      if (kinds != null && doc != null)
+        return kinds.Any(k => doc.DocumentKind.Equals(k));
+      else
+        return false;
     }
     #endregion
     
