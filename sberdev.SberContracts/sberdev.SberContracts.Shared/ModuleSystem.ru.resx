@@ -59,7 +59,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DisplayName" xml:space="preserve">
-    <value>Договоры сбердевайс</value>
+    <value>Закупки</value>
   </data>
   <data name="JobDisplayName_39fa5665940849c78926648128e396db" xml:space="preserve">
     <value>Раскрытие полных имен псевдо-пользователей.</value>
@@ -77,7 +77,7 @@
     <value>Процесс очищает папку с логами на сервере и оставляет логи только за последнюю неделю.</value>
   </data>
   <data name="CoverTitle" xml:space="preserve">
-    <value>Сбер.Девайсы</value>
+    <value>Закупки</value>
   </data>
   <data name="JobDisplayName_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
     <value>Очистка папки с временными документами</value>
@@ -255,5 +255,8 @@
   </data>
   <data name="Enum_ApprovalAnalytics_AnalysisPeriod_Quarters" xml:space="preserve">
     <value>Кварталы</value>
+  </data>
+  <data name="CoverDescription" xml:space="preserve">
+    <value>Раздел закупок для ведения реестров и создания новых записей</value>
   </data>
 </root>

@@ -10,6 +10,51 @@ namespace sberdev.SberContracts.Client
   {
 
     /// <summary>
+    /// Действие создания документа Закупки
+    /// </summary>
+    public virtual void CreatePurchase()
+    {
+      var doc = sberdev.SberContracts.Purchases.Create();
+      doc.Show();
+    }
+    
+    /// <summary>
+    /// Действие создания заявки на закупку
+    /// </summary>
+    public virtual void CreateAppRnDPurchase()
+    {
+      var doc = sberdev.SberContracts.AppRnDPurchases.Create();
+      doc.Show();
+    }
+    
+    /// <summary>
+    /// Действие создания заявки на производственную закупку
+    /// </summary>
+    public virtual void CreateAppProductPurchase()
+    {
+      var doc = sberdev.SberContracts.AppProductPurchases.Create();
+      doc.Show();
+    }
+    
+    /// <summary>
+    /// Действие создания документа заявки на непроизводственную закупку
+    /// </summary>
+    public virtual void CreateAppNonProdPurchase()
+    {
+      var doc = sberdev.SberContracts.AppNonProdPurchases.Create();
+      doc.Show();
+    }
+    
+    /// <summary>
+    /// Создать протокол выбора способа закупки
+    /// </summary>
+    public virtual void CreatePurchaseProtocol()
+    {
+      var doc = Sungero.Custom.PurchaseProtocols.Create();
+      doc.Show();
+    }
+
+    /// <summary>
     /// Открыть запись справочника "Настройки калькуляции МВЗ".
     /// </summary>
     [Public]
