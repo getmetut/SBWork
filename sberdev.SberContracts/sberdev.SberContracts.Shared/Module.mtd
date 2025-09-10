@@ -41,6 +41,7 @@
         "Name": "CreateAppProductPurchase",
         "FunctionName": "CreateAppProductPurchase",
         "GroupId": "31b21b8e-09ee-42a7-b9fb-33a436121bf1",
+        "IsVisible": false,
         "PreviousItemGuid": "5abe90dd-99df-4e02-a388-6f9de605fc71"
       },
       {
@@ -49,6 +50,7 @@
         "Name": "CreateAppRnDPurchase",
         "FunctionName": "CreateAppRnDPurchase",
         "GroupId": "31b21b8e-09ee-42a7-b9fb-33a436121bf1",
+        "IsVisible": false,
         "PreviousItemGuid": "7b145aef-35a0-4f52-9729-cdbde8230bb5"
       },
       {
@@ -64,7 +66,8 @@
         "NameGuid": "7b145aef-35a0-4f52-9729-cdbde8230bb5",
         "Name": "CreatePurchase",
         "FunctionName": "CreatePurchase",
-        "GroupId": "31b21b8e-09ee-42a7-b9fb-33a436121bf1"
+        "GroupId": "31b21b8e-09ee-42a7-b9fb-33a436121bf1",
+        "IsVisible": false
       },
       {
         "$type": "Sungero.Metadata.CoverFunctionActionMetadata, Sungero.Metadata",
@@ -72,6 +75,7 @@
         "Name": "CreatePurchaseProtocol",
         "FunctionName": "CreatePurchaseProtocol",
         "GroupId": "31b21b8e-09ee-42a7-b9fb-33a436121bf1",
+        "IsVisible": false,
         "PreviousItemGuid": "6b4fb8b4-9a29-4442-94b4-6dcd83a4359d"
       },
       {

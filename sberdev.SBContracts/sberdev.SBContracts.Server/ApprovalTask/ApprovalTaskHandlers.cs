@@ -17,6 +17,61 @@ namespace sberdev.SBContracts
     {
       base.Created(e);
       _obj.IsNeedManuallyCheckSberDev = false;
+      
+      var doc = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
+      if (doc != null)
+      {
+        if ((sberdev.SBContracts.SupAgreements.Is(doc)) || (sberdev.SBContracts.IncomingInvoices.Is(doc)) ||
+            (sberdev.SberContracts.Purchases.Is(doc)) || (sberdev.SberContracts.Specifications.Is(doc)))
+        {
+          List<Sungero.Company.IEmployee> users = new List<Sungero.Company.IEmployee>();
+          if (sberdev.SBContracts.SupAgreements.Is(doc))
+          {
+            var docsup = sberdev.SBContracts.SupAgreements.As(doc);
+            if (docsup.ResponsibleObserversATSDevATSDev.Count > 0)
+            {
+              foreach (var elem in docsup.ResponsibleObserversATSDevATSDev)
+                users.Add(elem.Observer);
+            }
+          }
+          
+          if (sberdev.SBContracts.IncomingInvoices.Is(doc))
+          {
+            var docinc = sberdev.SBContracts.IncomingInvoices.As(doc);
+            if (docinc.ResponsibleObserversATSDev.Count > 0)
+            {
+              foreach (var elem in docinc.ResponsibleObserversATSDev)
+                users.Add(elem.Observer);
+            }
+          }
+          
+          if (sberdev.SberContracts.Purchases.Is(doc))
+          {
+            var docpurch = sberdev.SberContracts.Purchases.As(doc);
+            if (docpurch.ResponsibleObserversATSDev.Count > 0)
+            {
+              foreach (var elem in docpurch.ResponsibleObserversATSDev)
+                users.Add(elem.Observer);
+            }
+          }
+          
+          if (sberdev.SberContracts.Specifications.Is(doc))
+          {
+            var docsspec = sberdev.SberContracts.Specifications.As(doc);
+            if (docsspec.ResponsibleObserversATSDev.Count > 0)
+            {
+              foreach (var elem in docsspec.ResponsibleObserversATSDev)
+                users.Add(elem.Observer);
+            }
+          }
+          
+          if (users.Count > 0)
+          {
+            foreach (var us in users.Distinct())
+              _obj.Observers.AddNew().Observer = us;
+          }
+        }
+      }
     }
 
     public override void BeforeStart(Sungero.Workflow.Server.BeforeStartEventArgs e)
@@ -92,7 +147,7 @@ namespace sberdev.SBContracts
           if (gurantee.ContrTypeBaseSberDev == SberContracts.GuaranteeLetter.ContrTypeBaseSberDev.Expendable)
             _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Expendable;
           if (gurantee.ContrTypeBaseSberDev == SberContracts.GuaranteeLetter.ContrTypeBaseSberDev.ExpendProfitSberDev)
-            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.ProfExpen;  
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.ProfExpen;
         }
       }
       if (gurantee != null && gurantee.TotalAmount < 5000000 && gurantee.AddendumDocument == null)

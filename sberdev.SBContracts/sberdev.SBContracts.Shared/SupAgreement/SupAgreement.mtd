@@ -1394,6 +1394,19 @@
               "Value": "2260e26c-0a83-4d99-bb25-bbd0e46133e5"
             }
           ]
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "50961488-67c1-4b78-b378-db737a8f9442",
+          "Name": "SalesChannelATSDevATSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 3,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "73e9df7c-895e-4811-b3d5-76c6f95b87aa",
+          "PropertyGuid": "12e60252-358d-4f68-9457-d5dcee45e47d",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
