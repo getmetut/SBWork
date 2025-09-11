@@ -20,7 +20,7 @@ namespace sberdev.SBContracts.Server
     {
       var task = ExchangeDocumentProcessingTasks.As(_obj.Task);
       var newTask = ExchangeDocumentProcessingTasks.Create();
-     /* newTask.Subject = task.Subject;
+      /* newTask.Subject = task.Subject;
       newTask.Deadline = task.Deadline;
       newTask.Box = task.Box;
       newTask.Counterparty = task.Counterparty;*/
@@ -85,39 +85,49 @@ namespace sberdev.SBContracts.Server
         }
       }
     }
+    
     /// <summary>
-    /// Функция возвращает имена документов из вложений без шелухи
-    /// </summary>
+    /// Функция возвращает имена документов из вложений без «шелухи».
+    ///</summary>
     [Public]
     public string GetDocsNames()
     {
-      string names = "";
-      var attachs = _obj.Task?.Attachments;
-      if (!attachs.Any())
-        return names;
-      foreach (var attach in attachs)
+      var result = new System.Text.StringBuilder(256);
+      var seen = new System.Collections.Generic.HashSet<string>(System.StringComparer.Ordinal);
+
+      var cpName = _obj.Counterparty != null ? _obj.Counterparty.Name : string.Empty;
+
+      System.Func<string, string> sanitize = raw =>
       {
-        var doc = Sungero.Content.ElectronicDocuments.As(attach);
-        if (doc != null)
+        if (string.IsNullOrWhiteSpace(raw))
+          return string.Empty;
+
+        var name = raw.Replace("Вх. док. эл. обмена", "ВЭД");
+        if (!string.IsNullOrEmpty(cpName))
+          name = name.Replace(" от " + cpName, string.Empty);
+
+        return name.Trim();
+      };
+
+      var task = _obj.Task.Att
+      foreach (var doc in _obj.DocumentGroup.OfficialDocuments)
+      {
+        if (doc == null) continue;
+
+        var clean = sanitize(doc.Name);
+        if (string.IsNullOrEmpty(clean)) continue;
+
+        if (seen.Add(clean))
         {
-          var name = doc.Name;
-          name = name.Replace("Вх. док. эл. обмена", "ВЭД");
-          name = name.Replace(" от " + _obj.Counterparty.Name, "");
-          string id = SberContracts.PublicFunctions.Module.GetNumberTag(name, " _ID");
-          while (id != "")
-          {
-            name = name.Replace(" _ID" + id, "");
-            id = SberContracts.PublicFunctions.Module.GetNumberTag(name, " _ID");
-          }
-          names += name + " // ";
+          if (result.Length > 0)
+            result.Append(" // ");
+          result.Append(clean);
         }
       }
-      names = names.TrimEnd(new char[]{'/',' '});
-      
-      if (names.Length > 1000)
-        return names.Substring(0, 1000);
-      else
-        return names;
+
+      var text = result.ToString();
+      return text.Length > 1000 ? text.Substring(0, 1000) : text;
     }
+
   }
 }

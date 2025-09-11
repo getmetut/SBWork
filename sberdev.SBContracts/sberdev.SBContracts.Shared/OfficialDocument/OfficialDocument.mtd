@@ -491,6 +491,21 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "SafeGetPropertyByName",
+      "Parameters": [
+        {
+          "Name": "statePropsObj",
+          "ParameterType": "System.Object"
+        },
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "System.Reflection.PropertyInfo"
+    },
+    {
       "Name": "TransferBody",
       "IsRemote": true,
       "Parameters": [

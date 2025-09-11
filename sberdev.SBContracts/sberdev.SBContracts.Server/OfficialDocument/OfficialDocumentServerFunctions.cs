@@ -119,10 +119,77 @@ namespace sberdev.SBContracts.Server
     }
     #endregion
     
+    #region Геты
+    
+    /// <summary>
+    /// Безопасно получить свойство по имени
+    /// </summary>
+    /// <param name="statePropsObj"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    [Public]
+    public static System.Reflection.PropertyInfo SafeGetPropertyByName(object statePropsObj, string name)
+    {
+      var type = statePropsObj.GetType();
+      return GetOrAddCached<System.Reflection.PropertyInfo>("SPI", Key2(type, name), () =>
+                                                            {
+                                                              var t = type;
+                                                              while (t != null)
+                                                              {
+                                                                var pi = t.GetProperty(name,
+                                                                                       System.Reflection.BindingFlags.Public |
+                                                                                       System.Reflection.BindingFlags.Instance |
+                                                                                       System.Reflection.BindingFlags.DeclaredOnly);
+                                                                if (pi != null) return pi;
+                                                                t = t.BaseType;
+                                                              }
+                                                              return null;
+                                                            });
+    }
+    #endregion
+    
     #region Функции фиксации изменения свойств (с кешами)
     
     #region Основные функции
+    
+    /// <summary>
+    /// Основная фукция. Возвращает список измененных свойств
+    /// </summary>
+    /// <returns></returns>
+    public virtual System.Collections.Generic.List<string> GetChangedPropertiesList()
+    {
+      if (!_obj.State.IsChanged)
+        return new System.Collections.Generic.List<string>(0);
 
+      var result = new System.Collections.Generic.List<string>();
+      var objType = _obj.GetType().GetFinalType();
+      var objMetadata = GetEntityMetadataCached(objType);
+
+      foreach (var propertyMetadata in objMetadata.Properties)
+      {
+        // Коллекции
+        var colMeta = propertyMetadata as Sungero.Metadata.CollectionPropertyMetadata;
+        if (colMeta != null)
+        {
+          var colChanges = GetCollectionChanges(_obj, colMeta);
+          if (colChanges.Count > 0)
+            result.AddRange(colChanges);
+          continue;
+        }
+
+        // Скаляры
+        var check = CheckScalarPropertyChange(_obj, propertyMetadata);
+        if (!string.IsNullOrEmpty(check))
+          result.Add(check);
+      }
+
+      return result;
+    }
+
+    /// <summary>
+    /// Логгирует изменение свойств
+    /// </summary>
+    /// <param name="changes"></param>
     public virtual void LoggingPropertyChanges(System.Collections.Generic.List<string> changes)
     {
       if (changes == null || changes.Count == 0) return;
@@ -252,36 +319,6 @@ namespace sberdev.SBContracts.Server
       return false;
     }
 
-    
-    public virtual System.Collections.Generic.List<string> GetChangedPropertiesList()
-    {
-      if (!_obj.State.IsChanged)
-        return new System.Collections.Generic.List<string>(0);
-
-      var result = new System.Collections.Generic.List<string>();
-      var objType = _obj.GetType().GetFinalType();
-      var objMetadata = GetEntityMetadataCached(objType);
-
-      foreach (var propertyMetadata in objMetadata.Properties)
-      {
-        // Коллекции
-        var colMeta = propertyMetadata as Sungero.Metadata.CollectionPropertyMetadata;
-        if (colMeta != null)
-        {
-          var colChanges = GetCollectionChanges(_obj, colMeta);
-          if (colChanges.Count > 0)
-            result.AddRange(colChanges);
-          continue;
-        }
-
-        // Скаляры
-        var check = CheckScalarPropertyChange(_obj, propertyMetadata);
-        if (!string.IsNullOrEmpty(check))
-          result.Add(check);
-      }
-
-      return result;
-    }
 
     /// <summary>
     /// Обычные (не коллекционные) свойства.
@@ -597,25 +634,6 @@ namespace sberdev.SBContracts.Server
                                                                                        System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance));
     }
     #endregion
-
-    private static System.Reflection.PropertyInfo SafeGetPropertyByName(object statePropsObj, string name)
-    {
-      var type = statePropsObj.GetType();
-      return GetOrAddCached<System.Reflection.PropertyInfo>("SPI", Key2(type, name), () =>
-                                                            {
-                                                              var t = type;
-                                                              while (t != null)
-                                                              {
-                                                                var pi = t.GetProperty(name,
-                                                                                       System.Reflection.BindingFlags.Public |
-                                                                                       System.Reflection.BindingFlags.Instance |
-                                                                                       System.Reflection.BindingFlags.DeclaredOnly);
-                                                                if (pi != null) return pi;
-                                                                t = t.BaseType;
-                                                              }
-                                                              return null;
-                                                            });
-    }
     
     private static bool HasAny(object hostObj, System.Reflection.PropertyInfo collectionPi)
     {
