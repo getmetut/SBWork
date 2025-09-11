@@ -30,11 +30,15 @@
       "Name": "DocumentGroup",
       "CanDeleteTaskFamilyAttachments": true,
       "Constraints": [],
+      "HandledEvents": [
+        "AddedShared"
+      ],
       "IsAncestorMetadata": true,
       "IsRequired": true,
       "Overridden": [
         "Title",
-        "Description"
+        "Description",
+        "HandledEvents"
       ],
       "Versions": []
     },

@@ -92,7 +92,7 @@ namespace sberdev.SBContracts
           if (gurantee.ContrTypeBaseSberDev == SberContracts.GuaranteeLetter.ContrTypeBaseSberDev.Expendable)
             _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.Expendable;
           if (gurantee.ContrTypeBaseSberDev == SberContracts.GuaranteeLetter.ContrTypeBaseSberDev.ExpendProfitSberDev)
-            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.ProfExpen;  
+            _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.ProfExpen;
         }
       }
       if (gurantee != null && gurantee.TotalAmount < 5000000 && gurantee.AddendumDocument == null)

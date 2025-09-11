@@ -362,7 +362,7 @@
     <value>Действие создания заявки на производственную закупку</value>
   </data>
   <data name="CoverAction_CreateAppNonProdPurchase" xml:space="preserve">
-    <value>Создать заявку на непроизводственную закупку</value>
+    <value>Создать заявку на непроизводственную закупку (до 500 т.р.)</value>
   </data>
   <data name="CoverDescription_CreateAppNonProdPurchase" xml:space="preserve">
     <value>Действие создания документа заявки на непроизводственную закупку</value>

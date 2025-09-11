@@ -8,7 +8,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">None</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">536,-46</property>
+            <property name="Location">536,-330</property>
             <property name="Size">220,250</property>
           </property>
           <property name="AllowMoveColumnToDropArea">false</property>
@@ -77,7 +77,7 @@
         <property name="View" isnull="true" iskey="true">
           <property name="LinesPerRowMode">None</property>
           <property name="ColumnChooserState" isnull="true" iskey="true">
-            <property name="Location">535,611</property>
+            <property name="Location">535,327</property>
             <property name="Size">220,250</property>
           </property>
           <property name="AllowMoveColumnToDropArea">false</property>
