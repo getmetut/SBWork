@@ -575,70 +575,44 @@ namespace sberdev.SBContracts.Shared
       #region Проверка: МВЗ (MVZ)
       if (_obj.ConditionType == ConditionType.MVZ)
       {
-        var find = false;
+
+        // Исходящее письмо.
         var outLetter = SBContracts.OutgoingLetters.As(document);
         if (outLetter != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.MVZ)
-          {
-            if (outLetter.MVZ == str.MVZ)
-              ContrFind = true;
-          }
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
-        }
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            ContainsInCondition(outLetter.MVZ), string.Empty);
 
-        var IncLetter = SBContracts.IncomingLetters.As(document);
-        if (IncLetter != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.MVZ)
-          {
-            if (IncLetter.MVZ == str.MVZ)
-              ContrFind = true;
-          }
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
-        }
+        // Входящее письмо.
+        var inLetter = SBContracts.IncomingLetters.As(document);
+        if (inLetter != null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            ContainsInCondition(inLetter.MVZ), string.Empty);
 
-        var incInv = SBContracts.IncomingInvoices.As(document);
-        if (incInv != null)
-        {
-          find = true;
-          var ContrFind = false;
-          foreach (var str in _obj.MVZ)
-          {
-            if (incInv.MVZBaseSberDev == str.MVZ)
-              ContrFind = true;
-          }
-          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
-        }
+        // Учетные документы.
+        var accounting = SBContracts.AccountingDocumentBases.As(document);
+        if (accounting != null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            ContainsInCondition(accounting.MVZBaseSberDev), string.Empty);
 
-        if (!find)
-        {
-          var mainContract = SBContracts.Contracts
-            .GetAll(e => e.Id == document.LeadingDocument.Id).FirstOrDefault();
-          if (mainContract != null)
-          {
-            var ContrFind = false;
-            foreach (var str in _obj.MVZ)
-            {
-              if (mainContract.MVZBaseSberDev == str.MVZ)
-                ContrFind = true;
-            }
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(ContrFind, string.Empty);
-          }
-          else
-          {
-            return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
-              null,
-              "Условие не может быть вычислено. Не заполнено МВЗ документа.");
-          }
-        }
+        // Договорные документы.
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        if (contractual != null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            ContainsInCondition(contractual.MVZBaseSberDev), string.Empty);
+
+        // Если тип напрямую не распознан — пробуем ведущий договор.
+        var mainContract = SBContracts.ContractualDocuments.As(document.LeadingDocument);
+        if (mainContract != null)
+          return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+            ContainsInCondition(mainContract.MVZBaseSberDev), string.Empty);
+
+        // Ничего не нашли — сообщаем о невозможности вычисления.
+        return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(
+          null,
+          "Условие не может быть вычислено. Не заполнено МВЗ документа.");
       }
       #endregion
-
+      
       #region Проверка: MVP (MVP)
       if (_obj.ConditionType == ConditionType.MVP)
       {
@@ -1100,6 +1074,9 @@ namespace sberdev.SBContracts.Shared
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.MVZ); // входящий счет
       baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.MVZ); // исходящее письмо
       baseSupport["8dd00491-8fd0-4a7a-9cf3-8b6dc2e6455d"].Add(ConditionType.MVZ); // Входящее письмо
+      baseSupport["675e2890-7dba-4d1a-a3bb-8a829bdabd66"].Add(ConditionType.MVZ); // непроизводственная закупка
+      baseSupport["7aa8969f-f81d-462c-b0d8-761ccd59253f"].Add(ConditionType.MVZ); // закупка
+      baseSupport["9d7a0ce3-e5c5-45b9-956d-7b26daedfdd2"].Add(ConditionType.MVZ); // гарантийное письмо
       
       baseSupport["a523a263-bc00-40f9-810d-f582bae2205d"].Add(ConditionType.MVP); // входящий счет
       baseSupport["d1d2a452-7732-4ba8-b199-0a4dc78898ac"].Add(ConditionType.MVP); // исходящее письмо
@@ -1129,6 +1106,22 @@ namespace sberdev.SBContracts.Shared
       return baseSupport;
     }
     
+    #endregion
+    
+    #region Хелперы
+    // Локальная функция сравнения со списком МВЗ условия.
+    private bool ContainsInCondition(object mvz)
+    {
+      if (mvz == null)
+        return false;
+
+      foreach (var row in _obj.MVZ)
+      {
+        if (Equals(row.MVZ, mvz))
+          return true;
+      }
+      return false;
+    }
     #endregion
   }
 }
