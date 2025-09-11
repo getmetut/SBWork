@@ -13,7 +13,7 @@ namespace sberdev.SBContracts.Server
   {
 
     /// <summary>
-    /// Функция рестартует задачу на нужного работника
+    /// Рестартует задачу на нужного работника
     /// </summary>
     [Public, Remote]
     public void RestartTask(Sungero.Company.IEmployee emp)
@@ -38,7 +38,7 @@ namespace sberdev.SBContracts.Server
     }
     
     /// <summary>
-    /// Функция переадресовывает задание на нужного работника
+    /// Переадресовывает задание на нужного работника
     /// </summary>
     /// <param name="emp"></param>
     [Public, Remote]
@@ -53,81 +53,58 @@ namespace sberdev.SBContracts.Server
       task.Save();
       _obj.Complete(SBContracts.ExchangeDocumentProcessingAssignment.Result.ReAddress);
     }
-
-    /// <summary>
-    /// Переадресовывает формалиованый документ
-    /// </summary>
-    public void DistributeFormalizedDocument()
-    {
-      var task = ExchangeDocumentProcessingTasks.As(_obj.Task);
-      if (task.ReadressedSberDev == false)
-      {
-        string[] accountingDiscriminants = {"a523a263-bc00-40f9-810d-f582bae2205d", "f2f5774d-5ca3-4725-b31d-ac618f6b8850",
-          "58986e23-2b0a-4082-af37-bd1991bc6f7e", "f50c4d8a-56bc-43ef-bac3-856f57ca70be",
-          "74c9ddd4-4bc4-42b6-8bb0-c91d5e21fb8a", "58ad01fb-6805-426b-9152-4de16d83b258", "4e81f9ca-b95a-4fd4-bf76-ea7176c215a7"};
-        var attachs = _obj.AllAttachments;
-        var recip = Roles.GetAll().Where(r => r.Sid == SberContracts.PublicConstants.Module.AccDocsHandlerRoleGuid).FirstOrDefault().RecipientLinks.FirstOrDefault().Member;
-        var emp = Sungero.Company.Employees.As(recip);
-        if (task.Addressee == emp || _obj.Addressee == emp)
-          return;
-        foreach(var attach in attachs)
-        {
-          string disc = attach.GetEntityMetadata().GetOriginal().NameGuid.ToString().ToLower();
-          if (accountingDiscriminants.Contains(disc))
-          {
-            _obj.Addressee = emp;
-            task.ReadressedSberDev = true;
-            task.Addressee = _obj.Addressee;
-            task.Save();
-            _obj.Complete(SBContracts.ExchangeDocumentProcessingAssignment.Result.ReAddress);
-            break;
-          }
-        }
-      }
-    }
     
     /// <summary>
-    /// Функция возвращает имена документов из вложений без «шелухи».
+    /// Имена документов из вложений задания без «шелухи».
     ///</summary>
     [Public]
     public string GetDocsNames()
     {
-      var result = new System.Text.StringBuilder(256);
+      var sb = new System.Text.StringBuilder(256);
       var seen = new System.Collections.Generic.HashSet<string>(System.StringComparer.Ordinal);
 
       var cpName = _obj.Counterparty != null ? _obj.Counterparty.Name : string.Empty;
 
+      // Локальный санитайзер названий
       System.Func<string, string> sanitize = raw =>
       {
         if (string.IsNullOrWhiteSpace(raw))
           return string.Empty;
 
         var name = raw.Replace("Вх. док. эл. обмена", "ВЭД");
+
         if (!string.IsNullOrEmpty(cpName))
           name = name.Replace(" от " + cpName, string.Empty);
 
         return name.Trim();
       };
 
-      var task = _obj.Task.Att
-      foreach (var doc in _obj.DocumentGroup.OfficialDocuments)
+      foreach (var att in _obj.AllAttachments)
       {
-        if (doc == null) continue;
+        var edoc = Sungero.Content.ElectronicDocuments.As(att);
+        if (edoc == null)
+          continue;
 
-        var clean = sanitize(doc.Name);
-        if (string.IsNullOrEmpty(clean)) continue;
+        var clean = sanitize(edoc.Name);
+        if (string.IsNullOrEmpty(clean))
+          continue;
 
         if (seen.Add(clean))
         {
-          if (result.Length > 0)
-            result.Append(" // ");
-          result.Append(clean);
+          if (sb.Length > 0)
+            sb.Append(" // ");
+          sb.Append(clean);
+
+          // Ранний выход, чтобы лишний раз не бегать по коллекции
+          if (sb.Length > 1000)
+            break;
         }
       }
 
-      var text = result.ToString();
-      return text.Length > 1000 ? text.Substring(0, 1000) : text;
+      var result = sb.ToString();
+      return result.Length > 1000 ? result.Substring(0, 1000) : result;
     }
+
 
   }
 }

@@ -84,9 +84,7 @@
   ],
   "HandledEvents": [
     "BeforeCompleteServer",
-    "BeforeSaveServer",
-    "ShowingClient",
-    "AfterSaveServer"
+    "BeforeSaveServer"
   ],
   "IconResourcesKeys": [],
   "IsVisible": false,
