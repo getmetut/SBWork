@@ -82,4 +82,7 @@
   <data name="Block_4b76fc2127c5426a94f1be8450d92256" xml:space="preserve">
     <value>Согласование с переадресацией</value>
   </data>
+  <data name="Block_03be1d053f04486aa07fac30345c6876" xml:space="preserve">
+    <value>Установить статус "Проверен" на КА</value>
+  </data>
 </root>

@@ -10,6 +10,12 @@ namespace sberdev.SBContracts
   partial class SupAgreementServerHandlers
   {
 
+    public override void Created(Sungero.Domain.CreatedEventArgs e)
+    {
+      base.Created(e);
+      _obj.State.Properties.SalesChannelATSDev.IsRequired = true;
+    }
+
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
       base.BeforeSave(e);

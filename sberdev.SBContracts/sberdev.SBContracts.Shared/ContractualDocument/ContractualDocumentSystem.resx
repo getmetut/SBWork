@@ -433,4 +433,7 @@
   <data name="Property_Number1CSberDev" xml:space="preserve">
     <value>Number 1C</value>
   </data>
+  <data name="Property_ContactsResponsibleATSDev" xml:space="preserve">
+    <value>Контакты ответственного</value>
+  </data>
 </root>
