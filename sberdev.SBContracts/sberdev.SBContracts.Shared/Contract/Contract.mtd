@@ -594,7 +594,7 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
           "ParentGuid": "519f2394-febe-4501-adca-a34ee883d986",
           "PropertyGuid": "184ab537-5748-454f-8a9c-cdbdd506321e",
-          "RowNumber": 2,
+          "RowNumber": 3,
           "RowSpan": 1,
           "Settings": []
         },
@@ -1375,6 +1375,24 @@
           "RowNumber": 6,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "589128fc-c15b-412b-817c-88e91d82f18b",
+          "Name": "ContactsResponsibleATSDevATSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
+          "ParentGuid": "519f2394-febe-4501-adca-a34ee883d986",
+          "PropertyGuid": "7716966a-6962-4e94-a715-95a9ffa328e2",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "Height",
+              "Value": 40
+            }
+          ]
         }
       ],
       "IsAncestorMetadata": true,

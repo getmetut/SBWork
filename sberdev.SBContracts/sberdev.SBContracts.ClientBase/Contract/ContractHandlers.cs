@@ -13,11 +13,13 @@ namespace sberdev.SBContracts
     public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
     {
       base.Refresh(e);
+      _obj.State.Properties.ContactsResponsibleATSDev.IsVisible = (_obj.ResponsibleEmployee != null);
     }
 
     public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
     {
       base.Showing(e);
+      _obj.State.Properties.ContactsResponsibleATSDev.IsVisible = (_obj.ResponsibleEmployee != null);
       if( (!Users.Current.IncludedIn( sberdev.SberContracts.PublicConstants.Module.GBTypeGuid )) && (!Users.Current.IncludedIn( sberdev.SberContracts.PublicConstants.Module.FDTypeGuid )))
       {
         _obj.State.Properties.ExitCommentBaseSberDev.IsVisible = false;

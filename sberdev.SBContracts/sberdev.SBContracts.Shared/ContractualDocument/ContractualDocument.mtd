@@ -1766,6 +1766,16 @@
       "Length": 100,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "bda0cf83-b234-4bfb-a0a4-38c9a5dce4dc"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "7716966a-6962-4e94-a715-95a9ffa328e2",
+      "Name": "ContactsResponsibleATSDev",
+      "Code": "ContactsRespon",
+      "IsQuickSearchAllowed": true,
+      "Length": 999,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "95f7be74-afed-4df1-918d-54b96b205f1c"
     }
   ],
   "PublicFunctions": [

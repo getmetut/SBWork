@@ -33,6 +33,7 @@
         "Name": "PurchaseProtocol",
         "EntityTypeId": "b4c6255c-cdb4-4b07-b405-243790ee8ccc",
         "GroupId": "cfe07ab5-7374-43c2-908b-891dabd46756",
+        "IsVisible": false,
         "PreviousItemGuid": "c2228f76-fd01-4788-8c0b-0249c949770a"
       },
       {
@@ -84,6 +85,7 @@
         "Name": "AppNonProdPurchase",
         "EntityTypeId": "675e2890-7dba-4d1a-a3bb-8a829bdabd66",
         "GroupId": "cfe07ab5-7374-43c2-908b-891dabd46756",
+        "IsVisible": false,
         "PreviousItemGuid": "d88c5db6-51e5-40a7-a35f-233a8e6e3bd0"
       },
       {
@@ -92,6 +94,7 @@
         "Name": "AppProductPurchase",
         "EntityTypeId": "50114491-2005-49ad-b0d6-49c695c44b8d",
         "GroupId": "cfe07ab5-7374-43c2-908b-891dabd46756",
+        "IsVisible": false,
         "PreviousItemGuid": "e393b4cd-7130-44d7-845b-a32bcaf5d97f"
       },
       {
@@ -99,7 +102,8 @@
         "NameGuid": "e121bd4c-be7d-4d7a-846e-e8f68efcab4b",
         "Name": "Purchase",
         "EntityTypeId": "7aa8969f-f81d-462c-b0d8-761ccd59253f",
-        "GroupId": "cfe07ab5-7374-43c2-908b-891dabd46756"
+        "GroupId": "cfe07ab5-7374-43c2-908b-891dabd46756",
+        "IsVisible": false
       },
       {
         "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
@@ -107,6 +111,7 @@
         "Name": "AppRnDPurchase",
         "EntityTypeId": "ec171393-989b-4da6-b472-4c7bd5d014e9",
         "GroupId": "cfe07ab5-7374-43c2-908b-891dabd46756",
+        "IsVisible": false,
         "PreviousItemGuid": "e121bd4c-be7d-4d7a-846e-e8f68efcab4b"
       }
     ],
