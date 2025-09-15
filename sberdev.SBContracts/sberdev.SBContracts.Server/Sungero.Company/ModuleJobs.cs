@@ -6,8 +6,36 @@ using Sungero.CoreEntities;
 
 namespace sberdev.SBContracts.Module.Company.Server
 {
-  partial class ModuleJobs 
+  partial class ModuleJobs
   {
+
+    /// <summary>
+    /// Установить статусы КонутрФокус для контрагнетов.
+    /// </summary>
+    public virtual void SetFocusStatusSberDev()
+    {
+      var counterparties = SBContracts.Companies.GetAll().Where(cp => cp.FocusCheckedDateSberDev != null);
+      foreach (var cp in counterparties)
+      {
+        // Легкая первая проверка. Был ли ка успешно проверен
+        if (cp.FocusCheckedSberDev)
+        {
+          if (cp.FocusCheckedDateSberDev.Value.Year == Calendar.Now.Year)
+          {
+            cp.FocusCheckStatusSberDev = SBContracts.Company.FocusCheckStatusSberDev.Actual;
+            continue;
+          }
+          else
+          {
+            cp.FocusCheckStatusSberDev = SBContracts.Company.FocusCheckStatusSberDev.DateOutdated;
+            continue;
+          }
+        }
+        
+        // Сложная проверка. Был ли ка забракован
+        
+      }
+    }
 
   }
 }

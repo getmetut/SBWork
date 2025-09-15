@@ -839,6 +839,19 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "ExportKonturFocusChecks",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "companyChecks",
+          "ParameterType": "Dictionary<ICompany, KonturFocusCheck>"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.Core.IZip",
+      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
+    },
+    {
       "Name": "FillExpendableAnaliticsProperties",
       "Parameters": [
         {
@@ -1138,7 +1151,50 @@
       "ReturnTypeFullName": "System.Boolean"
     }
   ],
-  "PublicStructures": [],
+  "PublicStructures": [
+    {
+      "Name": "FocusCheckInfo",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Status",
+          "IsNullable": true,
+          "TypeFullName": "global::Enumeration"
+        },
+        {
+          "Name": "Checks",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::IKonturFocusCheckResult>"
+        },
+        {
+          "Name": "Files",
+          "IsEntity": true,
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::Sungero.Content.IElectronicDocument>"
+        }
+      ],
+      "StructureNamespace": "sberdev.SberContracts.Structures.Module"
+    },
+    {
+      "Name": "FocusCheckResult",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Date",
+          "IsNullable": true,
+          "TypeFullName": "global::System.DateTime"
+        },
+        {
+          "Name": "Result",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "sberdev.SberContracts.Structures.Module"
+    }
+  ],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "sberdev.SberContracts",
   "ResourcesKeys": [

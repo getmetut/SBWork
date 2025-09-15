@@ -64,4 +64,10 @@
   <data name="CoverDescription_ChangeBusinessUnitFilteringCasheSberDev" xml:space="preserve">
     <value>Настройка фильтрации выбора аналитик в диалоговом окне глобального поиска по "Нашей организации".</value>
   </data>
+  <data name="JobDisplayName_6ecc6817d8f84ba8a6f6c9c9cafba80e" xml:space="preserve">
+    <value>КонутрФокус. Установить статусы</value>
+  </data>
+  <data name="JobDescription_6ecc6817d8f84ba8a6f6c9c9cafba80e" xml:space="preserve">
+    <value>Установить статусы КонутрФокус для контрагнетов.</value>
+  </data>
 </root>

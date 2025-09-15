@@ -259,4 +259,10 @@
   <data name="CoverDescription" xml:space="preserve">
     <value>Раздел закупок для ведения реестров и создания новых записей</value>
   </data>
+  <data name="JobDisplayName_499c5bcfa84b4b188d549fe14247c3ff" xml:space="preserve">
+    <value>Migration. Выгрузка договоров на сервер</value>
+  </data>
+  <data name="JobDescription_499c5bcfa84b4b188d549fe14247c3ff" xml:space="preserve">
+    <value>Процес запускает выгрузку всех договоров из директума (вместе с счетами, если есть связь) в папку на сервере (C://ContractsAndInv)</value>
+  </data>
 </root>

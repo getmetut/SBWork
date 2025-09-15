@@ -95,10 +95,10 @@
     <value>Полный рестр закупок</value>
   </data>
   <data name="JobDisplayName_499c5bcfa84b4b188d549fe14247c3ff" xml:space="preserve">
-    <value>Выгрузка договоров на сервер</value>
+    <value>Migration. Uploading contracts to the server</value>
   </data>
   <data name="JobDescription_499c5bcfa84b4b188d549fe14247c3ff" xml:space="preserve">
-    <value>Процес запускает выгрузку всех договоров из директума (вместе с счетами, если есть связь) в папку на сервере (C://ContractsAndInv)</value>
+    <value>The process starts unloading all contracts from the directum (along with invoices, if there is a connection) to a folder on the server (C://ContractsAndInv)</value>
   </data>
   <data name="JobDisplayName_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
     <value>Clear directory with temp. documents</value>
@@ -263,7 +263,7 @@
     <value>Shows the number of completed tasks (on time/overdue) by department.</value>
   </data>
   <data name="JobDisplayName_fd1cf1037d46492fb2a4ee38bf2b023a" xml:space="preserve">
-    <value>Widgets: Creating a cache for the Approval Analytics widget set</value>
+    <value>Widgets. Creating a cache for the Approval Analytics widget set</value>
   </data>
   <data name="JobDescription_fd1cf1037d46492fb2a4ee38bf2b023a" xml:space="preserve">
     <value>The process calculates and writes data for the Approval Analytics widget set.</value>

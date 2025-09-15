@@ -218,7 +218,7 @@
     <value>Низкая среднесписочная численность работников</value>
   </data>
   <data name="ControlGroup_df1dbb22faab484b9e190899b9ce2d04" xml:space="preserve">
-    <value>Рейтинг контрагента</value>
+    <value>Сводная информация</value>
   </data>
   <data name="ControlGroup_95a10ae7233b4b84aca68a0f182bb2e5" xml:space="preserve">
     <value>Маркеры Контур.Фокус</value>
@@ -516,5 +516,17 @@
   </data>
   <data name="Property_IsNeedFocusCheckSberDev" xml:space="preserve">
     <value>Необходима проверка в задаче на согласование</value>
+  </data>
+  <data name="Property_FocusCheckStatusSberDev" xml:space="preserve">
+    <value>Статус КонтрФокус </value>
+  </data>
+  <data name="Enum_FocusCheckStatusSberDev_Actual" xml:space="preserve">
+    <value>Актуальна</value>
+  </data>
+  <data name="Enum_FocusCheckStatusSberDev_DateOutdated" xml:space="preserve">
+    <value>Истекла дата</value>
+  </data>
+  <data name="Enum_FocusCheckStatusSberDev_Failed" xml:space="preserve">
+    <value>Провалена</value>
   </data>
 </root>
