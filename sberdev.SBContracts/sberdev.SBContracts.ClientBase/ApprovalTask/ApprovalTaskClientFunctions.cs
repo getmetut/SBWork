@@ -20,10 +20,16 @@ namespace sberdev.SBContracts.Client
       {
         var Dial = Dialogs.CreateInputDialog("Введите обоснование срочности задачи");
         var obosn = Dial.AddMultilineString("Обоснование",true);
+        var text = Dial.Text = @"Укажите в обосновании: Опишите необходимость срочного согласования.
+        Почему заявка стала срочной?
+        Кто инициатор срочности?
+        Какие негативные последствия и риски для компании, если вовремя не будет согласована?";
+        
         if (Dial.Show() == DialogButtons.Ok)
         {
           _obj.Importance = Importance.High;
           _obj.StrHighImportanceATSDev = obosn.Value.ToString();
+          _obj.HighImportanceUserATSDev = Users.Current.Name;
         }
       }
       else
