@@ -62,7 +62,7 @@
     <value>Закупки</value>
   </data>
   <data name="JobDisplayName_39fa5665940849c78926648128e396db" xml:space="preserve">
-    <value>Раскрытие полных имен псевдо-пользователей.</value>
+    <value>Пользователи. Раскрытие полных имен псевдо-пользователей.</value>
   </data>
   <data name="AsyncHandler_Description_04e5249ba2a8480ba3b1ca5f3884d58f" xml:space="preserve">
     <value>Удалить договор по ID</value>
@@ -71,7 +71,7 @@
     <value>Процес проходит по группе "Псевдо-пользователи" и вносит их имена в поле фамилия у привязанным к ним персон. Исключения заносятся в группу "Исключения для процесса раскрытия полных имен".</value>
   </data>
   <data name="JobDisplayName_851b3b37aa4b4412a6799e31e2e1c58c" xml:space="preserve">
-    <value>Удаление логов</value>
+    <value>Система. Удаление логов</value>
   </data>
   <data name="JobDescription_851b3b37aa4b4412a6799e31e2e1c58c" xml:space="preserve">
     <value>Процесс очищает папку с логами на сервере и оставляет логи только за последнюю неделю.</value>
@@ -80,7 +80,7 @@
     <value>Закупки</value>
   </data>
   <data name="JobDisplayName_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
-    <value>Очистка папки с временными документами</value>
+    <value>Система. Очистка папки с временными документами</value>
   </data>
   <data name="JobDescription_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
     <value>Чистит папку с временными документами.</value>
@@ -258,5 +258,17 @@
   </data>
   <data name="CoverDescription" xml:space="preserve">
     <value>Раздел закупок для ведения реестров и создания новых записей</value>
+  </data>
+  <data name="JobDisplayName_499c5bcfa84b4b188d549fe14247c3ff" xml:space="preserve">
+    <value>Миграция. Выгрузка договоров на сервер</value>
+  </data>
+  <data name="JobDescription_499c5bcfa84b4b188d549fe14247c3ff" xml:space="preserve">
+    <value>Процес запускает выгрузку всех договоров из директума (вместе с счетами, если есть связь) в папку на сервере (C://ContractsAndInv)</value>
+  </data>
+  <data name="JobDisplayName_f94829b4685b49a0a1c15896c3faf264" xml:space="preserve">
+    <value>Документооборот. Запустить все остановленные задачи</value>
+  </data>
+  <data name="JobDescription_f94829b4685b49a0a1c15896c3faf264" xml:space="preserve">
+    <value>Процесс запускает все приостановленные задачи.</value>
   </data>
 </root>

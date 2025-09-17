@@ -360,8 +360,8 @@
     {
       "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
       "NameGuid": "291f5106-4200-4277-95a0-4389f2ee29e1",
-      "Name": "IsNeedFocusCheckSberDev",
-      "Code": "IsNeedFocusChe",
+      "Name": "NeedFocusCheckSberDev",
+      "Code": "NeedFocusCheck",
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "c38efcc5-962a-483d-90fb-6623be29a68d",

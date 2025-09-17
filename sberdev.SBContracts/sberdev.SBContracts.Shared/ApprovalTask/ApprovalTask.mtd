@@ -624,7 +624,7 @@
     {
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
       "NameGuid": "cf502d5f-6fbe-447e-aa00-bfa8adff2743",
-      "Name": "HighImportanceUserATSDev",
+      "Name": "HighImportanceUserSberDev",
       "Code": "HighImportance",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "4702830a-019e-44dc-83f7-a75cdc80ac62"

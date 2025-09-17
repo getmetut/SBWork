@@ -111,6 +111,13 @@
       "IsAncestorMetadata": true,
       "MonthSchedule": "Monthly",
       "StartAt": "1753-01-01T01:00:00"
+    },
+    {
+      "NameGuid": "6ecc6817-d8f8-4ba8-a6f6-c9c9cafba80e",
+      "Name": "SetFocusStatusSberDev",
+      "GenerateHandler": true,
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T06:00:00"
     }
   ],
   "LayeredFromGuid": "d534e107-a54d-48ec-85ff-bc44d731a82f",

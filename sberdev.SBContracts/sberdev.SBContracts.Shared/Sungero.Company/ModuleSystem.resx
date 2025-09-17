@@ -79,4 +79,10 @@
   <data name="CoverDescription_ReestrPOADevSDev" xml:space="preserve">
     <value>Реестр выпущенных доверенностей по нашим организациям</value>
   </data>
+  <data name="JobDisplayName_6ecc6817d8f84ba8a6f6c9c9cafba80e" xml:space="preserve">
+    <value>KonturFocus. Set statuses</value>
+  </data>
+  <data name="JobDescription_6ecc6817d8f84ba8a6f6c9c9cafba80e" xml:space="preserve">
+    <value>Set KonturFocus statuses for contractors.</value>
+  </data>
 </root>

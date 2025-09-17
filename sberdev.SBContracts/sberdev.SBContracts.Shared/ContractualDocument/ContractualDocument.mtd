@@ -1780,8 +1780,8 @@
     {
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
       "NameGuid": "5af1ad67-04c0-4427-a232-051ad957cf91",
-      "Name": "NumPositionATSDev",
-      "Code": "NumPositionATS",
+      "Name": "NumPositionSberDev",
+      "Code": "NumPositionSbe",
       "Length": 20,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "7716966a-6962-4e94-a715-95a9ffa328e2",

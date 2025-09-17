@@ -89,5 +89,6 @@ namespace sberdev.SBContracts.Server
       if (_obj.LowAvgHeadSberDev != avgEmpl)
         _obj.LowAvgHeadSberDev = avgEmpl;
     }
+    
   }
 }

@@ -5,6 +5,5 @@ namespace SDev.BProc.Constants
 {
   public static class Module
   {
-
   }
 }

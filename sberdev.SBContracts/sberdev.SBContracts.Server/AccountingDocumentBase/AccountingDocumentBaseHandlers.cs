@@ -175,13 +175,6 @@ namespace sberdev.SBContracts
       }
       else
         base.BeforeSave(e);
-      
-      if (SBContracts.PublicFunctions.Module.IsSystemUser())
-      {
-        _obj.State.Properties.Currency.IsRequired = false;
-        _obj.State.Properties.DeliveryMethod.IsRequired = false;
-        _obj.State.Properties.PayTypeBaseSberDev.IsRequired = false;
-      }
     }
   }
 

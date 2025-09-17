@@ -55,7 +55,7 @@
         {
           "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
           "NameGuid": "df1dbb22-faab-484b-9e19-0899b9ce2d04",
-          "Name": "RatingGroupSberDev",
+          "Name": "GeneralGroupSberDev",
           "GroupType": "WithTitleNoBorder"
         },
         {
@@ -1344,7 +1344,51 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
           "ParentGuid": "df1dbb22-faab-484b-9e19-0899b9ce2d04",
           "PropertyGuid": "291f5106-4200-4277-95a0-4389f2ee29e1",
+          "RowNumber": 2,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
+          "NameGuid": "d40edd81-af64-407a-98f0-cbaaef94fcf2",
+          "Name": "CheckGroupSberDev",
+          "ColumnDefinitions": [
+            {
+              "Percentage": 50.0
+            },
+            {
+              "Percentage": 50.0
+            }
+          ],
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "ParentGuid": "df1dbb22-faab-484b-9e19-0899b9ce2d04",
           "RowNumber": 1,
+          "RowSpan": 1
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "f59bb889-7955-4382-806b-ee66ac65f8b3",
+          "Name": "FocusCheckStatusSberDevSberDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+          "ParentGuid": "d40edd81-af64-407a-98f0-cbaaef94fcf2",
+          "PropertyGuid": "ae199d3f-e052-4c24-bcdb-47eaaad1caf8",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "ef2c15e6-c383-4092-894e-a9e2c009346b",
+          "Name": "FocusCheckedDateSberDevSberDev",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+          "ParentGuid": "d40edd81-af64-407a-98f0-cbaaef94fcf2",
+          "PropertyGuid": "8040b198-5278-4621-b31c-cbe5632609f6",
+          "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []
         }
@@ -2051,6 +2095,32 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "3ce56f30-41d8-44c0-9a75-471c58ee7f5a",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "ae199d3f-e052-4c24-bcdb-47eaaad1caf8",
+      "Name": "FocusCheckStatusSberDev",
+      "Code": "FocusCheckStat",
+      "DirectValues": [
+        {
+          "NameGuid": "409b4cff-4aa2-4276-960b-383aa5a1ccbb",
+          "Name": "Actual",
+          "Code": "Actual"
+        },
+        {
+          "NameGuid": "d5ac5814-1e01-49a1-b8b6-7bb508fd5429",
+          "Name": "DateOutdated",
+          "Code": "DateOutdated"
+        },
+        {
+          "NameGuid": "c4ecd7e3-49b4-408d-9c01-2f5c487f7564",
+          "Name": "Failed",
+          "Code": "Failed"
+        }
+      ],
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
+      "PreviousPropertyGuid": "8c809bd6-80cb-4676-be05-93ba020f8f63"
     }
   ],
   "PublicFunctions": [

@@ -29,7 +29,7 @@ namespace sberdev.SBContracts.Client
         {
           _obj.Importance = Importance.High;
           _obj.StrHighImportanceATSDev = obosn.Value.ToString();
-          _obj.HighImportanceUserATSDev = Users.Current.Name;
+          _obj.HighImportanceUserSberDev = Users.Current.Name;
         }
       }
       else
