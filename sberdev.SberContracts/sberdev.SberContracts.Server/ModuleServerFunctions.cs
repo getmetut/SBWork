@@ -1696,6 +1696,7 @@ namespace sberdev.SberContracts.Server
       doc.PayTypeBaseSberDev = docSelected.PayTypeBaseSberDev;
       doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
       doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
+      doc.LeadingDocument = docSelected.LeadingDocument;
       if (docSelected.TotalAmount != null)
       {
         doc.TotalAmount = docSelected.TotalAmount;
