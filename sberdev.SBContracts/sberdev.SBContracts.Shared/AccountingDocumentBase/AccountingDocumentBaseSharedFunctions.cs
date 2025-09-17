@@ -83,12 +83,9 @@ namespace sberdev.SBContracts.Shared
       string[] excludedTypes = new string[] { "IncomingInvoice", "IncomingInvoiceProxy", "OutgoingInvoice", "OutgoingInvoiceProxy" };
       var isApplicableDocumentType = !excludedTypes.Contains(documentType);
       // Если документ не входит в список исключаемых типов, проверяем метод доставки
-      if (isApplicableDocumentType)
-      {
-        _obj.State.Properties.DeliveryMethod.IsVisible = true;
-        _obj.State.Properties.DeliveryMethod.IsEnabled = true;
-        _obj.State.Properties.DeliveryMethod.IsRequired = true;
-      }
+      _obj.State.Properties.DeliveryMethod.IsVisible = isApplicableDocumentType;
+      _obj.State.Properties.DeliveryMethod.IsEnabled = isApplicableDocumentType;
+      _obj.State.Properties.DeliveryMethod.IsRequired = isApplicableDocumentType;
     }
     
     /// <summary>
@@ -106,7 +103,7 @@ namespace sberdev.SBContracts.Shared
     }
 
     /// <summary>
-    /// Обновление карточки докуента и открытие реквизитов по логике запроса и условий
+    /// Обновление карточки документа и открытие реквизитов по логике запроса и условий
     /// </summary>
     public void UpdateCard()
     {

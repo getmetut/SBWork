@@ -68,13 +68,13 @@
     <value>DeleteContractById</value>
   </data>
   <data name="JobDisplayName_39fa5665940849c78926648128e396db" xml:space="preserve">
-    <value>Exposing the full names of pseudo-users.</value>
+    <value>Users. Exposing the full names of pseudo-users.</value>
   </data>
   <data name="JobDescription_39fa5665940849c78926648128e396db" xml:space="preserve">
     <value>The process goes through the group "Pseudo-users" and enters their names in the last name field of the persons associated with them. Exceptions are listed in the "Exceptions for the Full Names Process" group.</value>
   </data>
   <data name="JobDisplayName_851b3b37aa4b4412a6799e31e2e1c58c" xml:space="preserve">
-    <value>Deleting logs</value>
+    <value>System. Deleting logs</value>
   </data>
   <data name="JobDescription_851b3b37aa4b4412a6799e31e2e1c58c" xml:space="preserve">
     <value>The process clears the log folder on the server and leaves logs for the last week only.</value>
@@ -101,10 +101,10 @@
     <value>The process starts unloading all contracts from the directum (along with invoices, if there is a connection) to a folder on the server (C://ContractsAndInv)</value>
   </data>
   <data name="JobDisplayName_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
-    <value>Clear directory with temp. documents</value>
+    <value>System. Clear directory with temporary documents</value>
   </data>
   <data name="JobDescription_d7a9e6e9dba64437b424a32f0e5b3197" xml:space="preserve">
-    <value>Clear directory with temp. documents.</value>
+    <value>Clear directory with temporary documents.</value>
   </data>
   <data name="WidgetTitle_AssignCompletedByDepartWidget" xml:space="preserve">
     <value>Completed assingnments by departments</value>
@@ -372,5 +372,11 @@
   </data>
   <data name="CoverDescription_CreatePurchaseProtocol" xml:space="preserve">
     <value>Действие создания протокола выбора способа закупки</value>
+  </data>
+  <data name="JobDisplayName_f94829b4685b49a0a1c15896c3faf264" xml:space="preserve">
+    <value>Dockflow. Start All Suspended Tasks</value>
+  </data>
+  <data name="JobDescription_f94829b4685b49a0a1c15896c3faf264" xml:space="preserve">
+    <value>The process starts all suspended tasks.</value>
   </data>
 </root>

@@ -22,8 +22,8 @@ namespace sberdev.SberContracts.Structures.Module
   [Public]
   partial class FocusCheckInfo
   {
-    public Enumeration Status { get; set; }
-    public List<IKonturFocusCheckResult> Checks { get; set; }
+    public Sungero.Core.Enumeration Status { get; set; }
+    public List<sberdev.SberContracts.Structures.Module.IFocusCheckResult> Checks { get; set; }
     public List<Sungero.Content.IElectronicDocument> Files { get; set; }
   }
 }

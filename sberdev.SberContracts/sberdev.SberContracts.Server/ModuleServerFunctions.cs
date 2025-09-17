@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using Sungero.Core;
 using Sungero.CoreEntities;
@@ -10,19 +11,19 @@ using Sungero.Exchange;
 using OfficeOpenXml;
 using sberdev.SBContracts.Structures.Module;
 
+
 namespace sberdev.SberContracts.Server
 {
   public class ModuleFunctions
   {
-    
     /// <summary>
     /// Создать архив с результатами проверок Контур Фокус и скачать его.
     /// Обрабатываются только компании, по которым есть проверки.
     /// </summary>
     /// <param name="companyChecks">Данные проверок по компаниям.</param>
     /// <returns>ZIP-архив.</returns>
-    [Public, Remote]
-    public static Sungero.Core.IZip ExportKonturFocusChecks(Dictionary<ICompany, KonturFocusCheck> companyChecks)
+    [Public]
+    public static Sungero.Core.IZip ExportKonturFocusChecks(System.Collections.Generic.Dictionary<Sungero.Parties.ICompany, Structures.Module.IFocusCheckInfo> companyChecks)
     {
       var zip = Zip.Create();
 

@@ -18,9 +18,9 @@ namespace sberdev.SBContracts.Module.Company.Server
       foreach (var cp in counterparties)
       {
         // Легкая первая проверка. Был ли ка успешно проверен
-        if (cp.FocusCheckedSberDev)
+        if (cp.FocusCheckedSberDev.HasValue && cp.FocusCheckedSberDev.Value)
         {
-          if (cp.FocusCheckedDateSberDev.Value.Year == Calendar.Now.Year)
+          if (cp.FocusCheckedDateSberDev.HasValue && cp.FocusCheckedDateSberDev.Value.Year == Calendar.Now.Year)
           {
             cp.FocusCheckStatusSberDev = SBContracts.Company.FocusCheckStatusSberDev.Actual;
             continue;
