@@ -48,6 +48,22 @@ namespace sberdev.SBContracts.Client
 
   partial class OfficialDocumentActions
   {
+    // Функция отправки документа по маршруту бизнес-процесса
+    public virtual void SendToBPATSDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      _obj.Save();
+      var task = SDev.BPCustom.OfficialTasks.Create();
+      task.Subject = string.Format("Согласование: {0}",_obj.Name);
+      task.BaseAttachments.OfficialDocuments.Add(_obj);
+      task.Show();
+      e.CloseFormAfterAction = true;
+    }
+
+    public virtual bool CanSendToBPATSDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
     public virtual void SetCommentSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       Functions.OfficialDocument.Remote.SetPublicComment(_obj, Functions.OfficialDocument.PublicCommentDialog(_obj));

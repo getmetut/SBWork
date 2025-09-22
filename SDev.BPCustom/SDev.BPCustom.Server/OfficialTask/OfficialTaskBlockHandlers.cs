@@ -16,10 +16,10 @@ namespace SDev.BPCustom.Server.OfficialTaskBlocks
       var doc = _obj.BaseAttachments.OfficialDocuments.FirstOrDefault();   
       if (doc != null)
       {
-        var availableApprovalRules = Functions.OfficialDocument.Remote.GetApprovalRules(doc).ToList();
+        var availableApprovalRules = Sungero.Docflow.PublicFunctions.OfficialDocument.Remote.GetApprovalRules(doc).ToList();
         if (availableApprovalRules.Any())
         {
-          var task = Functions.Module.Remote.CreateApprovalTask(doc);
+          var task = Sungero.Docflow.PublicFunctions.Module.Remote.CreateApprovalTask(doc);
           task.Start();
         }
       }
