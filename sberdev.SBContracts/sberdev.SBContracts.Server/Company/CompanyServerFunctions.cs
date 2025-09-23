@@ -5,11 +5,30 @@ using Sungero.Core;
 using Sungero.CoreEntities;
 using sberdev.SBContracts.Company;
 using Sungero.Domain.Shared;
+using sberdev.SBContracts;
 
 namespace sberdev.SBContracts.Server
 {
   partial class CompanyFunctions
   {
+    public Structures.Module.IFocusCheckInfo GetFocusCheckInfo()
+    {
+      if (_obj.FocusCheckStatusSberDev == null)
+        return null
+          ;
+      var info = Structures.Module.FocusCheckInfo.Create();
+      info.Status = _obj.FocusCheckStatusSberDev;
+      info.Checks = _obj.History.GetAll().Where(h => h.Operation = new Enumeration("Checking")
+                                                && h.HistoryDate.HasValue).Select(h => h.HistoryDate.Value).ToList();
+      info.Files = GetFocusFiles();
+      return info;
+    }
+    
+    private System.Collections.Generic.List<Sungero.Content.IElectronicDocument> GetFocusFiles()
+    {
+      
+    }
+    
     public override void FillInRequisites(centrvd.KFIntegration.Structures.Parties.Company.CompanyInfo counterpartyInfo, bool isLegalEntity)
     {
       
@@ -17,7 +36,6 @@ namespace sberdev.SBContracts.Server
       
       var yes = new Enumeration("Yes");
       var no = new Enumeration("No");
-      
       var req = counterpartyInfo.Req;
       var egrDetails = counterpartyInfo.EgrDetails;
       var license = counterpartyInfo.License;

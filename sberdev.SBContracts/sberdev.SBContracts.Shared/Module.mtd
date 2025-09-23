@@ -576,6 +576,19 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "ExportKonturFocusChecks",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "companyChecks",
+          "ParameterType": "System.Collections.Generic.Dictionary<global::Sungero.Parties.ICompany, global::sberdev.SBContracts.Structures.Module.IFocusCheckInfo>"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.Core.IZip",
+      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
+    },
+    {
       "Name": "ExtendAssignmentDeadline",
       "IsRemote": true,
       "Parameters": [
@@ -1162,6 +1175,31 @@
       "StructureNamespace": "sberdev.SBContracts.Structures.Module"
     },
     {
+      "Name": "FocusCheckInfo",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Status",
+          "IsNullable": true,
+          "TypeFullName": "global::Sungero.Core.Enumeration"
+        },
+        {
+          "Name": "Checks",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::System.DateTime>"
+        },
+        {
+          "Name": "Files",
+          "IsEntity": true,
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::Sungero.Content.IElectronicDocument>"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
       "Name": "PerformerDepartmentData",
       "IsPublic": true,
       "Properties": [
@@ -1261,7 +1299,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.9.1.0",
+  "Version": "5.10.0.0",
   "Widgets": [],
   "Versions": [
     {

@@ -173,8 +173,6 @@ namespace sberdev.SBContracts.Shared
       name = name.ToUpper(ru);
 
       // === 4) Формируем итог ===
-      // По твоему правилу — форма в КОНЦЕ.
-      // Если для ИП хочешь «ИП ИВАНОВ...», просто замени строку ниже на: return "ИП " + name;
       var result = name + " " + form;
 
       return result;
@@ -322,6 +320,8 @@ namespace sberdev.SBContracts.Shared
     }
     #endregion
     
+    #region Сеты
+    
     public override void SetColorsForKFMarkers()
     {
       var settings = centrvd.KFIntegration.Module.Company.PublicFunctions.Module.Remote.GetKFMarkersSettings();
@@ -365,6 +365,8 @@ namespace sberdev.SBContracts.Shared
           properties[propertyName + "SberDev"].HighlightColor = GetHighlightColor(propertyName + "SberDev", colorMap, settings);
       
     }
+    #endregion
+    
     #endregion
   }
 }

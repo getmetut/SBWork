@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
+using sberdev.SBContracts;
 
 namespace sberdev.SBContracts.Module.Company.Server
 {
@@ -17,8 +18,11 @@ namespace sberdev.SBContracts.Module.Company.Server
       var counterparties = SBContracts.Companies.GetAll().Where(cp => cp.FocusCheckedDateSberDev != null);
       foreach (var cp in counterparties)
       {
+        try
+        {
+        PublicFunctions.Module.Remote.UnblockCardByDatabase(cp);
         // Легкая первая проверка. Был ли ка успешно проверен
-        if (cp.FocusCheckedSberDev.HasValue && cp.FocusCheckedSberDev.Value)
+        if (cp.FocusCheckedSberDev == true)
         {
           if (cp.FocusCheckedDateSberDev.HasValue && cp.FocusCheckedDateSberDev.Value.Year == Calendar.Now.Year)
           {
@@ -31,9 +35,17 @@ namespace sberdev.SBContracts.Module.Company.Server
             continue;
           }
         }
-        
         // Сложная проверка. Был ли ка забракован
-        
+        else
+        {
+          var hasCheckingAssign= ApprovalAssignments.GetAll().Where(a => ApprovalStages.As(a.Stage).SidSberDev == PublicConstants.Docflow.ApprovalTask.CheckingCPStage
+                                                                   && ApprovalTasks.As(a.Task).DocumentTypeSungero == "Contractual" 
+                                                                   && ContractualDocuments.As(a.DocumentGroup.OfficialDocuments.FirstOrDefault()).Counterparty == cp).Any();
+          if (hasCheckingAssign)
+             cp.FocusCheckStatusSberDev = SBContracts.Company.FocusCheckStatusSberDev.Failed;
+        }
+        cp.Save();
+        }
       }
     }
 
