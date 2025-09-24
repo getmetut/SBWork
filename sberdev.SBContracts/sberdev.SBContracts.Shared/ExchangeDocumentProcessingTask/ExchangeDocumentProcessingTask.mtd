@@ -61,6 +61,26 @@
         "LayeredFromGuid"
       ],
       "ProcessStagesDisplayMode": "Show"
+    },
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "c59e4ddb-429d-441b-a1e7-6f6872586afb",
+      "Name": "SendTaskIncInvATSDev",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "SendTaskIncInvATSDevExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide"
+    },
+    {
+      "$type": "Sungero.Metadata.ScriptBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "0dd3fb1b-be69-494d-a77a-cff1b2832df8",
+      "Name": "SearchIncomingInvoiATSDev",
+      "BaseGuid": "1f76cc5d-f096-4062-b34a-51b3c02269f2",
+      "HandledEvents": [
+        "SearchIncomingInvoiATSDevExecute"
+      ],
+      "ProcessStagesDisplayMode": "Hide"
     }
   ],
   "CanBeNavigationPropertyType": true,
@@ -165,6 +185,17 @@
       "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "51d66be9-4601-4a7b-94ba-a0c05f368dc6",
+      "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "c3e9ab70-d71e-4f71-a5f0-2e56508d211a",
+      "Name": "IncomingInvoiceATSDev",
+      "Code": "IncomingInvoic",
+      "EntityGuid": "01058774-127f-42c9-940c-023df2f641e3",
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "b2552bde-bc83-4029-83ad-086152dd68fe",
       "Versions": []
     }
   ],
