@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Property_IncomingInvoiceATSDev" xml:space="preserve">
+    <value>Входящий счет на оплату</value>
+  </data>
+  <data name="Block_8f42a74105db421585765507dcbf5184" xml:space="preserve">
+    <value>Поиск входящего счета на плату</value>
+  </data>
+  <data name="Block_8f42a74105db421585765507dcbf5184_Description" xml:space="preserve">
+    <value>Поиск документа типа Входящий счет на оплату, который ссылается на текущий УПД</value>
+  </data>
+  <data name="Resource_035869ed2baa4573bdfe9e4f5e10c4b3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_035869ed2baa4573bdfe9e4f5e10c4b3_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_74e85eafe5944dc5b4724e791948b781" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_74e85eafe5944dc5b4724e791948b781_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_b5a978ad140d4c4fb7cd77374252a742" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_9a544d90b98c41a59a110763660059bb" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_9a544d90b98c41a59a110763660059bb_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_84b11d16b336475cacb61978531b8e9b" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_84b11d16b336475cacb61978531b8e9b_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_32882ff0dba84afaa81113c382fb2da0" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_32882ff0dba84afaa81113c382fb2da0_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Block_8f42a74105db421585765507dcbf5184_Property_86166c08601e4d439d02c36f25e38892" xml:space="preserve">
+    <value>Только Постоплата</value>
+  </data>
+  <data name="Block_ae59269c50054952a9ba1e01ebb83958" xml:space="preserve">
+    <value>Отправить по регламенту счет на оплату входящий</value>
+  </data>
+</root>
