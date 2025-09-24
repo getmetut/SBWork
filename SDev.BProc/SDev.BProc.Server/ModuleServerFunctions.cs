@@ -6,6 +6,7 @@ using System.Text;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using Sungero.Company;
+using Sungero;
 
 namespace SDev.BProc.Server
 {
@@ -18,9 +19,9 @@ namespace SDev.BProc.Server
     /// <param name="task">Задача базовая.</param>
     /// <returns>Подзадача по процессу "Согласование официального документа".</returns>
     [Remote(PackResultEntityEagerly = true), Public]
-    public static sberdev.SBContracts.IApprovalTask CreateAsSubtaskOffDoc(sberdev.SBContracts.IOfficialDocument document, Sungero.Workflow.ITask basetask)
+    public static sberdev.SBContracts.IApprovalTask CreateAsSubtaskOffDoc(sberdev.SBContracts.IOfficialDocument document, sberdev.SBContracts.IExchangeDocumentProcessingTask basetask)
     {
-      var task = sberdev.SBContracts.ApprovalTasks.CreateAsSubtask(basetask);
+      var task = sberdev.SBContracts.ApprovalTasks.CreateAsSubtask(basetask.MainTask);
       task.DocumentGroup.All.Add(document);
       
       return task;
