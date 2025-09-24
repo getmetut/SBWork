@@ -42,6 +42,27 @@
   "IsolatedAssemblyName": "SDev.BProc.Isolated",
   "IsolatedNamespace": "SDev.BProc.Isolated",
   "OrderedSpecialFolders": [],
+  "PublicFunctions": [
+    {
+      "Name": "CreateApprovalTask",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "document",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "basetask",
+          "ParameterType": "global::Sungero.Workflow.ITask",
+          "ParameterTypeFullName": "Sungero.Workflow.ITask, Sungero.Workflow.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::sberdev.SBContracts.IApprovalTask",
+      "ReturnTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
+    }
+  ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "SDev.BProc",

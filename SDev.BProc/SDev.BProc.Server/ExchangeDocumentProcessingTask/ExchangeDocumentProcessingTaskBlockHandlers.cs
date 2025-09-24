@@ -13,7 +13,7 @@ namespace SDev.BProc.Server.ExchangeDocumentProcessingTaskBlocks
 
     public virtual void SendTaskIncInvATSDevExecute()
     {
-      var doc = _obj.IncomingInvoiceATSDev;   
+      var doc = _obj.IncomingInvoiceATSDev;
       if (doc != null)
       {
         var availableApprovalRules = Sungero.Docflow.PublicFunctions.OfficialDocument.Remote.GetApprovalRules(doc).ToList();
@@ -21,8 +21,8 @@ namespace SDev.BProc.Server.ExchangeDocumentProcessingTaskBlocks
         {
           try
           {
-          var task = Sungero.Docflow.PublicFunctions.Module.Remote.CreateApprovalTask(doc);
-          task.Start();
+            var task = BProc.Functions.Module.CreateApprovalTask(doc, _obj);
+            task.Start();
           }
           catch (Exception ex)
           {
