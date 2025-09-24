@@ -21,7 +21,7 @@ namespace SDev.BProc.Server.ExchangeDocumentProcessingTaskBlocks
         {
           try
           {
-            var task = BProc.Functions.Module.CreateApprovalTask(doc, _obj);
+            var task = BProc.Functions.Module.CreateAsSubtaskOffDoc(doc, _obj);
             task.Start();
           }
           catch (Exception ex)

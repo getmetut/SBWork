@@ -44,7 +44,7 @@
   "OrderedSpecialFolders": [],
   "PublicFunctions": [
     {
-      "Name": "CreateApprovalTask",
+      "Name": "CreateAsSubtaskOffDoc",
       "IsRemote": true,
       "Parameters": [
         {
