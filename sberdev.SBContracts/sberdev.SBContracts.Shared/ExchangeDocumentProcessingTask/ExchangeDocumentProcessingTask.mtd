@@ -80,7 +80,15 @@
       "HandledEvents": [
         "SearchIncomingInvoiATSDevExecute"
       ],
-      "ProcessStagesDisplayMode": "Hide"
+      "ProcessStagesDisplayMode": "Hide",
+      "Properties": [
+        {
+          "$type": "Sungero.Metadata.BooleanBlockPropertyMetadata, Sungero.Metadata",
+          "NameGuid": "9330789c-d8b0-4445-b1e2-b207da925caa",
+          "Name": "PostCasheATSDev",
+          "PreviousPropertyGuid": "4750b044-d69b-4098-b9b2-f1be7e62176a"
+        }
+      ]
     }
   ],
   "CanBeNavigationPropertyType": true,

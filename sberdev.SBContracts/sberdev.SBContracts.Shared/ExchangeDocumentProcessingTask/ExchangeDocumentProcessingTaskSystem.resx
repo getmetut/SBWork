@@ -112,4 +112,7 @@
   <data name="Property_IncomingInvoiceATSDev" xml:space="preserve">
     <value>Входящий счет на оплату</value>
   </data>
+  <data name="Block_0dd3fb1bbe69494da77acff1b2832df8_Property_9330789cd8b04445b1e2b207da925caa" xml:space="preserve">
+    <value>Только постоплата</value>
+  </data>
 </root>

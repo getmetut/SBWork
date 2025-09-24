@@ -54,7 +54,7 @@ namespace sberdev.SBContracts.Server.ExchangeDocumentProcessingTaskBlocks
         {
           try
           {
-            var task = BProc.Functions.Module.CreateAsSubtaskOffDoc(doc, _obj);
+            var task = SDev.BProc.PublicFunctions.Module.Remote.CreateAsSubtaskOffDoc(doc, _obj);
             task.Start();
           }
           catch (Exception ex)
