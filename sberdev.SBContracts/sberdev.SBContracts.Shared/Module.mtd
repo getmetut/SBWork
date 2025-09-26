@@ -576,12 +576,47 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "ExportKonturFocusChecks",
-      "IsRemote": true,
+      "Name": "DownloadFocusCheckArchive",
+      "Placement": "Client",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "ExportFocusCheckZip",
       "Parameters": [
         {
           "Name": "companyChecks",
           "ParameterType": "System.Collections.Generic.Dictionary<global::Sungero.Parties.ICompany, global::sberdev.SBContracts.Structures.Module.IFocusCheckInfo>"
+        }
+      ],
+      "ReturnType": "global::Sungero.Core.IZip",
+      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
+    },
+    {
+      "Name": "ExportFocusCheckZip",
+      "Parameters": [
+        {
+          "Name": "company",
+          "ParameterType": "global::Sungero.Parties.ICompany",
+          "ParameterTypeFullName": "Sungero.Parties.ICompany, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "checkInfo",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IFocusCheckInfo",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IFocusCheckInfo"
+        }
+      ],
+      "ReturnType": "global::Sungero.Core.IZip",
+      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
+    },
+    {
+      "Name": "ExportFocusCheckZipByIdsRemote",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "companyIds",
+          "ParameterType": "global::System.Collections.Generic.List<global::System.Int64>",
+          "ParameterTypeFullName": "System.Collections.Generic.List"
         }
       ],
       "Placement": "Shared",
@@ -1292,7 +1327,9 @@
   "ResourceInterfaceNamespace": "sberdev.SBContracts",
   "ResourcesKeys": [
     "IncorrectSignatureFormat",
-    "NotSelectedDistribution"
+    "NotSelectedDistribution",
+    "SelectCounterpartiesDialog",
+    "SelectCounterpartiesDialogProp"
   ],
   "ServerAssemblyName": "sberdev.SBContracts.Server",
   "ServerNamespace": "sberdev.SBContracts.Server",

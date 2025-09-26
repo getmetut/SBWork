@@ -529,4 +529,19 @@
   <data name="Enum_FocusCheckStatusSberDev_Failed" xml:space="preserve">
     <value>Провалена</value>
   </data>
+  <data name="Action_ExportFocusCheckZipSberDev" xml:space="preserve">
+    <value>Экспорт архива проверки</value>
+  </data>
+  <data name="Action_ExportFocusCheckZipSberDevHint" xml:space="preserve">
+    <value>Загрузить архив по проверке контрагента на благонадежность</value>
+  </data>
+  <data name="Action_ExportFocusCheckZipSberDevDescription" xml:space="preserve">
+    <value>В архив входит сводный файл-таблица по статусу проверки контрагента. А так же все файлы типа "Сведения о контрагенте" и простые документы  из задач в которых проходила проверка.</value>
+  </data>
+  <data name="Action_ExportFocusCheckZipSberDevConfirmationMessage" xml:space="preserve">
+    <value>Хотите скачать архив проверки по этому контрагенту?</value>
+  </data>
+  <data name="Enum_FocusCheckStatusSberDev_MarkerChanged" xml:space="preserve">
+    <value>Изменен маркер</value>
+  </data>
 </root>

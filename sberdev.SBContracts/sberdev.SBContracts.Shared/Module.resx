@@ -64,4 +64,10 @@
   <data name="NotSelectedDistribution" xml:space="preserve">
     <value>Distribution type not selected!</value>
   </data>
+  <data name="SelectCounterpartiesDialog" xml:space="preserve">
+    <value>Select counterparties</value>
+  </data>
+  <data name="SelectCounterpartiesDialogProp" xml:space="preserve">
+    <value>Сounterparties</value>
+  </data>
 </root>

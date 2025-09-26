@@ -14,11 +14,25 @@ using Sungero.Metadata;
 using Sungero.Domain.Shared;
 using sberdev.SBContracts.OfficialDocument;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace sberdev.SBContracts.Server
 {
   public class ModuleFunctions
   {
+    
+    #region Разные геты и сеты
+    
+    /// <summary>
+    /// Функция получения подразделения по имени
+    /// </summary>
+    /// <param name="name">Имя подразделения</param>
+    /// <returns></returns>
+    [Remote, Public]
+    public Sungero.Company.IDepartment GetDepartment(string name)
+    {
+      return Sungero.Company.Departments.GetAll().Where(d => Equals(d.Name, name)).First();
+    }
     /// <summary>
     /// Продлить срок задания
     /// </summary>
@@ -30,8 +44,110 @@ namespace sberdev.SBContracts.Server
       assignment.Save();
     }
     
-    #region Разные геты и сеты
+    [Public]
+    public string GetPaymentType(SberContracts.IPurchase purch)
+    {
+      return GetPaymentKind(purch.PaymentKind) + (purch.PrepaymentPercent != null ? " c " + purch.PrepaymentPercent.ToString() + " % авансом" : "");
+    }
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="type">Expendable или profitable</param>
+    /// <returns></returns>
+    [Public]
+    public SberContracts.IAccountingArticles GetAccountingArticleStab(string type)
+    {
+      if (type.ToLower() == "expendable")
+        return AccountingArticleses.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                            && m.ContrType.ToString() == "Expendable");
+      if (type.ToLower() == "profitable")
+        return AccountingArticleses.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                                            && m.ContrType.ToString() == "Profitable");
+      return null;
+    }
+    
+    /// <summary>
+    /// Пулучить заглушку для продукта
+    /// </summary>
+    ///<param name="type">Expendable или profitable</param>
+    /// <returns></returns>
+    [Public]
+    public SberContracts.IProductsAndDevices GetProductStab()
+    {
+      return ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
+    }
+    
+    
+    /// <summary>
+    /// Получить заглушку для мвз
+    /// </summary>
+    /// <param name="type">Expendable или profitable</param>
+    [Public]
+    public SberContracts.IMVZ GetMVZStab(string type)
+    {
+      if (type.ToLower() == "expendable")
+        return MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                            && m.ContrType.ToString() == "Expendable");
+      if (type.ToLower() == "profitable")
+        return MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
+                                            && m.ContrType.ToString() == "Profitable");
+      return null;
+    }
+    
+    /// <summary>
+    /// Получить кеш по пользователю и если его нет, создать новый
+    /// </summary>
+    [Remote, Public]
+    public SberContracts.IBusinessUnitFilteringCashe GetOrCreateBusinessUnitFilteringCashe(Sungero.CoreEntities.IUser user)
+    {
+      var cashe = BusinessUnitFilteringCashes.GetAll().Where(c => Equals(user, Users.Current)).FirstOrDefault();
+      if (cashe == null)
+      {
+        cashe = BusinessUnitFilteringCashes.Create();
+        cashe.User = user;
+        cashe.Name = user.Info.Name;
+        cashe.BusinessUnit = Sungero.Company.Employees.As(user).Department.BusinessUnit;
+        cashe.Save();
+      }
+      return cashe;
+    }
+    
+    /// <summary>
+    /// Возвращает группу по названию
+    /// </summary>
+    /// <param name="name">Имя группы</param>
+    /// <returns>Возварщает группу</returns>
+    [Public, Remote]
+    public IGroup GetGroup(string name)
+    {
+      return Sungero.CoreEntities.Groups.GetAll().Where(g => Equals(g.Name, name)).FirstOrDefault();
+    }
+    
+    /// <summary>
+    /// Возвращает группу по названию и Нашей организации
+    /// </summary>
+    /// <param name="name">Имя группы</param>
+    /// <returns>Возварщает группу</returns>
+    [Public, Remote]
+    public IGroup GetGroup(string name, Sungero.Company.IBusinessUnit bU)
+    {
+      return Sungero.CoreEntities.Groups.GetAll().Where(g => Equals(g.Name, name)
+                                                        && Equals(Sungero.Company.Departments.As(g).BusinessUnit, bU)).FirstOrDefault();
+    }
+    
+    /// <summary>
+    /// Возвращает список ИНН всех "Наших организаций"
+    /// </summary>
+    [Public]
+    public List<string> GetAllBuisnessUnitTINs()
+    {
+      return Sungero.Company.BusinessUnits.GetAll().Select(b => b.TIN).ToList();
+    }
+    
+    #endregion
+    
+    #region ИД в метаданных
     /// <summary>
     /// Записать ИД документа в метаданные документа
     /// </summary>
@@ -259,177 +375,213 @@ namespace sberdev.SBContracts.Server
       return null;
       
     }
-
+    
+    #endregion
+    
+    #region Формирования архива проверки контрагентов
     /// <summary>
-    /// Функция получения подразделения по имени
+    /// Сформировать ZIP по списку Id компаний (для массовой клиентской кнопки).
     /// </summary>
-    /// <param name="name">Имя подразделения</param>
-    /// <returns></returns>
-    [Remote, Public]
-    public Sungero.Company.IDepartment GetDepartment(string name)
+    [Public, Remote]
+    public static Sungero.Core.IZip ExportFocusCheckZipByIdsRemote(List<long> companyIds)
     {
-      return Sungero.Company.Departments.GetAll().Where(d => Equals(d.Name, name)).First();
+      if (companyIds == null || !companyIds.Any())
+        return Sungero.Core.Zip.Create();
+
+      var companies = SBContracts.Companies.GetAll()
+        .Where(c => companyIds.Contains(c.Id))
+        .ToList();
+
+      var dict = BuildFocusChecksDictionary(companies);
+      return SBContracts.PublicFunctions.Module.ExportFocusCheckZip(dict);
     }
     
-    /// <summary>
-    /// Создать архив с результатами проверок Контур Фокус и скачать его.
-    /// Обрабатываются только компании, по которым есть проверки.
-    /// </summary>
-    /// <param name="companyChecks">Данные проверок по компаниям.</param>
-    /// <returns>ZIP-архив.</returns>
-    [Public, Remote]
-    public static Sungero.Core.IZip ExportKonturFocusChecks(System.Collections.Generic.Dictionary<Sungero.Parties.ICompany, Structures.Module.IFocusCheckInfo> companyChecks)
+    private static System.Collections.Generic.Dictionary<Sungero.Parties.ICompany, Structures.Module.IFocusCheckInfo>
+      BuildFocusChecksDictionary(System.Collections.Generic.IEnumerable<Sungero.Parties.ICompany> companies)
     {
-      var zip = Zip.Create();
+      var result = new System.Collections.Generic.Dictionary<Sungero.Parties.ICompany, Structures.Module.IFocusCheckInfo>();
+      if (companies == null)
+        return result;
 
-      foreach (var pair in companyChecks.Where(p => p.Value != null && p.Value.Checks != null && p.Value.Checks.Any()))
+      // Отделяем запрос к БД от проекции: сначала Id нужных компаний.
+      var ids = companies
+        .Where(c => c != null)
+        .Select(c => c.Id)
+        .ToList();
+
+      foreach (var id in ids)
       {
-        var companyFolder = SanitizeFileName(pair.Key.Name);
+        var cp = SBContracts.Companies.Get(id);
+        if (cp == null)
+          continue;
 
-        // Таблица с проверками и статусом.
-        var builder = new StringBuilder();
-        builder.AppendLine($"Статус;{pair.Value.Status}");
-        builder.AppendLine("Дата");
-        foreach (var check in pair.Value.Checks)
-          builder.AppendLine(check.ToShortDateString());
-
-        zip.Add(Encoding.UTF8.GetBytes(builder.ToString()), companyFolder + "/Проверки", ".csv");
-
-        // Сопроводительные файлы.
-        if (pair.Value.Files != null)
-        {
-          foreach (var document in pair.Value.Files)
-          {
-            if (!document.HasVersions)
-              continue;
-
-            var tempFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            var extension = "." + document.LastVersion.AssociatedApplication.Extension;
-            document.LastVersion.Export(tempFile);
-            var bytes = File.ReadAllBytes(tempFile);
-            File.Delete(tempFile);
-
-            var fileName = SanitizeFileName(Path.GetFileNameWithoutExtension(document.Name));
-            zip.Add(bytes, companyFolder + "/Файлы/" + fileName, extension);
-          }
-        }
+        // Используем уже отрефакторенную логику на карточке.
+        var info = SBContracts.PublicFunctions.Company.GetFocusCheckInfo(cp);
+        if (info != null)
+          result[cp] = info;
       }
 
-      var zipFilePath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".zip");
+      return result;
+    }
+
+    /// <summary>
+    /// Сформировать ZIP по нескольким компаниям, каждая в своей папке.
+    /// </summary>
+    [Public]
+    public static Sungero.Core.IZip ExportFocusCheckZip(
+      System.Collections.Generic.Dictionary<Sungero.Parties.ICompany, Structures.Module.IFocusCheckInfo> companyChecks)
+    {
+      var zip = Sungero.Core.Zip.Create();
+      if (companyChecks == null || !companyChecks.Any())
+        return zip;
+
+      foreach (var kv in companyChecks)
+      {
+        AddCompanyToZip(zip, kv.Key, kv.Value);
+      }
+
+      // Сохраняем и удаляем временный файл, чтобы зафиксировать содержимое.
+      var zipFilePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), System.Guid.NewGuid().ToString() + ".zip");
       zip.Save(zipFilePath);
-      File.Delete(zipFilePath);
+      if (System.IO.File.Exists(zipFilePath))
+        System.IO.File.Delete(zipFilePath);
 
       return zip;
     }
+    
+    /// <summary>
+    /// Создать ZIP по одной компании.
+    /// </summary>
+    [Public]
+    public static Sungero.Core.IZip ExportFocusCheckZip(
+      Sungero.Parties.ICompany company,
+      Structures.Module.IFocusCheckInfo checkInfo)
+    {
+      var zip = Sungero.Core.Zip.Create();
+      AddCompanyToZip(zip, company, checkInfo);
 
+      var zipFilePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), System.Guid.NewGuid().ToString() + ".zip");
+      zip.Save(zipFilePath);
+      if (System.IO.File.Exists(zipFilePath))
+        System.IO.File.Delete(zipFilePath);
+
+      return zip;
+    }
+    
+    /// <summary>
+    /// Имя папки компании в архиве: ИмяКомпании_{Id}.
+    /// </summary>
+    private static string GetCompanyFolder(Sungero.Parties.ICompany company)
+    {
+      var safe = SanitizeFileName(company?.Name);
+      if (string.IsNullOrWhiteSpace(safe))
+        safe = "Компания";
+      return $"{safe}_{company.Id}";
+    }
+
+    /// <summary>
+    /// Добавляет данные по одной компании в архив (строго по папкам).
+    /// Для файлов используем перегрузку Add(byte[] data, string fileName, string extension, params string[] path).
+    /// </summary>
+    private static void AddCompanyToZip(
+      Sungero.Core.IZip zip,
+      Sungero.Parties.ICompany company,
+      Structures.Module.IFocusCheckInfo checkInfo)
+    {
+      if (zip == null || company == null || checkInfo == null)
+        return;
+
+      var companyFolder = $"{SanitizeFileName(company.Name)}_{company.Id}";
+
+      var hasChecks = checkInfo.Checks != null && checkInfo.Checks.Any();
+      var hasFiles  = checkInfo.Files  != null && checkInfo.Files.Any();
+
+      // --- CSV «Проверки»: <Компания>/Проверки.csv
+      if (hasChecks)
+      {
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine($"Статус;{checkInfo.Status.Value}");
+        sb.AppendLine("Дата");
+        foreach (var d in checkInfo.Checks)
+          sb.AppendLine(d.ToString("dd.MM.yyyy"));
+
+        var csvBytes = System.Text.Encoding.UTF8.GetBytes(sb.ToString());
+        zip.Add(csvBytes, "Проверки", "csv", companyFolder);
+      }
+
+      // --- Вложения: <Компания>/Файлы/<ИмяДокумента>.ext
+      if (hasFiles)
+      {
+        var usedNames = new System.Collections.Generic.HashSet<string>(System.StringComparer.OrdinalIgnoreCase);
+
+        foreach (var doc in checkInfo.Files)
+        {
+          if (doc == null || !doc.HasVersions)
+            continue;
+
+          var v = doc.LastVersion;
+          if (v == null || v.AssociatedApplication == null)
+            continue;
+
+          // Имя без расширения.
+          var baseName = SanitizeFileName(System.IO.Path.GetFileNameWithoutExtension(doc.Name));
+          if (string.IsNullOrWhiteSpace(baseName))
+            baseName = $"Документ_{doc.Id}";
+
+          // Расширение без точки.
+          var ext = v.AssociatedApplication.Extension;
+          if (string.IsNullOrWhiteSpace(ext))
+            ext = "bin";
+          ext = ext.TrimStart('.');
+
+          // Разруливаем коллизии внутри папки "Файлы".
+          var nameNoExt = baseName;
+          var fullWithExt = $"{nameNoExt}.{ext}";
+          var i = 1;
+          while (!usedNames.Add(fullWithExt))
+          {
+            nameNoExt = $"{baseName} ({i})";
+            fullWithExt = $"{nameNoExt}.{ext}";
+            i++;
+          }
+
+          var temp = System.IO.Path.Combine(System.IO.Path.GetTempPath(), System.Guid.NewGuid().ToString());
+          try
+          {
+            v.Export(temp);
+            var bytes = System.IO.File.ReadAllBytes(temp);
+
+            // path: companyFolder, "Файлы"
+            zip.Add(bytes, nameNoExt, ext, companyFolder, "Файлы");
+          }
+          finally
+          {
+            if (System.IO.File.Exists(temp))
+              System.IO.File.Delete(temp);
+          }
+        }
+      }
+    }
+
+    /// <summary>
+    /// Очистка имени для файлов/папок.
+    /// </summary>
     private static string SanitizeFileName(string name)
     {
-      foreach (var ch in Path.GetInvalidFileNameChars())
+      if (string.IsNullOrEmpty(name))
+        return string.Empty;
+
+      foreach (var ch in System.IO.Path.GetInvalidFileNameChars())
         name = name.Replace(ch, '_');
+
+      name = name.Trim().TrimEnd('.');
+      const int max = 100;
+      if (name.Length > max)
+        name = name.Substring(0, max);
+
       return name;
     }
-    
-    [Public]
-    public string GetPaymentType(SberContracts.IPurchase purch)
-    {
-      return GetPaymentKind(purch.PaymentKind) + (purch.PrepaymentPercent != null ? " c " + purch.PrepaymentPercent.ToString() + " % авансом" : "");
-    }
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="type">Expendable или profitable</param>
-    /// <returns></returns>
-    [Public]
-    public SberContracts.IAccountingArticles GetAccountingArticleStab(string type)
-    {
-      if (type.ToLower() == "expendable")
-        return AccountingArticleses.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                            && m.ContrType.ToString() == "Expendable");
-      if (type.ToLower() == "profitable")
-        return AccountingArticleses.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                                            && m.ContrType.ToString() == "Profitable");
-      return null;
-    }
-    
-    /// <summary>
-    /// Пулучить заглушку для продукта
-    /// </summary>
-    ///<param name="type">Expendable или profitable</param>
-    /// <returns></returns>
-    [Public]
-    public SberContracts.IProductsAndDevices GetProductStab()
-    {
-      return ProductsAndDeviceses.GetAll().FirstOrDefault(p => p.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)");
-    }
-    
-    
-    /// <summary>
-    /// Получить заглушку для мвз
-    /// </summary>
-    /// <param name="type">Expendable или profitable</param>
-    [Public]
-    public SberContracts.IMVZ GetMVZStab(string type)
-    {
-      if (type.ToLower() == "expendable")
-        return MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                            && m.ContrType.ToString() == "Expendable");
-      if (type.ToLower() == "profitable")
-        return MVZs.GetAll().FirstOrDefault(m => m.Name == "ЗАГЛУШКА ДЛЯ ВХОДЯЩИХ ДОКУМЕНТОВ (нужно проставить аналитики)"
-                                            && m.ContrType.ToString() == "Profitable");
-      return null;
-    }
-    
-    /// <summary>
-    /// Получить кеш по пользователю и если его нет, создать новый
-    /// </summary>
-    [Remote, Public]
-    public SberContracts.IBusinessUnitFilteringCashe GetOrCreateBusinessUnitFilteringCashe(Sungero.CoreEntities.IUser user)
-    {
-      var cashe = BusinessUnitFilteringCashes.GetAll().Where(c => Equals(user, Users.Current)).FirstOrDefault();
-      if (cashe == null)
-      {
-        cashe = BusinessUnitFilteringCashes.Create();
-        cashe.User = user;
-        cashe.Name = user.Info.Name;
-        cashe.BusinessUnit = Sungero.Company.Employees.As(user).Department.BusinessUnit;
-        cashe.Save();
-      }
-      return cashe;
-    }
-    
-    /// <summary>
-    /// Возвращает группу по названию
-    /// </summary>
-    /// <param name="name">Имя группы</param>
-    /// <returns>Возварщает группу</returns>
-    [Public, Remote]
-    public IGroup GetGroup(string name)
-    {
-      return Sungero.CoreEntities.Groups.GetAll().Where(g => Equals(g.Name, name)).FirstOrDefault();
-    }
-    
-    /// <summary>
-    /// Возвращает группу по названию и Нашей организации
-    /// </summary>
-    /// <param name="name">Имя группы</param>
-    /// <returns>Возварщает группу</returns>
-    [Public, Remote]
-    public IGroup GetGroup(string name, Sungero.Company.IBusinessUnit bU)
-    {
-      return Sungero.CoreEntities.Groups.GetAll().Where(g => Equals(g.Name, name)
-                                                        && Equals(Sungero.Company.Departments.As(g).BusinessUnit, bU)).FirstOrDefault();
-    }
-    
-    /// <summary>
-    /// Возвращает список ИНН всех "Наших организаций"
-    /// </summary>
-    [Public]
-    public List<string> GetAllBuisnessUnitTINs()
-    {
-      return Sungero.Company.BusinessUnits.GetAll().Select(b => b.TIN).ToList();
-    }
-    
+
     #endregion
     
     #region Сертификаты и подписи

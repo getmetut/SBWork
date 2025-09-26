@@ -10,6 +10,17 @@ namespace sberdev.SBContracts.Client
 
   partial class CompanyActions
   {
+    public virtual void ExportFocusCheckZipSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      var zip = Functions.Company.Remote.ExportFocusCheckZipRemote(_obj);
+      zip.Export();
+    }
+
+    public virtual bool CanExportFocusCheckZipSberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
 
     public override void OpenOnDueDiligenceWebsite(Sungero.Domain.Client.ExecuteActionArgs e)
     {

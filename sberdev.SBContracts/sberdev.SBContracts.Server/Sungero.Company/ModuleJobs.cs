@@ -11,40 +11,43 @@ namespace sberdev.SBContracts.Module.Company.Server
   {
 
     /// <summary>
-    /// Установить статусы КонутрФокус для контрагнетов.
+    /// 
     /// </summary>
     public virtual void SetFocusStatusSberDev()
     {
-      var counterparties = SBContracts.Companies.GetAll().Where(cp => cp.FocusCheckedDateSberDev != null);
-      foreach (var cp in counterparties)
+      // 1) Отдельно делаем "тяжёлый" запрос к БД: берём только Id и нужные поля.
+      var candidates = SBContracts.Companies.GetAll()
+        .Where(cp => cp.FocusCheckedDateSberDev != null)
+        .Select(cp => new
+                {
+                  cp.Id,
+                  cp.FocusCheckedSberDev,
+                  cp.FocusCheckedDateSberDev
+                })
+        .ToList();
+
+      foreach (var row in candidates)
       {
         try
         {
-        PublicFunctions.Module.Remote.UnblockCardByDatabase(cp);
-        // Легкая первая проверка. Был ли ка успешно проверен
-        if (cp.FocusCheckedSberDev == true)
-        {
-          if (cp.FocusCheckedDateSberDev.HasValue && cp.FocusCheckedDateSberDev.Value.Year == Calendar.Now.Year)
-          {
-            cp.FocusCheckStatusSberDev = SBContracts.Company.FocusCheckStatusSberDev.Actual;
+          var cp = Companies.Get(row.Id);
+          if (cp == null)
             continue;
-          }
-          else
+
+          // Если карточка бывает под блокировкой — разблокируем.
+          PublicFunctions.Module.Remote.UnblockCardByDatabase(cp);
+
+          // Проставляем статус строго по правилам.
+          var status = PublicFunctions.Company.GetFocusStatus(cp);
+          if (cp.FocusCheckStatusSberDev != status)
           {
-            cp.FocusCheckStatusSberDev = SBContracts.Company.FocusCheckStatusSberDev.DateOutdated;
-            continue;
+            cp.FocusCheckStatusSberDev = status;
+            cp.Save();
           }
         }
-        // Сложная проверка. Был ли ка забракован
-        else
+        catch (System.Exception x)
         {
-          var hasCheckingAssign= ApprovalAssignments.GetAll().Where(a => ApprovalStages.As(a.Stage).SidSberDev == PublicConstants.Docflow.ApprovalTask.CheckingCPStage
-                                                                   && ApprovalTasks.As(a.Task).DocumentTypeSungero == "Contractual" 
-                                                                   && ContractualDocuments.As(a.DocumentGroup.OfficialDocuments.FirstOrDefault()).Counterparty == cp).Any();
-          if (hasCheckingAssign)
-             cp.FocusCheckStatusSberDev = SBContracts.Company.FocusCheckStatusSberDev.Failed;
-        }
-        cp.Save();
+          Logger.Error(x.ToString());
         }
       }
     }
