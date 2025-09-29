@@ -7,9 +7,30 @@ using sberdev.SBContracts.Company;
 
 namespace sberdev.SBContracts.Client
 {
+  partial class CompanyCollectionActions
+  {
+
+    public virtual bool CanExportFocusCheckZipManySberDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return _objs.Any();
+    }
+
+    public virtual void ExportFocusCheckZipManySberDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      var ids = _objs
+          .Where(c => c != null)
+          .Select(c => c.Id)
+          .Distinct()
+          .ToList();
+      var zip = sberdev.SBContracts.PublicFunctions.Module.Remote.ExportFocusCheckZipByIdsRemote(ids);
+      zip.Export();
+    }
+  }
+
 
   partial class CompanyActions
   {
+
     public virtual void ExportFocusCheckZipSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       var zip = Functions.Company.Remote.ExportFocusCheckZipRemote(_obj);

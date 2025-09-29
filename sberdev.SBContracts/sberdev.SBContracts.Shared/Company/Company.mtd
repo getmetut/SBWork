@@ -22,6 +22,18 @@
       "LargeIconName": "Action_ExportFocusCheckZipSberDev_large_b125f7c1ac8349fe93e2ab05ba85acc3.png",
       "NeedConfirmation": true,
       "SmallIconName": "Action_ExportFocusCheckZipSberDev_small_b125f7c1ac8349fe93e2ab05ba85acc3.png"
+    },
+    {
+      "NameGuid": "f9654373-df52-4c5e-a831-2ff714b6d0f0",
+      "Name": "ExportFocusCheckZipManySberDev",
+      "ActionArea": "Collection",
+      "AllowUserDisableConfirmation": true,
+      "GenerateHandler": true,
+      "IsMultiSelectAction": true,
+      "LargeIconName": "Action_ExportFocusCheckZipSberDevSberDev_large_f9654373df524c5ea8312ff714b6d0f0.png",
+      "NeedConfirmation": true,
+      "SmallIconName": "Action_ExportFocusCheckZipSberDevSberDev_small_f9654373df524c5ea8312ff714b6d0f0.png",
+      "Versions": []
     }
   ],
   "BaseGuid": "db3bd8e2-8133-4cbd-8936-ab859ec27eac",
@@ -2246,7 +2258,17 @@
     "NameGuid": "18edc618-2a07-4ff4-aa8f-e31c7cdddf09",
     "Name": "RibbonCollection",
     "Categories": [],
-    "Elements": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "123e5d96-8a58-4b9e-83dd-929c23bb7bd1",
+        "Name": "ExportFocusCheckZipManySberDevSberDev",
+        "ActionGuid": "f9654373-df52-4c5e-a831-2ff714b6d0f0",
+        "ButtonSize": "Large",
+        "Index": 2,
+        "ParentGuid": "c549bd4a-a35d-4259-a573-d779467749b3"
+      }
+    ],
     "Groups": [],
     "IsAncestorMetadata": true,
     "Pages": []
