@@ -1061,7 +1061,9 @@ namespace sberdev.SberContracts.Server
           contractual.MVPBaseSberDev = cashe.MVP;
           contractual.MarketDirectSberDev = cashe.MarkDirection;
           contractual.ExitCommentBaseSberDev = cashe.ExitComment;
-          contractual.Counterparty = cashe.Counterparty;
+          if (contractual.Counterparty == null)
+            contractual.Counterparty = cashe.Counterparty;
+          
           if (cashe.ProdCollection.Count > 0)
           {
             contractual.ProdCollectionPrBaseSberDev.Clear();
@@ -1093,7 +1095,9 @@ namespace sberdev.SberContracts.Server
             accounting.MVZBaseSberDev = cashe.MVZ;
             accounting.MVPBaseSberDev = cashe.MVP;
             accounting.MarketDirectSberDev = cashe.MarkDirection;
-            accounting.Counterparty = cashe.Counterparty;
+            if (contractual.Counterparty == null)
+              accounting.Counterparty = cashe.Counterparty;
+            
             if (cashe.ProdCollection.Count > 0)
             {
               accounting.ProdCollectionBaseSberDev.Clear();
