@@ -16,7 +16,7 @@ namespace sberdev.SBContracts.Server.ExchangeDocumentProcessingTaskBlocks
       var doc = _obj.AllAttachments.Where(t => Sungero.ATS.UniversalTransferDocuments.Is(t)).FirstOrDefault();
       if (doc != null)
       {
-        if (_block.PostCasheATSDev.HasValue)
+        if (_block.PostCasheATSDev.HasValue) 
         {
           if (_block.PostCasheATSDev.Value)
           {
