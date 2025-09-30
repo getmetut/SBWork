@@ -155,6 +155,14 @@
       "LargeIconName": "Action_SetCommentSberDevSberDev_large_d7afae311b0246ea9cad6e4ce6ab672a.png",
       "SmallIconName": "Action_SetCommentSberDevSberDev_small_d7afae311b0246ea9cad6e4ce6ab672a.png",
       "Versions": []
+    },
+    {
+      "NameGuid": "e87e9727-ab55-495e-9fa6-015008ea1f36",
+      "Name": "SendToBPATSDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_SendToBPATSDev_large_e87e9727ab55495e9fa6015008ea1f36.png",
+      "SmallIconName": "Action_SendToBPATSDev_small_e87e9727ab55495e9fa6015008ea1f36.png"
     }
   ],
   "BaseGuid": "58cca102-1e97-4f07-b6ac-fd866a8b7cb1",
@@ -175,6 +183,17 @@
     "Versions": []
   },
   "Forms": [
+    {
+      "$type": "Sungero.Metadata.InplaceFormMetadata, Sungero.Metadata",
+      "NameGuid": "30d15053-0c64-40f2-89b8-b68c0c9fd574",
+      "Name": "Tracking",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ],
+      "Versions": []
+    },
     {
       "$type": "Sungero.Metadata.StandaloneFormMetadata, Sungero.Metadata",
       "NameGuid": "fa03f748-4397-42ef-bdc2-22119af7bf7f",
@@ -660,6 +679,69 @@
         "ActionGuid": "d7afae31-1b02-46ea-9cad-6e4ce6ab672a",
         "Index": 52,
         "ParentGuid": "4f04b1b4-b6b2-424f-a95a-9a6927cfbdb4"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "ea790941-3252-4712-a51c-77c46eb77895",
+        "Name": "SendByMail",
+        "ActionGuid": "163e7d9b-706b-4c81-9d11-9307c05e0df1",
+        "Index": 6,
+        "IsAncestorMetadata": true,
+        "IsShowInContextMenu": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "f329dc86-efcb-484a-bdfd-999e6f96e971",
+        "Versions": []
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "ea8c3bda-e7aa-48ba-816f-d4c7cba0fd40",
+        "Name": "SendToCounterparty",
+        "ActionGuid": "27beaa61-dcfb-4aeb-9f11-2d38cd784d74",
+        "Index": 26,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "f329dc86-efcb-484a-bdfd-999e6f96e971",
+        "Versions": []
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "08d2e94a-f948-471b-82d4-902140d57bf1",
+        "Name": "SendForAcquaintance",
+        "ActionGuid": "1e6ecf1a-fce4-4ed7-8cc6-24bcf9b5201e",
+        "Index": 27,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "f329dc86-efcb-484a-bdfd-999e6f96e971",
+        "Versions": []
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "3fdfac70-b39b-4ef2-94a2-047107701c9a",
+        "Name": "SendToPrint",
+        "ActionGuid": "20b57542-f086-472f-9334-7f0f4a615656",
+        "ButtonSize": "Large",
+        "Index": 43,
+        "IsAncestorMetadata": true,
+        "IsShowInContextMenu": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "f329dc86-efcb-484a-bdfd-999e6f96e971"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "8a7de108-0166-4177-8327-1825aabccf26",
+        "Name": "SendToBPATSDevATSDev",
+        "ActionGuid": "e87e9727-ab55-495e-9fa6-015008ea1f36",
+        "ButtonSize": "Large",
+        "Index": 5,
+        "ParentGuid": "f329dc86-efcb-484a-bdfd-999e6f96e971"
       }
     ],
     "Groups": [],

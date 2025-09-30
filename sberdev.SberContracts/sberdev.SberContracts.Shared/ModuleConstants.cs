@@ -27,6 +27,7 @@ namespace sberdev.SberContracts.Constants
     public static readonly Guid AccDocsHandlerRoleGuid =  Guid.Parse("c054a467-183b-44d5-87b1-c3e4e03c93ec");
     [Sungero.Core.PublicAttribute]
     public static readonly Guid CpSyncConflictRoleGuid =  Guid.Parse("d0fb1092-ed47-46b1-bb6c-536fb01068f6");
+    // Идентификатор роли пользователей админ кнопок
     [Sungero.Core.PublicAttribute]
     public static readonly Guid AdminButtonsUserRoleGuid = Guid.Parse("c48e6195-7f93-4e1b-98cf-293d2a2c862d");
     [Sungero.Core.PublicAttribute]

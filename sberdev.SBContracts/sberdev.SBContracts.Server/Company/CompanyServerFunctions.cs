@@ -5,11 +5,120 @@ using Sungero.Core;
 using Sungero.CoreEntities;
 using sberdev.SBContracts.Company;
 using Sungero.Domain.Shared;
+using sberdev.SBContracts;
+using Sungero.Content;
 
 namespace sberdev.SBContracts.Server
 {
   partial class CompanyFunctions
   {
+
+    [Public, Remote]
+    public Sungero.Core.IZip ExportFocusCheckZipRemote()
+    {
+      var info = this.GetFocusCheckInfo();
+      return info != null ? PublicFunctions.Module.ExportFocusCheckZip(_obj, info) : null;
+    }
+    
+    [Public]
+    public Structures.Module.IFocusCheckInfo GetFocusCheckInfo()
+    {
+      if (_obj.FocusCheckStatusSberDev == null)
+        return null;
+
+      var info = Structures.Module.FocusCheckInfo.Create();
+      info.Status = _obj.FocusCheckStatusSberDev.Value;
+
+      // 1) Сначала запрос к истории -> анонимная проекция -> список дат.
+      var dates = _obj.History.GetAll()
+        .Where(h => h.Operation.Value == new Sungero.Core.Enumeration("Checking") && h.HistoryDate.HasValue)
+        .Select(h => h.HistoryDate.Value)
+        .ToList();
+
+      info.Checks = dates;
+
+      // 2) Отдельно собираем файлы.
+      info.Files = this.GetFocusFiles();
+
+      return info;
+    }
+
+    private System.Collections.Generic.List<Sungero.Content.IElectronicDocument> GetFocusFiles()
+    {
+      var documents = new System.Collections.Generic.List<Sungero.Content.IElectronicDocument>();
+
+      // Документы контрагента (CounterpartyDocuments) -> ElectronicDocument
+      var cpDocs = Sungero.Docflow.CounterpartyDocuments.GetAll()
+        .Where(d => d.Counterparty == Sungero.Parties.Counterparties.As(_obj))
+        .Select(d => Sungero.Content.ElectronicDocuments.As(d))
+        .ToList();
+      documents.AddRange(cpDocs);
+
+      // Вложения из заданий «проверки контрагента»
+      var assignments = this.GetCheckingAssignments();
+      foreach (var a in assignments)
+      {
+        var attachDocs = a.Attachments
+          .Where(att => Sungero.Docflow.SimpleDocuments.Is(att))
+          .Select(att => Sungero.Content.ElectronicDocuments.As(att))
+          .ToList();
+        documents.AddRange(attachDocs);
+      }
+
+      return documents;
+    }
+
+    [Public]
+    public System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment> GetCheckingAssignments()
+    {
+      var result = new System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment>();
+      var targetCounterparty = Sungero.Parties.Counterparties.As(_obj);
+      if (targetCounterparty == null)
+        return result;
+
+      // ---- Шаг 1. Только то, что реально маппится в БД (Id, StageSid, тип задачи)
+      var stageSid = PublicConstants.Docflow.ApprovalTask.CheckingCPStage;
+
+      var assignmentIds = sberdev.SBContracts.ApprovalAssignments.GetAll()
+        .Where(a =>
+               sberdev.SBContracts.ApprovalStages.As(a.Stage).SidSberDev == stageSid &&
+               sberdev.SBContracts.ApprovalTasks.Is(a.Task) &&
+               sberdev.SBContracts.ApprovalTasks.As(a.Task).DocumentTypeSungero == "Contractual")
+        .Select(a => a.Id)
+        .ToList();
+
+      if (!assignmentIds.Any())
+        return result;
+
+      // ---- Шаг 2. Последовательно подгружаем сущности и работаем с DocumentGroup в памяти
+      foreach (var id in assignmentIds)
+      {
+        sberdev.SBContracts.IApprovalAssignment assignment = null;
+        try
+        {
+          assignment = sberdev.SBContracts.ApprovalAssignments.Get(id);
+          if (assignment == null)
+            continue;
+ 
+          // Важно: доступ к группам вложений только после материализации
+          var mainDoc = ContractualDocuments.As(
+            assignment.DocumentGroup?.OfficialDocuments?.FirstOrDefault());
+
+          if (mainDoc != null && mainDoc.Counterparty == targetCounterparty)
+            result.Add(assignment);
+        }
+        catch (System.Exception ex)
+        {
+          // Не падаем из-за одного «битого» задания, просто логируем
+          Logger.DebugFormat("GetCheckingAssignments: skip assignment {0}: {1}", id, ex.Message);
+        }
+      }
+
+      return result;
+    }
+
+
+    
     public override void FillInRequisites(centrvd.KFIntegration.Structures.Parties.Company.CompanyInfo counterpartyInfo, bool isLegalEntity)
     {
       
@@ -17,7 +126,6 @@ namespace sberdev.SBContracts.Server
       
       var yes = new Enumeration("Yes");
       var no = new Enumeration("No");
-      
       var req = counterpartyInfo.Req;
       var egrDetails = counterpartyInfo.EgrDetails;
       var license = counterpartyInfo.License;

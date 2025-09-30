@@ -425,7 +425,7 @@
     },
     {
       "NameGuid": "ded63938-850a-4e34-aa2f-f1c5161633ca",
-      "Name": "FillTaskDocunetType",
+      "Name": "FillTaskDocumentType",
       "GenerateHandler": true,
       "IsEnabled": false,
       "MonthSchedule": "Monthly",
@@ -850,17 +850,6 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "ExportKonturFocusChecks",
-      "Parameters": [
-        {
-          "Name": "companyChecks",
-          "ParameterType": "System.Collections.Generic.Dictionary<global::Sungero.Parties.ICompany, global::sberdev.SberContracts.Structures.Module.IFocusCheckInfo>"
-        }
-      ],
-      "ReturnType": "global::Sungero.Core.IZip",
-      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
-    },
-    {
       "Name": "FillExpendableAnaliticsProperties",
       "Parameters": [
         {
@@ -1160,50 +1149,7 @@
       "ReturnTypeFullName": "System.Boolean"
     }
   ],
-  "PublicStructures": [
-    {
-      "Name": "FocusCheckInfo",
-      "IsPublic": true,
-      "Properties": [
-        {
-          "Name": "Status",
-          "IsNullable": true,
-          "TypeFullName": "global::Sungero.Core.Enumeration"
-        },
-        {
-          "Name": "Checks",
-          "IsList": true,
-          "IsNullable": true,
-          "TypeFullName": "global::System.Collections.Generic.List<global::sberdev.SberContracts.Structures.Module.IFocusCheckResult>"
-        },
-        {
-          "Name": "Files",
-          "IsEntity": true,
-          "IsList": true,
-          "IsNullable": true,
-          "TypeFullName": "global::System.Collections.Generic.List<global::Sungero.Content.IElectronicDocument>"
-        }
-      ],
-      "StructureNamespace": "sberdev.SberContracts.Structures.Module"
-    },
-    {
-      "Name": "FocusCheckResult",
-      "IsPublic": true,
-      "Properties": [
-        {
-          "Name": "Date",
-          "IsNullable": true,
-          "TypeFullName": "global::System.DateTime"
-        },
-        {
-          "Name": "Result",
-          "IsNullable": true,
-          "TypeFullName": "global::System.String"
-        }
-      ],
-      "StructureNamespace": "sberdev.SberContracts.Structures.Module"
-    }
-  ],
+  "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "sberdev.SberContracts",
   "ResourcesKeys": [
@@ -1241,7 +1187,7 @@
   "SharedAssemblyName": "sberdev.SberContracts.Shared",
   "SharedNamespace": "sberdev.SberContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.9.1.0",
+  "Version": "5.10.0.0",
   "Widgets": [
     {
       "NameGuid": "c2f21ab6-4272-410e-a676-52af22433fd1",

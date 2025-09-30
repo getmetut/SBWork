@@ -184,19 +184,31 @@
   <data name="Control_a915c070568d4f08a7365fbdabe9e559_EmptyText" xml:space="preserve">
     <value />
   </data>
-  <data name="Action_SendToBPATSDev" xml:space="preserve">
+  <data name="Action_SendPowerOfAttorneysToBPATSDev" xml:space="preserve">
     <value>Отправить на согласование</value>
   </data>
-  <data name="Action_SendToBPATSDevDescription" xml:space="preserve">
-    <value>Функция отправки на согласование доверенности по бизнес-процессу</value>
+  <data name="Action_SendPoAToBPATSDevDescription" xml:space="preserve">
+    <value>Отправка доверенности по бизнес-процессу на согласование</value>
   </data>
-  <data name="Action_SendToBPATSDevHint" xml:space="preserve">
-    <value>Функция отправки на согласование доверенности по бизнес-процессу</value>
+  <data name="Action_SendPoAToBPATSDevHint" xml:space="preserve">
+    <value>Отправка доверенности по бизнес-процессу на согласование</value>
   </data>
-  <data name="Action_SendToBPATSDevConfirmationMessage" xml:space="preserve">
+  <data name="Action_SendPoAToBPATSDev" xml:space="preserve">
+    <value>Отправить доверенность на согласование</value>
+  </data>
+  <data name="Action_SendATSDev" xml:space="preserve">
+    <value>Отправить доверенность на согласование БП</value>
+  </data>
+  <data name="Action_SendATSDevDescription" xml:space="preserve">
+    <value>Функция отправки доверенности по маршруту бизнес-процесса </value>
+  </data>
+  <data name="Action_SendATSDevHint" xml:space="preserve">
+    <value>Функция отправки доверенности по маршруту бизнес-процесса </value>
+  </data>
+  <data name="Action_SendATSDevConfirmationMessage" xml:space="preserve">
     <value />
   </data>
-  <data name="Action_SendToBPATSDevConfirmationDescription" xml:space="preserve">
+  <data name="Action_SendATSDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
 </root>

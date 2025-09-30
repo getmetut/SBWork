@@ -12,7 +12,7 @@ namespace sberdev.SberContracts.Server
 {
   public class ModuleJobs
   {
-
+    #region Запустить обработку приостановленных задач. StartAllSuspendedTasks
     /// <summary>
     /// Запустить обработку приостановленных задач:
     /// 1) Создать кеши для новых Suspended-задач в окне дат.
@@ -195,8 +195,11 @@ namespace sberdev.SberContracts.Server
 
       return deleted;
     }
+    #endregion
+    
+    #region Фоновый процесс заполнения типов документво в задачах. FillTaskDocumentType
 
-    public virtual void FillTaskDocunetType()
+    public virtual void FillTaskDocumentType()
     {
       // Получаем только ID задач без заполненного DocumentType
       var query = SBContracts.ApprovalTasks.GetAll()
@@ -319,6 +322,8 @@ namespace sberdev.SberContracts.Server
       }
     }
     
+    #endregion
+    
     /// <summary>
     /// Фоновый процесс заполнение времени выполнения в исторических задач
     /// </summary>
@@ -422,6 +427,8 @@ namespace sberdev.SberContracts.Server
         Logger.Error("Критическая ошибка в FillTaskExecutionTimeDataJob", ex);
       }
     }
+    
+    #region Фоновый процесс обновления кэша аналитических виджетов. CreateApprovalAnalyticsWidgetsCashes
     
     /// <summary>
     /// Фоновый процесс обновления кэша аналитических виджетов.
@@ -614,6 +621,7 @@ namespace sberdev.SberContracts.Server
         }
       }
     }
+    #endregion
 
     /// <summary>
     /// Процесс очищает временные документы

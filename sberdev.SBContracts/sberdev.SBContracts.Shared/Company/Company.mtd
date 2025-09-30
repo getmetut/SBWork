@@ -12,6 +12,28 @@
         "GenerateHandler"
       ],
       "Versions": []
+    },
+    {
+      "NameGuid": "b125f7c1-ac83-49fe-93e2-ab05ba85acc3",
+      "Name": "ExportFocusCheckZipSberDev",
+      "ActionArea": "Card",
+      "AllowUserDisableConfirmation": true,
+      "GenerateHandler": true,
+      "LargeIconName": "Action_ExportFocusCheckZipSberDev_large_b125f7c1ac8349fe93e2ab05ba85acc3.png",
+      "NeedConfirmation": true,
+      "SmallIconName": "Action_ExportFocusCheckZipSberDev_small_b125f7c1ac8349fe93e2ab05ba85acc3.png"
+    },
+    {
+      "NameGuid": "f9654373-df52-4c5e-a831-2ff714b6d0f0",
+      "Name": "ExportFocusCheckZipManySberDev",
+      "ActionArea": "Collection",
+      "AllowUserDisableConfirmation": true,
+      "GenerateHandler": true,
+      "IsMultiSelectAction": true,
+      "LargeIconName": "Action_ExportFocusCheckZipSberDevSberDev_large_f9654373df524c5ea8312ff714b6d0f0.png",
+      "NeedConfirmation": true,
+      "SmallIconName": "Action_ExportFocusCheckZipSberDevSberDev_small_f9654373df524c5ea8312ff714b6d0f0.png",
+      "Versions": []
     }
   ],
   "BaseGuid": "db3bd8e2-8133-4cbd-8936-ab859ec27eac",
@@ -2116,6 +2138,11 @@
           "NameGuid": "c4ecd7e3-49b4-408d-9c01-2f5c487f7564",
           "Name": "Failed",
           "Code": "Failed"
+        },
+        {
+          "NameGuid": "b6dc6adc-d69e-4a99-b676-10e95e01e220",
+          "Name": "MarkerChanged",
+          "Code": "MarkerChanged"
         }
       ],
       "IsEnabled": false,
@@ -2124,6 +2151,20 @@
     }
   ],
   "PublicFunctions": [
+    {
+      "Name": "ExportFocusCheckZipRemote",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "company",
+          "ParameterType": "global::sberdev.SBContracts.ICompany",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.Core.IZip",
+      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
+    },
     {
       "Name": "GetAllFocusMarkers",
       "Parameters": [
@@ -2136,6 +2177,43 @@
       "Placement": "Shared",
       "ReturnType": "global::System.Collections.Generic.List<Sungero.Domain.Shared.IPropertyState>",
       "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
+      "Name": "GetCheckingAssignments",
+      "Parameters": [
+        {
+          "Name": "company",
+          "ParameterType": "global::sberdev.SBContracts.ICompany",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::System.Collections.Generic.List<global::sberdev.SBContracts.IApprovalAssignment>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
+      "Name": "GetFocusCheckInfo",
+      "Parameters": [
+        {
+          "Name": "company",
+          "ParameterType": "global::sberdev.SBContracts.ICompany",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::sberdev.SBContracts.Structures.Module.IFocusCheckInfo",
+      "ReturnTypeFullName": "sberdev.SBContracts.Structures.Module.IFocusCheckInfo"
+    },
+    {
+      "Name": "GetFocusStatus",
+      "Parameters": [
+        {
+          "Name": "company",
+          "ParameterType": "global::sberdev.SBContracts.ICompany",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Nullable<global::Sungero.Core.Enumeration>",
+      "ReturnTypeFullName": "System.Nullable"
     },
     {
       "Name": "GetProfitableFocusMarkers",
@@ -2160,7 +2238,17 @@
     "NameGuid": "ef639e70-c25f-4f3d-8500-304139973f89",
     "Name": "RibbonCard",
     "Categories": [],
-    "Elements": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "f38123b0-80ec-4995-9832-b5f7371012a6",
+        "Name": "ExportFocusCheckZipSberDevSberDev",
+        "ActionGuid": "b125f7c1-ac83-49fe-93e2-ab05ba85acc3",
+        "ButtonSize": "Large",
+        "Index": 6,
+        "ParentGuid": "aa25262b-e782-4a70-829e-0856dd1e2b57"
+      }
+    ],
     "Groups": [],
     "IsAncestorMetadata": true,
     "Pages": [],
@@ -2170,7 +2258,17 @@
     "NameGuid": "18edc618-2a07-4ff4-aa8f-e31c7cdddf09",
     "Name": "RibbonCollection",
     "Categories": [],
-    "Elements": [],
+    "Elements": [
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "123e5d96-8a58-4b9e-83dd-929c23bb7bd1",
+        "Name": "ExportFocusCheckZipManySberDevSberDev",
+        "ActionGuid": "f9654373-df52-4c5e-a831-2ff714b6d0f0",
+        "ButtonSize": "Large",
+        "Index": 2,
+        "ParentGuid": "c549bd4a-a35d-4259-a573-d779467749b3"
+      }
+    ],
     "Groups": [],
     "IsAncestorMetadata": true,
     "Pages": []

@@ -64,4 +64,10 @@
   <data name="NotSelectedDistribution" xml:space="preserve">
     <value>Не выбран вид распределения!</value>
   </data>
+  <data name="SelectCounterpartiesDialog" xml:space="preserve">
+    <value>Выберите контрагентов</value>
+  </data>
+  <data name="SelectCounterpartiesDialogProp" xml:space="preserve">
+    <value>Контрагенты</value>
+  </data>
 </root>

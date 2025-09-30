@@ -6,6 +6,17 @@ using Sungero.CoreEntities;
 
 namespace sberdev.SBContracts.Structures.Module
 {
+  /// <summary>
+  /// Данные по проверкам Контур Фокус.
+  /// </summary>
+  [Public]
+  partial class FocusCheckInfo
+  {
+    public Sungero.Core.Enumeration Status { get; set; }
+    public List<DateTime> Checks { get; set; }
+    public List<Sungero.Content.IElectronicDocument> Files { get; set; }
+  }
+  
   [Public]
   partial class AssignmentCompletedData
   {

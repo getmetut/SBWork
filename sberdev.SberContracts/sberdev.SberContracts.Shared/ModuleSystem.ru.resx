@@ -266,7 +266,7 @@
     <value>Процес запускает выгрузку всех договоров из директума (вместе с счетами, если есть связь) в папку на сервере (C://ContractsAndInv)</value>
   </data>
   <data name="JobDisplayName_f94829b4685b49a0a1c15896c3faf264" xml:space="preserve">
-    <value>Документооборот. Запустить все остановленные задачи</value>
+    <value>Документооборот. Запустить все приостановленные задачи</value>
   </data>
   <data name="JobDescription_f94829b4685b49a0a1c15896c3faf264" xml:space="preserve">
     <value>Процесс запускает все приостановленные задачи.</value>

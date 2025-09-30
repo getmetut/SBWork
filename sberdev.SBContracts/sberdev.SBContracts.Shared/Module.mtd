@@ -576,6 +576,54 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "DownloadFocusCheckArchive",
+      "Placement": "Client",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "ExportFocusCheckZip",
+      "Parameters": [
+        {
+          "Name": "companyChecks",
+          "ParameterType": "System.Collections.Generic.Dictionary<global::Sungero.Parties.ICompany, global::sberdev.SBContracts.Structures.Module.IFocusCheckInfo>"
+        }
+      ],
+      "ReturnType": "global::Sungero.Core.IZip",
+      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
+    },
+    {
+      "Name": "ExportFocusCheckZip",
+      "Parameters": [
+        {
+          "Name": "company",
+          "ParameterType": "global::Sungero.Parties.ICompany",
+          "ParameterTypeFullName": "Sungero.Parties.ICompany, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "checkInfo",
+          "ParameterType": "global::sberdev.SBContracts.Structures.Module.IFocusCheckInfo",
+          "ParameterTypeFullName": "sberdev.SBContracts.Structures.Module.IFocusCheckInfo"
+        }
+      ],
+      "ReturnType": "global::Sungero.Core.IZip",
+      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
+    },
+    {
+      "Name": "ExportFocusCheckZipByIdsRemote",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "companyIds",
+          "ParameterType": "global::System.Collections.Generic.List<global::System.Int64>",
+          "ParameterTypeFullName": "System.Collections.Generic.List"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.Core.IZip",
+      "ReturnTypeFullName": "Sungero.Core.IZip, Sungero.Domain.Shared"
+    },
+    {
       "Name": "ExtendAssignmentDeadline",
       "IsRemote": true,
       "Parameters": [
@@ -1162,6 +1210,31 @@
       "StructureNamespace": "sberdev.SBContracts.Structures.Module"
     },
     {
+      "Name": "FocusCheckInfo",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Status",
+          "IsNullable": true,
+          "TypeFullName": "global::Sungero.Core.Enumeration"
+        },
+        {
+          "Name": "Checks",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::System.DateTime>"
+        },
+        {
+          "Name": "Files",
+          "IsEntity": true,
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::Sungero.Content.IElectronicDocument>"
+        }
+      ],
+      "StructureNamespace": "sberdev.SBContracts.Structures.Module"
+    },
+    {
       "Name": "PerformerDepartmentData",
       "IsPublic": true,
       "Properties": [
@@ -1254,14 +1327,16 @@
   "ResourceInterfaceNamespace": "sberdev.SBContracts",
   "ResourcesKeys": [
     "IncorrectSignatureFormat",
-    "NotSelectedDistribution"
+    "NotSelectedDistribution",
+    "SelectCounterpartiesDialog",
+    "SelectCounterpartiesDialogProp"
   ],
   "ServerAssemblyName": "sberdev.SBContracts.Server",
   "ServerNamespace": "sberdev.SBContracts.Server",
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.9.1.0",
+  "Version": "5.10.0.0",
   "Widgets": [],
   "Versions": [
     {

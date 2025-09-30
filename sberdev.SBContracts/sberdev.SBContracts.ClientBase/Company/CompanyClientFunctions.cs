@@ -9,5 +9,11 @@ namespace sberdev.SBContracts.Client
 {
   partial class CompanyFunctions
   {
+    public void DownloadFocusCheckZip()
+    {
+      var zip = PublicFunctions.Company.Remote.ExportFocusCheckZipRemote(_obj);
+      if (zip != null)
+        zip.Export();
+    }
   }
 }

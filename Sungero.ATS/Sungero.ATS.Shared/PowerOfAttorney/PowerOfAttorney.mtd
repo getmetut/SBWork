@@ -16,11 +16,11 @@
     },
     {
       "NameGuid": "c37406ab-ad10-4732-bb0f-e5fbe056f450",
-      "Name": "SendToBPATSDev",
+      "Name": "SendPoAToBPATSDev",
       "ActionArea": "Card",
       "GenerateHandler": true,
-      "LargeIconName": "Action_SendToBPATSDev_large_c37406abad104732bb0fe5fbe056f450.png",
-      "SmallIconName": "Action_SendToBPATSDev_small_c37406abad104732bb0fe5fbe056f450.png"
+      "LargeIconName": "Action_SendPoAToBPATSDev_large_c37406abad104732bb0fe5fbe056f450.png",
+      "SmallIconName": "Action_SendPoAToBPATSDev_small_c37406abad104732bb0fe5fbe056f450.png"
     }
   ],
   "BaseGuid": "be859f9b-7a04-4f07-82bc-441352bce627",
