@@ -47,53 +47,6 @@ namespace sberdev.SBContracts.Shared
     }
     
     /// <summary>
-    /// Переключить показ маркеров Контур.Фокус.
-    /// </summary>
-    /// <param name="company">Карточка компании.</param>
-    /// <param name="showProfitableOnly">True — показывать только доходные, False — все.</param>
-    public static void ShowFocusMarkers(sberdev.SBContracts.ICompany company, bool showProfitableOnly)
-    {
-      if (company == null)
-        return;
-
-      var all = GetAllFocusMarkers(company);
-      var profitable = GetProfitableFocusMarkers(company);
-
-      // Сформировать объединение, чтобы точно скрыть всё, что относится к маркерам.
-      var toHide = new System.Collections.Generic.List<Sungero.Domain.Shared.IPropertyState>();
-      if (all != null)
-        toHide.AddRange(all);
-      if (profitable != null)
-      {
-        foreach (var ps in profitable)
-        {
-          var exists = false;
-          foreach (var x in toHide)
-          {
-            if (object.ReferenceEquals(x, ps))
-            { exists = true; break; }
-          }
-          if (!exists)
-            toHide.Add(ps);
-        }
-      }
-
-      // Скрыть всё.
-      foreach (var st in toHide)
-        st.IsVisible = false;
-
-      // Показать нужный набор.
-      var toShow = showProfitableOnly ? profitable : all;
-      if (toShow != null)
-      {
-        foreach (var st in toShow)
-          st.IsVisible = true;
-      }
-      
-      HideEmptyFocusMarkers(company);
-    }
-    
-    /// <summary>
     /// Преобразует полное наименование компании в сокращённый формат.
     /// </summary>
     public static System.String ModifyCompanyName(System.String companyName)
@@ -173,8 +126,6 @@ namespace sberdev.SBContracts.Shared
       name = name.ToUpper(ru);
 
       // === 4) Формируем итог ===
-      // По твоему правилу — форма в КОНЦЕ.
-      // Если для ИП хочешь «ИП ИВАНОВ...», просто замени строку ниже на: return "ИП " + name;
       var result = name + " " + form;
 
       return result;
@@ -195,8 +146,37 @@ namespace sberdev.SBContracts.Shared
     }
 
     #region Маркеры Фокус
+    [Public]
     
     #region Геты
+    
+    /// <summary>
+    /// Правила вычисления статуса проверки Контур-Фокус.
+    /// Вынесено отдельно для единообразия.
+    /// </summary>
+    public Nullable<Sungero.Core.Enumeration> GetFocusStatus()
+    {
+      // Лёгкая ветка: была успешная проверка.
+      if (_obj.FocusCheckedSberDev == true && _obj.FocusCheckedDateSberDev.HasValue)
+      {
+        if (_obj.FocusCheckedDateSberDev.Value.Year == Calendar.Now.Year)
+          return FocusCheckStatusSberDev.Actual;
+        else
+          return FocusCheckStatusSberDev.DateOutdated;
+      }
+      
+      // Сменился маркер у контрагента
+      if (_obj.FocusCheckedSberDev == false)
+        return FocusCheckStatusSberDev.MarkerChanged;
+
+      // Сложная ветка: есть «бракующая» проверка/этап (CheckingCPStage).
+      var hasCheckingAssign = PublicFunctions.Company.GetCheckingAssignments(_obj).Any();
+      if (hasCheckingAssign)
+        return FocusCheckStatusSberDev.Failed;
+
+      // По умолчанию — оставляем null.
+      return null;
+    }
     
     [Public]
     /// <summary>
@@ -307,6 +287,53 @@ namespace sberdev.SBContracts.Shared
     #endregion
     
     #region Контроль
+    
+    /// <summary>
+    /// Переключить показ маркеров Контур.Фокус.
+    /// </summary>
+    /// <param name="company">Карточка компании.</param>
+    /// <param name="showProfitableOnly">True — показывать только доходные, False — все.</param>
+    public static void ShowFocusMarkers(sberdev.SBContracts.ICompany company, bool showProfitableOnly)
+    {
+      if (company == null)
+        return;
+
+      var all = GetAllFocusMarkers(company);
+      var profitable = GetProfitableFocusMarkers(company);
+
+      // Сформировать объединение, чтобы точно скрыть всё, что относится к маркерам.
+      var toHide = new System.Collections.Generic.List<Sungero.Domain.Shared.IPropertyState>();
+      if (all != null)
+        toHide.AddRange(all);
+      if (profitable != null)
+      {
+        foreach (var ps in profitable)
+        {
+          var exists = false;
+          foreach (var x in toHide)
+          {
+            if (object.ReferenceEquals(x, ps))
+            { exists = true; break; }
+          }
+          if (!exists)
+            toHide.Add(ps);
+        }
+      }
+
+      // Скрыть всё.
+      foreach (var st in toHide)
+        st.IsVisible = false;
+
+      // Показать нужный набор.
+      var toShow = showProfitableOnly ? profitable : all;
+      if (toShow != null)
+      {
+        foreach (var st in toShow)
+          st.IsVisible = true;
+      }
+      
+      HideEmptyFocusMarkers(company);
+    }
 
     /// <summary>
     /// Функция скрывает белые маркеры Контур.Фокус
@@ -320,7 +347,10 @@ namespace sberdev.SBContracts.Shared
           prop.IsVisible = false;
       }
     }
+    
     #endregion
+    
+    #region Сеты
     
     public override void SetColorsForKFMarkers()
     {
@@ -365,6 +395,8 @@ namespace sberdev.SBContracts.Shared
           properties[propertyName + "SberDev"].HighlightColor = GetHighlightColor(propertyName + "SberDev", colorMap, settings);
       
     }
+    #endregion
+    
     #endregion
   }
 }
