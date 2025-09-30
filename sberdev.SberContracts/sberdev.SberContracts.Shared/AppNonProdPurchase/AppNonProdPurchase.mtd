@@ -1026,6 +1026,28 @@
   ],
   "Properties": [
     {
+      "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "5c742813-b74b-4d04-9de0-889f4e40083d",
+      "Name": "ExecutionState",
+      "DirectValues": [
+        {
+          "NameGuid": "c75520d9-86cd-4903-aa34-bc676134c48d",
+          "Name": "Returned",
+          "Code": "Returned"
+        },
+        {
+          "NameGuid": "42fa71e9-c404-49ca-919c-384e03641170",
+          "Name": "ProtocolSigning",
+          "Code": "ProtocolSigning"
+        }
+      ],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "Values"
+      ],
+      "Versions": []
+    },
+    {
       "$type": "Sungero.Metadata.DoublePropertyMetadata, Sungero.Metadata",
       "NameGuid": "96c9e3f6-9201-4e6c-92e0-acf7a1624081",
       "Name": "TotalAmount",
