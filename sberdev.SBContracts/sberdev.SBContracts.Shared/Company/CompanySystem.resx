@@ -215,7 +215,7 @@
     <value>Наименование 1С</value>
   </data>
   <data name="ControlGroup_df1dbb22faab484b9e190899b9ce2d04" xml:space="preserve">
-    <value>Counterparty rating</value>
+    <value>Summary Info</value>
   </data>
   <data name="Enum_LowAvgHeadSberDev_Yes" xml:space="preserve">
     <value>Yes</value>
@@ -537,5 +537,53 @@
   </data>
   <data name="Property_IsNeedFocusCheckSberDev" xml:space="preserve">
     <value>A check in the approval task is required</value>
+  </data>
+  <data name="Property_FocusCheckStatusSberDev" xml:space="preserve">
+    <value>KonturFocus Status</value>
+  </data>
+  <data name="Enum_FocusCheckStatusSberDev_Actual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
+  <data name="Enum_FocusCheckStatusSberDev_DateOutdated" xml:space="preserve">
+    <value>Date Expired</value>
+  </data>
+  <data name="Enum_FocusCheckStatusSberDev_Failed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="ControlGroup_d40edd81af64407a98f0cbaaef94fcf2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_ExportFocusCheckZipSberDev" xml:space="preserve">
+    <value>Export check archive</value>
+  </data>
+  <data name="Action_ExportFocusCheckZipSberDevDescription" xml:space="preserve">
+    <value>The archive includes a summary table file with the counterparty's verification status, as well as all "Counterparty Information" files and simple documents from the tasks in which the verification was performed.</value>
+  </data>
+  <data name="Action_ExportFocusCheckZipSberDevHint" xml:space="preserve">
+    <value>Download the archive for checking the counterparty's reliability</value>
+  </data>
+  <data name="Action_ExportFocusCheckZipSberDevConfirmationMessage" xml:space="preserve">
+    <value>Would you like to download the audit archive for this counterparty?</value>
+  </data>
+  <data name="Action_ExportFocusCheckZipSberDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Enum_FocusCheckStatusSberDev_MarkerChanged" xml:space="preserve">
+    <value>Marker changed</value>
+  </data>
+  <data name="Action_ExportFocusCheckZipManySberDev" xml:space="preserve">
+    <value>Export check archive</value>
+  </data>
+  <data name="Action_ExportFocusCheckZipManySberDevDescription" xml:space="preserve">
+    <value>The archive includes a summary table file with the counterparty's verification status, as well as all "Counterparty Information" files and simple documents from the tasks in which the verification was performed.</value>
+  </data>
+  <data name="Action_ExportFocusCheckZipManySberDevHint" xml:space="preserve">
+    <value>Download the archive for checking the counterparties reliability</value>
+  </data>
+  <data name="Action_ExportFocusCheckZipManySberDevConfirmationMessage" xml:space="preserve">
+    <value>Would you like to download the audit archive for this counterparties?</value>
+  </data>
+  <data name="Action_ExportFocusCheckZipManySberDevConfirmationDescription" xml:space="preserve">
+    <value />
   </data>
 </root>

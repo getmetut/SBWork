@@ -12,8 +12,194 @@ namespace sberdev.SberContracts.Server
 {
   public class ModuleJobs
   {
+    #region Запустить обработку приостановленных задач. StartAllSuspendedTasks
+    /// <summary>
+    /// Запустить обработку приостановленных задач:
+    /// 1) Создать кеши для новых Suspended-задач в окне дат.
+    /// 2) Пытаться возобновить задачи, накапливая счётчик попыток в кеше.
+    /// 3) Удалить неактуальные кеши (задача уже не Suspended / старше окна / ссылка пуста).
+    /// </summary>
+    public virtual void StartAllSuspendedTasks()
+    {
+      // --- Константы процесса (как просил — внутри основной функции) ---
+      const int CacheWindowMonths = 6;   // окно дат для кеширования
+      const int MaxRestartAttempts = 10; // лимит попыток возобновления
+      const int BatchSize = 200;         // размер батча для дозагрузки задач
+
+      Sungero.Core.Logger.DebugFormat("StartAllSuspendedTasks: Started");
+      
+      var now = Calendar.Now;
+      var since = now.AddMonths(-CacheWindowMonths);
+      
+      var deleted = this.ClearSuspendedTasksCashes(since);
+      Sungero.Core.Logger.DebugFormat("StartAllSuspendedTasks: caches deleted = {0}", deleted);
+      
+      Sungero.Core.Logger.DebugFormat("StartAllSuspendedTasks: window {0:yyyy-MM-dd}..{1:yyyy-MM-dd}", since, now);
+
+      var created = this.CreateSuspendedTasksCashes(since, now, BatchSize);
+      Sungero.Core.Logger.DebugFormat("StartAllSuspendedTasks: caches created = {0}", created);
+
+      this.ResumeSuspendedTasks(MaxRestartAttempts);
+      
+      Sungero.Core.Logger.DebugFormat("StartAllSuspendedTasks: Finished");
+    }
+
+    /// <summary>
+    /// Создать записи кеша для задач в статусе Suspended за указанный период.
+    /// Возвращает количество созданных кешей.
+    /// </summary>
+    private int CreateSuspendedTasksCashes(DateTime since, DateTime now, int batchSize)
+    {
+      // 1) Забираем только Id задач (отделяем запрос к БД от проекций).
+      var suspendedTaskIds = Sungero.Workflow.Tasks
+        .GetAll()
+        .Where(t => t.Status == Sungero.Workflow.Task.Status.Suspended &&
+               t.Created > since)
+        .Select(t => t.Id)
+        .ToList();
+
+      if (!suspendedTaskIds.Any())
+      {
+        Sungero.Core.Logger.Debug("StartAllSuspendedTasks.CreateSuspendedTasksCashes: no suspended tasks in window.");
+        return 0;
+      }
+
+      // 2) Уже закешированные Id (только Id, без загрузки объектов).
+      var cachedTaskIds = sberdev.SberContracts.SuspendedTasksCashes
+        .GetAll()
+        .Select(c => c.Task != null ? c.Task.Id : 0)
+        .Where(id => id > 0)
+        .ToList();
+
+      var cachedSet = new System.Collections.Generic.HashSet<long>(cachedTaskIds);
+
+      // 3) Нужны кеши только для ещё не закешированных задач.
+      var toCacheIds = suspendedTaskIds.Where(id => !cachedSet.Contains(id)).ToList();
+      if (!toCacheIds.Any())
+      {
+        Sungero.Core.Logger.Debug("StartAllSuspendedTasks.CreateSuspendedTasksCashes: nothing new to cache.");
+        return 0;
+      }
+
+      var created = 0;
+      var count = toCacheIds.Count;
+
+      // 4) Дозагружаем сущности задач батчами через GetRange.
+      for (var i = 0; i < count; i += batchSize)
+      {
+        var take = System.Math.Min(batchSize, count - i);
+        var chunk = toCacheIds.GetRange(i, take);
+
+        var tasksBatch = Sungero.Workflow.Tasks
+          .GetAll()
+          .Where(t => chunk.Contains(t.Id))
+          .ToList();
+
+        foreach (var task in tasksBatch)
+        {
+          try
+          {
+            var cache = sberdev.SberContracts.SuspendedTasksCashes.Create();
+            cache.Task = task;
+            cache.RestartCounter = 0;
+            cache.Save(); // фиксируем сразу — пригодится при рестарте
+            created++;
+          }
+          catch (System.Exception ex)
+          {
+            Sungero.Core.Logger.ErrorFormat("StartAllSuspendedTasks.CreateSuspendedTasksCashes: failed to create cache for TaskId={0}. {1}", task.Id, ex);
+          }
+        }
+      }
+
+      return created;
+    }
+
+    /// <summary>
+    /// Пытается возобновить задачи по актуальным кешам и увеличивает счётчик попыток.
+    /// </summary>
+    private void ResumeSuspendedTasks(int maxRestartAttempts)
+    {
+      // Берём только актуальные кеши: есть Task, статус Suspended, попыток меньше лимита.
+      var actualCaches = sberdev.SberContracts.SuspendedTasksCashes
+        .GetAll()
+        .Where(c => c.Task != null &&
+               c.Task.Status == Sungero.Workflow.Task.Status.Suspended &&
+               c.RestartCounter < maxRestartAttempts)
+        .ToList();
+
+      if (!actualCaches.Any())
+      {
+        Sungero.Core.Logger.Debug("StartAllSuspendedTasks.ResumeSuspendedTasks: no caches to process.");
+        return;
+      }
+
+      var attempts = 0;
+      var failures = 0;
+
+      foreach (var cache in actualCaches)
+      {
+        attempts++;
+        try
+        {
+          // Если у вас есть утилита разблокировки — вызываем.
+          SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(cache.Task);
+
+          // Пытаемся возобновить задачу.
+          cache.Task.Resume();
+        }
+        catch (System.Exception ex)
+        {
+          failures++;
+          Sungero.Core.Logger.ErrorFormat("StartAllSuspendedTasks.ResumeSuspendedTasks: TaskId={0} resume failed. {1}", cache.Task.Id, ex);
+        }
+        finally
+        {
+          // В любом случае увеличиваем счётчик и сохраняем.
+          cache.RestartCounter++;
+          cache.Save();
+        }
+      }
+
+      Sungero.Core.Logger.DebugFormat("StartAllSuspendedTasks.ResumeSuspendedTasks: attempted={0}, failed={1}", attempts, failures);
+    }
+
+    /// <summary>
+    /// Чистит неактуальные кеши: нет ссылки на задачу, задача уже не Suspended, либо задача старше окна.
+    /// Возвращает количество удалённых записей.
+    /// </summary>
+    private int ClearSuspendedTasksCashes(DateTime since)
+    {
+      var toDelete = sberdev.SberContracts.SuspendedTasksCashes
+        .GetAll()
+        .Where(c => c.Task == null ||
+               c.Task.Status != Sungero.Workflow.Task.Status.Suspended ||
+               c.Task.Created <= since)
+        .ToList();
+
+      var deleted = 0;
+
+      foreach (var cache in toDelete)
+      {
+        try
+        {
+          sberdev.SberContracts.SuspendedTasksCashes.Delete(cache);
+          deleted++;
+        }
+        catch (System.Exception ex)
+        {
+          var taskId = cache.Task != null ? cache.Task.Id : 0;
+          Sungero.Core.Logger.ErrorFormat("StartAllSuspendedTasks.ClearSuspendedTasksCashes: delete failed (TaskId={0}). {1}", taskId, ex);
+        }
+      }
+
+      return deleted;
+    }
+    #endregion
     
-    public virtual void FillTaskDocunetType()
+    #region Фоновый процесс заполнения типов документво в задачах. FillTaskDocumentType
+
+    public virtual void FillTaskDocumentType()
     {
       // Получаем только ID задач без заполненного DocumentType
       var query = SBContracts.ApprovalTasks.GetAll()
@@ -135,7 +321,9 @@ namespace sberdev.SberContracts.Server
         return string.Empty;
       }
     }
-
+    
+    #endregion
+    
     /// <summary>
     /// Фоновый процесс заполнение времени выполнения в исторических задач
     /// </summary>
@@ -239,6 +427,8 @@ namespace sberdev.SberContracts.Server
         Logger.Error("Критическая ошибка в FillTaskExecutionTimeDataJob", ex);
       }
     }
+    
+    #region Фоновый процесс обновления кэша аналитических виджетов. CreateApprovalAnalyticsWidgetsCashes
     
     /// <summary>
     /// Фоновый процесс обновления кэша аналитических виджетов.
@@ -431,6 +621,7 @@ namespace sberdev.SberContracts.Server
         }
       }
     }
+    #endregion
 
     /// <summary>
     /// Процесс очищает временные документы

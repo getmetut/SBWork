@@ -25,6 +25,18 @@
     "RemoteControls": [],
     "Tabs": []
   },
+  "Dependencies": [
+    {
+      "Id": "92491aa6-c4df-4f46-a807-ebdd337bda74",
+      "MaxVersion": "",
+      "MinVersion": "1.1.0.0"
+    },
+    {
+      "Id": "ec7b606a-21ee-4f16-aba8-ab8c2af76d12",
+      "MaxVersion": "",
+      "MinVersion": "0.0.1.0"
+    }
+  ],
   "DesktopViews": [],
   "IconResourcesKeys": [],
   "Importance": "Medium",
@@ -33,6 +45,27 @@
   "IsolatedAssemblyName": "SDev.BProc.Isolated",
   "IsolatedNamespace": "SDev.BProc.Isolated",
   "OrderedSpecialFolders": [],
+  "PublicFunctions": [
+    {
+      "Name": "CreateAsSubtaskOffDoc",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "document",
+          "ParameterType": "global::sberdev.SBContracts.IOfficialDocument",
+          "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "basetask",
+          "ParameterType": "global::sberdev.SBContracts.IExchangeDocumentProcessingTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IExchangeDocumentProcessingTask, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::sberdev.SBContracts.IApprovalTask",
+      "ReturnTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
+    }
+  ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "SDev.BProc",

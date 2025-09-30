@@ -254,7 +254,7 @@ namespace sberdev.SBContracts.Shared
         // Eсли Контрагент проверяется в данный момент - не требуется проверка
         // Если контрагент из нашей группы компаний проверка не нужна
         var cp = SBContracts.Counterparties.As(contr.Counterparty);
-        if (cp == null || cp.FocusCheckingSberDev == true || cp.IsNeedFocusCheckSberDev == false)
+        if (cp == null || cp.FocusCheckingSberDev == true || cp.NeedFocusCheckSberDev == false)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
         
         // Проверяем результаты предыдущей проверки

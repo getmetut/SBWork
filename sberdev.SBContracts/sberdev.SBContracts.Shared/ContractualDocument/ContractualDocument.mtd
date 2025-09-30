@@ -1776,6 +1776,16 @@
       "Length": 999,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "95f7be74-afed-4df1-918d-54b96b205f1c"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "5af1ad67-04c0-4427-a232-051ad957cf91",
+      "Name": "NumPositionSberDev",
+      "Code": "NumPositionSbe",
+      "Length": 20,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "7716966a-6962-4e94-a715-95a9ffa328e2",
+      "Versions": []
     }
   ],
   "PublicFunctions": [

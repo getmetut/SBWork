@@ -100,4 +100,19 @@
   <data name="Property_ReadressedSberDev" xml:space="preserve">
     <value>Readressed</value>
   </data>
+  <data name="Block_c59e4ddb429d441ba1e76f6872586afb" xml:space="preserve">
+    <value>Отправить по регламенту счет на оплату входящий</value>
+  </data>
+  <data name="Block_0dd3fb1bbe69494da77acff1b2832df8" xml:space="preserve">
+    <value>Поиск входящего счета на плату</value>
+  </data>
+  <data name="Block_0dd3fb1bbe69494da77acff1b2832df8_Description" xml:space="preserve">
+    <value>Поиск документа типа Входящий счет на оплату, который ссылается на текущий УПД</value>
+  </data>
+  <data name="Property_IncomingInvoiceATSDev" xml:space="preserve">
+    <value>Входящий счет на оплату</value>
+  </data>
+  <data name="Block_0dd3fb1bbe69494da77acff1b2832df8_Property_9330789cd8b04445b1e2b207da925caa" xml:space="preserve">
+    <value>Только постоплата</value>
+  </data>
 </root>

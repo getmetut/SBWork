@@ -62,7 +62,7 @@
             <property name="Name">IncomingInvoice_CalculationBaseSberDev_InterestCalc</property>
             <property name="FieldName">InterestCalc</property>
             <property name="VisibleIndex">4</property>
-            <property name="Width">135</property>
+            <property name="Width">134</property>
             <property name="ActualWidth">19*</property>
           </property>
         </property>

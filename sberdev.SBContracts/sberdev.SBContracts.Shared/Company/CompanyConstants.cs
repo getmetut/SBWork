@@ -5,6 +5,5 @@ namespace sberdev.SBContracts.Constants.Parties
 {
   public static class Company
   {
-
   }
 }

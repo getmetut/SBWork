@@ -436,4 +436,7 @@
   <data name="Property_ContactsResponsibleATSDev" xml:space="preserve">
     <value>Контакты ответственного</value>
   </data>
+  <data name="Property_NumPositionSberDev" xml:space="preserve">
+    <value>Номер строки плана закупок</value>
+  </data>
 </root>

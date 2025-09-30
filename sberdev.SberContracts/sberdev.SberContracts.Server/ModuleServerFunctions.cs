@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using Sungero.Core;
 using Sungero.CoreEntities;
@@ -10,11 +11,14 @@ using Sungero.Exchange;
 using OfficeOpenXml;
 using sberdev.SBContracts.Structures.Module;
 
+
 namespace sberdev.SberContracts.Server
 {
   public class ModuleFunctions
   {
-
+    
+    #region Прочее
+    
     /// <summary>
     /// Функция пересоханения всех записей КА
     /// </summary>
@@ -39,8 +43,6 @@ namespace sberdev.SberContracts.Server
       }
       return log;
     }
-    
-    #region Минифункции
     
     /// <summary>
     /// Возвращает генеральный продукт для нашей организации документа
@@ -1002,7 +1004,9 @@ namespace sberdev.SberContracts.Server
           contractual.MVPBaseSberDev = cashe.MVP;
           contractual.MarketDirectSberDev = cashe.MarkDirection;
           contractual.ExitCommentBaseSberDev = cashe.ExitComment;
-          contractual.Counterparty = cashe.Counterparty;
+          if (contractual.Counterparty == null)
+            contractual.Counterparty = cashe.Counterparty;
+          
           if (cashe.ProdCollection.Count > 0)
           {
             contractual.ProdCollectionPrBaseSberDev.Clear();
@@ -1034,7 +1038,9 @@ namespace sberdev.SberContracts.Server
             accounting.MVZBaseSberDev = cashe.MVZ;
             accounting.MVPBaseSberDev = cashe.MVP;
             accounting.MarketDirectSberDev = cashe.MarkDirection;
-            accounting.Counterparty = cashe.Counterparty;
+            if (contractual.Counterparty == null)
+              accounting.Counterparty = cashe.Counterparty;
+            
             if (cashe.ProdCollection.Count > 0)
             {
               accounting.ProdCollectionBaseSberDev.Clear();
@@ -1637,6 +1643,7 @@ namespace sberdev.SberContracts.Server
       doc.PayTypeBaseSberDev = docSelected.PayTypeBaseSberDev;
       doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
       doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
+      doc.LeadingDocument = docSelected.LeadingDocument;
       if (docSelected.TotalAmount != null)
       {
         doc.TotalAmount = docSelected.TotalAmount;

@@ -324,8 +324,12 @@
       "PreviousItemId": "f4599a5a-3d62-44e4-8ca7-03354c941c1a"
     },
     {
-      "ItemId": "ea461a5e-67b1-448f-9e88-225bafbf3705",
+      "ItemId": "7c8c8e4e-5df7-4ed3-81f0-c55243e96d9f",
       "PreviousItemId": "6b4bebc7-ceb2-4d89-989f-5ea5ec65ba0f"
+    },
+    {
+      "ItemId": "ea461a5e-67b1-448f-9e88-225bafbf3705",
+      "PreviousItemId": "7c8c8e4e-5df7-4ed3-81f0-c55243e96d9f"
     },
     {
       "ItemId": "8fc24fb9-3645-4ff8-ac1a-f4f416ac4076",
@@ -421,11 +425,18 @@
     },
     {
       "NameGuid": "ded63938-850a-4e34-aa2f-f1c5161633ca",
-      "Name": "FillTaskDocunetType",
+      "Name": "FillTaskDocumentType",
       "GenerateHandler": true,
       "IsEnabled": false,
       "MonthSchedule": "Monthly",
       "StartAt": "1753-01-01T08:30:00"
+    },
+    {
+      "NameGuid": "f94829b4-685b-49a0-a1c1-5896c3faf264",
+      "Name": "StartAllSuspendedTasks",
+      "GenerateHandler": true,
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T07:00:00"
     }
   ],
   "Libraries": [
@@ -1176,7 +1187,7 @@
   "SharedAssemblyName": "sberdev.SberContracts.Shared",
   "SharedNamespace": "sberdev.SberContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.9.0.0",
+  "Version": "5.10.0.0",
   "Widgets": [
     {
       "NameGuid": "c2f21ab6-4272-410e-a676-52af22433fd1",
