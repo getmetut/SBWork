@@ -13,7 +13,7 @@ namespace sberdev.SBContracts.Server.ExchangeDocumentProcessingTaskBlocks
 
     public virtual void SearchIncomingInvoiATSDevExecute()
     {
-      var doc = _obj.AllAttachments.Where(t => Sungero.ATS.UniversalTransferDocuments.Is(t)).FirstOrDefault();
+      var doc = _obj.NeedSigning.All.FirstOrDefault(); // AllAttachments.Where(t => ((Sungero.ATS.UniversalTransferDocuments.Is(t)) || (SBContracts.ContractStatements.Is(t)) || (SBContracts.ContractStatements.Is(t)))).FirstOrDefault();
       if (doc != null)
       {
         if (_block.PostCasheATSDev.HasValue) 
