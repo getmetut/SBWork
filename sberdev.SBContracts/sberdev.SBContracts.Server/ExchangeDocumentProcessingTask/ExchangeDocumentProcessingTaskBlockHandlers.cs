@@ -55,6 +55,7 @@ namespace sberdev.SBContracts.Server.ExchangeDocumentProcessingTaskBlocks
           try
           {
             var task = SDev.BProc.PublicFunctions.Module.Remote.CreateAsSubtaskOffDoc(doc, _obj);
+            task.Author = _obj.Author;
             task.Start();
           }
           catch (Exception ex)
