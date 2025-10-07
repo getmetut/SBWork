@@ -13,7 +13,7 @@ namespace sberdev.SBContracts.Server.ExchangeDocumentProcessingTaskBlocks
 
     public virtual void SearchIncomingInvoiATSDevExecute()
     {
-      var doc = _obj.AllAttachments.Where(t => Sungero.ATS.UniversalTransferDocuments.Is(t)).FirstOrDefault();
+      var doc = _obj.NeedSigning.All.FirstOrDefault(); // AllAttachments.Where(t => ((Sungero.ATS.UniversalTransferDocuments.Is(t)) || (SBContracts.ContractStatements.Is(t)) || (SBContracts.ContractStatements.Is(t)))).FirstOrDefault();
       if (doc != null)
       {
         if (_block.PostCasheATSDev.HasValue) 
@@ -55,6 +55,7 @@ namespace sberdev.SBContracts.Server.ExchangeDocumentProcessingTaskBlocks
           try
           {
             var task = SDev.BProc.PublicFunctions.Module.Remote.CreateAsSubtaskOffDoc(doc, _obj);
+            task.Author = _obj.Author;
             task.Start();
           }
           catch (Exception ex)
