@@ -314,8 +314,12 @@ namespace sberdev.SBContracts
       }
       if (e.NewValue == true)
       {
-        _obj.TotalAmount = null;
-        _obj.Currency = null;
+        //_obj.TotalAmount = null;
+        //_obj.Currency = null;
+        
+        _obj.TotalAmount = 0;
+        _obj.Currency = Sungero.Commons.PublicFunctions.Currency.Remote.GetDefaultCurrency();
+          
         _obj.CalculationFlagBaseSberDev = null;
         _obj.CalculationDistributeBaseSberDev = null;
         _obj.CalculationBaseSberDev.Clear();
