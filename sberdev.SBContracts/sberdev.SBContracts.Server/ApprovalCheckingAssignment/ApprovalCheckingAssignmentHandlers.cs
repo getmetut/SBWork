@@ -77,7 +77,7 @@ namespace sberdev.SBContracts
       
       var incInv = IncomingInvoices.As(_obj.DocumentGroup.OfficialDocuments?.First());
       
-      //TODO: нормально привязать этапы и вынести в отдельнуюю функцию
+      //TODO нормально привязать этапы и вынести в отдельную функцию
       if (incInv != null)
       {
         var accounting = incInv.AccDocSberDev;

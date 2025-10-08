@@ -1065,87 +1065,9 @@
       "Versions": []
     },
     {
-      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "4bc39efb-1f46-4a1e-8b8c-04f2b90d6a8b",
-      "Name": "Subject",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
-      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "ca562f2d-d3c7-448f-a648-b858e8d2fb2a",
-      "Name": "Currency",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "91ac0e49-10fc-45a2-848a-0541e7fdd7cd",
       "Name": "DocumentKind",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
-      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
-      "NameGuid": "2be04302-8431-4b2f-add4-973c7eefd787",
-      "Name": "ValidFrom",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
-      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
-      "NameGuid": "289ffd6e-bebb-4dbf-8264-e19950480351",
-      "Name": "ValidTill",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
-      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "17f86b14-c82a-4827-8dc0-275881319a17",
-      "Name": "ResponsibleEmployee",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
-      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "5f8cb060-a4c0-425d-97ff-e465ccc5b404",
-      "Name": "IsStandard",
       "HandledEvents": [
         "ChangedShared"
       ],
@@ -1186,7 +1108,7 @@
       "NameGuid": "aae1f6ae-d090-4c5a-963e-44c8b79dc92b",
       "Name": "LeadingDocument",
       "HandledEvents": [
-        "ChangedShared"
+        "ValueInputClient"
       ],
       "IsAncestorMetadata": true,
       "Overridden": [

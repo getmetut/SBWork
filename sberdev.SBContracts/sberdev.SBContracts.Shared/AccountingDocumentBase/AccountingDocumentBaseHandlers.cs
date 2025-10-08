@@ -35,12 +35,12 @@ namespace sberdev.SBContracts
       base.CounterpartyChanged(e);
       if (e.NewValue != e.OldValue)
       {
-        if (e.NewValue != null && SBContracts.Companies.Is(e.NewValue))
+        if (e.NewValue != null && Companies.Is(e.NewValue))
         {
-          var comp = SBContracts.Companies.As(e.NewValue);
+          var comp = Companies.As(e.NewValue);
           _obj.CounterpartyTINSberDev = comp.TIN;
           _obj.CouterpartyTRRCSberDev = comp.TRRC;
-          if ((comp.HeadOrgSDev != true) && (SBContracts.PublicFunctions.Module.IsSystemUser()))
+          if ((comp.HeadOrgSDev != true) && (PublicFunctions.Module.IsSystemUser()))
           {
             var OrgTrue = PublicFunctions.AccountingDocumentBase.Remote.GetHeadCompanies(_obj, comp);
             if ((OrgTrue != null) && (OrgTrue != comp))
@@ -113,71 +113,6 @@ namespace sberdev.SBContracts
       }
     }
 
-    public override void DocumentKindChanged(Sungero.Docflow.Shared.OfficialDocumentDocumentKindChangedEventArgs e)
-    {
-      base.DocumentKindChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
-    public override void DepartmentChanged(Sungero.Docflow.Shared.OfficialDocumentDepartmentChangedEventArgs e)
-    {
-      base.DepartmentChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
-    public override void SubjectChanged(Sungero.Domain.Shared.StringPropertyChangedEventArgs e)
-    {
-      base.SubjectChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
-    public override void NumberChanged(Sungero.Domain.Shared.StringPropertyChangedEventArgs e)
-    {
-      base.NumberChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
-    public override void DateChanged(Sungero.Domain.Shared.DateTimePropertyChangedEventArgs e)
-    {
-      base.DateChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
-    public override void CurrencyChanged(Sungero.Docflow.Shared.AccountingDocumentBaseCurrencyChangedEventArgs e)
-    {
-      base.CurrencyChanged(e);
-      
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
-    public override void ResponsibleEmployeeChanged(Sungero.Docflow.Shared.AccountingDocumentBaseResponsibleEmployeeChangedEventArgs e)
-    {
-      base.ResponsibleEmployeeChanged(e);
-      
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
     public virtual void MarketingSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseMarketingSberDevChangedEventArgs e)
     {
       if (e.NewValue != null)
@@ -228,17 +163,12 @@ namespace sberdev.SBContracts
       {
         _obj.BudItemBaseSberDev = _obj.AccArtBaseSberDev.BudgetItem;
       }
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
     }
 
     public virtual void MVPBaseSberDevChanged(sberdev.SBContracts.Shared.AccountingDocumentBaseMVPBaseSberDevChangedEventArgs e)
     {
       if (e.NewValue != e.OldValue)
       {
-       
         _obj.CalculationBaseSberDev.Clear();
         _obj.CalculationFlagBaseSberDev = null;
         _obj.CalculationDistributeBaseSberDev = null;
@@ -250,7 +180,6 @@ namespace sberdev.SBContracts
     {
       if (e.NewValue != e.OldValue)
       {
-       
         _obj.CalculationBaseSberDev.Clear();
         _obj.CalculationFlagBaseSberDev = null;
         _obj.CalculationDistributeBaseSberDev = null;
@@ -272,12 +201,7 @@ namespace sberdev.SBContracts
 
     public override void BusinessUnitChanged(Sungero.Docflow.Shared.OfficialDocumentBusinessUnitChangedEventArgs e)
     {
-      base.BusinessUnitChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-      
+      base.BusinessUnitChanged(e);      
       _obj.CalculationBaseSberDev.Clear();
       _obj.MVZBaseSberDev = null;
       _obj.MVPBaseSberDev = null;
@@ -311,11 +235,6 @@ namespace sberdev.SBContracts
     public override void TotalAmountChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
     {
       base.TotalAmountChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-      
       if ( _obj.CalculationBaseSberDev.Any())
       {
         if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Percent)
@@ -333,38 +252,6 @@ namespace sberdev.SBContracts
       }
     }
 
-    public override void LeadingDocumentChanged(Sungero.Docflow.Shared.OfficialDocumentLeadingDocumentChangedEventArgs e)
-    {
-      base.LeadingDocumentChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-      
-      
-      if (e.NewValue != null)
-      {
-        var isInvoice = SBContracts.IncomingInvoices.Is(_obj) || SBContracts.OutgoingInvoices.Is(_obj);
-        if (isInvoice)
-        {
-          if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Prepayment)
-            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
-        }
-        else
-        {
-          Functions.AccountingDocumentBase.FillDeliveryInfo(_obj, SBContracts.ContractualDocuments.As(_obj.LeadingDocument));
-          if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Postpay)
-            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
-        }
-        
-        _obj.State.Properties.LeadingDocument.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.LeadingDocument, false);
-      }
-      else
-      {
-        _obj.State.Properties.LeadingDocument.HighlightColor = Colors.Common.White;
-      }
-    }
-
     public virtual void CalculationFlagBaseSberDevChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
     {
       _obj.CalculationBaseSberDev.Clear();
@@ -372,7 +259,6 @@ namespace sberdev.SBContracts
 
     public virtual void CalculationBaseSberDevChanged(Sungero.Domain.Shared.CollectionPropertyChangedEventArgs e)
     {
-     
       double? amount = 0;
       if (_obj.CalculationBaseSberDev.Any())
       {

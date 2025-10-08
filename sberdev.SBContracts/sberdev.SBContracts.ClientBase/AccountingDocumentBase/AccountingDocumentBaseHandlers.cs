@@ -10,6 +10,32 @@ namespace sberdev.SBContracts
   partial class AccountingDocumentBaseClientHandlers
   {
 
+    public override void LeadingDocumentValueInput(Sungero.Docflow.Client.OfficialDocumentLeadingDocumentValueInputEventArgs e)
+    {
+      base.LeadingDocumentValueInput(e);
+      if (e.NewValue != null)
+      {
+        var isInvoice = SBContracts.IncomingInvoices.Is(_obj) || SBContracts.OutgoingInvoices.Is(_obj);
+        if (isInvoice)
+        {
+          if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Prepayment)
+            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+        }
+        else
+        {
+          Functions.AccountingDocumentBase.FillDeliveryInfo(_obj, SBContracts.ContractualDocuments.As(_obj.LeadingDocument));
+          if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Postpay)
+            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+        }
+        
+        _obj.State.Properties.LeadingDocument.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.LeadingDocument, false);
+      }
+      else
+      {
+        _obj.State.Properties.LeadingDocument.HighlightColor = Colors.Common.White;
+      }
+    }
+
     public override void DeliveryMethodValueInput(Sungero.Docflow.Client.OfficialDocumentDeliveryMethodValueInputEventArgs e)
     {
       base.DeliveryMethodValueInput(e);

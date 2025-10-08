@@ -14,7 +14,7 @@ namespace sberdev.SBContracts
     {
       if (e.NewValue != null)
       {
-        var operation = new Enumeration("Checking");
+        var operation = new Enumeration(Constants.Parties.Counterparty.CheckingOperation);
         _obj.History.Write(operation, operation, "Контрагент был проверен");
       }
     }

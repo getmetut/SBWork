@@ -12,6 +12,183 @@ namespace sberdev.SberContracts.Server
 {
   public class ModuleJobs
   {
+    #region Фоновый процесс заполнения контрагента в задачах. FillTaskCounterparty
+
+    /// <summary>
+    /// Заполнить свойство Counterparty в задачах согласования, где оно пустое.
+    /// </summary>
+    [Public]
+    public virtual void FillTaskCounterpartiesJob()
+    {
+      var idsQuery = SBContracts.ApprovalTasks.GetAll()
+        .Where(t => t.HasCounterpartySberDev == null)
+        .Select(t => t.Id);
+
+      var allTaskIds = idsQuery.ToList();
+      Logger.Debug($"CounterpartyFillerJob: найдено задач без контрагента: {allTaskIds.Count()}");
+
+      int processed = 0;
+      int updated = 0;
+      int noCounterparty = 0;
+      int errors = 0;
+
+      const int batchSize = 500;
+
+      for (int i = 0; i < allTaskIds.Count; i += batchSize)
+      {
+        var batchIds = allTaskIds.Skip(i).Take(batchSize).ToList();
+
+        foreach (var taskId in batchIds)
+        {
+          try
+          {
+            var task = SBContracts.ApprovalTasks.GetAll()
+              .Where(t => t.Id == taskId)
+              .FirstOrDefault();
+            if (ProcessSingleTaskCounterparty(task))
+              updated++;
+            else
+            {
+              task.HasCounterpartySberDev = false;
+              task.Save();
+              noCounterparty++;
+            }
+
+            processed++;
+            if (processed % 50 == 0)
+              Logger.Debug($"CounterpartyFillerJob: обработано: {processed}, обновлено: {updated}, нет контрагента {noCounterparty} ошибок: {errors}");
+          }
+          catch (System.Exception ex)
+          {
+            errors++;
+            Logger.Error($"CounterpartyFillerJob: ошибка при обработке задачи {taskId}", ex);
+          }
+        }
+
+        System.GC.Collect();
+        System.GC.WaitForPendingFinalizers();
+      }
+
+      Logger.Debug($"CounterpartyFillerJob: завершено. всего: {processed}, обновлено: {updated}, ошибок: {errors}");
+    }
+
+    /// <summary>
+    /// Обработать одну задачу: определить и записать контрагента.
+    /// </summary>
+    private bool ProcessSingleTaskCounterparty(sberdev.SBContracts.IApprovalTask task)
+    {
+      if (task == null)
+        return false;
+
+      if (task.CounterpartySberDev != null)
+        return false;
+
+      if (task.DocumentGroup == null || !task.DocumentGroup.OfficialDocuments.Any())
+        return false;
+
+      var counterparty = DetermineCounterparty(task);
+      if (counterparty == null)
+        return false;
+
+      task.CounterpartySberDev = counterparty;
+      task.HasCounterpartySberDev = true;
+      task.Save();
+      return true;
+    }
+
+    /// <summary>
+    /// Определить контрагента по вложенным документам без рефлексии.
+    /// Логика: собираем всех найденных контрагентов из документов и берём мажоритарного.
+    /// </summary>
+    private SBContracts.ICounterparty DetermineCounterparty(SBContracts.IApprovalTask task)
+    {
+      try
+      {
+        var docs = task.DocumentGroup.OfficialDocuments.ToList();
+        if (!docs.Any())
+          return null;
+
+        var ids = new System.Collections.Generic.List<long>();
+
+        foreach (var doc in docs)
+        {
+          var cp = TryGetCounterpartyByReflection(doc);
+          if (cp != null)
+            ids.Add(cp.Id);
+        }
+
+        if (!ids.Any())
+          return null;
+
+        var majorityId = ids
+          .GroupBy(x => x)
+          .OrderByDescending(g => g.Count())
+          .Select(g => g.Key)
+          .FirstOrDefault();
+
+        if (majorityId <= 0)
+          return null;
+
+        return SBContracts.Counterparties.GetAll()
+          .Where(c => c.Id == majorityId)
+          .FirstOrDefault();
+      }
+      catch (System.Exception ex)
+      {
+        Logger.Error($"CounterpartyFillerJob: ошибка определения контрагента для задачи {task.Id}", ex);
+        return null;
+      }
+    }
+    /// <summary>
+    /// Пытается получить контрагента у документа рефлексией из свойства "Counterparty".
+    /// Без использования dynamic.
+    /// </summary>
+    private sberdev.SBContracts.ICounterparty TryGetCounterpartyByReflection(Sungero.Docflow.IOfficialDocument document)
+    {
+      try
+      {
+        var type = document.GetType();
+        var prop = type.GetProperty("Counterparty", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+        if (prop == null)
+          return null;
+
+        // Читаем значение свойства и безопасно приводим тип.
+        var value = prop.GetValue(document, null) as Sungero.Domain.Shared.IEntity;
+        return SBContracts.Counterparties.As(value);
+      }
+      catch
+      {
+        return null;
+      }
+    }
+
+    /// <summary>
+    /// Попытаться получить контрагента из документа через типовые касты (без рефлексии).
+    /// При необходимости дополни своими наследниками.
+    /// </summary>
+    private SBContracts.ICounterparty TryGetCounterpartyFromDoc(Sungero.Docflow.IOfficialDocument document)
+    {
+      // 1) Договорные
+      var contractual = SBContracts.ContractualDocuments.As(document);
+      if (contractual != null && contractual.Counterparty != null)
+        return SBContracts.Counterparties.As(contractual.Counterparty);
+
+      // 2) Учетные (счета, акты и т.п.)
+      var accounting = SBContracts.AccountingDocumentBases.As(document);
+      if (accounting != null && accounting.Counterparty != null)
+        return  SBContracts.Counterparties.As(accounting.Counterparty);
+
+      // 3) Добавь тут свои конкретные типы при необходимости:
+      // var myType = SBContracts.MyCustomDocType.As(document);
+      // if (myType != null && myType.Counterparty != null)
+      //   return myType.Counterparty;
+
+      // Ничего не нашли.
+      return null;
+    }
+
+    #endregion
+
     #region Запустить обработку приостановленных задач. StartAllSuspendedTasks
     /// <summary>
     /// Запустить обработку приостановленных задач:
@@ -197,7 +374,7 @@ namespace sberdev.SberContracts.Server
     }
     #endregion
     
-    #region Фоновый процесс заполнения типов документво в задачах. FillTaskDocumentType
+    #region Фоновый процесс заполнения типов документов в задачах. FillTaskDocumentType
 
     public virtual void FillTaskDocumentType()
     {

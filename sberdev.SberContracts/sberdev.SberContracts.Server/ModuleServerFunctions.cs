@@ -20,6 +20,125 @@ namespace sberdev.SberContracts.Server
     #region Прочее
     
     /// <summary>
+    /// Универсальная функция для автоматической нумерации элементов в коллекции DirectumRX
+    /// </summary>
+    /// <param name="collectionPropertyName">Имя свойства коллекции</param>
+    /// <param name="objInstance">Экземпляр объекта, содержащего коллекцию</param>
+    [Public]
+    public static void AutoNumberCollectionItem(string collectionPropertyName, object objInstance)
+    {
+      try
+      {
+        // Получаем саму коллекцию
+        var collectionProperty = objInstance.GetType().GetProperty(collectionPropertyName);
+        if (collectionProperty == null)
+          return;
+        
+        var collection = collectionProperty.GetValue(objInstance, null);
+        if (collection == null)
+          return;
+        
+        // Получаем количество элементов
+        var countProperty = collection.GetType().GetProperty("Count");
+        int count = (int)countProperty.GetValue(collection, null);
+        
+        if (count <= 0)
+          return;
+        
+        // Получаем последний элемент через индексатор
+        var itemAccessMethod = collection.GetType().GetMethod("get_Item");
+        var lastItem = itemAccessMethod.Invoke(collection, new object[] { count - 1 });
+        var lastItemNumberProperty = lastItem.GetType().GetProperty("Number");
+        
+        // Используем GetEnumerator для обхода коллекции
+        var getEnumeratorMethod = collection.GetType().GetMethod("GetEnumerator");
+        if (getEnumeratorMethod == null)
+          return;
+        
+        var enumerator = getEnumeratorMethod.Invoke(collection, null);
+        var moveNextMethod = enumerator.GetType().GetMethod("MoveNext");
+        var currentProperty = enumerator.GetType().GetProperty("Current");
+        
+        // Список существующих номеров
+        var existingNumbers = new System.Collections.Generic.List<int>();
+        int lastIndex = 0;
+        
+        // Перебираем все элементы, кроме последнего
+        while ((bool)moveNextMethod.Invoke(enumerator, null))
+        {
+          if (lastIndex == count - 1)
+            break;
+          
+          var item = currentProperty.GetValue(enumerator, null);
+          if (item == null)
+          {
+            lastIndex++;
+            continue;
+          }
+          
+          var numberProperty = item.GetType().GetProperty("Number");
+          if (numberProperty == null)
+          {
+            lastIndex++;
+            continue;
+          }
+          
+          var numberValue = numberProperty.GetValue(item, null);
+          if (numberValue == null)
+          {
+            lastIndex++;
+            continue;
+          }
+          
+          try
+          {
+            // Проверяем, является ли Number Nullable
+            var hasValueProperty = numberValue.GetType().GetProperty("HasValue");
+            if (hasValueProperty != null)
+            {
+              bool hasValue = (bool)hasValueProperty.GetValue(numberValue, null);
+              if (hasValue)
+              {
+                var valueProperty = numberValue.GetType().GetProperty("Value");
+                int number = (int)valueProperty.GetValue(numberValue, null);
+                existingNumbers.Add(number);
+              }
+            }
+            else
+            {
+              // Если не Nullable, просто приводим к int
+              int number = (int)numberValue;
+              existingNumbers.Add(number);
+            }
+          }
+          catch { }
+          
+          lastIndex++;
+        }
+        
+        // Сортируем номера
+        existingNumbers.Sort();
+        
+        // Находим первый пропущенный номер
+        int missingNumber = 1;
+        foreach (var number in existingNumbers)
+        {
+          if (number != missingNumber)
+            break;
+          missingNumber++;
+        }
+        
+        // Проверяем, есть ли уже такой номер
+        if (existingNumbers.Contains(missingNumber))
+          missingNumber = existingNumbers.Count > 0 ? existingNumbers.Max() + 1 : 1;
+        
+        // Присваиваем найденный номер последнему элементу
+        lastItemNumberProperty.SetValue(lastItem, missingNumber, null);
+      }
+      catch { }
+    }
+    
+    /// <summary>
     /// Функция пересоханения всех записей КА
     /// </summary>
     [Public]
@@ -1269,6 +1388,9 @@ namespace sberdev.SberContracts.Server
       
       #endregion
       
+      var operation = new Enumeration(Constants.Module.FillFromDocOperation);
+      string comment = "ИД исходного документа " + docSelected.Id.ToString() + "; Имя: " + docSelected.Name;
+      doc.History.Write(operation, operation, comment);
     }
     
     #region Договор -> Договор
@@ -1279,19 +1401,23 @@ namespace sberdev.SberContracts.Server
     /// <param name="contract"></param>
     public static void FillGeneralProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
     {
-      doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev ;
+      doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
+      doc.Counterparty = docSelected.Counterparty;
+      doc.DeliveryMethod = docSelected.DeliveryMethod;
+      if (docSelected.AgentSaluteSberDev != null)
+      {
+        doc.AgentSaluteSberDev = docSelected.AgentSaluteSberDev;
+      }
       if (docSelected.TotalAmount != null)
       {
         doc.TotalAmount = docSelected.TotalAmount;
         doc.Currency = docSelected.Currency;
       }
-      doc.DeliveryMethod = docSelected.DeliveryMethod;
       if (!SberContracts.Purchases.Is(doc) && !SberContracts.AppProductPurchases.Is(doc))
       {
         doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
         doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
       }
-      doc.Counterparty = docSelected.Counterparty;
     }
     
     /// <summary>
@@ -1716,126 +1842,6 @@ namespace sberdev.SberContracts.Server
       }
     }
     #endregion
-    
-    
-    /// <summary>
-    /// Универсальная функция для автоматической нумерации элементов в коллекции DirectumRX
-    /// </summary>
-    /// <param name="collectionPropertyName">Имя свойства коллекции</param>
-    /// <param name="objInstance">Экземпляр объекта, содержащего коллекцию</param>
-    [Public]
-    public static void AutoNumberCollectionItem(string collectionPropertyName, object objInstance)
-    {
-      try
-      {
-        // Получаем саму коллекцию
-        var collectionProperty = objInstance.GetType().GetProperty(collectionPropertyName);
-        if (collectionProperty == null)
-          return;
-        
-        var collection = collectionProperty.GetValue(objInstance, null);
-        if (collection == null)
-          return;
-        
-        // Получаем количество элементов
-        var countProperty = collection.GetType().GetProperty("Count");
-        int count = (int)countProperty.GetValue(collection, null);
-        
-        if (count <= 0)
-          return;
-        
-        // Получаем последний элемент через индексатор
-        var itemAccessMethod = collection.GetType().GetMethod("get_Item");
-        var lastItem = itemAccessMethod.Invoke(collection, new object[] { count - 1 });
-        var lastItemNumberProperty = lastItem.GetType().GetProperty("Number");
-        
-        // Используем GetEnumerator для обхода коллекции
-        var getEnumeratorMethod = collection.GetType().GetMethod("GetEnumerator");
-        if (getEnumeratorMethod == null)
-          return;
-        
-        var enumerator = getEnumeratorMethod.Invoke(collection, null);
-        var moveNextMethod = enumerator.GetType().GetMethod("MoveNext");
-        var currentProperty = enumerator.GetType().GetProperty("Current");
-        
-        // Список существующих номеров
-        var existingNumbers = new System.Collections.Generic.List<int>();
-        int lastIndex = 0;
-        
-        // Перебираем все элементы, кроме последнего
-        while ((bool)moveNextMethod.Invoke(enumerator, null))
-        {
-          if (lastIndex == count - 1)
-            break;
-          
-          var item = currentProperty.GetValue(enumerator, null);
-          if (item == null)
-          {
-            lastIndex++;
-            continue;
-          }
-          
-          var numberProperty = item.GetType().GetProperty("Number");
-          if (numberProperty == null)
-          {
-            lastIndex++;
-            continue;
-          }
-          
-          var numberValue = numberProperty.GetValue(item, null);
-          if (numberValue == null)
-          {
-            lastIndex++;
-            continue;
-          }
-          
-          try
-          {
-            // Проверяем, является ли Number Nullable
-            var hasValueProperty = numberValue.GetType().GetProperty("HasValue");
-            if (hasValueProperty != null)
-            {
-              bool hasValue = (bool)hasValueProperty.GetValue(numberValue, null);
-              if (hasValue)
-              {
-                var valueProperty = numberValue.GetType().GetProperty("Value");
-                int number = (int)valueProperty.GetValue(numberValue, null);
-                existingNumbers.Add(number);
-              }
-            }
-            else
-            {
-              // Если не Nullable, просто приводим к int
-              int number = (int)numberValue;
-              existingNumbers.Add(number);
-            }
-          }
-          catch { }
-          
-          lastIndex++;
-        }
-        
-        // Сортируем номера
-        existingNumbers.Sort();
-        
-        // Находим первый пропущенный номер
-        int missingNumber = 1;
-        foreach (var number in existingNumbers)
-        {
-          if (number != missingNumber)
-            break;
-          missingNumber++;
-        }
-        
-        // Проверяем, есть ли уже такой номер
-        if (existingNumbers.Contains(missingNumber))
-          missingNumber = existingNumbers.Count > 0 ? existingNumbers.Max() + 1 : 1;
-        
-        // Присваиваем найденный номер последнему элементу
-        lastItemNumberProperty.SetValue(lastItem, missingNumber, null);
-      }
-      catch { }
-    }
     
     #endregion
     

@@ -33,6 +33,16 @@ namespace sberdev.SBContracts.Server
     {
       return Sungero.Company.Departments.GetAll().Where(d => Equals(d.Name, name)).First();
     }
+    
+    /// <summary>
+    /// Получить ИД всех компании со статусом КонтурФокус
+    /// </summary>
+    [Remote, Public]
+    public System.Collections.Generic.List<long> GetFocusCompaniesIDs()
+    {
+      return sberdev.SBContracts.Companies.GetAll().Where(c => c.FocusCheckStatusSberDev != null).Select(c => c.Id).ToList();
+    }
+    
     /// <summary>
     /// Продлить срок задания
     /// </summary>
@@ -493,20 +503,20 @@ namespace sberdev.SBContracts.Server
 
       var companyFolder = $"{SanitizeFileName(company.Name)}_{company.Id}";
 
-      var hasChecks = checkInfo.Checks != null && checkInfo.Checks.Any();
+      var hasChecks = checkInfo.History != null && checkInfo.History.Any();
       var hasFiles  = checkInfo.Files  != null && checkInfo.Files.Any();
 
       // --- CSV «Проверки»: <Компания>/Проверки.csv
       if (hasChecks)
       {
         var sb = new System.Text.StringBuilder();
-        sb.AppendLine($"Статус;{checkInfo.Status.Value}");
-        sb.AppendLine("Дата");
-        foreach (var d in checkInfo.Checks)
-          sb.AppendLine(d.ToString("dd.MM.yyyy"));
+        sb.AppendLine($"Статус;{Companies.Info.Properties.FocusCheckStatusSberDev.GetLocalizedValue((Nullable<Enumeration>)checkInfo.Status)}");
+        sb.AppendLine("История");
+        foreach (var h in checkInfo.History)
+          sb.AppendLine(h);
 
         var csvBytes = System.Text.Encoding.UTF8.GetBytes(sb.ToString());
-        zip.Add(csvBytes, "Проверки", "csv", companyFolder);
+        zip.Add(csvBytes, "История", "csv", companyFolder);
       }
 
       // --- Вложения: <Компания>/Файлы/<ИмяДокумента>.ext

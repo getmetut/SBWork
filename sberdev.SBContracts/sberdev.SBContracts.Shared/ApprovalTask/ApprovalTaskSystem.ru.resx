@@ -166,4 +166,7 @@
   <data name="Property_DocumentTypeSungero" xml:space="preserve">
     <value>Тип документа</value>
   </data>
+  <data name="Property_CounterpartySberDev" xml:space="preserve">
+    <value>Контрагент</value>
+  </data>
 </root>

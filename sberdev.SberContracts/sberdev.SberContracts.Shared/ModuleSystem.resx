@@ -379,4 +379,10 @@
   <data name="JobDescription_f94829b4685b49a0a1c15896c3faf264" xml:space="preserve">
     <value>The process starts all suspended tasks.</value>
   </data>
+  <data name="JobDisplayName_e9d4367a90e042268f61f3630e41015c" xml:space="preserve">
+    <value>Migration. Filling in the counterparty of historical tasks</value>
+  </data>
+  <data name="JobDescription_e9d4367a90e042268f61f3630e41015c" xml:space="preserve">
+    <value>The process fills Сounterparty the field in tasks (it is created for export KonturFocus zip).</value>
+  </data>
 </root>

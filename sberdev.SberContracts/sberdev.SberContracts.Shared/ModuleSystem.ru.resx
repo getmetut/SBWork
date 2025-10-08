@@ -271,4 +271,10 @@
   <data name="JobDescription_f94829b4685b49a0a1c15896c3faf264" xml:space="preserve">
     <value>Процесс запускает все приостановленные задачи.</value>
   </data>
+  <data name="JobDescription_e9d4367a90e042268f61f3630e41015c" xml:space="preserve">
+    <value>Процесс заполняет поле Контрагент в задачах (создается для экспорта KonturFocus zip).</value>
+  </data>
+  <data name="JobDisplayName_e9d4367a90e042268f61f3630e41015c" xml:space="preserve">
+    <value>Миграция. Заполнение контрагента исторических задач</value>
+  </data>
 </root>

@@ -13,7 +13,7 @@ namespace sberdev.SBContracts.Structures.Module
   partial class FocusCheckInfo
   {
     public Sungero.Core.Enumeration Status { get; set; }
-    public List<DateTime> Checks { get; set; }
+    public List<string> History { get; set; }
     public List<Sungero.Content.IElectronicDocument> Files { get; set; }
   }
   

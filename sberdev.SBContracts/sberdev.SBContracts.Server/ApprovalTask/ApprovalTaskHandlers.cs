@@ -23,6 +23,23 @@ namespace sberdev.SBContracts
   partial class ApprovalTaskServerHandlers
   {
 
+    public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
+    {
+      base.BeforeSave(e);
+      // Определяем документ из группы вложений
+      if (_obj.DocumentGroup != null && _obj.DocumentGroup.OfficialDocuments.Any())
+      {
+        var document = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
+        if (document == null)
+          return;
+        var accounting = SBContracts.AccountingDocumentBases.As(document);
+        var contractual = SBContracts.ContractualDocuments.As(document);
+        var cp = Counterparties.As(accounting?.Counterparty ?? contractual?.Counterparty);
+        if (cp != null && _obj.CounterpartySberDev != cp)
+          _obj.CounterpartySberDev = cp;
+      }
+    }
+
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       base.Created(e);
@@ -45,7 +62,6 @@ namespace sberdev.SBContracts
       // Механика проверки обязательных свойств и заглушек
       var accounting = SBContracts.AccountingDocumentBases.As(document);
       var contractual = SBContracts.ContractualDocuments.As(document);
-      var nonprodpurch = sberdev.SberContracts.AppNonProdPurchases.Is(document);
       string er1 = "";
       string er2 = "";
       if (accounting != null)
@@ -78,19 +94,15 @@ namespace sberdev.SBContracts
             _obj.ContractTypeATSDev = ApprovalTask.ContractTypeATSDev.ProfExpen;
         }
       }
-      if (!nonprodpurch)
+      if (er1 != "")
       {
-        if (er1 != "")
-        {
-          if (!SberContracts.NonContractInvoiceCounters.Is(document))
-            e.AddError(er1);
-        }
-        if (er2 != "")
-        {
-          if (!SberContracts.NonContractInvoiceCounters.Is(document))
-            e.AddError(er2);
-        }
+        e.AddError(er1);
       }
+      if (er2 != "")
+      {
+        e.AddError(er2);
+      }
+      
       // Механика подтверждения суммы закупки
       var gurantee = SberContracts.GuaranteeLetters.As(document);
       if (gurantee != null)

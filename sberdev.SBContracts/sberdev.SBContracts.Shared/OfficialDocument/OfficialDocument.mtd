@@ -596,7 +596,9 @@
     }
   ],
   "PublicStructures": [],
-  "ResourcesKeys": [],
+  "ResourcesKeys": [
+    "Enum_Operation_FilledFromDoc"
+  ],
   "RibbonCardMetadata": {
     "NameGuid": "6924fb77-02ff-483a-9edd-9a977c138c3a",
     "Name": "RibbonCard",

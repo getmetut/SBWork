@@ -5,6 +5,6 @@ namespace sberdev.SBContracts.Constants.Parties
 {
   public static class Counterparty
   {
-
+    public const string CheckingOperation = "Checking";
   }
 }

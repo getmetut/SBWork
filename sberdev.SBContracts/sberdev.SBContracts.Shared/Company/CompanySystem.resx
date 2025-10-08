@@ -586,4 +586,7 @@
   <data name="Action_ExportFocusCheckZipManySberDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_FocusCheckAssignIDsSberDev" xml:space="preserve">
+    <value>FocusCheckAssignIDs</value>
+  </data>
 </root>

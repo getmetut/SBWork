@@ -338,6 +338,12 @@ namespace sberdev.SBContracts.Server
     
     #region Геты*
     
+    [Public, Remote]
+    public System.Collections.Generic.List<sberdev.SBContracts.IApprovalTask> GetTasksByCounterparty(sberdev.SBContracts.ICompany company)
+    {
+      return ApprovalTasks.GetAll().Where(t => t.CounterpartySberDev == company).ToList();
+    }
+    
     /// <summary>
     /// Определить тот ли ето этап что нужен
     /// </summary>

@@ -36,12 +36,17 @@ namespace sberdev.SBContracts.Module.Company.Server
 
           // Если карточка бывает под блокировкой — разблокируем.
           PublicFunctions.Module.Remote.UnblockCardByDatabase(cp);
-
+          // Получаем  задания на проверку
+          var assignmentsIds = PublicFunctions.Company.Remote.GetCheckingAssignments(cp)?.Select(a => a.Id.ToString());
           // Проставляем статус строго по правилам.
-          var status = PublicFunctions.Company.GetFocusStatus(cp);
+          var status = PublicFunctions.Company.GetFocusStatus(cp, assignmentsIds.Any());
           if (cp.FocusCheckStatusSberDev != status)
           {
             cp.FocusCheckStatusSberDev = status;
+            if(assignmentsIds.Any())
+            {
+              cp.FocusCheckAssignIDsSberDev = string.Join(",", assignmentsIds);
+            }
             cp.Save();
           }
         }

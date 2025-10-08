@@ -10,6 +10,13 @@ namespace sberdev.SBContracts
   partial class ContractualDocumentClientHandlers
   {
 
+    public override void LeadingDocumentValueInput(Sungero.Docflow.Client.OfficialDocumentLeadingDocumentValueInputEventArgs e)
+    {
+      base.LeadingDocumentValueInput(e);
+      if (e.NewValue != null)
+        SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+    }
+
     public override void DeliveryMethodValueInput(Sungero.Docflow.Client.OfficialDocumentDeliveryMethodValueInputEventArgs e)
     {
       base.DeliveryMethodValueInput(e);

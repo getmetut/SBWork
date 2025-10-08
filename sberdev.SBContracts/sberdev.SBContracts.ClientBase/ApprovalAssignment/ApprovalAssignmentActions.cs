@@ -70,7 +70,7 @@ namespace sberdev.SBContracts.Client
       var task = SBContracts.ApprovalTasks.As(_obj.Task);
       if (task != null)
         return PublicFunctions.ApprovalTask.IsNecessaryStage(task, PublicConstants.Docflow.ApprovalTask.CheckingCPStage)
-          && task.Status == ApprovalTask.Status.InProcess;
+          && _obj.Status == Status.InProcess;
       else
         return false;
     }

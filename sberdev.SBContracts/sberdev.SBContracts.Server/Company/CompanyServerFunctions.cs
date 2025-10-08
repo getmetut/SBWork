@@ -13,13 +13,85 @@ namespace sberdev.SBContracts.Server
   partial class CompanyFunctions
   {
 
+    /// <summary>
+    /// Сформировать архив проверки контрагента 
+    /// </summary>
+    /// <returns></returns>
     [Public, Remote]
     public Sungero.Core.IZip ExportFocusCheckZipRemote()
     {
       var info = this.GetFocusCheckInfo();
       return info != null ? PublicFunctions.Module.ExportFocusCheckZip(_obj, info) : null;
     }
-    
+
+    /// <summary>
+    /// Получить все задания на проверку контрагента
+    /// </summary>
+    /// <returns></returns>
+    [Public, Remote]
+    public System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment> GetCheckingAssignments()
+    {
+      var result = new System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment>();
+      var stageSid = PublicConstants.Docflow.ApprovalTask.CheckingCPStage;
+
+      // Парсинг Id из строки в HashSet<long>.
+      var idsSet = new System.Collections.Generic.HashSet<long>();
+      var raw = (_obj.FocusCheckAssignIDsSberDev ?? string.Empty)
+        .Split(new[] { ',', ';', ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
+      foreach (var s in raw)
+      {
+        long id;
+        if (long.TryParse(s, out id) && id > 0)
+          idsSet.Add(id);
+      }
+
+      // Подзапрос по задачам: нужный тип и контрагент.
+      var taskIdsQuery =
+        sberdev.SBContracts.ApprovalTasks.GetAll()
+        .Where(t => t.DocumentTypeSungero == "Contractual"
+               && t.CounterpartySberDev != null
+               && t.CounterpartySberDev.Id == _obj.Id)
+        .Select(t => t.Id);
+
+      // Базовый запрос по заданиям: нужный этап + принадлежность к выбранным задачам.
+      var baseQuery =
+        sberdev.SBContracts.ApprovalAssignments.GetAll()
+        .Where(a =>
+               sberdev.SBContracts.ApprovalStages.As(a.Stage).SidSberDev == stageSid &&
+               taskIdsQuery.Contains(a.Task.Id));
+
+      // Опциональный фильтр по списку Id (если задан).
+      if (idsSet.Count == 0)
+      {
+        result = baseQuery.ToList();
+      }
+      else
+      {
+        const int batchSize = 500;
+        if (idsSet.Count <= batchSize)
+        {
+          result = baseQuery.Where(a => idsSet.Contains(a.Id)).ToList();
+        }
+        else
+        {
+          var all = new System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment>(idsSet.Count);
+          var ids = idsSet.ToArray();
+          for (int i = 0; i < ids.Length; i += batchSize)
+          {
+            var slice = ids.Skip(i).Take(batchSize).ToList();
+            var part = baseQuery.Where(a => slice.Contains(a.Id)).ToList();
+            all.AddRange(part);
+          }
+
+          // На случай дублей.
+          result = all.GroupBy(a => a.Id).Select(g => g.First()).ToList();
+        }
+      }
+
+      return result;
+    }
+
+
     [Public]
     public Structures.Module.IFocusCheckInfo GetFocusCheckInfo()
     {
@@ -28,14 +100,15 @@ namespace sberdev.SBContracts.Server
 
       var info = Structures.Module.FocusCheckInfo.Create();
       info.Status = _obj.FocusCheckStatusSberDev.Value;
+      List<Enumeration> historyOpNames = new List<Enumeration>(){new Sungero.Core.Enumeration("Checking"), new Sungero.Core.Enumeration("ChangeMarkers")};
 
       // 1) Сначала запрос к истории -> анонимная проекция -> список дат.
-      var dates = _obj.History.GetAll()
-        .Where(h => h.Operation.Value == new Sungero.Core.Enumeration("Checking") && h.HistoryDate.HasValue)
-        .Select(h => h.HistoryDate.Value)
+      var history = _obj.History.GetAll()
+        .Where(h => historyOpNames.Contains(h.Operation.Value) && h.HistoryDate.HasValue)
+        .Select(h => String.Format("{0};{1}", h.HistoryDate.Value.ToShortDateString(), h.Comment))
         .ToList();
 
-      info.Checks = dates;
+      info.History = history;
 
       // 2) Отдельно собираем файлы.
       info.Files = this.GetFocusFiles();
@@ -68,57 +141,6 @@ namespace sberdev.SBContracts.Server
       return documents;
     }
 
-    [Public]
-    public System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment> GetCheckingAssignments()
-    {
-      var result = new System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment>();
-      var targetCounterparty = Sungero.Parties.Counterparties.As(_obj);
-      if (targetCounterparty == null)
-        return result;
-
-      // ---- Шаг 1. Только то, что реально маппится в БД (Id, StageSid, тип задачи)
-      var stageSid = PublicConstants.Docflow.ApprovalTask.CheckingCPStage;
-
-      var assignmentIds = sberdev.SBContracts.ApprovalAssignments.GetAll()
-        .Where(a =>
-               sberdev.SBContracts.ApprovalStages.As(a.Stage).SidSberDev == stageSid &&
-               sberdev.SBContracts.ApprovalTasks.Is(a.Task) &&
-               sberdev.SBContracts.ApprovalTasks.As(a.Task).DocumentTypeSungero == "Contractual")
-        .Select(a => a.Id)
-        .ToList();
-
-      if (!assignmentIds.Any())
-        return result;
-
-      // ---- Шаг 2. Последовательно подгружаем сущности и работаем с DocumentGroup в памяти
-      foreach (var id in assignmentIds)
-      {
-        sberdev.SBContracts.IApprovalAssignment assignment = null;
-        try
-        {
-          assignment = sberdev.SBContracts.ApprovalAssignments.Get(id);
-          if (assignment == null)
-            continue;
- 
-          // Важно: доступ к группам вложений только после материализации
-          var mainDoc = ContractualDocuments.As(
-            assignment.DocumentGroup?.OfficialDocuments?.FirstOrDefault());
-
-          if (mainDoc != null && mainDoc.Counterparty == targetCounterparty)
-            result.Add(assignment);
-        }
-        catch (System.Exception ex)
-        {
-          // Не падаем из-за одного «битого» задания, просто логируем
-          Logger.DebugFormat("GetCheckingAssignments: skip assignment {0}: {1}", id, ex.Message);
-        }
-      }
-
-      return result;
-    }
-
-
-    
     public override void FillInRequisites(centrvd.KFIntegration.Structures.Parties.Company.CompanyInfo counterpartyInfo, bool isLegalEntity)
     {
       

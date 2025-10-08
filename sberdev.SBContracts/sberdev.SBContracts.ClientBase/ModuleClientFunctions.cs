@@ -29,35 +29,19 @@ namespace sberdev.SBContracts.Client
     }
     
     /// <summary>
-    /// Сформировать и скачать один ZIP для выбранных контрагентов (массово).
+    /// Сформировать и скачать один ZIP для всех контрагентов (массово).
     /// </summary>
     [Public]
     public static void DownloadFocusCheckArchive()
     {
-      var dialog = Dialogs.CreateInputDialog(sberdev.SBContracts.Resources.SelectCounterpartiesDialog);
-      var сompanies = dialog.AddSelectMany(sberdev.SBContracts.Resources.SelectCounterpartiesDialogProp, true, Companies.Null);
-      if (dialog.Show() == DialogButtons.Ok)
+      var ids = PublicFunctions.Module.Remote.GetFocusCompaniesIDs(); 
+      var zip = sberdev.SBContracts.PublicFunctions.Module.Remote.ExportFocusCheckZipByIdsRemote(ids);
+      if (zip == null)
       {
-        var ids = сompanies.Value
-          .Where(c => c != null)
-          .Select(c => c.Id)
-          .Distinct()
-          .ToList();
-
-        if (!ids.Any())
-        {
-          Dialogs.NotifyMessage("Не выбрано ни одного контрагента.");
-          return;
-        }
-
-        var zip = sberdev.SBContracts.PublicFunctions.Module.Remote.ExportFocusCheckZipByIdsRemote(ids);
-        if (zip == null)
-        {
-          Dialogs.NotifyMessage("Нет данных для выгрузки по выбранным контрагентам.");
-          return;
-        }
-        zip.Export();
+        Dialogs.NotifyMessage("Нет данных для выгрузки по выбранным контрагентам.");
+        return;
       }
+      zip.Export();
     }
   }
 }
