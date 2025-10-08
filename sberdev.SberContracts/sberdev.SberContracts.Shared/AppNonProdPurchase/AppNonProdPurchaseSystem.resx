@@ -404,4 +404,10 @@ In the absence of these trainings, the following reputational risks are possible
   <data name="Property_NetAmount" xml:space="preserve">
     <value>Net amount</value>
   </data>
+  <data name="Enum_ExecutionState_Returned" xml:space="preserve">
+    <value>Returned for revision</value>
+  </data>
+  <data name="Enum_ExecutionState_ProtocolSigning" xml:space="preserve">
+    <value>Protocol for signing</value>
+  </data>
 </root>

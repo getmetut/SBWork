@@ -308,4 +308,10 @@
   <data name="Property_NetAmount" xml:space="preserve">
     <value>Сумма договора без НДС</value>
   </data>
+  <data name="Enum_ExecutionState_ProtocolSigning" xml:space="preserve">
+    <value>Протокол на подписании</value>
+  </data>
+  <data name="Enum_ExecutionState_Returned" xml:space="preserve">
+    <value>Возвращен на доработку</value>
+  </data>
 </root>

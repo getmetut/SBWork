@@ -9,6 +9,16 @@ using System.IO;
 
 namespace sberdev.SBContracts
 {
+  partial class ApprovalTaskAuthorPropertyFilteringServerHandler<T>
+  {
+
+    public override IQueryable<T> AuthorFiltering(IQueryable<T> query, Sungero.Domain.PropertyFilteringEventArgs e)
+    {
+      query = base.AuthorFiltering(query, e);
+      return query;
+    }
+  }
+
 
   partial class ApprovalTaskServerHandlers
   {
