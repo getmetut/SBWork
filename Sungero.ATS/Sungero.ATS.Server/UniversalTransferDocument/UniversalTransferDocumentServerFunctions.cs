@@ -15,9 +15,9 @@ namespace Sungero.ATS.Server
     /// </summary> 
     [Public, Remote]
     public sberdev.SBContracts.ICompany GetHeadCompanies(Sungero.Parties.ICompanyBase Subject)
-    {
-      string TINNew = sberdev.SBContracts.Companies.As(Subject).TIN;
-      sberdev.SBContracts.ICompany Counterparty = sberdev.SBContracts.Companies.Null; 
+    {      
+      sberdev.SBContracts.ICompany Counterparty = sberdev.SBContracts.Companies.As(Subject);
+      var TINNew = Counterparty.TIN;
       var ListOrgTrue = sberdev.SBContracts.Companies.GetAll(c => c.HeadOrgSDev.HasValue).Where(c => ((c.HeadOrgSDev == true) && (c != sberdev.SBContracts.Companies.As(Subject)))).ToArray();
       if ((ListOrgTrue.Count() > 0) && (ListOrgTrue.Count() < 25))
       {
@@ -25,16 +25,15 @@ namespace Sungero.ATS.Server
         {
           if (elem.TIN != null)
           {
-            var OtherOrg = sberdev.SBContracts.Companies.GetAll(c => ((c.TIN == TINNew) && (c.HeadCompany != elem) && (c.Id != Subject.Id))).ToArray();
-            if (OtherOrg.Count() > 0)
+            var OtherOrg = sberdev.SBContracts.Companies.GetAll(c => ((c.TIN == TINNew) && (c.HeadOrgSDev.HasValue && c.HeadOrgSDev.Value))).FirstOrDefault();
+            if (OtherOrg != null)
             {
-              Counterparty = OtherOrg.FirstOrDefault();
+              Counterparty = OtherOrg;
             }
           }
         }
       }
       return Counterparty;
     }
-
   }
 }

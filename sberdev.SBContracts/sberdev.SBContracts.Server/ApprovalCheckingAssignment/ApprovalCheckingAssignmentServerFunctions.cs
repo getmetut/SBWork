@@ -9,6 +9,15 @@ namespace sberdev.SBContracts.Server
 {
   partial class ApprovalCheckingAssignmentFunctions
   {
+
+    /// <summary>
+    /// Получение пользователя по сотруднику
+    /// </summary>   
+    [Public]    
+    public static IUser GetUserToEmployeer(Sungero.Company.IEmployee empl)
+    {
+      return Users.GetAll(u => u.Login == empl.Login).FirstOrDefault();
+    }
     /// <summary>
     /// Возвращает согласуемый документ
     /// </summary>

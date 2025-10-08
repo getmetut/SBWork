@@ -42,6 +42,14 @@
       "NeedConfirmation": true,
       "NeedRefreshCollectionAfterExecute": true,
       "SmallIconName": "Action_ApproveSberDev_small_ce147b2cbc2544a9b3610842372ece01.png"
+    },
+    {
+      "NameGuid": "66c550b1-91c2-4592-a7e8-721b7707d473",
+      "Name": "SendToOtherUserATSDev",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_SendToOtherUserATSDev_large_66c550b191c24592a7e8721b7707d473.png",
+      "SmallIconName": "Action_SendToOtherUserATSDev_small_66c550b191c24592a7e8721b7707d473.png"
     }
   ],
   "AssociatedGuid": "d7041916-1429-42e2-869b-661edeef70e5",
@@ -464,6 +472,20 @@
       "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "0ce7a08a-0b66-4977-a4c5-4b5aa07a66dd"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "GetUserToEmployeer",
+      "Parameters": [
+        {
+          "Name": "empl",
+          "ParameterType": "global::Sungero.Company.IEmployee",
+          "ParameterTypeFullName": "Sungero.Company.IEmployee, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::Sungero.CoreEntities.IUser",
+      "ReturnTypeFullName": "Sungero.CoreEntities.IUser, Sungero.Domain.Shared"
     }
   ],
   "PublicStructures": [],
