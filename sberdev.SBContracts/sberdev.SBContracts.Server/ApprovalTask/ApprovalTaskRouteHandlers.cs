@@ -160,6 +160,7 @@ namespace sberdev.SBContracts.Server
       base.Script26Execute();
       sberdev.SberContracts.PublicFunctions.Module.Remote.LinkDocs(_obj);
       Functions.ApprovalTask.FillDocumentTypeOnTaskStart(_obj);
+      Functions.ApprovalTask.FillCounterparty(_obj);
     }
 
     public override bool Decision32Result()

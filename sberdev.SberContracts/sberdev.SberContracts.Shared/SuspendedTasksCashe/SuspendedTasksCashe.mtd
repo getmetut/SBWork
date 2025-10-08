@@ -38,6 +38,19 @@
           "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
           "ParentGuid": "be558682-f2c1-4716-abb6-1b5aaad620b3",
           "PropertyGuid": "08606e5e-5b8b-4970-ab82-6220ab81dc4d",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "9e711a93-5fa9-4836-94c2-19df1e7cc57b",
+          "Name": "Task",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "be558682-f2c1-4716-abb6-1b5aaad620b3",
+          "PropertyGuid": "ed9cb10a-c5ee-49d3-93af-21cfd9d90328",
           "RowNumber": 0,
           "RowSpan": 1,
           "Settings": []

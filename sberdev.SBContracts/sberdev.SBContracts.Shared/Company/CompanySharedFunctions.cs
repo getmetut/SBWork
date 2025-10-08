@@ -154,7 +154,7 @@ namespace sberdev.SBContracts.Shared
     /// Правила вычисления статуса проверки Контур-Фокус.
     /// Вынесено отдельно для единообразия.
     /// </summary>
-    public Nullable<Sungero.Core.Enumeration> GetFocusStatus()
+    public Nullable<Sungero.Core.Enumeration> GetFocusStatus(bool hasCheckingAssign)
     {
       // Лёгкая ветка: была успешная проверка.
       if (_obj.FocusCheckedSberDev == true && _obj.FocusCheckedDateSberDev.HasValue)
@@ -169,8 +169,7 @@ namespace sberdev.SBContracts.Shared
       if (_obj.FocusCheckedSberDev == false)
         return FocusCheckStatusSberDev.MarkerChanged;
 
-      // Сложная ветка: есть «бракующая» проверка/этап (CheckingCPStage).
-      var hasCheckingAssign = PublicFunctions.Company.GetCheckingAssignments(_obj).Any();
+      // Сложная ветка вычесляется заранее: есть «бракующая» проверка/этап (CheckingCPStage).
       if (hasCheckingAssign)
         return FocusCheckStatusSberDev.Failed;
 

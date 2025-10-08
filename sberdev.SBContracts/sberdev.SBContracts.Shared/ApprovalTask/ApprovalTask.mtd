@@ -441,7 +441,8 @@
     "BeforeStartServer",
     "CreatedServer",
     "RefreshClient",
-    "ShowingClient"
+    "ShowingClient",
+    "BeforeSaveServer"
   ],
   "IconResourcesKeys": [],
   "IsCreateVersionsOnLayerForbidden": true,
@@ -628,6 +629,28 @@
       "Code": "HighImportance",
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "4702830a-019e-44dc-83f7-a75cdc80ac62"
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "1fb6059a-863a-4c0e-b900-579a1c1183ca",
+      "Name": "CounterpartySberDev",
+      "Code": "CounterpartyAT",
+      "EntityGuid": "d37f067e-f4a2-4a51-9c69-0c94d5ec9991",
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "cf502d5f-6fbe-447e-aa00-bfa8adff2743"
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e197b857-5ae4-4364-80b1-154b997768c5",
+      "Name": "HasCounterpartySberDev",
+      "CanBeSearch": false,
+      "Code": "HasCPApprTask",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "1fb6059a-863a-4c0e-b900-579a1c1183ca"
     }
   ],
   "PublicConstants": [
@@ -712,6 +735,25 @@
       ],
       "ReturnType": "global::sberdev.SBContracts.IApprovalStage",
       "ReturnTypeFullName": "sberdev.SBContracts.IApprovalStage, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "GetTasksByCounterparty",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "approvalTask",
+          "ParameterType": "global::sberdev.SBContracts.IApprovalTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalTask, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "company",
+          "ParameterType": "global::sberdev.SBContracts.ICompany",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::sberdev.SBContracts.IApprovalTask>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
     },
     {
       "Name": "HighImportanceIns",

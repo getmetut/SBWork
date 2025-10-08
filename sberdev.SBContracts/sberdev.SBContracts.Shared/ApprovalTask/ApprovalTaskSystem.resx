@@ -226,4 +226,10 @@
   <data name="Property_HighImportanceUserSberDev" xml:space="preserve">
     <value>Срочность устновил</value>
   </data>
+  <data name="Property_CounterpartySberDev" xml:space="preserve">
+    <value>Counterparty</value>
+  </data>
+  <data name="Property_HasCounterpartySberDev" xml:space="preserve">
+    <value>HasCounterparty</value>
+  </data>
 </root>

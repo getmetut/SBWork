@@ -2148,6 +2148,15 @@
       "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToEnumerationBinder",
       "PreviousPropertyGuid": "8c809bd6-80cb-4676-be05-93ba020f8f63"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "6df2a66b-42de-4698-8dce-e7b2566a00dd",
+      "Name": "FocusCheckAssignIDsSberDev",
+      "Code": "FCheckAsigIDs",
+      "Length": 300,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "ae199d3f-e052-4c24-bcdb-47eaaad1caf8"
     }
   ],
   "PublicFunctions": [
@@ -2180,6 +2189,7 @@
     },
     {
       "Name": "GetCheckingAssignments",
+      "IsRemote": true,
       "Parameters": [
         {
           "Name": "company",
@@ -2187,6 +2197,7 @@
           "ParameterTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
         }
       ],
+      "Placement": "Shared",
       "ReturnType": "global::System.Collections.Generic.List<global::sberdev.SBContracts.IApprovalAssignment>",
       "ReturnTypeFullName": "System.Collections.Generic.List"
     },
@@ -2209,6 +2220,11 @@
           "Name": "company",
           "ParameterType": "global::sberdev.SBContracts.ICompany",
           "ParameterTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "hasCheckingAssign",
+          "ParameterType": "global::System.Boolean",
+          "ParameterTypeFullName": "System.Boolean"
         }
       ],
       "Placement": "Shared",

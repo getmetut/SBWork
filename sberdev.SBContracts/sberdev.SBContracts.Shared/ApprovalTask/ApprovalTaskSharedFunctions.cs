@@ -9,6 +9,31 @@ namespace sberdev.SBContracts.Shared
 {
   partial class ApprovalTaskFunctions
   {
+    public void FillCounterparty()
+    {
+      try
+      {
+        // Пропускаем, если контрагент уже заполнен
+        if (_obj.CounterpartySberDev != null)
+          return;
+        
+        // Определяем документ из группы вложений
+        if (_obj.DocumentGroup != null && _obj.DocumentGroup.OfficialDocuments.Any())
+        {
+          var document = _obj.DocumentGroup.OfficialDocuments.FirstOrDefault();
+          var contractual = ContractualDocuments.As(document);
+          var accounting = AccountingDocumentBases.As(document);
+          if (contractual != null)
+            _obj.CounterpartySberDev = Companies.As(contractual.Counterparty);
+          if (accounting != null)
+            _obj.CounterpartySberDev = Companies.As(accounting.Counterparty);
+        }
+      }
+      catch (Exception ex)
+      {
+        Logger.Error($"Ошибка при заполнении контрагента для задачи {_obj.Id}", ex);
+      }
+    }
     public void FillDocumentTypeOnTaskStart()
     {
       try
