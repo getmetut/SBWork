@@ -449,6 +449,14 @@
       ],
       "TypeName": "System.String",
       "Value": "\"1.2.643.3.131.1.1\""
+    },
+    {
+      "Name": "UsedFillFromDocOperation",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"UsedFillFromDoc\""
     }
   ],
   "PublicFunctions": [
@@ -1347,7 +1355,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.10.1.0",
+  "Version": "5.11.0.0",
   "Widgets": [],
   "Versions": [
     {

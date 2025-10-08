@@ -70,60 +70,6 @@ namespace sberdev.SBContracts
       }
     }
 
-    public override void ResponsibleEmployeeChanged(Sungero.Contracts.Shared.ContractualDocumentResponsibleEmployeeChangedEventArgs e)
-    {
-      base.ResponsibleEmployeeChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
-    public override void ValidTillChanged(Sungero.Domain.Shared.DateTimePropertyChangedEventArgs e)
-    {
-      base.ValidTillChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
-    public override void ValidFromChanged(Sungero.Domain.Shared.DateTimePropertyChangedEventArgs e)
-    {
-      base.ValidFromChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
-    public override void CurrencyChanged(Sungero.Docflow.Shared.ContractualDocumentBaseCurrencyChangedEventArgs e)
-    {
-      base.CurrencyChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
-    public override void IsStandardChanged(Sungero.Domain.Shared.BooleanPropertyChangedEventArgs e)
-    {
-      base.IsStandardChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
-    public override void SubjectChanged(Sungero.Domain.Shared.StringPropertyChangedEventArgs e)
-    {
-      base.SubjectChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-    }
-
     public override void DocumentKindChanged(Sungero.Docflow.Shared.OfficialDocumentDocumentKindChangedEventArgs e)
     {
       base.DocumentKindChanged(e);
@@ -169,10 +115,6 @@ namespace sberdev.SBContracts
     public override void BusinessUnitChanged(Sungero.Docflow.Shared.OfficialDocumentBusinessUnitChangedEventArgs e)
     {
       base.BusinessUnitChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
       
       if (e.NewValue != null)
       {
@@ -192,11 +134,6 @@ namespace sberdev.SBContracts
     public override void DepartmentChanged(Sungero.Docflow.Shared.OfficialDocumentDepartmentChangedEventArgs e)
     {
       base.DepartmentChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-      
       if ((e.NewValue != null) && (_obj.ContrTypeBaseSberDev == sberdev.SBContracts.ContractualDocument.ContrTypeBaseSberDev.Profitable) && (_obj.MVPBaseSberDev == null))
       {
         var mvp = SberContracts.MVZs.GetAll( l => (l.BudgetOwner.Department == e.NewValue) && (l.ContrType == SberContracts.MVZ.ContrType.Profitable )).FirstOrDefault();
@@ -218,11 +155,6 @@ namespace sberdev.SBContracts
     public override void TotalAmountChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
     {
       base.TotalAmountChanged(e);
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
-      
       if ( _obj.CalculationBaseSberDev.Any())
       {
         if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Percent)
@@ -236,25 +168,6 @@ namespace sberdev.SBContracts
         if (_obj.CalculationFlagBaseSberDev == CalculationFlagBaseSberDev.Absolute)
         {
           _obj.CalculationAmountBaseSberDev = _obj.CalculationAmountBaseSberDev;
-        }
-      }
-    }
-
-    public override void LeadingDocumentChanged(Sungero.Docflow.Shared.OfficialDocumentLeadingDocumentChangedEventArgs e)
-    {
-      base.LeadingDocumentChanged(e);
-      if (e.NewValue != e.OldValue)
-       
-      
-      if (e.NewValue != null)
-      {
-        
-        SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
-        
-        var contract = SBContracts.ContractualDocuments.As(e.NewValue);
-        if (contract.DocumentKind.Name == "Договор Xiongxin")
-        {
-          _obj.AgentSaluteSberDev = contract.AgentSaluteSberDev;
         }
       }
     }
@@ -336,10 +249,6 @@ namespace sberdev.SBContracts
       {
         _obj.BudItemBaseSberDev = _obj.AccArtPrBaseSberDev.BudgetItem;
       }
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
     }
 
     public virtual void ProdCollectionPrBaseSberDevChanged(Sungero.Domain.Shared.CollectionPropertyChangedEventArgs e)
@@ -375,10 +284,6 @@ namespace sberdev.SBContracts
       if ( e.NewValue != null)
       {
         _obj.BudItemBaseSberDev = _obj.AccArtExBaseSberDev.BudgetItem;
-      }
-      if (e.NewValue != e.OldValue)
-      {
-       
       }
     }
 
@@ -419,10 +324,6 @@ namespace sberdev.SBContracts
     
     public virtual void ContrTypeBaseSberDevChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
     {
-      if (e.NewValue != e.OldValue)
-      {
-       
-      }
       _obj.DocumentGroup = null;
       if (e.NewValue == ContrTypeBaseSberDev.Profitable)
       {

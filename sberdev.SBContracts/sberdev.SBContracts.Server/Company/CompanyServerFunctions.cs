@@ -13,6 +13,10 @@ namespace sberdev.SBContracts.Server
   partial class CompanyFunctions
   {
 
+    /// <summary>
+    /// Сформировать архив проверки контрагента 
+    /// </summary>
+    /// <returns></returns>
     [Public, Remote]
     public Sungero.Core.IZip ExportFocusCheckZipRemote()
     {
@@ -20,79 +24,74 @@ namespace sberdev.SBContracts.Server
       return info != null ? PublicFunctions.Module.ExportFocusCheckZip(_obj, info) : null;
     }
 
+    /// <summary>
+    /// Получить все задания на проверку контрагента
+    /// </summary>
+    /// <returns></returns>
     [Public, Remote]
     public System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment> GetCheckingAssignments()
     {
       var result = new System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment>();
-      var targetCounterparty = Companies.As(_obj);
-      if (targetCounterparty == null)
-        return result;
-
       var stageSid = PublicConstants.Docflow.ApprovalTask.CheckingCPStage;
 
-      // Разбираем строку Id через запятую -> список long (без дублей/мусора).
-      var rawIds = (targetCounterparty.FocusCheckAssignIDsSberDev ?? string.Empty)
+      // Парсинг Id из строки в HashSet<long>.
+      var idsSet = new System.Collections.Generic.HashSet<long>();
+      var raw = (_obj.FocusCheckAssignIDsSberDev ?? string.Empty)
         .Split(new[] { ',', ';', ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
-
-      var parsedIds = new System.Collections.Generic.List<long>(rawIds.Length);
-      foreach (var s in rawIds)
+      foreach (var s in raw)
       {
         long id;
         if (long.TryParse(s, out id) && id > 0)
-          parsedIds.Add(id);
+          idsSet.Add(id);
       }
-      if (parsedIds.Count > 1)
-        parsedIds = parsedIds.Distinct().ToList();
 
-      // Базовый предикат по БД:
-      // - конкретный этап согласования
-      // - задание относится к ApprovalTask
-      // - тип задачи "Contractual"
-      // - у задачи задан нужный контрагент (сравниваем по Id, чтобы провалидно транслировалось в SQL)
-      System.Func<sberdev.SBContracts.IApprovalAssignment, bool> _ = null; // заглушка, чтобы подчеркнуть отсутствие client-логики :)
+      // Подзапрос по задачам: нужный тип и контрагент.
+      var taskIdsQuery =
+        sberdev.SBContracts.ApprovalTasks.GetAll()
+        .Where(t => t.DocumentTypeSungero == "Contractual"
+               && t.CounterpartySberDev != null
+               && t.CounterpartySberDev.Id == _obj.Id)
+        .Select(t => t.Id);
 
-      // Если список Id пустой — один запрос без IN.
-      if (!parsedIds.Any())
+      // Базовый запрос по заданиям: нужный этап + принадлежность к выбранным задачам.
+      var baseQuery =
+        sberdev.SBContracts.ApprovalAssignments.GetAll()
+        .Where(a =>
+               sberdev.SBContracts.ApprovalStages.As(a.Stage).SidSberDev == stageSid &&
+               taskIdsQuery.Contains(a.Task.Id));
+
+      // Опциональный фильтр по списку Id (если задан).
+      if (idsSet.Count == 0)
       {
-        var q = sberdev.SBContracts.ApprovalAssignments.GetAll()
-          .Where(a =>
-                 sberdev.SBContracts.ApprovalStages.As(a.Stage).SidSberDev == stageSid &&
-                 sberdev.SBContracts.ApprovalTasks.Is(a.Task) &&
-                 sberdev.SBContracts.ApprovalTasks.As(a.Task).DocumentTypeSungero == "Contractual" &&
-                 sberdev.SBContracts.ApprovalTasks.As(a.Task).CounterpartySberDev != null &&
-                 sberdev.SBContracts.ApprovalTasks.As(a.Task).CounterpartySberDev.Id == targetCounterparty.Id);
-
-        // Один проход, без доп. материализации групп вложений.
-        result = q.ToList();
-        return result;
+        result = baseQuery.ToList();
       }
-
-      // Если Id много — бьём на батчи, чтобы IN не раздулся.
-      const int batchSize = 500; // безопасный размер для IN
-      for (int i = 0; i < parsedIds.Count; i += batchSize)
+      else
       {
-        var batch = parsedIds.Skip(i).Take(batchSize).ToList();
-        var q = sberdev.SBContracts.ApprovalAssignments.GetAll()
-          .Where(a =>
-                 batch.Contains(a.Id) &&
-                 sberdev.SBContracts.ApprovalStages.As(a.Stage).SidSberDev == stageSid &&
-                 sberdev.SBContracts.ApprovalTasks.Is(a.Task) &&
-                 sberdev.SBContracts.ApprovalTasks.As(a.Task).DocumentTypeSungero == "Contractual" &&
-                 sberdev.SBContracts.ApprovalTasks.As(a.Task).CounterpartySberDev != null &&
-                 sberdev.SBContracts.ApprovalTasks.As(a.Task).CounterpartySberDev.Id == targetCounterparty.Id);
+        const int batchSize = 500;
+        if (idsSet.Count <= batchSize)
+        {
+          result = baseQuery.Where(a => idsSet.Contains(a.Id)).ToList();
+        }
+        else
+        {
+          var all = new System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment>(idsSet.Count);
+          var ids = idsSet.ToArray();
+          for (int i = 0; i < ids.Length; i += batchSize)
+          {
+            var slice = ids.Skip(i).Take(batchSize).ToList();
+            var part = baseQuery.Where(a => slice.Contains(a.Id)).ToList();
+            all.AddRange(part);
+          }
 
-        // Дополняем общий результат (ToList() материализует батч).
-        result.AddRange(q.ToList());
+          // На случай дублей.
+          result = all.GroupBy(a => a.Id).Select(g => g.First()).ToList();
+        }
       }
-
-      // На случай пересечений батчей/дубликатов в исходной строке.
-      if (result.Count > 1)
-        result = result.GroupBy(a => a.Id).Select(g => g.First()).ToList();
 
       return result;
     }
 
-    
+
     [Public]
     public Structures.Module.IFocusCheckInfo GetFocusCheckInfo()
     {

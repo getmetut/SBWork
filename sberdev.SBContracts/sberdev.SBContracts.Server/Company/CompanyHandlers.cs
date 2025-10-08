@@ -111,7 +111,7 @@ namespace sberdev.SBContracts
       }
       #endregion
       
-      var operation = new Enumeration("ChangeMarkers");
+      var operation = new Enumeration(Constants.Parties.Company.StatusChangeOperation);
       var hasDayFocusHistory = _obj.History.GetAll().Where(h => h.Operation == operation && h.HistoryDate.Value.Date == Calendar.Now.Date).Any();
       if (hasDayFocusHistory == true)
         return;

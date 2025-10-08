@@ -5,6 +5,7 @@ namespace sberdev.SberContracts.Constants
 {
   public static class Module
   {
+    public const string FillFromDocOperation = "FiledFromDoc";
     [Sungero.Core.PublicAttribute]
     public static readonly Guid ActMHGuid =  Guid.Parse("85b96f50-bb5d-4ab1-adea-996f48182ba8");
     [Sungero.Core.PublicAttribute]

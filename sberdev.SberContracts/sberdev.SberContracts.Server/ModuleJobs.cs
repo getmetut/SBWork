@@ -32,7 +32,7 @@ namespace sberdev.SberContracts.Server
       int noCounterparty = 0;
       int errors = 0;
 
-      const int batchSize = 50;
+      const int batchSize = 500;
 
       for (int i = 0; i < allTaskIds.Count; i += batchSize)
       {

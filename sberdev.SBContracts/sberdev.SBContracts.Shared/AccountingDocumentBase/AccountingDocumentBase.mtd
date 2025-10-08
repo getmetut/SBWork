@@ -1249,102 +1249,11 @@
     },
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "91ac0e49-10fc-45a2-848a-0541e7fdd7cd",
-      "Name": "DocumentKind",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
-      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "4bc39efb-1f46-4a1e-8b8c-04f2b90d6a8b",
-      "Name": "Subject",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
-      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "fba56283-50dd-4ef9-8d22-e339feff7440",
-      "Name": "Department",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
-      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "70729221-1b08-40c7-8189-2eb0d734a6e9",
-      "Name": "Number",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
-      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
-      "NameGuid": "adc787a4-0b2e-4d10-95bf-5cd09d05860d",
-      "Name": "Date",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
-      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "901644ff-87b0-485b-9146-13fd6ba7ede1",
-      "Name": "Currency",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
-      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
-      "NameGuid": "569866fc-cb17-4caf-bdee-6ec2ff5d5309",
-      "Name": "ResponsibleEmployee",
-      "HandledEvents": [
-        "ChangedShared"
-      ],
-      "IsAncestorMetadata": true,
-      "Overridden": [
-        "HandledEvents"
-      ],
-      "Versions": []
-    },
-    {
-      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "aae1f6ae-d090-4c5a-963e-44c8b79dc92b",
       "Name": "LeadingDocument",
       "HandledEvents": [
-        "ChangedShared",
-        "LookupServer"
+        "LookupServer",
+        "ValueInputClient"
       ],
       "IsAncestorMetadata": true,
       "Overridden": [
