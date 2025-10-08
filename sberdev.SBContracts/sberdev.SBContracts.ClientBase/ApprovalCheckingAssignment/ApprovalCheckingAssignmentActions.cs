@@ -32,6 +32,46 @@ namespace sberdev.SBContracts.Client
 
   partial class ApprovalCheckingAssignmentActions
   {
+    public virtual void SendToOtherUserATSDev(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      var dial = Dialogs.CreateInputDialog("Укажиет нового исполнителя на задание");
+      var empl = dial.AddSelect("Новый исполнитель", true, Sungero.Company.Employees.Null);
+      if (dial.Show() != DialogButtons.Ok)
+        return;
+      
+      var us = PublicFunctions.ApprovalCheckingAssignment.GetUserToEmployeer(empl.Value);
+      if (us != null)
+      {
+        _obj.Performer = us;
+        
+        if (!_obj.AccessRights.CanUpdate(us))
+            _obj.AccessRights.Grant(us, DefaultAccessRightsTypes.Change);
+        
+        foreach (var att in _obj.AllAttachments)
+        {
+          try
+          {
+          if (!att.AccessRights.CanUpdate(us))
+            att.AccessRights.Grant(us, DefaultAccessRightsTypes.Change);
+          }
+          catch (Exception err)
+          {
+            Logger.Debug(string.Format("Ошибка выдачи прав доступа в задании: {0} => {1}", _obj.Id, err.Message));
+          }
+        }
+        var folderApproval = Folders.GetAll(f => f.Name == "Approval").Where(f => f.Author == us).FirstOrDefault();
+        if (folderApproval != null)
+          folderApproval.Items.Add(_obj);
+
+        e.CloseFormAfterAction = true;
+      }
+    }
+
+    public virtual bool CanSendToOtherUserATSDev(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
 
     public virtual void UnblockAttachSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
     {

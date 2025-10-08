@@ -205,4 +205,19 @@
   <data name="Action_ApproveSberDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
+  <data name="Action_SendToOtherUserATSDev" xml:space="preserve">
+    <value>Назначить исполнителя</value>
+  </data>
+  <data name="Action_SendToOtherUserATSDevDescription" xml:space="preserve">
+    <value>Функция назначения исполнителя по текущему заданию</value>
+  </data>
+  <data name="Action_SendToOtherUserATSDevHint" xml:space="preserve">
+    <value>Функция назначения исполнителя по текущему заданию</value>
+  </data>
+  <data name="Action_SendToOtherUserATSDevConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_SendToOtherUserATSDevConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
 </root>

@@ -295,9 +295,10 @@ namespace Sungero.Custom.Server
     {
       var LeadDoc = ControlContracts.GetAll(d => ((d.LeadingDocID == int.Parse(LeadingDocID.ToString())) && (d.Limit != null))).FirstOrDefault();
       if (LeadDoc != null)
-        return LeadDoc.TotalLimit.Value - EntityDocSumm;
-      else
-        return 0.0;
+        if (LeadDoc.TotalLimit.HasValue)
+          return LeadDoc.TotalLimit.Value - EntityDocSumm;
+
+      return 0.0;
     }
 
     /// <summary>
