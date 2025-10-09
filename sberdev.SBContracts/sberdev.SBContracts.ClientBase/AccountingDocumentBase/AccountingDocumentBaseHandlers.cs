@@ -28,7 +28,7 @@ namespace sberdev.SBContracts
             SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
         }
         
-        _obj.State.Properties.LeadingDocument.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.LeadingDocument, false);
+        _obj.State.Properties.LeadingDocument.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(e.NewValue, false);
       }
       else
       {

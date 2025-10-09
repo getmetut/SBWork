@@ -11,14 +11,6 @@ namespace sberdev.SBContracts.Server
   {
 
     /// <summary>
-    /// Получение пользователя по сотруднику
-    /// </summary>   
-    [Public]    
-    public static IUser GetUserToEmployeer(Sungero.Company.IEmployee empl)
-    {
-      return Users.GetAll(u => u.Login == empl.Login).FirstOrDefault();
-    }
-    /// <summary>
     /// Возвращает согласуемый документ
     /// </summary>
     /// <returns></returns>
@@ -26,6 +18,14 @@ namespace sberdev.SBContracts.Server
     public SBContracts.IOfficialDocument GetAttachment()
     {
       return SBContracts.OfficialDocuments.As(_obj.DocumentGroup.OfficialDocuments.FirstOrDefault()/*Task?.Attachments.FirstOrDefault()*/);
+    }
+    /// <summary>
+    /// Получение пользователя по сотруднику
+    /// </summary>   
+    [Public]    
+    public static IUser GetUserToEmployeer(Sungero.Company.IEmployee empl)
+    {
+      return Users.GetAll(u => u.Login == empl.Login).FirstOrDefault();
     }
   }
 }
