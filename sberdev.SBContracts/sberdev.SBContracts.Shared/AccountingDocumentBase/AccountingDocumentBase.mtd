@@ -1253,7 +1253,8 @@
       "Name": "LeadingDocument",
       "HandledEvents": [
         "LookupServer",
-        "ValueInputClient"
+        "ValueInputClient",
+        "ChangedShared"
       ],
       "IsAncestorMetadata": true,
       "Overridden": [
