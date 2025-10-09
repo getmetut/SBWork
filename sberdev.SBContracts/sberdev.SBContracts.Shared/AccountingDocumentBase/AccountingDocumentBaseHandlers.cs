@@ -30,6 +30,13 @@ namespace sberdev.SBContracts
   partial class AccountingDocumentBaseSharedHandlers
   {
 
+    public override void LeadingDocumentChanged(Sungero.Docflow.Shared.OfficialDocumentLeadingDocumentChangedEventArgs e)
+    {
+      base.LeadingDocumentChanged(e);
+      if (e.NewValue != null)
+        _obj.State.Properties.LeadingDocument.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(OfficialDocuments.As(e.NewValue), false);
+    }
+
     public override void CounterpartyChanged(Sungero.Docflow.Shared.AccountingDocumentBaseCounterpartyChangedEventArgs e)
     {
       base.CounterpartyChanged(e);
@@ -62,7 +69,7 @@ namespace sberdev.SBContracts
       if (Equals(e.NewValue, e.OldValue))
         return;
       
-     
+      
       _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
       
       if (e.NewValue != null)
@@ -95,7 +102,7 @@ namespace sberdev.SBContracts
       if (Equals(e.NewValue, e.OldValue))
         return;
       
-     
+      
       _obj.Relations.AddOrUpdate("Addendum", e.OldValue, e.NewValue);
       
       if (e.NewValue != null)
@@ -143,7 +150,7 @@ namespace sberdev.SBContracts
     {
       if (e.NewValue != e.OldValue)
       {
-       
+        
       }
       if ( e.NewValue == ContrTypeBaseSberDev.Profitable)
       {
@@ -201,7 +208,7 @@ namespace sberdev.SBContracts
 
     public override void BusinessUnitChanged(Sungero.Docflow.Shared.OfficialDocumentBusinessUnitChangedEventArgs e)
     {
-      base.BusinessUnitChanged(e);      
+      base.BusinessUnitChanged(e);
       _obj.CalculationBaseSberDev.Clear();
       _obj.MVZBaseSberDev = null;
       _obj.MVPBaseSberDev = null;
@@ -221,7 +228,7 @@ namespace sberdev.SBContracts
           _obj.CalculationBaseSberDev.Clear();
         }
       }
-     
+      
     }
 
     public virtual void CalculationAmountBaseSberDevChanged(Sungero.Domain.Shared.DoublePropertyChangedEventArgs e)
