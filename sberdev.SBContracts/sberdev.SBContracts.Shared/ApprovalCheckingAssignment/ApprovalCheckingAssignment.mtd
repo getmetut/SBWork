@@ -476,6 +476,18 @@
   ],
   "PublicFunctions": [
     {
+      "Name": "GetUserFolderApproval",
+      "Parameters": [
+        {
+          "Name": "empl",
+          "ParameterType": "global::Sungero.CoreEntities.IUser",
+          "ParameterTypeFullName": "Sungero.CoreEntities.IUser, Sungero.Domain.Shared"
+        }
+      ],
+      "ReturnType": "global::Sungero.CoreEntities.IFolder",
+      "ReturnTypeFullName": "Sungero.CoreEntities.IFolder, Sungero.Domain.Shared"
+    },
+    {
       "Name": "GetUserToEmployeer",
       "Parameters": [
         {
@@ -512,6 +524,15 @@
         "ButtonSize": "Large",
         "Index": 600,
         "ParentGuid": "a8591a26-e100-4db9-992c-97c13fd33ce9"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "214655f5-59ea-48fd-a011-084e4b773f8c",
+        "Name": "SendToOtherUserATSDevATSDev",
+        "ActionGuid": "66c550b1-91c2-4592-a7e8-721b7707d473",
+        "ButtonSize": "Large",
+        "Index": 4,
+        "ParentGuid": "ac82503a-7a47-49d0-b90c-9bb512c4559c"
       }
     ],
     "Groups": [

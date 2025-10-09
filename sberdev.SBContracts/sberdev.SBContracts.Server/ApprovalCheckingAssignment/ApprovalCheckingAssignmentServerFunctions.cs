@@ -18,6 +18,16 @@ namespace sberdev.SBContracts.Server
     {
       return Users.GetAll(u => u.Login == empl.Login).FirstOrDefault();
     }
+    
+    /// <summary>
+    /// Получение пользователя по сотруднику
+    /// </summary>   
+    [Public]    
+    public static IFolder GetUserFolderApproval(IUser empl)
+    {
+      return Folders.GetAll(f => f.Name == "Approval").Where(f => f.Author == empl).FirstOrDefault();
+    }
+    
     /// <summary>
     /// Возвращает согласуемый документ
     /// </summary>

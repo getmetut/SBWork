@@ -59,7 +59,7 @@ namespace sberdev.SBContracts.Client
             Logger.Debug(string.Format("Ошибка выдачи прав доступа в задании: {0} => {1}", _obj.Id, err.Message));
           }
         }
-        var folderApproval = Folders.GetAll(f => f.Name == "Approval").Where(f => f.Author == us).FirstOrDefault();
+        var folderApproval = PublicFunctions.ApprovalCheckingAssignment.GetUserFolderApproval(us);
         if (folderApproval != null)
           folderApproval.Items.Add(_obj);
 
