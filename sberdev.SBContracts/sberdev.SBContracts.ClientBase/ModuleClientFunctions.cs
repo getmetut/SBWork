@@ -34,14 +34,18 @@ namespace sberdev.SBContracts.Client
     [Public]
     public static void DownloadFocusCheckArchive()
     {
-      var ids = PublicFunctions.Module.Remote.GetFocusCompaniesIDs(); 
-      var zip = sberdev.SBContracts.PublicFunctions.Module.Remote.ExportFocusCheckZipByIdsRemote(ids);
-      if (zip == null)
+      var dialog = Dialogs.CreateConfirmDialog("Вы хотите экспортировать архив проверок всех контрганетов?");
+      if (dialog.Show())
       {
-        Dialogs.NotifyMessage("Нет данных для выгрузки по выбранным контрагентам.");
-        return;
+        var ids = PublicFunctions.Module.Remote.GetFocusCompaniesIDs();
+        var zip = sberdev.SBContracts.PublicFunctions.Module.Remote.ExportFocusCheckZipByIdsRemote(ids);
+        if (zip == null)
+        {
+          Dialogs.NotifyMessage("Нет данных для выгрузки по выбранным контрагентам.");
+          return;
+        }
+        zip.Export();
       }
-      zip.Export();
     }
   }
 }

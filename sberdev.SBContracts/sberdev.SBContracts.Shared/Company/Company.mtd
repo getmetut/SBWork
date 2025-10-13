@@ -2189,7 +2189,6 @@
     },
     {
       "Name": "GetCheckingAssignments",
-      "IsRemote": true,
       "Parameters": [
         {
           "Name": "company",
@@ -2197,7 +2196,18 @@
           "ParameterTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
         }
       ],
-      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::sberdev.SBContracts.IApprovalAssignment>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
+      "Name": "GetCheckingAssignmentsNoLog",
+      "Parameters": [
+        {
+          "Name": "company",
+          "ParameterType": "global::sberdev.SBContracts.ICompany",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICompany, Sungero.Domain.Interfaces"
+        }
+      ],
       "ReturnType": "global::System.Collections.Generic.List<global::sberdev.SBContracts.IApprovalAssignment>",
       "ReturnTypeFullName": "System.Collections.Generic.List"
     },
