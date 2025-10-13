@@ -195,7 +195,7 @@ namespace sberdev.SBContracts.Server
       {
         var companyId = _obj != null ? _obj.Id : 0L;
         var companyName = _obj != null ? _obj.Name : string.Empty;
-        Sungero.Core.Logger.Debug($"[GetFocusFiles] НАЧАЛО. Компания Id={companyId}, Название='{companyName}'.");
+        Sungero.Core.Logger.Debug($"[GetCheckingFiles] НАЧАЛО. Компания Id={companyId}, Название='{companyName}'.");
 
         // 1) Документы контрагента (без сравнения по ссылке, только по Id).
         var swCp = System.Diagnostics.Stopwatch.StartNew();
@@ -204,7 +204,7 @@ namespace sberdev.SBContracts.Server
           .Select(d => Sungero.Content.ElectronicDocuments.As(d))
           .ToList();
         swCp.Stop();
-        Sungero.Core.Logger.Debug($"[GetFocusFiles] Документов контрагента найдено: {cpDocs.Count} (время {swCp.ElapsedMilliseconds} мс).");
+        Sungero.Core.Logger.Debug($"[GetCheckingFiles] Документов контрагента найдено: {cpDocs.Count} (время {swCp.ElapsedMilliseconds} мс).");
         documents.AddRange(cpDocs.Where(d => d != null));
 
         // 2) Пытаемся взять ЗАКЭШИРОВАННЫЕ задания из поля ManualCheckAssignIDsSberDev.
@@ -224,7 +224,7 @@ namespace sberdev.SBContracts.Server
               idsSet.Add(id);
           }
 
-          Sungero.Core.Logger.Debug($"[GetFocusFiles] Кэшированные Id заданий: всего={parts.Length}, корректных уникальных={idsSet.Count}.");
+          Sungero.Core.Logger.Debug($"[GetCheckingFiles] Кэшированные Id заданий: всего={parts.Length}, корректных уникальных={idsSet.Count}.");
 
           if (idsSet.Count > 0)
           {
@@ -247,25 +247,25 @@ namespace sberdev.SBContracts.Server
           }
 
           swCache.Stop();
-          Sungero.Core.Logger.Debug($"[GetFocusFiles] Загружено кэшированных заданий: {cachedAssignments.Count} (время {swCache.ElapsedMilliseconds} мс).");
+          Sungero.Core.Logger.Debug($"[GetCheckingFiles] Загружено кэшированных заданий: {cachedAssignments.Count} (время {swCache.ElapsedMilliseconds} мс).");
         }
         else
         {
-          Sungero.Core.Logger.Debug("[GetFocusFiles] Поле ManualCheckAssignIDsSberDev пусто — кэшированных заданий нет.");
+          Sungero.Core.Logger.Debug("[GetCheckingFiles] Поле ManualCheckAssignIDsSberDev пусто — кэшированных заданий нет.");
         }
 
         // 3) Если кэша нет — идём живым путём.
         System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment> assignments;
         if (cachedAssignments.Count > 0)
         {
-          Sungero.Core.Logger.Debug("[GetFocusFiles] Использую кэшированные задания, вызов GetCheckingAssignments НЕ требуется.");
+          Sungero.Core.Logger.Debug("[GetCheckingFiles] Использую кэшированные задания, вызов GetCheckingAssignments НЕ требуется.");
           assignments = cachedAssignments;
         }
         else
         {
-          Sungero.Core.Logger.Debug("[GetFocusFiles] Кэш пуст — вызываю GetCheckingAssignments().");
-          assignments = this.GetCheckingAssignments() ?? new System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment>();
-          Sungero.Core.Logger.Debug($"[GetFocusFiles] Живых заданий получено: {assignments.Count}.");
+          Sungero.Core.Logger.Debug("[GetCheckingFiles] Кэш пуст — вызываю GetCheckingAssignments().");
+          assignments = GetCheckingAssignments() ?? new System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment>();
+          Sungero.Core.Logger.Debug($"[GetCheckingFiles] Живых заданий получено: {assignments.Count}.");
         }
 
         // 4) Вложения из заданий. Разбиваем на шаги, логируем проблемные места.
@@ -278,7 +278,7 @@ namespace sberdev.SBContracts.Server
           if (a == null)
           {
             skippedNull++;
-            Sungero.Core.Logger.Debug($"[GetFocusFiles] Задание #{idx} = NULL. Пропуск.");
+            Sungero.Core.Logger.Debug($"[GetCheckingFiles] Задание #{idx} = NULL. Пропуск.");
             continue;
           }
 
@@ -286,11 +286,12 @@ namespace sberdev.SBContracts.Server
           System.Collections.Generic.List<Sungero.Domain.Shared.IEntity> rawAtts;
           try
           {
-            rawAtts = a.Attachments.ToList();
+            // a.Attachments отдает пустую коллекцию
+            rawAtts = a.AllAttachments.ToList();
           }
           catch (System.Exception ex)
           {
-            Sungero.Core.Logger.Error($"[GetFocusFiles] Ошибка чтения вложений у задания Id={a.Id}: {ex}");
+            Sungero.Core.Logger.Error($"[GetCheckingFiles] Ошибка чтения вложений у задания Id={a.Id}: {ex}");
             continue;
           }
 
@@ -324,26 +325,26 @@ namespace sberdev.SBContracts.Server
             try
             {
               var typeName = att.GetType().FullName;
-              Sungero.Core.Logger.Debug($"[GetFocusFiles] Пропущено вложение нестандартного типа: {typeName}, AssignmentId={a.Id}.");
+              Sungero.Core.Logger.Debug($"[GetCheckingFiles] Пропущено вложение нестандартного типа: {typeName}, AssignmentId={a.Id}.");
             }
             catch
             {
-              Sungero.Core.Logger.Debug($"[GetFocusFiles] Пропущено вложение непонятного типа (ошибка получения типа), AssignmentId={a.Id}.");
+              Sungero.Core.Logger.Debug($"[GetCheckingFiles] Пропущено вложение непонятного типа (ошибка получения типа), AssignmentId={a.Id}.");
             }
           }
         }
 
         Sungero.Core.Logger.Debug(
-          $"[GetFocusFiles] Итог по вложениям: заданий обработано={totalAssignments}, всего вложений={totalAttachments}, добавлено электронных={addedElectronic}, пропущено null={skippedNull}, пропущено неэлектронных/неожиданных={skippedNonSimple}.");
+          $"[GetCheckingFiles] Итог по вложениям: заданий обработано={totalAssignments}, всего вложений={totalAttachments}, добавлено электронных={addedElectronic}, пропущено null={skippedNull}, пропущено неэлектронных/неожиданных={skippedNonSimple}.");
       }
       catch (System.Exception ex)
       {
-        Sungero.Core.Logger.Error($"[GetFocusFiles] ОШИБКА: {ex}");
+        Sungero.Core.Logger.Error($"[GetCheckingFiles] ОШИБКА: {ex}");
       }
       finally
       {
         swTotal.Stop();
-        Sungero.Core.Logger.Debug($"[GetFocusFiles] КОНЕЦ (время {swTotal.ElapsedMilliseconds} мс).");
+        Sungero.Core.Logger.Debug($"[GetCheckingFiles] КОНЕЦ (время {swTotal.ElapsedMilliseconds} мс).");
       }
 
       return documents;
