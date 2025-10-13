@@ -14,7 +14,7 @@ namespace sberdev.SBContracts
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       base.Created(e);
-      _obj.NeedFocusCheckSberDev = true;
+      _obj.NeedManualCheckSberDev = true;
     }
   }
 

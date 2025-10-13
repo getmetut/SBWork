@@ -23,9 +23,9 @@ namespace sberdev.SberContracts.Server
         if (cp == null)
           return this.GetErrorResult("В документе не указан контрагент.");
         SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(cp);
-        cp.FocusCheckedSberDev = true;
-        cp.FocusCheckedDateSberDev = Calendar.Now;
-        cp.FocusCheckingSberDev = false;
+        cp.ManualCheckedSberDev = true;
+        cp.ManualCheckedDateSberDev = Calendar.Now;
+        cp.ManualCheckingSberDev = false;
         cp.Save();
         return this.GetSuccessResult();
       }

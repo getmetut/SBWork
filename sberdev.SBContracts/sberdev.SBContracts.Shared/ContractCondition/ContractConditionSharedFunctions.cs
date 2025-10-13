@@ -254,14 +254,14 @@ namespace sberdev.SBContracts.Shared
         // Eсли Контрагент проверяется в данный момент - не требуется проверка
         // Если контрагент из нашей группы компаний проверка не нужна
         var cp = SBContracts.Counterparties.As(contr.Counterparty);
-        if (cp == null || cp.FocusCheckingSberDev == true || cp.NeedFocusCheckSberDev == false)
+        if (cp == null || cp.ManualCheckingSberDev == true || cp.NeedManualCheckSberDev == false)
           return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
         
         // Проверяем результаты предыдущей проверки
-        if (cp.FocusCheckedSberDev.HasValue && cp.FocusCheckedDateSberDev.HasValue)
+        if (cp.ManualCheckedSberDev.HasValue && cp.ManualCheckedDateSberDev.HasValue)
         {
           // Если проверка прошла успешно и дата проверки в текущем году
-          if (cp.FocusCheckedSberDev.Value && cp.FocusCheckedDateSberDev.Value.Year == Calendar.Now.Year)
+          if (cp.ManualCheckedSberDev.Value && cp.ManualCheckedDateSberDev.Value.Year == Calendar.Now.Year)
           {
             return Sungero.Docflow.Structures.ConditionBase.ConditionResult.Create(false, string.Empty);
           }

@@ -588,7 +588,7 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "DownloadFocusCheckArchive",
+      "Name": "DownloadManualCheckArchive",
       "Placement": "Client",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
@@ -692,13 +692,6 @@
       "ReturnTypeFullName": "Sungero.Company.IDepartment, Sungero.Domain.Interfaces"
     },
     {
-      "Name": "GetFocusCompaniesIDs",
-      "IsRemote": true,
-      "Placement": "Shared",
-      "ReturnType": "global::System.Collections.Generic.List<global::System.Int64>",
-      "ReturnTypeFullName": "System.Collections.Generic.List"
-    },
-    {
       "Name": "GetFocusPropertyDisplayName",
       "Parameters": [
         {
@@ -743,6 +736,13 @@
       "Placement": "Shared",
       "ReturnType": "global::Sungero.CoreEntities.IGroup",
       "ReturnTypeFullName": "Sungero.CoreEntities.IGroup, Sungero.Domain.Shared"
+    },
+    {
+      "Name": "GetManualyCheckedCompaniesIDs",
+      "IsRemote": true,
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::System.Int64>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
     },
     {
       "Name": "GetMetadataID",
@@ -1355,7 +1355,7 @@
   "SharedAssemblyName": "sberdev.SBContracts.Shared",
   "SharedNamespace": "sberdev.SBContracts.Shared",
   "SpecialFolders": [],
-  "Version": "5.11.2.0",
+  "Version": "5.11.3.0",
   "Widgets": [],
   "Versions": [
     {

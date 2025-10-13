@@ -202,10 +202,10 @@
   <data name="FilterPanel_ContractAmount_740e089ef92844b48aa572cbb4ad9e5f" xml:space="preserve">
     <value>С суммой </value>
   </data>
-  <data name="Property_FocusCheckedDateSberDev" xml:space="preserve">
+  <data name="Property_ManualCheckedDateSberDev" xml:space="preserve">
     <value>Последняя ручная проверка</value>
   </data>
-  <data name="Property_NeedFocusCheckSberDev" xml:space="preserve">
+  <data name="Property_NeedManualCheckSberDev" xml:space="preserve">
     <value>Необходима проверка в задаче на согласование</value>
   </data>
 </root>

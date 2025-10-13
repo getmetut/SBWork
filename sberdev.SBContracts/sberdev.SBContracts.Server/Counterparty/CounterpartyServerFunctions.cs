@@ -94,14 +94,14 @@ namespace sberdev.SBContracts.Server
 
     [Public]
     /// <summary>
-    /// Устанавливает значение в поле FocusChecking
+    /// Устанавливает значение в поле ManualChecking
     /// </summary>       
-    public void SetFocusCheckingValue(bool value)
+    public void SetManualCheckingValue(bool value)
     {
-      if (_obj.FocusCheckingSberDev != value)
+      if (_obj.ManualCheckingSberDev != value)
       {
         SBContracts.PublicFunctions.Module.Remote.UnblockCardByDatabase(_obj);
-        _obj.FocusCheckingSberDev = value;
+        _obj.ManualCheckingSberDev = value;
         _obj.Save();
       }
     }
