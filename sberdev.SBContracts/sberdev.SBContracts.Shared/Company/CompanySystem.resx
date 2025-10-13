@@ -538,16 +538,16 @@
   <data name="Property_IsNeedFocusCheckSberDev" xml:space="preserve">
     <value>A check in the approval task is required</value>
   </data>
-  <data name="Property_FocusCheckStatusSberDev" xml:space="preserve">
-    <value>KonturFocus Status</value>
+  <data name="Property_ManualCheckStatusSberDev" xml:space="preserve">
+    <value>Manual check status</value>
   </data>
-  <data name="Enum_FocusCheckStatusSberDev_Actual" xml:space="preserve">
+  <data name="Enum_ManualCheckStatusSberDev_Actual" xml:space="preserve">
     <value>Actual</value>
   </data>
-  <data name="Enum_FocusCheckStatusSberDev_DateOutdated" xml:space="preserve">
+  <data name="Enum_ManualCheckStatusSberDev_DateOutdated" xml:space="preserve">
     <value>Date Expired</value>
   </data>
-  <data name="Enum_FocusCheckStatusSberDev_Failed" xml:space="preserve">
+  <data name="Enum_ManualCheckStatusSberDev_Failed" xml:space="preserve">
     <value>Failed</value>
   </data>
   <data name="ControlGroup_d40edd81af64407a98f0cbaaef94fcf2" xml:space="preserve">
@@ -568,7 +568,7 @@
   <data name="Action_ExportFocusCheckZipSberDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
-  <data name="Enum_FocusCheckStatusSberDev_MarkerChanged" xml:space="preserve">
+  <data name="Enum_ManualCheckStatusSberDev_MarkerChanged" xml:space="preserve">
     <value>Marker changed</value>
   </data>
   <data name="Action_ExportFocusCheckZipManySberDev" xml:space="preserve">
@@ -586,7 +586,7 @@
   <data name="Action_ExportFocusCheckZipManySberDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
-  <data name="Property_FocusCheckAssignIDsSberDev" xml:space="preserve">
-    <value>FocusCheckAssignIDs</value>
+  <data name="Property_ManualCheckAssignIDsSberDev" xml:space="preserve">
+    <value>ManualCheckAssignIDs</value>
   </data>
 </root>

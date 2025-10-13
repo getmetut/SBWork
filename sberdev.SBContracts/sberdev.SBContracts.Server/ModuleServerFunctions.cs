@@ -35,12 +35,12 @@ namespace sberdev.SBContracts.Server
     }
     
     /// <summary>
-    /// Получить ИД всех компании со статусом КонтурФокус
+    /// Получить ИД всех компании со статусом ручной проверки
     /// </summary>
     [Remote, Public]
-    public System.Collections.Generic.List<long> GetFocusCompaniesIDs()
+    public System.Collections.Generic.List<long> GetManualyCheckedCompaniesIDs()
     {
-      return sberdev.SBContracts.Companies.GetAll().Where(c => c.FocusCheckStatusSberDev != null).Select(c => c.Id).ToList();
+      return sberdev.SBContracts.Companies.GetAll().Where(c => c.ManualCheckStatusSberDev != null).Select(c => c.Id).ToList();
     }
     
     /// <summary>
@@ -510,7 +510,7 @@ namespace sberdev.SBContracts.Server
       if (hasChecks)
       {
         var sb = new System.Text.StringBuilder();
-        sb.AppendLine($"Статус;{Companies.Info.Properties.FocusCheckStatusSberDev.GetLocalizedValue((Nullable<Enumeration>)checkInfo.Status)}");
+        sb.AppendLine($"Статус;{Companies.Info.Properties.ManualCheckStatusSberDev.GetLocalizedValue((Nullable<Enumeration>)checkInfo.Status)}");
         sb.AppendLine("История");
         foreach (var h in checkInfo.History)
           sb.AppendLine(h);

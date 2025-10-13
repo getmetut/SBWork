@@ -31,6 +31,13 @@
     }
   ],
   "LayeredFromGuid": "3adec58c-ff50-452b-9c5c-729e83f286cb",
+  "PublicFunctions": [
+    {
+      "Name": "GetCompaniesToFillInMarkersPublic",
+      "ReturnType": "global::System.Collections.Generic.List<global::sberdev.SBContracts.ICompany>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    }
+  ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "sberdev.SBContracts.Module.Integration",

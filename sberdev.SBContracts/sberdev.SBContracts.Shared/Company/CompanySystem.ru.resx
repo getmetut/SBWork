@@ -517,16 +517,16 @@
   <data name="Property_IsNeedFocusCheckSberDev" xml:space="preserve">
     <value>Необходима проверка в задаче на согласование</value>
   </data>
-  <data name="Property_FocusCheckStatusSberDev" xml:space="preserve">
-    <value>Статус КонтрФокус </value>
+  <data name="Property_ManualCheckStatusSberDev" xml:space="preserve">
+    <value>Статус ручной проверки</value>
   </data>
-  <data name="Enum_FocusCheckStatusSberDev_Actual" xml:space="preserve">
+  <data name="Enum_ManualCheckStatusSberDev_Actual" xml:space="preserve">
     <value>Актуальна</value>
   </data>
-  <data name="Enum_FocusCheckStatusSberDev_DateOutdated" xml:space="preserve">
+  <data name="Enum_ManualCheckStatusSberDev_DateOutdated" xml:space="preserve">
     <value>Истекла дата</value>
   </data>
-  <data name="Enum_FocusCheckStatusSberDev_Failed" xml:space="preserve">
+  <data name="Enum_ManualCheckStatusSberDev_Failed" xml:space="preserve">
     <value>Провалена</value>
   </data>
   <data name="Action_ExportFocusCheckZipSberDev" xml:space="preserve">
@@ -541,7 +541,7 @@
   <data name="Action_ExportFocusCheckZipSberDevConfirmationMessage" xml:space="preserve">
     <value>Хотите скачать архив проверки по этому контрагенту?</value>
   </data>
-  <data name="Enum_FocusCheckStatusSberDev_MarkerChanged" xml:space="preserve">
+  <data name="Enum_ManualCheckStatusSberDev_MarkerChanged" xml:space="preserve">
     <value>Изменен маркер</value>
   </data>
   <data name="Action_ExportFocusCheckZipManySberDev" xml:space="preserve">
@@ -555,5 +555,8 @@
   </data>
   <data name="Action_ExportFocusCheckZipManySberDevConfirmationMessage" xml:space="preserve">
     <value>Хотите скачать архив проверки по этим контрагентам?</value>
+  </data>
+  <data name="Property_ManualCheckAssignIDsSberDev" xml:space="preserve">
+    <value>ManualCheckAssignIDs</value>
   </data>
 </root>

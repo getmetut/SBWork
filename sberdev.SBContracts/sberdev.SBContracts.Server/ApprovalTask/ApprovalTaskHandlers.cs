@@ -197,7 +197,7 @@ namespace sberdev.SBContracts
       var cp = SBContracts.Counterparties.As(contractual.Counterparty);
       if (cp == null)
         return;
-      PublicFunctions.Counterparty.SetFocusCheckingValue(cp, false);
+      PublicFunctions.Counterparty.SetManualCheckingValue(cp, false);
     }
   }
 }

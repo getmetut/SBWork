@@ -20,7 +20,7 @@ namespace SDev.BPCustom.Server.ProtocolPurchTaskBlocks
         if (ka != null)
         {
           var nka = sberdev.SBContracts.Counterparties.As(ka);
-          nka.FocusCheckingSberDev = true;
+          nka.ManualCheckingSberDev = true;
           nka.Save();
         }
       }

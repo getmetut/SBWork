@@ -65,9 +65,9 @@
     <value>Настройка фильтрации выбора аналитик в диалоговом окне глобального поиска по "Нашей организации".</value>
   </data>
   <data name="JobDisplayName_6ecc6817d8f84ba8a6f6c9c9cafba80e" xml:space="preserve">
-    <value>Контрагенты. Установить статусы проверки КонтурФокус.</value>
+    <value>Контрагенты. Установить статусы ручной проверки.</value>
   </data>
   <data name="JobDescription_6ecc6817d8f84ba8a6f6c9c9cafba80e" xml:space="preserve">
-    <value>Установить статусы КонутрФокус для контрагнетов.</value>
+    <value>Установить статусы ручной проверки для контрагнетов.</value>
   </data>
 </root>

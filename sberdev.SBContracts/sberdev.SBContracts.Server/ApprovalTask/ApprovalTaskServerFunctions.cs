@@ -49,7 +49,7 @@ namespace sberdev.SBContracts.Server
       if (cp == null)
         return;
       
-      PublicFunctions.Counterparty.SetFocusCheckingValue(cp, true);
+      PublicFunctions.Counterparty.SetManualCheckingValue(cp, true);
     }
     
     public void SetChangeAccessRightsOnDocs(Sungero.Docflow.IApprovalAssignment assignment)

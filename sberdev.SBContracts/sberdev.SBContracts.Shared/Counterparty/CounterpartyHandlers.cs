@@ -10,7 +10,7 @@ namespace sberdev.SBContracts
   partial class CounterpartySharedHandlers
   {
 
-    public virtual void FocusCheckedDateSberDevChanged(Sungero.Domain.Shared.DateTimePropertyChangedEventArgs e)
+    public virtual void ManualCheckedDateSberDevChanged(Sungero.Domain.Shared.DateTimePropertyChangedEventArgs e)
     {
       if (e.NewValue != null)
       {

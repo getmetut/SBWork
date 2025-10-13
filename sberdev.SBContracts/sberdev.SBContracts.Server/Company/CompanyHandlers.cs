@@ -124,7 +124,7 @@ namespace sberdev.SBContracts
                                          marker.OldValue.Value.Value, marker.NewValue.Value.Value);
           _obj.History.Write(operation, operation, comment);
         }
-        _obj.FocusCheckedSberDev = false;
+        _obj.ManualCheckedSberDev = false;
       }
     }
   }

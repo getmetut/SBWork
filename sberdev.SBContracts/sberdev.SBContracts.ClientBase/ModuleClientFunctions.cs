@@ -32,12 +32,12 @@ namespace sberdev.SBContracts.Client
     /// Сформировать и скачать один ZIP для всех контрагентов (массово).
     /// </summary>
     [Public]
-    public static void DownloadFocusCheckArchive()
+    public static void DownloadManualCheckArchive()
     {
       var dialog = Dialogs.CreateConfirmDialog("Вы хотите экспортировать архив проверок всех контрганетов?");
       if (dialog.Show())
       {
-        var ids = PublicFunctions.Module.Remote.GetFocusCompaniesIDs();
+        var ids = PublicFunctions.Module.Remote.GetManualyCheckedCompaniesIDs();
         var zip = sberdev.SBContracts.PublicFunctions.Module.Remote.ExportFocusCheckZipByIdsRemote(ids);
         if (zip == null)
         {

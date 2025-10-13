@@ -114,7 +114,7 @@
     },
     {
       "NameGuid": "6ecc6817-d8f8-4ba8-a6f6-c9c9cafba80e",
-      "Name": "SetFocusStatusSberDev",
+      "Name": "SetManualCheckStatusSberDev",
       "GenerateHandler": true,
       "MonthSchedule": "Monthly",
       "StartAt": "1753-01-01T06:00:00"

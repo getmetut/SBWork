@@ -310,9 +310,9 @@
     {
       "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
       "NameGuid": "48aa3e2d-135d-41a3-8bf4-423deb2540c9",
-      "Name": "FocusCheckedSberDev",
+      "Name": "ManualCheckedSberDev",
       "CanBeSearch": false,
-      "Code": "FocusChecked",
+      "Code": "ManualChecked",
       "IsEnabled": false,
       "IsShowedInList": false,
       "IsVisibility": false,
@@ -322,8 +322,8 @@
     {
       "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
       "NameGuid": "8040b198-5278-4621-b31c-cbe5632609f6",
-      "Name": "FocusCheckedDateSberDev",
-      "Code": "FocusCheckDate",
+      "Name": "ManualCheckedDateSberDev",
+      "Code": "ManualCheckDa",
       "HandledEvents": [
         "ChangedShared"
       ],
@@ -348,9 +348,9 @@
     {
       "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
       "NameGuid": "c38efcc5-962a-483d-90fb-6623be29a68d",
-      "Name": "FocusCheckingSberDev",
+      "Name": "ManualCheckingSberDev",
       "CanBeSearch": false,
-      "Code": "FocusChecking",
+      "Code": "ManualChecking",
       "IsEnabled": false,
       "IsShowedInList": false,
       "IsVisibility": false,
@@ -360,8 +360,8 @@
     {
       "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
       "NameGuid": "291f5106-4200-4277-95a0-4389f2ee29e1",
-      "Name": "NeedFocusCheckSberDev",
-      "Code": "NeedFocusCheck",
+      "Name": "NeedManualCheckSberDev",
+      "Code": "NeedManualChec",
       "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "c38efcc5-962a-483d-90fb-6623be29a68d",
@@ -438,7 +438,7 @@
       "ReturnTypeFullName": "System.Double"
     },
     {
-      "Name": "SetFocusCheckingValue",
+      "Name": "SetManualCheckingValue",
       "Parameters": [
         {
           "Name": "counterparty",

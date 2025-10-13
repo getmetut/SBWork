@@ -202,19 +202,19 @@
   <data name="FilterPanel_ContractAmount_740e089ef92844b48aa572cbb4ad9e5f" xml:space="preserve">
     <value>With amount</value>
   </data>
-  <data name="Property_FocusCheckedSberDev" xml:space="preserve">
+  <data name="Property_ManualCheckedSberDev" xml:space="preserve">
     <value>FocusChecked</value>
   </data>
-  <data name="Property_FocusCheckedDateSberDev" xml:space="preserve">
+  <data name="Property_ManualCheckedDateSberDev" xml:space="preserve">
     <value>Last manual check</value>
   </data>
   <data name="Property_OtvBuchSberDev" xml:space="preserve">
     <value>Ответственный бухгалтер</value>
   </data>
-  <data name="Property_FocusCheckingSberDev" xml:space="preserve">
-    <value>FocusChecking</value>
+  <data name="Property_ManualCheckingSberDev" xml:space="preserve">
+    <value>ManualChecking</value>
   </data>
-  <data name="Property_NeedFocusCheckSberDev" xml:space="preserve">
+  <data name="Property_NeedManualCheckSberDev" xml:space="preserve">
     <value>A check in the approval task is required</value>
   </data>
 </root>

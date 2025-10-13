@@ -157,21 +157,21 @@ namespace sberdev.SBContracts.Shared
     public Nullable<Sungero.Core.Enumeration> GetFocusStatus(bool hasCheckingAssign)
     {
       // Лёгкая ветка: была успешная проверка.
-      if (_obj.FocusCheckedSberDev == true && _obj.FocusCheckedDateSberDev.HasValue)
+      if (_obj.ManualCheckedSberDev == true && _obj.ManualCheckedDateSberDev.HasValue)
       {
-        if (_obj.FocusCheckedDateSberDev.Value.Year == Calendar.Now.Year)
-          return FocusCheckStatusSberDev.Actual;
+        if (_obj.ManualCheckedDateSberDev.Value.Year == Calendar.Now.Year)
+          return ManualCheckStatusSberDev.Actual;
         else
-          return FocusCheckStatusSberDev.DateOutdated;
+          return ManualCheckStatusSberDev.DateOutdated;
       }
       
       // Сменился маркер у контрагента
-      if (_obj.FocusCheckedSberDev == false)
-        return FocusCheckStatusSberDev.MarkerChanged;
+      if (_obj.ManualCheckedSberDev == false)
+        return ManualCheckStatusSberDev.MarkerChanged;
 
       // Сложная ветка вычесляется заранее: есть «бракующая» проверка/этап (CheckingCPStage).
       if (hasCheckingAssign)
-        return FocusCheckStatusSberDev.Failed;
+        return ManualCheckStatusSberDev.Failed;
 
       // По умолчанию — оставляем null.
       return null;

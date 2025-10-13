@@ -2121,8 +2121,8 @@
     {
       "$type": "Sungero.Metadata.EnumPropertyMetadata, Sungero.Metadata",
       "NameGuid": "ae199d3f-e052-4c24-bcdb-47eaaad1caf8",
-      "Name": "FocusCheckStatusSberDev",
-      "Code": "FocusCheckStat",
+      "Name": "ManualCheckStatusSberDev",
+      "Code": "ManualCheckSta",
       "DirectValues": [
         {
           "NameGuid": "409b4cff-4aa2-4276-960b-383aa5a1ccbb",
@@ -2152,8 +2152,8 @@
     {
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
       "NameGuid": "6df2a66b-42de-4698-8dce-e7b2566a00dd",
-      "Name": "FocusCheckAssignIDsSberDev",
-      "Code": "FCheckAsigIDs",
+      "Name": "ManualCheckAssignIDsSberDev",
+      "Code": "ManheckAsigIDs",
       "Length": 300,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "ae199d3f-e052-4c24-bcdb-47eaaad1caf8"
