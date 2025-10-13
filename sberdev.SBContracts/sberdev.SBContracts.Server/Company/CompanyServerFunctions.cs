@@ -286,7 +286,7 @@ namespace sberdev.SBContracts.Server
           System.Collections.Generic.List<Sungero.Domain.Shared.IEntity> rawAtts;
           try
           {
-            // a.Attachments отдает пустую коллекцию
+            // a.Attachments отдает пустую коллекцию, a.AllAttachments дублирует вложения из группы "приложения"
             rawAtts = a.AllAttachments.ToList();
           }
           catch (System.Exception ex)
@@ -312,10 +312,11 @@ namespace sberdev.SBContracts.Server
             if (Sungero.Docflow.SimpleDocuments.Is(att))
             {
               var eDoc = Sungero.Content.ElectronicDocuments.As(att);
-              if (eDoc != null)
+              if (eDoc != null && !documents.Contains(eDoc))
               {
                 documents.Add(eDoc);
                 addedElectronic++;
+                Sungero.Core.Logger.Debug($"[GetCheckingFiles] Добавлено вложение: AssignmentId={a.Id}.");
                 continue;
               }
             }
@@ -347,7 +348,7 @@ namespace sberdev.SBContracts.Server
         Sungero.Core.Logger.Debug($"[GetCheckingFiles] КОНЕЦ (время {swTotal.ElapsedMilliseconds} мс).");
       }
 
-      return documents;
+      return documents.ToList();
     }
 
 
