@@ -154,7 +154,7 @@ namespace sberdev.SBContracts.Shared
     /// Правила вычисления статуса проверки Контур-Фокус.
     /// Вынесено отдельно для единообразия.
     /// </summary>
-    public Nullable<Sungero.Core.Enumeration> GetFocusStatus(bool hasCheckingAssign)
+    public Nullable<Sungero.Core.Enumeration> GetManualCheckStatus(bool hasCheckingAssign)
     {
       // Лёгкая ветка: была успешная проверка.
       if (_obj.ManualCheckedSberDev == true && _obj.ManualCheckedDateSberDev.HasValue)
