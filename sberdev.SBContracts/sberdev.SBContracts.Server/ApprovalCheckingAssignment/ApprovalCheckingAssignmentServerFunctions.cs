@@ -42,8 +42,6 @@ namespace sberdev.SBContracts.Server
       newJob.ActiveText = "На вас назначено задание: " + Hyperlinks.Get(taska);
       newJob.Attachments.Add(taska);
       newJob.Save();
-      
-      taska.Save();
     }
     /// <summary>
     /// Получение пользователя по сотруднику

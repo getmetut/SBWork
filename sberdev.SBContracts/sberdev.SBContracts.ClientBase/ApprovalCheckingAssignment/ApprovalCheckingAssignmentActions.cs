@@ -46,6 +46,7 @@ namespace sberdev.SBContracts.Client
       {
         PublicFunctions.ApprovalCheckingAssignment.ReSendToUser(us, _obj);
       }
+      _obj.Save();
     }
 
     public virtual bool CanSendToOtherUserATSDev(Sungero.Domain.Client.CanExecuteActionArgs e)
