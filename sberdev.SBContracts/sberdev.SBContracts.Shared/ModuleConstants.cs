@@ -17,6 +17,8 @@ namespace sberdev.SBContracts.Constants
     public const string ContractXiongxinTemplateDocxName = "//ContractXioxingTemplate.docx";
     [Public]
     public const string OrderXiongxinTemplateDocxName = "//OrderXioxingTemplate.docx";
+    [Public]
+    public const string TemplateProtFo500DocxName = "//TemplateProtFo500.docx";
     
     public static readonly Guid KZTypeGuid = Guid.Parse("271898c8-18ca-4192-9892-e27b273ce5fc");
     /// <summary>

@@ -1018,6 +1018,14 @@ namespace sberdev.SBContracts.Server
           body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.AppProductPurchaseTemplateDocxName);
           CreateBodyByPropertiesAppProductPurchase(SberContracts.AppProductPurchases.As(doc), body);
           break;
+        case "Sungero.Custom.PurchaseProtocol":
+          var prot = Sungero.Custom.PurchaseProtocols.As(doc);
+          if (prot.TotalSumm > 500000)
+          {
+            body = new Aspose.Words.Document(pathTemplate + SBContracts.PublicConstants.Module.TemplateProtFo500DocxName);
+            CreateBodyByPropertiesProtFo500(Sungero.Custom.PurchaseProtocols.As(doc), body);
+          }
+          break;
       };
       
       var gPath = Guid.NewGuid().ToString();
@@ -1026,6 +1034,83 @@ namespace sberdev.SBContracts.Server
       doc.CreateVersionFrom(pathNewDoc);
       doc.Save();
     }
+    #region Протокол выбора поставщика: шаблон от 500 т.р.
+    public void CreateBodyByPropertiesProtFo500(Sungero.Custom.IPurchaseProtocol prot, Aspose.Words.Document body)
+    {
+      var lead = prot.DocumentFooting;
+      if (sberdev.SberContracts.AppNonProdPurchases.Is(lead))
+      {
+        var nonprod = sberdev.SberContracts.AppNonProdPurchases.As(lead);
+        body.Range.Replace("[Номер]", nonprod.PurchaseOrderNumber);
+        var mvzstatras = string.Format("МВЗ – {0}" +
+                                       "Продукт – {1}" +
+                                       "Статья - {2}", nonprod.MVZBaseSberDev.Name, nonprod.ProdCollectionExBaseSberDev.FirstOrDefault().Product.Name, nonprod.AccArtExBaseSberDev.Name);
+        body.Range.Replace("[СтатьяСметаРасходы]", mvzstatras);
+        body.Range.Replace("[НомерСтроки]", nonprod.NumPosition);
+        
+        var ecorasch = string.Format("Расчет экономического эффекта по сделке был произведен по формуле НМЦД (начальная максимальная цена договора) минус сумма сделки и составил {0} руб.", nonprod.Economy.ToString());
+        body.Range.Replace("[ЭкономическийРасчет]", ecorasch);
+        
+        // Таблица продуктов
+        var whide = nonprod.CalculationBaseSberDev.Count;
+        List<int> boldRows = new List<int>(){};
+        List<int> columnWidths = new List<int>(){10, 80, 30, 15, 15, 20};
+        boldRows.Add(0);
+        boldRows.Add(whide + 1);
+        string[,] table = new string[whide + 2, 6];
+        table[0, 0] = "№";
+        table[0, 1] = "Наименование услуги";
+        table[0, 2] = "Кол-во";
+        table[0, 3] = "Ед.измерения";
+        table[0, 4] = "Процент";
+        table[0, 5] = "Расчет порцента";
+
+        int counter = 1;
+        foreach (var elem in nonprod.CalculationBaseSberDev)
+        {
+          table[counter, 0] = counter.ToString();
+          table[counter, 1] = elem.ProductCalc.Name;
+          table[counter, 2] = elem.AbsoluteCalc.Value.ToString();
+          table[counter, 3] = "шт.";
+          table[counter, 4] = elem.PercentCalc.Value.ToString();
+          table[counter, 5] = elem.InterestCalc.Value.ToString();
+          counter++;
+        }
+        ReplacePlaceholderWithTable(body, "[Таблица1]", CreateTableByArray(body, table, boldRows, columnWidths, "Times New Roman", 9));
+      }
+      
+      body.Range.Replace("[Способ]", prot.PurchaseMethod.Name);
+      body.Range.Replace("[Обоснование]", prot.Subject);
+      body.Range.Replace("[Специфика]", prot.TextPurpose);
+      
+      var spprzak = string.Format("Порядок проведения закупки у ед.поставщика. {0} является организатором конференции SmartData" +
+                                  "Закупка проводиться на основании п.2.6.16 Положения о закупках ООО «СалютДевайсы».", prot.Counterparty.Name);
+      body.Range.Replace("[СпособПроведенияЗакупки]", spprzak);
+      body.Range.Replace("[ИнфоАнализа]", prot.ChooseCpJustif);
+      
+      body.Range.Replace("[ИнфоФормаДоговора]", "{?????????}");
+      body.Range.Replace("[ПорядокОплаты]", prot.FormPay.Value.ToString());
+      
+      var infopred = string.Format("В рамках проведения закупочной процедуры заказчиком был запрошен счет-договор у ед.поставщика - организатора конференции SmartData - {0} и получены следующие данные о цене на закупаемое товары/услуг/работы: {1} руб.",
+                                   prot.PurchaseMethod.Name , prot.TotalSumm.ToString());
+      body.Range.Replace("[ИнфоПоПредложениям]", infopred);
+      
+      var counterinn = string.Format("{0} (ИНН: {1})",prot.Counterparty.Name, prot.Counterparty.TIN);
+      var infoprof = string.Format("В ходе проверки благонадёжности поставщика {0} в системе «Контур.Фокус», негативных факторов в отношении участника не выявлено (Приложение 2).", counterinn);
+      body.Range.Replace("[ЗаключениеПрофилей]", infoprof);
+      body.Range.Replace("[ПоставщикИННКПП]", counterinn);
+      
+      var preim = string.Format("Информация о преимуществах (качественных, эргономических и т.п.) товаров (работ, услуг), предлагаемых выбранным Контрагентом по сравнению с товарами (работами, услугами), предложенными иными участниками конкурсного отбора: {0}" +
+                                "Взаимозависимость с ООО «СалютДевайсы»: ООО «СалютДевайсы» и {1} не являются взаимозависимыми лицами.", prot.PurchaseMethod.Name, prot.Counterparty.Name);
+      body.Range.Replace("[Преимущества]", preim);
+      body.Range.Replace("[Поставщик]", prot.Counterparty.Name);
+      
+      var reshenie = string.Format("Утвердить {0} поставщиком и заключить счет-договор на следующих условиях:" +
+                                   "Общая стоимость: {1} рублей, включая все налоги и сборы, если применимо.", counterinn, prot.TotalSumm.ToString());
+      body.Range.Replace("[ПредметДоговора]", reshenie);
+    }
+    #endregion
+    
     
     #region Заказ Xiongxin
     public void CreateBodyByPropertiesOrderXiongxin(SBContracts.ISupAgreement order, Aspose.Words.Document body)

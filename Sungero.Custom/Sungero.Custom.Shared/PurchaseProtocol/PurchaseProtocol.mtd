@@ -5,6 +5,17 @@
   "AccessRightsMode": "Both",
   "Actions": [
     {
+      "NameGuid": "bada190c-5ad2-4129-ab51-553b481492f0",
+      "Name": "CreateFromTemplate",
+      "GenerateHandler": true,
+      "IsAncestorMetadata": true,
+      "IsMainByDefault": true,
+      "Overridden": [
+        "GenerateHandler"
+      ],
+      "Versions": []
+    },
+    {
       "NameGuid": "444ce151-01df-4801-81e8-7524ba5bd7d8",
       "Name": "SendToTask",
       "ActionArea": "Card",

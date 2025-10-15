@@ -498,6 +498,23 @@
       ],
       "ReturnType": "global::Sungero.CoreEntities.IUser",
       "ReturnTypeFullName": "Sungero.CoreEntities.IUser, Sungero.Domain.Shared"
+    },
+    {
+      "Name": "ReSendToUser",
+      "Parameters": [
+        {
+          "Name": "us",
+          "ParameterType": "global::Sungero.CoreEntities.IUser",
+          "ParameterTypeFullName": "Sungero.CoreEntities.IUser, Sungero.Domain.Shared"
+        },
+        {
+          "Name": "job",
+          "ParameterType": "global::sberdev.SBContracts.IApprovalCheckingAssignment",
+          "ParameterTypeFullName": "sberdev.SBContracts.IApprovalCheckingAssignment, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [],

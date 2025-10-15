@@ -442,6 +442,14 @@
       "Value": "\"2.5.4.4\""
     },
     {
+      "Name": "TemplateProtFo500DocxName",
+      "ParentClasses": [
+        "Module"
+      ],
+      "TypeName": "System.String",
+      "Value": "\"//TemplateProtFo500.docx\""
+    },
+    {
       "Name": "TIN",
       "ParentClasses": [
         "Module",

@@ -9,6 +9,16 @@ namespace Sungero.Custom.Client
 {
   partial class PurchaseProtocolActions
   {
+    public override void CreateFromTemplate(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      base.CreateFromTemplate(e);
+    }
+
+    public override bool CanCreateFromTemplate(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return base.CanCreateFromTemplate(e);
+    }
+
     public virtual void SendToTask(Sungero.Domain.Client.ExecuteActionArgs e)
     {
        _obj.Save();
