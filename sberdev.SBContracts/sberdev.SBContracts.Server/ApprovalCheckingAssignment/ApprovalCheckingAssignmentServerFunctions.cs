@@ -38,6 +38,11 @@ namespace sberdev.SBContracts.Server
       if (folderApproval != null)
         folderApproval.Items.Add(taska);
       
+      var newJob = Sungero.Workflow.SimpleTasks.CreateWithNotices("На вас назначено задание: " + taska.Subject, us);
+      newJob.ActiveText = "На вас назначено задание: " + Hyperlinks.Get(taska);
+      newJob.Attachments.Add(taska);
+      newJob.Save();
+      
       taska.Save();
     }
     /// <summary>
