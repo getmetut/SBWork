@@ -28,7 +28,7 @@ namespace sberdev.SBContracts.Module.Integration.Server
                                                    || SBContracts.PublicFunctions.Counterparty.CalculateExpendableTotalAmount(SBContracts.Counterparties.As(cp), dateFrom, dateTo) > 0).ToList();
       var partiesChecked = parties.Where(q => SBContracts.Companies.As(q).ActiveLicense.HasValue).ToList();
       parties = parties.Where(q => q.Status == Sungero.CoreEntities.DatabookEntry.Status.Active && filteredParties.Contains(q));
-      var partiesList = parties.ToList();
+      var partiesList = parties.Where(p => p.Nonresident != true).ToList();
       
       HashSet<centrvd.KFIntegration.ICompany> totalPartiesHash = new HashSet<centrvd.KFIntegration.ICompany>(partiesList);
       totalPartiesHash.UnionWith(partiesChecked);

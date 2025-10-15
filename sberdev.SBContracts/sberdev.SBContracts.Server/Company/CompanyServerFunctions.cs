@@ -97,7 +97,6 @@ namespace sberdev.SBContracts.Server
     [Public]
     public System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment> GetCheckingAssignments()
     {
-      var swTotal = System.Diagnostics.Stopwatch.StartNew();
       var result = new System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment>();
 
       try
@@ -105,9 +104,6 @@ namespace sberdev.SBContracts.Server
         var stageSid = PublicConstants.Docflow.ApprovalTask.CheckingCPStage;
         var companyId = _obj != null ? _obj.Id : 0L;
         var companyName = _obj != null ? _obj.Name : string.Empty;
-
-        Sungero.Core.Logger.Debug(
-          $"[GetCheckingAssignments] НАЧАЛО. Компания Id={companyId}, Название='{companyName}', Этап Sid='{stageSid}'.");
 
         // 1) Получаем Id задач по компании.
         var swTasks = System.Diagnostics.Stopwatch.StartNew();
@@ -117,18 +113,13 @@ namespace sberdev.SBContracts.Server
                  && t.CounterpartySberDev.Id == companyId)
           .Select(t => t.Id)
           .ToList();
-        swTasks.Stop();
-        Sungero.Core.Logger.Debug(
-          $"[GetCheckingAssignments] Найдено задач: {taskIds.Count} (время {swTasks.ElapsedMilliseconds} мс).");
 
         if (taskIds.Count == 0)
         {
-          Sungero.Core.Logger.Debug("[GetCheckingAssignments] Задачи для компании не найдены. Возвращаю пустой список.");
           return result;
         }
 
         // 2) Берём задания на нужном этапе.
-        var swBase = System.Diagnostics.Stopwatch.StartNew();
         result = sberdev.SBContracts.ApprovalAssignments.GetAll()
           .Where(a => a.Task != null &&
                  taskIds.Contains(a.Task.Id) &&
@@ -136,26 +127,15 @@ namespace sberdev.SBContracts.Server
                  sberdev.SBContracts.ApprovalStages.Is(a.Stage) &&
                  sberdev.SBContracts.ApprovalStages.As(a.Stage).SidSberDev == stageSid)
           .ToList();
-        swBase.Stop();
-
-        Sungero.Core.Logger.Debug(
-          $"[GetCheckingAssignments] Найдено заданий на целевом этапе: {result.Count} (время {swBase.ElapsedMilliseconds} мс).");
       }
       catch (System.Exception ex)
       {
         Sungero.Core.Logger.Error($"[GetCheckingAssignments] ОШИБКА: {ex}");
         return new System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment>();
       }
-      finally
-      {
-        swTotal.Stop();
-        Sungero.Core.Logger.Debug($"[GetCheckingAssignments] КОНЕЦ (время {swTotal.ElapsedMilliseconds} мс).");
-      }
 
       return result;
     }
-
-
 
     [Public]
     public Structures.Module.IFocusCheckInfo GetFocusCheckInfo()
@@ -188,23 +168,18 @@ namespace sberdev.SBContracts.Server
     /// </summary>
     private System.Collections.Generic.List<Sungero.Content.IElectronicDocument> GetCheckingFiles()
     {
-      var swTotal = System.Diagnostics.Stopwatch.StartNew();
       var documents = new System.Collections.Generic.List<Sungero.Content.IElectronicDocument>();
 
       try
       {
         var companyId = _obj != null ? _obj.Id : 0L;
         var companyName = _obj != null ? _obj.Name : string.Empty;
-        Sungero.Core.Logger.Debug($"[GetCheckingFiles] НАЧАЛО. Компания Id={companyId}, Название='{companyName}'.");
 
         // 1) Документы контрагента (без сравнения по ссылке, только по Id).
-        var swCp = System.Diagnostics.Stopwatch.StartNew();
         var cpDocs = Sungero.Docflow.CounterpartyDocuments.GetAll()
           .Where(d => d.Counterparty != null && d.Counterparty.Id == companyId)
           .Select(d => Sungero.Content.ElectronicDocuments.As(d))
           .ToList();
-        swCp.Stop();
-        Sungero.Core.Logger.Debug($"[GetCheckingFiles] Документов контрагента найдено: {cpDocs.Count} (время {swCp.ElapsedMilliseconds} мс).");
         documents.AddRange(cpDocs.Where(d => d != null));
 
         // 2) Пытаемся взять ЗАКЭШИРОВАННЫЕ задания из поля ManualCheckAssignIDsSberDev.
@@ -213,7 +188,6 @@ namespace sberdev.SBContracts.Server
 
         if (!string.IsNullOrWhiteSpace(rawIds))
         {
-          var swCache = System.Diagnostics.Stopwatch.StartNew();
           // Парсинг строки Id.
           var idsSet = new System.Collections.Generic.HashSet<long>();
           var parts = rawIds.Split(new[] { ',', ';', ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
@@ -223,8 +197,6 @@ namespace sberdev.SBContracts.Server
             if (long.TryParse(s, out id) && id > 0)
               idsSet.Add(id);
           }
-
-          Sungero.Core.Logger.Debug($"[GetCheckingFiles] Кэшированные Id заданий: всего={parts.Length}, корректных уникальных={idsSet.Count}.");
 
           if (idsSet.Count > 0)
           {
@@ -245,28 +217,14 @@ namespace sberdev.SBContracts.Server
             // На случай дублей.
             cachedAssignments = loaded.GroupBy(a => a.Id).Select(g => g.First()).ToList();
           }
-
-          swCache.Stop();
-          Sungero.Core.Logger.Debug($"[GetCheckingFiles] Загружено кэшированных заданий: {cachedAssignments.Count} (время {swCache.ElapsedMilliseconds} мс).");
-        }
-        else
-        {
-          Sungero.Core.Logger.Debug("[GetCheckingFiles] Поле ManualCheckAssignIDsSberDev пусто — кэшированных заданий нет.");
         }
 
         // 3) Если кэша нет — идём живым путём.
         System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment> assignments;
         if (cachedAssignments.Count > 0)
-        {
-          Sungero.Core.Logger.Debug("[GetCheckingFiles] Использую кэшированные задания, вызов GetCheckingAssignments НЕ требуется.");
           assignments = cachedAssignments;
-        }
         else
-        {
-          Sungero.Core.Logger.Debug("[GetCheckingFiles] Кэш пуст — вызываю GetCheckingAssignments().");
           assignments = GetCheckingAssignments() ?? new System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment>();
-          Sungero.Core.Logger.Debug($"[GetCheckingFiles] Живых заданий получено: {assignments.Count}.");
-        }
 
         // 4) Вложения из заданий. Разбиваем на шаги, логируем проблемные места.
         int totalAssignments = assignments.Count;
@@ -278,7 +236,6 @@ namespace sberdev.SBContracts.Server
           if (a == null)
           {
             skippedNull++;
-            Sungero.Core.Logger.Debug($"[GetCheckingFiles] Задание #{idx} = NULL. Пропуск.");
             continue;
           }
 
@@ -291,7 +248,6 @@ namespace sberdev.SBContracts.Server
           }
           catch (System.Exception ex)
           {
-            Sungero.Core.Logger.Error($"[GetCheckingFiles] Ошибка чтения вложений у задания Id={a.Id}: {ex}");
             continue;
           }
 
@@ -316,7 +272,6 @@ namespace sberdev.SBContracts.Server
               {
                 documents.Add(eDoc);
                 addedElectronic++;
-                Sungero.Core.Logger.Debug($"[GetCheckingFiles] Добавлено вложение: AssignmentId={a.Id}.");
                 continue;
               }
             }
@@ -326,7 +281,6 @@ namespace sberdev.SBContracts.Server
             try
             {
               var typeName = att.GetType().FullName;
-              Sungero.Core.Logger.Debug($"[GetCheckingFiles] Пропущено вложение нестандартного типа: {typeName}, AssignmentId={a.Id}.");
             }
             catch
             {
@@ -334,18 +288,10 @@ namespace sberdev.SBContracts.Server
             }
           }
         }
-
-        Sungero.Core.Logger.Debug(
-          $"[GetCheckingFiles] Итог по вложениям: заданий обработано={totalAssignments}, всего вложений={totalAttachments}, добавлено электронных={addedElectronic}, пропущено null={skippedNull}, пропущено неэлектронных/неожиданных={skippedNonSimple}.");
       }
       catch (System.Exception ex)
       {
         Sungero.Core.Logger.Error($"[GetCheckingFiles] ОШИБКА: {ex}");
-      }
-      finally
-      {
-        swTotal.Stop();
-        Sungero.Core.Logger.Debug($"[GetCheckingFiles] КОНЕЦ (время {swTotal.ElapsedMilliseconds} мс).");
       }
 
       return documents.ToList();

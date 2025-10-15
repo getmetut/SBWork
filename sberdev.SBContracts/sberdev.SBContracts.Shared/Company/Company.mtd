@@ -2224,7 +2224,7 @@
       "ReturnTypeFullName": "sberdev.SBContracts.Structures.Module.IFocusCheckInfo"
     },
     {
-      "Name": "GetFocusStatus",
+      "Name": "GetManualCheckStatus",
       "Parameters": [
         {
           "Name": "company",

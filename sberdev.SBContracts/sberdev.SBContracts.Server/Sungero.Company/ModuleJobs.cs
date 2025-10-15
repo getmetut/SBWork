@@ -17,7 +17,6 @@ namespace sberdev.SBContracts.Module.Company.Server
 
       try
       {
-        var swQuery = System.Diagnostics.Stopwatch.StartNew();
         var candidates = Integration.PublicFunctions.Module.GetCompaniesToFillInMarkersPublic()
           .Select(cp => new
                   {
@@ -26,15 +25,13 @@ namespace sberdev.SBContracts.Module.Company.Server
                     cp.ManualCheckedDateSberDev
                   })
           .ToList();
-        swQuery.Stop();
-        Sungero.Core.Logger.Debug($"SetFocusStatusJob. Найдено компаний: {candidates.Count} (время {swQuery.ElapsedMilliseconds} мс).");
+        Sungero.Core.Logger.Debug($"SetFocusStatusJob. Найдено компаний: {candidates.Count}.");
 
         int processed = 0, updated = 0, skipped = 0, errors = 0;
 
         foreach (var row in candidates)
         {
           processed++;
-          var swStep = System.Diagnostics.Stopwatch.StartNew();
 
           try
           {
@@ -53,17 +50,14 @@ namespace sberdev.SBContracts.Module.Company.Server
             var assignments = PublicFunctions.Company.GetCheckingAssignments(company);
             if (assignments == null)
             {
-              Sungero.Core.Logger.Error($"SetFocusStatusJob. GetCheckingAssignments вернула NULL для компании Id={company.Id}. Использую пустой список.");
               assignments = new System.Collections.Generic.List<sberdev.SBContracts.IApprovalAssignment>();
             }
 
             var assignmentIds = assignments.Select(a => a.Id.ToString()).ToList();
             var hasAssignments = assignmentIds.Count > 0;
 
-            Sungero.Core.Logger.Debug($"SetFocusStatusJob. Компания Id={company.Id}: найдено заданий {assignmentIds.Count}.");
-
             // Определяем новый статус.
-            var status = PublicFunctions.Company.GetFocusStatus(company, hasAssignments);
+            var status = PublicFunctions.Company.GetManualCheckStatus(company, hasAssignments);
 
             bool changed = false;
             if (company.ManualCheckStatusSberDev != status)
@@ -98,11 +92,6 @@ namespace sberdev.SBContracts.Module.Company.Server
             errors++;
             Sungero.Core.Logger.Error($"SetFocusStatusJob. Ошибка при обработке компании Id={row.Id}: {ex}");
           }
-          finally
-          {
-            swStep.Stop();
-            Sungero.Core.Logger.Debug($"SetFocusStatusJob. Компания Id={row.Id} обработана за {swStep.ElapsedMilliseconds} мс.");
-          }
         }
 
         Sungero.Core.Logger.Debug(
@@ -118,55 +107,6 @@ namespace sberdev.SBContracts.Module.Company.Server
         Sungero.Core.Logger.Debug($"SetFocusStatusJob. КОНЕЦ (время {swTotal.ElapsedMilliseconds} мс).");
       }
     }
-
-
-    /*
-    /// <summary>
-    /// 
-    /// </summary>
-    public virtual void SetManualCheckStatusSberDev()
-    {
-      // 1) Отдельно делаем "тяжёлый" запрос к БД: берём только Id и нужные поля.
-      var candidates = SBContracts.Companies.GetAll()
-        .Where(cp => cp.ManualCheckedDateSberDev != null)
-        .Select(cp => new
-                {
-                  cp.Id,
-                  cp.ManualCheckedSberDev,
-                  cp.ManualCheckedDateSberDev
-                })
-        .ToList();
-
-      foreach (var row in candidates)
-      {
-        try
-        {
-          var cp = Companies.Get(row.Id);
-          if (cp == null)
-            continue;
-
-          // Если карточка бывает под блокировкой — разблокируем.
-          PublicFunctions.Module.Remote.UnblockCardByDatabase(cp);
-          // Получаем  задания на проверку
-          var assignmentsIds = PublicFunctions.Company.GetCheckingAssignments(cp)?.Select(a => a.Id.ToString());
-          // Проставляем статус строго по правилам.
-          var status = PublicFunctions.Company.GetFocusStatus(cp, assignmentsIds.Any());
-          if (cp.ManualCheckStatusSberDev != status)
-          {
-            cp.ManualCheckStatusSberDev = status;
-            if(assignmentsIds.Any())
-            {
-              cp.ManuaCheckAssignIDsSberDev = string.Join(",", assignmentsIds);
-            }
-            cp.Save();
-          }
-        }
-        catch (System.Exception x)
-        {
-          Logger.Error(x.ToString());
-        }
-      }
-    }*/
 
   }
 }
