@@ -39,32 +39,14 @@ namespace sberdev.SBContracts.Client
       if (dial.Show() != DialogButtons.Ok)
         return;
       
+      e.CloseFormAfterAction = true;
+      
       var us = PublicFunctions.ApprovalCheckingAssignment.GetUserToEmployeer(empl.Value);
       if (us != null)
       {
-        _obj.Performer = us;
-        
-        if (!_obj.AccessRights.CanUpdate(us))
-            _obj.AccessRights.Grant(us, DefaultAccessRightsTypes.Change);
-        
-        foreach (var att in _obj.AllAttachments)
-        {
-          try
-          {
-          if (!att.AccessRights.CanUpdate(us))
-            att.AccessRights.Grant(us, DefaultAccessRightsTypes.Change);
-          }
-          catch (Exception err)
-          {
-            Logger.Debug(string.Format("Ошибка выдачи прав доступа в задании: {0} => {1}", _obj.Id, err.Message));
-          }
-        }
-        var folderApproval = PublicFunctions.ApprovalCheckingAssignment.GetUserFolderApproval(us);
-        if (folderApproval != null)
-          folderApproval.Items.Add(_obj);
-
-        e.CloseFormAfterAction = true;
+        PublicFunctions.ApprovalCheckingAssignment.ReSendToUser(us, _obj);
       }
+      _obj.Save();
     }
 
     public virtual bool CanSendToOtherUserATSDev(Sungero.Domain.Client.CanExecuteActionArgs e)
