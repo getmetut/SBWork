@@ -1,0 +1,64 @@
+{
+  "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
+  "NameGuid": "951b4963-1b3d-40eb-ac82-df29c7207a25",
+  "Name": "DocDistribution",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "SberDev.DocDistribution.Client",
+  "ClientBaseAssemblyName": "SberDev.DocDistribution.ClientBase",
+  "ClientBaseNamespace": "SberDev.DocDistribution.ClientBase",
+  "ClientNamespace": "SberDev.DocDistribution.Client",
+  "Code": "DocDist",
+  "CompanyCode": "SberDev",
+  "Cover": {
+    "NameGuid": "7228da5f-32e5-41c0-b9dd-111686c3316f",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "ee6006bf-a9c6-42a4-8625-7238d9a2d9d0",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "95368700-703f-4afa-971e-7aaf5b590825",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "Dependencies": [
+    {
+      "Id": "b33230d7-1513-4f37-9ea0-7d0db0fb6b72",
+      "IsSolutionModule": true,
+      "MaxVersion": "",
+      "MinVersion": ""
+    }
+  ],
+  "IconResourcesKeys": [],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "SberDev.DocDistribution",
+  "IsolatedAssemblyName": "SberDev.DocDistribution.Isolated",
+  "IsolatedNamespace": "SberDev.DocDistribution.Isolated",
+  "IsVisible": false,
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "SberDev.DocDistribution",
+  "ResourcesKeys": [],
+  "ServerAssemblyName": "SberDev.DocDistribution.Server",
+  "ServerNamespace": "SberDev.DocDistribution.Server",
+  "SharedAssemblyName": "SberDev.DocDistribution.Shared",
+  "SharedNamespace": "SberDev.DocDistribution.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "ModuleMetadata",
+      "Number": 8
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}

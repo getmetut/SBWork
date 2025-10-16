@@ -1456,35 +1456,37 @@ namespace sberdev.SBContracts.Server
       #region Таблица продуктов
       // Настройки таблицы
       var boldRows = new List<int> { 0, purch.PurchasesCollection.Count + 1 };
-      var columnWidths = new List<int> { 10, 80, 30, 20, 15, 30, 20 };
+      var columnWidths = new List<int> { 10, 40, 40, 40, 20, 15, 25, 15 };
 
       // Инициализация таблицы
       int rowCount = purch.PurchasesCollection.Count + 2;
-      string[,] purchTable = new string[rowCount, 7];
+      string[,] purchTable = new string[rowCount, 8];
 
       // Заполнение заголовка таблицы
-      string[] headers = { "№", "Наименование продукции", "Артикул", "Цена за ед. " + (purch.FlagVAT.Value ? "с НДС" : "без НДС"), "Кол-во, шт.", "Полн. стоим.", "Валюта" };
+      string[] headers = { "№", "Наименование выбранного поставщика", "Наименование продукции", "Артикул", "Цена за ед. " + (purch.FlagVAT.Value ? "с НДС" : "без НДС"), "Кол-во, шт.", "Полн. стоим.", "Валюта" };
       for (int i = 0; i < headers.Length; i++)
         purchTable[0, i] = headers[i];
 
       // Заполнение строк данных
       int counter = 1;
+      string cpName = purch.Counterparty.Name;
       foreach (var elem in purch.PurchasesCollection)
       {
         purchTable[counter, 0] = counter.ToString();
-        purchTable[counter, 1] = elem.Product;
-        purchTable[counter, 2] = elem.Article;
-        purchTable[counter, 3] = elem.PriceUnit.Value.ToString();
-        purchTable[counter, 4] = elem.Quantity.Value.ToString();
-        purchTable[counter, 5] = (elem.PriceUnit.Value * elem.Quantity.Value).ToString();
-        purchTable[counter, 6] = purch.Currency?.ShortName;
+        purchTable[counter, 1] = cpName;
+        purchTable[counter, 2] = elem.Product;
+        purchTable[counter, 3] = elem.Article;
+        purchTable[counter, 4] = elem.PriceUnit.Value.ToString();
+        purchTable[counter, 5] = elem.Quantity.Value.ToString();
+        purchTable[counter, 6] = (elem.PriceUnit.Value * elem.Quantity.Value).ToString();
+        purchTable[counter, 7] = purch.Currency?.ShortName;
         counter++;
       }
 
       // Заполнение итоговой строки
       purchTable[rowCount - 1, 1] = "ИТОГО / TOTAL";
-      purchTable[rowCount - 1, 4] = purch.PurchasesCollection.Sum(p => p.Quantity.Value).ToString();
-      purchTable[rowCount - 1, 5] = purch.PurchasesCollection.Sum(p => p.PriceUnit.Value * p.Quantity.Value).ToString();
+      purchTable[rowCount - 1, 5] = purch.PurchasesCollection.Sum(p => p.Quantity.Value).ToString();
+      purchTable[rowCount - 1, 6] = purch.PurchasesCollection.Sum(p => p.PriceUnit.Value * p.Quantity.Value).ToString();
 
       // Вставка таблицы в документ
       ReplacePlaceholderWithTable(
