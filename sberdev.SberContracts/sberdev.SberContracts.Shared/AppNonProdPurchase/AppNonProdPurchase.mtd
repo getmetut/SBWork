@@ -31,6 +31,14 @@
       "GenerateHandler": true,
       "LargeIconName": "Action_SendToBPTaskBase_large_5342164dbfab47f6976d192b43a1331a.png",
       "SmallIconName": "Action_SendToBPTaskBase_small_5342164dbfab47f6976d192b43a1331a.png"
+    },
+    {
+      "NameGuid": "b2d125db-9cb0-4f78-b9f3-a4fe045db466",
+      "Name": "SendToBPOfficial",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": "Action_SendToBPOfficial_large_b2d125db9cb04f78b9f3a4fe045db466.png",
+      "SmallIconName": "Action_SendToBPOfficial_small_b2d125db9cb04f78b9f3a4fe045db466.png"
     }
   ],
   "BaseGuid": "178d3053-5516-4f14-9f3d-4d75e3f352d4",

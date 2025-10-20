@@ -9,6 +9,28 @@ namespace sberdev.SberContracts.Client
 {
   partial class AppNonProdPurchaseActions
   {
+    public virtual void SendToBPOfficial(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      _obj.Save();
+      e.CloseFormAfterAction = true;
+      var task = SDev.BPCustom.OfficialTasks.Create();
+      task.BaseAttachments.OfficialDocuments.Add(_obj);
+      if (_obj.HasRelations)
+      {
+        foreach (var elem in _obj.Relations.GetRelated())
+        {
+          task.OtherAttachmentGroup.ElectronicDocuments.Add(elem);
+        }
+      }
+      task.Subject = "Согласование: " + _obj.Name;
+      task.Show();
+    }
+
+    public virtual bool CanSendToBPOfficial(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
     public virtual void SendToBPTaskBase(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       _obj.Save();
