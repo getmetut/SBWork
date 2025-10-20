@@ -16,7 +16,7 @@ namespace SDev.BPCustom.Client
       if (dial.Show() != DialogButtons.Ok)
       {
         e.Cancel();
-        return
+        return;
       }
       
       _obj.NewEmployee = newEmpl.Value;
