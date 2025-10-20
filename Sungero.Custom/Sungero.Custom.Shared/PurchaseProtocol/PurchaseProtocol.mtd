@@ -940,12 +940,65 @@
       },
       {
         "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
-        "NameGuid": "031abfc8-6503-4e7f-a6db-29ae323b0dcd",
+        "NameGuid": "fa33fd31-b2ce-44cb-84ee-cbb842283cef",
+        "Name": "ActionButtonSberDev",
+        "ActionGuid": "642b5055-7e1d-478d-8b4d-b0f31eeff0f0",
+        "ButtonSize": "Large",
+        "Index": 33,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "52099269-7fc8-4a2c-b6bf-20a19fb11d09"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "49552ba8-7e2b-4b9b-8431-ce531e07dde6",
+        "Name": "AddStamp",
+        "ActionGuid": "05fbe763-f698-4c36-a486-e2e53f0f0e7a",
+        "ButtonSize": "Large",
+        "Index": 32,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "52099269-7fc8-4a2c-b6bf-20a19fb11d09",
+        "Versions": []
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "20daac13-a989-4cc3-bcc3-7d0203ae8a91",
+        "Name": "AddMarksManually",
+        "ActionGuid": "870621d4-ac5b-4f29-b183-eb58059392fb",
+        "ButtonSize": "Large",
+        "Index": 33,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "52099269-7fc8-4a2c-b6bf-20a19fb11d09"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "843cfd63-7a86-4004-bb83-b8d8d8558b88",
+        "Name": "ShowSignatures",
+        "ActionGuid": "c90f03c4-fc31-42c2-8eb6-12a058708e15",
+        "ButtonSize": "Large",
+        "Index": 31,
+        "IsAncestorMetadata": true,
+        "Overridden": [
+          "Index"
+        ],
+        "ParentGuid": "52099269-7fc8-4a2c-b6bf-20a19fb11d09"
+      },
+      {
+        "$type": "Sungero.Metadata.RibbonActionButtonMetadata, Sungero.Metadata",
+        "NameGuid": "f84a9bd3-1e60-433f-b506-0d88ab5851c6",
         "Name": "CreateVersionInReq",
         "ActionGuid": "32abdb09-6e13-4ac3-8daa-9a055d8a007a",
         "ButtonSize": "Large",
-        "Index": 12,
-        "ParentGuid": "3ff46c68-1aac-4315-a993-3a148eba27c9"
+        "Index": 21,
+        "ParentGuid": "52099269-7fc8-4a2c-b6bf-20a19fb11d09"
       }
     ],
     "Groups": [],
