@@ -28,12 +28,11 @@
     "NameGuid": "2bf5fa0d-3733-459a-aade-4765d70af61a",
     "Actions": [
       {
-        "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
+        "$type": "Sungero.Metadata.CoverComputableFolderActionMetadata, Sungero.Metadata",
         "NameGuid": "091818b9-9a64-4703-8603-24beae6dcc11",
         "Name": "PurchaseProtocol",
-        "EntityTypeId": "b4c6255c-cdb4-4b07-b405-243790ee8ccc",
+        "ComputableFolderId": "d318477e-7f7a-48d5-b0e5-8447f064349d",
         "GroupId": "cfe07ab5-7374-43c2-908b-891dabd46756",
-        "IsVisible": false,
         "PreviousItemGuid": "c2228f76-fd01-4788-8c0b-0249c949770a"
       },
       {
@@ -358,6 +357,10 @@
     {
       "ItemId": "01183f10-af51-4496-a499-e35ca687c014",
       "PreviousItemId": "9cba8907-aa7e-4b16-b291-a18ae0fb6f3e"
+    },
+    {
+      "ItemId": "d318477e-7f7a-48d5-b0e5-8447f064349d",
+      "PreviousItemId": "01183f10-af51-4496-a499-e35ca687c014"
     }
   ],
   "HandledEvents": [
@@ -1194,7 +1197,65 @@
   "ServerNamespace": "sberdev.SberContracts.Server",
   "SharedAssemblyName": "sberdev.SberContracts.Shared",
   "SharedNamespace": "sberdev.SberContracts.Shared",
-  "SpecialFolders": [],
+  "SpecialFolders": [
+    {
+      "NameGuid": "d318477e-7f7a-48d5-b0e5-8447f064349d",
+      "Name": "FolderPurchaseProtocol",
+      "DefaultContentType": "b4c6255c-cdb4-4b07-b405-243790ee8ccc",
+      "DisplayType": "Module",
+      "FilterPanel": {
+        "NameGuid": "5ffde69f-6b8c-4d7a-a7dc-f142ed04e9d1",
+        "Name": "FilterPanel",
+        "Controls": [
+          {
+            "$type": "Sungero.Metadata.FilterGroupMetadata, Sungero.Metadata",
+            "NameGuid": "df7567c5-d2af-48dc-bf9f-8f360a56e9c6",
+            "Name": "FilterPanel"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListMetadata, Sungero.Metadata",
+            "NameGuid": "f610666c-8798-4300-b2d2-36b2bdc2256d",
+            "Name": "FilterPanelFlagsList",
+            "ParentGuid": "df7567c5-d2af-48dc-bf9f-8f360a56e9c6"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "d0377e3d-2e6d-45c8-a274-4bc280bfc165",
+            "Name": "ZK",
+            "ParentGuid": "f610666c-8798-4300-b2d2-36b2bdc2256d"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "9821599e-966e-4272-baa3-3b19faf989ae",
+            "Name": "UL",
+            "ParentGuid": "f610666c-8798-4300-b2d2-36b2bdc2256d",
+            "PreviousGuid": "d0377e3d-2e6d-45c8-a274-4bc280bfc165"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "7c073145-e419-4efe-b1aa-ff737f9dd8be",
+            "Name": "Do500",
+            "ParentGuid": "f610666c-8798-4300-b2d2-36b2bdc2256d",
+            "PreviousGuid": "9821599e-966e-4272-baa3-3b19faf989ae"
+          },
+          {
+            "$type": "Sungero.Metadata.FilterListItemMetadata, Sungero.Metadata",
+            "NameGuid": "f9358552-b643-4583-9de4-08eb01f35a31",
+            "Name": "All",
+            "IsSelected": true,
+            "ParentGuid": "f610666c-8798-4300-b2d2-36b2bdc2256d",
+            "PreviousGuid": "7c073145-e419-4efe-b1aa-ff737f9dd8be"
+          }
+        ]
+      },
+      "HandledEvents": [
+        "PreFilteringServer"
+      ],
+      "IsShow": true,
+      "Kind": "Computable",
+      "NeedShowMarkedCount": false
+    }
+  ],
   "Version": "5.11.4.0",
   "Widgets": [
     {

@@ -338,7 +338,7 @@
     <value>Протоколы выбора способа закупки</value>
   </data>
   <data name="CoverDescription_PurchaseProtocol" xml:space="preserve">
-    <value>Реестр протоколов выбора способа закупки</value>
+    <value>Реестр протоколов выбора способа закупки с фильтрацией</value>
   </data>
   <data name="CoverGroup_CreationsPurch" xml:space="preserve">
     <value>Создание документов</value>
@@ -384,5 +384,23 @@
   </data>
   <data name="JobDescription_e9d4367a90e042268f61f3630e41015c" xml:space="preserve">
     <value>The process fills Сounterparty the field in tasks (it is created for export KonturFocus zip).</value>
+  </data>
+  <data name="sf_d318477e_7f7a_48d5_b0e5_8447f064349d" xml:space="preserve">
+    <value>Реестр протоколов</value>
+  </data>
+  <data name="FilterPanel_FilterPanel_df7567c5d2af48dcbf9f8f360a56e9c6" xml:space="preserve">
+    <value>Фильтр-панель</value>
+  </data>
+  <data name="FilterPanel_ZK_d0377e3d2e6d45c8a2744bc280bfc165" xml:space="preserve">
+    <value>Протоколы в рамках ЗК</value>
+  </data>
+  <data name="FilterPanel_UL_9821599e966e4272baa33b19faf989ae" xml:space="preserve">
+    <value>Закупки в рамказ УЛ</value>
+  </data>
+  <data name="FilterPanel_Do500_7c073145e4194efeb1aaff737f9dd8be" xml:space="preserve">
+    <value>Закупки до 500 т.р.</value>
+  </data>
+  <data name="FilterPanel_All_f9358552b64345839de408eb01f35a31" xml:space="preserve">
+    <value>Все типы</value>
   </data>
 </root>
