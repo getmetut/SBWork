@@ -9,6 +9,13 @@ namespace Sungero.Custom.Client
 {
   partial class PurchaseProtocolFunctions
   {
+    
+//    [Public]
+//    public static virtual void CreateBodyByPropertiesSberDev(Sungero.Domain.Client.ExecuteActionArgs e)
+//    {
+//      sberdev.SBContracts.PublicFunctions.Module.Remote.CreateBodyByProperties(_obj);
+//      _obj.Save();
+//    }
 
     /// <summary>
     /// Инструкция

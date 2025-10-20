@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sungero.Domain;
 using Sungero.Core;
 using Sungero.CoreEntities;
 using Sungero.Custom.PurchaseProtocol;
@@ -9,6 +10,17 @@ namespace Sungero.Custom.Client
 {
   partial class PurchaseProtocolActions
   {
+    public virtual void CreateVersionInReq(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      sberdev.SBContracts.PublicFunctions.Module.Remote.CreateBodyByProperties(_obj);
+      _obj.Save();
+    }
+
+    public virtual bool CanCreateVersionInReq(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
     public override void CreateFromTemplate(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       base.CreateFromTemplate(e);

@@ -256,4 +256,19 @@
   <data name="Action_SendToTaskConfirmationDescription" xml:space="preserve">
     <value />
   </data>
+  <data name="Action_CreateVersionInReq" xml:space="preserve">
+    <value>Сгенерировать документ из шаблона</value>
+  </data>
+  <data name="Action_CreateVersionInReqDescription" xml:space="preserve">
+    <value>Сгенерировать документ из шаблона</value>
+  </data>
+  <data name="Action_CreateVersionInReqHint" xml:space="preserve">
+    <value>Сгенерировать документ из шаблона</value>
+  </data>
+  <data name="Action_CreateVersionInReqConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_CreateVersionInReqConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
 </root>
