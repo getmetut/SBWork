@@ -19,13 +19,21 @@ namespace sberdev.SBContracts
         if (isInvoice)
         {
           if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Prepayment)
-            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+          {
+            string contrTypeChoice = sberdev.SBContracts.PublicFunctions.AccountingDocumentBase
+              .ShowContractChangedDialog(_obj);
+            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue, contrTypeChoice);
+          }
         }
         else
         {
           Functions.AccountingDocumentBase.FillDeliveryInfo(_obj, SBContracts.ContractualDocuments.As(_obj.LeadingDocument));
           if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Postpay)
-            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+          {
+            string contrTypeChoice = sberdev.SBContracts.PublicFunctions.AccountingDocumentBase
+              .ShowContractChangedDialog(_obj);
+            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue, contrTypeChoice);
+          }
         }
       }
       else

@@ -1034,6 +1034,7 @@ namespace sberdev.SBContracts.Server
       doc.CreateVersionFrom(pathNewDoc);
       doc.Save();
     }
+    
     #region Протокол выбора поставщика: шаблон от 500 т.р.
     public void CreateBodyByPropertiesProtFo500(Sungero.Custom.IPurchaseProtocol prot, Aspose.Words.Document body)
     {
@@ -1110,7 +1111,6 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[ПредметДоговора]", reshenie);
     }
     #endregion
-    
     
     #region Заказ Xiongxin
     public void CreateBodyByPropertiesOrderXiongxin(SBContracts.ISupAgreement order, Aspose.Words.Document body)

@@ -20,7 +20,22 @@ namespace sberdev.SBContracts.Client
       var dialog = Dialogs.CreateInputDialog(sberdev.SBContracts.AccountingDocumentBases.Resources.FillFromDocument);
       var doc = dialog.AddSelect("Документ", true, sberdev.SBContracts.OfficialDocuments.Null);
       if (dialog.Show() == DialogButtons.Ok)
-        SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, doc.Value);
+      {
+        var contractSource    = sberdev.SBContracts.ContractualDocuments.As(doc.Value);
+
+        string contrTypeChoice = null;
+
+        if (contractSource != null && contractSource.ContrTypeBaseSberDev.HasValue)
+        {
+          var sourceType = contractSource.ContrTypeBaseSberDev.Value.Value; // "Profitable"/"Expendable"/"ExpendProfit"
+          if (sourceType == "ExpendProfit")
+          {
+            contrTypeChoice = sberdev.SBContracts.PublicFunctions.AccountingDocumentBase
+              .ShowContractChangedDialog(_obj);
+          }
+        }
+        SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, doc.Value, contrTypeChoice);
+      }
     }
 
     public void FillFromCashe()

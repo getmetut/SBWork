@@ -9,6 +9,460 @@ namespace sberdev.SberContracts.Shared
 {
   public class ModuleFunctions
   {
+    #region Заполнение, копирование свойств
+    
+    #region Договор -> Договор
+    
+    /// <summary>
+    /// Заполнить общие свойства из выбранного документа
+    /// </summary>
+    /// <param name="contract"></param>
+    public static void FillGeneralProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
+    {
+      doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
+      doc.Counterparty = docSelected.Counterparty;
+      doc.DeliveryMethod = docSelected.DeliveryMethod;
+      if (docSelected.AgentSaluteSberDev != null)
+      {
+        doc.AgentSaluteSberDev = docSelected.AgentSaluteSberDev;
+      }
+      if (docSelected.TotalAmount != null)
+      {
+        doc.TotalAmount = docSelected.TotalAmount;
+        doc.Currency = docSelected.Currency;
+      }
+      if (!SberContracts.Purchases.Is(doc) && !SberContracts.AppProductPurchases.Is(doc))
+      {
+        doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
+        doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
+      }
+    }
+    
+    /// <summary>
+    /// Заполнить доходные аналитики из выбранного документа
+    /// </summary>
+    /// <param name="lead">Ведущий документ</param>
+    public static void FillProfitableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
+    {
+      if (docSelected.AccArtPrBaseSberDev != null)
+        doc.AccArtPrBaseSberDev = docSelected.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtPrBaseSberDev : null;
+      if (docSelected.AccArtPrBaseSberDev != null)
+        doc.MVPBaseSberDev = docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVPBaseSberDev : null;
+      var collection = docSelected.ProdCollectionPrBaseSberDev;
+      if (collection.Count > 0)
+      {
+        doc.ProdCollectionPrBaseSberDev.Clear();
+        foreach (var prod in collection)
+        {
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          {
+            var target = doc.ProdCollectionPrBaseSberDev.AddNew();
+            target.Product = prod.Product;
+          }
+        }
+      }
+    }
+    
+    /// <summary>
+    /// Заполнить расходные аналитики из выбранного документа
+    /// </summary>
+    /// <param name="lead">Ведущий документ</param>
+    [Public]
+    public static void FillExpendableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
+    {
+      if (docSelected.AccArtExBaseSberDev != null)
+        doc.AccArtExBaseSberDev = docSelected.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtExBaseSberDev : null;
+      if (docSelected.MVZBaseSberDev != null)
+        doc.MVZBaseSberDev = docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVZBaseSberDev : null;
+      if (docSelected.MarketDirectSberDev != null)
+        doc.MarketDirectSberDev = docSelected.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Active ?
+          docSelected.MarketDirectSberDev : null;
+      var collection = docSelected.ProdCollectionExBaseSberDev;
+      if (collection.Count > 0)
+      {
+        doc.ProdCollectionExBaseSberDev.Clear();
+        foreach (var prod in collection)
+        {
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          {
+            var target = doc.ProdCollectionExBaseSberDev.AddNew();
+            target.Product = prod.Product;
+          }
+        }
+      }
+    }
+    
+    /// <summary>
+    /// Заполнить калькуляцию из выбранного документа
+    /// </summary>
+    /// <param name="doc"></param>
+    /// <param name="docSelected"></param>
+    public static void FillCalculation(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
+    {
+      var calc = doc.CalculationBaseSberDev;
+      var calcSelected = docSelected.CalculationBaseSberDev;
+      if (calcSelected.Count > 0)
+      {
+        calc.Clear();
+        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Percent")
+        {
+          doc.CalculationFlagBaseSberDev = SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent;
+          foreach(var prop in calcSelected)
+          {
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.PercentCalc = prop.PercentCalc;
+            }
+          }
+        }
+        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Absolute")
+        {
+          doc.CalculationFlagBaseSberDev = SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Absolute;
+          foreach(var prop in calcSelected)
+          {
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.AbsoluteCalc = prop.AbsoluteCalc;
+            }
+          }
+        }
+      }
+    }
+    
+    #endregion
+    
+    #region Финаносвый -> Договор
+    
+    /// <summary>
+    /// Заполнить общие свойства из выбранного документа
+    /// </summary>
+    /// <param name="contract"></param>
+    public static void FillGeneralProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
+    {
+      doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev ;
+      doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
+      if (docSelected.TotalAmount != null)
+      {
+        doc.TotalAmount = docSelected.TotalAmount;
+        doc.Currency = docSelected.Currency;
+      }
+      doc.DeliveryMethod = docSelected.DeliveryMethod;
+      doc.Counterparty = docSelected.Counterparty;
+    }
+    
+    /// <summary>
+    /// Заполнить доходные аналитики из выбранного документа
+    /// </summary>
+    /// <param name="lead">Ведущий документ</param>
+    public static void FillProfitableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
+    {
+      if (docSelected.AccArtBaseSberDev != null)
+        doc.AccArtPrBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtBaseSberDev : null;
+      if (docSelected.MVPBaseSberDev != null)
+        doc.MVPBaseSberDev = docSelected.MVPBaseSberDev != null && docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVPBaseSberDev : null;
+      var collection = docSelected.ProdCollectionBaseSberDev;
+      if (collection.Count > 0)
+      {
+        doc.ProdCollectionPrBaseSberDev.Clear();
+        foreach (var prod in collection)
+        {
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          {
+            var target = doc.ProdCollectionPrBaseSberDev.AddNew();
+            target.Product = prod.Product;
+          }
+        }
+      }
+    }
+    
+    /// <summary>
+    /// Заполнить расходные аналитики из выбранного документа
+    /// </summary>
+    /// <param name="lead">Ведущий документ</param>
+    public static void FillExpendableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
+    {
+      if (docSelected.AccArtBaseSberDev != null)
+        doc.AccArtExBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtBaseSberDev : null;
+      if (docSelected.MVZBaseSberDev != null)
+        doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVZBaseSberDev : null;
+      if (docSelected.MarketDirectSberDev != null)
+        doc.MarketDirectSberDev = docSelected.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Active ?
+          docSelected.MarketDirectSberDev : null;
+      var collection = docSelected.ProdCollectionBaseSberDev;
+      if (collection.Count > 0)
+      {
+        doc.ProdCollectionExBaseSberDev.Clear();
+        foreach (var prod in collection)
+        {
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          {
+            var target = doc.ProdCollectionExBaseSberDev.AddNew();
+            target.Product = prod.Product;
+          }
+        }
+      }
+    }
+    
+    /// <summary>
+    /// Заполнить калькуляцию из выбранного документа
+    /// </summary>
+    /// <param name="doc"></param>
+    /// <param name="docSelected"></param>
+    public static void FillCalculation(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
+    {
+      var calc = doc.CalculationBaseSberDev;
+      var calcSelected = docSelected.CalculationBaseSberDev;
+      if (calcSelected.Count > 0)
+      {
+        calc.Clear();
+        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Percent")
+        {
+          doc.CalculationFlagBaseSberDev = SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent;
+          foreach(var prop in calcSelected)
+          {
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.PercentCalc = prop.PercentCalc;
+            }
+          }
+        }
+        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Absolute")
+        {
+          doc.CalculationFlagBaseSberDev = SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Absolute;
+          foreach(var prop in calcSelected)
+          {
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.AbsoluteCalc = prop.AbsoluteCalc;
+            }
+          }
+        }
+      }
+    }
+    #endregion
+    
+    #region Договор -> Финансовый
+    
+    /// <summary>
+    /// Заполнить общие свойства из выбранного документа
+    /// </summary>
+    /// <param name="contract"></param>
+    public static void FillGeneralProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
+    {
+      doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
+      if (docSelected.TotalAmount != null)
+      {
+        doc.TotalAmount = docSelected.TotalAmount;
+        doc.Currency = docSelected.Currency;
+      }
+      doc.DeliveryMethod = docSelected.DeliveryMethod;
+      doc.Counterparty = docSelected.Counterparty;
+    }
+    
+    /// <summary>
+    /// Заполнить доходные аналитики из выбранного документа
+    /// </summary>
+    /// <param name="lead">Ведущий документ</param>
+    public static void FillProfitableAnaliticsProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
+    {
+      doc.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable;
+      if (docSelected.AccArtPrBaseSberDev != null)
+        doc.AccArtBaseSberDev = docSelected.AccArtPrBaseSberDev != null && docSelected.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtPrBaseSberDev : null;
+      if (docSelected.MVPBaseSberDev != null)
+        doc.MVPBaseSberDev = docSelected.MVPBaseSberDev != null && docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVPBaseSberDev : null;
+      var collection = docSelected.ProdCollectionPrBaseSberDev;
+      if (collection.Count > 0)
+      {
+        doc.ProdCollectionBaseSberDev.Clear();
+        foreach (var prod in collection)
+        {
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          {
+            var i = doc.ProdCollectionBaseSberDev.AddNew();
+            i.Product = prod.Product;
+          }
+        }
+      }
+    }
+    
+    /// <summary>
+    /// Заполнить расходные аналитики из выбранного документа
+    /// </summary>
+    /// <param name="lead">Ведущий документ</param>
+    public static void FillExpendableAnaliticsProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
+    {
+      doc.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable;
+      if (docSelected.MVZBaseSberDev != null)
+        doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVZBaseSberDev : null;
+      if (docSelected.AccArtExBaseSberDev != null)
+        doc.AccArtBaseSberDev = docSelected.AccArtExBaseSberDev != null && docSelected.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtExBaseSberDev : null;
+      if (docSelected.MarketDirectSberDev != null)
+        doc.MarketDirectSberDev = docSelected.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Active ?
+          docSelected.MarketDirectSberDev : null;
+      var collection = docSelected.ProdCollectionExBaseSberDev;
+      if (collection.Count > 0)
+      {
+        doc.ProdCollectionBaseSberDev.Clear();
+        foreach (var prod in collection)
+        {
+          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+          {
+            var i = doc.ProdCollectionBaseSberDev.AddNew();
+            i.Product = prod.Product;
+          }
+        }
+      }
+    }
+    
+    /// <summary>
+    /// Заполнить калькуляцию из выбранного документа
+    /// </summary>
+    /// <param name="doc"></param>
+    /// <param name="docSelected"></param>
+    public static void FillCalculation(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
+    {
+      var calc = doc.CalculationBaseSberDev;
+      var calcSelected = docSelected.CalculationBaseSberDev;
+      if (calcSelected.Count > 0)
+      {
+        calc.Clear();
+        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Percent")
+        {
+          doc.CalculationFlagBaseSberDev = SBContracts.AccountingDocumentBase.CalculationFlagBaseSberDev.Percent;
+          foreach(var prop in calcSelected)
+          {
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.PercentCalc = prop.PercentCalc;
+            }
+          }
+        }
+        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Absolute")
+        {
+          doc.CalculationFlagBaseSberDev = SBContracts.AccountingDocumentBase.CalculationFlagBaseSberDev.Absolute;
+          foreach(var prop in calcSelected)
+          {
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.AbsoluteCalc = prop.AbsoluteCalc;
+            }
+          }
+        }
+      }
+    }
+    #endregion
+    
+    #region Финансовый -> Финансовый
+    
+    /// <summary>
+    /// Заполнить общие свойства из выбранного документа
+    /// </summary>
+    /// <param name="contract"></param>
+    public static void FillGeneralProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IAccountingDocumentBase docSelected)
+    {
+      doc.PayTypeBaseSberDev = docSelected.PayTypeBaseSberDev;
+      doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
+      doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
+      doc.LeadingDocument = docSelected.LeadingDocument;
+      if (docSelected.TotalAmount != null)
+      {
+        doc.TotalAmount = docSelected.TotalAmount;
+        doc.Currency = docSelected.Currency;
+      }
+      doc.DeliveryMethod = docSelected.DeliveryMethod;
+      if (docSelected.AccArtBaseSberDev != null)
+        doc.AccArtBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
+          docSelected.AccArtBaseSberDev : null;
+      if (docSelected.MVPBaseSberDev != null)
+        doc.MVPBaseSberDev = docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVPBaseSberDev : null;
+      if (docSelected.MVZBaseSberDev != null)
+        doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
+          docSelected.MVZBaseSberDev : null;
+      if (docSelected.MarketDirectSberDev != null)
+        doc.MarketDirectSberDev = docSelected.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Active ?
+          docSelected.MarketDirectSberDev : null;
+      doc.Counterparty = docSelected.Counterparty;
+      doc.ProdCollectionBaseSberDev.Clear();
+      var collection = docSelected.ProdCollectionBaseSberDev;
+      foreach (var prod in collection)
+      {
+        if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
+        {
+          var target = doc.ProdCollectionBaseSberDev.AddNew();
+          target.Product = prod.Product;
+        }
+      }
+    }
+    
+    /// <summary>
+    /// Заполнить калькуляцию из выбранного документа
+    /// </summary>
+    /// <param name="doc"></param>
+    /// <param name="docSelected"></param>
+    public static void FillCalculation(SBContracts.IAccountingDocumentBase doc, SBContracts.IAccountingDocumentBase docSelected)
+    {
+      var calc = doc.CalculationBaseSberDev;
+      var calcSelected = docSelected.CalculationBaseSberDev;
+      if (calcSelected.Count > 0)
+      {
+        calc.Clear();
+        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Percent")
+        {
+          doc.CalculationFlagBaseSberDev = SBContracts.AccountingDocumentBase.CalculationFlagBaseSberDev.Percent;
+          foreach(var prop in calcSelected)
+          {
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.PercentCalc = prop.PercentCalc;
+            }
+          }
+        }
+        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Absolute")
+        {
+          doc.CalculationFlagBaseSberDev = SBContracts.AccountingDocumentBase.CalculationFlagBaseSberDev.Absolute;
+          foreach(var prop in calcSelected)
+          {
+            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
+            {
+              var target = calc.AddNew();
+              target.ProductCalc = prop.ProductCalc;
+              target.AbsoluteCalc = prop.AbsoluteCalc;
+            }
+          }
+        }
+      }
+    }
+    #endregion
+    
+    #endregion
+    
     /// <summary>
     /// Возвращает список завершенных рабочих периодов до текущей даты
     /// </summary>
