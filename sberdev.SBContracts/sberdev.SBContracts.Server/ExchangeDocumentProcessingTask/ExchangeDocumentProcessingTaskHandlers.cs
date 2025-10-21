@@ -14,7 +14,7 @@ namespace sberdev.SBContracts
 
     public override void Saving(Sungero.Domain.SavingEventArgs e)
     {
-      Functions.ExchangeDocumentProcessingTask.DistributeFormalizedDocument(_obj);
+      Functions.ExchangeDocumentProcessingTask.DistributeFormalizedAccDocument(_obj);
       base.Saving(e);
     }
 

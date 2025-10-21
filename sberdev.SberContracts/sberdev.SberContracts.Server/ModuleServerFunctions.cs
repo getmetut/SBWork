@@ -1175,680 +1175,197 @@ namespace sberdev.SberContracts.Server
       }
     }
     
-    
     /// <summary>
     /// Заполнить из любого предыдущего документа
     /// </summary>
     /// <param name="doc">Документ который заполняется</param>
     /// <param name="usr">Пользователь (для получения кэша)</param>
     [Public, Remote]
-    public static void FillFromCasheGeneralSrv(Sungero.Docflow.IOfficialDocument doc , IUser usr)
+    public static void FillFromCasheGeneralSrv(
+      Sungero.Docflow.IOfficialDocument doc,
+      Sungero.CoreEntities.IUser usr)
     {
       IAnaliticsCasheGeneral cashe = null;
-      var contractual = SBContracts.ContractualDocuments.As(doc);
-      var accounting = SBContracts.AccountingDocumentBases.As(doc);
-      
+      var contractual = sberdev.SBContracts.ContractualDocuments.As(doc);
+      var accounting  = sberdev.SBContracts.AccountingDocumentBases.As(doc);
+
       if (contractual != null || accounting != null)
-        cashe = sberdev.SberContracts.AnaliticsCasheGenerals.GetAll(r => r.User == usr).FirstOrDefault();
-      
+        cashe = AnaliticsCasheGenerals.GetAll(r => r.User == usr).FirstOrDefault();
+
       if (cashe == null)
       {
-        cashe = sberdev.SberContracts.AnaliticsCasheGenerals.Create();
+        cashe = AnaliticsCasheGenerals.Create();
         cashe.Save();
+        return;
       }
-      else
+
+      if (contractual != null)
       {
-        if (contractual != null)
+        contractual.ContrTypeBaseSberDev   = cashe.ContrType;
+        contractual.AccArtPrBaseSberDev    = cashe.AccArtPr;
+        contractual.AccArtExBaseSberDev    = cashe.AccArtEx;
+        contractual.MVZBaseSberDev         = cashe.MVZ;
+        contractual.MVPBaseSberDev         = cashe.MVP;
+        contractual.MarketDirectSberDev    = cashe.MarkDirection;
+        contractual.Counterparty           = cashe.Counterparty;
+
+        if (cashe.ProdCollectionPr.Count > 0)
         {
-          contractual.ContrTypeBaseSberDev = cashe.ContrType;
-          contractual.AccArtPrBaseSberDev = cashe.AccArtPr;
-          contractual.AccArtExBaseSberDev = cashe.AccArtEx;
-          contractual.MVZBaseSberDev = cashe.MVZ;
-          contractual.MVPBaseSberDev = cashe.MVP;
-          contractual.MarketDirectSberDev = cashe.MarkDirection;
-          contractual.Counterparty = cashe.Counterparty;
-          if (cashe.ProdCollectionPr.Count > 0)
+          contractual.ProdCollectionPrBaseSberDev.Clear();
+          foreach (var str in cashe.ProdCollectionPr)
           {
-            contractual.ProdCollectionPrBaseSberDev.Clear();
-            var collection = cashe.ProdCollectionPr;
-            foreach (var str in collection)
-            {
-              var i = contractual.ProdCollectionPrBaseSberDev.AddNew();
-              i.Product = str.Product;
-            }
-          }
-          if (cashe.ProdCollectionEx.Count > 0)
-          {
-            contractual.ProdCollectionExBaseSberDev.Clear();
-            foreach (var str in cashe.ProdCollectionEx)
-            {
-              var i = contractual.ProdCollectionExBaseSberDev.AddNew();
-              i.Product = str.Product;
-            }
+            var i = contractual.ProdCollectionPrBaseSberDev.AddNew();
+            i.Product = str.Product;
           }
         }
-        
-        if (accounting != null)
+        if (cashe.ProdCollectionEx.Count > 0)
         {
-          accounting.PayTypeBaseSberDev = cashe.PayTypeBaseSberDev;
-          if (cashe.ContrType.HasValue)
+          contractual.ProdCollectionExBaseSberDev.Clear();
+          foreach (var str in cashe.ProdCollectionEx)
           {
-            accounting.ProdCollectionBaseSberDev.Clear();
-            switch (cashe.ContrType.Value.ToString())
-            {
-              case "Profitable":
-                accounting.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable;
-                accounting.MVPBaseSberDev = cashe.MVP;
-                accounting.AccArtBaseSberDev = cashe.AccArtPr;
-                foreach(var prop in cashe.ProdCollectionPr)
-                {
-                  var target = accounting.ProdCollectionBaseSberDev.AddNew();
-                  target.Product = prop.Product;
-                }
-                break;
-              case "Expendable":
-                accounting.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable;
-                accounting.MVZBaseSberDev = cashe.MVZ;
-                accounting.AccArtBaseSberDev = cashe.AccArtEx;
-                accounting.MarketDirectSberDev = cashe.MarkDirection;
-                foreach(var prop in cashe.ProdCollectionEx)
-                {
-                  var target = accounting.ProdCollectionBaseSberDev.AddNew();
-                  target.Product = prop.Product;
-                }
-                break;
-              case "ExpendProfit":
-                string type = SBContracts.PublicFunctions.AccountingDocumentBase.ShowContractChangedDialog(accounting);
-                switch (type)
-                {
-                  case "Profitable":
-                    accounting.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable;
-                    accounting.MVPBaseSberDev = cashe.MVP;
-                    accounting.AccArtBaseSberDev = cashe.AccArtPr;
-                    foreach(var prop in cashe.ProdCollectionPr)
-                    {
-                      var target = accounting.ProdCollectionBaseSberDev.AddNew();
-                      target.Product = prop.Product;
-                    }
-                    break;
-                  case "Expendable":
-                    accounting.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable;
-                    accounting.MVZBaseSberDev = cashe.MVZ;
-                    accounting.AccArtBaseSberDev = cashe.AccArtEx;
-                    accounting.MarketDirectSberDev = cashe.MarkDirection;
-                    foreach(var prop in cashe.ProdCollectionEx)
-                    {
-                      var target = accounting.ProdCollectionBaseSberDev.AddNew();
-                      target.Product = prop.Product;
-                    }
-                    break;
-                  case "":
-                    break;
-                }
-                break;
-            }
+            var i = contractual.ProdCollectionExBaseSberDev.AddNew();
+            i.Product = str.Product;
           }
-          
-          accounting.Counterparty = cashe.Counterparty;
         }
+      }
+
+      if (accounting != null)
+      {
+        accounting.PayTypeBaseSberDev = cashe.PayTypeBaseSberDev;
+
+        if (cashe.ContrType.HasValue)
+        {
+          accounting.ProdCollectionBaseSberDev.Clear();
+          var choice = cashe.ContrType.Value.ToString(); // "Profitable"/"Expendable"/"ExpendProfit"
+
+          switch (choice)
+          {
+            case "Profitable":
+              accounting.ContrTypeBaseSberDev = sberdev.SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable;
+              accounting.MVPBaseSberDev = cashe.MVP;
+              accounting.AccArtBaseSberDev = cashe.AccArtPr;
+              foreach (var prop in cashe.ProdCollectionPr)
+              {
+                var target = accounting.ProdCollectionBaseSberDev.AddNew();
+                target.Product = prop.Product;
+              }
+              break;
+
+            case "Expendable":
+              accounting.ContrTypeBaseSberDev = sberdev.SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable;
+              accounting.MVZBaseSberDev = cashe.MVZ;
+              accounting.AccArtBaseSberDev = cashe.AccArtEx;
+              accounting.MarketDirectSberDev = cashe.MarkDirection;
+              foreach (var prop in cashe.ProdCollectionEx)
+              {
+                var target = accounting.ProdCollectionBaseSberDev.AddNew();
+                target.Product = prop.Product;
+              }
+              break;
+          }
+        }
+
+        accounting.Counterparty = cashe.Counterparty;
       }
     }
-    
+
     /// <summary>
     /// Заполнить из любого выбранного документа
     /// </summary>
     /// <param name="doc">Документ который заполняется</param>
     /// <param name="docSelected">Документ из которого идут данные</param>
+    /// <param name="contrTypeChoice">Тип аналитик что нужно перенести, если doc - расходно-доходный договор, а docSelected - фин. документ</param>
     [Public, Remote]
-    public static void FillFromDocumentSrv(Sungero.Docflow.IOfficialDocument doc, Sungero.Docflow.IOfficialDocument docSelected)
+    public static void FillFromDocumentSrv(
+      Sungero.Docflow.IOfficialDocument doc,
+      Sungero.Docflow.IOfficialDocument docSelected,
+      string contrTypeChoice /* null | "Profitable" | "Expendable" */)
     {
-      var contractual = SBContracts.ContractualDocuments.As(doc);
-      var accounting = SBContracts.AccountingDocumentBases.As(doc);
-      var contractualSelected = SBContracts.ContractualDocuments.As(docSelected);
-      var accountingSelected = SBContracts.AccountingDocumentBases.As(docSelected);
-      
-      #region Заполняется Договорной документ
-      
+      var contractual        = sberdev.SBContracts.ContractualDocuments.As(doc);
+      var accounting         = sberdev.SBContracts.AccountingDocumentBases.As(doc);
+      var contractualSelected= sberdev.SBContracts.ContractualDocuments.As(docSelected);
+      var accountingSelected = sberdev.SBContracts.AccountingDocumentBases.As(docSelected);
+
+      // ====== Договор заполняется ======
       if (contractual != null)
       {
         if (contractualSelected != null)
         {
-          FillGeneralProperties(contractual, contractualSelected);
-          FillExpendableAnaliticsProperties(contractual, contractualSelected);
-          FillProfitableAnaliticsProperties(contractual, contractualSelected);
-          FillCalculation(contractual, contractualSelected);
+          Functions.Module.FillGeneralProperties(contractual, contractualSelected);
+          Functions.Module.FillExpendableAnaliticsProperties(contractual, contractualSelected);
+          Functions.Module.FillProfitableAnaliticsProperties(contractual, contractualSelected);
+          Functions.Module.FillCalculation(contractual, contractualSelected);
         }
-        
+
         if (accountingSelected != null)
         {
-          FillGeneralProperties(contractual, accountingSelected);
+          Functions.Module.FillGeneralProperties(contractual, accountingSelected);
+
           if (contractual.ContrTypeBaseSberDev.HasValue)
           {
-            if (contractual.ContrTypeBaseSberDev.Value.Value == "Profitable")
-            {
-              FillProfitableAnaliticsProperties(contractual, accountingSelected);
-            }
-            
-            if (contractual.ContrTypeBaseSberDev.Value.Value == "Expendable")
-            {
-              FillExpendableAnaliticsProperties(contractual, accountingSelected);
-            }
+            var val = contractual.ContrTypeBaseSberDev.Value.Value; // "Profitable"/"Expendable"
+            if (val == "Profitable")
+              Functions.Module.FillProfitableAnaliticsProperties(contractual, accountingSelected);
+            if (val == "Expendable")
+              Functions.Module.FillExpendableAnaliticsProperties(contractual, accountingSelected);
           }
-          FillCalculation(contractual, accountingSelected);
+
+          Functions.Module.FillCalculation(contractual, accountingSelected);
         }
       }
-      
-      #endregion
-      
-      #region Заполняется Финансовый документ
+
+      // ====== Финансовый заполняется ======
       if (accounting != null)
       {
         if (contractualSelected != null)
         {
-          FillGeneralProperties(accounting, contractualSelected);
-          
+          Functions.Module.FillGeneralProperties(accounting, contractualSelected);
+
           if (contractualSelected.ContrTypeBaseSberDev.HasValue)
           {
-            if (contractualSelected.ContrTypeBaseSberDev.Value.Value == "Profitable")
+            var ctype = contractualSelected.ContrTypeBaseSberDev.Value.Value;
+
+            if (ctype == "Profitable")
+              Functions.Module.FillProfitableAnaliticsProperties(accounting, contractualSelected);
+
+            if (ctype == "Expendable")
+              Functions.Module.FillExpendableAnaliticsProperties(accounting, contractualSelected);
+
+            if (ctype == "ExpendProfit")
             {
-              FillProfitableAnaliticsProperties(accounting, contractualSelected);
-            }
-            
-            if (contractualSelected.ContrTypeBaseSberDev.Value.Value == "Expendable")
-            {
-              FillExpendableAnaliticsProperties(accounting, contractualSelected);
-            }
-            
-            if (contractualSelected.ContrTypeBaseSberDev.Value.Value == "ExpendProfit")
-            {
-              string type = SBContracts.PublicFunctions.AccountingDocumentBase.ShowContractChangedDialog(accounting);
-              switch (type)
+              // НЕТ диалогов! Ждём готовый выбор от клиента.
+              if (!string.IsNullOrEmpty(contrTypeChoice))
               {
-                case "Profitable":
-                  FillProfitableAnaliticsProperties(accounting, contractualSelected);
-                  break;
-                case "Expendable":
-                  FillExpendableAnaliticsProperties(accounting, contractualSelected);
-                  break;
-                case "":
-                  break;
+                if (contrTypeChoice == "Profitable")
+                  Functions.Module.FillProfitableAnaliticsProperties(accounting, contractualSelected);
+                else if (contrTypeChoice == "Expendable")
+                  Functions.Module.FillExpendableAnaliticsProperties(accounting, contractualSelected);
               }
             }
           }
-          
-          FillCalculation(accounting, contractualSelected);
+
+          Functions.Module.FillCalculation(accounting, contractualSelected);
         }
-        
+
         if (accountingSelected != null)
         {
-          FillGeneralProperties(accounting, accountingSelected);
-          FillCalculation(accounting, accountingSelected);
+          Functions.Module.FillGeneralProperties(accounting, accountingSelected);
+          Functions.Module.FillCalculation(accounting, accountingSelected);
         }
       }
-      
-      #endregion
-      
-      var operation = new Enumeration(Constants.Module.FillFromDocOperation);
-      string comment = "ИД исходного документа " + docSelected.Id.ToString() + "; Имя: " + docSelected.Name;
+
+      var operation = new Sungero.Core.Enumeration(Constants.Module.FillFromDocOperation);
+      var comment = "ИД исходного документа " + docSelected.Id.ToString() + "; Имя: " + docSelected.Name;
       doc.History.Write(operation, operation, comment);
     }
-    
-    #region Договор -> Договор
-    
-    /// <summary>
-    /// Заполнить общие свойства из выбранного документа
-    /// </summary>
-    /// <param name="contract"></param>
-    public static void FillGeneralProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
-    {
-      doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
-      doc.Counterparty = docSelected.Counterparty;
-      doc.DeliveryMethod = docSelected.DeliveryMethod;
-      if (docSelected.AgentSaluteSberDev != null)
-      {
-        doc.AgentSaluteSberDev = docSelected.AgentSaluteSberDev;
-      }
-      if (docSelected.TotalAmount != null)
-      {
-        doc.TotalAmount = docSelected.TotalAmount;
-        doc.Currency = docSelected.Currency;
-      }
-      if (!SberContracts.Purchases.Is(doc) && !SberContracts.AppProductPurchases.Is(doc))
-      {
-        doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
-        doc.FrameworkBaseSberDev = docSelected.FrameworkBaseSberDev;
-      }
-    }
-    
-    /// <summary>
-    /// Заполнить доходные аналитики из выбранного документа
-    /// </summary>
-    /// <param name="lead">Ведущий документ</param>
-    public static void FillProfitableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
-    {
-      if (docSelected.AccArtPrBaseSberDev != null)
-        doc.AccArtPrBaseSberDev = docSelected.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-          docSelected.AccArtPrBaseSberDev : null;
-      if (docSelected.AccArtPrBaseSberDev != null)
-        doc.MVPBaseSberDev = docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-          docSelected.MVPBaseSberDev : null;
-      var collection = docSelected.ProdCollectionPrBaseSberDev;
-      if (collection.Count > 0)
-      {
-        doc.ProdCollectionPrBaseSberDev.Clear();
-        foreach (var prod in collection)
-        {
-          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
-          {
-            var target = doc.ProdCollectionPrBaseSberDev.AddNew();
-            target.Product = prod.Product;
-          }
-        }
-      }
-    }
-    
-    /// <summary>
-    /// Заполнить расходные аналитики из выбранного документа
-    /// </summary>
-    /// <param name="lead">Ведущий документ</param>
-    [Public]
-    public static void FillExpendableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
-    {
-      if (docSelected.AccArtExBaseSberDev != null)
-        doc.AccArtExBaseSberDev = docSelected.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-          docSelected.AccArtExBaseSberDev : null;
-      if (docSelected.MVZBaseSberDev != null)
-        doc.MVZBaseSberDev = docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-          docSelected.MVZBaseSberDev : null;
-      if (docSelected.MarketDirectSberDev != null)
-        doc.MarketDirectSberDev = docSelected.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Active ?
-          docSelected.MarketDirectSberDev : null;
-      var collection = docSelected.ProdCollectionExBaseSberDev;
-      if (collection.Count > 0)
-      {
-        doc.ProdCollectionExBaseSberDev.Clear();
-        foreach (var prod in collection)
-        {
-          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
-          {
-            var target = doc.ProdCollectionExBaseSberDev.AddNew();
-            target.Product = prod.Product;
-          }
-        }
-      }
-    }
-    
-    /// <summary>
-    /// Заполнить калькуляцию из выбранного документа
-    /// </summary>
-    /// <param name="doc"></param>
-    /// <param name="docSelected"></param>
-    public static void FillCalculation(SBContracts.IContractualDocument doc, SBContracts.IContractualDocument docSelected)
-    {
-      var calc = doc.CalculationBaseSberDev;
-      var calcSelected = docSelected.CalculationBaseSberDev;
-      if (calcSelected.Count > 0)
-      {
-        calc.Clear();
-        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Percent")
-        {
-          doc.CalculationFlagBaseSberDev = SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent;
-          foreach(var prop in calcSelected)
-          {
-            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
-            {
-              var target = calc.AddNew();
-              target.ProductCalc = prop.ProductCalc;
-              target.PercentCalc = prop.PercentCalc;
-            }
-          }
-        }
-        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Absolute")
-        {
-          doc.CalculationFlagBaseSberDev = SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Absolute;
-          foreach(var prop in calcSelected)
-          {
-            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
-            {
-              var target = calc.AddNew();
-              target.ProductCalc = prop.ProductCalc;
-              target.AbsoluteCalc = prop.AbsoluteCalc;
-            }
-          }
-        }
-      }
-    }
-    
+
+
     #endregion
-    
-    #region Финаносвый -> Договор
-    
-    /// <summary>
-    /// Заполнить общие свойства из выбранного документа
-    /// </summary>
-    /// <param name="contract"></param>
-    public static void FillGeneralProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
-    {
-      doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev ;
-      doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
-      if (docSelected.TotalAmount != null)
-      {
-        doc.TotalAmount = docSelected.TotalAmount;
-        doc.Currency = docSelected.Currency;
-      }
-      doc.DeliveryMethod = docSelected.DeliveryMethod;
-      doc.Counterparty = docSelected.Counterparty;
-    }
-    
-    /// <summary>
-    /// Заполнить доходные аналитики из выбранного документа
-    /// </summary>
-    /// <param name="lead">Ведущий документ</param>
-    public static void FillProfitableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
-    {
-      if (docSelected.AccArtBaseSberDev != null)
-        doc.AccArtPrBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-          docSelected.AccArtBaseSberDev : null;
-      if (docSelected.MVPBaseSberDev != null)
-        doc.MVPBaseSberDev = docSelected.MVPBaseSberDev != null && docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-          docSelected.MVPBaseSberDev : null;
-      var collection = docSelected.ProdCollectionBaseSberDev;
-      if (collection.Count > 0)
-      {
-        doc.ProdCollectionPrBaseSberDev.Clear();
-        foreach (var prod in collection)
-        {
-          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
-          {
-            var target = doc.ProdCollectionPrBaseSberDev.AddNew();
-            target.Product = prod.Product;
-          }
-        }
-      }
-    }
-    
-    /// <summary>
-    /// Заполнить расходные аналитики из выбранного документа
-    /// </summary>
-    /// <param name="lead">Ведущий документ</param>
-    public static void FillExpendableAnaliticsProperties(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
-    {
-      if (docSelected.AccArtBaseSberDev != null)
-        doc.AccArtExBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-          docSelected.AccArtBaseSberDev : null;
-      if (docSelected.MVZBaseSberDev != null)
-        doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-          docSelected.MVZBaseSberDev : null;
-      if (docSelected.MarketDirectSberDev != null)
-        doc.MarketDirectSberDev = docSelected.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Active ?
-          docSelected.MarketDirectSberDev : null;
-      var collection = docSelected.ProdCollectionBaseSberDev;
-      if (collection.Count > 0)
-      {
-        doc.ProdCollectionExBaseSberDev.Clear();
-        foreach (var prod in collection)
-        {
-          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
-          {
-            var target = doc.ProdCollectionExBaseSberDev.AddNew();
-            target.Product = prod.Product;
-          }
-        }
-      }
-    }
-    
-    /// <summary>
-    /// Заполнить калькуляцию из выбранного документа
-    /// </summary>
-    /// <param name="doc"></param>
-    /// <param name="docSelected"></param>
-    public static void FillCalculation(SBContracts.IContractualDocument doc, SBContracts.IAccountingDocumentBase docSelected)
-    {
-      var calc = doc.CalculationBaseSberDev;
-      var calcSelected = docSelected.CalculationBaseSberDev;
-      if (calcSelected.Count > 0)
-      {
-        calc.Clear();
-        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Percent")
-        {
-          doc.CalculationFlagBaseSberDev = SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Percent;
-          foreach(var prop in calcSelected)
-          {
-            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
-            {
-              var target = calc.AddNew();
-              target.ProductCalc = prop.ProductCalc;
-              target.PercentCalc = prop.PercentCalc;
-            }
-          }
-        }
-        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Absolute")
-        {
-          doc.CalculationFlagBaseSberDev = SBContracts.ContractualDocument.CalculationFlagBaseSberDev.Absolute;
-          foreach(var prop in calcSelected)
-          {
-            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
-            {
-              var target = calc.AddNew();
-              target.ProductCalc = prop.ProductCalc;
-              target.AbsoluteCalc = prop.AbsoluteCalc;
-            }
-          }
-        }
-      }
-    }
+
     #endregion
-    
-    #region Договор -> Финансовый
-    
-    /// <summary>
-    /// Заполнить общие свойства из выбранного документа
-    /// </summary>
-    /// <param name="contract"></param>
-    public static void FillGeneralProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
-    {
-      doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
-      if (docSelected.TotalAmount != null)
-      {
-        doc.TotalAmount = docSelected.TotalAmount;
-        doc.Currency = docSelected.Currency;
-      }
-      doc.DeliveryMethod = docSelected.DeliveryMethod;
-      doc.Counterparty = docSelected.Counterparty;
-    }
-    
-    /// <summary>
-    /// Заполнить доходные аналитики из выбранного документа
-    /// </summary>
-    /// <param name="lead">Ведущий документ</param>
-    public static void FillProfitableAnaliticsProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
-    {
-      doc.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Profitable;
-      if (docSelected.AccArtPrBaseSberDev != null)
-        doc.AccArtBaseSberDev = docSelected.AccArtPrBaseSberDev != null && docSelected.AccArtPrBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-          docSelected.AccArtPrBaseSberDev : null;
-      if (docSelected.MVPBaseSberDev != null)
-        doc.MVPBaseSberDev = docSelected.MVPBaseSberDev != null && docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-          docSelected.MVPBaseSberDev : null;
-      var collection = docSelected.ProdCollectionPrBaseSberDev;
-      if (collection.Count > 0)
-      {
-        doc.ProdCollectionBaseSberDev.Clear();
-        foreach (var prod in collection)
-        {
-          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
-          {
-            var i = doc.ProdCollectionBaseSberDev.AddNew();
-            i.Product = prod.Product;
-          }
-        }
-      }
-    }
-    
-    /// <summary>
-    /// Заполнить расходные аналитики из выбранного документа
-    /// </summary>
-    /// <param name="lead">Ведущий документ</param>
-    public static void FillExpendableAnaliticsProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
-    {
-      doc.ContrTypeBaseSberDev = SBContracts.AccountingDocumentBase.ContrTypeBaseSberDev.Expendable;
-      if (docSelected.MVZBaseSberDev != null)
-        doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-          docSelected.MVZBaseSberDev : null;
-      if (docSelected.AccArtExBaseSberDev != null)
-        doc.AccArtBaseSberDev = docSelected.AccArtExBaseSberDev != null && docSelected.AccArtExBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-          docSelected.AccArtExBaseSberDev : null;
-      if (docSelected.MarketDirectSberDev != null)
-        doc.MarketDirectSberDev = docSelected.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Active ?
-          docSelected.MarketDirectSberDev : null;
-      var collection = docSelected.ProdCollectionExBaseSberDev;
-      if (collection.Count > 0)
-      {
-        doc.ProdCollectionBaseSberDev.Clear();
-        foreach (var prod in collection)
-        {
-          if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
-          {
-            var i = doc.ProdCollectionBaseSberDev.AddNew();
-            i.Product = prod.Product;
-          }
-        }
-      }
-    }
-    
-    /// <summary>
-    /// Заполнить калькуляцию из выбранного документа
-    /// </summary>
-    /// <param name="doc"></param>
-    /// <param name="docSelected"></param>
-    public static void FillCalculation(SBContracts.IAccountingDocumentBase doc, SBContracts.IContractualDocument docSelected)
-    {
-      var calc = doc.CalculationBaseSberDev;
-      var calcSelected = docSelected.CalculationBaseSberDev;
-      if (calcSelected.Count > 0)
-      {
-        calc.Clear();
-        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Percent")
-        {
-          doc.CalculationFlagBaseSberDev = SBContracts.AccountingDocumentBase.CalculationFlagBaseSberDev.Percent;
-          foreach(var prop in calcSelected)
-          {
-            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
-            {
-              var target = calc.AddNew();
-              target.ProductCalc = prop.ProductCalc;
-              target.PercentCalc = prop.PercentCalc;
-            }
-          }
-        }
-        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Absolute")
-        {
-          doc.CalculationFlagBaseSberDev = SBContracts.AccountingDocumentBase.CalculationFlagBaseSberDev.Absolute;
-          foreach(var prop in calcSelected)
-          {
-            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
-            {
-              var target = calc.AddNew();
-              target.ProductCalc = prop.ProductCalc;
-              target.AbsoluteCalc = prop.AbsoluteCalc;
-            }
-          }
-        }
-      }
-    }
-    #endregion
-    
-    #region Финансовый -> Финансовый
-    
-    /// <summary>
-    /// Заполнить общие свойства из выбранного документа
-    /// </summary>
-    /// <param name="contract"></param>
-    public static void FillGeneralProperties(SBContracts.IAccountingDocumentBase doc, SBContracts.IAccountingDocumentBase docSelected)
-    {
-      doc.PayTypeBaseSberDev = docSelected.PayTypeBaseSberDev;
-      doc.BudItemBaseSberDev = docSelected.BudItemBaseSberDev;
-      doc.ContrTypeBaseSberDev = docSelected.ContrTypeBaseSberDev;
-      doc.LeadingDocument = docSelected.LeadingDocument;
-      if (docSelected.TotalAmount != null)
-      {
-        doc.TotalAmount = docSelected.TotalAmount;
-        doc.Currency = docSelected.Currency;
-      }
-      doc.DeliveryMethod = docSelected.DeliveryMethod;
-      if (docSelected.AccArtBaseSberDev != null)
-        doc.AccArtBaseSberDev = docSelected.AccArtBaseSberDev != null && docSelected.AccArtBaseSberDev.Status == SberContracts.AccountingArticles.Status.Active ?
-          docSelected.AccArtBaseSberDev : null;
-      if (docSelected.MVPBaseSberDev != null)
-        doc.MVPBaseSberDev = docSelected.MVPBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-          docSelected.MVPBaseSberDev : null;
-      if (docSelected.MVZBaseSberDev != null)
-        doc.MVZBaseSberDev = docSelected.MVZBaseSberDev != null && docSelected.MVZBaseSberDev.Status == SberContracts.MVZ.Status.Active ?
-          docSelected.MVZBaseSberDev : null;
-      if (docSelected.MarketDirectSberDev != null)
-        doc.MarketDirectSberDev = docSelected.MarketDirectSberDev.Status == SberContracts.MarketingDirection.Status.Active ?
-          docSelected.MarketDirectSberDev : null;
-      doc.Counterparty = docSelected.Counterparty;
-      doc.ProdCollectionBaseSberDev.Clear();
-      var collection = docSelected.ProdCollectionBaseSberDev;
-      foreach (var prod in collection)
-      {
-        if (prod.Product.Status == SberContracts.ProductsAndDevices.Status.Active)
-        {
-          var target = doc.ProdCollectionBaseSberDev.AddNew();
-          target.Product = prod.Product;
-        }
-      }
-    }
-    
-    /// <summary>
-    /// Заполнить калькуляцию из выбранного документа
-    /// </summary>
-    /// <param name="doc"></param>
-    /// <param name="docSelected"></param>
-    public static void FillCalculation(SBContracts.IAccountingDocumentBase doc, SBContracts.IAccountingDocumentBase docSelected)
-    {
-      var calc = doc.CalculationBaseSberDev;
-      var calcSelected = docSelected.CalculationBaseSberDev;
-      if (calcSelected.Count > 0)
-      {
-        calc.Clear();
-        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Percent")
-        {
-          doc.CalculationFlagBaseSberDev = SBContracts.AccountingDocumentBase.CalculationFlagBaseSberDev.Percent;
-          foreach(var prop in calcSelected)
-          {
-            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
-            {
-              var target = calc.AddNew();
-              target.ProductCalc = prop.ProductCalc;
-              target.PercentCalc = prop.PercentCalc;
-            }
-          }
-        }
-        if (docSelected.CalculationFlagBaseSberDev.Value.Value == "Absolute")
-        {
-          doc.CalculationFlagBaseSberDev = SBContracts.AccountingDocumentBase.CalculationFlagBaseSberDev.Absolute;
-          foreach(var prop in calcSelected)
-          {
-            if (prop.ProductCalc.Status == SberContracts.ProductsAndDevices.Status.Active)
-            {
-              var target = calc.AddNew();
-              target.ProductCalc = prop.ProductCalc;
-              target.AbsoluteCalc = prop.AbsoluteCalc;
-            }
-          }
-        }
-      }
-    }
-    #endregion
-    
-    #endregion
-    
-    #endregion
-    
+
     #region Функции виджетов
-    
+
     /// <summary>
     /// Вычисление времени выполнения задачи
     /// </summary>
@@ -1888,7 +1405,7 @@ namespace sberdev.SberContracts.Server
         return 0;
       }
     }
-    
+
     /// <summary>
     /// Оптимизированный расчет значений для AssignCompletedByDepart.
     /// </summary>
@@ -2030,7 +1547,7 @@ namespace sberdev.SberContracts.Server
       
       return result;
     }
-    
+
     /// <summary>
     /// Оптимизированный расчет значений для TaskDeadline.
     /// </summary>
@@ -2173,7 +1690,7 @@ namespace sberdev.SberContracts.Server
         return 0;
       }
     }
-    
+
     /// <summary>
     /// Оптимизированный расчет значений для AssignAvgApprTimeByDepart.
     /// </summary>
@@ -2402,6 +1919,6 @@ namespace sberdev.SberContracts.Server
     }
 
     #endregion
-    
+
   }
 }

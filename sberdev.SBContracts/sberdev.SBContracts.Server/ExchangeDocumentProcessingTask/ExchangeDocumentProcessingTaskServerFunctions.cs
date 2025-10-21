@@ -11,7 +11,7 @@ namespace sberdev.SBContracts.Server
 {
   partial class ExchangeDocumentProcessingTaskFunctions
   {
-    public void DistributeFormalizedDocument()
+    public void DistributeFormalizedAccDocument()
     {
       if (_obj.ReadressedSberDev == false)
       {

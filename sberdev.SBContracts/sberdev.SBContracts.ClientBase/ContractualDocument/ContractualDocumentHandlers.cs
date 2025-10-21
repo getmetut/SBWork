@@ -14,7 +14,7 @@ namespace sberdev.SBContracts
     {
       base.LeadingDocumentValueInput(e);
       if (e.NewValue != null)
-        SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+        SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue, null);
     }
 
     public override void DeliveryMethodValueInput(Sungero.Docflow.Client.OfficialDocumentDeliveryMethodValueInputEventArgs e)

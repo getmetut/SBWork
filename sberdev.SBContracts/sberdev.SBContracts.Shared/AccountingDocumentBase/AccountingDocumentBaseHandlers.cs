@@ -78,7 +78,7 @@ namespace sberdev.SBContracts
         if (isInvoice)
         {
           if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Postpay)
-            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue, null);
         }
         
         _obj.State.Properties.AccDocSberDev.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.AccDocSberDev, false);
@@ -113,7 +113,7 @@ namespace sberdev.SBContracts
         if (!isInvoice)
         {
           if (_obj.PayTypeBaseSberDev == SBContracts.AccountingDocumentBase.PayTypeBaseSberDev.Prepayment)
-            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue);
+            SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, e.NewValue, null);
         }
         _obj.State.Properties.InvoiceSberDev.HighlightColor = _obj.InvoiceSberDev.InternalApprovalState == SBContracts.OfficialDocument.InternalApprovalState.Signed ?
           Colors.Common.White : Colors.Common.Red;
