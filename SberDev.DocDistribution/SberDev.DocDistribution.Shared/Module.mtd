@@ -49,7 +49,7 @@
   "SharedAssemblyName": "SberDev.DocDistribution.Shared",
   "SharedNamespace": "SberDev.DocDistribution.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.0",
+  "Version": "5.12.1.0",
   "Widgets": [],
   "Versions": [
     {
