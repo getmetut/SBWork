@@ -41,6 +41,14 @@
         "ScriptTaskApprovalExecute"
       ],
       "ProcessStagesDisplayMode": "Hide"
+    },
+    {
+      "$type": "Sungero.Metadata.AssignmentBlockMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "aa56d233-109e-493d-8417-0106014517b4",
+      "Name": "RedirectJob",
+      "BaseGuid": "9cc122a7-f93b-4053-9219-cd2f22af0365",
+      "EntityType": "6bb4100e-87d7-49b9-b0ff-acda28a49043",
+      "ProcessStagesDisplayMode": "Show"
     }
   ],
   "CanBeNavigationPropertyType": true,
