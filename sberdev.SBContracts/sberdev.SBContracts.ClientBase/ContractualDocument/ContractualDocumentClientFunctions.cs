@@ -59,7 +59,7 @@ namespace sberdev.SBContracts.Client
       var dialog = Dialogs.CreateInputDialog(sberdev.SBContracts.AccountingDocumentBases.Resources.FillFromDocument);
       var doc = dialog.AddSelect("Документ", true, sberdev.SBContracts.OfficialDocuments.Null);
       if (dialog.Show() == DialogButtons.Ok)
-        SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, doc.Value);
+        SberContracts.PublicFunctions.Module.Remote.FillFromDocumentSrv(_obj, doc.Value, null);
     }
   }
 }
