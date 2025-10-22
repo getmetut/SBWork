@@ -269,6 +269,19 @@ namespace sberdev.SBContracts.Client
             
           }
         }
+        if (sberdev.SBContracts.Contracts.Is(_obj))
+        {
+          var contr = sberdev.SBContracts.Contracts.As(_obj);
+          if (contr.ResponsibleObserversATSDevATSDev.Count > 0)
+          {
+            foreach (var str in contr.ResponsibleObserversATSDevATSDev)
+            {
+              var newpos = task.Observers.AddNew();
+              newpos.Observer = str.Observer;
+            }
+            
+          }
+        }
         task.Show();
         e.CloseFormAfterAction = true;
       }

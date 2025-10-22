@@ -362,4 +362,7 @@ Example: 125009 Moscow, Tverskaya St., 12, office 34</value>
   <data name="ControlGroup_e2f88e6661e340ef99b535e997b7fa6e" xml:space="preserve">
     <value />
   </data>
+  <data name="Property_ResponsibleObserversATSDevATSDev" xml:space="preserve">
+    <value>Ответственные наблюдатели</value>
+  </data>
 </root>
