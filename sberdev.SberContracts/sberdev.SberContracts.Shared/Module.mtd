@@ -33,7 +33,6 @@
         "Name": "PurchaseProtocol",
         "EntityTypeId": "b4c6255c-cdb4-4b07-b405-243790ee8ccc",
         "GroupId": "cfe07ab5-7374-43c2-908b-891dabd46756",
-        "IsVisible": false,
         "PreviousItemGuid": "c2228f76-fd01-4788-8c0b-0249c949770a"
       },
       {

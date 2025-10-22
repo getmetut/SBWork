@@ -1042,15 +1042,15 @@ namespace sberdev.SBContracts.Server
       if (sberdev.SberContracts.AppNonProdPurchases.Is(lead))
       {
         var nonprod = sberdev.SberContracts.AppNonProdPurchases.As(lead);
-        body.Range.Replace("[Номер]", nonprod.PurchaseOrderNumber);
+        body.Range.Replace("[Номер]", nonprod.PurchaseOrderNumber?.ToString());
         var mvzstatras = string.Format("МВЗ – {0}" +
                                        "Продукт – {1}" +
-                                       "Статья - {2}", nonprod.MVZBaseSberDev.Name, nonprod.ProdCollectionExBaseSberDev.FirstOrDefault().Product.Name, nonprod.AccArtExBaseSberDev.Name);
-        body.Range.Replace("[СтатьяСметаРасходы]", mvzstatras);
-        body.Range.Replace("[НомерСтроки]", nonprod.NumPosition);
+                                       "Статья - {2}", nonprod.MVZBaseSberDev?.Name.ToString(), nonprod.ProdCollectionExBaseSberDev?.FirstOrDefault().Product?.Name.ToString(), nonprod.AccArtExBaseSberDev?.Name.ToString());
+        body.Range.Replace("[СтатьяСметаРасходы]", mvzstatras?.ToString());
+        body.Range.Replace("[НомерСтроки]", nonprod.NumPosition?.ToString());
         
-        var ecorasch = string.Format("Расчет экономического эффекта по сделке был произведен по формуле НМЦД (начальная максимальная цена договора) минус сумма сделки и составил {0} руб.", nonprod.Economy.ToString());
-        body.Range.Replace("[ЭкономическийРасчет]", ecorasch);
+        var ecorasch = string.Format("Расчет экономического эффекта по сделке был произведен по формуле НМЦД (начальная максимальная цена договора) минус сумма сделки и составил {0} руб.", nonprod.Economy?.ToString());
+        body.Range.Replace("[ЭкономическийРасчет]", ecorasch?.ToString());
         
         // Таблица продуктов
         var whide = nonprod.CalculationBaseSberDev.Count;
@@ -1070,7 +1070,7 @@ namespace sberdev.SBContracts.Server
         foreach (var elem in nonprod.CalculationBaseSberDev)
         {
           table[counter, 0] = counter.ToString();
-          table[counter, 1] = elem.ProductCalc.Name;
+          table[counter, 1] = elem.ProductCalc?.Name;
           table[counter, 2] = elem.AbsoluteCalc.Value.ToString();
           table[counter, 3] = "шт.";
           table[counter, 4] = elem.PercentCalc.Value.ToString();
@@ -1080,20 +1080,20 @@ namespace sberdev.SBContracts.Server
         ReplacePlaceholderWithTable(body, "[Таблица1]", CreateTableByArray(body, table, boldRows, columnWidths, "Times New Roman", 9));
       }
       
-      body.Range.Replace("[Способ]", prot.PurchaseMethod.Name);
+      body.Range.Replace("[Способ]", prot.PurchaseMethod?.Name);
       body.Range.Replace("[Обоснование]", prot.Subject);
       body.Range.Replace("[Специфика]", prot.TextPurpose);
       
       var spprzak = string.Format("Порядок проведения закупки у ед.поставщика. {0} является организатором конференции SmartData" +
                                   "Закупка проводиться на основании п.2.6.16 Положения о закупках ООО «СалютДевайсы».", prot.Counterparty.Name);
       body.Range.Replace("[СпособПроведенияЗакупки]", spprzak);
-      body.Range.Replace("[ИнфоАнализа]", prot.ChooseCpJustif);
+      body.Range.Replace("[ИнфоАнализа]", prot.ChooseCpJustif?.ToString());
       
       body.Range.Replace("[ИнфоФормаДоговора]", "{?????????}");
       body.Range.Replace("[ПорядокОплаты]", prot.FormPay.Value.ToString());
       
       var infopred = string.Format("В рамках проведения закупочной процедуры заказчиком был запрошен счет-договор у ед.поставщика - организатора конференции SmartData - {0} и получены следующие данные о цене на закупаемое товары/услуг/работы: {1} руб.",
-                                   prot.PurchaseMethod.Name , prot.TotalSumm.ToString());
+                                   prot.PurchaseMethod?.Name , prot.TotalSumm?.ToString());
       body.Range.Replace("[ИнфоПоПредложениям]", infopred);
       
       var counterinn = string.Format("{0} (ИНН: {1})",prot.Counterparty.Name, prot.Counterparty.TIN);
@@ -1102,12 +1102,12 @@ namespace sberdev.SBContracts.Server
       body.Range.Replace("[ПоставщикИННКПП]", counterinn);
       
       var preim = string.Format("Информация о преимуществах (качественных, эргономических и т.п.) товаров (работ, услуг), предлагаемых выбранным Контрагентом по сравнению с товарами (работами, услугами), предложенными иными участниками конкурсного отбора: {0}" +
-                                "Взаимозависимость с ООО «СалютДевайсы»: ООО «СалютДевайсы» и {1} не являются взаимозависимыми лицами.", prot.PurchaseMethod.Name, prot.Counterparty.Name);
+                                "Взаимозависимость с ООО «СалютДевайсы»: ООО «СалютДевайсы» и {1} не являются взаимозависимыми лицами.", prot.PurchaseMethod?.Name, prot.Counterparty.Name);
       body.Range.Replace("[Преимущества]", preim);
       body.Range.Replace("[Поставщик]", prot.Counterparty.Name);
       
       var reshenie = string.Format("Утвердить {0} поставщиком и заключить счет-договор на следующих условиях:" +
-                                   "Общая стоимость: {1} рублей, включая все налоги и сборы, если применимо.", counterinn, prot.TotalSumm.ToString());
+                                   "Общая стоимость: {1} рублей, включая все налоги и сборы, если применимо.", counterinn, prot.TotalSumm?.ToString());
       body.Range.Replace("[ПредметДоговора]", reshenie);
     }
     #endregion

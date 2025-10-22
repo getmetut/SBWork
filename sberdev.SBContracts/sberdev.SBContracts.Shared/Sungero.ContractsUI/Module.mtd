@@ -571,7 +571,7 @@
       "HandledEvents": [
         "DataQueryServer"
       ],
-      "IsShow": false,
+      "IsShow": true,
       "Kind": "Computable",
       "NeedShowMarkedCount": false
     },
