@@ -150,6 +150,50 @@
           "Versions": []
         },
         {
+          "$type": "Sungero.Metadata.ControlGroupMetadata, Sungero.Metadata",
+          "NameGuid": "69a41394-9042-4b33-8d9c-e5253d0a8c27",
+          "Name": "Note",
+          "ColumnDefinitions": [
+            {
+              "Percentage": 50.0
+            },
+            {
+              "Percentage": 50.0
+            }
+          ],
+          "GroupType": "WithTitleNoBorder",
+          "IsAncestorMetadata": true,
+          "Overridden": [
+            "Controls",
+            "ColumnDefinitions"
+          ],
+          "Versions": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "a4203bd1-7881-4b25-bef4-e70576f0d4dd",
+          "Name": "NoteATSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
+          "HeaderLocation": "None",
+          "ParentGuid": "69a41394-9042-4b33-8d9c-e5253d0a8c27",
+          "PropertyGuid": "6b914774-a2aa-414d-a948-8fbc78d43407",
+          "RowNumber": 0,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "Height",
+              "Value": 40
+            },
+            {
+              "Name": "NeedExpand",
+              "Value": true
+            }
+          ],
+          "Versions": []
+        },
+        {
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
           "NameGuid": "966f5464-efad-489f-8598-d48f1fdfe547",
           "Name": "PhonesSDev",
@@ -278,6 +322,32 @@
           "RowNumber": 5,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "80a97ac6-a8d0-43e0-9b9f-98e1bc97fa9c",
+          "Name": "AuthorATSDevATSDev",
+          "ColumnNumber": 0,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+          "ParentGuid": "69a41394-9042-4b33-8d9c-e5253d0a8c27",
+          "PropertyGuid": "c1d90afb-a0a5-4cc4-bd0f-65985862d3e2",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "476ddb8e-a877-42fe-bad3-f043a1356165",
+          "Name": "ControlATSDev",
+          "ColumnNumber": 1,
+          "ColumnSpan": 1,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+          "ParentGuid": "69a41394-9042-4b33-8d9c-e5253d0a8c27",
+          "PropertyGuid": "e66e3113-831b-4de5-a835-ce9071796c0f",
+          "RowNumber": 1,
+          "RowSpan": 1,
+          "Settings": []
         }
       ],
       "IsAncestorMetadata": true,
@@ -289,7 +359,8 @@
   ],
   "HandledEvents": [
     "FilteringServer",
-    "CreatedServer"
+    "CreatedServer",
+    "BeforeSaveServer"
   ],
   "IconResourcesKeys": [],
   "IsAbstract": true,
@@ -366,6 +437,25 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "c38efcc5-962a-483d-90fb-6623be29a68d",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "c1d90afb-a0a5-4cc4-bd0f-65985862d3e2",
+      "Name": "AuthorATSDev",
+      "Code": "AuthorATSDev",
+      "EntityGuid": "243c2d26-f5f7-495f-9faf-951d91215c77",
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
+      "PreviousPropertyGuid": "291f5106-4200-4277-95a0-4389f2ee29e1"
+    },
+    {
+      "$type": "Sungero.Metadata.DateTimePropertyMetadata, Sungero.Metadata",
+      "NameGuid": "e66e3113-831b-4de5-a835-ce9071796c0f",
+      "Name": "CreateDateATSDev",
+      "Code": "CreateDateATSD",
+      "IsEnabled": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
+      "PreviousPropertyGuid": "c1d90afb-a0a5-4cc4-bd0f-65985862d3e2"
     }
   ],
   "PublicFunctions": [
@@ -436,6 +526,18 @@
       ],
       "ReturnType": "global::System.Double",
       "ReturnTypeFullName": "System.Double"
+    },
+    {
+      "Name": "GetFirstHistory",
+      "Parameters": [
+        {
+          "Name": "counterparty",
+          "ParameterType": "global::sberdev.SBContracts.ICounterparty",
+          "ParameterTypeFullName": "sberdev.SBContracts.ICounterparty, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "global::Sungero.Domain.Shared.IHistory",
+      "ReturnTypeFullName": "Sungero.Domain.Shared.IHistory, Sungero.Domain.Shared"
     },
     {
       "Name": "SetManualCheckingValue",

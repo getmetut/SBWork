@@ -9,6 +9,16 @@ namespace sberdev.SBContracts.Server
 {
   partial class CounterpartyFunctions
   {
+
+    /// <summary>
+    /// Получить первую запись в истории: Создание
+    /// </summary>
+    [Public]
+    public Sungero.Domain.Shared.IHistory GetFirstHistory()
+    {
+      return _obj.History.GetAll().Where(h => h.Action == Sungero.CoreEntities.History.Action.Create).FirstOrDefault();
+    }
+    
     #region Подсчет сумм договоров по КА
     [Public]
     /// <summary>

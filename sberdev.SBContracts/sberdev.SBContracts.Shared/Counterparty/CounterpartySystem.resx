@@ -217,4 +217,10 @@
   <data name="Property_NeedManualCheckSberDev" xml:space="preserve">
     <value>A check in the approval task is required</value>
   </data>
+  <data name="Property_AuthorATSDev" xml:space="preserve">
+    <value>Автор</value>
+  </data>
+  <data name="Property_CreateDateATSDev" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
 </root>
