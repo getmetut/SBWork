@@ -1,19 +1,20 @@
 {
   "$type": "Sungero.Metadata.EntityMetadata, Sungero.Metadata",
   "NameGuid": "ddb9bbff-bb59-45e4-8821-2bcf5a41070a",
-  "Name": "SettingKeyWords",
+  "Name": "RuleKeyWords",
   "BaseGuid": "a3d38bf5-0414-41f6-bb33-a4621d2e5a60",
   "CanBeNavigationPropertyType": true,
   "Code": "EDDKeyWords",
   "ExtraSearchProperties": [],
+  "IntegrationServiceName": "SettingKeyWords",
   "IsChildEntity": true,
   "Properties": [
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "1a1e06ac-a011-4df8-ba59-edc9b122b906",
-      "Name": "Setting",
+      "Name": "Rule",
       "CanBeSearch": false,
-      "Code": "Setting",
+      "Code": "Rule",
       "EntityGuid": "ff55d9be-24d9-4234-b01c-8b964b9ae55d",
       "IsReferenceToRootEntity": true,
       "IsShowedInList": false

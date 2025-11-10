@@ -61,4 +61,10 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Распределение вх. документов</value>
   </data>
+  <data name="JobDisplayName_cedb70c367064dddafb81cb786a6820f" xml:space="preserve">
+    <value>Распределение вх док-ов. Очистка лога</value>
+  </data>
+  <data name="JobDescription_cedb70c367064dddafb81cb786a6820f" xml:space="preserve">
+    <value>Процесc очищает справочник LogEntry от записей с датой старше месяца.</value>
+  </data>
 </root>

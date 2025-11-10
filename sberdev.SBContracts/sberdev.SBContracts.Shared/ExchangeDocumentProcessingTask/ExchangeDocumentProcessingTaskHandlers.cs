@@ -7,8 +7,4 @@ using sberdev.SBContracts.ExchangeDocumentProcessingTask;
 
 namespace sberdev.SBContracts
 {
-  partial class ExchangeDocumentProcessingTaskSharedHandlers
-  {
-
-  }
 }

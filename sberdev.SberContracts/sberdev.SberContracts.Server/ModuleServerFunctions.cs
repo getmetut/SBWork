@@ -1608,7 +1608,7 @@ namespace sberdev.SberContracts.Server
           {
             // Сначала получаем задачи с нужными датами
             var tasksWithDates = baseQuery
-              .Where(t => t.MaxDeadline.HasValue && t.Started <= t.MaxDeadline.Value)
+              .Where(t => t.MaxDeadline.HasValue && t.Started.HasValue && t.Started.Value <= t.MaxDeadline.Value)
               .ToList()
               .Select(t => new {
                         StartDate = t.Started.Value,

@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
-using SberDev.ExchDocDistrib.Setting;
 
-namespace SberDev.ExchDocDistrib
+namespace SberDev.ExchDocDistrib.Structures.LogEntry
 {
-  partial class SettingSharedHandlers
-  {
 
-  }
 }

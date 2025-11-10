@@ -67,7 +67,10 @@
   <data name="Action_TransferBodySberDevDescription" xml:space="preserve">
     <value>Скопировать тело докумена с подписями в карточку по указанному ИД.</value>
   </data>
-  <data name="Property_ReadressedSberDev" xml:space="preserve">
-    <value>Readressed</value>
+  <data name="Property_HasAccAttachSberDev" xml:space="preserve">
+    <value>HasAccAttach</value>
+  </data>
+  <data name="Property_IsAutoDistributedSberDev" xml:space="preserve">
+    <value>Задача была автоматически распределена</value>
   </data>
 </root>
