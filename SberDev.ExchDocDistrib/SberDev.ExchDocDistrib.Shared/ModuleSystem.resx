@@ -64,4 +64,10 @@
   <data name="CoverTitle" xml:space="preserve">
     <value>ExchDocDistrib</value>
   </data>
+  <data name="JobDisplayName_cedb70c367064dddafb81cb786a6820f" xml:space="preserve">
+    <value>Exch. documents distribution. Log cleaninng</value>
+  </data>
+  <data name="JobDescription_cedb70c367064dddafb81cb786a6820f" xml:space="preserve">
+    <value>The process clears the LogEntry directory of entries with a date older than a month.</value>
+  </data>
 </root>

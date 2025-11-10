@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
-using SberDev.ExchDocDistrib.Setting;
+using SberDev.ExchDocDistrib.Rule;
 
 namespace SberDev.ExchDocDistrib
 {
-  partial class SettingClientHandlers
+  partial class RuleClientHandlers
   {
 
   }

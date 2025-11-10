@@ -14,7 +14,8 @@ namespace sberdev.SBContracts
 
     public override void Saving(Sungero.Domain.SavingEventArgs e)
     {
-      Functions.ExchangeDocumentProcessingTask.DistributeFormalizedAccDocument(_obj);
+      SberDev.ExchDocDistrib.PublicFunctions.Module.DistributeFormalizedAccDocuments(_obj);
+      SberDev.ExchDocDistrib.PublicFunctions.Module.DistributeDocuments(_obj);
       base.Saving(e);
     }
 
@@ -23,10 +24,8 @@ namespace sberdev.SBContracts
       _obj.IsNeedComeback = true;
       _obj.NeedComebackAgainAttachments = "";
       _obj.NumberOfAttempsComeback = 0;
-      _obj.ReadressedSberDev = false;
+      _obj.OnRedistributionSberDev = false;
       base.Created(e);
     }
   }
-
-
 }

@@ -18,7 +18,7 @@ namespace sberdev.SBContracts.Server
     /// <summary>
     /// Сбрасываем статус соглаосвания (комментарий) в документе
     /// </summary>
-    [Remote, Public]
+    [Public]
     public void ClearPublicComment()
     {
       if (_obj != null && _obj.PublicCommentSberDev != null)

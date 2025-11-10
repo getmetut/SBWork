@@ -64,4 +64,13 @@
   <data name="Emp" xml:space="preserve">
     <value>Сотрудник</value>
   </data>
+  <data name="ForwardedResult" xml:space="preserve">
+    <value>Переадресовано</value>
+  </data>
+  <data name="DistributeResult" xml:space="preserve">
+    <value>Отправлено на перераспределение</value>
+  </data>
+  <data name="RedisributeResult" xml:space="preserve">
+    <value>Отправлено на перераспределение</value>
+  </data>
 </root>

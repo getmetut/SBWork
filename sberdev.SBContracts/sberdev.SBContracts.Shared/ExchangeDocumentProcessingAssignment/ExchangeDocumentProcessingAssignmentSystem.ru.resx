@@ -85,4 +85,19 @@
   <data name="Action_ReAddressSberDevConfirmationMessage" xml:space="preserve">
     <value>Вы хотите преадресовать задания выбраному сотруднику?</value>
   </data>
+  <data name="Enum_Result_Redistribute" xml:space="preserve">
+    <value>Перераспределяется</value>
+  </data>
+  <data name="Action_Redistribute" xml:space="preserve">
+    <value>Перераспределить</value>
+  </data>
+  <data name="Action_RedistributeHint" xml:space="preserve">
+    <value>Направить документы обратно на распределение?</value>
+  </data>
+  <data name="Action_RedistributeConfirmationMessage" xml:space="preserve">
+    <value>Направить документы обратно на распределение?</value>
+  </data>
+  <data name="Action_RedistributeDescription" xml:space="preserve">
+    <value>Если вы считаете что за вложенные документы отвечаете не вы, выполните с этим результатом.</value>
+  </data>
 </root>

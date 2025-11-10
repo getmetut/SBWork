@@ -453,7 +453,6 @@
     },
     {
       "Name": "ClearPublicComment",
-      "IsRemote": true,
       "Parameters": [
         {
           "Name": "officialDocument",
@@ -461,7 +460,6 @@
           "ParameterTypeFullName": "sberdev.SBContracts.IOfficialDocument, Sungero.Domain.Interfaces"
         }
       ],
-      "Placement": "Shared",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
     },

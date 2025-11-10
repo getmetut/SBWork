@@ -185,9 +185,9 @@
     {
       "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
       "NameGuid": "b2552bde-bc83-4029-83ad-086152dd68fe",
-      "Name": "ReadressedSberDev",
+      "Name": "HasAccAttachSberDev",
       "CanBeSearch": false,
-      "Code": "ReadressedSber",
+      "Code": "HasAccAttach",
       "IsEnabled": false,
       "IsShowedInList": false,
       "IsVisibility": false,
@@ -205,6 +205,50 @@
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DropDownEditorToNavigationBinder",
       "PreviousPropertyGuid": "b2552bde-bc83-4029-83ad-086152dd68fe",
       "Versions": []
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "acdd9ccb-d5ac-4321-a24c-65d31d3c7379",
+      "Name": "OnRedistributionSberDev",
+      "CanBeSearch": false,
+      "Code": "OnRedistribut",
+      "IsEnabled": false,
+      "IsShowedInList": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "c3e9ab70-d71e-4f71-a5f0-2e56508d211a"
+    },
+    {
+      "$type": "Sungero.Metadata.BooleanPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "a8c62d80-3edc-4517-9e92-7a31b4dc8b67",
+      "Name": "IsAutoDistributedSberDev",
+      "CanBeSearch": false,
+      "Code": "IsAutoDistribu",
+      "IsEnabled": false,
+      "IsVisibility": false,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
+      "PreviousPropertyGuid": "acdd9ccb-d5ac-4321-a24c-65d31d3c7379"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "SetOnRedistribution",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "exchangeDocumentProcessingTask",
+          "ParameterType": "global::sberdev.SBContracts.IExchangeDocumentProcessingTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IExchangeDocumentProcessingTask, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "flag",
+          "ParameterType": "global::System.Boolean",
+          "ParameterTypeFullName": "System.Boolean"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
     }
   ],
   "PublicStructures": [],
