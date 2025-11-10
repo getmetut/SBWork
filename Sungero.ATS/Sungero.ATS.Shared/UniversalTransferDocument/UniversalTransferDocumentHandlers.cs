@@ -31,7 +31,7 @@ namespace Sungero.ATS
               && !sberdev.SBContracts.PublicFunctions.Module.IsSystemUser())
           {
             var OrgTrue = PublicFunctions.UniversalTransferDocument.Remote.GetHeadCompanies(_obj, comp);
-            var HeadCompany = comp.HeadOrgSDev;
+            var HeadCompany = comp.HeadCompany;
             if (HeadCompany != null)
               _obj.Counterparty = HeadCompany;
             else
