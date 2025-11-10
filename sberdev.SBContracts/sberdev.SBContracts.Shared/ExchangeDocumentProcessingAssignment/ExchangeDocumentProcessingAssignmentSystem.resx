@@ -97,4 +97,22 @@
   <data name="Action_ReAddressSberDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
+  <data name="Enum_Result_Redistribute" xml:space="preserve">
+    <value>Redistributing</value>
+  </data>
+  <data name="Action_Redistribute" xml:space="preserve">
+    <value>Redistribute</value>
+  </data>
+  <data name="Action_RedistributeHint" xml:space="preserve">
+    <value>Send the documents back for distribution?</value>
+  </data>
+  <data name="Action_RedistributeConfirmationMessage" xml:space="preserve">
+    <value>Send the documents back for distribution?</value>
+  </data>
+  <data name="Action_RedistributeDescription" xml:space="preserve">
+    <value>If you believe that you are not responsible for the attached documents, proceed with this result.</value>
+  </data>
+  <data name="Property_ResultIsRedistributionSberDev" xml:space="preserve">
+    <value>OnRedistribution</value>
+  </data>
 </root>

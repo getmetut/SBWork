@@ -36,6 +36,10 @@
   "ExplorerTreeOrder": [
     {
       "ItemId": "ff55d9be-24d9-4234-b01c-8b964b9ae55d"
+    },
+    {
+      "ItemId": "0754e5f1-e44d-4fc3-bcf4-020568329587",
+      "PreviousItemId": "ff55d9be-24d9-4234-b01c-8b964b9ae55d"
     }
   ],
   "IconResourcesKeys": [],
@@ -45,19 +49,96 @@
   "IsolatedAssemblyName": "SberDev.ExchDocDistrib.Isolated",
   "IsolatedNamespace": "SberDev.ExchDocDistrib.Isolated",
   "IsVisible": false,
+  "Jobs": [
+    {
+      "NameGuid": "cedb70c3-6706-4ddd-afb8-1cb786a6820f",
+      "Name": "LogCleaner",
+      "GenerateHandler": true,
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T08:30:00"
+    }
+  ],
   "Overridden": [
     "IsVisible"
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "DistributeDocuments",
+      "Parameters": [
+        {
+          "Name": "task",
+          "ParameterType": "global::sberdev.SBContracts.IExchangeDocumentProcessingTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IExchangeDocumentProcessingTask, Sungero.Domain.Interfaces"
+        }
+      ],
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "DistributeFormalizedAccDocuments",
+      "Parameters": [
+        {
+          "Name": "task",
+          "ParameterType": "global::sberdev.SBContracts.IExchangeDocumentProcessingTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IExchangeDocumentProcessingTask, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "GetBoxResponsibleEmployee",
+      "Parameters": [
+        {
+          "Name": "task",
+          "ParameterType": "global::sberdev.SBContracts.IExchangeDocumentProcessingTask",
+          "ParameterTypeFullName": "sberdev.SBContracts.IExchangeDocumentProcessingTask, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::Sungero.Company.IEmployee",
+      "ReturnTypeFullName": "Sungero.Company.IEmployee, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "GetBoxResponsibleEmployees",
+      "Parameters": [
+        {
+          "Name": "box",
+          "ParameterType": "global::Sungero.ExchangeCore.IBoxBase",
+          "ParameterTypeFullName": "Sungero.ExchangeCore.IBoxBase, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::Sungero.Company.IEmployee>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
+      "Name": "ShowPrefillForwardDialog",
+      "Parameters": [
+        {
+          "Name": "assign",
+          "ParameterType": "global::sberdev.SBContracts.IExchangeDocumentProcessingAssignment",
+          "ParameterTypeFullName": "sberdev.SBContracts.IExchangeDocumentProcessingAssignment, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Client",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    }
   ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "SberDev.ExchDocDistrib",
-  "ResourcesKeys": [],
+  "ResourcesKeys": [
+    "FilterFlagName"
+  ],
   "ServerAssemblyName": "SberDev.ExchDocDistrib.Server",
   "ServerNamespace": "SberDev.ExchDocDistrib.Server",
   "SharedAssemblyName": "SberDev.ExchDocDistrib.Shared",
   "SharedNamespace": "SberDev.ExchDocDistrib.Shared",
   "SpecialFolders": [],
-  "Version": "5.12.1.0",
+  "Version": "5.13.0.0",
   "Widgets": [],
   "Versions": [
     {
