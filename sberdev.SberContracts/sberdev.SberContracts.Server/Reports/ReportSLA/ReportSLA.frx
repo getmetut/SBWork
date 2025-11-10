@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReferencedAssemblies="System.dll&#13;&#10;System.Drawing.dll&#13;&#10;System.Data.dll&#13;&#10;System.Xml.dll&#13;&#10;FastReport.Compat.dll&#13;&#10;System.Windows.Forms.dll&#13;&#10;FastReport.DataVisualization.dll&#13;&#10;Sungero.Domain.Shared&#13;&#10;Sungero.CoreEntities.Shared&#13;&#10;Sungero.Reporting.Shared&#13;&#10;CommonLibrary&#13;&#10;Sungero.Localization&#13;&#10;Sungero.Declension&#13;&#10;Sungero.Domain.Interfaces&#13;&#10;sberdev.SberContracts.Shared&#13;&#10;sberdev.SberContracts.Server" ReportInfo.CreatorVersion="2024.2.19.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+using Sungero.Domain.Shared;
+using Sungero.CoreEntities;
+using Sungero.Core;
+using Resources = sberdev.SberContracts.Reports.Resources;
+
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+  }
+}
+  </ScriptText>
+  <Dictionary>
+    <SungeroSqlDataConnection Name="Sungero_Connection" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties" ConnectionStringExpression="[SungeroConnectionString]">
+      <TableDataSource Name="Table" Alias="BaseSLA" DataType="System.Int32" Enabled="true" CanEdit="true" SelectCommand="${QueryBaseSLA}">
+        <Column Name="Задача" DataType="System.String" PropName="Column"/>
+        <Column Name="Состояние" DataType="System.String" PropName="Column"/>
+        <Column Name="Тема задания" DataType="System.String" PropName="Column"/>
+        <Column Name="Стартована" DataType="System.DateTime" PropName="Column"/>
+        <Column Name="Срок" DataType="System.DateTime" PropName="Column"/>
+        <Column Name="Прочтена" DataType="System.String" PropName="Column"/>
+        <Column Name="Выполнил" DataType="System.String" PropName="Column"/>
+        <Column Name="Исполнитель" DataType="System.String" PropName="Column"/>
+        <Column Name="Результат" DataType="System.String" PropName="Column"/>
+        <Column Name="Выполнена" DataType="System.DateTime" PropName="Column"/>
+        <Column Name="Инициатор" DataType="System.String" PropName="Column"/>
+        <Column Name="Задание" DataType="System.Int64" PropName="Column"/>
+        <Column Name="Просрочено, дней" DataType="System.Int32" PropName="Column"/>
+        <Column Name="Досрочно, дней" DataType="System.Int32" PropName="Column"/>
+        <CommandParameter Name="idDoc" DataType="12" IsDbType="true" Expression="[IDDoc]"/>
+      </TableDataSource>
+    </SungeroSqlDataConnection>
+    <SungeroParameter Name="SungeroConnectionString" Restrictions="DontModify, DontEdit, DontDelete, HideAllProperties, DontShow" AsString="" Id="bc1aaae7-58b2-4748-a845-7ef16ec70c7b" IsRequired="false" IsCollection="false" InternalDataType="System.String" IsSimpleDataType="false" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+    <SungeroParameter Name="IDDoc" AsString="" Id="3c1b8516-45b4-4387-af9c-43f038354004" IsRequired="true" IsCollection="false" InternalDataType="System.Int64" IsSimpleDataType="true" EntityTypeId="00000000-0000-0000-0000-000000000000"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="4007" PaperHeight="210" RawPaperSize="0" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="15070.86" Height="18.9">
+      <TextObject Name="Text1" Left="75.6" Width="1077.3" Height="18.9" Text="SLA по документу: [IDDoc]" HorzAlign="Center" Font="Arial, 10pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="23.9" Width="15070.86" Height="9.45"/>
+    <DataBand Name="Data1" Top="62.25" Width="15070.86" Height="37.8" DataSource="Table">
+      <TableObject Name="Table2" Left="9.45" Width="2248.88" Height="37.8" Border.Lines="All" Fill.Color="White" GrowToBottom="true">
+        <TableColumn Name="Column15" Width="326.35"/>
+        <TableColumn Name="Column16" Width="99.52"/>
+        <TableColumn Name="Column17" Width="118.42"/>
+        <TableColumn Name="Column18" Width="108.96"/>
+        <TableColumn Name="Column19" Width="71.17"/>
+        <TableColumn Name="Column20" Width="71.17"/>
+        <TableColumn Name="Column21" Width="165.75"/>
+        <TableColumn Name="Column22" Width="175.21"/>
+        <TableColumn Name="Column23" Width="90.07"/>
+        <TableColumn Name="Column24" Width="90.07"/>
+        <TableColumn Name="Column25" Width="250.82"/>
+        <TableColumn Name="Column26" Width="430.28"/>
+        <TableColumn Name="Column27" Width="130.31"/>
+        <TableColumn Name="Column28" Width="120.78"/>
+        <TableRow Name="Row2" Height="37.8">
+          <TableCell Name="Cell15" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Задача]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell16" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Состояние]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell17" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Тема задания]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell18" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Стартована]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell19" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Срок]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell20" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Прочтена]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell21" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Исполнитель]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell22" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Выполнил]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell23" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Результат]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell24" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Выполнена]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell25" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Инициатор]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell26" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Задание]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+          <TableCell Name="Cell27" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Просрочено, дней]" VertAlign="Center" Font="Arial, 9pt, style=Bold">
+            <Highlight>
+              <Condition Expression="Value &gt; 0" Fill.Color="Tomato" TextFill.Color="White" Font="Arial Black, 10.125pt, style=Bold, Italic" ApplyFill="true" ApplyFont="true"/>
+            </Highlight>
+          </TableCell>
+          <TableCell Name="Cell28" Border.Lines="All" Fill.Color="White" Text="[BaseSLA.Досрочно, дней]" VertAlign="Center" Font="Arial, 9pt, style=Bold">
+            <Highlight>
+              <Condition Expression="Value &gt; 0" Fill.Color="PaleGreen" TextFill.Color="Black" Font="Arial Black, 10.125pt, style=Bold" ApplyFill="true" ApplyFont="true"/>
+            </Highlight>
+          </TableCell>
+        </TableRow>
+      </TableObject>
+      <DataHeaderBand Name="DataHeader1" Top="38.35" Width="15070.86" Height="18.9">
+        <TableObject Name="Table1" Left="9.45" Width="2248.88" Height="18.9" Border.Lines="All">
+          <TableColumn Name="Column1" Width="326.35"/>
+          <TableColumn Name="Column2" Width="99.52"/>
+          <TableColumn Name="Column3" Width="118.42"/>
+          <TableColumn Name="Column4" Width="108.96"/>
+          <TableColumn Name="Column5" Width="71.17"/>
+          <TableColumn Name="Column6" Width="71.17"/>
+          <TableColumn Name="Column7" Width="165.75"/>
+          <TableColumn Name="Column8" Width="175.21"/>
+          <TableColumn Name="Column9" Width="90.07"/>
+          <TableColumn Name="Column10" Width="90.07"/>
+          <TableColumn Name="Column11" Width="250.82"/>
+          <TableColumn Name="Column12" Width="430.28"/>
+          <TableColumn Name="Column13" Width="130.31"/>
+          <TableColumn Name="Column14" Width="120.78"/>
+          <TableRow Name="Row1">
+            <TableCell Name="Cell1" Border.Lines="All" Fill.Color="LightGray" Text="Задача" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell2" Border.Lines="All" Fill.Color="LightGray" Text="Состояние" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell3" Border.Lines="All" Fill.Color="LightGray" Text="Тема задания" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell4" Border.Lines="All" Fill.Color="LightGray" Text="Стартована" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell5" Border.Lines="All" Fill.Color="LightGray" Text="Срок" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell6" Border.Lines="All" Fill.Color="LightGray" Text="Прочтена" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell7" Border.Lines="All" Fill.Color="LightGray" Text="Исполнитель" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell8" Border.Lines="All" Fill.Color="LightGray" Text="Выполнил" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell9" Border.Lines="All" Fill.Color="LightGray" Text="Результат" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell10" Border.Lines="All" Fill.Color="LightGray" Text="Выполнена" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell11" Border.Lines="All" Fill.Color="LightGray" Text="Инициатор (автор)" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell12" Border.Lines="All" Fill.Color="LightGray" Text="Задание" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell13" Border.Lines="All" Fill.Color="LightGray" Text="Просрочено, дней" Font="Arial, 9pt, style=Bold"/>
+            <TableCell Name="Cell14" Border.Lines="All" Fill.Color="LightGray" Text="Досрочно, дней" Font="Arial, 9pt, style=Bold"/>
+          </TableRow>
+        </TableObject>
+      </DataHeaderBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="105.05" Width="15070.86" Height="18.9"/>
+  </ReportPage>
+</Report>

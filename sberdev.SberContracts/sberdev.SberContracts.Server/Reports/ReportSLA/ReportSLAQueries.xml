@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<queries>
+  <query key="QueryBaseSLA">
+    <default><![CDATA[SELECT
+	t.Subject             AS [Задача],
+    b.[Status]            AS [Состояние],
+    b.[Subject]           AS [Тема задания],
+    b.[Created]           AS [Стартована],
+    b.[Deadline]          AS [Срок],
+	p.Name                AS [Исполнитель],
+    CASE WHEN b.[IsRead] = 1 THEN N'Да' ELSE N'Нет' END AS [Прочтена],
+	c.Name                AS [Выполнил],
+    b.[Result]            AS [Результат],
+    b.[Completed]         AS [Выполнена],
+    r.Name                AS [Инициатор],
+    b.[Id]                AS [Задание],
+    CASE
+        WHEN b.[Completed] IS NULL OR b.[Deadline] IS NULL
+            THEN NULL
+        ELSE DATEDIFF(day, b.[Deadline], b.[Completed])
+    END AS [Разница_Дней],
+    CASE
+        WHEN b.[Completed] IS NULL OR b.[Deadline] IS NULL
+            THEN 0
+        ELSE CASE
+                 WHEN DATEDIFF(day, b.[Deadline], b.[Completed]) > 0
+                     THEN DATEDIFF(day, b.[Deadline], b.[Completed])
+                 ELSE 0
+             END
+    END AS 'Просрочено, дней',
+
+    CASE
+        WHEN b.[Completed] IS NULL OR b.[Deadline] IS NULL
+            THEN 0
+        ELSE CASE
+                 WHEN DATEDIFF(day, b.[Deadline], b.[Completed]) < 0
+                     THEN ABS(DATEDIFF(day, b.[Deadline], b.[Completed]))
+                 ELSE 0
+             END
+    END AS 'Досрочно, дней'
+FROM [DirectumRX].[dbo].[Sungero_WF_Assignment] b
+JOIN Sungero_Core_Recipient r ON r.id = b.[Author]
+JOIN Sungero_Core_Recipient p ON p.id = b.[Performer]
+LEFT JOIN Sungero_Core_Recipient c ON c.id = b.[CompletedBy]
+JOIN Sungero_WF_Task t ON t.id = b.[Task]
+WHERE b.MainTask IN (
+    SELECT att.[Task]
+    FROM [DirectumRX].[dbo].[Sungero_WF_Attachment] att
+    WHERE att.[AttachmentId] = @idDoc
+)
+AND b.[Deadline] IS NOT NULL
+ORDER BY
+    b.[Task] ASC,
+    b.[Created] ASC;
+]]></default>
+  </query>
+</queries>

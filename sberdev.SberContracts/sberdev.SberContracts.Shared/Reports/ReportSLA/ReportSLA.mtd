@@ -1,0 +1,42 @@
+{
+  "$type": "Sungero.Metadata.ReportMetadata, Sungero.Reporting.Shared",
+  "NameGuid": "bbf3aaf0-cf91-4ded-9f80-ae49cfdf2601",
+  "Name": "ReportSLA",
+  "AssociatedGuid": "fb838405-d1d2-4edc-b1d5-3d9915540871",
+  "BaseGuid": "cef9a810-3f30-4eca-9fe3-30992af0b818",
+  "DataSources": [],
+  "DefaultExportFormat": "Excel",
+  "ExportFormats": [
+    "Excel"
+  ],
+  "HandledEvents": [
+    "BeforeExecuteClient"
+  ],
+  "IconResourcesKeys": [],
+  "IntegrationServiceName": "SberContractsReportSLA",
+  "Overridden": [
+    "ExportFormats",
+    "DefaultExportFormat",
+    "DisplayName",
+    "HandledEvents",
+    "Description",
+    "Parameters"
+  ],
+  "Parameters": [
+    {
+      "NameGuid": "3c1b8516-45b4-4387-af9c-43f038354004",
+      "Name": "IDDoc",
+      "InternalDataTypeName": "System.Int64",
+      "IsRequired": true,
+      "IsSimpleDataType": true
+    }
+  ],
+  "PublicStructures": [],
+  "ResourcesKeys": [],
+  "Versions": [
+    {
+      "Type": "ReportMetadata",
+      "Number": 1
+    }
+  ]
+}

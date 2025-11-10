@@ -403,4 +403,13 @@
   <data name="FilterPanel_All_f9358552b64345839de408eb01f35a31" xml:space="preserve">
     <value>Все типы</value>
   </data>
+  <data name="CoverGroup_Analitics" xml:space="preserve">
+    <value>Аналитика</value>
+  </data>
+  <data name="CoverAction_ReportSLA" xml:space="preserve">
+    <value>SLA по согласованию документа</value>
+  </data>
+  <data name="CoverDescription_ReportSLA" xml:space="preserve">
+    <value>Отчет для анализа согласования выбранного документа</value>
+  </data>
 </root>
