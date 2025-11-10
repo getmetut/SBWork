@@ -58,4 +58,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Resource_663e0da98eea4663bf13eb5b251af0ff" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_663e0da98eea4663bf13eb5b251af0ff_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_e83c871ffafc4e8583a3d4de56dee9a8" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_e83c871ffafc4e8583a3d4de56dee9a8_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_d3c59c0cfabc49cfa6e76fe2e29c2b8d" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_d3c59c0cfabc49cfa6e76fe2e29c2b8d_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_6e743c0a172d46caae2b226e23146bc2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_6e743c0a172d46caae2b226e23146bc2_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_54371110c56448479ef681d5c4138a35" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_54371110c56448479ef681d5c4138a35_EmptyText" xml:space="preserve">
+    <value>[Zip Code] [City], [Street], [House/Office], [Place]
+Example: 125009 Moscow, Tverskaya St., 12, office 34</value>
+  </data>
+  <data name="Resource_29c26b5ce11343acb611958e0139ea63" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_29c26b5ce11343acb611958e0139ea63_EmptyText" xml:space="preserve">
+    <value>example@domain.com</value>
+  </data>
+  <data name="Resource_ea06c864d14f4b42873ce1bf1abe8d4c" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_ea06c864d14f4b42873ce1bf1abe8d4c_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_77ca5e799bb04bf1a3b1d73ab7c15d3a" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_77ca5e799bb04bf1a3b1d73ab7c15d3a_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_542a510733c8410c826dbad50f1e4356_DisplayValue" xml:space="preserve">
+    <value>Обновить информацию о контрагенте</value>
+  </data>
 </root>

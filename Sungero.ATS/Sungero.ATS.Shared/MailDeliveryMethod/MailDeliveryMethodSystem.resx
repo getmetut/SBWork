@@ -58,4 +58,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Property_EDOATSDev" xml:space="preserve">
+    <value>Электронный обмен</value>
+  </data>
+  <data name="Resource_b2d3f49f36ab41ed92e3b70bb13e5dfd" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_b2d3f49f36ab41ed92e3b70bb13e5dfd_EmptyText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_a19d8423586f47929b3adc6ea9f15339" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Resource_84451e25175742bfbcf22010457b6169" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Control_84451e25175742bfbcf22010457b6169_EmptyText" xml:space="preserve">
+    <value />
+  </data>
 </root>
