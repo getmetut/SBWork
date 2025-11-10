@@ -152,10 +152,10 @@
           "Name": "ControlGroup2",
           "ColumnDefinitions": [
             {
-              "Percentage": 78.61
+              "Percentage": 79.36
             },
             {
-              "Percentage": 20.44
+              "Percentage": 20.64
             }
           ],
           "ColumnNumber": 0,
