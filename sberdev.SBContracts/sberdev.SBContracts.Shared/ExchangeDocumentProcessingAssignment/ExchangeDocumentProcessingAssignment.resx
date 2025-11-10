@@ -64,4 +64,13 @@
   <data name="Emp" xml:space="preserve">
     <value>Employee</value>
   </data>
+  <data name="ForwardedResult" xml:space="preserve">
+    <value>Forwarded</value>
+  </data>
+  <data name="DistributeResult" xml:space="preserve">
+    <value>Sent to redistribute</value>
+  </data>
+  <data name="RedisributeResult" xml:space="preserve">
+    <value>Sent to redistribution</value>
+  </data>
 </root>

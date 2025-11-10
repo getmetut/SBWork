@@ -97,8 +97,8 @@
   <data name="Action_TransferBodySberDevConfirmationDescription" xml:space="preserve">
     <value />
   </data>
-  <data name="Property_ReadressedSberDev" xml:space="preserve">
-    <value>Readressed</value>
+  <data name="Property_HasAccAttachSberDev" xml:space="preserve">
+    <value>HasAccAttach</value>
   </data>
   <data name="Block_c59e4ddb429d441ba1e76f6872586afb" xml:space="preserve">
     <value>Отправить по регламенту счет на оплату входящий</value>
@@ -114,5 +114,11 @@
   </data>
   <data name="Block_0dd3fb1bbe69494da77acff1b2832df8_Property_9330789cd8b04445b1e2b207da925caa" xml:space="preserve">
     <value>Только постоплата</value>
+  </data>
+  <data name="Property_OnRedistributionSberDev" xml:space="preserve">
+    <value>OnRedistribution</value>
+  </data>
+  <data name="Property_IsAutoDistributedSberDev" xml:space="preserve">
+    <value>Task was auto-distributed</value>
   </data>
 </root>

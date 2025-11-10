@@ -10,7 +10,15 @@ namespace sberdev.SBContracts.Client
 {
   partial class ExchangeDocumentProcessingAssignmentFunctions
   {
-
+    public override bool ShowForwardingDialog()
+    {
+      var responsibles = SberDev.ExchDocDistrib.PublicFunctions.Module.GetBoxResponsibleEmployees(_obj.Box);
+      var currentEmp = Sungero.Company.Employees.As(_obj.Performer);
+      if (responsibles.Contains(currentEmp))
+        return SberDev.ExchDocDistrib.PublicFunctions.Module.ShowPrefillForwardDialog(_obj);
+      else
+        return base.ShowForwardingDialog();
+    }
     
   }
 }

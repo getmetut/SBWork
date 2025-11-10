@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
-using SberDev.ExchDocDistrib.Setting;
+using SberDev.ExchDocDistrib.Rule;
 
-namespace SberDev.ExchDocDistrib.Server
+namespace SberDev.ExchDocDistrib.Client
 {
-  partial class SettingFunctions
-  {
 
-  }
 }

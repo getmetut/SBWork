@@ -45,12 +45,12 @@ namespace sberdev.SBContracts.Server
     public void ReadressAssign(Sungero.Company.IEmployee emp)
     {
       _obj.Addressee = emp;
-      _obj.NewDeadline = Calendar.AddWorkingDays(_obj.Deadline.Value, 2);
-      // Прокинуть новый срок и исполнителя в задачу.
+      _obj.NewDeadline = Calendar.Now.AddWorkingDays(2);
+    /*  // Прокинуть новый срок и исполнителя в задачу.
       var task = ExchangeDocumentProcessingTasks.As(_obj.Task);
       task.Addressee = _obj.Addressee;
       task.Deadline = _obj.NewDeadline;
-      task.Save();
+      task.Save();*/
       _obj.Complete(SBContracts.ExchangeDocumentProcessingAssignment.Result.ReAddress);
     }
     

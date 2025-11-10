@@ -23,7 +23,7 @@ namespace sberdev.SBContracts.Server
       if (official == null)
         return;
       
-      PublicFunctions.OfficialDocument.Remote.ClearPublicComment(official);
+      PublicFunctions.OfficialDocument.ClearPublicComment(official);
     }
     
     /// <summary>
@@ -163,7 +163,7 @@ namespace sberdev.SBContracts.Server
     }
     
     /// <summary>
-    /// Проверяет необходимость и удаля исполнителя в доп этапе
+    /// Проверяет необходимость и удаляет исполнителя в доп этапе
     /// </summary>
     /// <param name="e"></param>
     public void RemoveSupStagePerformer(Sungero.Docflow.Server.ApprovalCheckingAssignmentArguments e)
@@ -337,6 +337,37 @@ namespace sberdev.SBContracts.Server
     #endregion
     
     #region Геты*
+    
+    /// <summary>
+    /// Получить последнее задание по задаче. Созданное не позже указанной даты.
+    /// </summary>
+    /// <param name="task">Задача согласования.</param>
+    /// <param name="lastDate">Крайняя дата.</param>
+    /// <returns>Последнее задание по задаче.</returns>
+    [Public, Remote]
+    public static Sungero.Workflow.IAssignment GetLastTaskAssigment(Sungero.Workflow.ITask task, DateTime? lastDate)
+    {
+      var taskAssignments = Sungero.Workflow.Assignments.GetAll().Where(o => Equals(o.Task, task));
+
+      if (lastDate.HasValue)
+        taskAssignments = taskAssignments.Where(o => o.Created < lastDate);
+      
+      var lastAssignment = taskAssignments.OrderByDescending(o => o.Created).FirstOrDefault();
+      
+      return lastAssignment;
+    }
+    
+    /// <summary>
+    /// Получить сортированный по дате (сначала старые) список заданий по задаче.
+    /// </summary>
+    /// <param name="task">Задача.</param>
+    [Public, Remote]
+    public static System.Collections.Generic.List<Sungero.Workflow.IAssignment> GetAllTaskAssigment(Sungero.Workflow.ITask task)
+    {
+      var taskAssignments = Sungero.Workflow.Assignments.GetAll()
+        .Where(o => Equals(o.Task, task)).OrderBy(o => o.Created).ToList();
+      return taskAssignments;
+    }
     
     [Public, Remote]
     public System.Collections.Generic.List<sberdev.SBContracts.IApprovalTask> GetTasksByCounterparty(sberdev.SBContracts.ICompany company)
