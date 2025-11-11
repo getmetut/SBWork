@@ -88,4 +88,7 @@
   <data name="DisplayName" xml:space="preserve">
     <value>NDA / Соглашение об ЭДО</value>
   </data>
+  <data name="CollectionDisplayName" xml:space="preserve">
+    <value>NDA/Соглашение об ЭДО или КБ</value>
+  </data>
 </root>

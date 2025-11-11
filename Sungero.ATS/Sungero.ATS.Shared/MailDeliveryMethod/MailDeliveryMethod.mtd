@@ -31,10 +31,10 @@
           "Name": "DeliveryMethod",
           "ColumnDefinitions": [
             {
-              "Percentage": 84.43
+              "Percentage": 85.24
             },
             {
-              "Percentage": 14.62
+              "Percentage": 14.76
             }
           ],
           "IsAncestorMetadata": true,
