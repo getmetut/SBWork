@@ -51,17 +51,21 @@ namespace sberdev.SBContracts
     public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
     {
       base.Showing(e);
-      if (_obj.LeadingDocument != null)
+      try
       {
-        _obj.State.Properties.LeadingDocument.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.LeadingDocument, false);
+        if (_obj.LeadingDocument != null)
+          _obj.State.Properties.LeadingDocument.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.LeadingDocument, false);
+        
+        if (_obj.AccDocSberDev != null)
+          _obj.State.Properties.AccDocSberDev.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.AccDocSberDev, false);
+        
+        if (_obj.InvoiceSberDev != null)
+          _obj.State.Properties.InvoiceSberDev.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.InvoiceSberDev, false);
       }
-      if (_obj.AccDocSberDev != null)
+      catch (Exception ex)
       {
-        _obj.State.Properties.AccDocSberDev.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.AccDocSberDev, false);
-      }
-      if (_obj.InvoiceSberDev != null)
-      {
-        _obj.State.Properties.InvoiceSberDev.HighlightColor = PublicFunctions.Module.HighlightUnsignedDocument(_obj.InvoiceSberDev, false);
+        // Документ удален/рассинхрон – тихо пропускаем подсветку
+        Logger.DebugFormat("HighlightUnsignedDocument skipped. Entity not found. Id={0}. {1}", _obj.Id, ex.Message);
       }
     }
 

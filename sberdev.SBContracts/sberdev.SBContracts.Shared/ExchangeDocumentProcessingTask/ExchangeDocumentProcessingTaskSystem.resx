@@ -98,7 +98,7 @@
     <value />
   </data>
   <data name="Property_HasAccAttachSberDev" xml:space="preserve">
-    <value>HasAccAttach</value>
+    <value>Has account attachment</value>
   </data>
   <data name="Block_c59e4ddb429d441ba1e76f6872586afb" xml:space="preserve">
     <value>Отправить по регламенту счет на оплату входящий</value>

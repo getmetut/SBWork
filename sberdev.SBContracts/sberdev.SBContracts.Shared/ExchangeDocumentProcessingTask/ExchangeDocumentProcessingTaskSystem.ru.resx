@@ -68,7 +68,7 @@
     <value>Скопировать тело докумена с подписями в карточку по указанному ИД.</value>
   </data>
   <data name="Property_HasAccAttachSberDev" xml:space="preserve">
-    <value>HasAccAttach</value>
+    <value>Финансовые документы</value>
   </data>
   <data name="Property_IsAutoDistributedSberDev" xml:space="preserve">
     <value>Задача была автоматически распределена</value>

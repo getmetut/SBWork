@@ -18,12 +18,15 @@ namespace SberDev.ExchDocDistrib.Shared
       var boxResp = Functions.Module.GetBoxResponsibleEmployee(_obj.Task);
       if (_obj.IsRedistribution == true)
         _obj.Action = String.Format("{0} -> {1}",
-                                  Sungero.Company.PublicFunctions.Employee.GetShortName(_obj.DistributedTo, true),
-                                  Sungero.Company.PublicFunctions.Employee.GetShortName(boxResp, true));
+                                    Sungero.Company.PublicFunctions.Employee.GetShortName(_obj.DistributedTo, true),
+                                    Sungero.Company.PublicFunctions.Employee.GetShortName(boxResp, true));
       else
+      {
+        var cp = sberdev.SBContracts.Companies.As(_obj.Counterparty);
         _obj.Action = String.Format("{0} -> {1}",
-                                  sberdev.SBContracts.Companies.As(_obj.Counterparty).Name1CSberDev,
-                                  Sungero.Company.PublicFunctions.Employee.GetShortName(_obj.DistributedTo, true));
+                                    cp != null ? cp.Name1CSberDev : _obj.Counterparty.Name,
+                                    Sungero.Company.PublicFunctions.Employee.GetShortName(_obj.DistributedTo, true));
+      }
       
       if (_obj.IsAccounting == true)
         _obj.Action = _obj.Action + "; финансовый";

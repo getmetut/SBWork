@@ -43,7 +43,8 @@ namespace SberDev.ExchDocDistrib.Server
       var task = sberdev.SBContracts.ExchangeDocumentProcessingTasks.As(assign.Task);
       var respEmpList = Functions.Module.GetBoxResponsibleEmployees(assign.Box);
       var assignPerformer = Sungero.Company.Employees.As(assign.Performer);
-      if (!respEmpList.Contains(assignPerformer) && result)
+      
+      if ((!respEmpList.Contains(assignPerformer) || respEmpList.Contains(assign.Addressee)) && result)
         return;
       
       var rulePerformer = result ? assign.Addressee : assignPerformer;
@@ -59,6 +60,12 @@ namespace SberDev.ExchDocDistrib.Server
         rule.Counterparty = assign.Counterparty;
         rule.Responsible = assign.Addressee;
       }
+      
+      if (rule == null && !result)
+      {
+        Logger.ErrorFormat("Перераспределение по несуществующему правилу. ИД задания: {0}", assign.Id.ToString());
+        return;
+      }    
       
       if (result)
         rule.AttemptsSuccessful++;

@@ -22,7 +22,9 @@ namespace SberDev.ExchDocDistrib.Client
       
       var deadline = dialog.AddDate(Sungero.Docflow.Resources.Deadline, true, Calendar.AddWorkingDays(Calendar.Now, 2)).AsDateTime();
       
-      var excludedPerformers = Functions.Module.GetBoxResponsibleEmployees(assign.Box);
+      var respPerformers = Functions.Module.GetBoxResponsibleEmployees(assign.Box);
+      respPerformers.Remove(Sungero.Company.Employees.As(Users.Current));
+      
       var forwardTo = dialog.AddSelect(Sungero.Docflow.Resources.ForwardTo, true, Sungero.Company.Employees.Null)
         .Where(p => p.Status == Sungero.Company.Employee.Status.Active);
       
@@ -33,6 +35,7 @@ namespace SberDev.ExchDocDistrib.Client
       {
         hasRules = true;
         possiblePerformers = rules.Select(r => r.Responsible).ToList();
+        possiblePerformers.AddRange(respPerformers);
         forwardTo.IsRequired = false;
         forwardTo.IsVisible = false;
       }

@@ -10,7 +10,8 @@ using Sungero.Domain.Shared;
 namespace SberDev.ExchDocDistrib.Shared
 {
   public class ModuleFunctions
-  {
+  {  
+    
     /// <summary>
     /// Отдает необходимого ответственного за ящик.
     /// </summary>
@@ -34,8 +35,13 @@ namespace SberDev.ExchDocDistrib.Shared
       var unitBox = BusinessUnitBoxes.As(box);
       var depBox = Sungero.ExchangeCore.DepartmentBoxes.As(box);
       var unit = unitBox != null ? unitBox.BusinessUnit : depBox.RootBox.BusinessUnit;
+      if (unit == null)
+        return null;
+      
+      var mainResp = box.Responsible != null ? box.Responsible : depBox.RootBox.Responsible;
+      list.Add(mainResp);
+      
       var respAcc = BusinessUnits.As(unit).AccDocsHandlerSberDev;
-      list.Add(unitBox.Responsible);
       if (respAcc != null)
         list.Add(respAcc);
       return list;
