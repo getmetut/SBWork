@@ -36,10 +36,12 @@ namespace sberdev.SBContracts
       {
         SberDev.ExchDocDistrib.PublicFunctions.Rule.Remote.CreateOrUpdate(_obj, true);
         task.OnRedistributionSberDev = false;
+        task.AccessRights.Grant(_obj.Addressee, DefaultAccessRightsTypes.Change);
+        task.AccessRights.Save();
         task.Save();
       }
       
-      if (_obj.ResultIsRedistributionSberDev == true)
+      if (resultIsRedistribution)
       {
         SberDev.ExchDocDistrib.PublicFunctions.Rule.Remote.CreateOrUpdate(_obj, false);
         e.Result = sberdev.SBContracts.ExchangeDocumentProcessingAssignments.Resources.RedisributeResult;

@@ -9,6 +9,30 @@ namespace SberDev.ExchDocDistrib.Server
   public class ModuleFunctions
   {
     /// <summary>
+    /// Отдает всех ответственных за все ящики .
+    /// </summary>
+    /// <param name="task"></param>
+    [Public]
+    public System.Collections.Generic.List<Sungero.CoreEntities.IRecipient> GetAllBoxesResponsibleEmployees()
+    {
+      List<IRecipient> list = new List<IRecipient>();
+      
+      var accRespList = sberdev.SBContracts.BusinessUnits.GetAll()
+        .Where(b => b.AccDocsHandlerSberDev != null)
+        .Select(b => Sungero.CoreEntities.Recipients.As(b.AccDocsHandlerSberDev))
+        .ToList();
+      list.AddRange(accRespList);
+      
+      var boxesRespList = Sungero.ExchangeCore.BoxBases.GetAll()
+        .Where(b => b.Responsible != null)
+        .Select(b => Sungero.CoreEntities.Recipients.As(b.Responsible))
+        .ToList();
+      list.AddRange(boxesRespList);
+      
+      return list.Distinct().ToList();
+    }
+    
+    /// <summary>
     /// Распределить документы по самому успешному правилу.
     /// </summary>
     /// <param name="task"></param>

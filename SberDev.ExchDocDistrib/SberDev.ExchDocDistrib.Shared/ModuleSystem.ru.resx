@@ -67,4 +67,13 @@
   <data name="JobDescription_cedb70c367064dddafb81cb786a6820f" xml:space="preserve">
     <value>Процесc очищает справочник LogEntry от записей с датой старше месяца.</value>
   </data>
+  <data name="JobDisplayName_0c8d8c5c63d24fddbecaee33a70c9786" xml:space="preserve">
+    <value>Распределение вх док-ов. Удаление дубликатов правил</value>
+  </data>
+  <data name="JobDescription_0c8d8c5c63d24fddbecaee33a70c9786" xml:space="preserve">
+    <value>Процесс удаляет дубликаты в справочнике правил распределения вх. док-ов. Они создаются из за массовой переадресации из-за особенностей платформы.</value>
+  </data>
+  <data name="AsyncHandler_Description_00430f0c3e804787a2e61bc9711687dc" xml:space="preserve">
+    <value>Обработчик удаляет дубликаты в справочнике правил распределения вх. док-ов. Они создаются из за массовой переадресации из-за особенностей платформы.</value>
+  </data>
 </root>

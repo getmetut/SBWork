@@ -2,7 +2,16 @@
   "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
   "NameGuid": "3dca98eb-2cf7-4ee7-9879-7f0476dfb89d",
   "Name": "ExchDocDistrib",
-  "AsyncHandlers": [],
+  "AsyncHandlers": [
+    {
+      "NameGuid": "00430f0c-3e80-4787-a2e6-1bc9711687dc",
+      "Name": "DuplicateRuleCleaner",
+      "DelayPeriod": 1,
+      "DelayStrategy": "RegularDelayStrategy",
+      "IsHandlerGenerated": true,
+      "Parameters": []
+    }
+  ],
   "ClientAssemblyName": "SberDev.ExchDocDistrib.Client",
   "ClientBaseAssemblyName": "SberDev.ExchDocDistrib.ClientBase",
   "ClientBaseNamespace": "SberDev.ExchDocDistrib.ClientBase",
@@ -42,6 +51,9 @@
       "PreviousItemId": "ff55d9be-24d9-4234-b01c-8b964b9ae55d"
     }
   ],
+  "HandledEvents": [
+    "InitializingServer"
+  ],
   "IconResourcesKeys": [],
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
@@ -53,6 +65,13 @@
     {
       "NameGuid": "cedb70c3-6706-4ddd-afb8-1cb786a6820f",
       "Name": "LogCleaner",
+      "GenerateHandler": true,
+      "MonthSchedule": "Monthly",
+      "StartAt": "1753-01-01T08:30:00"
+    },
+    {
+      "NameGuid": "0c8d8c5c-63d2-4fdd-beca-ee33a70c9786",
+      "Name": "DuplicateRuleCleaner",
       "GenerateHandler": true,
       "MonthSchedule": "Monthly",
       "StartAt": "1753-01-01T08:30:00"
@@ -86,6 +105,11 @@
       "Placement": "Shared",
       "ReturnType": "void",
       "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "GetAllBoxesResponsibleEmployees",
+      "ReturnType": "global::System.Collections.Generic.List<global::Sungero.CoreEntities.IRecipient>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
     },
     {
       "Name": "GetBoxResponsibleEmployee",

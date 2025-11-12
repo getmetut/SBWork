@@ -37,6 +37,7 @@ namespace sberdev.SBContracts.Client
             continue;
           }
         }
+        SberDev.ExchDocDistrib.Jobs.DuplicateRuleCleaner.Enqueue();
       }
     }
   }
@@ -59,8 +60,9 @@ namespace sberdev.SBContracts.Client
       if (lastAssig != null)
         lastPerfrormer = Sungero.Company.Employees.As(lastAssig.Performer);
       var neededPerformers = SberDev.ExchDocDistrib.PublicFunctions.Module.GetBoxResponsibleEmployees(_obj.Box);
+      var currentEmp = Sungero.Company.Employees.As(_obj.Performer);
       return (neededPerformers.Contains(lastPerfrormer) || task.IsAutoDistributedSberDev == true)
-        && _obj.Status == Status.InProcess && task.OnRedistributionSberDev != true;
+        && _obj.Status == Status.InProcess && task.OnRedistributionSberDev != true && !neededPerformers.Contains(currentEmp);
     }
 
     public virtual void AbortTask(Sungero.Domain.Client.ExecuteActionArgs e)

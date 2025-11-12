@@ -62,13 +62,13 @@
     <value>Контрагент</value>
   </data>
   <data name="DisplayName" xml:space="preserve">
-    <value>Правило распределения вх. док.</value>
+    <value>Правило распределения вх. док-ов</value>
   </data>
   <data name="AccusativeDisplayName" xml:space="preserve">
-    <value>Правило распределения вх. док.</value>
+    <value>Правило распределения вх. док-ов</value>
   </data>
   <data name="CollectionDisplayName" xml:space="preserve">
-    <value>Правила распределения</value>
+    <value>Правила распределения вх. док-ов</value>
   </data>
   <data name="Property_Responsible" xml:space="preserve">
     <value>Ответственный</value>
